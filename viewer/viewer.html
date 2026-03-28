@@ -828,11 +828,12 @@ html, body {
 
   function renderDashboard(data) {
     const el = document.getElementById('tab-content');
+    const analysis = data.analysis || data;
     const videos = data.videos || [];
-    const topics = data.topics || data.common_topics || [];
-    const disagreements = data.disagreements || [];
-    const moments = data.key_moments || [];
-    const summary = data.unified_summary || data.summary || '';
+    const topics = analysis.topics || data.topics || data.common_topics || [];
+    const disagreements = analysis.disagreements || data.disagreements || [];
+    const moments = analysis.key_moments || data.key_moments || [];
+    const summary = analysis.unified_summary || data.unified_summary || data.summary || '';
 
     const topicCount = Array.isArray(topics) ? topics.length : 0;
     const disagreeCount = Array.isArray(disagreements) ? disagreements.length : 0;
