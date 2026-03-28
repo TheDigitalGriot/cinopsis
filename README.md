@@ -55,7 +55,7 @@ git clone https://github.com/yizhiyanhua-ai/youtube-ai-digest.git \
 pip install -r requirements.txt
 ```
 
-> Requires `ffmpeg` on your system PATH for frame screenshot capture. Install via `choco install ffmpeg` (Windows), `brew install ffmpeg` (macOS), or `apt install ffmpeg` (Linux).
+> Requires `ffmpeg` on your system PATH for frame screenshot capture. Install via `winget install Gyan.FFmpeg` or `choco install ffmpeg` (Windows), `brew install ffmpeg` (macOS), or `apt install ffmpeg` (Linux).
 
 ### Configure Channels
 

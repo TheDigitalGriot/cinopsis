@@ -885,11 +885,16 @@ html, body {
       html += '<div class="card-header">Videos Compared</div>';
       html += '<div class="video-grid">';
       for (const v of videos) {
-        const thumb = v.thumbnail_base64
-          ? '<img src="data:image/jpeg;base64,' + v.thumbnail_base64 + '" alt="">'
-          : (v.thumbnail
-            ? '<img src="' + escAttr(v.thumbnail) + '" alt="">'
-            : '<span>No thumbnail</span>');
+        let thumb;
+        if (v.thumbnail_base64) {
+          thumb = '<img src="data:image/jpeg;base64,' + v.thumbnail_base64 + '" alt="">';
+        } else if (v.thumbnail) {
+          thumb = '<img src="' + escAttr(v.thumbnail) + '" alt="">';
+        } else if (v.id) {
+          thumb = '<img src="https://img.youtube.com/vi/' + escAttr(v.id) + '/hqdefault.jpg" alt="">';
+        } else {
+          thumb = '<span>No thumbnail</span>';
+        }
         html +=
           '<div class="video-card">' +
             '<div class="video-thumb">' + thumb + '</div>' +
@@ -912,11 +917,14 @@ html, body {
         const m = moments[i];
         const colorIdx = m.video_index != null ? m.video_index : i;
         const color = TOPIC_COLORS[colorIdx % TOPIC_COLORS.length];
-        const thumb = m.screenshot_base64
-          ? '<img src="data:image/jpeg;base64,' + m.screenshot_base64 + '" alt="">'
-          : (m.screenshot
-            ? '<img src="' + escAttr(m.screenshot) + '" alt="">'
-            : '');
+        let thumb = '';
+        if (m.screenshot_base64) {
+          thumb = '<img src="data:image/jpeg;base64,' + m.screenshot_base64 + '" alt="">';
+        } else if (m.screenshot) {
+          thumb = '<img src="' + escAttr(m.screenshot) + '" alt="">';
+        } else if (m.video_id) {
+          thumb = '<img src="https://img.youtube.com/vi/' + escAttr(m.video_id) + '/hqdefault.jpg" alt="">';
+        }
         html +=
           '<div class="moment-card">' +
             '<div class="moment-thumb">' + thumb +
