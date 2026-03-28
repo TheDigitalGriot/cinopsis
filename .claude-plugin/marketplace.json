@@ -1,29 +1,18 @@
 {
-  "metadata": {
-    "name": "ytmp4-ai-digest",
-    "description": "Claude Code plugin for browsing YouTube channels, fetching transcripts, generating digest reports, and comparing videos with an interactive dashboard",
-    "owner": "yizhiyanhua-ai",
-    "version": "1.1.0",
-    "homepage": "https://github.com/yizhiyanhua-ai/ytmp4-ai-digest"
+  "$schema": "https://anthropic.com/claude-code/marketplace.schema.json",
+  "name": "ytmp4-ai-digest",
+  "description": "Browse YouTube channels, fetch transcripts, generate digest reports, and compare videos with an interactive dashboard",
+  "owner": {
+    "name": "TheDigitalGriot",
+    "url": "https://github.com/TheDigitalGriot"
   },
   "plugins": [
     {
       "name": "ytmp4-ai-digest",
       "description": "Browses YouTube channels, fetches transcripts, generates summaries, creates Markdown reports, and compares videos with an interactive dashboard. Use when the user mentions YouTube videos, video summaries, channel subscriptions, video comparisons, or wants to catch up on content from YouTube creators.",
       "source": "./",
-      "strict": false,
-      "version": "1.1.0",
       "category": "productivity",
-      "keywords": [
-        "youtube",
-        "video",
-        "transcript",
-        "summary",
-        "digest",
-        "comparison",
-        "markdown",
-        "report"
-      ]
+      "homepage": "https://github.com/TheDigitalGriot/ytmp4-ai-digest"
     }
   ]
 }
