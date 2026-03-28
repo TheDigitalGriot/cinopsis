@@ -3,11 +3,11 @@
   "version": "1.3.0",
   "description": "Browse subscribed YouTube channels, fetch transcripts, and generate Markdown summary digests. Supports multi-video comparison with interactive dashboard, frame screenshots, and chat. Works with any topic — AI, 3D modeling, coding, and more.",
   "author": {
-    "name": "yizhiyanhua-ai",
-    "url": "https://github.com/yizhiyanhua-ai"
+    "name": "TheDigitalGriot",
+    "url": "https://github.com/TheDigitalGriot"
   },
-  "homepage": "https://github.com/yizhiyanhua-ai/ytmp4-ai-digest",
-  "repository": "https://github.com/yizhiyanhua-ai/ytmp4-ai-digest",
+  "homepage": "https://github.com/TheDigitalGriot/ytmp4-ai-digest",
+  "repository": "https://github.com/TheDigitalGriot/ytmp4-ai-digest",
   "license": "MIT",
   "keywords": ["youtube", "video", "transcript", "summary", "digest", "comparison", "markdown", "report"]
 }

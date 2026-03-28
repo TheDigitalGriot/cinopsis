@@ -31,22 +31,16 @@
 
 ### Installation
 
-**Option 1: Install via Claude Code Plugin (Recommended)**
+**Option 1: Install via Claude Code (Recommended)**
 
 ```bash
-# Add marketplace
-claude plugin marketplace add https://github.com/yizhiyanhua-ai/youtube-ai-digest
-
-# Install plugin
-claude plugin install youtube-ai-digest@youtube-ai-digest
+claude install gh:TheDigitalGriot/ytmp4-ai-digest
 ```
 
 **Option 2: Manual Clone**
 
 ```bash
-# Clone to Claude Code skills directory
-git clone https://github.com/yizhiyanhua-ai/youtube-ai-digest.git \
-  ~/.claude/skills/youtube-ai-digest
+git clone https://github.com/TheDigitalGriot/ytmp4-ai-digest.git
 ```
 
 **Install Dependencies**
