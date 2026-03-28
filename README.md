@@ -1,59 +1,65 @@
 <div align="center">
 
-# 📺 YouTube AI Digest
+# 📺 YouTube Video Digest
 
-**让 Claude 帮你追踪 AI 领域最新动态**
+**Let Claude recap your YouTube subscriptions for you**
 
 [![Claude Code Skill](https://img.shields.io/badge/Claude%20Code-Skill-blueviolet?style=for-the-badge&logo=anthropic)](https://claude.ai/code)
 [![Python 3.9+](https://img.shields.io/badge/Python-3.9+-blue?style=for-the-badge&logo=python&logoColor=white)](https://python.org)
 [![License: MIT](https://img.shields.io/badge/License-MIT-green?style=for-the-badge)](LICENSE)
 
-[English](./README.en.md) | **简体中文**
+**English** | [简体中文](./README.md)
 
 ---
 
-*自动浏览订阅频道、获取字幕、生成摘要报告 — 再也不错过任何 AI 热点*
+*Auto-browse subscribed channels, fetch transcripts, generate summary reports — never miss a video worth watching*
 
 </div>
 
-## ✨ 功能特性
+## ✨ Features
 
-- 🔍 **智能抓取** — 从订阅频道获取最新 AI 相关视频
-- 📝 **字幕提取** — 自动下载视频字幕（支持自动生成字幕）
-- 📊 **报告生成** — 生成结构化的 Markdown 报告
-- 🖼️ **缩略图下载** — 自动保存视频封面
+- 🔍 **Smart Fetching** — Get latest videos from subscribed channels (any topic)
+- 📝 **Transcript Extraction** — Auto-download video subtitles (including auto-generated)
+- 📊 **Report Generation** — Generate structured Markdown reports
+- 🖼️ **Thumbnail Download** — Auto-save video thumbnails
+- 🔀 **Multi-Video Comparison** — Cross-video analysis with interactive dashboard
+- 🖼️ **Frame Screenshots** — Capture video frames at any timestamp via ffmpeg
+- 💬 **Agentic Chat** — Ask follow-up questions about compared videos
+- 📂 **Session History** — Browse and revisit past comparison sessions
 
-## 🚀 快速开始
+## 🚀 Quick Start
 
-### 安装
+### Installation
 
-**方式一：通过 Claude Code Plugin 安装（推荐）**
+**Option 1: Install via Claude Code Plugin (Recommended)**
 
 ```bash
-# 添加 marketplace
+# Add marketplace
 claude plugin marketplace add https://github.com/yizhiyanhua-ai/youtube-ai-digest
 
-# 安装插件
+# Install plugin
 claude plugin install youtube-ai-digest@youtube-ai-digest
 ```
 
-**方式二：手动克隆**
+**Option 2: Manual Clone**
 
 ```bash
-# 克隆到 Claude Code 技能目录
+# Clone to Claude Code skills directory
 git clone https://github.com/yizhiyanhua-ai/youtube-ai-digest.git \
   ~/.claude/skills/youtube-ai-digest
 ```
 
-**安装依赖**
+**Install Dependencies**
 
 ```bash
-pip install yt-dlp
+pip install -r requirements.txt
 ```
 
-### 配置频道
+> Requires `ffmpeg` on your system PATH for frame screenshot capture. Install via `choco install ffmpeg` (Windows), `brew install ffmpeg` (macOS), or `apt install ffmpeg` (Linux).
 
-编辑 `data/channels.json` 添加你关注的 YouTube 频道：
+### Configure Channels
+
+Edit `data/channels.json` to add your subscribed YouTube channels:
 
 ```json
 {
@@ -65,83 +71,124 @@ pip install yt-dlp
 }
 ```
 
-> 💡 **如何获取频道 ID？** 打开 YouTube 频道页面，URL 格式为 `youtube.com/channel/{CHANNEL_ID}`
+> 💡 **How to find Channel ID?** Open a YouTube channel page, the URL format is `youtube.com/channel/{CHANNEL_ID}`
 
-### 使用方式
+### Usage
 
-在 Claude Code 中直接对话：
+Chat with Claude Code directly:
 
 ```
-用户: 今天有什么 AI 新视频？
-用户: 总结一下第一个视频
-用户: 把这个视频的要点整理成报告
+User: What are the latest videos?
+User: Show me recent Blender tutorials
+User: Summarize the first video
+User: Create a digest of this week's coding content
+User: Compare these videos: URL1, URL2, URL3
+User: What do they disagree on?
 ```
 
-## 📖 手动使用
+## 📖 Manual Usage
 
 ```bash
-# 1. 获取最近 7 天的视频列表
-python scripts/fetch_videos.py --days 7 --keyword AI
+# 1. Fetch videos from the past 7 days (any topic)
+python scripts/fetch_videos.py --days 7 --all
+python scripts/fetch_videos.py --days 7 --keyword "blender"
 
-# 2. 获取指定视频的字幕
+# 2. Get transcript for a specific video
 python scripts/get_transcript.py --video-id dQw4w9WgXcQ
 
-# 3. 生成 Markdown 报告
-python scripts/generate_report.py --video-id dQw4w9WgXcQ --summary "视频摘要内容"
+# 3. Generate Markdown report
+python scripts/generate_report.py --video-id dQw4w9WgXcQ --summary "Your summary here"
+
+# 4. Compare multiple videos
+python scripts/compare_videos.py --urls URL1 URL2 URL3
+
+# 5. Launch the interactive comparison viewer
+python scripts/compare_server.py --port 5123
+
+# 6. Capture a frame screenshot at a specific timestamp
+python scripts/capture_frames.py --video-id dQw4w9WgXcQ --timestamps 60,120,300
 ```
 
-## 📁 目录结构
+## 📁 Directory Structure
 
 ```
 youtube-ai-digest/
 ├── .claude-plugin/
-│   └── marketplace.json  # Plugin marketplace 配置
-├── SKILL.md              # Claude Code 技能定义
-├── README.md             # 说明文档（中文）
-├── README.en.md          # 说明文档（英文）
+│   └── marketplace.json   # Plugin marketplace config
+├── skills/
+│   └── ytmp4-ai-digest/
+│       └── SKILL.md       # Claude Code skill definition
 ├── scripts/
-│   ├── fetch_videos.py   # 获取频道视频列表
-│   ├── get_transcript.py # 下载视频字幕
-│   └── generate_report.py# 生成 Markdown 报告
+│   ├── fetch_videos.py    # Fetch channel video list
+│   ├── get_transcript.py  # Download video transcripts
+│   ├── generate_report.py # Generate Markdown reports
+│   ├── digest_all.py      # Batch digest generation
+│   ├── compare_videos.py  # Multi-video comparison orchestrator
+│   ├── capture_frames.py  # Frame screenshot capture (ffmpeg)
+│   └── compare_server.py  # Flask server for interactive viewer
+├── viewer/
+│   └── viewer.html        # Self-contained comparison dashboard
+├── tests/
+│   ├── test_capture_frames.py
+│   ├── test_compare_videos.py
+│   ├── test_compare_server.py
+│   └── test_session_persistence.py
+├── requirements.txt       # Python dependencies
+├── README.md              # Documentation (Chinese)
+├── README.en.md           # Documentation (English)
 └── data/
-    ├── channels.json     # 订阅频道配置
-    ├── videos.json       # 视频列表缓存（自动生成）
-    └── output/           # 报告输出目录（自动生成）
+    ├── channels.json      # Subscribed channels config
+    ├── videos.json        # Video list cache (auto-generated)
+    └── sessions/          # Comparison session history (auto-generated)
 ```
 
-## 📋 输出示例
+## 📋 Output Examples
+
+### Single Video Report
 
 ```markdown
 # Understanding GPT-4's Reasoning
 
-![封面](thumbnail.webp)
+![Thumbnail](thumbnail.webp)
 
-## 视频信息
-- 频道: AI Explained
-- 发布时间: 2024-01-15
-- 时长: 12:34
-- 链接: https://youtube.com/watch?v=...
+## Video Info
+- Channel: AI Explained
+- Published: 2024-01-15
+- Duration: 12:34
+- Link: https://youtube.com/watch?v=...
 
-## 内容摘要
-本视频深入分析了 GPT-4 的推理能力...
+## Summary
+This video provides an in-depth analysis of GPT-4's reasoning capabilities...
 
-## 字幕内容
+## Transcript
 [00:00] Welcome back to AI Explained...
 [01:30] Today we're going to discuss...
 ```
 
-## 🔧 依赖要求
+### Video Comparison Dashboard
 
-| 依赖 | 版本 | 说明 |
-|------|------|------|
-| Python | 3.9+ | 运行环境 |
-| yt-dlp | latest | YouTube 视频/字幕下载 |
+The interactive viewer provides three views:
 
-## 🤝 贡献
+- **Dashboard** — Stats overview, unified summary, topic coverage map, video cards, key moments grid
+- **By Topic** — Accordion layout grouping all videos by shared themes, with per-video quotes and screenshots
+- **By Video** — Split panel with video selector, topic tags, clickable timeline for on-demand frame capture
 
-欢迎提交 Issue 和 Pull Request！
+The viewer also includes a **chat widget** for asking follow-up questions about the compared videos and a **session history panel** for browsing past comparisons.
 
-## 📄 许可证
+## 🔧 Requirements
+
+| Dependency | Version | Description |
+|------------|---------|-------------|
+| Python | 3.9+ | Runtime environment |
+| yt-dlp | latest | YouTube video/subtitle download |
+| Flask | latest | Local server for comparison viewer |
+| ffmpeg | latest | Frame screenshot capture (system binary) |
+
+## 🤝 Contributing
+
+Issues and Pull Requests are welcome!
+
+## 📄 License
 
 [MIT License](LICENSE)
 
@@ -149,6 +196,6 @@ youtube-ai-digest/
 
 <div align="center">
 
-**如果这个项目对你有帮助，请给个 ⭐ Star！**
+**If you find this project helpful, please give it a ⭐ Star!**
 
 </div>

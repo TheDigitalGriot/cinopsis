@@ -1,11 +1,11 @@
 ---
 name: ytmp4-ai-digest
-description: Browse subscribed YouTube channels for AI-related videos, fetch transcripts, and generate summary digests in Markdown. Also supports multi-video comparison — cross-video analysis with interactive dashboard, frame screenshots, and agentic chat. Use this skill whenever the user mentions "AI videos", "latest AI news", "YouTube AI content", "summarize YouTube", "AI video digest", "what's new in AI", "AI podcast", "youtube ai digest", "compare these videos", "compare video X and Y", "what's the difference between these videos", "cross-video analysis", or wants to catch up on recent AI developments even without specifying a source.
+description: Browse subscribed YouTube channels, fetch transcripts, and generate summary digests in Markdown. Also supports multi-video comparison — cross-video analysis with interactive dashboard, frame screenshots, and agentic chat. Use this skill whenever the user mentions "YouTube videos", "video digest", "summarize YouTube", "video summary", "youtube digest", "latest videos", "compare these videos", "compare video X and Y", "what's the difference between these videos", "cross-video analysis", "recap videos", "catch up on videos", or wants to browse, summarize, or compare YouTube content on any topic (AI, 3D modeling, coding, etc.).
 ---
 
-# YouTube AI Digest
+# YouTube Video Digest
 
-Browse subscribed YouTube channels for AI-related videos, fetch transcripts, and generate Markdown summary digests.
+Browse subscribed YouTube channels, fetch transcripts, and generate Markdown summary digests. Works with any topic — AI, 3D modeling, coding, creative tools, and more.
 
 ## Quick Start
 
@@ -15,9 +15,11 @@ Persistent data: `${CLAUDE_PLUGIN_DATA}`
 ### Standard Workflow (Recommended)
 
 ```bash
-# Step 1: Fetch AI-related videos from the last 3 days
+# Step 1: Fetch recent videos from subscribed channels (last 3 days)
 cd ${CLAUDE_PLUGIN_ROOT}
-python scripts/fetch_videos.py --days 3
+python scripts/fetch_videos.py --days 3           # Default: AI keyword filter
+python scripts/fetch_videos.py --days 3 --all     # All topics, no filter
+python scripts/fetch_videos.py --days 3 --keyword "blender"  # Custom topic
 
 # Step 2: Display the list and let the user pick videos by number
 
@@ -60,13 +62,14 @@ Edit `${CLAUDE_PLUGIN_ROOT}/data/channels.json`:
 ## Scripts Reference
 
 ### fetch_videos.py
-Fetch recent AI-related videos from subscribed channels (uses `--dateafter` for time filtering).
+Fetch recent videos from subscribed channels (uses `--dateafter` for time filtering).
 
 ```bash
-python scripts/fetch_videos.py --days 3          # Last 3 days
+python scripts/fetch_videos.py --days 3          # Last 3 days (default AI filter)
 python scripts/fetch_videos.py --days 7          # Last 7 days
-python scripts/fetch_videos.py --days 3 --all    # No filter, return all videos
-python scripts/fetch_videos.py --keyword "GPT"   # Custom keyword filter
+python scripts/fetch_videos.py --days 3 --all    # All videos, no keyword filter
+python scripts/fetch_videos.py --keyword "blender"  # Custom keyword filter
+python scripts/fetch_videos.py --keyword "react"    # Any topic works
 ```
 
 Output: `${CLAUDE_PLUGIN_DATA}/videos.json` (includes upload date, duration, channel, and other metadata)
@@ -101,9 +104,9 @@ python scripts/generate_report.py --video-id VIDEO_ID --output ~/reports/
 ## Output Format (Daily Digest)
 
 ```markdown
-# AI Video Digest 2026-03-22
+# Video Digest 2026-03-22
 
-> Last 3 days, 8 AI-related videos found
+> Last 3 days, 8 videos found
 
 ---
 
@@ -130,9 +133,10 @@ NVIDIA's new model achieves a breakthrough in autonomous driving perception...
 | User Says | Claude Should Do |
 |-----------|-----------------|
 | "Find recent AI videos" | Run fetch_videos.py --days 3, display results |
+| "What's new in Blender?" | Run fetch_videos.py --keyword "blender" |
 | "Create a digest" | Run digest_all.py, then read the file and generate summaries |
 | "Summarize video #3" | Run get_transcript.py to fetch transcript, then summarize |
-| "Anything about Anthropic lately?" | Run fetch_videos.py --keyword "anthropic" |
+| "Show all videos, no filter" | Run fetch_videos.py --days 3 --all |
 
 ## Video Comparison
 
