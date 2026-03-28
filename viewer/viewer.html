@@ -560,6 +560,40 @@ html, body {
   font-size: 16px;
   font-weight: 600;
 }
+
+/* ── Chat Widget ── */
+#chat-bubble { position: fixed; bottom: 16px; right: 16px; width: 52px; height: 52px; background: linear-gradient(135deg, #7c3aed, #6d28d9); border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; box-shadow: 0 4px 16px rgba(124,58,237,0.4); z-index: 1000; transition: transform 0.2s, opacity 0.2s; }
+#chat-bubble:hover { transform: scale(1.1); }
+#chat-bubble .ai-dot { position: absolute; top: -2px; right: -2px; width: 14px; height: 14px; background: #34d399; border-radius: 50%; border: 2px solid #0f1117; display: flex; align-items: center; justify-content: center; }
+#chat-bubble .ai-dot span { color: white; font-size: 7px; font-weight: bold; }
+
+#chat-panel { position: fixed; bottom: 16px; right: 16px; width: 380px; height: 450px; background: #1a1d2e; border: 1px solid #2d3148; border-radius: 12px; box-shadow: 0 8px 32px rgba(0,0,0,0.5); z-index: 1001; display: flex; flex-direction: column; overflow: hidden; transition: transform 0.2s ease, opacity 0.2s ease; }
+#chat-panel.chat-hidden { transform: translateY(20px); opacity: 0; pointer-events: none; }
+
+.chat-gradient { height: 4px; background: linear-gradient(90deg, #7c3aed, #6d28d9); }
+.chat-header { display: flex; align-items: center; gap: 8px; padding: 10px 14px; border-bottom: 1px solid #2d3148; }
+.chat-header .chat-avatar { width: 24px; height: 24px; border-radius: 50%; background: #7c3aed; display: flex; align-items: center; justify-content: center; color: white; font-size: 12px; font-weight: 700; flex-shrink: 0; }
+.chat-header .chat-status { flex: 1; font-size: 12px; color: #94a3b8; min-width: 0; }
+.chat-header .chat-close { background: none; border: none; color: #64748b; cursor: pointer; font-size: 16px; padding: 2px 4px; border-radius: 4px; line-height: 1; }
+.chat-header .chat-close:hover { color: #e2e8f0; background: rgba(255,255,255,0.06); }
+
+#chat-messages { flex: 1; overflow-y: auto; padding: 12px; display: flex; flex-direction: column; gap: 8px; }
+#chat-messages::-webkit-scrollbar { width: 4px; }
+#chat-messages::-webkit-scrollbar-track { background: transparent; }
+#chat-messages::-webkit-scrollbar-thumb { background: #2d3148; border-radius: 2px; }
+
+.chat-msg { max-width: 85%; padding: 8px 10px; border-radius: 8px; font-size: 12px; line-height: 1.4; word-wrap: break-word; }
+.chat-msg.assistant { background: #0f1117; color: #e2e8f0; align-self: flex-start; }
+.chat-msg.user { background: #7c3aed; color: white; align-self: flex-end; }
+.chat-msg a.ts-link { color: #a78bfa; text-decoration: underline; cursor: pointer; }
+.chat-msg.user a.ts-link { color: #e2e8f0; }
+
+.chat-input-bar { display: flex; gap: 8px; padding: 10px 14px; border-top: 1px solid #2d3148; }
+.chat-input-bar input { flex: 1; background: #0f1117; border: 1px solid #2d3148; border-radius: 6px; padding: 8px; color: #e2e8f0; font-size: 12px; outline: none; }
+.chat-input-bar input::placeholder { color: #64748b; }
+.chat-input-bar input:focus { border-color: #7c3aed; }
+.chat-input-bar button { width: 32px; height: 32px; background: #7c3aed; border: none; border-radius: 6px; color: white; cursor: pointer; font-size: 14px; display: flex; align-items: center; justify-content: center; }
+.chat-input-bar button:hover { background: #6d28d9; }
 </style>
 </head>
 <body>
@@ -597,6 +631,31 @@ html, body {
       </div>
     </nav>
     <div id="tab-content"></div>
+  </div>
+
+  <!-- Chat Bubble -->
+  <div id="chat-bubble" onclick="toggleChat()">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M20 2H4C2.9 2 2 2.9 2 4V22L6 18H20C21.1 18 22 17.1 22 16V4C22 2.9 21.1 2 20 2Z" fill="white"/>
+    </svg>
+    <div class="ai-dot"><span>AI</span></div>
+  </div>
+
+  <!-- Chat Panel -->
+  <div id="chat-panel" class="chat-hidden">
+    <div class="chat-gradient"></div>
+    <div class="chat-header">
+      <div class="chat-avatar">C</div>
+      <div class="chat-status" id="chat-status">Ready</div>
+      <button class="chat-close" onclick="toggleChat()" title="Close chat">&times;</button>
+    </div>
+    <div id="chat-messages">
+      <div class="chat-msg assistant">Hi! I can help you explore and understand these videos. Ask me anything about the content, topics, or comparisons.</div>
+    </div>
+    <div class="chat-input-bar">
+      <input id="chat-input" placeholder="Ask about these videos..." onkeydown="if(event.key==='Enter')sendChatMessage()">
+      <button onclick="sendChatMessage()">&rarr;</button>
+    </div>
   </div>
 </div>
 
@@ -1202,6 +1261,93 @@ html, body {
     '</div>';
   }
 
+  // ── Chat Widget ──
+
+  let chatOpen = false;
+
+  function toggleChat() {
+    chatOpen = !chatOpen;
+    const bubble = document.getElementById('chat-bubble');
+    const panel = document.getElementById('chat-panel');
+    if (chatOpen) {
+      bubble.style.transform = 'scale(0)';
+      bubble.style.opacity = '0';
+      bubble.style.pointerEvents = 'none';
+      panel.classList.remove('chat-hidden');
+      // Update status with video count
+      updateChatStatus();
+      setTimeout(function() {
+        document.getElementById('chat-input').focus();
+      }, 50);
+    } else {
+      bubble.style.transform = '';
+      bubble.style.opacity = '';
+      bubble.style.pointerEvents = '';
+      panel.classList.add('chat-hidden');
+    }
+  }
+
+  function updateChatStatus() {
+    var statusEl = document.getElementById('chat-status');
+    if (currentSessionData && currentSessionData.session && currentSessionData.session.video_count) {
+      statusEl.textContent = 'Analyzing ' + currentSessionData.session.video_count + ' videos';
+    } else if (currentSessionData && currentSessionData.videos) {
+      statusEl.textContent = 'Analyzing ' + currentSessionData.videos.length + ' videos';
+    } else {
+      statusEl.textContent = 'Ready';
+    }
+  }
+
+  function appendMessage(role, text) {
+    var container = document.getElementById('chat-messages');
+    var div = document.createElement('div');
+    div.className = 'chat-msg ' + role;
+    // Parse [MM:SS] timestamp references into clickable links
+    var parsed = escHTML(text).replace(/\[(\d{1,2}:\d{2})\]/g, function(match, ts) {
+      return '<a class="ts-link" onclick="navigateToTimestamp(\'' + ts + '\')">[' + ts + ']</a>';
+    });
+    div.innerHTML = parsed;
+    container.appendChild(div);
+    container.scrollTop = container.scrollHeight;
+  }
+
+  async function sendChatMessage() {
+    var input = document.getElementById('chat-input');
+    var text = input.value.trim();
+    if (!text) return;
+
+    input.value = '';
+    appendMessage('user', text);
+
+    // Determine session id
+    var sessionId = null;
+    if (currentSessionData) {
+      if (currentSessionData.session && currentSessionData.session.id) {
+        sessionId = currentSessionData.session.id;
+      } else if (currentSessionData.id) {
+        sessionId = currentSessionData.id;
+      }
+    }
+
+    try {
+      var resp = await fetch('/api/chat', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ session_id: sessionId, message: text })
+      });
+      if (!resp.ok) throw new Error('Server error ' + resp.status);
+      var result = await resp.json();
+      appendMessage('assistant', result.response || 'No response received.');
+    } catch (err) {
+      appendMessage('assistant', 'Sorry, I encountered an error: ' + err.message);
+    }
+  }
+
+  function navigateToTimestamp(ts) {
+    // Switch to By Video tab and scroll (best-effort)
+    switchTab('by-video');
+  }
+
   // ── Init ──
 
   async function init() {
@@ -1220,6 +1366,9 @@ html, body {
   window.filterSessions = filterSessions;
   window.selectVideo = selectVideo;
   window.handleTimelineClick = handleTimelineClick;
+  window.toggleChat = toggleChat;
+  window.sendChatMessage = sendChatMessage;
+  window.navigateToTimestamp = navigateToTimestamp;
 
   // Expose named functions for external use
   window.loadSession = loadSession;
