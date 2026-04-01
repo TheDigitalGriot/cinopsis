@@ -1,15 +1,8 @@
 {
   "name": "ytmp4-ai-digest",
-  "version": "1.4.1",
-  "description": "Browse subscribed YouTube channels, fetch transcripts, and generate Markdown summary digests. Supports multi-video comparison with interactive dashboard, frame screenshots, and chat. Works with any topic — AI, 3D modeling, coding, and more.",
+  "description": "Browse subscribed YouTube channels, fetch transcripts, and generate Markdown summary digests. Supports multi-video comparison with interactive dashboard, frame screenshots, and chat.",
+  "version": "1.4.2",
   "author": {
-    "name": "TheDigitalGriot",
-    "url": "https://github.com/TheDigitalGriot"
-  },
-  "homepage": "https://github.com/TheDigitalGriot/ytmp4-ai-digest",
-  "repository": "https://github.com/TheDigitalGriot/ytmp4-ai-digest",
-  "license": "MIT",
-  "keywords": ["youtube", "video", "transcript", "summary", "digest", "comparison", "markdown", "report"],
-  "skills": ["./skills/"],
-  "hooks": "./hooks/hooks.json"
+    "name": "TheDigitalGriot"
+  }
 }
