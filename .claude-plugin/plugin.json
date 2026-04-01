@@ -10,7 +10,7 @@
   "repository": "https://github.com/TheDigitalGriot/ytmp4-ai-digest",
   "license": "MIT",
   "keywords": ["youtube", "video", "transcript", "summary", "digest", "comparison", "markdown", "report"],
-  "skills": "./skills/",
-  "agents": "./agents/",
+  "skills": ["./skills/"],
+  "agents": ["./agents/"],
   "hooks": "./hooks/hooks.json"
 }
