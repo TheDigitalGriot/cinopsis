@@ -11,6 +11,5 @@
   "license": "MIT",
   "keywords": ["youtube", "video", "transcript", "summary", "digest", "comparison", "markdown", "report"],
   "skills": ["./skills/"],
-  "agents": ["./agents/"],
   "hooks": "./hooks/hooks.json"
 }
