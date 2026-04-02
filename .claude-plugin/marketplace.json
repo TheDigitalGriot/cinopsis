@@ -1,7 +1,8 @@
 {
-  "$schema": "https://anthropic.com/claude-code/marketplace.schema.json",
   "name": "ytmp4-ai-digest",
-  "description": "Browse YouTube channels, fetch transcripts, generate digest reports, and compare videos with an interactive dashboard",
+  "metadata": {
+    "description": "Browse YouTube channels, fetch transcripts, generate digest reports, and compare videos with an interactive dashboard"
+  },
   "owner": {
     "name": "TheDigitalGriot",
     "url": "https://github.com/TheDigitalGriot"
