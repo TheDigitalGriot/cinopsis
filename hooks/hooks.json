@@ -15,8 +15,8 @@
         "matcher": "Bash",
         "hooks": [
           {
-            "type": "prompt",
-            "prompt": "If the Bash tool just ran a ytmp4-ai-digest Python script (fetch_videos.py, get_transcript.py, digest_all.py, compare_videos.py, generate_report.py, capture_frames.py) that wrote output files, immediately read those output files so the user doesn't have to ask. Check the script's stdout for the output file path. Context: <tool_input>"
+            "type": "command",
+            "command": "INPUT=$(cat); TOOL_INPUT=$(echo \"$INPUT\" | jq -r '.tool_input.command // empty'); case \"$TOOL_INPUT\" in *fetch_videos.py*|*get_transcript.py*|*digest_all.py*|*compare_videos.py*|*generate_report.py*|*capture_frames.py*) echo \"ytmp4-ai-digest script detected. Auto-read the output files written by: $TOOL_INPUT\";; esac"
           }
         ]
       }
