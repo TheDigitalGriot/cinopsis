@@ -19,6 +19,7 @@ def create_app(data_dir=None):
     viewer_path = plugin_root / "viewer" / "viewer.html"
 
     app = Flask(__name__)
+    app.json.ensure_ascii = False
 
     @app.route("/")
     def index():
@@ -31,7 +32,7 @@ def create_app(data_dir=None):
         index_file = sessions_dir / "index.json"
         if not index_file.exists():
             return jsonify([])
-        with open(index_file) as f:
+        with open(index_file, encoding="utf-8") as f:
             return jsonify(json.load(f))
 
     @app.route("/api/session/<session_id>")
@@ -40,7 +41,7 @@ def create_app(data_dir=None):
         if not index_file.exists():
             abort(404)
 
-        with open(index_file) as f:
+        with open(index_file, encoding="utf-8") as f:
             index = json.load(f)
 
         dir_name = None
@@ -56,7 +57,7 @@ def create_app(data_dir=None):
         if not data_file.exists():
             abort(404)
 
-        with open(data_file) as f:
+        with open(data_file, encoding="utf-8") as f:
             return jsonify(json.load(f))
 
     @app.route("/api/screenshot", methods=["POST"])
@@ -215,12 +216,12 @@ def create_app(data_dir=None):
 
         # Return updated session data
         index_file = sessions_dir / "index.json"
-        with open(index_file) as f:
+        with open(index_file, encoding="utf-8") as f:
             index = json.load(f)
         entry = next((e for e in index if e["id"] == session_id), None)
         if entry:
             data_file = sessions_dir / entry["dir_name"] / "comparison_data.json"
-            with open(data_file) as f:
+            with open(data_file, encoding="utf-8") as f:
                 return jsonify(json.load(f))
 
         return jsonify({"error": "Session updated but could not reload"}), 500
