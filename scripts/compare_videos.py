@@ -171,6 +171,189 @@ def save_session(comparison_data):
     return data_file
 
 
+def list_all_videos():
+    """Scan all sessions and return a deduplicated list of videos across sessions.
+
+    Prints a formatted table: video_id | title | channel | duration | session_title.
+    Returns a list of unique video dicts, each with added 'session_id' and
+    'session_title' fields (from the first session that contained each video).
+    """
+    index_file = SESSIONS_DIR / "index.json"
+    if not index_file.exists():
+        print("No sessions found.")
+        return []
+
+    with open(index_file, encoding="utf-8") as f:
+        index = json.load(f)
+
+    seen_ids = {}  # video_id -> video dict (first occurrence wins)
+    for entry in index:
+        session_id = entry["id"]
+        session_title = entry["title"]
+        dir_name = entry["dir_name"]
+        data_file = SESSIONS_DIR / dir_name / "comparison_data.json"
+        if not data_file.exists():
+            continue
+        with open(data_file, encoding="utf-8") as f:
+            comparison_data = json.load(f)
+        for video in comparison_data.get("videos", []):
+            vid_id = video.get("id")
+            if vid_id and vid_id not in seen_ids:
+                enriched = dict(video)
+                enriched["session_id"] = session_id
+                enriched["session_title"] = session_title
+                seen_ids[vid_id] = enriched
+
+    unique_videos = list(seen_ids.values())
+
+    if unique_videos:
+        col_w = [12, 40, 25, 10, 35]
+        header = (
+            f"{'video_id':<{col_w[0]}} | "
+            f"{'title':<{col_w[1]}} | "
+            f"{'channel':<{col_w[2]}} | "
+            f"{'duration':<{col_w[3]}} | "
+            f"{'session_title':<{col_w[4]}}"
+        )
+        print(header)
+        print("-" * len(header))
+        for v in unique_videos:
+            print(
+                f"{v.get('id', ''):<{col_w[0]}} | "
+                f"{v.get('title', '')[:col_w[1]]:<{col_w[1]}} | "
+                f"{v.get('channel', '')[:col_w[2]]:<{col_w[2]}} | "
+                f"{v.get('duration', ''):<{col_w[3]}} | "
+                f"{v.get('session_title', '')[:col_w[4]]:<{col_w[4]}}"
+            )
+    else:
+        print("No videos found across all sessions.")
+
+    return unique_videos
+
+
+def load_session_videos(session_id, pick_ids=None):
+    """Load video metadata from a previously saved session.
+
+    Looks up session_id in index.json to find the directory, then reads
+    comparison_data.json. No re-fetching from YouTube — uses cached data only.
+
+    Args:
+        session_id: The session ID string to load.
+        pick_ids: Optional list of video IDs to filter by. If None, all videos
+                  from the session are returned.
+
+    Returns:
+        List of video metadata dicts from the session (filtered by pick_ids if given).
+    """
+    index_file = SESSIONS_DIR / "index.json"
+    if not index_file.exists():
+        raise FileNotFoundError("No sessions index found.")
+
+    with open(index_file, encoding="utf-8") as f:
+        index = json.load(f)
+
+    entry = next((e for e in index if e["id"] == session_id), None)
+    if entry is None:
+        raise ValueError(f"Session '{session_id}' not found in index.")
+
+    data_file = SESSIONS_DIR / entry["dir_name"] / "comparison_data.json"
+    if not data_file.exists():
+        raise FileNotFoundError(f"comparison_data.json not found for session '{session_id}'.")
+
+    with open(data_file, encoding="utf-8") as f:
+        comparison_data = json.load(f)
+
+    videos = comparison_data.get("videos", [])
+    if pick_ids is not None:
+        pick_set = set(pick_ids)
+        videos = [v for v in videos if v.get("id") in pick_set]
+
+    return videos
+
+
+def update_session(session_id, comparison_data):
+    """Save an updated comparison_data.json for an existing session.
+
+    Looks up the session's dir_name from index.json, writes the updated data,
+    and updates the index entry's video_count to match the new video list length.
+
+    Args:
+        session_id: The ID of the existing session to update.
+        comparison_data: The full comparison data dict to write.
+
+    Returns:
+        Path to the written comparison_data.json file.
+    """
+    index_file = SESSIONS_DIR / "index.json"
+    if not index_file.exists():
+        raise FileNotFoundError("No sessions index found.")
+
+    with open(index_file, encoding="utf-8") as f:
+        index = json.load(f)
+
+    entry = next((e for e in index if e["id"] == session_id), None)
+    if entry is None:
+        raise ValueError(f"Session '{session_id}' not found in index.")
+
+    data_file = SESSIONS_DIR / entry["dir_name"] / "comparison_data.json"
+    with open(data_file, "w", encoding="utf-8") as f:
+        json.dump(comparison_data, f, indent=2, ensure_ascii=False)
+
+    # Keep index video_count in sync
+    new_count = len(comparison_data.get("videos", []))
+    entry["video_count"] = new_count
+    with open(index_file, "w", encoding="utf-8") as f:
+        json.dump(index, f, indent=2, ensure_ascii=False)
+
+    return data_file
+
+
+def add_videos_to_session(session_id, new_videos):
+    """Append new video data to an existing session and reset analysis fields.
+
+    Loads the session's comparison_data.json, appends new_videos to the videos
+    list, updates video_count in both session and stats, clears the analysis
+    section (unified_summary, topics, disagreements, key_moments), then saves.
+
+    Args:
+        session_id: The ID of the session to extend.
+        new_videos: List of video metadata dicts to append.
+
+    Returns:
+        Path to the updated comparison_data.json file.
+    """
+    index_file = SESSIONS_DIR / "index.json"
+    if not index_file.exists():
+        raise FileNotFoundError("No sessions index found.")
+
+    with open(index_file, encoding="utf-8") as f:
+        index = json.load(f)
+
+    entry = next((e for e in index if e["id"] == session_id), None)
+    if entry is None:
+        raise ValueError(f"Session '{session_id}' not found in index.")
+
+    data_file = SESSIONS_DIR / entry["dir_name"] / "comparison_data.json"
+    if not data_file.exists():
+        raise FileNotFoundError(f"comparison_data.json not found for session '{session_id}'.")
+
+    with open(data_file, encoding="utf-8") as f:
+        comparison_data = json.load(f)
+
+    comparison_data["videos"].extend(new_videos)
+    new_count = len(comparison_data["videos"])
+
+    comparison_data["session"]["video_count"] = new_count
+    comparison_data["stats"]["total_videos"] = new_count
+
+    comparison_data["analysis"]["unified_summary"] = ""
+    comparison_data["analysis"]["topics"] = []
+    comparison_data["analysis"]["disagreements"] = []
+    comparison_data["analysis"]["key_moments"] = []
+
+    return update_session(session_id, comparison_data)
+
+
 def main():
     parser = argparse.ArgumentParser(description="Compare multiple YouTube videos")
     parser.add_argument("--urls", nargs="+", required=True, help="YouTube video URLs or IDs")
