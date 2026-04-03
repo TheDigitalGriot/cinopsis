@@ -104,6 +104,12 @@ def process_video(video_id):
     else:
         print("  Transcript: not available", flush=True)
 
+    metadata["digest"] = {
+        "core_takeaway": "",
+        "key_points": [],
+        "why_it_matters": "",
+    }
+
     return metadata
 
 
