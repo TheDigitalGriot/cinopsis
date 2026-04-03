@@ -84,37 +84,42 @@ def create_app(data_dir=None):
             "session_id": body.get("session_id"),
         })
 
-    @app.route("/api/videos")
-    def get_all_videos():
-        """Return deduplicated list of all videos across all sessions."""
+    def _build_video_lookup():
+        """Return dict mapping video_id -> video metadata across all sessions."""
         index_file = sessions_dir / "index.json"
         if not index_file.exists():
-            return jsonify([])
-
-        with open(index_file) as f:
+            return {}, []
+        with open(index_file, encoding="utf-8") as f:
             index = json.load(f)
-
-        seen = {}
+        all_videos = {}
+        entries = []
         for entry in index:
             data_file = sessions_dir / entry["dir_name"] / "comparison_data.json"
             if not data_file.exists():
                 continue
-            with open(data_file) as f:
+            with open(data_file, encoding="utf-8") as f:
                 data = json.load(f)
-            for video in data.get("videos", []):
-                vid = video.get("id")
-                if vid and vid not in seen:
-                    seen[vid] = {
-                        "id": vid,
-                        "title": video.get("title", "Unknown"),
-                        "channel": video.get("channel", "Unknown"),
-                        "duration": video.get("duration", ""),
-                        "upload_date": video.get("upload_date", ""),
-                        "thumbnail_base64": video.get("thumbnail_base64"),
-                        "session_id": entry["id"],
-                        "session_title": entry["title"],
-                    }
-        return jsonify(list(seen.values()))
+            for v in data.get("videos", []):
+                vid = v.get("id")
+                if vid and vid not in all_videos:
+                    all_videos[vid] = v
+                    entries.append({"video": v, "session_id": entry["id"], "session_title": entry["title"]})
+        return all_videos, entries
+
+    @app.route("/api/videos")
+    def get_all_videos():
+        """Return deduplicated list of all videos across all sessions."""
+        _, entries = _build_video_lookup()
+        return jsonify([{
+            "id": e["video"].get("id"),
+            "title": e["video"].get("title", "Unknown"),
+            "channel": e["video"].get("channel", "Unknown"),
+            "duration": e["video"].get("duration", ""),
+            "upload_date": e["video"].get("upload_date", ""),
+            "thumbnail_base64": e["video"].get("thumbnail_base64"),
+            "session_id": e["session_id"],
+            "session_title": e["session_title"],
+        } for e in entries])
 
     @app.route("/api/sessions/compose", methods=["POST"])
     def compose_session():
@@ -134,24 +139,10 @@ def create_app(data_dir=None):
 
         # Load cached videos from existing sessions
         if video_ids:
-            index_file = sessions_dir / "index.json"
-            if index_file.exists():
-                with open(index_file) as f:
-                    index = json.load(f)
-                # Build a lookup of all videos across sessions
-                all_videos = {}
-                for entry in index:
-                    data_file = sessions_dir / entry["dir_name"] / "comparison_data.json"
-                    if not data_file.exists():
-                        continue
-                    with open(data_file) as f:
-                        data = json.load(f)
-                    for v in data.get("videos", []):
-                        if v.get("id") and v["id"] not in all_videos:
-                            all_videos[v["id"]] = v
-                for vid in video_ids:
-                    if vid in all_videos:
-                        videos.append(all_videos[vid])
+            all_videos, _ = _build_video_lookup()
+            for vid in video_ids:
+                if vid in all_videos:
+                    videos.append(all_videos[vid])
 
         # Fetch new videos from URLs
         if new_urls:
@@ -196,23 +187,10 @@ def create_app(data_dir=None):
 
         # Load cached videos from library
         if video_ids:
-            index_file = sessions_dir / "index.json"
-            if index_file.exists():
-                with open(index_file) as f:
-                    index = json.load(f)
-                all_videos = {}
-                for entry in index:
-                    data_file = sessions_dir / entry["dir_name"] / "comparison_data.json"
-                    if not data_file.exists():
-                        continue
-                    with open(data_file) as f:
-                        data = json.load(f)
-                    for v in data.get("videos", []):
-                        if v.get("id") and v["id"] not in all_videos:
-                            all_videos[v["id"]] = v
-                for vid in video_ids:
-                    if vid in all_videos:
-                        new_videos.append(all_videos[vid])
+            all_videos, _ = _build_video_lookup()
+            for vid in video_ids:
+                if vid in all_videos:
+                    new_videos.append(all_videos[vid])
 
         # Fetch new videos from URLs
         if new_urls:

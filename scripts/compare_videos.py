@@ -340,6 +340,11 @@ def add_videos_to_session(session_id, new_videos):
     with open(data_file, encoding="utf-8") as f:
         comparison_data = json.load(f)
 
+    existing_ids = {v.get("id") for v in comparison_data["videos"]}
+    new_videos = [v for v in new_videos if v.get("id") not in existing_ids]
+    if not new_videos:
+        return data_file
+
     comparison_data["videos"].extend(new_videos)
     new_count = len(comparison_data["videos"])
 
@@ -368,6 +373,9 @@ def main():
     if args.list_videos:
         list_all_videos()
         return
+
+    if args.pick and not args.from_session:
+        parser.error("--pick requires --from-session")
 
     # Gather videos from library (--from-session / --pick)
     videos = []
