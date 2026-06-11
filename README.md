@@ -4,11 +4,9 @@
 
 **Let Claude recap your YouTube subscriptions for you**
 
-[![Claude Code Skill](https://img.shields.io/badge/Claude%20Code-Skill-blueviolet?style=for-the-badge&logo=anthropic)](https://claude.ai/code)
+[![Claude Code Plugin](https://img.shields.io/badge/Claude%20Code-Plugin%20v2.0-blueviolet?style=for-the-badge&logo=anthropic)](https://claude.ai/code)
 [![Python 3.9+](https://img.shields.io/badge/Python-3.9+-blue?style=for-the-badge&logo=python&logoColor=white)](https://python.org)
 [![License: MIT](https://img.shields.io/badge/License-MIT-green?style=for-the-badge)](LICENSE)
-
-**English** | [简体中文](./README.md)
 
 ---
 
@@ -21,11 +19,12 @@
 - 🔍 **Smart Fetching** — Get latest videos from subscribed channels (any topic)
 - 📝 **Transcript Extraction** — Auto-download video subtitles (including auto-generated)
 - 📊 **Report Generation** — Generate structured Markdown reports
-- 🖼️ **Thumbnail Download** — Auto-save video thumbnails
 - 🔀 **Multi-Video Comparison** — Cross-video analysis with interactive dashboard
 - 🖼️ **Frame Screenshots** — Capture video frames at any timestamp via ffmpeg
 - 💬 **Agentic Chat** — Ask follow-up questions about compared videos
 - 📂 **Session History** — Browse and revisit past comparison sessions
+- ⚡ **Slash Commands** — `/digest`, `/compare`, `/fetch` for zero-overhead invocation
+- 🛡️ **Compaction Survival** — Session progress checkpoints survive long-context compaction
 
 ## 🚀 Quick Start
 
@@ -65,22 +64,40 @@ Edit `data/channels.json` to add your subscribed YouTube channels:
 }
 ```
 
-> 💡 **How to find Channel ID?** Open a YouTube channel page, the URL format is `youtube.com/channel/{CHANNEL_ID}`
+> 💡 **How to find Channel ID?** Open a YouTube channel page — the URL format is `youtube.com/channel/{CHANNEL_ID}`
 
-### Usage
+## 💬 Usage
 
-Chat with Claude Code directly:
+### Slash Commands (fastest — no skill loading overhead)
+
+```
+/digest <url>                    — Summarize a single video + launch viewer
+/compare <url1> <url2> [url3...] — Cross-video analysis + launch viewer
+/fetch --days 3 --keyword "AI"   — Fetch recent videos from subscribed channels
+```
+
+### Natural Language
 
 ```
 User: What are the latest videos?
 User: Show me recent Blender tutorials
-User: Summarize the first video
-User: Create a digest of this week's coding content
+User: Summarize this video: https://youtube.com/watch?v=...
 User: Compare these videos: URL1, URL2, URL3
 User: What do they disagree on?
+User: Create a digest of this week's coding content
 ```
 
-## 📖 Manual Usage
+### Agent Routing
+
+Three specialized agents handle requests automatically:
+
+| Agent | Color | Model | Use For |
+|-------|-------|-------|---------|
+| `video-fetcher` | 🟢 Green | Haiku | Fetching video lists, channel queries |
+| `digest-writer` | 🩵 Cyan | Sonnet | Single video summaries, batch digests |
+| `video-comparator` | 🟣 Magenta | Opus (1M ctx) | Multi-video comparison, deep analysis |
+
+## 📖 Manual Script Usage
 
 ```bash
 # 1. Fetch videos from the past 7 days (any topic)
@@ -106,57 +123,70 @@ python scripts/capture_frames.py --video-id dQw4w9WgXcQ --timestamps 60,120,300
 ## 📁 Directory Structure
 
 ```
-youtube-ai-digest/
+ytmp4-ai-digest/
 ├── .claude-plugin/
-│   └── marketplace.json   # Plugin marketplace config
+│   ├── plugin.json            # Plugin manifest (v2.0.0)
+│   └── marketplace.json       # Marketplace config
+├── agents/
+│   ├── digest-writer.md       # Sonnet agent — single video + batch digests
+│   ├── video-fetcher.md       # Haiku agent — lightweight fetching
+│   └── video-comparator.md    # Opus[1M] agent — cross-video analysis
+├── commands/
+│   ├── digest.md              # /digest <url> — zero-overhead single video
+│   ├── compare.md             # /compare <urls> — zero-overhead comparison
+│   └── fetch.md               # /fetch [options] — zero-overhead fetch
 ├── skills/
 │   └── ytmp4-ai-digest/
-│       └── SKILL.md       # Claude Code skill definition
+│       ├── SKILL.md           # Skill definition + routing
+│       └── references/
+│           └── comparison-schema.md  # comparison_data.json field reference
+├── output-styles/
+│   └── digest-format.md       # Core Takeaway / Key Points / Why It Matters
+├── hooks/
+│   └── hooks.json             # SessionStart + PreCompact/PostCompact hooks
 ├── scripts/
-│   ├── fetch_videos.py    # Fetch channel video list
-│   ├── get_transcript.py  # Download video transcripts
-│   ├── generate_report.py # Generate Markdown reports
-│   ├── digest_all.py      # Batch digest generation
-│   ├── compare_videos.py  # Multi-video comparison orchestrator
-│   ├── capture_frames.py  # Frame screenshot capture (ffmpeg)
-│   └── compare_server.py  # Flask server for interactive viewer
+│   ├── fetch_videos.py        # Fetch channel video list
+│   ├── get_transcript.py      # Download video transcripts
+│   ├── generate_report.py     # Generate Markdown reports
+│   ├── digest_all.py          # Batch digest generation
+│   ├── compare_videos.py      # Multi-video comparison orchestrator
+│   ├── capture_frames.py      # Frame screenshot capture (ffmpeg)
+│   ├── compare_server.py      # Flask server for interactive viewer
+│   ├── save-session-state.py  # PreCompact hook — persist session progress
+│   └── restore-session-state.py  # PostCompact hook — recover session state
 ├── viewer/
-│   └── viewer.html        # Self-contained comparison dashboard
+│   └── viewer.html            # Self-contained comparison dashboard
 ├── tests/
 │   ├── test_capture_frames.py
 │   ├── test_compare_videos.py
 │   ├── test_compare_server.py
 │   └── test_session_persistence.py
-├── requirements.txt       # Python dependencies
-├── README.md              # Documentation (Chinese)
-├── README.en.md           # Documentation (English)
+├── requirements.txt
 └── data/
-    ├── channels.json      # Subscribed channels config
-    ├── videos.json        # Video list cache (auto-generated)
-    └── sessions/          # Comparison session history (auto-generated)
+    ├── channels.json          # Subscribed channels config
+    ├── videos.json            # Video list cache (auto-generated)
+    └── sessions/              # Comparison session history (auto-generated)
 ```
 
 ## 📋 Output Examples
 
-### Single Video Report
+### Single Video Digest
 
-```markdown
-# Understanding GPT-4's Reasoning
+```
+**Core Takeaway**
+GPT-4o's voice mode latency drop to ~300ms closes the gap with human response times,
+making real-time conversation feel natural rather than transactional. The key
+architectural change is end-to-end audio processing — bypassing the ASR→LLM→TTS pipeline.
 
-![Thumbnail](thumbnail.webp)
+**Key Points**
+- Latency reduced from ~2.8s (GPT-4) to ~320ms average in voice mode
+- End-to-end audio model eliminates transcription error accumulation
+- Emotion and tone preserved across turns — previous models flattened prosody
+- Context window extended to 128K, enabling longer reference conversations
 
-## Video Info
-- Channel: AI Explained
-- Published: 2024-01-15
-- Duration: 12:34
-- Link: https://youtube.com/watch?v=...
-
-## Summary
-This video provides an in-depth analysis of GPT-4's reasoning capabilities...
-
-## Transcript
-[00:00] Welcome back to AI Explained...
-[01:30] Today we're going to discuss...
+**Why It Matters**
+First voice AI model where interruption and turn-taking feel natural enough for
+professional use cases — customer service, tutoring, accessibility applications.
 ```
 
 ### Video Comparison Dashboard
@@ -164,10 +194,10 @@ This video provides an in-depth analysis of GPT-4's reasoning capabilities...
 The interactive viewer provides three views:
 
 - **Dashboard** — Stats overview, unified summary, topic coverage map, video cards, key moments grid
-- **By Topic** — Accordion layout grouping all videos by shared themes, with per-video quotes and screenshots
+- **By Topic** — Accordion layout grouping all videos by shared themes, with per-video quotes and timestamps
 - **By Video** — Split panel with video selector, topic tags, clickable timeline for on-demand frame capture
 
-The viewer also includes a **chat widget** for asking follow-up questions about the compared videos and a **session history panel** for browsing past comparisons.
+The viewer also includes a **chat widget** for asking follow-up questions about compared videos and a **session history panel** for browsing past comparisons.
 
 ## 🔧 Requirements
 
@@ -177,6 +207,16 @@ The viewer also includes a **chat widget** for asking follow-up questions about 
 | yt-dlp | latest | YouTube video/subtitle download |
 | Flask | latest | Local server for comparison viewer |
 | ffmpeg | latest | Frame screenshot capture (system binary) |
+
+## 📋 What's New in 2.0.0
+
+- **Slash commands** — `/digest`, `/compare`, `/fetch` bypass skill loading for the three most common operations, reducing invocation overhead significantly
+- **Agent color identities** — digest-writer (🩵 cyan), video-fetcher (🟢 green), video-comparator (🟣 magenta)
+- **Opus 4.8 + 1M context** — video-comparator upgraded to `opus[1m]` with `xhigh` effort for deep cross-video reasoning; loads all transcripts simultaneously before analyzing
+- **Compaction survival** — `PreCompact`/`PostCompact` hooks write and restore session progress to disk; long comparison sessions recover cleanly after context window compaction
+- **Digest output style** — centralized `digest-format` style eliminates the triplication of format rules across skill and agent files
+- **Schema reference** — `comparison_data.json` field reference extracted to a single canonical file; both agents point to it instead of duplicating inline JSON
+- **Manifest fixes** — removed invalid `owner.url` field from marketplace.json; added discovery keywords to plugin.json
 
 ## 🤝 Contributing
 

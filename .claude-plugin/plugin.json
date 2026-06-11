@@ -1,8 +1,9 @@
 {
   "name": "ytmp4-ai-digest",
   "description": "Browse subscribed YouTube channels, fetch transcripts, and generate Markdown summary digests. Supports multi-video comparison with interactive dashboard, frame screenshots, and chat.",
-  "version": "1.6.3",
+  "version": "2.0.0",
   "author": {
     "name": "TheDigitalGriot"
-  }
+  },
+  "keywords": ["youtube", "video", "digest", "transcript", "summary", "comparison", "analysis"]
 }

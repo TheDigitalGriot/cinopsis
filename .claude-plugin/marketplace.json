@@ -4,8 +4,7 @@
     "description": "Browse YouTube channels, fetch transcripts, generate digest reports, and compare videos with an interactive dashboard"
   },
   "owner": {
-    "name": "TheDigitalGriot",
-    "url": "https://github.com/TheDigitalGriot"
+    "name": "TheDigitalGriot"
   },
   "plugins": [
     {

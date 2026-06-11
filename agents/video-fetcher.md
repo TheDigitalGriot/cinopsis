@@ -1,7 +1,8 @@
 ---
 name: video-fetcher
-description: Fast agent for fetching YouTube video lists, checking channels, and running simple queries. Use for any task that only needs to run fetch_videos.py or list available data — no summarization or analysis needed.
+description: Fast agent for fetching YouTube video lists, checking channels, and running simple queries. Use for any task that only needs fetch_videos.py or listing available data — no summarization or analysis needed.
 model: haiku
+color: green
 effort: low
 maxTurns: 8
 disallowedTools: Write, Edit, NotebookEdit, Agent
@@ -25,4 +26,4 @@ Lightweight agent for YouTube video fetching and listing operations.
 - Output data goes to `${CLAUDE_PLUGIN_DATA}/videos.json`
 - Display results in a clean numbered list with title, channel, date, and duration
 - Do NOT summarize or analyze video content — hand off to digest-writer or video-comparator for that
-- If the user asks for a summary after fetching, tell them to use the digest workflow
+- If the user asks for a summary after fetching, tell them to use /digest or /compare
