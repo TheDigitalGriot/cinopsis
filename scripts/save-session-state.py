@@ -26,7 +26,7 @@ try:
     session_dir = state.get("session_dir", "unknown")
     transcripts = state.get("transcripts_read", [])
 
-    print("ytmp4-ai-digest ACTIVE SESSION — preserve in compaction summary:")
+    print("cinopsis ACTIVE SESSION — preserve in compaction summary:")
     print(f"  session_dir: {session_dir}")
     print(f"  transcripts_read: {', '.join(transcripts) if transcripts else 'none'}")
     print(f"  status: {status}")

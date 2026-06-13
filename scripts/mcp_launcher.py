@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Self-bootstrapping launcher for the ytmp4-ai-digest MCP server.
+"""Self-bootstrapping launcher for the cinopsis MCP server.
 
 Builds (once) and reuses a virtual-env in ``${CLAUDE_PLUGIN_DATA}/venv``,
 installs ``requirements.txt`` into it, then hands off to a target script using
@@ -32,7 +32,7 @@ def plugin_data_dir() -> Path:
     env = os.environ.get("CLAUDE_PLUGIN_DATA")
     if env:
         return Path(env)
-    return Path.home() / ".claude" / "plugins" / "data" / "ytmp4-ai-digest-ytmp4-ai-digest"
+    return Path.home() / ".claude" / "plugins" / "data" / "cinopsis-cinopsis"
 
 
 def venv_python(venv_dir: Path) -> Path:
@@ -68,7 +68,7 @@ def ensure_venv() -> Path:
     py = venv_python(venv_dir)
 
     if not py.exists():
-        print(f"[ytmp4] creating venv at {venv_dir} (one time) ...", file=sys.stderr, flush=True)
+        print(f"[cinopsis] creating venv at {venv_dir} (one time) ...", file=sys.stderr, flush=True)
         _run([sys.executable, "-m", "venv", str(venv_dir)])
 
     req_file = _requirements_file()
@@ -77,7 +77,7 @@ def ensure_venv() -> Path:
     have = marker.read_text(encoding="utf-8").strip() if marker.exists() else ""
 
     if want and want != have:
-        print("[ytmp4] installing dependencies into venv (one time, ~30s) ...", file=sys.stderr, flush=True)
+        print("[cinopsis] installing dependencies into venv (one time, ~30s) ...", file=sys.stderr, flush=True)
         _run([str(py), "-m", "pip", "install", "--disable-pip-version-check", "-q", "--upgrade", "pip"])
         _run([str(py), "-m", "pip", "install", "--disable-pip-version-check", "-q", "-r", str(req_file)])
         marker.write_text(want, encoding="utf-8")
@@ -99,7 +99,7 @@ def main(argv) -> int:
     try:
         py = ensure_venv()
     except subprocess.CalledProcessError as e:
-        print(f"[ytmp4] dependency bootstrap failed: {e}", file=sys.stderr, flush=True)
+        print(f"[cinopsis] dependency bootstrap failed: {e}", file=sys.stderr, flush=True)
         return 1
 
     # Hand off: child inherits our stdin/stdout/stderr so MCP I/O is direct.

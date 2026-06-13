@@ -26,7 +26,7 @@ try:
     session_dir = state.get("session_dir", "unknown")
     transcripts = state.get("transcripts_read", [])
 
-    print("ytmp4-ai-digest RECOVERY — incomplete session detected:")
+    print("cinopsis RECOVERY — incomplete session detected:")
     print(f"  Session directory: {session_dir}")
     if not transcripts:
         print("  Transcripts read: none — resume from Step 2 (read transcripts)")

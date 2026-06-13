@@ -2,7 +2,7 @@
 
 ## Overview
 
-Add a multi-video comparison feature to the ytmp4-ai-digest plugin that lets users supply multiple YouTube video URLs on the same topic and receive a unified cross-video analysis with interactive browsing, timestamps, frame screenshots, and an agentic chat interface.
+Add a multi-video comparison feature to the cinopsis plugin that lets users supply multiple YouTube video URLs on the same topic and receive a unified cross-video analysis with interactive browsing, timestamps, frame screenshots, and an agentic chat interface.
 
 ## Design Decisions
 
@@ -137,7 +137,7 @@ Claude Desktop: viewer.html output as artifact with embedded data
 
 ```
 ┌──────────────────────────────────────────────────────┐
-│ [History Panel]  │  [Nav: ytmp4 | Session Title]     │
+│ [History Panel]  │  [Nav: cinopsis | Session Title]     │
 │                  │  [Dashboard] [By Topic] [By Video]│
 │  Session list    │                                   │
 │  (collapsible)   │  ┌─ Main Content Area ──────────┐ │

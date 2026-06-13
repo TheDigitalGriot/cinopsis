@@ -41,7 +41,7 @@ Note the session directory. Update session_progress.json: `"session_dir": "SESSI
 Read every file in `data/sessions/SESSION_DIR/_transcripts/`. Load all transcripts before beginning any analysis — 1M context is there for this. After each file, append the video_id to `transcripts_read` in session_progress.json. When all loaded, set `"status": "transcripts_read"`.
 
 ### Step 3: Fill comparison_data.json with complete analysis
-See full field reference: `${CLAUDE_PLUGIN_ROOT}/skills/ytmp4-ai-digest/references/comparison-schema.md`
+See full field reference: `${CLAUDE_PLUGIN_ROOT}/skills/cinopsis/references/comparison-schema.md`
 
 Required fields (every viewer tab depends on these):
 - **Per-video `summary` and `digest`** — on each video object

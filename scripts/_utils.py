@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Shared utilities for ytmp4-ai-digest scripts."""
+"""Shared utilities for cinopsis scripts."""
 import os
 import shutil
 import sys

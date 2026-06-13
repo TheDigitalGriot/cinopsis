@@ -25,7 +25,7 @@ def create_app(data_dir=None):
     def index():
         if viewer_path.exists():
             return send_file(viewer_path)
-        return "<h1>ytmp4 Video Comparison</h1><p>viewer.html not found</p>", 200
+        return "<h1>cinopsis Video Comparison</h1><p>viewer.html not found</p>", 200
 
     @app.route("/api/sessions")
     def get_sessions():

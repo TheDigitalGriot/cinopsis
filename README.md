@@ -1,11 +1,11 @@
 <div align="center">
 
-# 📺 YouTube Video Digest
+# 🎬 Cinopsis
 
-**Let Claude recap your YouTube subscriptions for you**
+**Let Claude recap, summarize, and compare your YouTube subscriptions — on Claude Code *and* Cowork**
 
-[![Claude Code Plugin](https://img.shields.io/badge/Claude%20Code-Plugin%20v2.0-blueviolet?style=for-the-badge&logo=anthropic)](https://claude.ai/code)
-[![Python 3.9+](https://img.shields.io/badge/Python-3.9+-blue?style=for-the-badge&logo=python&logoColor=white)](https://python.org)
+[![Claude Code + Cowork](https://img.shields.io/badge/Claude%20Code%20%2B%20Cowork-Plugin%20v2.1-blueviolet?style=for-the-badge&logo=anthropic)](https://claude.ai/code)
+[![Python 3.10+](https://img.shields.io/badge/Python-3.10+-blue?style=for-the-badge&logo=python&logoColor=white)](https://python.org)
 [![License: MIT](https://img.shields.io/badge/License-MIT-green?style=for-the-badge)](LICENSE)
 
 ---
@@ -35,13 +35,13 @@
 **Option 1: Install via Claude Code (Recommended)**
 
 ```bash
-claude install gh:TheDigitalGriot/ytmp4-ai-digest
+claude install gh:TheDigitalGriot/cinopsis
 ```
 
 **Option 2: Manual Clone**
 
 ```bash
-git clone https://github.com/TheDigitalGriot/ytmp4-ai-digest.git
+git clone https://github.com/TheDigitalGriot/cinopsis.git
 ```
 
 **Install Dependencies**
@@ -148,7 +148,7 @@ python scripts/capture_frames.py --video-id dQw4w9WgXcQ --timestamps 60,120,300
 ## 📁 Directory Structure
 
 ```
-ytmp4-ai-digest/
+cinopsis/
 ├── .claude-plugin/
 │   ├── plugin.json            # Plugin manifest (v2.0.0)
 │   └── marketplace.json       # Marketplace config
@@ -161,7 +161,7 @@ ytmp4-ai-digest/
 │   ├── compare.md             # /compare <urls> — zero-overhead comparison
 │   └── fetch.md               # /fetch [options] — zero-overhead fetch
 ├── skills/
-│   └── ytmp4-ai-digest/
+│   └── cinopsis/
 │       ├── SKILL.md           # Skill definition + routing
 │       └── references/
 │           └── comparison-schema.md  # comparison_data.json field reference

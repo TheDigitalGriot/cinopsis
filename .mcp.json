@@ -1,6 +1,6 @@
 {
   "mcpServers": {
-    "ytmp4": {
+    "cinopsis": {
       "command": "python",
       "args": [
         "${CLAUDE_PLUGIN_ROOT}/scripts/mcp_launcher.py",

@@ -69,7 +69,7 @@ if __name__ == "__main__":
 
 - [ ] **Step 2: Run test to verify it fails**
 
-Run: `cd c:/Users/digit/Developer/ytmp4-ai-digest && python -m pytest tests/test_capture_frames.py -v`
+Run: `cd c:/Users/digit/Developer/cinopsis && python -m pytest tests/test_capture_frames.py -v`
 Expected: FAIL with `ModuleNotFoundError: No module named 'capture_frames'`
 
 - [ ] **Step 3: Write the implementation**
@@ -219,7 +219,7 @@ if __name__ == "__main__":
 
 - [ ] **Step 4: Run tests to verify they pass**
 
-Run: `cd c:/Users/digit/Developer/ytmp4-ai-digest && python -m pytest tests/test_capture_frames.py -v`
+Run: `cd c:/Users/digit/Developer/cinopsis && python -m pytest tests/test_capture_frames.py -v`
 Expected: All 6 tests PASS
 
 - [ ] **Step 5: Commit**
@@ -290,7 +290,7 @@ if __name__ == "__main__":
 
 - [ ] **Step 2: Run test to verify it fails**
 
-Run: `cd c:/Users/digit/Developer/ytmp4-ai-digest && python -m pytest tests/test_compare_videos.py -v`
+Run: `cd c:/Users/digit/Developer/cinopsis && python -m pytest tests/test_compare_videos.py -v`
 Expected: FAIL with `ModuleNotFoundError`
 
 - [ ] **Step 3: Write the implementation**
@@ -509,7 +509,7 @@ if __name__ == "__main__":
 
 - [ ] **Step 4: Run tests to verify they pass**
 
-Run: `cd c:/Users/digit/Developer/ytmp4-ai-digest && python -m pytest tests/test_compare_videos.py -v`
+Run: `cd c:/Users/digit/Developer/cinopsis && python -m pytest tests/test_compare_videos.py -v`
 Expected: All 6 tests PASS
 
 - [ ] **Step 5: Commit**
@@ -598,7 +598,7 @@ if __name__ == "__main__":
 
 - [ ] **Step 2: Run tests to verify they pass**
 
-Run: `cd c:/Users/digit/Developer/ytmp4-ai-digest && python -m pytest tests/test_session_persistence.py -v`
+Run: `cd c:/Users/digit/Developer/cinopsis && python -m pytest tests/test_session_persistence.py -v`
 Expected: All 2 tests PASS (implementation already in compare_videos.py)
 
 - [ ] **Step 3: Commit**
@@ -689,7 +689,7 @@ if __name__ == "__main__":
 
 - [ ] **Step 2: Run test to verify it fails**
 
-Run: `cd c:/Users/digit/Developer/ytmp4-ai-digest && python -m pytest tests/test_compare_server.py -v`
+Run: `cd c:/Users/digit/Developer/cinopsis && python -m pytest tests/test_compare_server.py -v`
 Expected: FAIL with `ModuleNotFoundError: No module named 'compare_server'`
 
 - [ ] **Step 3: Install Flask**
@@ -726,7 +726,7 @@ def create_app(data_dir=None):
     def index():
         if viewer_path.exists():
             return send_file(viewer_path)
-        return "<h1>ytmp4 Video Comparison</h1><p>viewer.html not found</p>", 200
+        return "<h1>cinopsis Video Comparison</h1><p>viewer.html not found</p>", 200
 
     @app.route("/api/sessions")
     def get_sessions():
@@ -817,7 +817,7 @@ if __name__ == "__main__":
 
 - [ ] **Step 5: Run tests to verify they pass**
 
-Run: `cd c:/Users/digit/Developer/ytmp4-ai-digest && python -m pytest tests/test_compare_server.py -v`
+Run: `cd c:/Users/digit/Developer/cinopsis && python -m pytest tests/test_compare_server.py -v`
 Expected: All 4 tests PASS
 
 - [ ] **Step 6: Commit**
@@ -838,11 +838,11 @@ This is a large self-contained HTML file. It will be built incrementally across 
 
 - [ ] **Step 1: Create the viewer directory**
 
-Run: `mkdir -p c:/Users/digit/Developer/ytmp4-ai-digest/viewer`
+Run: `mkdir -p c:/Users/digit/Developer/cinopsis/viewer`
 
 - [ ] **Step 2: Write the viewer HTML with Dashboard tab**
 
-Create `viewer/viewer.html` with the full shell: dark theme (#0f1117 background), nav bar with ytmp4 branding and tab switcher, collapsible history panel (expanded: 260px with date-grouped sessions, search; collapsed: 48px icon strip with tooltips), stats cards, unified summary, topic map bars, video cards, and key moments screenshot grid. The file loads data from `/api/sessions` and `/api/session/:id` when served by Flask, or from an inline `window.__COMPARISON_DATA__` variable when used as a static artifact.
+Create `viewer/viewer.html` with the full shell: dark theme (#0f1117 background), nav bar with cinopsis branding and tab switcher, collapsible history panel (expanded: 260px with date-grouped sessions, search; collapsed: 48px icon strip with tooltips), stats cards, unified summary, topic map bars, video cards, and key moments screenshot grid. The file loads data from `/api/sessions` and `/api/session/:id` when served by Flask, or from an inline `window.__COMPARISON_DATA__` variable when used as a static artifact.
 
 The complete HTML file is too large to inline here. Write it with these sections:
 - CSS: dark theme variables, panel animations, responsive grid, tooltip styles
@@ -851,7 +851,7 @@ The complete HTML file is too large to inline here. Write it with these sections
 
 - [ ] **Step 3: Test manually**
 
-Run: `cd c:/Users/digit/Developer/ytmp4-ai-digest && python scripts/compare_server.py --port 5123 --no-open`
+Run: `cd c:/Users/digit/Developer/cinopsis && python scripts/compare_server.py --port 5123 --no-open`
 Then open `http://localhost:5123` in a browser. Verify the shell renders with placeholder content.
 
 - [ ] **Step 4: Commit**
@@ -970,7 +970,7 @@ git commit -m "feat: add agentic chat widget to viewer"
 ### Task 9: Update SKILL.md with comparison workflow
 
 **Files:**
-- Modify: `skills/ytmp4-ai-digest/SKILL.md`
+- Modify: `skills/cinopsis/SKILL.md`
 
 - [ ] **Step 1: Update the SKILL.md frontmatter description**
 
@@ -1031,7 +1031,7 @@ Users can also click any point on the timeline in the viewer to capture addition
 - [ ] **Step 3: Commit**
 
 ```bash
-git add skills/ytmp4-ai-digest/SKILL.md
+git add skills/cinopsis/SKILL.md
 git commit -m "docs: add video comparison workflow to SKILL.md"
 ```
 
@@ -1085,7 +1085,7 @@ git commit -m "chore: update .gitignore and add requirements.txt"
 
 - [ ] **Step 2: Run full test suite**
 
-Run: `cd c:/Users/digit/Developer/ytmp4-ai-digest && python -m pytest tests/ -v`
+Run: `cd c:/Users/digit/Developer/cinopsis && python -m pytest tests/ -v`
 Expected: All tests pass (test_capture_frames: 6, test_compare_videos: 6, test_session_persistence: 2, test_compare_server: 4 = 18 total)
 
 - [ ] **Step 3: Commit**

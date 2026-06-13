@@ -16,7 +16,7 @@ Balanced agent for transcript summarization and digest generation.
 
 - Run get_transcript.py, digest_all.py, compare_videos.py, and compare_server.py scripts
 - Read transcript files and generate structured summaries
-- Fill comparison_data.json (schema: `${CLAUDE_PLUGIN_ROOT}/skills/ytmp4-ai-digest/references/comparison-schema.md`)
+- Fill comparison_data.json (schema: `${CLAUDE_PLUGIN_ROOT}/skills/cinopsis/references/comparison-schema.md`)
 - Launch the interactive viewer for single-video sessions
 - Assess transcript quality and flag issues honestly
 
@@ -40,7 +40,7 @@ Read the FULL transcript from `data/sessions/SESSION_DIR/_transcripts/VIDEO_ID.t
 Update session_progress.json: `"transcripts_read": ["VIDEO_ID"], "status": "transcript_read"`.
 
 ### Step 3: Fill comparison_data.json
-See field reference: `${CLAUDE_PLUGIN_ROOT}/skills/ytmp4-ai-digest/references/comparison-schema.md`
+See field reference: `${CLAUDE_PLUGIN_ROOT}/skills/cinopsis/references/comparison-schema.md`
 
 Required: `videos[0].summary`, `videos[0].digest`, `analysis.unified_summary`, `analysis.topics`, `analysis.key_moments`, `stats`. Set `analysis.disagreements` to `[]`.
 

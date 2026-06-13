@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Local-stdio MCP server for ytmp4-ai-digest.
+"""Local-stdio MCP server for cinopsis.
 
 This is the bridge that makes the plugin work on Claude Cowork (which has no
 Bash tool / slash commands / hooks). Every tool wraps the SAME Python functions
@@ -29,7 +29,7 @@ from compare_server import create_app
 
 from mcp.server.fastmcp import FastMCP
 
-mcp = FastMCP("ytmp4-ai-digest")
+mcp = FastMCP("cinopsis")
 
 TOOL_NAMES = ["fetch_videos", "get_transcript", "compare_videos", "launch_viewer", "capture_frame"]
 

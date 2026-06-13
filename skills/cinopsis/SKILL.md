@@ -1,5 +1,5 @@
 ---
-name: ytmp4-ai-digest
+name: cinopsis
 description: Browse subscribed YouTube channels, fetch transcripts, and generate summary digests in Markdown. Also supports multi-video comparison — cross-video analysis with interactive dashboard, frame screenshots, and agentic chat. Use this skill whenever the user mentions "YouTube videos", "video digest", "summarize YouTube", "video summary", "youtube digest", "latest videos", "compare these videos", "compare video X and Y", "what's the difference between these videos", "cross-video analysis", "recap videos", "catch up on videos", or wants to browse, summarize, or compare YouTube content on any topic (AI, 3D modeling, coding, etc.).
 ---
 
@@ -43,7 +43,7 @@ python scripts/get_transcript.py --video-id VIDEO_ID
 - Videos: `${CLAUDE_PLUGIN_DATA}/videos.json`
 - Transcripts: `${CLAUDE_PLUGIN_DATA}/transcript_VIDEO_ID.txt`
 - Digest: `${CLAUDE_PLUGIN_DATA}/output/ai_digest_YYYYMMDD.md`
-- Schema ref: `${CLAUDE_PLUGIN_ROOT}/skills/ytmp4-ai-digest/references/comparison-schema.md`
+- Schema ref: `${CLAUDE_PLUGIN_ROOT}/skills/cinopsis/references/comparison-schema.md`
 
 ## MCP Tools (Claude Cowork + Code)
 
