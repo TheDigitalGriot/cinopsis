@@ -45,6 +45,18 @@ python scripts/get_transcript.py --video-id VIDEO_ID
 - Digest: `${CLAUDE_PLUGIN_DATA}/output/ai_digest_YYYYMMDD.md`
 - Schema ref: `${CLAUDE_PLUGIN_ROOT}/skills/ytmp4-ai-digest/references/comparison-schema.md`
 
+## MCP Tools (Claude Cowork + Code)
+
+On Cowork there is no Bash tool, so the same operations run through a local-stdio MCP server (`.mcp.json`) that auto-bootstraps a venv in `${CLAUDE_PLUGIN_DATA}` — zero setup. On Cowork, call these tools instead of the scripts:
+
+- `fetch_videos(days, keyword, include_all)` — list recent channel videos
+- `get_transcript(video_id)` — fetch a transcript
+- `compare_videos(urls, title)` — build a comparison session (then fill analysis + per-video digest)
+- `launch_viewer(session_id, port)` — start the dashboard, returns a localhost URL to open
+- `capture_frame(video_id, timestamp_seconds)` — grab a frame
+
+The in-viewer chat and a ⚙ Settings panel choose the model: **Claude subscription** (default, via the claude CLI), **Anthropic API key** (fallback), or any **OpenAI-compatible local/custom endpoint** (Ollama, llama.cpp, vLLM, your fine-tunes).
+
 ## Digest Format
 
 Output style: **digest-format**. Core Takeaway → Key Points → Why It Matters. Lead with content, no filler. Flag poor transcript quality.

@@ -1,2 +1,7 @@
 yt-dlp
 flask
+claude-agent-sdk
+mcp
+imageio-ffmpeg
+anthropic
+requests

@@ -28,3 +28,24 @@ def find_ytdlp():
 def get_env():
     """Inherit current environment (including HTTPS_PROXY and other proxy variables)."""
     return {**os.environ}
+
+
+def find_ffmpeg():
+    """Find an ffmpeg executable.
+
+    Prefers the static binary bundled by imageio-ffmpeg (installed via pip, so it
+    works with NO system install on any platform — including Cowork, where the
+    plugin runs from a self-bootstrapped venv). Falls back to a system ffmpeg on
+    PATH, then to the bare name so the caller fails with a clear error.
+    """
+    try:
+        import imageio_ffmpeg
+        exe = imageio_ffmpeg.get_ffmpeg_exe()
+        if exe and Path(exe).exists():
+            return exe
+    except Exception:
+        pass
+    found = shutil.which("ffmpeg")
+    if found:
+        return found
+    return "ffmpeg"  # fallback, let it fail with a clear error

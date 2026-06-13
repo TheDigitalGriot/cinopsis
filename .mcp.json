@@ -1,0 +1,11 @@
+{
+  "mcpServers": {
+    "ytmp4": {
+      "command": "python",
+      "args": [
+        "${CLAUDE_PLUGIN_ROOT}/scripts/mcp_launcher.py",
+        "${CLAUDE_PLUGIN_ROOT}/scripts/mcp_server.py"
+      ]
+    }
+  }
+}

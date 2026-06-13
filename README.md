@@ -21,10 +21,12 @@
 - 📊 **Report Generation** — Generate structured Markdown reports
 - 🔀 **Multi-Video Comparison** — Cross-video analysis with interactive dashboard
 - 🖼️ **Frame Screenshots** — Capture video frames at any timestamp via ffmpeg
-- 💬 **Agentic Chat** — Ask follow-up questions about compared videos
+- 💬 **Agentic Chat** — Ask follow-up questions about compared videos (Claude subscription, Anthropic API key, or any local/custom OpenAI-compatible model)
 - 📂 **Session History** — Browse and revisit past comparison sessions
 - ⚡ **Slash Commands** — `/digest`, `/compare`, `/fetch` for zero-overhead invocation
 - 🛡️ **Compaction Survival** — Session progress checkpoints survive long-context compaction
+- 🖥️ **Claude Cowork Support** — Runs on Cowork via a local MCP server with an auto-bootstrapping venv (no terminal setup)
+- 🔌 **Bundled ffmpeg** — Frame capture works out of the box via `imageio-ffmpeg`; no system install required
 
 ## 🚀 Quick Start
 
@@ -48,7 +50,9 @@ git clone https://github.com/TheDigitalGriot/ytmp4-ai-digest.git
 pip install -r requirements.txt
 ```
 
-> Requires `ffmpeg` on your system PATH for frame screenshot capture. Install via `winget install Gyan.FFmpeg` or `choco install ffmpeg` (Windows), `brew install ffmpeg` (macOS), or `apt install ffmpeg` (Linux).
+> Frame capture uses a **bundled `ffmpeg`** (the `imageio-ffmpeg` pip wheel) — no system install required. A system `ffmpeg` on PATH is used automatically if one is present.
+>
+> **On Claude Cowork**, you don't run `pip` at all — the MCP server auto-creates a virtual-env in `${CLAUDE_PLUGIN_DATA}` and installs dependencies on first use.
 
 ### Configure Channels
 
@@ -65,6 +69,27 @@ Edit `data/channels.json` to add your subscribed YouTube channels:
 ```
 
 > 💡 **How to find Channel ID?** Open a YouTube channel page — the URL format is `youtube.com/channel/{CHANNEL_ID}`
+
+## 🖥️ Claude Cowork Support
+
+The plugin runs on both **Claude Code** and **Claude Cowork** from the same codebase.
+
+- **Claude Code** keeps everything: slash commands, scripts, and hooks are unchanged.
+- **Claude Cowork** (which has no Bash tool) uses a **local-stdio MCP server** that exposes the same operations as tools: `fetch_videos`, `get_transcript`, `compare_videos`, `launch_viewer`, `capture_frame`. Both surfaces share the same Python core and the same dashboard.
+
+On first use, the MCP server **auto-bootstraps a virtual-env** in `${CLAUDE_PLUGIN_DATA}` and installs dependencies — no terminal, no manual `pip`.
+
+### Choosing the chat model (⚙ Settings)
+
+The in-viewer chat is powered by a pluggable provider, selectable in the dashboard's **⚙ Settings** panel (persisted to `${CLAUDE_PLUGIN_DATA}/settings.json`):
+
+| Provider | Auth | Notes |
+|----------|------|-------|
+| **Claude — subscription** *(default)* | local `claude` CLI | No API key, no per-token cost (mirrors quiz-assistant) |
+| **Claude — API key** | Anthropic API key | Fallback when the CLI isn't available (e.g. on a Cowork-only machine) |
+| **Local / custom** | OpenAI-compatible endpoint | Point `base_url` + `model` at Ollama, llama.cpp, vLLM, LM Studio, or your own fine-tuned models |
+
+Keys and the default endpoint can also be supplied at install time via the plugin's `userConfig` prompts.
 
 ## 💬 Usage
 
@@ -203,10 +228,23 @@ The viewer also includes a **chat widget** for asking follow-up questions about 
 
 | Dependency | Version | Description |
 |------------|---------|-------------|
-| Python | 3.9+ | Runtime environment |
+| Python | 3.10+ | Runtime (3.10+ required for the MCP server + Agent SDK chat) |
 | yt-dlp | latest | YouTube video/subtitle download |
 | Flask | latest | Local server for comparison viewer |
-| ffmpeg | latest | Frame screenshot capture (system binary) |
+| imageio-ffmpeg | latest | Bundled ffmpeg for frame capture (no system install) |
+| mcp | latest | Local-stdio MCP server (Cowork bridge) |
+| claude-agent-sdk | latest | In-viewer chat via Claude subscription |
+| anthropic / requests | latest | API-key and local/custom chat providers |
+
+> On Cowork these are installed automatically into a per-plugin venv. For the Claude Code slash-command path, run `pip install -r requirements.txt`.
+
+## 📋 What's New in 2.1.0
+
+- **Claude Cowork support** — a local-stdio MCP server (`.mcp.json`) exposes `fetch_videos`, `get_transcript`, `compare_videos`, `launch_viewer`, and `capture_frame` so the plugin works on Cowork, which has no Bash tool. Claude Code is unchanged.
+- **Self-bootstrapping venv** — first MCP use builds a venv in `${CLAUDE_PLUGIN_DATA}` and installs dependencies with zero terminal action.
+- **Real in-viewer chat** — `/api/chat` is now wired to a streaming, pluggable provider layer (Claude subscription via the Agent SDK, Anthropic API-key fallback, or any OpenAI-compatible local/custom endpoint).
+- **⚙ Settings panel** — choose the chat provider/model in the dashboard; persisted to `${CLAUDE_PLUGIN_DATA}/settings.json`. Local models like Gemma/Kimi are a drop-in config row.
+- **Bundled ffmpeg** — frame capture uses `imageio-ffmpeg`; no system ffmpeg required.
 
 ## 📋 What's New in 2.0.0
 

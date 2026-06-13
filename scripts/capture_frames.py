@@ -8,7 +8,7 @@ import re
 import subprocess
 from pathlib import Path
 
-from _utils import find_ytdlp, get_env, DATA_DIR
+from _utils import find_ytdlp, find_ffmpeg, get_env, DATA_DIR
 
 
 def extract_video_id(url_or_id):
@@ -51,7 +51,7 @@ def build_ffmpeg_cmd(stream_url, timestamp_seconds, output_path):
     """Build the ffmpeg command to extract a single frame."""
     ts = format_timestamp(timestamp_seconds)
     return [
-        "ffmpeg",
+        find_ffmpeg(),
         "-ss", ts,
         "-i", stream_url,
         "-frames:v", "1",

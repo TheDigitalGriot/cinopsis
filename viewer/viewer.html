@@ -733,9 +733,59 @@ html, body {
         <button class="nav-tab active" data-tab="dashboard" onclick="switchTab('dashboard')">Dashboard</button>
         <button class="nav-tab" data-tab="by-topic" onclick="switchTab('by-topic')">By Topic</button>
         <button class="nav-tab" data-tab="by-video" onclick="switchTab('by-video')">By Video</button>
+        <button class="nav-tab" onclick="openSettingsModal()" title="AI provider settings">&#9881; Settings</button>
       </div>
     </nav>
     <div id="tab-content"></div>
+  </div>
+
+  <!-- AI Provider Settings Modal -->
+  <div id="settings-modal" class="modal-overlay" style="display:none">
+    <div class="library-modal" style="max-width:560px">
+      <div class="modal-header">
+        <div class="modal-header-left">
+          <span style="color:#a78bfa;font-size:16px">&#9881;</span>
+          <span class="modal-title">AI Provider Settings</span>
+        </div>
+        <button class="modal-close" onclick="closeSettingsModal()">&times;</button>
+      </div>
+      <div style="padding:20px 24px;display:flex;flex-direction:column;gap:14px;color:#e2e8f0;font-size:14px">
+        <label style="display:flex;align-items:center;gap:8px">
+          <input type="radio" name="provider" value="claude_sub">
+          <b>Claude &mdash; subscription</b>
+          <span style="color:#64748b;font-size:12px">via local claude CLI, no key</span>
+        </label>
+        <label style="display:flex;align-items:center;gap:8px">
+          <input type="radio" name="provider" value="claude_key">
+          <b>Claude &mdash; API key</b>
+          <span style="color:#64748b;font-size:12px">fallback when no CLI</span>
+        </label>
+        <div style="padding-left:24px">
+          <input type="password" id="set-anthropic-key" placeholder="sk-ant-…"
+                 style="width:100%;padding:8px 10px;background:#0f1117;border:1px solid #2d3148;border-radius:6px;color:#e2e8f0">
+        </div>
+        <label style="display:flex;align-items:center;gap:8px">
+          <input type="radio" name="provider" value="local">
+          <b>Local / custom model</b>
+          <span style="color:#64748b;font-size:12px">OpenAI-compatible endpoint</span>
+        </label>
+        <div style="padding-left:24px;display:flex;flex-direction:column;gap:8px">
+          <input type="text" id="set-local-url" placeholder="http://localhost:11434/v1"
+                 style="width:100%;padding:8px 10px;background:#0f1117;border:1px solid #2d3148;border-radius:6px;color:#e2e8f0">
+          <input type="text" id="set-local-model" placeholder="model name (e.g. my-finetune, gemma3, kimi-k2)"
+                 style="width:100%;padding:8px 10px;background:#0f1117;border:1px solid #2d3148;border-radius:6px;color:#e2e8f0">
+          <input type="password" id="set-local-key" placeholder="API key (optional)"
+                 style="width:100%;padding:8px 10px;background:#0f1117;border:1px solid #2d3148;border-radius:6px;color:#e2e8f0">
+        </div>
+        <div id="settings-status" style="font-size:12px;color:#94a3b8;min-height:16px"></div>
+      </div>
+      <div class="modal-actions">
+        <div class="modal-action-btns">
+          <button class="btn-outline" onclick="closeSettingsModal()">Cancel</button>
+          <button class="btn-primary" onclick="saveSettings()">Save</button>
+        </div>
+      </div>
+    </div>
   </div>
 
   <!-- Video Library Modal -->
@@ -1586,6 +1636,21 @@ html, body {
       }
     }
 
+    // Streamed assistant bubble, updated as chunks arrive.
+    var container = document.getElementById('chat-messages');
+    var div = document.createElement('div');
+    div.className = 'chat-msg assistant';
+    container.appendChild(div);
+    var full = '';
+    function render() {
+      var parsed = escHTML(full).replace(/\[(\d{1,2}:\d{2})\]/g, function(m, ts) {
+        return '<a class="ts-link" onclick="navigateToTimestamp(\'' + ts + '\')">[' + ts + ']</a>';
+      });
+      div.innerHTML = parsed || '<span style="opacity:.5">…</span>';
+      container.scrollTop = container.scrollHeight;
+    }
+    render();
+
     try {
       var resp = await fetch('/api/chat', {
         method: 'POST',
@@ -1593,10 +1658,71 @@ html, body {
         body: JSON.stringify({ session_id: sessionId, message: text })
       });
       if (!resp.ok) throw new Error('Server error ' + resp.status);
-      var result = await resp.json();
-      appendMessage('assistant', result.response || 'No response received.');
+      if (resp.body && resp.body.getReader) {
+        var reader = resp.body.getReader();
+        var decoder = new TextDecoder();
+        while (true) {
+          var chunk = await reader.read();
+          if (chunk.done) break;
+          full += decoder.decode(chunk.value, { stream: true });
+          render();
+        }
+      } else {
+        full = await resp.text();
+        render();
+      }
+      if (!full.trim()) { full = 'No response received.'; render(); }
     } catch (err) {
-      appendMessage('assistant', 'Sorry, I encountered an error: ' + err.message);
+      full += (full ? '\n\n' : '') + 'Sorry, I encountered an error: ' + err.message;
+      render();
+    }
+  }
+
+  // ── AI provider settings ──
+
+  async function openSettingsModal() {
+    document.getElementById('settings-modal').style.display = 'flex';
+    try {
+      var s = await (await fetch('/api/settings')).json();
+      var radio = document.querySelector('input[name="provider"][value="' + (s.provider || 'claude_sub') + '"]');
+      if (radio) radio.checked = true;
+      document.getElementById('set-local-url').value = s.local_base_url || '';
+      document.getElementById('set-local-model').value = s.local_model || '';
+      document.getElementById('set-anthropic-key').value = '';
+      document.getElementById('set-local-key').value = '';
+      document.getElementById('set-anthropic-key').placeholder = s.anthropic_api_key_set ? 'saved — leave blank to keep' : 'sk-ant-…';
+      document.getElementById('set-local-key').placeholder = s.local_api_key_set ? 'saved — leave blank to keep' : 'API key (optional)';
+      document.getElementById('settings-status').textContent = '';
+    } catch (e) {
+      document.getElementById('settings-status').textContent = 'Could not load settings: ' + e.message;
+    }
+  }
+
+  function closeSettingsModal() {
+    document.getElementById('settings-modal').style.display = 'none';
+  }
+
+  async function saveSettings() {
+    var checked = document.querySelector('input[name="provider"]:checked');
+    var payload = {
+      provider: checked ? checked.value : 'claude_sub',
+      local_base_url: document.getElementById('set-local-url').value.trim(),
+      local_model: document.getElementById('set-local-model').value.trim()
+    };
+    var ak = document.getElementById('set-anthropic-key').value.trim();
+    if (ak) payload.anthropic_api_key = ak;
+    var lk = document.getElementById('set-local-key').value.trim();
+    if (lk) payload.local_api_key = lk;
+    try {
+      await fetch('/api/settings', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload)
+      });
+      document.getElementById('settings-status').textContent = 'Saved ✓';
+      setTimeout(closeSettingsModal, 600);
+    } catch (e) {
+      document.getElementById('settings-status').textContent = 'Save failed: ' + e.message;
     }
   }
 

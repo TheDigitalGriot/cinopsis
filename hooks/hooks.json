@@ -5,7 +5,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "python --version >/dev/null 2>&1 && python -c \"import yt_dlp, youtube_transcript_api\" 2>/dev/null && echo 'ytmp4-ai-digest: dependencies OK' || echo 'ytmp4-ai-digest: WARNING — missing Python dependencies. Run: pip install -r ${CLAUDE_PLUGIN_ROOT}/requirements.txt'"
+            "command": "python --version >/dev/null 2>&1 && python -c \"import yt_dlp, flask\" 2>/dev/null && echo 'ytmp4-ai-digest: dependencies OK' || echo 'ytmp4-ai-digest: NOTE — for the slash-command path run: pip install -r ${CLAUDE_PLUGIN_ROOT}/requirements.txt (the Cowork/MCP path auto-installs its own venv, no action needed)'"
           }
         ]
       }

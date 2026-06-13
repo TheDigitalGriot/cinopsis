@@ -6,7 +6,7 @@ import os
 import webbrowser
 from pathlib import Path
 
-from flask import Flask, jsonify, request, send_file, abort
+from flask import Flask, jsonify, request, send_file, abort, Response, stream_with_context
 
 from capture_frames import capture_frame, extract_video_id
 
@@ -76,14 +76,81 @@ def create_app(data_dir=None):
             return jsonify({"video_id": video_id, "timestamp": timestamp, "screenshot_base64": b64})
         return jsonify({"error": "Failed to capture frame"}), 500
 
+    def _session_data(session_id):
+        """Load comparison_data.json for a session id, or None."""
+        index_file = sessions_dir / "index.json"
+        if not session_id or not index_file.exists():
+            return None
+        with open(index_file, encoding="utf-8") as f:
+            index = json.load(f)
+        entry = next((e for e in index if e["id"] == session_id), None)
+        if not entry:
+            return None
+        data_file = sessions_dir / entry["dir_name"] / "comparison_data.json"
+        if not data_file.exists():
+            return None
+        with open(data_file, encoding="utf-8") as f:
+            return json.load(f)
+
+    def _chat_context(session_id):
+        """Build the system context for the chat from a session's analysis + transcripts."""
+        parts = [
+            "You are an assistant helping a user understand and compare YouTube videos.",
+            "Answer using the analysis and transcript excerpts below. Be concise and specific.\n",
+        ]
+        data = _session_data(session_id)
+        if not data:
+            parts.append("(No specific session is loaded.)")
+            return "\n".join(parts)
+        analysis = data.get("analysis", {})
+        if analysis.get("unified_summary"):
+            parts.append("# Unified Summary\n" + analysis["unified_summary"] + "\n")
+        topics = analysis.get("topics") or []
+        if topics:
+            parts.append("# Topics")
+            for t in topics:
+                parts.append(f"- {t.get('name','')}: {t.get('consensus','')}")
+            parts.append("")
+        for v in data.get("videos", []):
+            parts.append(f"# Video: {v.get('title','?')} ({v.get('channel','?')}) [{v.get('id','')}]")
+            dg = v.get("digest") or {}
+            if dg.get("core_takeaway"):
+                parts.append("Core takeaway: " + dg["core_takeaway"])
+            if dg.get("key_points"):
+                parts.append("Key points: " + "; ".join(dg["key_points"]))
+            tr = v.get("transcript") or []
+            if tr:
+                text = " ".join(e.get("text", "") for e in tr)[:3000]
+                parts.append("Transcript excerpt: " + text)
+            parts.append("")
+        return "\n".join(parts)
+
     @app.route("/api/chat", methods=["POST"])
     def chat():
-        # Chat endpoint placeholder — in production, this routes to Claude API
-        body = request.get_json()
-        return jsonify({
-            "response": "Chat endpoint ready. Connect to Claude API for full functionality.",
-            "session_id": body.get("session_id"),
-        })
+        body = request.get_json() or {}
+        question = (body.get("message") or body.get("question") or "").strip()
+        if not question:
+            return jsonify({"error": "message required"}), 400
+
+        from app_settings import load_settings
+        from providers import chat_stream
+
+        settings = load_settings()
+        context = _chat_context(body.get("session_id"))
+
+        @stream_with_context
+        def generate():
+            for chunk in chat_stream(settings, context, question):
+                yield chunk
+
+        return Response(generate(), mimetype="text/plain; charset=utf-8")
+
+    @app.route("/api/settings", methods=["GET", "POST"])
+    def settings_route():
+        from app_settings import public_settings, save_settings
+        if request.method == "POST":
+            return jsonify(save_settings(request.get_json() or {}))
+        return jsonify(public_settings())
 
     def _build_video_lookup():
         """Return dict mapping video_id -> video metadata across all sessions."""
