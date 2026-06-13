@@ -57,9 +57,13 @@ Update session_progress.json: `"status": "analysis_complete"`.
 After saving comparison_data.json, ALWAYS launch immediately — do not wait for the user:
 ```bash
 cd ${CLAUDE_PLUGIN_ROOT}
-python scripts/compare_server.py --port 5123 --session SESSION_DIR_NAME
+python scripts/compare_server.py --port 5123 --session SESSION_ID
 ```
-Update session_progress.json: `"status": "complete"`. Tell the user the viewer is at http://localhost:5123
+The server persists the session to the canonical data dir and prints
+`Serving viewer at <url>`. The port may differ if 5123 was busy — **report the
+printed URL**, not a hardcoded one. Confirm it serves the session:
+GET `<url-base>/api/session/SESSION_ID` → 200 (404 means a stale server).
+Update session_progress.json: `"status": "complete"`.
 
 ## Rules
 

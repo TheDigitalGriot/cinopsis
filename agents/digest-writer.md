@@ -49,9 +49,12 @@ Update session_progress.json: `"status": "analysis_complete"`.
 ### Step 4: Launch the viewer
 ```bash
 cd ${CLAUDE_PLUGIN_ROOT}
-python scripts/compare_server.py --port 5123 --session SESSION_DIR_NAME
+python scripts/compare_server.py --port 5123 --session SESSION_ID
 ```
-Update session_progress.json: `"status": "complete"`. Tell the user the viewer is at http://localhost:5123
+The server persists the session to the canonical data dir and prints
+`Serving viewer at <url>` — report that printed URL (the port may differ if 5123
+was busy). Verify with GET `<url-base>/api/session/SESSION_ID` → 200.
+Update session_progress.json: `"status": "complete"`.
 
 ### Step 5: Output digest in chat
 Use the **digest-format** output style: **Core Takeaway**, **Key Points**, **Why It Matters**.
