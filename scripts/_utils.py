@@ -8,6 +8,18 @@ from pathlib import Path
 DATA_DIR = Path(os.environ.get("CLAUDE_PLUGIN_DATA", Path(__file__).parent.parent / "data"))
 
 
+def canonical_data_dir() -> Path:
+    """Stable, persistent data dir the dashboard reads from.
+
+    Matches mcp_launcher.plugin_data_dir() so Claude Code and Cowork share one
+    session library. Override with CINOPSIS_DATA_DIR (used by tests / custom setups).
+    """
+    env = os.environ.get("CINOPSIS_DATA_DIR")
+    if env:
+        return Path(env)
+    return Path.home() / ".claude" / "plugins" / "data" / "cinopsis-cinopsis"
+
+
 def find_ytdlp():
     """Find yt-dlp executable, checking common install locations on Windows."""
     found = shutil.which("yt-dlp")
