@@ -9,10 +9,12 @@ import uuid
 from datetime import datetime
 from pathlib import Path
 
-from _utils import find_ytdlp, get_env, DATA_DIR
+from _utils import find_ytdlp, get_env, DATA_DIR, canonical_data_dir
 from capture_frames import extract_video_id, capture_frame
 from get_transcript import get_transcript_ytdlp, format_transcript
+from persist_session import persist_session
 SESSIONS_DIR = DATA_DIR / "sessions"
+CANONICAL_SESSIONS_DIR = canonical_data_dir() / "sessions"
 
 
 def parse_urls(urls):
@@ -174,6 +176,16 @@ def save_session(comparison_data):
         json.dump(index, f, indent=2, ensure_ascii=False)
 
     print(f"\nSession saved to: {data_file}")
+
+    if not os.environ.get("CINOPSIS_NO_PERSIST"):
+        try:
+            promoted = persist_session(dir_name, src_sessions=SESSIONS_DIR,
+                                       dst_sessions=CANONICAL_SESSIONS_DIR)
+            if promoted:
+                print(f"Persisted to canonical dir: {promoted}")
+        except Exception as e:
+            print(f"  [warn] could not persist to canonical dir: {e}")
+
     return data_file
 
 
