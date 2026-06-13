@@ -297,6 +297,35 @@ def create_app(data_dir=None):
     return app
 
 
+def _port_in_use(host, port):
+    import socket
+    with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
+        s.settimeout(0.5)
+        return s.connect_ex((host, port)) == 0
+
+
+def _serves_session(host, port, session_id):
+    """True if a server on host:port answers HTTP 200 for this session id."""
+    import urllib.request
+    try:
+        with urllib.request.urlopen(f"http://{host}:{port}/api/session/{session_id}", timeout=2) as r:
+            return r.status == 200
+    except Exception:
+        return False
+
+
+def _resolve_port(host, port, session_id, span=20):
+    """Return (port, reuse). reuse=True => a healthy server already serves session_id."""
+    if not _port_in_use(host, port):
+        return port, False
+    if session_id and _serves_session(host, port, session_id):
+        return port, True
+    for p in range(port + 1, port + 1 + span):
+        if not _port_in_use(host, p):
+            return p, False
+    raise SystemExit(f"No free port in {port}-{port + span}; close an existing viewer.")
+
+
 def main():
     parser = argparse.ArgumentParser(description="Start the video comparison viewer server")
     parser.add_argument("--port", type=int, default=5123, help="Port to serve on")
@@ -306,18 +335,24 @@ def main():
     parser.add_argument("--data-dir", default=None, help="Data dir to read sessions from (default: canonical)")
     args = parser.parse_args()
 
-    app = create_app(data_dir=args.data_dir)
-
-    url = f"http://{args.host}:{args.port}"
+    port, reuse = _resolve_port(args.host, args.port, args.session)
+    url = f"http://{args.host}:{port}"
     if args.session:
         url += f"?session={args.session}"
 
+    if reuse:
+        print(f"Reusing existing viewer at {url}", flush=True)
+        if not args.no_open:
+            webbrowser.open(url)
+        return
+
+    app = create_app(data_dir=args.data_dir)
     if not args.no_open:
         import threading
         threading.Timer(1.0, lambda: webbrowser.open(url)).start()
 
     print(f"Serving viewer at {url}", flush=True)
-    app.run(host=args.host, port=args.port, debug=False)
+    app.run(host=args.host, port=port, debug=False)
 
 
 if __name__ == "__main__":
