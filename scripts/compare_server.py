@@ -13,7 +13,8 @@ from capture_frames import capture_frame, extract_video_id
 
 def create_app(data_dir=None):
     """Create and configure the Flask app."""
-    data_dir = Path(data_dir or os.environ.get("CLAUDE_PLUGIN_DATA", Path(__file__).parent.parent / "data"))
+    from _utils import canonical_data_dir
+    data_dir = Path(data_dir) if data_dir else canonical_data_dir()
     sessions_dir = data_dir / "sessions"
     plugin_root = Path(os.environ.get("CLAUDE_PLUGIN_ROOT", Path(__file__).parent.parent))
     viewer_path = plugin_root / "viewer" / "viewer.html"
@@ -302,9 +303,10 @@ def main():
     parser.add_argument("--host", default="127.0.0.1", help="Host to bind to")
     parser.add_argument("--no-open", action="store_true", help="Don't open browser automatically")
     parser.add_argument("--session", help="Session ID to open directly")
+    parser.add_argument("--data-dir", default=None, help="Data dir to read sessions from (default: canonical)")
     args = parser.parse_args()
 
-    app = create_app()
+    app = create_app(data_dir=args.data_dir)
 
     url = f"http://{args.host}:{args.port}"
     if args.session:
