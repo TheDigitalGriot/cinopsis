@@ -55,7 +55,7 @@ On Cowork there is no Bash tool, so the same operations run through a local-stdi
 - `launch_viewer(session_id, port)` — start the dashboard, returns a localhost URL to open
 - `capture_frame(video_id, timestamp_seconds)` — grab a frame
 
-Sessions auto-persist to the canonical data dir (`~/.claude/plugins/data/cinopsis-cinopsis`), so a comparison built on Cowork shows up in Claude Code and vice-versa. Recover/relocate any session with `python scripts/persist_session.py <dir_name>` (or `--all`). The viewer prints `Serving viewer at <url>` — use that printed URL (the port auto-bumps if 5123 is busy).
+Sessions auto-persist to the canonical data dir (`~/.claude/plugins/data/cinopsis-cinopsis`), so a comparison built on Cowork shows up in Claude Code and vice-versa. The session is registered at build time, and **the analysis you fill in is re-promoted to canonical when the viewer launches** (`compare_server.py` copies the working copy over before serving) — this is why you write analysis into the working `comparison_data.json`, then launch. Recover/relocate any session with `python scripts/persist_session.py <dir_name>` (or `--all`). The viewer prints `Serving viewer at <url>` — use that printed URL (the port auto-bumps if 5123 is busy).
 
 The in-viewer chat and a ⚙ Settings panel choose the model: **Claude subscription** (default, via the claude CLI), **Anthropic API key** (fallback), or any **OpenAI-compatible local/custom endpoint** (Ollama, llama.cpp, vLLM, your fine-tunes).
 

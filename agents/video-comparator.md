@@ -59,10 +59,13 @@ After saving comparison_data.json, ALWAYS launch immediately — do not wait for
 cd ${CLAUDE_PLUGIN_ROOT}
 python scripts/compare_server.py --port 5123 --session SESSION_ID
 ```
-The server persists the session to the canonical data dir and prints
+On launch the server **re-promotes the working copy you just filled in (with the
+analysis) to the canonical data dir**, then serves it, and prints
 `Serving viewer at <url>`. The port may differ if 5123 was busy — **report the
 printed URL**, not a hardcoded one. Confirm it serves the session:
-GET `<url-base>/api/session/SESSION_ID` → 200 (404 means a stale server).
+GET `<url-base>/api/session/SESSION_ID` → 200 (404 means a stale server). If you
+see a `[warn] ... EMPTY analysis` line, the analysis-fill step did not run — go back
+and write comparison_data.json before relaunching.
 Update session_progress.json: `"status": "complete"`.
 
 ## Rules

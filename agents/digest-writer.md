@@ -51,9 +51,11 @@ Update session_progress.json: `"status": "analysis_complete"`.
 cd ${CLAUDE_PLUGIN_ROOT}
 python scripts/compare_server.py --port 5123 --session SESSION_ID
 ```
-The server persists the session to the canonical data dir and prints
+On launch the server **re-promotes the working copy you just filled in (with the
+analysis) to the canonical data dir**, then serves it, and prints
 `Serving viewer at <url>` — report that printed URL (the port may differ if 5123
-was busy). Verify with GET `<url-base>/api/session/SESSION_ID` → 200.
+was busy). Verify with GET `<url-base>/api/session/SESSION_ID` → 200. A
+`[warn] ... EMPTY analysis` line means the analysis was not written — fix before relaunch.
 Update session_progress.json: `"status": "complete"`.
 
 ### Step 5: Output digest in chat

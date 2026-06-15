@@ -29,9 +29,12 @@ cd ${CLAUDE_PLUGIN_ROOT} first, then follow these steps:
    Update session_progress.json: `"status": "analysis_complete"`.
 
 5. `python scripts/compare_server.py --port 5123 --session SESSION_ID`
-   The server auto-persists the session to the canonical data dir and prints
-   `Serving viewer at <url>` (the port may differ if 5123 was taken — **use the
-   printed URL**). Update session_progress.json: `"status": "complete"`.
+   On launch the server **re-promotes the working copy you just filled in (with the
+   analysis) to the canonical data dir**, then serves it — so the analysis actually
+   reaches the file the viewer reads. It prints `Serving viewer at <url>` (the port
+   may differ if 5123 was taken — **use the printed URL**), and prints a loud
+   `[warn] ... EMPTY analysis` if the analysis step was skipped.
+   Update session_progress.json: `"status": "complete"`.
    Verify it's live with a session-specific check: GET `<url-base>/api/session/SESSION_ID`
    should return 200 (a stale server returns 404). Tell the user the printed URL.
    Do NOT wait for the user to ask — launch immediately after saving the JSON.
