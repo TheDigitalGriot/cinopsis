@@ -326,6 +326,55 @@ def _resolve_port(host, port, session_id, span=20):
     raise SystemExit(f"No free port in {port}-{port + span}; close an existing viewer.")
 
 
+def _has_analysis(data):
+    """True if a comparison_data dict contains Claude-authored analysis (not empty placeholders)."""
+    a = (data or {}).get("analysis") or {}
+    if a.get("unified_summary") or a.get("topics") or a.get("key_moments") or a.get("disagreements"):
+        return True
+    return any((v.get("digest") or v.get("summary")) for v in (data or {}).get("videos", []))
+
+
+def _load_session_file(sessions_dir, session):
+    """Return (dir_name, data) for an id-or-dirname in sessions_dir, else (dir_name|None, None)."""
+    from persist_session import _read_index
+    sessions_dir = Path(sessions_dir)
+    for e in _read_index(sessions_dir / "index.json"):
+        if session in (e.get("id"), e.get("dir_name")):
+            f = sessions_dir / e["dir_name"] / "comparison_data.json"
+            if f.exists():
+                with open(f, encoding="utf-8") as fh:
+                    return e["dir_name"], json.load(fh)
+            return e.get("dir_name"), None
+    f = sessions_dir / session / "comparison_data.json"  # maybe a dir_name not in the index
+    if f.exists():
+        with open(f, encoding="utf-8") as fh:
+            return session, json.load(fh)
+    return None, None
+
+
+def _promote_session_for_serving(session, work_sessions=None, canon_sessions=None):
+    """Re-promote the enriched WORKING copy to canonical before serving (Cowork two-copy fix).
+
+    The working copy is the one Claude fills with analysis; the viewer reads canonical.
+    Only promotes when the working copy actually has analysis, so a stale/empty working
+    copy on relaunch never clobbers a good canonical copy.
+    """
+    from persist_session import persist_session
+    from _utils import DATA_DIR, canonical_data_dir
+    work = Path(work_sessions) if work_sessions else DATA_DIR / "sessions"
+    canon = Path(canon_sessions) if canon_sessions else canonical_data_dir() / "sessions"
+    if work.resolve() == canon.resolve():
+        return  # single copy (e.g. Claude Code) — nothing to promote
+    dir_name, data = _load_session_file(work, session)
+    if not dir_name or not _has_analysis(data):
+        return  # no working copy, or it has no analysis — don't overwrite canonical
+    try:
+        persist_session(dir_name, src_sessions=work, dst_sessions=canon)
+        print(f"Re-promoted enriched session '{dir_name}' to canonical before serving", flush=True)
+    except Exception as e:
+        print(f"[warn] could not re-persist session before serving: {e}", flush=True)
+
+
 def main():
     parser = argparse.ArgumentParser(description="Start the video comparison viewer server")
     parser.add_argument("--port", type=int, default=5123, help="Port to serve on")
@@ -334,6 +383,17 @@ def main():
     parser.add_argument("--session", help="Session ID to open directly")
     parser.add_argument("--data-dir", default=None, help="Data dir to read sessions from (default: canonical)")
     args = parser.parse_args()
+
+    # Cowork two-copy fix: promote the enriched working copy to canonical before serving,
+    # so the analysis Claude wrote actually reaches the file the viewer reads.
+    if args.session and not args.data_dir:
+        _promote_session_for_serving(args.session)
+        from _utils import canonical_data_dir
+        _, served = _load_session_file(canonical_data_dir() / "sessions", args.session)
+        if served is not None and not _has_analysis(served):
+            print(f"[warn] session '{args.session}' has EMPTY analysis — the viewer text will be "
+                  f"blank. Ensure the analysis-fill step wrote comparison_data.json before launch.",
+                  flush=True)
 
     port, reuse = _resolve_port(args.host, args.port, args.session)
     url = f"http://{args.host}:{port}"
