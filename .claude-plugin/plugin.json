@@ -1,9 +1,9 @@
 {
   "name": "cinopsis",
   "description": "Cinopsis — browse subscribed YouTube channels, fetch transcripts, and generate Markdown summary digests. Multi-video comparison with an interactive dashboard, frame screenshots, and AI chat. Runs on Claude Code and Cowork.",
-  "version": "2.1.2",
+  "version": "2.1.3",
   "author": {
-    "name": "TheDigitalGriot"
+    "name": "Digital Griot Studio"
   },
   "keywords": ["youtube", "video", "digest", "transcript", "summary", "comparison", "analysis"],
   "userConfig": {

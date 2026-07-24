@@ -38,7 +38,7 @@ def fetch_video_metadata(video_id):
     """Fetch full metadata for a single video using yt-dlp."""
     cmd = [find_ytdlp(), "--dump-json", "--no-download", f"https://www.youtube.com/watch?v={video_id}"]
     try:
-        result = subprocess.run(cmd, capture_output=True, text=True, timeout=60, env=get_env())
+        result = subprocess.run(cmd, capture_output=True, text=True, timeout=60, env=get_env(), stdin=subprocess.DEVNULL)
         info = json.loads(result.stdout)
         return {
             "id": video_id,
@@ -73,7 +73,7 @@ def fetch_thumbnail_base64(video_id):
             "-o", os.path.join(tmpdir, "thumb"),
             f"https://www.youtube.com/watch?v={video_id}",
         ]
-        subprocess.run(cmd, capture_output=True, timeout=30, env=get_env())
+        subprocess.run(cmd, capture_output=True, timeout=30, env=get_env(), stdin=subprocess.DEVNULL)
         for f in Path(tmpdir).glob("thumb*.png"):
             return base64.b64encode(f.read_bytes()).decode("utf-8")
     return None

@@ -40,7 +40,7 @@ def get_stream_url(video_id):
         "--format", "best[height<=720]",
         f"https://www.youtube.com/watch?v={video_id}",
     ]
-    result = subprocess.run(cmd, capture_output=True, text=True, timeout=30, env=get_env())
+    result = subprocess.run(cmd, capture_output=True, text=True, timeout=30, env=get_env(), stdin=subprocess.DEVNULL)
     if result.returncode != 0 or not result.stdout.strip():
         return None
     urls = result.stdout.strip().split("\n")
@@ -84,7 +84,7 @@ def capture_frame(video_id, timestamp_seconds, output_dir=None):
     cmd = build_ffmpeg_cmd(stream_url, timestamp_seconds, output_path)
 
     try:
-        result = subprocess.run(cmd, capture_output=True, timeout=30, env=get_env())
+        result = subprocess.run(cmd, capture_output=True, timeout=30, env=get_env(), stdin=subprocess.DEVNULL)
         if result.returncode != 0:
             print(f"  ffmpeg failed (rc={result.returncode})")
             return None

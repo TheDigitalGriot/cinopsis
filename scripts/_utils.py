@@ -21,25 +21,37 @@ def canonical_data_dir() -> Path:
 
 
 def find_ytdlp():
-    """Find yt-dlp executable, checking common install locations on Windows."""
+    """Find yt-dlp, preferring the running interpreter's own venv binary.
+
+    The server runs under the plugin venv, whose yt-dlp sits beside the
+    interpreter (Scripts/ on Windows, bin/ on POSIX) and matches the version
+    pinned in requirements.txt. Prefer it over a PATH hit or a stale per-user
+    install (Cinopsis MCP-hang handoff, secondary fix: find_ytdlp ordering).
+    """
+    exe = "yt-dlp.exe" if sys.platform == "win32" else "yt-dlp"
+    interp_dir = Path(sys.executable).parent
+    for cand in (interp_dir / exe, interp_dir / "Scripts" / exe):
+        if cand.exists():
+            return str(cand)
     found = shutil.which("yt-dlp")
     if found:
         return found
-    # Check user Scripts dir (pip install --user)
+    # Per-user pip install may be stale; last resort before the PATH fallback.
     ver = f"Python{sys.version_info.major}{sys.version_info.minor}"
     user_scripts = Path.home() / "AppData" / "Roaming" / "Python" / ver / "Scripts" / "yt-dlp.exe"
     if user_scripts.exists():
         return str(user_scripts)
-    # Check system Scripts dir
-    system_scripts = Path(sys.executable).parent / "Scripts" / "yt-dlp.exe"
-    if system_scripts.exists():
-        return str(system_scripts)
     return "yt-dlp"  # fallback, let it fail with a clear error
 
 
 def get_env():
-    """Inherit current environment (including HTTPS_PROXY and other proxy variables)."""
-    return {**os.environ}
+    """Return a sanitized copy of the environment for yt-dlp/ffmpeg subprocesses.
+
+    Drops proxy vars Cowork's VM may inject (which can hang yt-dlp), per the
+    Cinopsis MCP-hang handoff and claude-code #41432.
+    """
+    return {k: v for k, v in os.environ.items()
+            if k.upper() not in ("HTTP_PROXY", "HTTPS_PROXY", "ALL_PROXY")}
 
 
 def find_ffmpeg():

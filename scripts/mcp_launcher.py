@@ -85,6 +85,81 @@ def ensure_venv() -> Path:
     return py
 
 
+_JOB_HANDLE = None  # module-level so the job stays open for the launcher's life
+
+
+def _bind_kill_on_close(child_pid):
+    """Assign the server child to a Windows Job Object with KILL_ON_JOB_CLOSE.
+
+    When the host terminates this launcher, closing our handles closes the job
+    and the OS kills the server child instead of orphaning it. Best-effort: any
+    failure leaves the prior plain-wait behaviour untouched. No-op off Windows.
+    """
+    global _JOB_HANDLE
+    try:
+        import ctypes
+        from ctypes import wintypes
+        k32 = ctypes.WinDLL("kernel32", use_last_error=True)
+        k32.CreateJobObjectW.restype = wintypes.HANDLE
+        k32.CreateJobObjectW.argtypes = [wintypes.LPVOID, wintypes.LPCWSTR]
+        k32.OpenProcess.restype = wintypes.HANDLE
+        k32.OpenProcess.argtypes = [wintypes.DWORD, wintypes.BOOL, wintypes.DWORD]
+        k32.AssignProcessToJobObject.argtypes = [wintypes.HANDLE, wintypes.HANDLE]
+        k32.SetInformationJobObject.argtypes = [wintypes.HANDLE, ctypes.c_int, wintypes.LPVOID, wintypes.DWORD]
+        k32.CloseHandle.argtypes = [wintypes.HANDLE]
+
+        class _BASIC(ctypes.Structure):
+            _fields_ = [
+                ("PerProcessUserTimeLimit", ctypes.c_int64),
+                ("PerJobUserTimeLimit", ctypes.c_int64),
+                ("LimitFlags", wintypes.DWORD),
+                ("MinimumWorkingSetSize", ctypes.c_size_t),
+                ("MaximumWorkingSetSize", ctypes.c_size_t),
+                ("ActiveProcessLimit", wintypes.DWORD),
+                ("Affinity", ctypes.c_size_t),
+                ("PriorityClass", wintypes.DWORD),
+                ("SchedulingClass", wintypes.DWORD),
+            ]
+
+        class _IO(ctypes.Structure):
+            _fields_ = [("ReadOperationCount", ctypes.c_uint64),
+                        ("WriteOperationCount", ctypes.c_uint64),
+                        ("OtherOperationCount", ctypes.c_uint64),
+                        ("ReadTransferCount", ctypes.c_uint64),
+                        ("WriteTransferCount", ctypes.c_uint64),
+                        ("OtherTransferCount", ctypes.c_uint64)]
+
+        class _EXT(ctypes.Structure):
+            _fields_ = [("BasicLimitInformation", _BASIC),
+                        ("IoInfo", _IO),
+                        ("ProcessMemoryLimit", ctypes.c_size_t),
+                        ("JobMemoryLimit", ctypes.c_size_t),
+                        ("PeakProcessMemoryUsed", ctypes.c_size_t),
+                        ("PeakJobMemoryUsed", ctypes.c_size_t)]
+
+        hJob = k32.CreateJobObjectW(None, None)
+        if not hJob:
+            return
+        info = _EXT()
+        info.BasicLimitInformation.LimitFlags = 0x00002000  # KILL_ON_JOB_CLOSE
+        if not k32.SetInformationJobObject(hJob, 9, ctypes.byref(info), ctypes.sizeof(info)):
+            k32.CloseHandle(hJob)
+            return
+        hProc = k32.OpenProcess(0x0100 | 0x0001, False, int(child_pid))  # SET_QUOTA | TERMINATE
+        if not hProc:
+            k32.CloseHandle(hJob)
+            return
+        try:
+            if not k32.AssignProcessToJobObject(hJob, hProc):
+                k32.CloseHandle(hJob)
+                return
+        finally:
+            k32.CloseHandle(hProc)
+        _JOB_HANDLE = hJob
+    except Exception as e:
+        print("[cinopsis] job-object bind skipped: %s" % e, file=sys.stderr, flush=True)
+
+
 def main(argv) -> int:
     if "--selfcheck" in argv:
         py = ensure_venv()
@@ -103,6 +178,14 @@ def main(argv) -> int:
         return 1
 
     # Hand off: child inherits our stdin/stdout/stderr so MCP I/O is direct.
+    if sys.platform == "win32":
+        proc = subprocess.Popen([str(py), str(target), *rest])
+        _bind_kill_on_close(proc.pid)
+        try:
+            return proc.wait()
+        except KeyboardInterrupt:
+            proc.terminate()
+            return 130
     proc = subprocess.run([str(py), str(target), *rest])
     return proc.returncode
 

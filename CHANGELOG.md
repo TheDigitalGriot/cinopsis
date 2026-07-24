@@ -5,6 +5,33 @@ All notable changes to **Cinopsis** are documented here.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [2.1.3] — 2026-07-24
+
+### Fixed
+- **Windows stdio-MCP hang (60s timeout on every tool call).** On Cowork/Windows,
+  every `subprocess.run(...)` in the server call path inherited the MCP server's
+  **stdin JSON-RPC pipe**, so the spawned `yt-dlp`/`ffmpeg` child blocked on it
+  until the 60s timeout — `get_transcript` (and friends) hung on every
+  call. **Fix:** pass `stdin=subprocess.DEVNULL` to every `subprocess.run` in
+  `get_transcript.py` (x3), `capture_frames.py` (x2), and `compare_videos.py` (x2).
+  (python-sdk #671; CPython #19575.)
+- **`find_ytdlp()` picked a stale binary.** The venv-detection branch built
+  `.../Scripts/Scripts/yt-dlp.exe` (doubled `Scripts`, never exists) and was
+  checked *after* the per-user path, so the server ran the stale user-site yt-dlp
+  (2026.03.17) instead of the venv's pinned build (2026.06.09). The running
+  interpreter's own binary is now preferred first.
+
+### Hardened
+- **`get_env()` sanitizes proxy vars.** Drops `HTTP_PROXY`/`HTTPS_PROXY`/`ALL_PROXY`
+  before handing the environment to yt-dlp/ffmpeg, so a proxy injected by the
+  Cowork VM can't hang the child (claude-code #41432).
+
+### Added
+- **No-orphan launcher guard (Windows).** `mcp_launcher.py` binds the server
+  child to a Job Object with `KILL_ON_JOB_CLOSE`, so when the host terminates the
+  launcher the OS reaps the server instead of leaving it running. Best-effort with
+  graceful fallback. Verified: killing the launcher reaps the server child.
+
 ## [2.1.2] — 2026-06-14
 
 ### Fixed
@@ -75,6 +102,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   Claude Code and Cowork: a self-bootstrapping MCP server (`.mcp.json` →
   `mcp_launcher.py`) builds its own venv so the Cowork path needs zero setup.
 
+[2.1.3]: https://github.com/TheDigitalGriot/cinopsis/releases/tag/v2.1.3
 [2.1.2]: https://github.com/TheDigitalGriot/cinopsis/releases/tag/v2.1.2
 [2.1.1]: https://github.com/TheDigitalGriot/cinopsis/releases/tag/v2.1.1
 [2.1.0]: https://github.com/TheDigitalGriot/cinopsis/commit/7661217

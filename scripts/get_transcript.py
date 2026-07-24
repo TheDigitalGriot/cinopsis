@@ -33,7 +33,7 @@ def get_transcript_ytdlp(video_id):
     ]
 
     print("  Attempting to fetch subtitles without cookies...", flush=True)
-    subprocess.run(base_cmd + [url], capture_output=True, env=get_env(), timeout=60)
+    subprocess.run(base_cmd + [url], capture_output=True, env=get_env(), timeout=60, stdin=subprocess.DEVNULL)
 
     result = _find_vtt(video_id)
     if result[0]:
@@ -44,7 +44,8 @@ def get_transcript_ytdlp(video_id):
         base_cmd + ["--cookies-from-browser", "chrome", url],
         capture_output=True,
         env=get_env(),
-        timeout=60
+        timeout=60,
+        stdin=subprocess.DEVNULL
     )
 
     result = _find_vtt(video_id)
@@ -56,7 +57,8 @@ def get_transcript_ytdlp(video_id):
         base_cmd + ["--cookies-from-browser", "firefox", url],
         capture_output=True,
         env=get_env(),
-        timeout=60
+        timeout=60,
+        stdin=subprocess.DEVNULL
     )
 
     return _find_vtt(video_id)
