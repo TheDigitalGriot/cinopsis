@@ -22,7 +22,7 @@ from pathlib import Path
 
 # scripts/ is sys.path[0] when run directly, so these bare imports resolve.
 from fetch_videos import load_channels, fetch_channel_videos, is_ai_related, OUTPUT_FILE
-from get_transcript import get_transcript_ytdlp, format_transcript
+from get_transcript import get_transcript_ytdlp, format_transcript, integrity_gate
 from capture_frames import extract_video_id, capture_frame as _capture_frame
 from compare_videos import parse_urls, process_video, build_comparison_data, save_session
 from compare_server import create_app
@@ -116,7 +116,8 @@ def get_transcript(video_id: str) -> str:
             (DATA_DIR / f"transcript_{vid}.txt").write_text(format_transcript(transcript), encoding="utf-8")
     if not transcript:
         return f"No transcript available for {vid} (video may require login or have no subtitles)."
-    return f"Transcript for {vid} ({lang}, {len(transcript)} entries):\n\n{format_transcript(transcript)}"
+    gate = integrity_gate(transcript)
+    return f"Transcript for {vid} ({lang}, {len(transcript)} entries):\n\n{gate}\n{format_transcript(transcript)}"
 
 
 @mcp.tool()
