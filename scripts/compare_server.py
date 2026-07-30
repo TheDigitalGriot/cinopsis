@@ -9,6 +9,7 @@ from pathlib import Path
 from flask import Flask, jsonify, request, send_file, abort, Response, stream_with_context
 
 from capture_frames import capture_frame, extract_video_id
+from griot_widget_adapter import frame_viewer
 
 
 def create_app(data_dir=None):
@@ -25,7 +26,11 @@ def create_app(data_dir=None):
     @app.route("/")
     def index():
         if viewer_path.exists():
-            return send_file(viewer_path)
+            # GMCL-A1: art-preserving griot-widget bind -- griotwave frame + the Cinopsis
+            # design-system token override + one drive() CTA, applied server-side (no JS
+            # runtime import). The bespoke compare-graph markup/JS is untouched.
+            html = viewer_path.read_text(encoding="utf-8")
+            return Response(frame_viewer(html), mimetype="text/html; charset=utf-8")
         return "<h1>cinopsis Video Comparison</h1><p>viewer.html not found</p>", 200
 
     @app.route("/api/sessions")
