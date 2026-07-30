@@ -5,6 +5,32 @@ All notable changes to **Cinopsis** are documented here.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [2.1.7] — 2026-07-30
+
+### Added
+- **First-class `build_session_from_analysis.py` (the inject-analysis method).** Build a real
+  comparison session from a *finished* analysis JSON — no fetching — through the plugin's own
+  `save_session`/persist, then launch the viewer. Decouples analysis from fetching for the
+  cloud-brain/local-muscle split (fetch/analyze anywhere → inject → view). `--thumbnails`
+  backfills thumbnails (non-fatal); `--no-persist` skips the canonical promote. Documented in
+  SKILL.md ("Inject-analysis method").
+
+## [2.1.6] — 2026-07-30
+
+### Added
+- **Viewer idle self-reap.** `compare_server.py` gained `--idle-timeout` (default 1800s / 30 min):
+  a watchdog tracks last-request time and `os._exit`s once the viewer is idle, so `compare_server`
+  processes never orphan (the 8-process pile-up in the mcp-hang notes). Single-instance reuse via
+  `_resolve_port` was already present; this closes the actual leak.
+
+## [2.1.5] — 2026-07-30
+
+### Fixed
+- **`compare_videos.py` batch no longer aborts on one bad video.** Per-video `try/except` around
+  `process_video` (one failure skips + warns instead of killing the whole run) and a non-fatal
+  thumbnail fetch (`process_video` continues without a thumbnail on error). This is the fragility
+  that ended a 12-video fetch mid-run.
+
 ## [2.1.3] — 2026-07-24
 
 ### Fixed
