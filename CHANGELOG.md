@@ -5,6 +5,26 @@ All notable changes to **Cinopsis** are documented here.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [2.1.8] — 2026-07-30
+
+### Added
+- **Griot Widget Contract — art-preserving `frame_viewer` bind (GMCL-A1).** The compare viewer is
+  served through a reusable, theme-driven `griot_widget_adapter.py` (`GriotFlaskTheme`): a griotwave
+  `:root` token OVERRIDE recolors the compare-graph **server-side** to the locked Cinopsis design
+  system (YT-Red `#EF233C` ember, slate `#8D99AE`, void), plus the `cinopsis-mark` logo, one
+  `drive()` CTA, and the inline Cowork→`:52342`→clipboard hook — the bespoke graph markup/JS
+  untouched, idempotent. `compare_server.py`'s `index()` now serves the framed viewer. This is the
+  reusable Flask template every Griot Flask tool (Lucid, R3F Studio, Kora next) binds through.
+
+### Fixed
+- **The "ghost cinopsis sessions."** A stray `%TEMP%\inspect.py` — a throwaway debug script from a
+  2026-07-20 session build that printed `SESSION_ID`/`VID`/`INDEX_ENTRY` — was shadowing the stdlib
+  `inspect` module for *any* Python process launched from `%TEMP%` (the script dir lands on
+  `sys.path[0]`). Transitive `import inspect` (flask, traceback, click, …) executed it, dumping a
+  session to stdout and then crashing with `AttributeError: module 'inspect' has no attribute
+  'signature'`. Quarantined the file — the ghost is gone. Not a Cinopsis code defect (a landmine in
+  a shared import dir) but recorded here since it presented as a Cinopsis bug for weeks.
+
 ## [2.1.7] — 2026-07-30
 
 ### Added
