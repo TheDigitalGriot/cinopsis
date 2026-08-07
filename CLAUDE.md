@@ -1,4 +1,4 @@
-﻿@C:\Users\digit\GriotMeta\agent-ontology\claude\CLAUDE.md
+@~/GriotMeta/agent-ontology/claude/CLAUDE.md
 
 # Cinopsis
 
