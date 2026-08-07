@@ -1,3 +1,5 @@
+﻿@C:\Users\digit\GriotMeta\agent-ontology\claude\CLAUDE.md
+
 # Cinopsis
 
 ## Overview
@@ -46,3 +48,4 @@ primary sources. Cite them.
 
 Anti-pattern: burning tokens brute-forcing or guessing at a cause a 30-second search would
 have named. If I am on the third probe without having searched - stop and search.
+

@@ -5,6 +5,21 @@ All notable changes to **Cinopsis** are documented here.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [2.1.9] - 2026-08-07
+
+### Fixed
+- **Orphaned MCP servers after an unclean Claude exit.** `mcp_launcher.py` gained a
+  parent-liveness watchdog: when Claude vanishes without sending stdin-EOF (crash, force-quit,
+  a dropped Cowork bridge), the launcher now detects the dead parent and reaps the Cinopsis MCP
+  server instead of leaving it running headless. Closes the last vector behind the "ghost
+  cinopsis sessions" first diagnosed in 2.1.8.
+
+### Changed
+- **UTF-8 hardening on every state/config read.** `fetch_videos.py`, `digest_all.py`,
+  `compare_videos.py`, and the session save/restore scripts now open JSON with explicit
+  `encoding="utf-8"`, fixing mojibake / decode errors on Windows' default cp1252 locale.
+- **CLAUDE.md** now imports the shared Griot agent-ontology so Cinopsis inherits the
+  studio-wide operating context.
 ## [2.1.8] — 2026-07-30
 
 ### Added

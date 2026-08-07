@@ -165,7 +165,7 @@ def save_session(comparison_data):
     index_file = SESSIONS_DIR / "index.json"
     index = []
     if index_file.exists():
-        with open(index_file) as f:
+        with open(index_file, encoding="utf-8") as f:
             index = json.load(f)
 
     index.insert(0, {
