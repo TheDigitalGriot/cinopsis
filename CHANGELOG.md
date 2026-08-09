@@ -5,6 +5,39 @@ All notable changes to **Cinopsis** are documented here.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [2.2.0] - 2026-08-09
+
+### Added
+- **Environment-aware transcript fallback ladder (cloud <-> local).** `get_transcript.py`
+  now runs a resilient ladder instead of yt-dlp only: **cache -> youtube-transcript-api
+  (instance `.fetch()`, with a shim for the legacy static `.get_transcript`) -> yt-dlp
+  (cookie fallbacks) -> optional faster-whisper ASR**. Each rung degrades to the next and
+  logs which rung served the result; on total failure it points to the agent-side Chrome
+  caption-scrape rung. This is the working method (recovered from a 2026-07-14 session),
+  now baked into the tool so it stops being re-derived every session.
+- **`fetch_transcripts.py` - idempotent, resumable per-ID transcript cache.** Fetch large
+  lists safely one/-few at a time (fits the ~60s device-bridge cap), skip already-cached IDs,
+  and write a `fetch_progress.json` so a killed call resumes. Pairs with `compare_videos --from-cache`.
+- **`compare_videos.py`: `--from-cache`, `--refresh`, and `--chunk N`.** Assemble a session
+  from cached transcripts with no re-fetch, force a refresh, or cap how many URLs a single
+  invocation processes (resume the rest with `--add-to`). `process_video` is now cache-aware.
+- **Optional ASR dependency.** `faster-whisper` documented in `requirements.txt` (commented -
+  opt-in) so caption-less videos can be transcribed locally without the torch/CUDA-wheel dance.
+
+### Changed
+- **`requirements.txt`** pins `youtube-transcript-api>=0.6.2` (the instance-`.fetch()` API).
+- **SKILL.md** now pins the fetch ladder + the hard device gotchas (never fetch all-N in one
+  call; never `Start-Process`/detached over the Windows-MCP bridge - WinError 5; Controlled
+  Folder Access blocks bridge writes into connected folders -> route via `%TEMP%` then native
+  `Copy-Item`) as an always-loaded section, so the method never lives only in chat transcripts.
+
+### Fixed
+- **Root cause of the recurring "transcript fetch is broken" loop.** The old script was
+  yt-dlp-only, so a cloud sandbox without the yt-dlp binary or with blocked YouTube egress had
+  no fallback. The ladder + per-ID cache + chunked, resumable fetch remove every observed
+  failure mode (missing yt-dlp, proxy-blocked egress, changed library API, bridge 60s timeout,
+  `Start-Process` access-denied).
+
 ## [2.1.9] - 2026-08-07
 
 ### Fixed
