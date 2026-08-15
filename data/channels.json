@@ -1,0 +1,19 @@
+{
+  "channels": [
+    {"name": "Two Minute Papers", "id": "UCbfYPyITQ-7l4upoX8nvctg", "handle": "@TwoMinutePapers"},
+    {"name": "Yannic Kilcher", "id": "UCZHmQk67mN31gbHey6BVyNw", "handle": "@YannicKilcher"},
+    {"name": "AI Explained", "id": "UCNJ1Ymd5yFuUPtn21xtRbbw", "handle": "@aiexplained-official"},
+    {"name": "Matt Wolfe", "id": "UCJMQpUgSRkRb5M2MqN2BxSg", "handle": "@mreflow"},
+    {"name": "The AI Advantage", "id": "UCFg-CGLLDOOsPjnOsMBG14A", "handle": "@theaiadvantage"},
+    {"name": "Matthew Berman", "id": "UCRI-Ds5eY90nMJjIEi-67JA", "handle": "@matthewberman"},
+    {"name": "Fireship", "id": "UCsBjURrPoezykLs9EqgamOA", "handle": "@Fireship"},
+    {"name": "Wes Roth", "id": "UC-jFiJJrIBeb8G0P9MaXJtg", "handle": "@WesRoth"},
+    {"name": "David Shapiro", "id": "UCnm23dZMHiAfnLwBiPrGaiQ", "handle": "@DavidShapiroAutomator"},
+    {"name": "TheAIGRID", "id": "UCkGRxjibCl-TzpxPMl4bZjg", "handle": "@TheAIGRID"},
+    {"name": "WorldofAI", "id": "UCCy7QB8FVDQQJv5IC3uy_HA", "handle": "@WorldofAI"},
+    {"name": "Prompt Engineering", "id": "UCDq7SjbgRKty5TgGafW8Clg", "handle": "@engineerprompt"},
+    {"name": "All About AI", "id": "UCVc7zR-zw0H3eyzidN-VXlA", "handle": "@AllAboutAI"},
+    {"name": "Jeff Su", "id": "UCrXn9a9GXuqWJAMwCHJWQiA", "handle": "@JeffSu"},
+    {"name": "NetworkChuck", "id": "UC9x0AN7kwET-E1Me2u-ejXA", "handle": "@NetworkChuck"}
+  ]
+}

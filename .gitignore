@@ -1,6 +1,9 @@
 # youtube-ai-digest data
-data/
+# NB: use data/* (contents), not data/ (the dir) — Git won't descend into an
+# excluded directory, so !data/*.json negations only fire against data/* .
+data/*
 !data/channels.json
+!data/playlists.json
 __pycache__/
 *.pyc
 .DS_Store
@@ -18,4 +21,7 @@ __pycache__/
 !docs/
 
 # Prism local artifacts (not committed)
+.prism/local/
+
+.prism/*-progress.txt
 .prism/local/

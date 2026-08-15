@@ -1,6 +1,6 @@
 ---
 name: cinopsis
-description: Browse subscribed YouTube channels, fetch transcripts, and generate summary digests in Markdown. Also supports multi-video comparison — cross-video analysis with interactive dashboard, frame screenshots, and agentic chat. Use this skill whenever the user mentions "YouTube videos", "video digest", "summarize YouTube", "video summary", "youtube digest", "latest videos", "compare these videos", "compare video X and Y", "what's the difference between these videos", "cross-video analysis", "recap videos", "catch up on videos", or wants to browse, summarize, or compare YouTube content on any topic (AI, 3D modeling, coding, etc.).
+description: Browse subscribed YouTube channels, fetch transcripts, and generate summary digests in Markdown. Also supports multi-video comparison — cross-video analysis with interactive dashboard, frame screenshots, and agentic chat. Use this skill whenever the user mentions "YouTube videos", "video digest", "summarize YouTube", "video summary", "youtube digest", "latest videos", "compare these videos", "compare video X and Y", "what's the difference between these videos", "cross-video analysis", "recap videos", "catch up on videos", "new videos in this playlist", "what's been added to this playlist", "ingest a playlist", "fetch playlist videos", or wants to browse, summarize, or compare YouTube content on any topic (AI, 3D modeling, coding, etc.).
 ---
 
 # YouTube Video Digest
@@ -14,6 +14,7 @@ Browse subscribed YouTube channels, fetch transcripts, and generate Markdown sum
 - `/digest <url>` — single video analysis + viewer launch
 - `/compare <url1> <url2> [url3...]` — cross-video analysis + viewer
 - `/fetch [--days N] [--keyword TOPIC] [--all]` — channel video listing
+- `/playlist <url|list_id> [--name NAME] [--all] [--seed] [--cookies PATH]` — surface newly-added playlist videos
 
 ## Agent Routing
 
@@ -33,6 +34,8 @@ cd ${CLAUDE_PLUGIN_ROOT}
 python scripts/fetch_videos.py --days 3             # AI keyword filter
 python scripts/fetch_videos.py --days 3 --all       # All topics
 python scripts/fetch_videos.py --keyword "blender"  # Custom topic
+python scripts/fetch_playlist.py <url|list_id>      # new playlist videos (seeds on first sight); --all / --seed
+python scripts/fetch_playlist.py <url|list_id> --cookies cookies.txt   # PRIVATE/unlisted playlist (see reachability note)
 python scripts/compare_videos.py --urls URL1 [URL2 ...]
 python scripts/build_session_from_analysis.py --input analysis.json --thumbnails  # inject a finished analysis (no fetch)
 python scripts/compare_server.py --port 5123 --session SESSION_ID   # self-reaps after --idle-timeout (default 1800s)
@@ -53,6 +56,7 @@ python scripts/get_transcript.py --video-id VIDEO_ID
 On Cowork there is no Bash tool, so the same operations run through a local-stdio MCP server (`.mcp.json`) that auto-bootstraps a venv in `${CLAUDE_PLUGIN_DATA}` — zero setup. On Cowork, call these tools instead of the scripts:
 
 - `fetch_videos(days, keyword, include_all)` — list recent channel videos
+- `fetch_playlist(url, name, playlist_end, include_all, seed_only, cookies)` — surface newly-added playlist videos (returns the new-id array; `cookies` reaches private/unlisted playlists)
 - `get_transcript(video_id)` — fetch a transcript
 - `compare_videos(urls, title)` — build a comparison session (then fill analysis + per-video digest)
 - `launch_viewer(session_id, port)` — start the dashboard, returns a localhost URL to open
@@ -88,6 +92,8 @@ Frame screenshots: key moments are auto-identified; users can also click the tim
 |-----------|--------|
 | "Find recent AI videos" | `fetch_videos.py --days 3` |
 | "What's new in Blender?" | `fetch_videos.py --keyword "blender"` |
+| "Ingest new videos from this playlist" | `fetch_playlist.py <url>` |
+| "What's been added to this playlist?" | `fetch_playlist.py <url>` |
 | "Create a digest" | `digest_all.py`, generate summaries |
 | "Summarize this video: URL" | `digest-writer` → `compare_videos.py --urls URL` |
 | "Summarize video #3" (from list) | `digest-writer` → `compare_videos.py --urls URL` |
@@ -100,6 +106,23 @@ Frame screenshots: key moments are auto-identified; users can also click the tim
 
 Edit `${CLAUDE_PLUGIN_ROOT}/data/channels.json` — array of `{"name": "...", "id": "CHANNEL_ID"}` objects.
 
+
+## Playlist reachability — private / unlisted playlists
+
+`fetch_playlist.py` does a public flat-playlist scan. YouTube hands yt-dlp an empty
+"playlist does not exist" for a **private or unlisted** playlist it can't see
+unauthenticated, so the script returns 0 entries and prints a hint. Two ways in:
+
+1. **cookies.txt (preferred, non-interactive).** Export a `cookies.txt` (Netscape format)
+   from the logged-in browser — the "Get cookies.txt LOCALLY" Chrome extension — then
+   `--cookies <path>`. Auto-discovery: if `--cookies` is omitted, it uses `$CINOPSIS_COOKIES`,
+   else `data/cookies.txt` if present. On **Windows use the exported file**, not
+   `--cookies-from-browser chrome`: that fails with "Failed to decrypt with DPAPI" against
+   Chrome's App-Bound Encryption (yt-dlp #10927). Threaded into the yt-dlp `--flat-playlist`
+   call as `--cookies`, mirroring the transcript ladder's cookie handling.
+2. **Agent-side Chrome scrape (interactive fallback).** If cookies aren't handy, drive the
+   logged-in Chrome to the playlist and read the entries off the page — proven pulling a
+   private 1,703-video playlist end-to-end.
 
 ## Transcript fetch - the reliable ladder (cloud <-> local) [PINNED]
 

@@ -22,6 +22,7 @@ from pathlib import Path
 
 # scripts/ is sys.path[0] when run directly, so these bare imports resolve.
 from fetch_videos import load_channels, fetch_channel_videos, is_ai_related, OUTPUT_FILE
+from fetch_playlist import fetch_playlist_new, private_playlist_hint
 from get_transcript import get_transcript_ytdlp, format_transcript, integrity_gate
 from capture_frames import extract_video_id, capture_frame as _capture_frame
 from compare_videos import parse_urls, process_video, build_comparison_data, save_session
@@ -31,7 +32,7 @@ from mcp.server.fastmcp import FastMCP
 
 mcp = FastMCP("cinopsis")
 
-TOOL_NAMES = ["fetch_videos", "get_transcript", "compare_videos", "launch_viewer", "capture_frame"]
+TOOL_NAMES = ["fetch_videos", "fetch_playlist", "get_transcript", "compare_videos", "launch_viewer", "capture_frame"]
 
 _viewer = {"port": None}
 
@@ -100,6 +101,67 @@ def fetch_videos(days: int = 3, keyword: str | None = None, include_all: bool = 
     for i, v in enumerate(filtered, 1):
         lines.append(f"{i}. {v.get('title','?')} — {v.get('channel_name','?')} | {v.get('url','')}")
     return "\n".join(lines)
+
+
+@mcp.tool()
+def fetch_playlist(url: str | None = None, name: str | None = None,
+                   playlist_end: int | None = None, include_all: bool = False,
+                   seed_only: bool = False, cookies: str | None = None) -> str:
+    """Surface newly-added videos from a YouTube playlist (id-based seen-diff).
+
+    Diffs the playlist's entries against a local seen manifest and returns only
+    the new video ids. First sight of a playlist seeds its baseline from
+    already-processed videos (cached transcripts + comparison sessions), so it
+    surfaces just the uncatalogued gap rather than every entry.
+
+    Args:
+        url: Playlist URL (playlist?list=… or watch?v=…&list=…) or a bare list id.
+        name: A named playlist from data/playlists.json (used if url is omitted).
+        playlist_end: Optional cap on how many entries to scan.
+        include_all: If true, ignore the manifest and return the full list.
+        seed_only: If true, seed the manifest from the current playlist and return
+            nothing new (onboard a playlist without a retroactive fetch).
+        cookies: Optional path to a cookies.txt (Netscape format) so PRIVATE/unlisted
+            playlists resolve. Falls back to $CINOPSIS_COOKIES, then data/cookies.txt.
+    """
+    with _quiet_stdout():
+        try:
+            result = fetch_playlist_new(
+                ref=url, name=name, playlist_end=playlist_end,
+                force_all=include_all, seed_only=seed_only, cookies=cookies,
+            )
+        except ValueError as e:
+            return json.dumps({"error": str(e)}, ensure_ascii=False)
+    # A private/unlisted playlist yt-dlp cannot see comes back empty — surface the fix.
+    hint = (private_playlist_hint(result["list_id"])
+            if result["total_entries"] == 0 and not result["cookies_used"] else None)
+    if result["seeded_only"]:
+        payload = {
+            "list_id": result["list_id"],
+            "seeded": result["seeded"],
+            "new_ids": [],
+            "note": "Seeded the manifest from the current playlist; nothing surfaced.",
+        }
+        if hint:
+            payload["hint"] = hint
+        return json.dumps(payload, ensure_ascii=False)
+    ids = result["new_ids"]
+    payload = {
+        "list_id": result["list_id"],
+        "total_entries": result["total_entries"],
+        "first_run": result["first_run"],
+        "new_count": len(ids),
+        "new_ids": ids,
+        "new_videos": [{"id": v["id"], "title": v["title"], "url": v["url"]} for v in result["new"]],
+        "next_step": (
+            "No new videos." if not ids else
+            f"Fetch transcripts: fetch_transcripts.py --ids {' '.join(ids)} --chunk 5 ; "
+            f"then compare_videos.py --urls {' '.join(ids)} --from-cache"
+        ),
+    }
+    if hint:
+        payload["hint"] = hint
+    return json.dumps(payload, ensure_ascii=False)
 
 
 @mcp.tool()
