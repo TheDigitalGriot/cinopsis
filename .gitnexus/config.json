@@ -1,0 +1,24 @@
+{
+  "name": "cinopsis",
+  "description": "YouTube video digest plugin for Claude Code — code-intel graph config (additive, ICM-wired).",
+  "language": "python",
+  "roots": ["scripts"],
+  "include": [
+    "scripts/**/*.py"
+  ],
+  "exclude": [
+    "**/__pycache__/**",
+    "**/*.bak",
+    "**/.pre-*.bak",
+    "**/venv/**",
+    "data/**",
+    "**/node_modules/**"
+  ],
+  "entrypoints": [
+    "scripts/mcp_server.py",
+    "scripts/mcp_launcher.py",
+    "scripts/channel_bus.py",
+    "scripts/compare_server.py"
+  ],
+  "notes": "Discovery-first: query this graph via graph-navigator / codebase-analyzer, not raw grep."
+}

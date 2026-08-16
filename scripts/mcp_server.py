@@ -30,6 +30,15 @@ from compare_server import create_app
 
 from mcp.server.fastmcp import FastMCP
 
+# Passive file-bus channel surface (additive). Guarded so a bus problem can NEVER stop the stdio
+# server from booting — the stdio tools below stay the load-bearing path.
+try:
+    import channel_bus
+except Exception as _bus_err:  # pragma: no cover - bus is optional, server must still run
+    channel_bus = None
+    print(f"[cinopsis] channel_bus unavailable, bus surface disabled: {_bus_err}",
+          file=sys.stderr, flush=True)
+
 mcp = FastMCP("cinopsis")
 
 TOOL_NAMES = ["fetch_videos", "fetch_playlist", "get_transcript", "compare_videos", "launch_viewer", "capture_frame"]
@@ -244,8 +253,25 @@ def capture_frame(video_id: str, timestamp_seconds: int) -> str:
                        "note": "Frame capture failed; the dashboard will fall back to the YouTube thumbnail."})
 
 
+def _advertise_bus_surfaces() -> None:
+    """Publish Cinopsis's verbs (fetch/digest/compare) onto the shared Griot channel bus, so it
+    joins the local/cloud ICM channel architecture like brainstorm/gavel. Writes only to the
+    filesystem bus dirs (never stdout) and is fully guarded, so it cannot corrupt the MCP JSON-RPC
+    stream or stop the server from serving its stdio tools."""
+    if channel_bus is None:
+        return
+    try:
+        channel_bus.advertise_surfaces()
+    except Exception as e:  # pragma: no cover - advertisement is best-effort
+        print(f"[cinopsis] bus surface advertisement skipped: {e}", file=sys.stderr, flush=True)
+
+
 if __name__ == "__main__":
     if "--list-tools" in sys.argv:
         print("\n".join(TOOL_NAMES))
         raise SystemExit(0)
+    if "--list-bus-verbs" in sys.argv:
+        print("\n".join(channel_bus.CINOPSIS_VERBS) if channel_bus else "")
+        raise SystemExit(0)
+    _advertise_bus_surfaces()
     mcp.run()

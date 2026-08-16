@@ -6,6 +6,14 @@
 
 YouTube video digest plugin for Claude Code. Browses subscribed channels, fetches transcripts, generates summary digests, and compares videos with an interactive dashboard.
 
+## Where things live (routing map)
+
+- MCP server / tools: `scripts/mcp_server.py` (stdio) · launcher `scripts/mcp_launcher.py` (Job Object + parent-liveness watchdog — do not weaken).
+- Channel bus surface: `scripts/channel_bus.py` (passive file bus) · bridge notes `scripts/README-bus.md`.
+- Verbs: fetch (`fetch_videos`/`fetch_playlist`/`fetch_transcripts`/`get_transcript`) · digest (`digest_all`/`generate_report`/`build_session_from_analysis`) · compare (`compare_videos`/`compare_server`).
+- Viewer + widget bind: `scripts/compare_server.py` + `scripts/griot_widget_adapter.py`.
+- Providers: `scripts/providers/{claude_key,claude_sub,local_endpoint}.py` · channels `data/channels.json`.
+
 ## Prism Workflow
 
 Use Prism for complex tasks:
@@ -22,6 +30,14 @@ Prism locations:
 - Validation: `.prism/shared/validation/`
 - Spectrum state: `.prism/shared/spectrum/`
 - Personal notes: `.prism/local/`
+
+## ICM stage-walk (headless / Cowork runs)
+
+Run any Prism task device-side as an ICM stage-walk, not a monolith. Write a stage
+contract from `.prism/shared/plans/_TEMPLATE-stage-CONTEXT.md`, hand a thin router prompt to
+`claude -p`, and heartbeat each step to `.prism/local/<stage>-progress.txt`. Code-intel first:
+ground every claim through the discovery agents (graph-navigator / codebase-analyzer /
+codebase-locator / prism-locator) and the `.gitnexus/` graph — never raw grep over the tools.
 
 ## Research-first: web search is a reflex, not a last resort
 
