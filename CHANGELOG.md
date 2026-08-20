@@ -5,6 +5,15 @@ All notable changes to **Cinopsis** are documented here.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [2.3.1] - 2026-08-20
+
+### Fixed
+- **yt-dlp JS-runtime for the transcript ladder.** The yt-dlp subtitle and ASR-audio rungs now pass `--js-runtimes node`, fixing `HTTP 403 Forbidden` on YouTube media/caption fetches ("no supported JavaScript runtime" — YouTube deprecated extraction without one). Restores private-playlist transcript fetching where the API rung is proxy-blocked or rate-limited.
+
+## [2.3.0] - 2026-08-15
+
+### Added
+- **YouTube playlist ingestion.** `fetch_playlist.py` + `fetch_playlist` MCP tool + `/playlist` command: diff a playlist against a per-playlist seen-manifest and surface newly-added videos into the transcript/digest pipeline. Private-playlist reachability via optional `--cookies` and the agent-side Chrome scrape. `data/playlists.json` named config.
 ## [2.2.0] - 2026-08-09
 
 ### Added

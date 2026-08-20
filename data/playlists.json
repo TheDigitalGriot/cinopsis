@@ -1,3 +1,19 @@
 {
-  "playlists": []
+    "playlists":  [
+                      {
+                          "name":  "AI News",
+                          "id":  "PLkshWCz_wLN_NvwkHTNG6X-I5ctGueHdy",
+                          "url":  "https://www.youtube.com/playlist?list=PLkshWCz_wLN_NvwkHTNG6X-I5ctGueHdy"
+                      },
+                      {
+                          "name":  "Idea Systems",
+                          "id":  "PLkshWCz_wLN_d9MF_D-pjlqWFuH8kt5_-",
+                          "url":  "https://www.youtube.com/playlist?list=PLkshWCz_wLN_d9MF_D-pjlqWFuH8kt5_-"
+                      },
+                      {
+                          "name":  "3D PixelArt style",
+                          "id":  "PLkshWCz_wLN_loLw-KouBIEnEZUGtJyue",
+                          "url":  "https://www.youtube.com/playlist?list=PLkshWCz_wLN_loLw-KouBIEnEZUGtJyue"
+                      }
+                  ]
 }

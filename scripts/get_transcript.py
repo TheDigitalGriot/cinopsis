@@ -105,7 +105,7 @@ def get_transcript_ytdlp(video_id):
         print("  [yt-dlp] binary not found on PATH/venv; skipping yt-dlp rung", flush=True)
         return None, None
     base_cmd = [
-        ytdlp, "--skip-download",
+        ytdlp, "--js-runtimes", "node", "--skip-download",
         "--write-auto-sub", "--write-sub",
         "--sub-lang", "en,zh",
         "--sub-format", "vtt",
@@ -165,7 +165,7 @@ def get_transcript_asr(video_id):
     import tempfile
     with tempfile.TemporaryDirectory() as td:
         out = os.path.join(td, "audio.%(ext)s")
-        cmd = [ytdlp, "-x", "--audio-format", "mp3", "--audio-quality", "5",
+        cmd = [ytdlp, "--js-runtimes", "node", "-x", "--audio-format", "mp3", "--audio-quality", "5",
                "-o", out, f"https://www.youtube.com/watch?v={video_id}"]
         print("  [asr] downloading audio for local transcription...", flush=True)
         subprocess.run(cmd, capture_output=True, env=get_env(), timeout=300, stdin=subprocess.DEVNULL)
