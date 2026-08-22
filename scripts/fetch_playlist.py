@@ -107,6 +107,19 @@ def fetch_playlist_entries(list_id, playlist_end=None, cookies=None):
         cmd += ["--playlist-end", str(playlist_end)]
     cmd.append(url)
 
+    # Anti-hammer gate (shared chokepoint): refuse WITHOUT touching the network
+    # while a cooldown is active; else enforce minimum spacing between calls.
+    try:
+        import ratelimit
+    except Exception:
+        ratelimit = None
+    if ratelimit is not None:
+        try:
+            ratelimit.check_gate("playlist")
+        except ratelimit.RateLimited as e:
+            log(f"  {e}")
+            return []
+
     try:
         result = subprocess.run(
             cmd,
@@ -122,6 +135,12 @@ def fetch_playlist_entries(list_id, playlist_end=None, cookies=None):
     except Exception as e:
         log(f"  Error fetching playlist {list_id}: {e}")
         return []
+
+    if ratelimit is not None:
+        if result.returncode != 0:
+            ratelimit.record_outcome(False, (result.stderr or "")[:200])
+        else:
+            ratelimit.record_outcome(True)
 
     entries = []
     for line in result.stdout.strip().split("\n"):

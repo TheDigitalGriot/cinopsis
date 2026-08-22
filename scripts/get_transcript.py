@@ -78,7 +78,15 @@ def get_transcript_api(video_id, languages=("en", "en-US", "en-GB", "zh", "zh-Ha
             return None, None
     except Exception as e:
         # ProxyError / RequestBlocked / TranscriptsDisabled / no-egress all land here
+        detail = f"{type(e).__name__}: {e}"
         print(f"  [api] fetch failed ({type(e).__name__}): {e}", flush=True)
+        # Report to the anti-hammer gate: an IpBlocked/RequestBlocked here trips
+        # the cooldown so the next call is refused (only block markers cool down).
+        try:
+            import ratelimit
+            ratelimit.record_outcome(False, detail)
+        except Exception:
+            pass
         return None, None
 
     if not raw:
@@ -111,6 +119,15 @@ def get_transcript_ytdlp(video_id):
         "--sub-format", "vtt",
         "-o", output_template,
     ]
+
+    # cookies.txt (CINOPSIS_COOKIES env or DATA_DIR/cookies.txt) - sidesteps Chrome ABE/DPAPI and IP-blocks
+    _ck = os.environ.get("CINOPSIS_COOKIES") or str(DATA_DIR / "cookies.txt")
+    if os.path.exists(_ck):
+        print("  [yt-dlp] trying cookies.txt...", flush=True)
+        subprocess.run(base_cmd + ["--cookies", _ck, url], capture_output=True, env=get_env(), timeout=60, stdin=subprocess.DEVNULL)
+        result = _find_vtt(video_id)
+        if result[0]:
+            return result
 
     print("  [yt-dlp] fetching subtitles without cookies...", flush=True)
     subprocess.run(base_cmd + [url], capture_output=True, env=get_env(), timeout=60, stdin=subprocess.DEVNULL)
@@ -194,6 +211,20 @@ def fetch_transcript(video_id, allow_cache=True, refresh=False):
             print(f"  [cache] using cached transcript ({len(cached)} entries)", flush=True)
             return cached, "cache", "cache"
 
+    # Anti-hammer gate (shared chokepoint): refuse WITHOUT touching the network
+    # while a cooldown is active; otherwise enforce minimum spacing between calls.
+    try:
+        import ratelimit
+    except Exception:
+        ratelimit = None
+    if ratelimit is not None:
+        try:
+            ratelimit.check_gate("transcript")
+        except ratelimit.RateLimited as e:
+            print(f"  [gate] {e}", flush=True)
+            return None, None, "rate-limited"
+
+    last_detail = ""
     for name, fn in (("api", get_transcript_api),
                      ("yt-dlp", get_transcript_ytdlp),
                      ("asr", get_transcript_asr)):
@@ -202,10 +233,15 @@ def fetch_transcript(video_id, allow_cache=True, refresh=False):
             t, lang = fn(video_id)
             if t:
                 print(f"  [ladder] {name} succeeded ({len(t)} entries)", flush=True)
+                if ratelimit is not None:
+                    ratelimit.record_outcome(True)
                 return t, lang, name
         except Exception as e:
-            print(f"  [ladder] {name} error: {type(e).__name__}: {e}", flush=True)
+            last_detail = f"{type(e).__name__}: {e}"
+            print(f"  [ladder] {name} error: {last_detail}", flush=True)
 
+    if ratelimit is not None:
+        ratelimit.record_outcome(False, last_detail)
     print("  [ladder] all rungs failed. Rung 4 (agent-side): use the Chrome "
           "caption-scrape - load the watch page and read "
           "ytInitialPlayerResponse.captions.playerCaptionsTracklistRenderer.captionTracks.", flush=True)

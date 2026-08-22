@@ -5,6 +5,14 @@ All notable changes to **Cinopsis** are documented here.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [2.4.0] - 2026-08-22
+
+### Added
+- **Anti-hammer rate-limit gate (`scripts/ratelimit.py`).** A shared cooldown/backoff chokepoint every YouTube-touching route passes through: the transcript ladder (`get_transcript`/`fetch_transcripts`/`compare_videos`), the playlist pull (`fetch_playlist`), the channel list (`fetch_videos`), and frame capture (`capture_frames`). `check_gate()` refuses **without touching the network** while a cooldown is active and enforces minimum spacing between calls; `record_outcome()` starts an exponential cooldown (1h -> 12h cap) when YouTube returns `IpBlocked`/`RequestBlocked`/HTTP 429, and clears it on success. Non-block failures (e.g. `TranscriptsDisabled`) never trip the cooldown. Escape hatch: `python scripts/ratelimit.py --reset` (for a clean network/IP). State persists in `DATA_DIR/fetch_ratelimit.json`; fail-closed to safe spacing if unreadable. Closes the IP-ban class of failure that bulk/rapid fetching caused.
+
+### Changed
+- `get_transcript.fetch_transcript`, `fetch_playlist.fetch_playlist_entries`, `fetch_videos.fetch_channel_videos`, and `capture_frames.get_stream_url` now gate every network call through `ratelimit`; the API rung reports `IpBlocked` to the gate so a block cools down subsequent calls. Ladder logic itself is unchanged.
+
 ## [2.3.1] - 2026-08-20
 
 ### Fixed
