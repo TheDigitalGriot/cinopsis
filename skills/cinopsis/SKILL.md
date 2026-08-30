@@ -14,7 +14,7 @@ Browse subscribed YouTube channels, fetch transcripts, and generate Markdown sum
 - `/digest <url>` — single video analysis + viewer launch
 - `/compare <url1> <url2> [url3...]` — cross-video analysis + viewer
 - `/fetch [--days N] [--keyword TOPIC] [--all]` — channel video listing
-- `/playlist <url|list_id> [--name NAME] [--all] [--seed] [--cookies PATH]` — surface newly-added playlist videos
+- `/playlist <url|list_id> [--name NAME] [--all] [--seed] [--max-new N] [--cookies PATH]` — surface newly-added playlist videos
 
 ## Agent Routing
 
@@ -34,7 +34,7 @@ cd ${CLAUDE_PLUGIN_ROOT}
 python scripts/fetch_videos.py --days 3             # AI keyword filter
 python scripts/fetch_videos.py --days 3 --all       # All topics
 python scripts/fetch_videos.py --keyword "blender"  # Custom topic
-python scripts/fetch_playlist.py <url|list_id>      # new playlist videos (seeds on first sight); --all / --seed
+python scripts/fetch_playlist.py <url|list_id>      # new playlist videos, PACED (default 12/run; --max-new N); seeds on first sight; --all / --seed
 python scripts/fetch_playlist.py <url|list_id> --cookies cookies.txt   # PRIVATE/unlisted playlist (see reachability note)
 python scripts/compare_videos.py --urls URL1 [URL2 ...]
 python scripts/build_session_from_analysis.py --input analysis.json --thumbnails  # inject a finished analysis (no fetch)
@@ -145,6 +145,9 @@ re-derive this every session - it is baked into the tool and pinned here.**
    loaded watch page.
 
 ### Batch / many videos - never all-N at once
+
+**Playlists enforce this structurally:** `fetch_playlist.py` surfaces at most `--max-new N` (default 12, env `CINOPSIS_MAX_NEW_PER_RUN`) net-new per run and drains a big backlog a bounded batch at a time - the channel path's `--playlist-end 10`, applied to playlists. Never lift the cap to clear a backlog in one shot (that is the IP-block cause); let it drain over days, or run it on a daily schedule.
+
 Fetch **one/-few IDs per call** with `fetch_transcripts.py --ids ... --chunk N` (each cheap,
 fits the ~60s device-bridge cap), then assemble once with `compare_videos.py --urls ... --from-cache`.
 A killed call resumes from `fetch_progress.json`. A single `compare_videos` over many URLs at

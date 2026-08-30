@@ -5,6 +5,30 @@ All notable changes to **Cinopsis** are documented here.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [2.5.0] - 2026-08-30
+
+### Fixed
+- **Playlist ingestion no longer hammers the IP -- the root cause, closed.** The channel path
+  (`fetch_videos`) is bounded by `--playlist-end 10`, so it can only surface a handful and never
+  accumulates a backlog. The playlist path (`fetch_playlist`) had that cap removed on purpose and
+  surfaced ALL net-new at once (e.g. 177), handing one `fetch_transcripts --ids <all>` command
+  whose ~35 back-to-back calls IP-blocked the home IP. `fetch_playlist` now takes **`--max-new N`**
+  (default 12, env `CINOPSIS_MAX_NEW_PER_RUN`): it surfaces at most N net-new per run and marks
+  only those seen, so a large backlog drains a bounded batch at a time and can never bulk-fetch.
+  Backward compatible (steady-state <= N unchanged); `--all` is the explicit, loudly-warned
+  un-paced escape. Applies on every surface -- CLI, `/playlist`, and the `fetch_playlist` MCP tool
+  call the same paced function.
+
+### Changed
+- **`fetch_transcripts.py` hard anti-hammer cap.** `--chunk` is structurally clamped to 5 per
+  invocation (a bad driver/loop cannot burst the IP), with a 5s throttle between individual
+  fetches within a call -- a batch is a drip, not a burst.
+- **SKILL.md** pins the playlist pacing rule under the "never all-N at once" section.
+
+### Tests
+- `tests/test_playlist_pacing.py` (4, network-free): bounded drain, next-batch-not-repeated,
+  steady-state unchanged, `--all` bypass. Full suite: 40 passed.
+
 ## [2.4.0] - 2026-08-22
 
 ### Added

@@ -39,6 +39,7 @@ from _utils import find_ytdlp, get_env, DATA_DIR, canonical_data_dir
 
 PLAYLISTS_FILE = Path(os.environ.get("CLAUDE_PLUGIN_ROOT", Path(__file__).parent.parent)) / "data" / "playlists.json"
 SEEN_FILE = DATA_DIR / "playlist_seen.json"
+DEFAULT_MAX_NEW = int(os.environ.get("CINOPSIS_MAX_NEW_PER_RUN", "12"))
 
 
 def log(msg):
@@ -240,7 +241,7 @@ def save_seen(manifest):
 
 
 def fetch_playlist_new(ref=None, name=None, *, playlist_end=None, force_all=False,
-                       seed_only=False, cookies=None):
+                       seed_only=False, cookies=None, max_new=None):
     """Resolve -> fetch -> diff -> persist. The single orchestrator both the CLI and MCP tool call.
 
     Returns a result dict: {list_id, total_entries, new, new_ids, first_run,
@@ -282,14 +283,25 @@ def fetch_playlist_new(ref=None, name=None, *, playlist_end=None, force_all=Fals
 
     new = diff_new(entries, baseline)
 
-    # Mark everything currently in the playlist as seen so the next run surfaces
-    # only genuinely-new additions (this is a "what's new since last check" diff).
-    manifest[list_id] = sorted(prior | set(all_ids))
+    # PACING: surface at most `cap` net-new per run so a big backlog drains a
+    # bounded batch at a time instead of dumping all-N into the fetch pipeline
+    # (the channel path is bounded by --playlist-end 10; this is its equivalent).
+    # --all remains the explicit un-paced escape.
+    cap = None if force_all else (max_new if max_new is not None else DEFAULT_MAX_NEW)
+    surfaced = new[:cap] if (cap and cap > 0) else new
+    remaining = len(new) - len(surfaced)
+
+    # Mark as seen ONLY: prior + already-processed baseline present in this list +
+    # the ids actually surfaced this run. The un-surfaced backlog stays unseen so
+    # it resurfaces next run and drains ~cap/run -- never bulk.
+    seen_now = set(prior) | (set(baseline) & set(all_ids)) | {e["id"] for e in surfaced}
+    manifest[list_id] = sorted(seen_now)
     save_seen(manifest)
 
     return {
         "list_id": list_id, "total_entries": len(entries),
-        "new": new, "new_ids": [e["id"] for e in new],
+        "new": surfaced, "new_ids": [e["id"] for e in surfaced],
+        "backlog_new": len(new), "remaining": remaining, "cap": cap,
         "first_run": first_run, "seeded_only": False, "seeded": 0,
         "cookies_used": bool(cookies_path),
     }
@@ -307,6 +319,9 @@ def main():
                     help="Force the full list — ignore the seen manifest")
     ap.add_argument("--seed", action="store_true",
                     help="Seed the manifest from the current playlist and exit (surface nothing)")
+    ap.add_argument("--max-new", type=int, default=None,
+                    help="Surface at most N net-new per run (default 12; env "
+                         "CINOPSIS_MAX_NEW_PER_RUN). The backlog drains ~N/run -- never bulk.")
     ap.add_argument("--cookies", default=None,
                     help="Path to a cookies.txt (Netscape format) so PRIVATE/unlisted playlists "
                          "resolve. Falls back to $CINOPSIS_COOKIES, then data/cookies.txt if present.")
@@ -318,7 +333,7 @@ def main():
             ref=ref, name=args.name,
             playlist_end=args.playlist_end,
             force_all=args.all, seed_only=args.seed,
-            cookies=args.cookies,
+            cookies=args.cookies, max_new=args.max_new,
         )
     except ValueError as e:
         print(f"Error: {e}")
@@ -340,10 +355,16 @@ def main():
         print(f"\nNo new videos in playlist {list_id} — {result['total_entries']} entr(ies) checked{seeded_note}.")
         return
 
-    print(f"\n{len(new_ids)} new video(s) in playlist {list_id} "
+    print(f"\n{len(new_ids)} new video(s) surfaced from playlist {list_id} "
           f"({result['total_entries']} entr(ies) checked):")
     for i, v in enumerate(result["new"], 1):
         print(f"  {i}. {v['title']} | {v['url']}")
+
+    remaining = result.get("remaining", 0)
+    if remaining:
+        print(f"\n[pace] {remaining} more net-new held back this run "
+              f"(cap {result.get('cap')}/run). They surface next run -- the backlog drains a "
+              f"bounded batch at a time, never in bulk. Use --all to override (not advised).")
 
     ids = " ".join(new_ids)
     print("\nNext — fetch transcripts (resumable, chunked):")
