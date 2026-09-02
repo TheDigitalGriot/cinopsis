@@ -5,6 +5,16 @@ All notable changes to **Cinopsis** are documented here.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [2.5.2] - 2026-09-02
+
+### Fixed
+- **Viewer nav header now shows the session title instead of "Untitled Session."** The header
+  read `currentSessionData.title`, but the loaded comparison payload is shaped
+  `{ session: { title }, videos, analysis, stats }` -- the title lives at `session.title`, so the
+  top-level lookup was always `undefined`. The header now resolves `session.title` first. The
+  left-panel session list was already correct (`s.title` from the index); this only affected the
+  top nav bar.
+
 ## [2.5.0] - 2026-08-30
 
 ### Fixed

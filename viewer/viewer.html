@@ -957,7 +957,7 @@ html, body {
     }
     // Update nav title
     document.getElementById('nav-session-title').textContent =
-      currentSessionData?.title || 'Untitled Session';
+      (currentSessionData?.session?.title || currentSessionData?.title) || 'Untitled Session';
     // Mark active in panel
     document.querySelectorAll('.session-card').forEach(el => {
       el.classList.toggle('active', el.dataset.id === String(id));
