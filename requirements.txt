@@ -6,4 +6,5 @@ imageio-ffmpeg
 anthropic
 requests
 youtube-transcript-api>=0.6.2
+websocket-client
 # faster-whisper   # optional: enables the ASR rung for caption-less videos (pip install faster-whisper)

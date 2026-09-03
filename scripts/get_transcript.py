@@ -159,7 +159,6 @@ def _fetch_watch_html(video_id):
     Never raises.
     """
     import urllib.request
-    import urllib.error
 
     url = f"https://www.youtube.com/watch?v={video_id}"
     headers = {
@@ -225,7 +224,11 @@ def get_ytcfg(video_id=None, force=False):
             if cache_file.exists():
                 cached = json.loads(cache_file.read_text(encoding="utf-8"))
                 fetched_at = cached.get("fetched_at")
-                if fetched_at is not None and (time.time() - fetched_at) < YTCFG_TTL_S:
+                # A partially-written cache (fresh timestamp, no client_version) must
+                # NOT be served - fall through to a scrape / the pinned fallback.
+                if (fetched_at is not None
+                        and cached.get("client_version")
+                        and (time.time() - fetched_at) < YTCFG_TTL_S):
                     return cached
         except Exception:
             pass
@@ -325,6 +328,288 @@ def get_transcript_api(video_id, languages=("en", "en-US", "en-GB", "zh", "zh-Ha
         for r in raw if (r.get("text") or "").strip()
     ]
     return (transcript, "en") if transcript else (None, None)
+
+
+# ---------------------------------------------------------------------------
+# Door 2 - youtubei/v1/get_transcript (the endpoint the transcript PANEL uses)
+#
+# Door 1 (/api/timedtext, used by youtube-transcript-api and yt-dlp) returns
+# 429/IpBlocked on a flagged residential IP even with TLS impersonation. Door 2 is
+# a DIFFERENT upstream surface and is not throttled the same way. This section
+# implements the fetcher only - it is NOT wired into the ladder dispatch yet.
+#
+# Door 2 signals failure with HTTP STATUS CODES, not typed exceptions, so every
+# block-shaped failure is re-raised as a RuntimeError whose message CONTAINS a
+# ratelimit.BLOCK_MARKERS substring ("IpBlocked: ..."). Without that marker the
+# gate's cooldown would silently never arm. Non-block failures deliberately carry
+# NO marker so a mere 5xx cannot cost the user an hour-long cooldown.
+# ---------------------------------------------------------------------------
+INNERTUBE_TRANSCRIPT_URL = "https://www.youtube.com/youtubei/v1/get_transcript?prettyPrint=false"
+
+_INNERTUBE_UA = (
+    "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 "
+    "(KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36"
+)
+
+# Body substrings (lowercased) that mean "YouTube refused this IP". Checked ONLY on
+# non-200 responses, and deliberately WITHOUT the gate's bare "429" marker - "429"
+# can appear incidentally in any large body (ids, timings) and must never be the
+# thing that arms a cooldown.
+_INNERTUBE_BLOCK_BODY_MARKERS = (
+    "ipblocked", "requestblocked", "request blocked", "too many requests",
+    "blocking requests from your ip",
+)
+
+# Hard ceiling on HTTP attempts per get_transcript_innertube() call. This IP is
+# rate-limit-flagged: request count is a SAFETY property, not an optimization.
+MAX_INNERTUBE_ATTEMPTS = 4
+
+
+class InnerTubeError(RuntimeError):
+    """RuntimeError carrying the HTTP status + a body snippet off-message.
+
+    A RuntimeError so ladder/gate handling is unchanged. `status` and
+    `body_snippet` are attributes (never concatenated into the message) so a
+    non-block error's ``str(e)`` can never pick up a BLOCK_MARKER by accident.
+    """
+
+    def __init__(self, message, status=None, body_snippet="", is_block=False):
+        super().__init__(message)
+        self.status = status
+        self.body_snippet = body_snippet
+        self.is_block = is_block
+
+
+def _innertube_post(params, ytcfg, api_key=None, timeout=20):
+    """POST one youtubei/v1/get_transcript request. The ONLY network-touching
+    function of Door 2 - kept isolated so tests monkeypatch exactly this.
+
+    Returns the parsed JSON dict on HTTP 200.
+
+    Raises:
+        InnerTubeError (a RuntimeError) on any non-200. HTTP 429/403, or a body
+        that mentions blocking, produce a message containing "IpBlocked" so
+        ratelimit's BLOCK_MARKERS match and the cooldown arms. Every other
+        non-200 produces a message with NO block marker.
+    """
+    import requests
+
+    cfg = ytcfg or {}
+    client_version = cfg.get("client_version") or PINNED_CLIENT_VERSION
+
+    url = INNERTUBE_TRANSCRIPT_URL
+    if api_key:
+        url = f"{url}&key={api_key}"
+
+    headers = {
+        "content-type": "application/json; charset=UTF-8",
+        "x-goog-api-format-version": "2",
+        "x-youtube-client-name": "1",            # 1 = WEB
+        "x-youtube-client-version": client_version,
+        "user-agent": _INNERTUBE_UA,
+        "accept-language": "en-US,en;q=0.9",
+    }
+    # Optional: Invidious' working implementation does NOT send this header, so it
+    # must never be required - only added when a scrape actually produced one.
+    visitor_data = cfg.get("visitor_data")
+    if visitor_data:
+        headers["x-goog-visitor-id"] = visitor_data
+
+    body = {
+        "context": {
+            "client": {
+                "hl": "en",
+                "gl": "US",
+                "clientName": "WEB",
+                "clientVersion": client_version,
+            }
+        },
+        "params": params,
+    }
+
+    resp = requests.post(url, headers=headers, json=body, timeout=timeout)
+    status = getattr(resp, "status_code", None)
+
+    if status == 200:
+        return resp.json()
+
+    try:
+        text = resp.text or ""
+    except Exception:
+        text = ""
+    snippet = text[:400]
+
+    if status in (429, 403) or any(m in text.lower() for m in _INNERTUBE_BLOCK_BODY_MARKERS):
+        # "IpBlocked" lowercases to the "ipblocked" BLOCK_MARKER - essential.
+        raise InnerTubeError(
+            f"IpBlocked: get_transcript HTTP {status}",
+            status=status, body_snippet=snippet, is_block=True)
+
+    # No marker may appear here. Status is rendered only when it is a plain int
+    # (429/403 already handled above), and the body is kept OFF the message.
+    status_txt = status if isinstance(status, int) else "unknown"
+    raise InnerTubeError(
+        f"innertube get_transcript refused (status {status_txt})",
+        status=status, body_snippet=snippet, is_block=False)
+
+
+def _dig(obj, *path):
+    """Safe nested access across dicts (str keys) and lists (int keys).
+
+    Returns None instead of raising on ANY missing/mistyped level. Pure.
+    """
+    cur = obj
+    for key in path:
+        if isinstance(key, int):
+            if not isinstance(cur, (list, tuple)) or not (-len(cur) <= key < len(cur)):
+                return None
+            cur = cur[key]
+        else:
+            if not isinstance(cur, dict):
+                return None
+            cur = cur.get(key)
+        if cur is None:
+            return None
+    return cur
+
+
+def _innertube_snippet_text(snippet):
+    """Extract text from a transcript segment snippet. Pure; "" when unusable.
+
+    Handles both shapes YouTube emits: {"runs":[{"text":...},...]} and
+    {"simpleText": ...}. Newlines collapse to spaces (same normalization the
+    other rungs apply).
+    """
+    if not isinstance(snippet, dict):
+        return ""
+    runs = snippet.get("runs")
+    if isinstance(runs, list):
+        text = "".join(
+            r.get("text") for r in runs
+            if isinstance(r, dict) and isinstance(r.get("text"), str)
+        )
+    else:
+        text = snippet.get("simpleText")
+        if not isinstance(text, str):
+            return ""
+    return text.replace("\n", " ").strip()
+
+
+def _parse_innertube_transcript(data):
+    """Parse a youtubei/v1/get_transcript response into the ladder's normalized
+    shape: ``[{"start": <float seconds>, "text": <str>}, ...]``. Pure - no network.
+
+    Deliberately NO "duration" key: every other rung discards it and the shape
+    must match exactly.
+
+    Robustness rules (all learned from live behavior):
+      * every navigation level is safe - malformed/None input returns [].
+      * a `transcriptSectionHeaderRenderer` entry is a section HEADING, not
+        transcript text - skipped.
+      * `snippet` is SOMETIMES ABSENT on a real segment (invidious#5387 crashes on
+        exactly this) - such a segment is skipped, never raised on.
+      * `startMs` arrives as a JSON STRING in MILLISECONDS -> float seconds; a
+        missing/garbage value degrades to 0.0.
+    """
+    segments = _dig(
+        data, "actions", 0, "updateEngagementPanelAction", "content",
+        "transcriptRenderer", "content", "transcriptSearchPanelRenderer",
+        "body", "transcriptSegmentListRenderer", "initialSegments",
+    )
+    if not isinstance(segments, list):
+        return []
+
+    out = []
+    for entry in segments:
+        if not isinstance(entry, dict):
+            continue
+        if "transcriptSectionHeaderRenderer" in entry:
+            continue
+        seg = entry.get("transcriptSegmentRenderer")
+        if not isinstance(seg, dict):
+            continue
+        text = _innertube_snippet_text(seg.get("snippet"))
+        if not text:
+            continue
+        try:
+            start = float(int(seg.get("startMs"))) / 1000.0
+        except (TypeError, ValueError):
+            start = 0.0
+        out.append({"start": start, "text": text})
+    return out
+
+
+def _suggests_missing_key(exc):
+    """True when a Door-2 failure looks like "you needed the InnerTube api key".
+
+    A 400 is the classic keyless rejection. A 403 only counts when the body
+    actually names a key problem - a bare 403 is an IP block and must be allowed
+    to propagate rather than trigger another request.
+    """
+    status = getattr(exc, "status", None)
+    if status == 400:
+        return True
+    if status == 403:
+        blob = (getattr(exc, "body_snippet", "") or "").lower()
+        return any(h in blob for h in ("api key", "apikey", "api_key", "keyinvalid",
+                                       "developer key", "credential"))
+    return False
+
+
+def get_transcript_innertube(video_id, languages=("en", "en-US", "en-GB", "zh-Hans")):
+    """Door 2 rung: fetch captions via youtubei/v1/get_transcript.
+
+    Returns (transcript, lang) or (None, None) - the same contract as every other
+    rung (see get_transcript_api).
+
+    Tries auto-generated (ASR) then manual for each language, keyless first (that
+    is what Invidious does and it works), retrying ONCE with the scraped
+    InnerTube api key only when the failure actually looks key-shaped.
+
+    Total HTTP attempts are hard-capped at MAX_INNERTUBE_ATTEMPTS (4). Any
+    RuntimeError from _innertube_post PROPAGATES - a marker-bearing one so the
+    ladder's handler arms the gate's cooldown, a non-block one so a broken
+    upstream is not hammered across four more language combinations.
+    """
+    ytcfg = get_ytcfg(video_id)
+    api_key = (ytcfg or {}).get("api_key")
+    attempts = 0
+
+    print("  [innertube] trying youtubei/v1/get_transcript (Door 2)...", flush=True)
+
+    for lang in languages:
+        for auto_generated in (True, False):
+            if attempts >= MAX_INNERTUBE_ATTEMPTS:
+                print("  [innertube] attempt cap reached; stopping", flush=True)
+                return None, None
+            try:
+                params = build_transcript_params(video_id, lang, auto_generated=auto_generated)
+            except ValueError as e:
+                print(f"  [innertube] bad params request: {e}", flush=True)
+                return None, None
+
+            kind = "asr" if auto_generated else "manual"
+            print(f"  [innertube] {lang} ({kind}), attempt {attempts + 1}"
+                  f"/{MAX_INNERTUBE_ATTEMPTS}...", flush=True)
+            attempts += 1
+            try:
+                data = _innertube_post(params, ytcfg)
+            except Exception as e:
+                if api_key and _suggests_missing_key(e) and attempts < MAX_INNERTUBE_ATTEMPTS:
+                    print("  [innertube] retrying once with the InnerTube api key...", flush=True)
+                    attempts += 1
+                    # A failure here propagates too (block markers included).
+                    data = _innertube_post(params, ytcfg, api_key=api_key)
+                else:
+                    raise
+
+            transcript = _parse_innertube_transcript(data)
+            if transcript:
+                print(f"  [innertube] {lang} ({kind}) yielded {len(transcript)} segments",
+                      flush=True)
+                return transcript, lang
+
+    return None, None
 
 
 # ---------------------------------------------------------------------------
