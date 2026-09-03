@@ -14,6 +14,7 @@ If every rung fails, the caller is told to use the Chrome caption-scrape rung
 Why this exists: the working method kept getting re-derived every session. It is
 now baked into the tool + pinned in SKILL.md and /topics/cinopsis-method.
 """
+import base64
 import json
 import os
 import sys
@@ -27,6 +28,234 @@ from _utils import find_ytdlp, get_env, DATA_DIR, resolve_cookies
 
 def _find_ytdlp():
     return find_ytdlp()
+
+
+# ---------------------------------------------------------------------------
+# Caption "doors" - which upstream surface a caption fetch goes through.
+# ---------------------------------------------------------------------------
+DOOR_TIMEDTEXT = "timedtext"   # classic /api/timedtext caption endpoint
+DOOR_INNERTUBE = "innertube"   # youtubei/v1/get_transcript (protobuf params)
+
+
+# ---------------------------------------------------------------------------
+# InnerTube get_transcript "params" builder (pure, network-free)
+#
+# The youtubei/v1/get_transcript endpoint takes a single opaque `params` string:
+# a url-safe base64 of a hand-rolled protobuf message. No protobuf dependency is
+# used (or wanted) here - the wire format is small enough to emit by hand.
+#
+#   outer:  field 1 (LEN)    = video_id
+#           field 2 (LEN)    = base64_urlsafe(inner)   <- double-encoded, see below
+#           field 3 (VARINT) = 1
+#   inner:  field 1 (LEN)    = kind ("asr" for auto-generated, else "")
+#           field 2 (LEN)    = language_code ("en", "zh-Hans", ...)
+#           field 3 (LEN)    = "" (empty)
+#
+# Cross-validated byte-for-byte against two independent production clients:
+# Invidious (src/invidious/videos/transcript.cr) and kkdai/youtube (transcript.go).
+# Invidious also sets outer fields 5-8 (engagement-panel UI ids); kkdai omits them
+# and still works, so they are omitted here too.
+# ---------------------------------------------------------------------------
+def _varint(n):
+    """Encode a non-negative int as a protobuf base-128 varint.
+
+    Little-endian groups of 7 bits; the high bit is set on every byte except
+    the last. e.g. 0 -> b"\\x00", 127 -> b"\\x7f", 128 -> b"\\x80\\x01".
+    """
+    if n < 0:
+        raise ValueError("varint cannot encode a negative value")
+    out = bytearray()
+    while True:
+        chunk = n & 0x7F
+        n >>= 7
+        if n:
+            out.append(chunk | 0x80)
+        else:
+            out.append(chunk)
+            return bytes(out)
+
+
+def _len_delim(field_no, payload):
+    """Encode one length-delimited (wire type 2) protobuf field.
+
+    Emits ``tag + varint(len(payload)) + payload``. ``payload`` may be str
+    (utf-8 encoded first) or bytes. The length prefix is ALWAYS computed from
+    the real byte length - never hardcoded - so multi-byte / multi-character
+    language codes ("zh-Hans", "en-US", "pt-BR") encode correctly.
+    """
+    if isinstance(payload, str):
+        payload = payload.encode("utf-8")
+    return _varint((field_no << 3) | 2) + _varint(len(payload)) + payload
+
+
+def build_transcript_params(video_id, language_code="en", auto_generated=True):
+    """Build the url-safe base64 ``params`` for youtubei/v1/get_transcript.
+
+    Args:
+        video_id: the 11-char YouTube video id.
+        language_code: caption language code, e.g. "en", "en-US", "zh-Hans".
+        auto_generated: True selects the ASR (auto-generated) track (kind="asr");
+            False selects a human/uploaded track (kind="", an EMPTY field - the
+            field is still emitted, not omitted).
+
+    Returns:
+        str: url-safe base64 of the outer protobuf message.
+
+    Raises:
+        ValueError: if ``video_id`` is empty/not a str, or ``language_code``
+            is not a str. Guarded here at the public boundary so a bad caller
+            fails by name instead of dying inside a private encoder helper.
+
+    Pure computation - performs no network I/O.
+    """
+    if not video_id or not isinstance(video_id, str):
+        raise ValueError(f"video_id must be a non-empty str, got {video_id!r}")
+    if not isinstance(language_code, str):
+        raise ValueError(f"language_code must be a str, got {language_code!r}")
+
+    inner = (
+        _len_delim(1, "asr" if auto_generated else "")
+        + _len_delim(2, language_code)
+        + _len_delim(3, "")
+    )
+    # The inner message is base64'd into a TEXT string, and *that string* is the
+    # outer field-2 payload. Confirmed double-encoding - do not embed raw bytes.
+    inner_b64 = base64.urlsafe_b64encode(inner).decode("ascii")
+
+    outer = (
+        _len_delim(1, video_id)
+        + _len_delim(2, inner_b64)
+        + _varint((3 << 3) | 0) + _varint(1)   # field 3, VARINT = 1
+    )
+    return base64.urlsafe_b64encode(outer).decode("ascii")
+
+
+# ---------------------------------------------------------------------------
+# ytcfg scraper + cache - InnerTube client version / visitor data / api key.
+#
+# The youtubei/v1/get_transcript endpoint (Door 2, added in STORY-004) needs an
+# InnerTube WEB client version (and optionally visitor_data / api_key) in its
+# request headers/context. Those values live in the `ytcfg` blob embedded in any
+# YouTube watch page. This section only scrapes + caches them - it does NOT build
+# or dispatch the innertube rung itself (that is STORY-004/006).
+# ---------------------------------------------------------------------------
+
+# Hardcoded fallback InnerTube WEB client version, used when scraping fails or the
+# cache is cold and the network is unavailable. This value ages over time (YouTube
+# bumps client versions regularly) - a successful scrape always takes precedence
+# over this pin; it exists only so the caller never goes without a usable version.
+PINNED_CLIENT_VERSION = "2.20240826.01.00"
+
+# TTL (seconds) for the cached ytcfg record before a fresh scrape is attempted.
+YTCFG_TTL_S = int(os.environ.get("CINOPSIS_YTCFG_TTL_S", str(6 * 3600)))
+
+
+def _fetch_watch_html(video_id):
+    """Fetch a YouTube watch page's raw HTML. The ONLY network-touching function
+    in this section - kept small and isolated so tests can monkeypatch it.
+
+    Uses stdlib urllib.request (no `requests` dependency) with a browser User-Agent
+    and a short (10s) timeout. Returns the HTML as str, or None on any failure.
+    Never raises.
+    """
+    import urllib.request
+    import urllib.error
+
+    url = f"https://www.youtube.com/watch?v={video_id}"
+    headers = {
+        "User-Agent": (
+            "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 "
+            "(KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36"
+        ),
+        "Accept-Language": "en-US,en;q=0.9",
+    }
+    try:
+        req = urllib.request.Request(url, headers=headers)
+        with urllib.request.urlopen(req, timeout=10) as resp:
+            raw = resp.read()
+        return raw.decode("utf-8", errors="replace")
+    except Exception:
+        return None
+
+
+def _parse_ytcfg(html):
+    """Regex-extract INNERTUBE_CLIENT_VERSION / VISITOR_DATA / INNERTUBE_API_KEY
+    from a YouTube watch page's HTML. Pure - performs no network I/O.
+
+    Returns a dict {"client_version": str|None, "visitor_data": str|None,
+    "api_key": str|None}. Tolerates None/empty/malformed html - returns all-None
+    rather than raising.
+    """
+    result = {"client_version": None, "visitor_data": None, "api_key": None}
+    if not html or not isinstance(html, str):
+        return result
+
+    patterns = {
+        "client_version": r'"INNERTUBE_CLIENT_VERSION"\s*:\s*"([^"]+)"',
+        "visitor_data": r'"VISITOR_DATA"\s*:\s*"([^"]+)"',
+        "api_key": r'"INNERTUBE_API_KEY"\s*:\s*"([^"]+)"',
+    }
+    for key, pattern in patterns.items():
+        try:
+            m = re.search(pattern, html)
+            if m:
+                result[key] = m.group(1)
+        except Exception:
+            pass
+    return result
+
+
+def get_ytcfg(video_id=None, force=False):
+    """Cached accessor for InnerTube ytcfg values (client_version, visitor_data,
+    api_key). Never raises, never returns None - always a usable dict.
+
+    Cache file: DATA_DIR / "ytcfg_cache.json", TTL YTCFG_TTL_S (env
+    CINOPSIS_YTCFG_TTL_S, default 6h). If a fresh-enough cached record exists and
+    `force` is False, it is returned WITHOUT any network call. Otherwise a single
+    scrape is attempted (only if `video_id` is supplied); on success the cache is
+    (re)written and the fresh record returned. If scraping fails or no video_id
+    was given, falls back to PINNED_CLIENT_VERSION with visitor_data/api_key None.
+    """
+    import time
+
+    cache_file = DATA_DIR / "ytcfg_cache.json"
+
+    if not force:
+        try:
+            if cache_file.exists():
+                cached = json.loads(cache_file.read_text(encoding="utf-8"))
+                fetched_at = cached.get("fetched_at")
+                if fetched_at is not None and (time.time() - fetched_at) < YTCFG_TTL_S:
+                    return cached
+        except Exception:
+            pass
+
+    if video_id:
+        try:
+            html = _fetch_watch_html(video_id)
+            parsed = _parse_ytcfg(html)
+            if parsed.get("client_version"):
+                record = {
+                    "client_version": parsed["client_version"],
+                    "visitor_data": parsed.get("visitor_data"),
+                    "api_key": parsed.get("api_key"),
+                    "fetched_at": time.time(),
+                }
+                try:
+                    DATA_DIR.mkdir(parents=True, exist_ok=True)
+                    cache_file.write_text(json.dumps(record), encoding="utf-8")
+                except Exception:
+                    pass
+                return record
+        except Exception:
+            pass
+
+    return {
+        "client_version": PINNED_CLIENT_VERSION,
+        "visitor_data": None,
+        "api_key": None,
+        "fetched_at": time.time(),
+    }
 
 
 # ---------------------------------------------------------------------------
