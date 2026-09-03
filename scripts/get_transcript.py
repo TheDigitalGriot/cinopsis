@@ -21,6 +21,7 @@ now baked into the tool + pinned in SKILL.md and /topics/cinopsis-method.
 """
 import base64
 import json
+import urllib.parse
 import os
 import sys
 import argparse
@@ -51,7 +52,7 @@ except Exception:
 
 # classic /api/timedtext caption endpoint
 DOOR_TIMEDTEXT = getattr(_ratelimit_consts, "DOOR_TIMEDTEXT", None) or "timedtext"
-# youtubei/v1/get_transcript (protobuf params)
+# youtubei/v1/get_transcript (params token harvested from the watch page)
 DOOR_INNERTUBE = getattr(_ratelimit_consts, "DOOR_INNERTUBE", None) or "innertube"
 # browser-driven transcript panel over CDP - a real logged-in Chrome, not an HTTP
 # POST, so it gets its OWN door and survives an HTTP-door block
@@ -68,14 +69,20 @@ DOOR_CDP = getattr(_ratelimit_consts, "DOOR_CDP", None) or "cdp"
 #   outer:  field 1 (LEN)    = video_id
 #           field 2 (LEN)    = base64_urlsafe(inner)   <- double-encoded, see below
 #           field 3 (VARINT) = 1
+#           field 5 (LEN)    = ENGAGEMENT_PANEL_ID     <- REQUIRED, see below
+#           field 6 (VARINT) = 1
+#           field 7 (VARINT) = 1
+#           field 8 (VARINT) = 1
 #   inner:  field 1 (LEN)    = kind ("asr" for auto-generated, else "")
 #           field 2 (LEN)    = language_code ("en", "zh-Hans", ...)
 #           field 3 (LEN)    = "" (empty)
 #
-# Cross-validated byte-for-byte against two independent production clients:
-# Invidious (src/invidious/videos/transcript.cr) and kkdai/youtube (transcript.go).
-# Invidious also sets outer fields 5-8 (engagement-panel UI ids); kkdai omits them
-# and still works, so they are omitted here too.
+# Modelled on Invidious (src/invidious/videos/transcript.cr), which is actively
+# maintained and verified working against real YouTube through 2025-2026. It sends
+# fields 5-8 unconditionally and we do too: omitting them returns a hard HTTP 400
+# (proven on a live probe, 2026-09-03). kkdai/youtube omits 5-8, which is why we
+# originally did - that was a bad inference, and the note above ENGAGEMENT_PANEL_ID
+# records why.
 # ---------------------------------------------------------------------------
 def _varint(n):
     """Encode a non-negative int as a protobuf base-128 varint.
@@ -96,6 +103,17 @@ def _varint(n):
             return bytes(out)
 
 
+# The engagement-panel identity YouTube's transcript action expects in outer
+# field 5. Invidious (actively maintained, verified working against real YouTube
+# through 2025-2026) sends this plus varint-1 in fields 6/7/8 UNCONDITIONALLY.
+#
+# We originally omitted 5-8 because kkdai/youtube omits them - but that inferred
+# current behavior from the mere existence of that code. Omitting them produced a
+# hard HTTP 400 on a live probe (2026-09-03); adding them is the fix. Treat
+# "another client omits it" as a hypothesis, never as evidence it is optional.
+ENGAGEMENT_PANEL_ID = "engagement-panel-searchable-transcript-search-panel"
+
+
 def _len_delim(field_no, payload):
     """Encode one length-delimited (wire type 2) protobuf field.
 
@@ -110,7 +128,31 @@ def _len_delim(field_no, payload):
 
 
 def build_transcript_params(video_id, language_code="en", auto_generated=True):
-    """Build the url-safe base64 ``params`` for youtubei/v1/get_transcript.
+    """LEGACY / UNUSED-BY-DEFAULT. Build a url-safe base64 ``params`` for
+    youtubei/v1/get_transcript by hand.
+
+    *** THIS IS A DEAD PATH AGAINST LIVE YOUTUBE. ***
+    A self-built params token is rejected with::
+
+        {"error":{"code":400,"message":"Precondition check failed.",
+                  "status":"FAILED_PRECONDITION"}}
+
+    confirmed on three live probes, 2026-09-03. FAILED_PRECONDITION is a
+    STATE/TOKEN error, not a parse error (a malformed protobuf answers
+    INVALID_ARGUMENT instead) - the server is saying "this is not a token I
+    minted", so no amount of field-shuffling fixes it. That is also why the two
+    references we modelled on (Invidious, kkdai/youtube) disagree on the field
+    count: the endpoint drifted past safe client-side reproduction.
+
+    THE LIVE PATH IS HARVESTING: ``extract_transcript_params`` /
+    ``get_transcript_params`` lift ``getTranscriptEndpoint.params`` VERBATIM off
+    the watch page's ``ytInitialData`` and pass it through unmodified.
+    ``get_transcript_innertube`` uses that and never calls this function.
+
+    This encoder is KEPT (and still tested) because it is a correct protobuf
+    encoder and the documented record of the wire format - not because it works.
+    Do not re-wire it into the ladder without a fresh live probe proving the
+    endpoint accepts self-built tokens again.
 
     Args:
         video_id: the 11-char YouTube video id.
@@ -139,14 +181,26 @@ def build_transcript_params(video_id, language_code="en", auto_generated=True):
         + _len_delim(2, language_code)
         + _len_delim(3, "")
     )
-    # The inner message is base64'd into a TEXT string, and *that string* is the
-    # outer field-2 payload. Confirmed double-encoding - do not embed raw bytes.
+    # The inner message is base64'd into a TEXT string, that string is then
+    # PERCENT-ENCODED, and the result is the outer field-2 payload.
+    #
+    # The percent-encoding step is easy to miss and produces a silent HTTP 400 if
+    # skipped (proven on a live probe, 2026-09-03). The proof it is real:
+    # kkdai/youtube hardcodes the outer field-2 length to 0x12 = 18 for a 2-letter
+    # code. Raw base64 of the inner message is "CgNhc3ISAmVuGgA=" -> 16 chars, not
+    # 18. Percent-encode the "=" to "%3D" and it becomes 18 exactly. That magic
+    # constant is not a bug, it is this step made visible.
     inner_b64 = base64.urlsafe_b64encode(inner).decode("ascii")
+    inner_b64 = urllib.parse.quote(inner_b64, safe="")
 
     outer = (
         _len_delim(1, video_id)
         + _len_delim(2, inner_b64)
-        + _varint((3 << 3) | 0) + _varint(1)   # field 3, VARINT = 1
+        + _varint((3 << 3) | 0) + _varint(1)          # field 3, VARINT = 1
+        + _len_delim(5, ENGAGEMENT_PANEL_ID)          # field 5, the panel identity
+        + _varint((6 << 3) | 0) + _varint(1)          # field 6, VARINT = 1
+        + _varint((7 << 3) | 0) + _varint(1)          # field 7, VARINT = 1
+        + _varint((8 << 3) | 0) + _varint(1)          # field 8, VARINT = 1
     )
     return base64.urlsafe_b64encode(outer).decode("ascii")
 
@@ -165,10 +219,52 @@ def build_transcript_params(video_id, language_code="en", auto_generated=True):
 # cache is cold and the network is unavailable. This value ages over time (YouTube
 # bumps client versions regularly) - a successful scrape always takes precedence
 # over this pin; it exists only so the caller never goes without a usable version.
-PINNED_CLIENT_VERSION = "2.20240826.01.00"
+PINNED_CLIENT_VERSION = "2.20260722.01.00"
 
 # TTL (seconds) for the cached ytcfg record before a fresh scrape is attempted.
 YTCFG_TTL_S = int(os.environ.get("CINOPSIS_YTCFG_TTL_S", str(6 * 3600)))
+
+
+def load_cookie_jar():
+    """Load the exported Netscape cookie jar, or None if there isn't one.
+
+    SESSION BINDING - why this matters for Door 2. getTranscriptEndpoint.params
+    is a token YouTube MINTS inside the session that requested the watch page.
+    Replaying it from a different (or anonymous) session is answered with
+    ``FAILED_PRECONDITION`` - proven on live probes 2026-09-03: we sent a token
+    byte-identical to YouTube's own and were still refused.
+
+    So the watch-page fetch AND the get_transcript POST must present the SAME
+    jar, or we recreate the exact mismatch. Uses the one shared resolver
+    (_utils.resolve_cookies) so it picks up whatever export_yt_cookies wrote.
+    Never raises - no jar simply means an anonymous attempt.
+    """
+    try:
+        path = resolve_cookies()
+        if not path or not os.path.exists(path):
+            return None
+        import http.cookiejar
+
+        jar = http.cookiejar.MozillaCookieJar()
+        jar.load(path, ignore_discard=True, ignore_expires=True)
+        return jar
+    except Exception:
+        return None
+
+
+def _cookie_header(jar):
+    """Render a cookie jar as a single Cookie: header value for youtube.com."""
+    if not jar:
+        return None
+    try:
+        pairs = [
+            f"{c.name}={c.value}"
+            for c in jar
+            if c.domain and "youtube.com" in c.domain
+        ]
+        return "; ".join(pairs) if pairs else None
+    except Exception:
+        return None
 
 
 def _fetch_watch_html(video_id):
@@ -176,7 +272,9 @@ def _fetch_watch_html(video_id):
     in this section - kept small and isolated so tests can monkeypatch it.
 
     Uses stdlib urllib.request (no `requests` dependency) with a browser User-Agent
-    and a short (10s) timeout. Returns the HTML as str, or None on any failure.
+    and a short (10s) timeout. Sends the shared cookie jar when one exists, so the
+    getTranscriptEndpoint token this page yields is minted in the SAME session the
+    POST will present it from. Returns the HTML as str, or None on any failure.
     Never raises.
     """
     import urllib.request
@@ -189,6 +287,9 @@ def _fetch_watch_html(video_id):
         ),
         "Accept-Language": "en-US,en;q=0.9",
     }
+    _ck = _cookie_header(load_cookie_jar())
+    if _ck:
+        headers["Cookie"] = _ck
     try:
         req = urllib.request.Request(url, headers=headers)
         with urllib.request.urlopen(req, timeout=10) as resp:
@@ -280,6 +381,270 @@ def get_ytcfg(video_id=None, force=False):
         "api_key": None,
         "fetched_at": time.time(),
     }
+
+
+# ---------------------------------------------------------------------------
+# getTranscriptEndpoint.params HARVESTER - the live Door-2 path.
+#
+# Self-building the params protobuf is DEAD (see build_transcript_params'
+# docstring: FAILED_PRECONDITION, three live probes 2026-09-03). Every currently
+# working client instead lifts `getTranscriptEndpoint.params` VERBATIM out of the
+# watch page's ytInitialData and passes it through untouched. It is an opaque
+# SERVER-MINTED token: do not decode it, re-encode it, strip its padding, or
+# percent-encode it - any of those turns a valid token into an invalid one.
+#
+# We ALREADY fetch the watch page HTML for the ytcfg scrape, so harvesting costs
+# ZERO additional network requests - get_transcript_params() serves both needs
+# from one fetch.
+# ---------------------------------------------------------------------------
+
+# TTL (seconds) for a cached per-video params token. Same treatment as the ytcfg
+# cache so a retry (or a second rung) never re-fetches the watch page.
+TPARAMS_TTL_S = YTCFG_TTL_S
+
+# Scanner for the brace-matcher: the only characters that can change JSON nesting
+# state. Jumping between these with re.search is what keeps a ~2MB watch page
+# from being walked one Python char at a time.
+_JSON_SCAN_RE = re.compile(r'["\\{}]')
+
+# ytInitialData is assigned in several shapes across YouTube's page variants:
+#   var ytInitialData = {...};
+#   window["ytInitialData"] = {...};
+#   window.ytInitialData = {...};
+# All that matters is finding the "=" that precedes the object literal; the
+# brace-matcher takes it from there.
+_YTINITIALDATA_RE = re.compile(r'ytInitialData"?\]?\s*=\s*')
+
+
+def _find_key_recursive(obj, key):
+    """First value found for ``key`` anywhere in a nested dict/list structure.
+
+    Returns None when the key is absent. Pure - no network, never raises.
+
+    Iterative (an explicit BFS queue, NOT recursion): YouTube's ytInitialData
+    nests renderers dozens of levels deep and a recursive walk would risk a
+    RecursionError on exactly the input this exists to parse. Breadth-first also
+    makes "first" mean "shallowest", which is deterministic across page variants
+    rather than dependent on dict ordering deep in one branch.
+
+    Non-container values (str/int/None/objects) are skipped rather than probed,
+    so odd/mixed types cannot raise. An identity set guards against a self-
+    referential structure (impossible from json.loads, cheap insurance for any
+    other caller).
+    """
+    from collections import deque
+
+    queue = deque([obj])
+    seen = set()
+    while queue:
+        cur = queue.popleft()
+        if isinstance(cur, dict):
+            if id(cur) in seen:
+                continue
+            seen.add(id(cur))
+            if key in cur:
+                return cur[key]
+            queue.extend(cur.values())
+        elif isinstance(cur, (list, tuple)):
+            if id(cur) in seen:
+                continue
+            seen.add(id(cur))
+            queue.extend(cur)
+        # anything else is a leaf - nothing to descend into
+    return None
+
+
+def _match_braces(text, start):
+    """Index of the ``}`` closing the ``{`` at ``text[start]``, or -1.
+
+    STRING-AWARE, which is the whole point: a naive scan to the first ``};``
+    breaks on the very first caption containing a brace, and YouTube's page is
+    full of them. Quoted regions are skipped, and a backslash inside a string
+    escapes the next character (so ``\\"`` does not end the string and ``\\\\``
+    does not escape the quote after it).
+
+    Pure; returns -1 rather than raising on an unbalanced/truncated document.
+    """
+    if not isinstance(text, str) or start < 0 or start >= len(text):
+        return -1
+    if text[start] != "{":
+        return -1
+
+    depth = 0
+    in_str = False
+    i = start
+    n = len(text)
+    while i < n:
+        m = _JSON_SCAN_RE.search(text, i)
+        if not m:
+            return -1
+        j = m.start()
+        ch = m.group()
+        if in_str:
+            if ch == "\\":
+                i = j + 2          # skip the escaped character entirely
+                continue
+            if ch == '"':
+                in_str = False
+            i = j + 1
+            continue
+        if ch == '"':
+            in_str = True
+        elif ch == "{":
+            depth += 1
+        elif ch == "}":
+            depth -= 1
+            if depth == 0:
+                return j
+        i = j + 1
+    return -1
+
+
+def _extract_ytinitialdata(html):
+    """Parse the ``ytInitialData`` JSON blob out of a watch page's HTML.
+
+    Returns a dict, or None when the blob is absent/unparseable. Pure - performs
+    no network I/O and NEVER raises (a watch page that changed shape must degrade
+    the rung, not crash the ladder).
+
+    Finds the assignment, then BRACE-MATCHES from the opening ``{`` to its true
+    partner via _match_braces. Deliberately not a regex to ``};``: the blob
+    contains nested objects and quoted braces inside caption/title strings, so a
+    regex either stops early (invalid JSON) or swallows the rest of the page.
+    """
+    if not html or not isinstance(html, str):
+        return None
+    try:
+        for m in _YTINITIALDATA_RE.finditer(html):
+            start = html.find("{", m.end())
+            if start == -1:
+                continue
+            # the "=" must be immediately followed by the object literal; if some
+            # other assignment matched, the next "{" could be pages away
+            if html[m.end():start].strip():
+                continue
+            end = _match_braces(html, start)
+            if end == -1:
+                continue
+            data = json.loads(html[start:end + 1])
+            if isinstance(data, dict):
+                return data
+    except Exception:
+        return None
+    return None
+
+
+def extract_transcript_params(html):
+    """Harvest ``getTranscriptEndpoint.params`` from a watch page's HTML.
+
+    Returns the token as a str, EXACTLY as YouTube minted it, or None when the
+    page carries no transcript panel (genuinely common - plenty of videos have no
+    captions at all). Pure; never raises.
+
+    The returned value is passed to youtubei/v1/get_transcript UNMODIFIED. It is
+    not decoded, re-encoded, unpadded, or percent-encoded anywhere in this
+    module - it is an opaque server token and any edit invalidates it.
+    """
+    try:
+        data = _extract_ytinitialdata(html)
+        if not isinstance(data, dict):
+            return None
+        endpoint = _find_key_recursive(data, "getTranscriptEndpoint")
+        if not isinstance(endpoint, dict):
+            return None
+        params = endpoint.get("params")
+        if isinstance(params, str) and params:
+            return params            # VERBATIM - do not touch
+    except Exception:
+        pass
+    return None
+
+
+def get_transcript_params(video_id, force=False):
+    """Cached accessor for a video's harvested transcript params + its ytcfg.
+
+    Returns ``(params_or_None, ytcfg_dict)``. Never raises; ytcfg is always a
+    usable dict (get_ytcfg's contract).
+
+    ONE watch-page fetch serves BOTH needs - the params token and the ytcfg
+    values come out of the same HTML, so Door 2 costs exactly one page GET plus
+    one POST.
+
+    Caching: the token is PER-VIDEO, so it must NOT go in the shared
+    ytcfg_cache.json. It lands in ``DATA_DIR / "tparams_<video_id>.json"`` with
+    the same TTL treatment (TPARAMS_TTL_S). A "no transcript panel" result is
+    cached too - as an explicit null - so a captionless video is not re-fetched
+    on every retry. A cache hit performs NO network I/O at all: ytcfg then comes
+    from its own cache (or the pinned fallback), never from a fresh page.
+    """
+    import time
+
+    cache_file = DATA_DIR / f"tparams_{video_id}.json"
+
+    if not force:
+        try:
+            if cache_file.exists():
+                cached = json.loads(cache_file.read_text(encoding="utf-8"))
+                fetched_at = cached.get("fetched_at")
+                if (fetched_at is not None
+                        and (time.time() - fetched_at) < TPARAMS_TTL_S):
+                    params = cached.get("params")
+                    params = params if isinstance(params, str) and params else None
+                    # video_id withheld on purpose: a params cache hit must never
+                    # trigger a watch-page fetch just to refresh ytcfg.
+                    return params, get_ytcfg()
+        except Exception:
+            pass
+
+    html = None
+    try:
+        html = _fetch_watch_html(video_id)
+    except Exception:
+        html = None
+
+    # ytcfg from the SAME html - written through to the shared cache so the next
+    # caller (any rung) gets it for free.
+    ytcfg = None
+    try:
+        parsed = _parse_ytcfg(html)
+        if parsed.get("client_version"):
+            ytcfg = {
+                "client_version": parsed["client_version"],
+                "visitor_data": parsed.get("visitor_data"),
+                "api_key": parsed.get("api_key"),
+                "fetched_at": time.time(),
+            }
+            try:
+                DATA_DIR.mkdir(parents=True, exist_ok=True)
+                (DATA_DIR / "ytcfg_cache.json").write_text(
+                    json.dumps(ytcfg), encoding="utf-8")
+            except Exception:
+                pass
+    except Exception:
+        ytcfg = None
+    if ytcfg is None:
+        # no scrape - fall back to whatever get_ytcfg can serve WITHOUT a fetch
+        try:
+            ytcfg = get_ytcfg()
+        except Exception:
+            ytcfg = {"client_version": PINNED_CLIENT_VERSION,
+                     "visitor_data": None, "api_key": None}
+
+    params = extract_transcript_params(html)
+
+    # Only cache when the page actually loaded. Caching a null off a failed fetch
+    # would pin "this video has no transcript" for the whole TTL over a transient
+    # network error.
+    if html:
+        try:
+            DATA_DIR.mkdir(parents=True, exist_ok=True)
+            cache_file.write_text(
+                json.dumps({"params": params, "fetched_at": time.time()}),
+                encoding="utf-8")
+        except Exception:
+            pass
+
+    return params, ytcfg
 
 
 # ---------------------------------------------------------------------------
@@ -390,7 +755,12 @@ _INNERTUBE_BLOCK_BODY_MARKERS = (
 
 # Hard ceiling on HTTP attempts per get_transcript_innertube() call. This IP is
 # rate-limit-flagged: request count is a SAFETY property, not an optimization.
-MAX_INNERTUBE_ATTEMPTS = 4
+#
+# Was 4, now 2. The old value covered a language x kind matrix (en/en-US/en-GB/
+# zh-Hans x asr/manual) that only existed because we were GUESSING at the params
+# token. Harvesting yields ONE server-minted token per video, so the matrix
+# collapses: at most a keyless attempt plus one keyed retry.
+MAX_INNERTUBE_ATTEMPTS = 2
 
 
 class InnerTubeError(RuntimeError):
@@ -408,9 +778,13 @@ class InnerTubeError(RuntimeError):
         self.is_block = is_block
 
 
-def _innertube_post(params, ytcfg, api_key=None, timeout=20):
+def _innertube_post(params, ytcfg, api_key=None, timeout=20, video_id=None):
     """POST one youtubei/v1/get_transcript request. The ONLY network-touching
     function of Door 2 - kept isolated so tests monkeypatch exactly this.
+
+    ``params`` MUST be a token harvested verbatim from the watch page
+    (get_transcript_params); a self-built one answers FAILED_PRECONDITION.
+    ``video_id`` is optional and used only to set the Referer header.
 
     Returns the parsed JSON dict on HTTP 200.
 
@@ -442,6 +816,11 @@ def _innertube_post(params, ytcfg, api_key=None, timeout=20):
     visitor_data = cfg.get("visitor_data")
     if visitor_data:
         headers["x-goog-visitor-id"] = visitor_data
+    # The current working reference sends the watch page as Referer, and the
+    # params token was minted BY that page - keeping them consistent costs
+    # nothing and matches what a real browser puts on the wire.
+    if video_id:
+        headers["referer"] = f"https://www.youtube.com/watch?v={video_id}"
 
     body = {
         "context": {
@@ -455,7 +834,13 @@ def _innertube_post(params, ytcfg, api_key=None, timeout=20):
         "params": params,
     }
 
-    resp = requests.post(url, headers=headers, json=body, timeout=timeout)
+    # Present the SAME session the watch page minted the token in. Without this
+    # a server-minted params token is refused with FAILED_PRECONDITION - see
+    # load_cookie_jar() for the full reasoning and the live-probe evidence.
+    resp = requests.post(
+        url, headers=headers, json=body, timeout=timeout,
+        cookies=load_cookie_jar(),
+    )
     status = getattr(resp, "status_code", None)
 
     if status == 200:
@@ -584,58 +969,96 @@ def _suggests_missing_key(exc):
     return False
 
 
+def innertube_enabled():
+    """Is the pure-HTTP Door-2 rung switched on? Default OFF - here is why.
+
+    Five live probes on 2026-09-03 all returned
+        {"code":400,"message":"Precondition check failed.",
+         "status":"FAILED_PRECONDITION"}
+    including one that sent a params token BYTE-IDENTICAL to YouTube's own
+    (harvested from getTranscriptEndpoint), minted and presented inside the SAME
+    cookie-bound session, with a freshly-scraped clientVersion, visitor id and
+    Referer. FAILED_PRECONDITION is a state error, not a parse error - so the
+    request is well-formed and the remaining unmet precondition is almost
+    certainly a browser attestation (PO-token class) that no HTTP client can
+    forge.
+
+    That is consistent with the original finding rather than against it: the
+    transcript PANEL works from a real Chrome because Chrome produces the
+    attestation. Hence the cdp-panel rung, which is the proven Door-2 path.
+
+    Left OFF because an always-failing rung would spend a watch-page GET plus up
+    to two POSTs PER VIDEO on an IP YouTube has already flagged - the exact
+    hammering this plugin exists to prevent. Every line of it is kept, tested and
+    ready: flip CINOPSIS_ENABLE_INNERTUBE=1 the moment attestation is solved.
+    """
+    return os.environ.get("CINOPSIS_ENABLE_INNERTUBE", "").strip().lower() in (
+        "1", "true", "yes", "on"
+    )
+
+
 def get_transcript_innertube(video_id, languages=("en", "en-US", "en-GB", "zh-Hans")):
     """Door 2 rung: fetch captions via youtubei/v1/get_transcript.
 
     Returns (transcript, lang) or (None, None) - the same contract as every other
     rung (see get_transcript_api).
 
-    Tries auto-generated (ASR) then manual for each language, keyless first (that
-    is what Invidious does and it works), retrying ONCE with the scraped
-    InnerTube api key only when the failure actually looks key-shaped.
+    THE PARAMS TOKEN IS HARVESTED, NOT BUILT. get_transcript_params lifts
+    ``getTranscriptEndpoint.params`` verbatim off the watch page (one fetch, also
+    yielding ytcfg) and it is POSTed unmodified. Self-built params return
+    FAILED_PRECONDITION - see build_transcript_params' docstring - so there is
+    NO fallback to the builder: a wasted request against a rate-limit-flagged IP
+    is a real cost, and that one is known-dead before it is sent.
 
-    Total HTTP attempts are hard-capped at MAX_INNERTUBE_ATTEMPTS (4). Any
-    RuntimeError from _innertube_post PROPAGATES - a marker-bearing one so the
-    ladder's handler arms the gate's cooldown, a non-block one so a broken
-    upstream is not hammered across four more language combinations.
+    No harvestable token means the video simply has no transcript panel; that is
+    a clean (None, None) with ZERO requests made.
+
+    There is exactly ONE server-minted token per video, so the old language x
+    kind matrix is gone. At most MAX_INNERTUBE_ATTEMPTS (2) requests: keyless
+    first (what the working references do), then ONE retry with the scraped
+    InnerTube api key, and only when the failure actually looks key-shaped.
+
+    ``languages`` is retained for signature compatibility with the other rungs;
+    the harvested token already encodes the panel's default track, so the value
+    is used only to label the returned language.
+
+    Any RuntimeError from _innertube_post PROPAGATES - a marker-bearing one so
+    the ladder's handler arms the gate's cooldown, a non-block one so a broken
+    upstream is not hammered further.
+
+    DISABLED BY DEFAULT (CINOPSIS_ENABLE_INNERTUBE). See INNERTUBE_ENABLED.
     """
-    ytcfg = get_ytcfg(video_id)
-    api_key = (ytcfg or {}).get("api_key")
-    attempts = 0
+    if not innertube_enabled():
+        return None, None
 
     print("  [innertube] trying youtubei/v1/get_transcript (Door 2)...", flush=True)
 
-    for lang in languages:
-        for auto_generated in (True, False):
-            if attempts >= MAX_INNERTUBE_ATTEMPTS:
-                print("  [innertube] attempt cap reached; stopping", flush=True)
-                return None, None
-            try:
-                params = build_transcript_params(video_id, lang, auto_generated=auto_generated)
-            except ValueError as e:
-                print(f"  [innertube] bad params request: {e}", flush=True)
-                return None, None
+    params, ytcfg = get_transcript_params(video_id)
+    if not params:
+        print("  [innertube] no getTranscriptEndpoint on the watch page "
+              "(video has no transcript panel); skipping without a request",
+              flush=True)
+        return None, None
 
-            kind = "asr" if auto_generated else "manual"
-            print(f"  [innertube] {lang} ({kind}), attempt {attempts + 1}"
-                  f"/{MAX_INNERTUBE_ATTEMPTS}...", flush=True)
-            attempts += 1
-            try:
-                data = _innertube_post(params, ytcfg)
-            except Exception as e:
-                if api_key and _suggests_missing_key(e) and attempts < MAX_INNERTUBE_ATTEMPTS:
-                    print("  [innertube] retrying once with the InnerTube api key...", flush=True)
-                    attempts += 1
-                    # A failure here propagates too (block markers included).
-                    data = _innertube_post(params, ytcfg, api_key=api_key)
-                else:
-                    raise
+    api_key = (ytcfg or {}).get("api_key")
+    lang = (languages[0] if languages else "en")
 
-            transcript = _parse_innertube_transcript(data)
-            if transcript:
-                print(f"  [innertube] {lang} ({kind}) yielded {len(transcript)} segments",
-                      flush=True)
-                return transcript, lang
+    print(f"  [innertube] harvested params, attempt 1/{MAX_INNERTUBE_ATTEMPTS}...",
+          flush=True)
+    try:
+        data = _innertube_post(params, ytcfg, video_id=video_id)
+    except Exception as e:
+        if api_key and _suggests_missing_key(e):
+            print("  [innertube] retrying once with the InnerTube api key...", flush=True)
+            # A failure here propagates too (block markers included).
+            data = _innertube_post(params, ytcfg, api_key=api_key, video_id=video_id)
+        else:
+            raise
+
+    transcript = _parse_innertube_transcript(data)
+    if transcript:
+        print(f"  [innertube] yielded {len(transcript)} segments", flush=True)
+        return transcript, lang
 
     return None, None
 

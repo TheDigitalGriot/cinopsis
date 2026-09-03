@@ -5,6 +5,63 @@ All notable changes to **Cinopsis** are documented here.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [2.6.0] - 2026-09-03
+
+### Added
+- **Door-2 transcript architecture: per-rung, per-door rate gating.** YouTube exposes two
+  transcript routes that throttle independently -- Door 1 (`/api/timedtext`, what every Python
+  transcript library uses) and Door 2 (`youtubei/v1/get_transcript`, what the transcript PANEL
+  uses). On a flagged residential IP, Door 1 returns 429/IpBlocked on every client and even with
+  curl_cffi TLS impersonation, while Door 2 answers fine. The ladder is now
+  `cache -> innertube -> api -> yt-dlp -> asr -> cdp-panel`, and **each rung is gated
+  independently by the door it goes through**. Previously `check_gate` ran ONCE before the whole
+  ladder, so a Door-1 block raised before any rung ran -- including the Door-2 rung that still
+  worked. A cooling door now skips its rung and the ladder continues.
+- **Asymmetric cooldowns.** A Door-1 block cools Door 1 only, leaving Door 2 reachable -- the
+  entire point. A Door-2 block arms the shared cooldown (if the un-throttled door refuses, the IP
+  is in real trouble). The CDP rung has its OWN door: it drives a real logged-in browser, not an
+  HTTP POST, so an HTTP-level block must not gate it. A success on one door can never clear a
+  cooldown armed by another.
+- **`scripts/grab_transcript_cdp.py`** -- transcript-panel fallback driving the dedicated Chrome
+  profile over the DevTools Protocol. Windowed on purpose (headless does not render the panel),
+  opt-in behind `CINOPSIS_ENABLE_CDP`, one shared deadline threaded through every CDP call, and
+  Chrome always reaped in a `finally`. `find_chrome()` raises `SystemExit` -- a `BaseException`
+  the ladder's `except Exception` would NOT catch -- so it is now caught before Chrome launches.
+- **InnerTube `get_transcript` fetcher**, shipped DISABLED behind `CINOPSIS_ENABLE_INNERTUBE`.
+  Fully built and tested; see Known limitations.
+- 125 new tests (57 -> 182), all network-free. An autouse fixture patches `socket.connect` /
+  `create_connection` / `getaddrinfo` to raise, and a meta-test proves the guard itself fires --
+  so a silently-uninstalled guard cannot let the suite go green while quietly hitting YouTube.
+
+### Fixed
+- **A Door-1 block silently locked out Door 2 for 1-12 hours.** `get_transcript_api` swallows its
+  own exception and reports the block itself; that inline `record_outcome` was door-less, so an
+  `IpBlocked` armed the SHARED cooldown. In production it would have read as "Door 2 does not work
+  either," with an almost invisible cause. Now scoped to `door=timedtext`; a mutation test proves
+  the guard bites.
+- **Two ungated paths into YouTube, both pre-existing.** `mcp_server.py` called
+  `get_transcript_ytdlp` directly, bypassing the cache, the ladder AND the rate-limit gate.
+  `digest_all.py` did the same **inside a loop over every video** -- an ungated bulk fetch, exactly
+  the pattern v2.5.0's drip cap exists to prevent. Both now route through the gated ladder;
+  `digest_all` additionally takes a hard 5-per-run cap and a 5s throttle.
+- `websocket-client` is now declared in `requirements.txt`. It was installed in the plugin venv by
+  hand and never declared, and the venv bootstrap keys off a SHA-256 of that file -- so a clean
+  install would have ImportError'd on the CDP rung.
+- Repaired two double-encoded em-dashes in `.claude-plugin/plugin.json` (UTF-8 decoded as cp1252
+  then re-encoded), by byte-level substitution rather than a JSON round trip.
+
+### Known limitations
+- **The pure-HTTP Door-2 rung is OFF by default** (`CINOPSIS_ENABLE_INNERTUBE=1` to enable). Five
+  live probes returned `FAILED_PRECONDITION` -- a STATE error, not a parse error -- including one
+  sending a `params` token **byte-identical to YouTube's own**, minted and presented inside the
+  same cookie-bound session, with a freshly-scraped `clientVersion`, visitor id and `Referer`. The
+  remaining unmet precondition is almost certainly a browser attestation (PO-token class) that no
+  HTTP client can forge. This confirms rather than contradicts the two-doors finding: the panel
+  works from a real Chrome because Chrome produces the attestation -- which is exactly why the
+  `cdp-panel` rung exists. It ships off because an always-failing rung would spend a watch-page GET
+  plus two POSTs per video on an already-flagged IP. Full diagnostic trail:
+  `.prism/shared/research/2026-09-03-attestation-wall-findings.md`.
+
 ## [2.5.2] - 2026-09-02
 
 ### Fixed
