@@ -2,14 +2,19 @@
 """Fetch video transcripts via an environment-aware fallback ladder.
 
 Ladder (cloud <-> local aware; each rung degrades to the next):
-  0. cache   - reuse data/transcript_<id>.json if present (idempotent)
-  1. api     - youtube-transcript-api, instance .fetch() (shim for old .get_transcript);
-               fastest, no yt-dlp needed, but requires YouTube egress
-  2. yt-dlp  - subtitle download with cookie fallbacks (works where the API is proxy-blocked)
-  3. asr     - OPTIONAL last rung for caption-LESS videos: yt-dlp audio -> faster-whisper
-               (only fires if faster-whisper is importable; else logs a one-line enable hint)
-If every rung fails, the caller is told to use the Chrome caption-scrape rung
-(agent-side: read ytInitialPlayerResponse.captionTracks off the loaded watch page).
+  0. cache     - reuse data/transcript_<id>.json if present (idempotent, ungated)
+  1. innertube - Door 2: youtubei/v1/get_transcript, the endpoint the transcript
+                 PANEL uses; survives the /api/timedtext IP-block, so it goes FIRST
+  2. api       - Door 1: youtube-transcript-api, instance .fetch() (shim for old
+                 .get_transcript); fastest, but the first thing to get IP-blocked
+  3. yt-dlp    - Door 1: subtitle download with cookie fallbacks
+  4. asr       - OPTIONAL rung for caption-LESS videos: yt-dlp audio -> faster-whisper
+                 (only fires if faster-whisper is importable; else logs an enable hint)
+  5. cdp-panel - Door 2 via a live Chrome: drive the real transcript panel over CDP
+Each rung is gated INDEPENDENTLY by the door it goes through - a cooling door
+skips its rung and the ladder continues. If every rung fails, the caller is told
+to use the Chrome caption-scrape rung (agent-side: read
+ytInitialPlayerResponse.captionTracks off the loaded watch page).
 
 Why this exists: the working method kept getting re-derived every session. It is
 now baked into the tool + pinned in SKILL.md and /topics/cinopsis-method.
@@ -32,9 +37,25 @@ def _find_ytdlp():
 
 # ---------------------------------------------------------------------------
 # Caption "doors" - which upstream surface a caption fetch goes through.
+#
+# ratelimit.py is the SOURCE OF TRUTH for these values; the names are re-exported
+# here (not redefined) so ladder code can name a door without importing the gate.
+# ratelimit is imported lazily/defensively everywhere else because it may be
+# unimportable, so the literals below are a fallback for exactly that case - the
+# VALUES are identical either way.
 # ---------------------------------------------------------------------------
-DOOR_TIMEDTEXT = "timedtext"   # classic /api/timedtext caption endpoint
-DOOR_INNERTUBE = "innertube"   # youtubei/v1/get_transcript (protobuf params)
+try:  # ratelimit is optional; never let its absence break this module
+    import ratelimit as _ratelimit_consts
+except Exception:
+    _ratelimit_consts = None
+
+# classic /api/timedtext caption endpoint
+DOOR_TIMEDTEXT = getattr(_ratelimit_consts, "DOOR_TIMEDTEXT", None) or "timedtext"
+# youtubei/v1/get_transcript (protobuf params)
+DOOR_INNERTUBE = getattr(_ratelimit_consts, "DOOR_INNERTUBE", None) or "innertube"
+# browser-driven transcript panel over CDP - a real logged-in Chrome, not an HTTP
+# POST, so it gets its OWN door and survives an HTTP-door block
+DOOR_CDP = getattr(_ratelimit_consts, "DOOR_CDP", None) or "cdp"
 
 
 # ---------------------------------------------------------------------------
@@ -314,9 +335,16 @@ def get_transcript_api(video_id, languages=("en", "en-US", "en-GB", "zh", "zh-Ha
         print(f"  [api] fetch failed ({type(e).__name__}): {e}", flush=True)
         # Report to the anti-hammer gate: an IpBlocked/RequestBlocked here trips
         # the cooldown so the next call is refused (only block markers cool down).
+        #
+        # MUST be scoped to DOOR_TIMEDTEXT. This rung swallows its exception, so the
+        # ladder's door-scoped handler never sees it and this is the ONLY report.
+        # Door-less (door=None) would arm the SHARED cooldown, which gates EVERY
+        # door - so one Door-1 IP block would lock Door 2 (innertube) out for
+        # 1-12h and present as "Door 2 doesn't work either". Scoping it here is
+        # what keeps Door 2 reachable while Door 1 cools.
         try:
             import ratelimit
-            ratelimit.record_outcome(False, detail)
+            ratelimit.record_outcome(False, detail, door=DOOR_TIMEDTEXT)
         except Exception:
             pass
         return None, None
@@ -718,10 +746,48 @@ def get_transcript_asr(video_id):
 
 
 # ---------------------------------------------------------------------------
+# Rung 4 - cdp-panel: drive the real transcript PANEL in a live Chrome via CDP.
+#
+# It reaches the same upstream data as Door 2, but it is a qualitatively DIFFERENT
+# surface: a real logged-in Chrome with real cookies and a real session, not a raw
+# POST. It therefore gets its OWN door (DOOR_CDP) - an HTTP-level block must not
+# cool it, and a cdp failure must cool only cdp.
+#
+# grab_transcript_cdp is imported LAZILY: a module-level import would drag in the
+# websocket-client transport (and the Chrome/cookie helpers) at import time and
+# break environments that lack them. An unavailable rung degrades to (None, None);
+# it never raises.
+# ---------------------------------------------------------------------------
+def get_transcript_cdp(video_id):
+    """cdp-panel rung wrapper. Returns (transcript, lang) or (None, None)."""
+    try:
+        from grab_transcript_cdp import get_transcript_cdp as _cdp_impl
+    except Exception as e:
+        print(f"  [cdp-panel] unavailable ({type(e).__name__}: {e}); skipping rung",
+              flush=True)
+        return None, None
+    return _cdp_impl(video_id)
+
+
+# ---------------------------------------------------------------------------
 # The ladder dispatcher
 # ---------------------------------------------------------------------------
 def fetch_transcript(video_id, allow_cache=True, refresh=False):
-    """Run the fallback ladder. Returns (transcript, lang, method)."""
+    """Run the fallback ladder. Returns (transcript, lang, method).
+
+    Gating is PER RUNG, not once up front. Each rung declares the upstream "door"
+    it goes through; a rung whose door is cooling is SKIPPED and the ladder
+    CONTINUES to the next one. That is the whole point: when Door 1 (timedtext) is
+    IP-blocked, the Door-2 rungs must still be reachable.
+
+    Return contract:
+      (t, lang, name)            - a rung succeeded
+      (None, None, None)         - at least one rung ran and every rung failed
+      (None, None, "rate-limited") - EVERY rung was gate-skipped; no rung ran and
+                                     no network was touched
+    """
+    # Rung 0 (cache) is deliberately UNGATED and ahead of everything: it performs
+    # no network I/O, so a cooldown must never withhold an already-fetched result.
     if allow_cache and not refresh:
         cached, _ = load_cached_transcript(video_id)
         if cached:
@@ -730,36 +796,61 @@ def fetch_transcript(video_id, allow_cache=True, refresh=False):
 
     # Anti-hammer gate (shared chokepoint): refuse WITHOUT touching the network
     # while a cooldown is active; otherwise enforce minimum spacing between calls.
+    # Imported lazily - when it is unavailable every rung simply runs ungated.
     try:
         import ratelimit
     except Exception:
         ratelimit = None
-    if ratelimit is not None:
-        try:
-            ratelimit.check_gate("transcript")
-        except ratelimit.RateLimited as e:
-            print(f"  [gate] {e}", flush=True)
-            return None, None, "rate-limited"
 
-    last_detail = ""
-    for name, fn in (("api", get_transcript_api),
-                     ("yt-dlp", get_transcript_ytdlp),
-                     ("asr", get_transcript_asr)):
+    ran_any = False       # did any rung actually get to run?
+    gate_skipped = []     # rungs refused by the gate (never touched the network)
+
+    for name, fn, door in (
+        ("innertube", get_transcript_innertube, DOOR_INNERTUBE),
+        ("api",       get_transcript_api,       DOOR_TIMEDTEXT),
+        ("yt-dlp",    get_transcript_ytdlp,     DOOR_TIMEDTEXT),
+        # asr downloads audio and transcribes locally - it is not a caption
+        # "door" at all, so it gates through the door-less (shared) path.
+        ("asr",       get_transcript_asr,       None),
+        ("cdp-panel", get_transcript_cdp,       DOOR_CDP),
+    ):
+        # One gate check per rung attempt - no more. check_gate does NOT stamp
+        # last_call on a refusal, so a skipped rung costs no pacing time.
+        if ratelimit is not None:
+            try:
+                ratelimit.check_gate("transcript", door=door)
+            except ratelimit.RateLimited as e:
+                gate_skipped.append(name)
+                print(f"  [gate] skipping rung {name} (door={door or 'shared'}): {e}",
+                      flush=True)
+                continue  # NEVER abort the ladder - the next door may be open
+
+        ran_any = True
         try:
             print(f"  [ladder] trying rung: {name}", flush=True)
             t, lang = fn(video_id)
             if t:
                 print(f"  [ladder] {name} succeeded ({len(t)} entries)", flush=True)
                 if ratelimit is not None:
-                    ratelimit.record_outcome(True)
+                    ratelimit.record_outcome(True, door=door)
                 return t, lang, name
+            # A clean (None, None) is a non-block failure. Deliberately NOT
+            # recorded: a fabricated detail could collide with a BLOCK_MARKER and
+            # cost an hour-long cooldown for a video that simply has no captions.
         except Exception as e:
-            last_detail = f"{type(e).__name__}: {e}"
-            print(f"  [ladder] {name} error: {last_detail}", flush=True)
+            detail = f"{type(e).__name__}: {e}"
+            print(f"  [ladder] {name} error: {detail}", flush=True)
+            # Report to the gate scoped to THIS rung's door, so a marker-bearing
+            # failure arms the right cooldown and leaves the other door open.
+            if ratelimit is not None:
+                ratelimit.record_outcome(False, detail, door=door)
 
-    if ratelimit is not None:
-        ratelimit.record_outcome(False, last_detail)
-    print("  [ladder] all rungs failed. Rung 4 (agent-side): use the Chrome "
+    if not ran_any:
+        print(f"  [gate] every rung was gate-skipped ({', '.join(gate_skipped)}); "
+              f"no network was touched", flush=True)
+        return None, None, "rate-limited"
+
+    print("  [ladder] all rungs failed. Rung 5 (agent-side): use the Chrome "
           "caption-scrape - load the watch page and read "
           "ytInitialPlayerResponse.captions.playerCaptionsTracklistRenderer.captionTracks.", flush=True)
     return None, None, None
@@ -888,8 +979,13 @@ def main():
         args.video_id, allow_cache=not args.no_cache, refresh=args.refresh)
 
     if not transcript:
-        print("Failed to fetch transcript via every rung (api / yt-dlp / asr). "
-              "If you have a browser agent, use the Chrome caption-scrape rung.")
+        if method == "rate-limited":
+            print("Every rung was refused by the rate-limit gate (all doors cooling). "
+                  "Run `python ratelimit.py` for the per-door breakdown.")
+        else:
+            print("Failed to fetch transcript via every rung "
+                  "(innertube / api / yt-dlp / asr / cdp-panel). "
+                  "If you have a browser agent, use the Chrome caption-scrape rung.")
         raise SystemExit(1)
 
     output_file = save_transcript(args.video_id, transcript, args.output)

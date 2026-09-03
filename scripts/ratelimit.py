@@ -22,8 +22,10 @@ Doors: YouTube exposes two transcript routes with independent throttling — the
 `innertube` get_transcript panel endpoint (Door 2, historically un-throttled).
 Passing `door=` cools them asymmetrically: a Door-1 block cools ONLY Door 1, so
 the still-working Door 2 stays reachable; a Door-2 block means the IP is in real
-trouble and cools EVERYTHING (the shared block). Calls that pass no `door`
-behave exactly as before — they read and arm the shared cooldown.
+trouble and cools EVERYTHING (the shared block). A third door, `cdp` (Door 3), is
+the browser-driven rung: it drives a real logged-in Chrome, so an HTTP-level block
+must not cool it and a cdp block cools ONLY cdp. Calls that pass no `door` behave
+exactly as before — they read and arm the shared cooldown.
 
 Fail-closed: if the state file is unreadable, the gate still enforces minimum
 spacing (it never falls open to unlimited calls). State lives in DATA_DIR so it
@@ -53,6 +55,10 @@ BLOCK_MARKERS = (
 # Transcript "doors" — mirrors the rung names in get_transcript.py.
 DOOR_TIMEDTEXT = "timedtext"    # Door 1: /api/timedtext (the one that IP-blocks)
 DOOR_INNERTUBE = "innertube"    # Door 2: youtubei/v1/get_transcript panel
+# Door 3: browser-driven (CDP) — opt-in, human-paced, real logged-in Chrome with
+# real cookies/session. A qualitatively different surface from an HTTP POST, so it
+# survives an HTTP-door block and gets its own independent per-door cooldown.
+DOOR_CDP = "cdp"
 
 
 class RateLimited(Exception):

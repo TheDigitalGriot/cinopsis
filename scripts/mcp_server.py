@@ -23,7 +23,7 @@ from pathlib import Path
 # scripts/ is sys.path[0] when run directly, so these bare imports resolve.
 from fetch_videos import load_channels, fetch_channel_videos, is_ai_related, OUTPUT_FILE
 from fetch_playlist import fetch_playlist_new, private_playlist_hint
-from get_transcript import get_transcript_ytdlp, format_transcript, integrity_gate
+from get_transcript import fetch_transcript, format_transcript, integrity_gate
 from capture_frames import extract_video_id, capture_frame as _capture_frame
 from compare_videos import parse_urls, process_video, build_comparison_data, save_session
 from compare_server import create_app
@@ -178,17 +178,47 @@ def get_transcript(video_id: str) -> str:
     """Fetch the transcript for a single YouTube video (URL or 11-char ID).
 
     Returns timestamped plain text, or an error message if unavailable.
+
+    Goes through the SAME ladder dispatcher every other surface uses
+    (cache -> innertube -> api -> yt-dlp -> asr -> cdp-panel), so this tool is
+    cache-served when possible and is gated by the anti-hammer rate-limit gate.
+    Never calls a rung directly — no rung may bypass the gate.
     """
     vid = extract_video_id(video_id)
     with _quiet_stdout():
-        transcript, lang = get_transcript_ytdlp(vid)
+        transcript, lang, method = fetch_transcript(vid)
         if transcript:
             from _utils import DATA_DIR
             (DATA_DIR / f"transcript_{vid}.txt").write_text(format_transcript(transcript), encoding="utf-8")
+
     if not transcript:
-        return f"No transcript available for {vid} (video may require login or have no subtitles)."
+        if method == "rate-limited":
+            # The gate refused every rung — NO network was touched. Do not retry.
+            detail = ""
+            try:
+                import ratelimit
+                st = ratelimit.status()
+                if st.get("blocked"):
+                    detail = (f" Shared cooldown active for ~{st.get('seconds_left', 0) // 60} min"
+                              f" (reason: {st.get('reason') or 'cooldown'}).")
+                else:
+                    cooling = [f"{n} (~{d.get('seconds_left', 0) // 60} min)"
+                               for n, d in (st.get("doors") or {}).items() if d.get("blocked")]
+                    if cooling:
+                        detail = f" Cooling doors: {', '.join(cooling)}."
+            except Exception:
+                pass
+            return (f"Rate-limit gate refused every rung for {vid}; no request was made "
+                    f"and no retry was attempted.{detail} "
+                    f"Run `python scripts/ratelimit.py` for the per-door breakdown, or "
+                    f"`python scripts/ratelimit.py --reset` after moving to a clean network.")
+        return (f"No transcript available for {vid} — every rung failed "
+                f"(innertube / api / yt-dlp / asr / cdp-panel). The video may require "
+                f"login, have no subtitles, or need the agent-side Chrome caption-scrape.")
+
     gate = integrity_gate(transcript)
-    return f"Transcript for {vid} ({lang}, {len(transcript)} entries):\n\n{gate}\n{format_transcript(transcript)}"
+    return (f"Transcript for {vid} ({lang}, {len(transcript)} entries, via {method}):"
+            f"\n\n{gate}\n{format_transcript(transcript)}")
 
 
 @mcp.tool()
