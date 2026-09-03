@@ -19,6 +19,7 @@ def create_app(data_dir=None):
     sessions_dir = data_dir / "sessions"
     plugin_root = Path(os.environ.get("CLAUDE_PLUGIN_ROOT", Path(__file__).parent.parent))
     viewer_path = plugin_root / "viewer" / "viewer.html"
+    vault_path = plugin_root / "viewer" / "vault.html"
 
     app = Flask(__name__)
     app.json.ensure_ascii = False
@@ -194,6 +195,53 @@ def create_app(data_dir=None):
             "session_id": e["session_id"],
             "session_title": e["session_title"],
         } for e in entries])
+
+    @app.route("/vault")
+    def vault_page():
+        """Flat per-video library: every ingested video across every session.
+
+        A separate page rather than an addition to viewer.html so the existing
+        session viewer is untouched. Served through frame_viewer() like /, so it
+        inherits the griotwave frame and the Cinopsis token override.
+        """
+        if vault_path.exists():
+            html = vault_path.read_text(encoding="utf-8")
+            return Response(frame_viewer(html), mimetype="text/html; charset=utf-8")
+        return "<h1>Cinopsis Vault</h1><p>vault.html not found</p>", 200
+
+    @app.route("/api/vault")
+    def get_vault():
+        """Every ingested video, deduped by id, with the fields the vault filters on.
+
+        Deliberately NOT folded into /api/videos: that endpoint feeds the library
+        modal and the compose panel, and widening its payload risks those. This
+        reuses the same _build_video_lookup() so both stay in sync on dedup rules.
+        """
+        _, entries = _build_video_lookup()
+        out = []
+        for e in entries:
+            v = e["video"]
+            digest = v.get("digest") or {}
+            out.append({
+                "id": v.get("id"),
+                "title": v.get("title", "Unknown"),
+                "channel": v.get("channel", ""),
+                "url": v.get("url", ""),
+                "duration": v.get("duration", ""),
+                "upload_date": v.get("upload_date", ""),
+                "summary": v.get("summary", ""),
+                "core_takeaway": digest.get("core_takeaway", ""),
+                "key_points": digest.get("key_points", []),
+                "why_it_matters": digest.get("why_it_matters", ""),
+                "harvest_count": len(v.get("harvest") or []),
+                "has_digest": bool(digest.get("core_takeaway") or digest.get("key_points")),
+                # provenance flags set by the offline backfill; absent on normal ingests
+                "id_status": v.get("id_status", "ok"),
+                "title_status": v.get("title_status", ""),
+                "session_id": e["session_id"],
+                "session_title": e["session_title"],
+            })
+        return jsonify(out)
 
     @app.route("/api/sessions/compose", methods=["POST"])
     def compose_session():

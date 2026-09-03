@@ -35,7 +35,7 @@ import re
 import subprocess
 from pathlib import Path
 
-from _utils import find_ytdlp, get_env, DATA_DIR, canonical_data_dir
+from _utils import find_ytdlp, get_env, DATA_DIR, canonical_data_dir, resolve_cookies
 
 PLAYLISTS_FILE = Path(os.environ.get("CLAUDE_PLUGIN_ROOT", Path(__file__).parent.parent)) / "data" / "playlists.json"
 SEEN_FILE = DATA_DIR / "playlist_seen.json"
@@ -68,27 +68,6 @@ def load_playlists():
         return json.load(f).get("playlists", [])
 
 
-def resolve_cookies(cookies=None):
-    """Resolve a cookies.txt path for yt-dlp so PRIVATE/unlisted playlists are reachable.
-
-    Precedence: explicit --cookies path -> $CINOPSIS_COOKIES -> a default
-    DATA_DIR/cookies.txt (only if it exists). Returns a path str or None (public
-    playlists still work with no cookies).
-
-    A file-based cookies.txt (Netscape format, exported from the logged-in browser)
-    is used instead of yt-dlp's --cookies-from-browser: on Windows the latter fails
-    with "Failed to decrypt with DPAPI" against Chrome's App-Bound Encryption
-    (yt-dlp #10927). An exported cookies.txt sidesteps that.
-    """
-    if cookies:
-        return cookies
-    env = os.environ.get("CINOPSIS_COOKIES")
-    if env:
-        return env
-    default = DATA_DIR / "cookies.txt"
-    if default.exists():
-        return str(default)
-    return None
 
 
 def fetch_playlist_entries(list_id, playlist_end=None, cookies=None):

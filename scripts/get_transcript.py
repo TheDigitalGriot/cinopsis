@@ -22,7 +22,7 @@ import re
 import subprocess
 from pathlib import Path
 
-from _utils import find_ytdlp, get_env, DATA_DIR
+from _utils import find_ytdlp, get_env, DATA_DIR, resolve_cookies
 
 
 def _find_ytdlp():
@@ -120,9 +120,12 @@ def get_transcript_ytdlp(video_id):
         "-o", output_template,
     ]
 
-    # cookies.txt (CINOPSIS_COOKIES env or DATA_DIR/cookies.txt) - sidesteps Chrome ABE/DPAPI and IP-blocks
-    _ck = os.environ.get("CINOPSIS_COOKIES") or str(DATA_DIR / "cookies.txt")
-    if os.path.exists(_ck):
+    # cookies.txt via the ONE shared resolver (_utils.resolve_cookies): explicit ->
+    # $CINOPSIS_COOKIES -> DATA_DIR -> canonical data dir. Same path fetch_playlist and
+    # export_yt_cookies use, so the exported jar is always found. Sidesteps Chrome
+    # ABE/DPAPI (yt-dlp #10927) and IP-blocks.
+    _ck = resolve_cookies()
+    if _ck and os.path.exists(_ck):
         print("  [yt-dlp] trying cookies.txt...", flush=True)
         subprocess.run(base_cmd + ["--cookies", _ck, url], capture_output=True, env=get_env(), timeout=60, stdin=subprocess.DEVNULL)
         result = _find_vtt(video_id)
