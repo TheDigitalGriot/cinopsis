@@ -608,6 +608,14 @@ html,body{height:100%; overflow:hidden}
 /* the hero play control is an anchor to the source */
 .bv-hero-thumb .play{text-decoration:none; border:0}
 
+/* By-Topic still with no captured frame — an honest empty slot, never the
+   channel cover art masquerading as a frame-at-timestamp */
+.entry .et.et-empty{background:linear-gradient(135deg,#33353b,#26282e);
+  box-shadow:inset 0 0 0 1px var(--rim-08)}
+.entry .et.et-empty::after{content:"no frame"; position:absolute; inset:0;
+  display:grid; place-items:center; font-size:9.5px; letter-spacing:.04em;
+  color:rgba(255,255,255,.45)}
+
 </style>
 </head>
 <body>
@@ -869,9 +877,18 @@ html,body{height:100%; overflow:hidden}
     if (p.length === 2) return p[0] * 60 + p[1];
     return p[0] || 0;
   }
+  /* These values land inside style="background-image:url(...)", so validate
+     rather than trust: anything outside the base64 / data-URI alphabet is
+     dropped. Well-formed base64 can't break out, but a malformed or error
+     value from the capture path otherwise becomes an attribute-injection
+     point — this is the one place server data is not run through esc(). */
+  var B64_RE = /^[A-Za-z0-9+/=\s]+$/;
+  var DATA_RE = /^data:image\/(png|jpe?g|webp|gif);base64,[A-Za-z0-9+/=\s]+$/;
   function thumbSrc(b64) {
     if (!b64) return '';
-    return String(b64).indexOf('data:') === 0 ? b64 : 'data:image/png;base64,' + b64;
+    var s = String(b64);
+    if (s.indexOf('data:') === 0) return DATA_RE.test(s) ? s : '';
+    return B64_RE.test(s) ? 'data:image/png;base64,' + s : '';
   }
   function sourceOf(v) {
     var u = String((v && (v.url || v.webpage_url)) || '').toLowerCase();
@@ -1180,8 +1197,10 @@ html,body{height:100%; overflow:hidden}
       var entries = t.entries || t.timestamps || [];
       var cov = (t.video_coverage || []).length || entries.length;
       var consensus = t.consensus === true ? 'agreement' : (t.consensus || '');
-      return '<div class="paper topic-block" data-open="' + (i < 2 ? 'true' : 'false') + '">' +
-        '<div class="th"><span class="tb-dot" style="background:' + c + '"></span>' +
+      var open = i < 2;
+      return '<div class="paper topic-block" data-open="' + (open ? 'true' : 'false') + '">' +
+        '<div class="th" role="button" tabindex="0" aria-expanded="' + open + '">' +
+        '<span class="tb-dot" style="background:' + c + '"></span>' +
         '<div><h3>' + esc(t.name || t.topic || 'Topic') + '</h3>' +
         '<div class="meta">Discussed in ' + cov + ' of ' + (videos.length || 1) + ' videos</div></div>' +
         (consensus ? '<span class="chip-agree">' + esc(consensus) + '</span>' : '') +
@@ -1189,12 +1208,14 @@ html,body{height:100%; overflow:hidden}
         '<div class="entries">' + entries.map(function (e) {
           var ts = e.timestamp != null ? e.timestamp : e.start;
           var vid = vOf(e.video_id);
-          /* the frame-at-timestamp still — NOT the channel thumbnail, when captured */
+          /* The frame-at-timestamp still, and ONLY that. Falling back to the
+             channel thumbnail would show the cover art dressed up as a frame —
+             the spec forbids it precisely because it reads as captured data
+             when nothing was captured. No frame => an honest empty slot. */
           var frame = thumbSrc(e.screenshot_base64 || e.screenshot);
-          var fallback = thumbSrc(vid.thumbnail_base64);
-          var bg = frame || fallback;
           return '<div class="entry">' +
-            '<div class="et"' + (bg ? ' style="background-image:url(' + bg + ')"' : '') + '>' +
+            '<div class="et' + (frame ? '' : ' et-empty') + '"' +
+            (frame ? ' style="background-image:url(' + frame + ')"' : '') + '>' +
             '<span class="ets">' + fmtTs(ts) + '</span></div>' +
             '<div class="eb"><div class="en">' + esc(vid.channel || vid.title || 'Video') + ' · ' + fmtTs(ts) + '</div>' +
             '<div class="eq">' + esc(e.quote || e.text || '') + '</div></div></div>';
@@ -1202,9 +1223,15 @@ html,body{height:100%; overflow:hidden}
     }).join('');
 
     $$('#topicList .topic-block .th').forEach(function (h) {
-      h.addEventListener('click', function () {
+      function toggle() {
         var b = h.parentElement;
-        b.dataset.open = b.dataset.open === 'true' ? 'false' : 'true';
+        var open = b.dataset.open !== 'true';
+        b.dataset.open = String(open);
+        h.setAttribute('aria-expanded', String(open));   /* keep SR state in sync */
+      }
+      h.addEventListener('click', toggle);
+      h.addEventListener('keydown', function (e) {
+        if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); toggle(); }
       });
     });
   }
@@ -1231,7 +1258,7 @@ html,body{height:100%; overflow:hidden}
     var picker = videos.length > 1
       ? '<div class="bv-pickrow">' + videos.map(function (x) {
           var xt = thumbSrc(x.thumbnail_base64);
-          return '<div class="bv-pick" data-id="' + esc(x.id) + '"' + (x.id === bvVideoId ? ' aria-current="true"' : '') + '>' +
+          return '<div class="bv-pick" role="button" tabindex="0" data-id="' + esc(x.id) + '"' + (x.id === bvVideoId ? ' aria-current="true"' : '') + '>' +
             '<div class="pt"' + (xt ? ' style="background-image:url(' + xt + ')"' : '') + '></div>' +
             '<div class="pn">' + esc(x.title || '') + '</div></div>';
         }).join('') + '</div>'
@@ -1277,7 +1304,11 @@ html,body{height:100%; overflow:hidden}
     $('#videoBody').innerHTML = html;
     wireTimeline(v, dur);
     $$('#videoBody .bv-pick').forEach(function (p) {
-      p.addEventListener('click', function () { bvVideoId = p.dataset.id; renderByVideo(); });
+      function pick() { bvVideoId = p.dataset.id; renderByVideo(); }
+      p.addEventListener('click', pick);
+      p.addEventListener('keydown', function (e) {
+        if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); pick(); }
+      });
     });
   }
 
@@ -1553,15 +1584,21 @@ html,body{height:100%; overflow:hidden}
     for (var k in attrs) e.setAttribute(k, attrs[k]);
     return e;
   }
+  var vaultLoading = false;
   function loadVault() {
-    if (graphBuilt) return;
+    if (graphBuilt || vaultLoading) return;
+    vaultLoading = true;
     api('/api/vault').then(function (rows) {
       vaultRows = rows || [];
       layoutGraph();
       updatePromo();
     }).catch(function () {
-      $('#graph').outerHTML = '<div class="graph-empty">Vault unavailable</div>';
-    });
+      /* Never destroy #graph here. Replacing the SVG would make every later
+         load a no-op (layoutGraph bails when the node is gone), so one
+         transient failure — including the eager call at startup — would kill
+         the Vault for the whole session. Leave the node intact and retryable. */
+      $('#graphCount').textContent = 'vault unavailable — reopen Vault to retry';
+    }).then(function () { vaultLoading = false; });
   }
   function layoutGraph() {
     var svg = $('#graph'); if (!svg) return;
@@ -1731,6 +1768,7 @@ html,body{height:100%; overflow:hidden}
     var lk = $('#set-local-key').value.trim(); if (lk) body.local_api_key = lk;
     $('#settings-status').className = 'status-line';
     $('#settings-status').textContent = 'Saving…';
+    $('#setSave').disabled = true;                    /* no double-submit */
     fetch('/api/settings', {
       method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(body)
     }).then(function (r) { return r.json(); }).then(function () {
@@ -1740,7 +1778,7 @@ html,body{height:100%; overflow:hidden}
     }).catch(function (e) {
       $('#settings-status').className = 'status-line err';
       $('#settings-status').textContent = 'Save failed: ' + e.message;
-    });
+    }).then(function () { $('#setSave').disabled = false; });
   }
 
   /* ═══ WIRING ══════════════════════════════════════════════════════════ */
@@ -1760,9 +1798,11 @@ html,body{height:100%; overflow:hidden}
     }
     $('#sessList').addEventListener('click', railPick);
     $('#railIcons').addEventListener('click', railPick);
-    $('#sessList').addEventListener('keydown', function (e) {
+    function railKeys(e) {
       if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); railPick(e); }
-    });
+    }
+    $('#sessList').addEventListener('keydown', railKeys);
+    $('#railIcons').addEventListener('keydown', railKeys);   /* collapsed rail must be keyboard-operable too */
 
     /* source segment */
     $$('.source-seg:not(.theme-seg) button').forEach(function (b) {
@@ -1794,7 +1834,7 @@ html,body{height:100%; overflow:hidden}
     });
     $('#chatMessages').addEventListener('click', function (e) {
       var a = e.target.closest('.ts-link');
-      if (!a) return;
+      if (!a || !currentSessionData) return;          /* no session => nothing to seek in */
       showView('video');
       var secs = parseDuration(a.dataset.ts);
       var line = $('#trackLine');
