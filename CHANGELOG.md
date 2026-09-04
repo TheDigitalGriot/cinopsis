@@ -5,6 +5,54 @@ All notable changes to **Cinopsis** are documented here.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [2.7.0] - 2026-09-04
+
+### Added
+- **Griotwave companion redesign.** The viewer is rebuilt on the locked griotwave prototype:
+  a **frosted-glass header in all three themes** (translucent + `backdrop-filter`, with the
+  content scrolling *under* it so it refracts up through the glass — a solid painted bar is a
+  different thing and was explicitly rejected), a **3-way theme toggle** (Light / Mixed / Dark)
+  plus the **Mixed-only top-bar sub-toggle** (dark bar / light bar / light bar + dark controls),
+  and the real cinopsis mark centred in the left rail above Session History — one logo, no double
+  on collapse.
+- **By Video**: refractive liquid-glass hero, Core takeaway / Key points / Why it matters digest
+  blocks, and a capture timeline with time ticks, a moment-density graphline, and unclipped
+  marker tooltips.
+- **Key-Moment cards** carry the real griotwave bloom stack (50/25/10 alpha ramp) tinted to each
+  moment's timeline-dot hue.
+- **Library modal** (glass panel, flat solid header/footer, real ingested thumbnails, YT/IG source
+  badges), **in-viewer Vault graph** clustered by session with green rings for real digests, and a
+  **docked agent rail** with streamed chat.
+- **Drag-resizable rails.** Grid columns became `--rail-w` / `--agent-w`; widths persist,
+  double-click resets.
+- The viewer now carries the **Griot Widget Contract natively** (real mark, Send-to-channel as the
+  single drive() CTA, `window.griotDrive` ladder, channel meta), so `frame_viewer()` no-ops rather
+  than injecting a second logo chip and the superseded palette.
+
+### Fixed
+- **Frame capture is now gated behind Edit mode.** Previously *any* timeline click fired
+  `POST /api/screenshot`. View mode seeks; only Edit mode captures. Verified by request count:
+  a view-mode click produces zero capture requests.
+- **Invalid timestamps no longer 500 the server.** The backfill sent empty values into
+  `int(body["timestamp"])`; timestamps are validated before they are sent, a circuit breaker stops
+  after 3 consecutive failures, and the batch probes with one request before widening to three.
+  Observed 60 doomed requests reduced to a bounded few.
+- **By Topic no longer shows channel cover art as a frame-at-timestamp.** With no captured frame it
+  renders an honest empty slot instead of art that reads as captured data.
+- **Vault could break for a whole session.** A failed `/api/vault` fetch replaced the `#graph`
+  element, which `layoutGraph()` then never recreated. The node is left intact and the load is
+  retryable.
+- Favicon 404; collapsed-rail keyboard access; accordion `aria-expanded`; `thumbSrc` validation
+  before values reach `style="background-image:url(...)"`; timestamp links no longer throw with no
+  session loaded; save button disabled in flight.
+
+### Notes
+- Frame capture itself is currently blocked by the environment, not the UI: `yt-dlp` succeeds only
+  with the `ANDROID_VR` client on this IP, and that URL is client-bound so ffmpeg receives
+  **HTTP 403**. The viewer reports this honestly rather than showing a stand-in. Fix is tracked as
+  an outbound item (capture through the logged-in browser over CDP).
+- 182 tests pass.
+
 ## [2.6.0] - 2026-09-03
 
 ### Added
