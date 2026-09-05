@@ -5,6 +5,25 @@ All notable changes to **Cinopsis** are documented here.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [2.7.1] - 2026-09-05
+
+### Fixed
+- **Collapsed rails no longer occupy layout.** The resizers write `--rail-w` / `--agent-open-w` as
+  inline custom properties, and an inline custom property beats the `[data-rail="collapsed"]` rule --
+  so a rail that had been dragged kept its dragged width after collapsing: invisible, but still
+  pushing the content across. The collapsed state is now authoritative; the saved width is untouched
+  and returns on expand.
+- **Drag handles disappear with their pane.** A collapsed pane has no width to distribute, so a live
+  handle could only produce a confusing no-op drag. `display:none` removes the affordance and the
+  behaviour together, leaving no disabled-but-present state to get wrong.
+
+### Notes
+- Both faults were found in the Prism brainstorm companion and then located here by inspection --
+  same root cause in different clothes: **a pane's saved size outliving its collapsed state.** The
+  general pattern (R1-R5, plus a verification checklist) is written up for reuse across griotwave
+  surfaces in Prism at `.prism/shared/designs/2026-09-05-griotwave-rail-pattern.md`.
+- 182 tests pass.
+
 ## [2.7.0] - 2026-09-04
 
 ### Added

@@ -73,7 +73,25 @@ input{font-family:inherit}
 .modal-foot{display:flex; align-items:center; justify-content:space-between; padding:15px 22px; border-top:1px solid var(--rim-08); gap:12px; flex-wrap:wrap; background:#1c1d22}
 .selcount{display:flex;align-items:center;gap:9px;font-size:13px;color:var(--on-dark-2)}
 .selnum{width:26px;height:26px;border-radius:50%;background:linear-gradient(150deg,var(--ember),var(--ember-ink));color:#fff;display:grid;place-items:center;font-size:12px;font-weight:600;box-shadow:0 0 10px var(--ember-glow)}
-.app[data-rail="collapsed"]{--rail-w:66px; --agent-w:0px}
+/* ── COLLAPSED-PANE RULES (shared griotwave rail pattern) ─────────────────
+   Two bugs found in the Prism companion on 2026-09-05 that this file shares by
+   construction. Both come from the same root: a pane's SAVED SIZE outliving its
+   COLLAPSED state.
+
+   1. DEAD GUTTER. The resizers write --rail-w / --agent-open-w as INLINE custom
+      properties on .app. An inline custom property beats this rule, so a rail
+      that had been dragged kept its dragged width after collapsing -- invisible
+      but still occupying layout, pushing content across. !important makes the
+      collapsed state authoritative; the saved width is still there and returns
+      untouched on expand.
+   2. LIVE HANDLE ON A CLOSED PANE. A collapsed pane has no width to distribute,
+      so a live handle beside it can only produce a confusing no-op drag.
+      display:none removes the affordance AND the behaviour in one move -- there
+      is no disabled-but-present state left to get wrong. */
+.app[data-rail="collapsed"]{--rail-w:66px !important; --agent-w:0px}
+.app:not([data-agent="open"]){--agent-w:0px !important}
+.app[data-rail="collapsed"] .rail-rz{display:none}
+.app:not([data-agent="open"]) .agent-rz{display:none}
 .app[data-agent="open"]{--agent-w:var(--agent-open-w,340px)}
 .app[data-rail="collapsed"][data-agent="open"]{--rail-w:66px; --agent-w:var(--agent-open-w,340px)}
 
