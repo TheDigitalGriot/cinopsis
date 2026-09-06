@@ -76,6 +76,7 @@ def _isolate_env(tmp_path, monkeypatch):
     monkeypatch.setenv("CLAUDE_PLUGIN_DATA", str(tmp_path / "plugin-data"))
     monkeypatch.setenv("CINOPSIS_DATA_DIR", str(tmp_path / "canon"))
     monkeypatch.delenv("CINOPSIS_ENABLE_CDP", raising=False)
+    monkeypatch.delenv("CINOPSIS_ENABLE_SELENIUM", raising=False)
     monkeypatch.delenv("CINOPSIS_COOKIES", raising=False)
 
 
@@ -492,9 +493,10 @@ def _stub_rungs(monkeypatch, **overrides):
         "yt-dlp": "get_transcript_ytdlp",
         "asr": "get_transcript_asr",
         "cdp-panel": "get_transcript_cdp",
+        "selenium-panel": "get_transcript_selenium",
     }
     keys = {"innertube": "innertube", "api": "api", "yt-dlp": "ytdlp",
-            "asr": "asr", "cdp-panel": "cdp"}
+            "asr": "asr", "cdp-panel": "cdp", "selenium-panel": "selenium"}
     for rung, attr in names.items():
         override = overrides.get(keys[rung])
 
@@ -529,7 +531,7 @@ def test_ladder_order(gate, data_dir, monkeypatch):
     """
     calls = _stub_rungs(monkeypatch)
     assert gt.fetch_transcript("vid1", allow_cache=False) == (None, None, None)
-    assert calls == ["innertube", "api", "yt-dlp", "asr", "cdp-panel"]
+    assert calls == ["innertube", "api", "yt-dlp", "asr", "cdp-panel", "selenium-panel"]
     assert calls.index("innertube") < calls.index("api")
 
 
@@ -649,7 +651,7 @@ def test_all_gate_skipped_returns_rate_limited(gate, data_dir, monkeypatch):
     gate.reset()
     calls2 = _stub_rungs(monkeypatch)
     assert gt.fetch_transcript("vid1", allow_cache=False) == (None, None, None)
-    assert len(calls2) == 5                                      # all ran, all failed
+    assert len(calls2) == 6                                      # all ran, all failed
 
 
 def test_api_rung_block_does_not_gate_door2(gate, data_dir, monkeypatch):

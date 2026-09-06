@@ -1192,6 +1192,46 @@ def get_transcript_cdp(video_id):
     return _cdp_impl(video_id)
 
 
+def get_transcript_selenium(video_id):
+    """selenium-panel rung: headless Chrome reads the transcript PANEL directly
+    (panel_transcript.py). Same in-browser pipeline as cdp-panel but a
+    self-contained Selenium transport that needs no pre-launched debug Chrome -
+    so it survives the residential-IP flag without setup. Shares DOOR_CDP.
+
+    OFF by default: launching Chrome is heavy and needs a local browser, so the
+    rung only runs when CINOPSIS_ENABLE_SELENIUM is truthy. That env check runs
+    BEFORE any import or launch, so a gated-off ladder never touches the network
+    (and the zero-network test harness stays honest).
+    Returns (transcript, lang) or (None, None); never raises."""
+    if os.environ.get("CINOPSIS_ENABLE_SELENIUM", "").strip().lower() not in (
+            "1", "true", "yes", "on"):
+        return None, None
+    try:
+        import panel_transcript as _pt
+    except Exception as e:
+        print(f"  [selenium-panel] unavailable ({type(e).__name__}: {e}); skipping rung",
+              flush=True)
+        return None, None
+    try:
+        segs = _pt.fetch_segments(video_id)
+    except Exception as e:
+        print(f"  [selenium-panel] error: {type(e).__name__}: {e}", flush=True)
+        return None, None
+    if not segs:
+        return None, None
+    def _to_sec(t):
+        try:
+            acc = 0
+            for part in t.split(":"):
+                acc = acc * 60 + int(part)
+            return float(acc)
+        except Exception:
+            return 0.0
+    transcript = [{"start": _to_sec(x.get("t", "")), "text": x["text"]}
+                  for x in segs]
+    return transcript, "en"
+
+
 # ---------------------------------------------------------------------------
 # The ladder dispatcher
 # ---------------------------------------------------------------------------
@@ -1236,6 +1276,7 @@ def fetch_transcript(video_id, allow_cache=True, refresh=False):
         # "door" at all, so it gates through the door-less (shared) path.
         ("asr",       get_transcript_asr,       None),
         ("cdp-panel", get_transcript_cdp,       DOOR_CDP),
+        ("selenium-panel", get_transcript_selenium, DOOR_CDP),
     ):
         # One gate check per rung attempt - no more. check_gate does NOT stamp
         # last_call on a refusal, so a skipped rung costs no pacing time.

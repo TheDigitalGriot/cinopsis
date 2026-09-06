@@ -5,6 +5,29 @@ All notable changes to **Cinopsis** are documented here.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [2.8.0] - 2026-09-06
+
+### Added
+- **`selenium-panel` transcript rung (rung 4).** A self-contained headless-Chrome
+  reader (`scripts/panel_transcript.py`) that drives YouTube's in-browser transcript
+  PANEL directly -- the same in-browser pipeline as `cdp-panel`, but with no
+  pre-launched debug Chrome to set up, so it survives the residential-IP flag on a
+  cold start. It shares `DOOR_CDP` (an HTTP-level block never cools it, and a panel
+  failure cools only the panel door) and slots into the ladder after `cdp-panel`.
+- **`panel_transcript.py` is now importable.** Refactored from a CLI-only script to a
+  small API -- `fetch_segments(video_id)`, `fetch_many(ids)` (one reused driver),
+  `fetch_on(driver, video_id)` -- returning `[{"t", "text"}]`, `[]` on failure, never
+  raising. The old CLI entry point is preserved.
+
+### Notes
+- The rung is **off by default**: launching Chrome is heavy and needs a local browser,
+  so it only runs when `CINOPSIS_ENABLE_SELENIUM` is truthy. The env check happens
+  before any import or Chrome launch, so a gated-off ladder touches no network -- the
+  zero-network test harness stays honest.
+- Rung output is the canonical `{"start": float_seconds, "text": str}` shape, identical
+  to every other rung (no stray `duration` key), so Door-2 transcripts stay one shape
+  downstream.
+
 ## [2.7.1] - 2026-09-05
 
 ### Fixed
