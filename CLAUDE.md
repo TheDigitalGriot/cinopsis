@@ -1,11 +1,13 @@
-@~/GriotMeta/agent-ontology/claude/CLAUDE.md
+﻿@C:\Users\digit\GriotMeta\griot-ontology\claude\CLAUDE.md
+
+@~/GriotMeta/griot-ontology/claude/CLAUDE.md
 
 # Cinopsis
 
 
-## Stuck Protocol — device/cloud tool recovery (non-negotiable)
+## Stuck Protocol â€” device/cloud tool recovery (non-negotiable)
 
-When ANY device/cloud tool returns empty/`[]`/"not connected"/"no DOM"/403 or fails first-call, that is NOT "unavailable." Before reporting a tool blocked/skipped, run the ladder: **(1) retry 2-3x** (lazy bridges — Claude-in-Chrome, MCP attach — return empty at session start; `[]` != absent) -> **(2) switch surface** (built-in browser pane <-> Claude-in-Chrome; Windows-MCP PowerShell when the sandbox has no route; the Gmail *browser* when the *connector* is the wrong account) -> **(3) replay the logs** (session_info -> last successful run of this task -> copy its exact tool sequence) -> **(4) ask Gavin ONE direct question.** Gavin's word about his own machine is GROUND TRUTH — try his path before theorizing why it can't work. Reporting "blocked" without steps 1-3 is a DEFINED ERROR, not a status; a forced skip = INCOMPLETE run, said loudly. Applies to prism-verify/browse/screenshot/debug and any skill or agent that drives a browser, MCP, or device bridge.
+When ANY device/cloud tool returns empty/`[]`/"not connected"/"no DOM"/403 or fails first-call, that is NOT "unavailable." Before reporting a tool blocked/skipped, run the ladder: **(1) retry 2-3x** (lazy bridges â€” Claude-in-Chrome, MCP attach â€” return empty at session start; `[]` != absent) -> **(2) switch surface** (built-in browser pane <-> Claude-in-Chrome; Windows-MCP PowerShell when the sandbox has no route; the Gmail *browser* when the *connector* is the wrong account) -> **(3) replay the logs** (session_info -> last successful run of this task -> copy its exact tool sequence) -> **(4) ask Gavin ONE direct question.** Gavin's word about his own machine is GROUND TRUTH â€” try his path before theorizing why it can't work. Reporting "blocked" without steps 1-3 is a DEFINED ERROR, not a status; a forced skip = INCOMPLETE run, said loudly. Applies to prism-verify/browse/screenshot/debug and any skill or agent that drives a browser, MCP, or device bridge.
 
 ## Overview
 
@@ -13,11 +15,11 @@ YouTube video digest plugin for Claude Code. Browses subscribed channels, fetche
 
 ## Where things live (routing map)
 
-- MCP server / tools: `scripts/mcp_server.py` (stdio) · launcher `scripts/mcp_launcher.py` (Job Object + parent-liveness watchdog — do not weaken).
-- Channel bus surface: `scripts/channel_bus.py` (passive file bus) · bridge notes `scripts/README-bus.md`.
-- Verbs: fetch (`fetch_videos`/`fetch_playlist`/`fetch_transcripts`/`get_transcript`) · digest (`digest_all`/`generate_report`/`build_session_from_analysis`) · compare (`compare_videos`/`compare_server`).
+- MCP server / tools: `scripts/mcp_server.py` (stdio) Â· launcher `scripts/mcp_launcher.py` (Job Object + parent-liveness watchdog â€” do not weaken).
+- Channel bus surface: `scripts/channel_bus.py` (passive file bus) Â· bridge notes `scripts/README-bus.md`.
+- Verbs: fetch (`fetch_videos`/`fetch_playlist`/`fetch_transcripts`/`get_transcript`) Â· digest (`digest_all`/`generate_report`/`build_session_from_analysis`) Â· compare (`compare_videos`/`compare_server`).
 - Viewer + widget bind: `scripts/compare_server.py` + `scripts/griot_widget_adapter.py`.
-- Providers: `scripts/providers/{claude_key,claude_sub,local_endpoint}.py` · channels `data/channels.json`.
+- Providers: `scripts/providers/{claude_key,claude_sub,local_endpoint}.py` Â· channels `data/channels.json`.
 
 ## Prism Workflow
 
@@ -42,7 +44,7 @@ Run any Prism task device-side as an ICM stage-walk, not a monolith. Write a sta
 contract from `.prism/shared/plans/_TEMPLATE-stage-CONTEXT.md`, hand a thin router prompt to
 `claude -p`, and heartbeat each step to `.prism/local/<stage>-progress.txt`. Code-intel first:
 ground every claim through the discovery agents (graph-navigator / codebase-analyzer /
-codebase-locator / prism-locator) and the `.gitnexus/` graph — never raw grep over the tools.
+codebase-locator / prism-locator) and the `.gitnexus/` graph â€” never raw grep over the tools.
 
 ## Research-first: web search is a reflex, not a last resort
 

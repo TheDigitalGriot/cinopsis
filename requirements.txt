@@ -7,4 +7,6 @@ anthropic
 requests
 youtube-transcript-api>=0.6.2
 websocket-client
+selenium>=4.49.0   # selenium-panel rung (panel_transcript.py) - F2: was installed ad hoc
+                   # and missing here, so the rung had never run once
 # faster-whisper   # optional: enables the ASR rung for caption-less videos (pip install faster-whisper)
