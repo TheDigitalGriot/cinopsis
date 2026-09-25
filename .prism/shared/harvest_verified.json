@@ -1,0 +1,554 @@
+﻿[
+    {
+        "slug":  "elliothux/open-compute",
+        "ok":  true,
+        "full":  "elliothux/open-compute",
+        "stars":  954,
+        "desc":  "Self-hosted Cloudflare Workers-compatible platform with KV, D1, R2, Durable Objects, Queues, and Workflows in one Rust binary.",
+        "lang":  "Rust"
+    },
+    {
+        "slug":  "debpalash/VoiceStudio",
+        "ok":  true,
+        "full":  "debpalash/VoiceStudio",
+        "stars":  32534,
+        "desc":  "VoiceStudio is the open-source, fully-local ElevenLabs alternative ΓÇö voice cloning, voice design, video dubbing, dictation, transcription \u0026 audiobook creation in 646 languages.",
+        "lang":  "Python"
+    },
+    {
+        "slug":  "arnegiacomo/fugleramme",
+        "ok":  true,
+        "full":  "arnegiacomo/fugleramme",
+        "stars":  2937,
+        "desc":  "E-ink bird frame for Raspberry Pi - real-time bird detection by audio, fully local AI, rendered as real, hand-cut 1800s bird illustrations.",
+        "lang":  "Python"
+    },
+    {
+        "slug":  "alibaba/open-code-review",
+        "ok":  true,
+        "full":  "alibaba/open-code-review",
+        "stars":  35138,
+        "desc":  "Fast, efficient, battle-tested at Alibaba\u0027s scale. Hybrid architecture code review tool: deterministic pipelines + LLM Agent, precise line-level comments, built-in multi-language ruleset (NPE, thread-safety, XSS, SQL injection), OpenAI \u0026 Anthropic compatible.",
+        "lang":  "Go"
+    },
+    {
+        "slug":  "vinnylarouge/jevlike",
+        "ok":  true,
+        "full":  "vinnylarouge/jevlike",
+        "stars":  706,
+        "desc":  null,
+        "lang":  "Python"
+    },
+    {
+        "slug":  "shadcn-ui/lint",
+        "ok":  true,
+        "full":  "shadcn-ui/lint",
+        "stars":  2074,
+        "desc":  "An agent-first linter for Tailwind design systems. Write design system rules that agents can verify.",
+        "lang":  "TypeScript"
+    },
+    {
+        "slug":  "anmolkapil/plexo",
+        "ok":  true,
+        "full":  "anmolkapil/plexo",
+        "stars":  138,
+        "desc":  "Speed up downloads by combining multiple network connections in parallel",
+        "lang":  "TypeScript"
+    },
+    {
+        "slug":  "pizza-bot-app/pizza-bot",
+        "ok":  true,
+        "full":  "pizza-bot-app/pizza-bot",
+        "stars":  305,
+        "desc":  "A local-first inbox for long-running AI agents, built with DeepAgents and LangGraph.",
+        "lang":  "TypeScript"
+    },
+    {
+        "slug":  "opencoredev/bg0",
+        "ok":  true,
+        "full":  "opencoredev/bg0",
+        "stars":  237,
+        "desc":  "Private, unlimited background removal that runs in your browser.",
+        "lang":  "TypeScript"
+    },
+    {
+        "slug":  "yejy53/Editable-Design",
+        "ok":  true,
+        "full":  "yejy53/Editable-Design",
+        "stars":  921,
+        "desc":  "Agent-driven creation of editable, tastefully crafted visual artifacts.",
+        "lang":  "Python"
+    },
+    {
+        "slug":  "nilbuild/page-mascot",
+        "ok":  true,
+        "full":  "nilbuild/page-mascot",
+        "stars":  687,
+        "desc":  "A mascot that watches the cursor and blinks when you poke it",
+        "lang":  "Python"
+    },
+    {
+        "slug":  "agentverse-os/AgentVerse-OS",
+        "ok":  true,
+        "full":  "agentverse-os/AgentVerse-OS",
+        "stars":  754,
+        "desc":  "Personal cloud OS for a developer and their AI agents on a single server. One-command install on Ubuntu, then everything in the browser: a windowed desktop, isolated workspaces with VS Code, Claude Code and Codex, a store of 944 self-hosted apps, backups and updates. Access only via Tailscale, nothing exposed to the internet. Rust core, Svelte UI.",
+        "lang":  "Rust"
+    },
+    {
+        "slug":  "Matthew0822/ToolReplay",
+        "ok":  true,
+        "full":  "Matthew0822/ToolReplay",
+        "stars":  179,
+        "desc":  "Audit AI agent tool-call transcripts: hash-chain sealing, deterministic replay, and scope overreach checks. Dependency-free Python CLI.",
+        "lang":  "Python"
+    },
+    {
+        "slug":  "eperez28/sonar.cool",
+        "ok":  true,
+        "full":  "eperez28/sonar.cool",
+        "stars":  108,
+        "desc":  "Control your Mac with hand gestures using its speakers and microphone. Experimental, camera-free scrolling, swiping, and zooming.",
+        "lang":  "Swift"
+    },
+    {
+        "slug":  "Tencent-Hunyuan/AuK",
+        "ok":  true,
+        "full":  "Tencent-Hunyuan/AuK",
+        "stars":  1089,
+        "desc":  "AuK: An Open-Source Foundational Model for Speech Generation and Editing",
+        "lang":  "Python"
+    },
+    {
+        "slug":  "saragordic/window-sweaters",
+        "ok":  true,
+        "full":  "saragordic/window-sweaters",
+        "stars":  547,
+        "desc":  "A macOS menu-bar app that dresses your windows in knitted borders.",
+        "lang":  "C"
+    },
+    {
+        "slug":  "letorig/video-generator-client",
+        "ok":  true,
+        "full":  "letorig/video-generator-client",
+        "stars":  533,
+        "desc":  "Async Python wrapper for Seedance, Kling, MiniMax and Wan video generation. Supports CLI and a local web UI",
+        "lang":  "Python"
+    },
+    {
+        "slug":  "Made-In-Basement/ember",
+        "ok":  true,
+        "full":  "Made-In-Basement/ember",
+        "stars":  144,
+        "desc":  "An operating system written from scratch: boot sector, FAT filesystem, DOS-compatible interrupts, sound, a 32-bit runtime and a graphical desktop",
+        "lang":  "Assembly"
+    },
+    {
+        "slug":  "bestagentkits/design-studio-ai",
+        "ok":  true,
+        "full":  "bestagentkits/design-studio-ai",
+        "stars":  181,
+        "desc":  "Open-source design workspace for AI agents and humans. Cloud editing, 3D, motion, MCP, WebMCP, CLI and BYOK. MIT.",
+        "lang":  "TypeScript"
+    },
+    {
+        "slug":  "kazdenc/regen-icons",
+        "ok":  true,
+        "full":  "kazdenc/regen-icons",
+        "stars":  163,
+        "desc":  null,
+        "lang":  "JavaScript"
+    },
+    {
+        "slug":  "danielroe/airspace",
+        "ok":  true,
+        "full":  "danielroe/airspace",
+        "stars":  144,
+        "desc":  "The database you already have.",
+        "lang":  "TypeScript"
+    },
+    {
+        "slug":  "xinxuxin/keystone-bench",
+        "ok":  true,
+        "full":  "xinxuxin/keystone-bench",
+        "stars":  216,
+        "desc":  "A clinical decision-evidence benchmark: pull the one fact an answer rests on, and see whether the assistant\u0027s action moves with the evidence. Built on HealthBench.",
+        "lang":  "Python"
+    },
+    {
+        "slug":  "mpociot/claude-siri-ai",
+        "ok":  true,
+        "full":  "mpociot/claude-siri-ai",
+        "stars":  204,
+        "desc":  "Experimental macOS 27 App Intents model delegation provider backed by Claude Code",
+        "lang":  "Swift"
+    },
+    {
+        "slug":  "AetherLabsAI/RSIAgent",
+        "ok":  true,
+        "full":  "AetherLabsAI/RSIAgent",
+        "stars":  313,
+        "desc":  "A training-free multi-agent framework for recursive self-improvement in new environments through broad-then-deep autonomous exploration and reusable memory.",
+        "lang":  "Python"
+    },
+    {
+        "slug":  "CATCHINGL/O.status",
+        "ok":  true,
+        "full":  "CATCHINGL/O.status",
+        "stars":  145,
+        "desc":  "A clean and minimal Android status indicator for cellular, Wi-Fi and battery status.",
+        "lang":  "Kotlin"
+    },
+    {
+        "slug":  "callbacked/kinesis",
+        "ok":  true,
+        "full":  "callbacked/kinesis",
+        "stars":  78,
+        "desc":  "native macos controls for the meta neural band (highly experimental)",
+        "lang":  "Swift"
+    },
+    {
+        "slug":  "lingyired/status-trio",
+        "ok":  true,
+        "full":  "lingyired/status-trio",
+        "stars":  304,
+        "desc":  "Status Trio ΓÇö a native macOS app that combines Wi-Fi, battery, and volume into one compact, configurable status icon for the menu bar, the Dock, or both, inspired by the iPhone Duo combined status bar.",
+        "lang":  "Swift"
+    },
+    {
+        "slug":  "pliablepixels/gap-trap",
+        "ok":  true,
+        "full":  "pliablepixels/gap-trap",
+        "stars":  168,
+        "desc":  "Turns vibe coding into high quality code. Sets up rules and gates in your repo so AI-written code stays correct without you reviewing every line.",
+        "lang":  "JavaScript"
+    },
+    {
+        "slug":  "lqSky7/iphone-duo-macos-animation",
+        "ok":  true,
+        "full":  "lqSky7/iphone-duo-macos-animation",
+        "stars":  113,
+        "desc":  "A clone of Iphone Duo\u0027s fold progressive blur animation on macbook using lid tilt sensor. Fully native written in swift! Demo: ",
+        "lang":  "Swift"
+    },
+    {
+        "slug":  "davefano/omarchy-trackpad-plus",
+        "ok":  true,
+        "full":  "davefano/omarchy-trackpad-plus",
+        "stars":  119,
+        "desc":  "Fine-grained, per-device trackpad controls and pointer-feel tuning for Omarchy.",
+        "lang":  "Python"
+    },
+    {
+        "slug":  "arsumbris/arsumbris",
+        "ok":  true,
+        "full":  "arsumbris/arsumbris",
+        "stars":  118,
+        "desc":  "A malleable, agent-native IDE for typed knowledge.",
+        "lang":  "Python"
+    },
+    {
+        "slug":  "AlexAntonik/nix-graph",
+        "ok":  true,
+        "full":  "AlexAntonik/nix-graph",
+        "stars":  111,
+        "desc":  "Interactive TUI viewer for Nix dependency graphs",
+        "lang":  "Go"
+    },
+    {
+        "slug":  "greentfrapp/panel",
+        "ok":  true,
+        "full":  "greentfrapp/panel",
+        "stars":  70,
+        "desc":  null,
+        "lang":  "Python"
+    },
+    {
+        "slug":  "haplollc/Minted",
+        "ok":  true,
+        "full":  "haplollc/Minted",
+        "stars":  108,
+        "desc":  "Turn any SVG into a physically-lit 3D gold medallion for SwiftUI",
+        "lang":  "Swift"
+    },
+    {
+        "slug":  "monid-ai/monid",
+        "ok":  true,
+        "full":  "monid-ai/monid",
+        "stars":  281,
+        "desc":  "Monid - OpenRouter for agent tools",
+        "lang":  "TypeScript"
+    },
+    {
+        "slug":  "ChromeDevTools/chrome-devtools-mcp",
+        "ok":  true,
+        "full":  "ChromeDevTools/chrome-devtools-mcp",
+        "stars":  52219,
+        "desc":  "Chrome DevTools for coding agents",
+        "lang":  "TypeScript"
+    },
+    {
+        "slug":  "microsoft/markitdown",
+        "ok":  true,
+        "full":  "microsoft/markitdown",
+        "stars":  185170,
+        "desc":  "Python tool for converting files and office documents to Markdown.",
+        "lang":  "Python"
+    },
+    {
+        "slug":  "NousResearch/hermes-agent",
+        "ok":  true,
+        "full":  "NousResearch/hermes-agent",
+        "stars":  246597,
+        "desc":  "The agent that grows with you",
+        "lang":  "Python"
+    },
+    {
+        "slug":  "THU-MAIC/OpenMAIC",
+        "ok":  true,
+        "full":  "THU-MAIC/OpenMAIC",
+        "stars":  37649,
+        "desc":  "Open Multi-Agent Interactive Classroom ΓÇö Get an immersive, multi-agent learning experience in just one click",
+        "lang":  "TypeScript"
+    },
+    {
+        "slug":  "cursor/plugins",
+        "ok":  true,
+        "full":  "cursor/plugins",
+        "stars":  8050,
+        "desc":  "Cursor plugin specification and official plugins",
+        "lang":  "TypeScript"
+    },
+    {
+        "slug":  "Lakr233/vphone-cli",
+        "ok":  true,
+        "full":  "Lakr233/vphone-cli",
+        "stars":  13798,
+        "desc":  null,
+        "lang":  "Swift"
+    },
+    {
+        "slug":  "AlexsJones/llmfit",
+        "ok":  true,
+        "full":  "AlexsJones/llmfit",
+        "stars":  36724,
+        "desc":  "Hundreds of models \u0026 providers. One command to find what runs on your hardware.",
+        "lang":  "Rust"
+    },
+    {
+        "slug":  "coder/coder",
+        "ok":  true,
+        "full":  "coder/coder",
+        "stars":  14896,
+        "desc":  "Secure environments for developers and their agents",
+        "lang":  "Go"
+    },
+    {
+        "slug":  "coldteadotai/pr-lens",
+        "ok":  true,
+        "full":  "coldteadotai/pr-lens",
+        "stars":  1219,
+        "desc":  "Review code 100X faster. Lens draws every PR as animated architecture and data-flow walkthroughs, inside the pull request itself. Use it as a GitHub App, GitHub Action, CLI, or a skill for your coding agent",
+        "lang":  "TypeScript"
+    },
+    {
+        "slug":  "masihsultani/whiteboard-animator",
+        "ok":  true,
+        "full":  "masihsultani/whiteboard-animator",
+        "stars":  202,
+        "desc":  "Turn a whiteboard-style image into a hand-drawn reveal video. The render engine behind Kinoslide.",
+        "lang":  "Python"
+    },
+    {
+        "slug":  "deepseek-ai/DeepSelect",
+        "ok":  true,
+        "full":  "deepseek-ai/DeepSelect",
+        "stars":  365,
+        "desc":  "DeepSelect: TopK kernels for DeepSeek Sparse Attention (DSA) and Samplers",
+        "lang":  "Cuda"
+    },
+    {
+        "slug":  "JustVugg/colibri",
+        "ok":  true,
+        "full":  "JustVugg/colibri",
+        "stars":  35804,
+        "desc":  "Run frontier MoE models on hardware you already own ΓÇö pure C, zero deps, experts streamed from disk. Tiny engine, immense model. ≡ƒÉª",
+        "lang":  "C"
+    },
+    {
+        "slug":  "multimodal-art-projection/YuE",
+        "ok":  true,
+        "full":  "multimodal-art-projection/YuE",
+        "stars":  9576,
+        "desc":  "YuE2: frontier music generation with symbolic planning, zero-shot covers, and agentic music editing.",
+        "lang":  "Python"
+    },
+    {
+        "slug":  "asgeirtj/system_prompts_leaks",
+        "ok":  true,
+        "full":  "asgeirtj/system_prompts_leaks",
+        "stars":  67387,
+        "desc":  "Extracted system prompts from Anthropic - Claude Fable 5.1, Opus 5, Claude Design, Claude Code. OpenAI - ChatGPT GPT-6-Astra, Codex. Google - Gemini 3.8 Flash, 3.1 Pro, Antigravity. xAI - Grok, Grok Bot, Cursor, Kimi and more! Updated regularly.",
+        "lang":  "JavaScript"
+    },
+    {
+        "slug":  "rlaope/oh-my-hermes",
+        "ok":  true,
+        "full":  "rlaope/oh-my-hermes",
+        "stars":  2689,
+        "desc":  "All in one plugin for Hermes Agent ΓÜÜ the coding intelligence, a long-term memory system and model optimized workflow packages",
+        "lang":  "Python"
+    },
+    {
+        "slug":  "ruvnet/RuView",
+        "ok":  true,
+        "full":  "ruvnet/RuView",
+        "stars":  94329,
+        "desc":  "╧Ç RuView turns commodity WiFi signals into real-time spatial intelligence, vital sign monitoring, and presence detection ΓÇö all without a single pixel of video.",
+        "lang":  "Rust"
+    },
+    {
+        "slug":  "max-sixty/worktrunk",
+        "ok":  true,
+        "full":  "max-sixty/worktrunk",
+        "stars":  7947,
+        "desc":  "Worktrunk is a CLI for Git worktree management, designed for parallel AI agent workflows",
+        "lang":  "Rust"
+    },
+    {
+        "slug":  "crmne/spotifast",
+        "ok":  true,
+        "full":  "crmne/spotifast",
+        "stars":  4338,
+        "desc":  "Spotify, native and fast. One lightweight Rust app for your whole library, local playback, and Spotify Connect on Linux, macOS, and Windows.",
+        "lang":  "Rust"
+    },
+    {
+        "slug":  "VonHoltenCodes/SlowBooks-Pro-2026",
+        "ok":  true,
+        "full":  "VonHoltenCodes/SlowBooks-Pro-2026",
+        "stars":  518,
+        "desc":  "Free, source-available accounting: double-entry bookkeeping, invoicing, US payroll, inventory, bank feeds - desktop app with built-in multi-user Server Edition (no Docker needed). A QuickBooks 2003 Pro replacement. No cloud, no caps.",
+        "lang":  "Python"
+    },
+    {
+        "slug":  "ggml-org/llama.cpp",
+        "ok":  true,
+        "full":  "ggml-org/llama.cpp",
+        "stars":  128617,
+        "desc":  "LLM inference in C/C++",
+        "lang":  "C++"
+    },
+    {
+        "slug":  "sqlite/sqlite",
+        "ok":  true,
+        "full":  "sqlite/sqlite",
+        "stars":  10500,
+        "desc":  "Official Git mirror of the SQLite source tree",
+        "lang":  "C"
+    },
+    {
+        "slug":  "python/cpython",
+        "ok":  true,
+        "full":  "python/cpython",
+        "stars":  77205,
+        "desc":  "The Python programming language",
+        "lang":  "Python"
+    },
+    {
+        "slug":  "turboderp-org/exllamav3",
+        "ok":  true,
+        "full":  "turboderp-org/exllamav3",
+        "stars":  1434,
+        "desc":  "An optimized quantization and inference library for running LLMs locally on modern consumer-class GPUs ",
+        "lang":  "Python"
+    },
+    {
+        "slug":  "janhq/jan",
+        "ok":  true,
+        "full":  "janhq/jan",
+        "stars":  44516,
+        "desc":  "Jan is an open source alternative to ChatGPT that runs 100% offline on your computer.",
+        "lang":  "TypeScript"
+    },
+    {
+        "slug":  "openai/whisper",
+        "ok":  true,
+        "full":  "openai/whisper",
+        "stars":  109302,
+        "desc":  "Robust Speech Recognition via Large-Scale Weak Supervision",
+        "lang":  "Python"
+    },
+    {
+        "slug":  "abi/screenshot-to-code",
+        "ok":  true,
+        "full":  "abi/screenshot-to-code",
+        "stars":  79170,
+        "desc":  "Drop in a screenshot and convert it to clean code (HTML/Tailwind/React/Vue)",
+        "lang":  "Python"
+    },
+    {
+        "slug":  "ml-explore/mlx",
+        "ok":  true,
+        "full":  "ml-explore/mlx",
+        "stars":  28450,
+        "desc":  "MLX: An array framework for Apple silicon",
+        "lang":  "C++"
+    },
+    {
+        "slug":  "abue-ammar/tinycast",
+        "ok":  true,
+        "full":  "abue-ammar/tinycast",
+        "stars":  6199,
+        "desc":  "Tinycast ΓÇö a tiny, fully native macOS launcher, hotkeys, and clipboard history.",
+        "lang":  "Swift"
+    },
+    {
+        "slug":  "openai/gpt-oss",
+        "ok":  true,
+        "full":  "openai/gpt-oss",
+        "stars":  20407,
+        "desc":  "gpt-oss-120b and gpt-oss-20b are two open-weight language models by OpenAI",
+        "lang":  "Python"
+    },
+    {
+        "slug":  "postgres/postgres",
+        "ok":  true,
+        "full":  "postgres/postgres",
+        "stars":  22130,
+        "desc":  "Mirror of the official PostgreSQL GIT repository. Note that this is just a *mirror* - we don\u0027t work with pull requests on github. To contribute, please see https://wiki.postgresql.org/wiki/Submitting_a_Patch",
+        "lang":  "C"
+    },
+    {
+        "slug":  "mysql/mysql-server",
+        "ok":  true,
+        "full":  "mysql/mysql-server",
+        "stars":  12430,
+        "desc":  "MySQL Server, the world\u0027s most popular open source database, and MySQL Cluster, a real-time, open source transactional database.",
+        "lang":  "C++"
+    },
+    {
+        "slug":  "mendableai/firecrawl",
+        "ok":  true,
+        "full":  "firecrawl/firecrawl",
+        "stars":  181724,
+        "desc":  "The web data API to search, scrape, and interact at scale. ≡ƒöÑ",
+        "lang":  "TypeScript"
+    },
+    {
+        "slug":  "triggerdotdev/trigger.dev",
+        "ok":  true,
+        "full":  "triggerdotdev/trigger.dev",
+        "stars":  16326,
+        "desc":  "Trigger.dev ΓÇô build and deploy durable AI agents and workflows",
+        "lang":  "TypeScript"
+    },
+    {
+        "slug":  "OpenBMB/MiniCPM",
+        "ok":  true,
+        "full":  "OpenBMB/MiniCPM",
+        "stars":  11074,
+        "desc":  "MiniCPM5: SOTA on-device LLMs, small yet powerful.",
+        "lang":  "Jupyter Notebook"
+    }
+]

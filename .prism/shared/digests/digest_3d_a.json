@@ -1,0 +1,594 @@
+{
+  "videos": {
+    "RKND9_gAtXo": {
+      "summary": "A 1:49 narrated read-through of the ArmorPaint GitHub README covering per-platform build instructions for the developer (source) version. Not a tutorial or review — the transcript is essentially just README text spoken aloud, so there is very little discussion signal.",
+      "digest": {
+        "core_takeaway": "ArmorPaint is a 3D PBR texture-painting app whose full source lives on GitHub; you can build it yourself for free on any major platform, while prepackaged binaries are sold to fund development.",
+        "key_points": [
+          "ArmorPaint is software for 3D PBR texture painting, with a separate manual referenced.",
+          "The repo is aimed at developers and is explicitly warned as possibly unstable; distributed binaries are paid to fund the project.",
+          "Building requires a compiler per platform: Visual Studio with Clang tools (Windows), Clang (Linux), Xcode (macOS/iOS), Android Studio (Android), plus Git.",
+          "Each target uses the same 'base make' entry point, generating a .sln, Xcode project, or Android Studio project depending on platform.",
+          "A WASM/web build exists via 'base embed', and locale JSON files are generated with a tools script.",
+          "Embedding data files needs a compiler with C23 #embed support, e.g. Clang 19 or newer."
+        ],
+        "why_it_matters": "It documents the exact free path to a working ArmorPaint build for anyone who does not want to pay for the binary, and flags the C23 toolchain requirement that most often breaks such builds."
+      },
+      "oss": [
+        {
+          "name": "ArmorPaint",
+          "slug": "armory3d/armorpaint",
+          "what": "Open-source 3D PBR texture painting application built from source per platform."
+        }
+      ],
+      "key_moments": [
+        {
+          "timestamp": "0:00",
+          "label": "What it is",
+          "description": "Opens by defining ArmorPaint as software for 3D PBR texture painting."
+        },
+        {
+          "timestamp": "0:09",
+          "label": "Paid binaries",
+          "description": "Notes distributed binaries are paid to fund the project while all development happens in the open repo."
+        },
+        {
+          "timestamp": "0:19",
+          "label": "Compiler prerequisites",
+          "description": "Lists the per-platform compiler and IDE requirements plus Git."
+        },
+        {
+          "timestamp": "0:41",
+          "label": "Windows build",
+          "description": "Running 'base make' on Windows x64 generates build_armorpaint.sln to open, build and run."
+        },
+        {
+          "timestamp": "1:42",
+          "label": "C23 embed",
+          "description": "Embedding data files requires a compiler with C23 embed support such as Clang 19 or newer."
+        }
+      ]
+    },
+    "8MUk-tQTiwE": {
+      "summary": "A 3D artist stress-tests 'GPT-6 Astra' inside Blender via Codex CLI plus the Higgsfield Blender plugin, comparing it against a rival model the ASR renders as 'Fable 5.1' on rigging, one-prompt scene building, procedural modeling from reference images, and a car built from primitives. ASR garbles several names — 'Hicksfield'/'Hicksville' is Higgsfield, 'C Dense 2.5' is Seedance 2.5, 'LC Soins'/'LED Soins' is an LED signs configurator — and the poly count quoted at 6:57 ('140 triangles... like 70K faces') is internally contradictory.",
+      "digest": {
+        "core_takeaway": "With MCP tools exposing Blender rather than screen-clicking computer use, the model goes from failing to place objects correctly a few months ago to rigging characters, building whole scenes from one prompt, and writing working Blender add-ons.",
+        "key_points": [
+          "Asked to generate, rig and animate a creature, the model produced clean weights plus an unrequested control rig with inverse kinematics.",
+          "Computer use works but is painfully slow — the presenter watched it spend 10 minutes saving a file and an hour on one samurai; MCP access is dramatically faster and goes further.",
+          "The Higgsfield Blender plugin is described as free and as the aggregator that exposes 3D-gen, image-gen and video-gen APIs to the agent in one place.",
+          "One prompt produced a full shrine/island scene with procedural backgrounds and animated flames; a separate test rebuilt a reference image entirely from primitives with professionally set lighting and staged renders.",
+          "Cost is the surprise: more than 10 tests consumed only about 7 percent of a weekly limit, versus the rival model where a single task drained the plan.",
+          "Beyond 3D it wrote a Blender LED-signs configurator add-on with presets, logo upload and connector calculation, and a friend built a 3D-object-to-sprite-sheet app in about an hour.",
+          "Blender playblasts fed into Seedance 2.5 produced directed, dynamic AI video — the presenter's claim that AI filmmaking is now controllable."
+        ],
+        "why_it_matters": "It marks the point where an agent stops needing a human to place and fix 3D objects, which changes both the tooling to invest in (MCP over computer use) and the economics of small 3D and video production."
+      },
+      "oss": [
+        {
+          "name": "Blender",
+          "slug": "blender/blender",
+          "what": "The 3D application every test runs inside, driven by the agent through plugins and MCP."
+        },
+        {
+          "name": "Codex CLI",
+          "slug": null,
+          "what": "Terminal agent the presenter uses to drive the whole setup instead of a chat window."
+        },
+        {
+          "name": "Higgsfield Blender plugin",
+          "slug": null,
+          "what": "Free plugin/MCP exposing Blender tools plus 3D, image and video generation APIs to any agent."
+        }
+      ],
+      "key_moments": [
+        {
+          "timestamp": "1:16",
+          "label": "Rig comparison",
+          "description": "Shows the GPT-6 rig result with intact weights and an unrequested control rig with IK."
+        },
+        {
+          "timestamp": "2:29",
+          "label": "Computer use is slow",
+          "description": "Reports the agent spending 10 minutes just saving a file when driving Blender by clicking."
+        },
+        {
+          "timestamp": "4:41",
+          "label": "One-prompt scene",
+          "description": "Plays a full timelapse to prove the shrine scene came from a single prompt."
+        },
+        {
+          "timestamp": "8:27",
+          "label": "Cost comparison",
+          "description": "States it is far less expensive than the rival model, with 10+ tests using 7 percent of weekly limits."
+        },
+        {
+          "timestamp": "11:47",
+          "label": "LED signs add-on",
+          "description": "Asks for a Blender add-on and gets a full LED signs configurator with presets and connector logic."
+        }
+      ]
+    },
+    "wknRD5g-vvk": {
+      "summary": "A long, hands-on pipeline video building a pirate-cave game level end to end with free AI tools — concept splitting in Gemini/Nano Banana, 3D generation, Blender cleanup, texture repair, baking and atlasing, then assembly and lighting in Unreal Engine. NOTE: the supplied title ('NVIDIA Kimodo Now Runs Without a GPU') does not match this transcript at all, and the transcript is TRUNCATED mid-sentence at the sign-off ('I see you in'). ASR garbles product names heavily: 'Hunion'/'Hoonion' is Hunyuan, '3DPUB P2'/'3PO' is Tripo P2, 'motive'/'motif' is Motif, 'Claude Court' is Claude Code, 'patina' and 'fold out AI' are unresolvable, and 'Pierce' means piers.",
+      "digest": {
+        "core_takeaway": "Generating a pile of AI assets is not a level — the value is in the disciplined Blender middle step where assets get texture-fixed, color-matched, atlased, retopologized and hand-assembled before they ever reach the engine.",
+        "key_points": [
+          "Start from one concept image, split it into chunks, and circle regions in Gemini to extract individual building blocks rather than generating each prop blind.",
+          "Free 3D generation comes from Hunyuan (about 23 daily generations) with a smart-topology low-poly mode; Tripo P2 is the recommended paid step up for quad topology.",
+          "Motif (free) is used to inpaint and regenerate broken texture faces; Blender's clone brush handles small artifacts without a round trip.",
+          "Color consistency across AI assets is fixed with Blender color nodes, then baked — multiple objects can be joined, UV-packed with the free UV Packer add-on, and baked into one texture atlas.",
+          "Big cave surfaces are built from a few high-poly rock chunks decimated to roughly 1000 polys each, with normal maps baked from the originals and a Gemini-generated seamless tile texture on top.",
+          "Assembly is the artistic step: start from known-size assets, save accessories for last, learn Blender hotkeys, use the knife tool to cut never-seen geometry, and make ropes from Bezier curves instead of generating them.",
+          "Unreal Engine handles the finish — PBR material recreation, water, grass, Ultra Dynamic Sky/Weather, point lights and small animations, about two hours for the main setup."
+        ],
+        "why_it_matters": "It is a repeatable free-tool recipe for the part of AI 3D that actually fails — consistency and optimization — and it argues the human placement decisions are still where the craft lives."
+      },
+      "oss": [
+        {
+          "name": "Blender",
+          "slug": "blender/blender",
+          "what": "The assembly, cleanup, UV, baking and optimization hub for the whole pipeline."
+        },
+        {
+          "name": "UV Packer",
+          "slug": null,
+          "what": "Free Blender add-on used to unwrap and pack non-overlapping UVs before atlas baking."
+        },
+        {
+          "name": "Node Wrangler",
+          "slug": null,
+          "what": "Blender-bundled add-on enabling the Ctrl+T mapping shortcut for texture scale control."
+        },
+        {
+          "name": "Godot",
+          "slug": null,
+          "what": "Named alongside Unity as an engine the same export approach works with."
+        }
+      ],
+      "key_moments": [
+        {
+          "timestamp": "2:05",
+          "label": "Free image gen",
+          "description": "Points to Google's studio for free Nano Banana access to split concepts into building blocks."
+        },
+        {
+          "timestamp": "3:57",
+          "label": "Free 3D gen",
+          "description": "Moves to the Hunyuan site for roughly 23 free daily generations and its smart-topology low-poly mode."
+        },
+        {
+          "timestamp": "7:31",
+          "label": "Texture repair",
+          "description": "Exports GLBs to Motif, still free, to inpaint and regenerate the broken sides of boxes and the anchor."
+        },
+        {
+          "timestamp": "23:58",
+          "label": "One hour of assembly",
+          "description": "Reveals the main pier/hut chunk of the location built in about an hour of timelapsed placement."
+        },
+        {
+          "timestamp": "28:58",
+          "label": "Into Unreal",
+          "description": "Brings everything into Unreal Engine and starts recreating PBR materials, the most annoying step."
+        }
+      ]
+    },
+    "QkLKpUDDdgo": {
+      "summary": "A walkthrough of the new Higgsfield Blender extension: installing the zip, authorizing an account, then using the in-viewport chat for scene building, Meshy-6 text/image-to-3D with rigging, quick animation, and rendering a low-poly playblast that gets upgraded through Seedance 2.5. ASR garbles 'Higgsfield' into 'HIXEL'/'Hexel' partway through, renders Seedance as 'C-Dance'/'C dance', lists a model as 'Kimiko 3', and turns 'axed' into 'AIXD' at 10:42.",
+      "digest": {
+        "core_takeaway": "The Higgsfield Blender plugin collapses the Claude-to-Higgsfield-to-Blender round trip into one viewport, giving scene generation, 3D models, rigging, animation and video models a single home — with a usable free mode.",
+        "key_points": [
+          "Install by downloading the zip from the Higgsfield plugins page and dragging it onto an open Blender session; connect and authorize an account, verified under Edit > Preferences > Add-ons.",
+          "The in-viewport panel exposes scene builder, 3D, animation, images, video, camera and an assets browser mirroring the Higgsfield web interface.",
+          "A single natural-language prompt produced a low-poly forest with mountains, lake, trees, camera and skylight, auto-organized into its own Blender collection.",
+          "3D generation uses Meshy-6 text-to-3D or image-to-3D with rigging toggled on, target poly count and symmetry options; a rigged character imported straight into the scene.",
+          "Animation from the rig took about 20 seconds but floats and has weird arms — presented as the very beginning of AI in 3D, with the artist still the director.",
+          "Free mode exposes flagship models (Opus 5, Fable 5, Grok and others as the ASR lists them), though the premium models require a Higgsfield subscription.",
+          "The payoff workflow: render a 60-frame low-poly car/racetrack sequence, assemble to MP4 in Blender's video editor, and feed it to Seedance 2.5 as a reference for a realistic final clip.",
+          "The scene builder is not reliable — asked twice to fix a mis-placed track section, it failed to pick up the problem."
+        ],
+        "why_it_matters": "It shows the practical shape of AI-in-Blender right now: fast, rough first passes plus a video model doing the finishing, with the artist correcting and directing rather than modeling."
+      },
+      "oss": [
+        {
+          "name": "Blender",
+          "slug": "blender/blender",
+          "what": "Host application for the Higgsfield extension and all scene, render and video-edit work."
+        },
+        {
+          "name": "Blender MCP",
+          "slug": null,
+          "what": "Referenced as the prior route for connecting Claude to Blender for higher-detail scenes."
+        },
+        {
+          "name": "BlenderKit",
+          "slug": null,
+          "what": "Separately installed add-on visible in the viewport toolbar alongside the Higgsfield icon."
+        }
+      ],
+      "key_moments": [
+        {
+          "timestamp": "2:52",
+          "label": "Install the zip",
+          "description": "Drag the Higgsfield to Blender 1.5.35 zip onto an open Blender session to install from disk."
+        },
+        {
+          "timestamp": "4:13",
+          "label": "Scene from a prompt",
+          "description": "Prompts a low-poly forest with trees, mountains and a lake and watches the scene builder work."
+        },
+        {
+          "timestamp": "5:33",
+          "label": "Free mode models",
+          "description": "Lists the flagship models baked into the plugin and notes a free mode exists alongside the subscription."
+        },
+        {
+          "timestamp": "6:30",
+          "label": "Meshy-6 rigged model",
+          "description": "Generates a rigged low-poly adventurer via Meshy-6 text-to-3D with rigging enabled."
+        },
+        {
+          "timestamp": "15:59",
+          "label": "Seedance output",
+          "description": "Shows the final realistic car-on-track clip generated from the low-poly Blender reference video."
+        }
+      ]
+    },
+    "h_mR2BRibZ8": {
+      "summary": "A start-to-finish workflow for rigging and animating a non-humanoid scorpion creature for the presenter's RTS game: generate the model in parts with Tripo P2, assemble and UV it in Blender, produce animation references with a video model, then have GPT-6 Astra rig and keyframe everything through Blender MCP driven from Codex CLI. ASR garbles 'Seedance 2.5' as 'Cidens 2.5', 'Codex CLI' as 'Codec CLI', names an agent 'Mr Mark', and at 14:30 and 14:49 drops stray Cyrillic ('внутри') into English sentences.",
+      "digest": {
+        "core_takeaway": "AI rigging only works if you hand it a well-prepared mesh — generate the creature in logically separated low-poly parts rather than one solid high-poly blob, and the agent can rig, weight and animate it in about two hours.",
+        "key_points": [
+          "Do not generate a creature in one shot from an image: single-mesh output causes failed limbs and broken weights; generate parts separately with quad topology at very low poly counts.",
+          "Tripo P2 is the recommended generator for low poly and recently added lighting removal for clean albedo and improved texturing.",
+          "Assembly in Blender uses proportional editing and sculpt-mode tweaks; UVs are packed into a single texture because the creature is small on screen in an RTS.",
+          "Animation references come from video AI (Seedance 2.5) at roughly 3-4 second minimum length, generated at full speed and rescaled later; typically two iterations per animation.",
+          "GPT-6 Astra works through the official Blender MCP from Codex CLI in the game's own folder with bypassed permissions — explicitly not computer use.",
+          "Only the walk animation landed on the first try; attack, run, death and idle each needed screenshot- or text-based feedback, including artificially thickening the tail for a few impact frames.",
+          "Total: rig plus five animations in about two hours, then imported into the Unity project alongside an already-working wolf — work the presenter says once took his team a week."
+        ],
+        "why_it_matters": "It turns rigging and animation, historically the hardest gate for solo game developers, into a same-day step for arbitrary non-humanoid creatures."
+      },
+      "oss": [
+        {
+          "name": "Blender",
+          "slug": "blender/blender",
+          "what": "Where assembly, UV, rigging and all animation actually happens."
+        },
+        {
+          "name": "Blender MCP",
+          "slug": null,
+          "what": "The official MCP server giving the agent full Blender access instead of screen control."
+        },
+        {
+          "name": "Codex CLI",
+          "slug": null,
+          "what": "Folder-scoped terminal agent chosen for easier MCP and permission management."
+        }
+      ],
+      "key_moments": [
+        {
+          "timestamp": "1:51",
+          "label": "Tripo P2 low poly",
+          "description": "Credits Tripo P2 for crazy good low poly and argues parts-based generation gives near-artistic quality."
+        },
+        {
+          "timestamp": "6:30",
+          "label": "Video as reference",
+          "description": "Proposes using video AI to create animation references the agent can match frame by frame."
+        },
+        {
+          "timestamp": "8:59",
+          "label": "Blender MCP setup",
+          "description": "States the minimum requirement is the official Blender MCP and rules out computer use entirely."
+        },
+        {
+          "timestamp": "9:11",
+          "label": "First rig result",
+          "description": "Thirty minutes later reveals a fantastic rig, with the agent running its own tests over and over."
+        },
+        {
+          "timestamp": "12:20",
+          "label": "Attack animation",
+          "description": "Shows the iterated attack with the tail intentionally enlarged for a few frames at impact."
+        }
+      ]
+    },
+    "lj-xPo7ueGA": {
+      "summary": "A short report on MotionBricks CPP, a C++ port of NVIDIA's open-sourced MotionBricks real-time AI motion system that lets it run on low-VRAM GPUs or CPU, plugged into Unreal Engine via MCP. Heavy ASR garbling: 'Hicksfield' is Higgsfield, 'Kimoto'/'Kimodo' names vary, 'cdance 2.5' is Seedance 2.5, 'Tripo p2' appears as 'Tripo p2', the porter's name is rendered 'Richard Pillington', and 'ybu e 5.8 mcp' is unrecoverable.",
+      "digest": {
+        "core_takeaway": "MotionBricks is not a text-to-animation tool — it is an AI motion system that replaces a game's classic animation state machine and predicts movement from controls in real time, and the CPP port removes the high-VRAM barrier to trying it.",
+        "key_points": [
+          "MotionBricks takes a space and controls and predicts the animation sequence live, with no prompt; current control is limited to pose style.",
+          "NVIDIA has showcased but not shipped 'smart primitives' — defining objects like a box or sword the system would learn to pick up — and the timeline is unclear, which the presenter calls the frustrating part.",
+          "The same porter maintains a family of C++ ports: MotionBricks CPP, the Kimoto/Komodo text-to-motion port, and a skinning/rigging port that predicts skeletons and weight distribution, all designed to interoperate.",
+          "Installation was delegated entirely to an agent — point GPT-6 Astra at the git repo and let it install and also scaffold the Unreal demo, rather than following the README.",
+          "The Unreal side used the native Unreal Engine MCP combined with a second UE 5.8 MCP; the whole working demo took under an hour.",
+          "CPU inference genuinely works but adds latency and is framed as a research use case; roughly 8GB VRAM yields the ~30 frames MotionBricks produces, scalable to 60 in-engine.",
+          "The presenter credits robotics datasets for making this possible — robotics is pushing game development forward rather than the reverse."
+        ],
+        "why_it_matters": "It signals a near-term future where real-time engine animation systems are predicted rather than authored, and the CPU port means developers can evaluate that now without datacenter hardware."
+      },
+      "oss": [
+        {
+          "name": "MotionBricks",
+          "slug": null,
+          "what": "NVIDIA's open-sourced real-time AI motion system that replaces classic game animation systems."
+        },
+        {
+          "name": "MotionBricks CPP",
+          "slug": null,
+          "what": "Community C++ port letting MotionBricks run on low VRAM or pure CPU."
+        },
+        {
+          "name": "Kimoto CPP",
+          "slug": null,
+          "what": "C++ port of the text-to-motion generator by the same author, exportable into any engine."
+        },
+        {
+          "name": "SkinToken CPP",
+          "slug": null,
+          "what": "Work-in-progress rigging port that predicts a skeleton and weight distribution from a mesh."
+        },
+        {
+          "name": "Unreal Engine MCP",
+          "slug": null,
+          "what": "Native MCP used with a second UE 5.8 MCP to let the agent build the Unreal demo."
+        }
+      ],
+      "key_moments": [
+        {
+          "timestamp": "0:01",
+          "label": "The premise",
+          "description": "NVIDIA open-sourced MotionBricks, and a CPP port now allows low-VRAM or CPU execution."
+        },
+        {
+          "timestamp": "0:43",
+          "label": "Not prompt-based",
+          "description": "Clarifies MotionBricks replaces the classic animation system rather than generating animation from prompts."
+        },
+        {
+          "timestamp": "1:58",
+          "label": "Agent-installed",
+          "description": "Skips the README entirely — hands the git repo to the agent and asks it to install and build the demo."
+        },
+        {
+          "timestamp": "5:05",
+          "label": "CPU reality check",
+          "description": "Confirms CPU execution is possible but with compute delay, better suited to research than shipping."
+        },
+        {
+          "timestamp": "6:22",
+          "label": "Robotics credit",
+          "description": "Attributes the whole capability to robotics datasets pushing game development forward."
+        }
+      ]
+    },
+    "Du8EjlPePYM": {
+      "summary": "Philip from Pixel Artistry demonstrates Kimodo CPP, a C++ port letting NVIDIA's Kimodo text-to-motion run locally on CPU for free, then walks the full path from browser-generated motion to a retargeted, textured character in Unreal Engine. ASR inconsistency: the tool is spelled 'Kimodo', 'Kimoto' and 'Komodo' across the video, the porter's name shifts from 'Richard Paynter' to 'Richard Pailthorp', 'ComfyUI' is rendered 'Coffee AI', 'GLB' becomes 'GAB', and 'Tripo P2' is transcribed 'Tree for P2'.",
+      "digest": {
+        "core_takeaway": "A one-click Windows installer plus a local browser UI gets you free AI-generated character motion on any machine without a GPU, and the exported GLB retargets onto any humanoid rig in Unreal Engine in a couple of clicks.",
+        "key_points": [
+          "The Windows install script downloads all models and requirements, generates Vulkan shaders, and produces a demo.bat that launches a local browser preview — Mac and Linux users should hand the GitHub page to an agent instead.",
+          "Only the Soma 1.1 motion model is released so far; other models are listed as coming soon.",
+          "Motion generation from a text prompt takes roughly 60 seconds; past generations are retained and regeneration is expected before you get a usable take.",
+          "The constraint/key-pose option from the older interface is missing, and multi-segment prompts are order-sensitive — 'jump then run' worked where 'run then jump' did not.",
+          "Export via 'download animated GLB'; the UE animation GLB in the demo output folder is the file that goes into Unreal.",
+          "Retargeting: drag the GLB into Unreal, right-click the animation sequence, retarget onto SK_Manny_Simple or your own AccuRig-rigged FBX, and export with a prefix.",
+          "Textures do not survive retargeting — re-export the albedo from Blender's texture paint tab, build a material in Unreal and override it on the skeletal mesh.",
+          "Sponsored segment covers 3D AI Studio's node-based browser canvas Flow, which has integrated Tripo P2 for clean quad topology and can be saved as a reusable app."
+        ],
+        "why_it_matters": "It removes both the GPU requirement and the cost from AI character animation, and gives a concrete, repeatable Unreal retargeting recipe most AI-animation demos skip."
+      },
+      "oss": [
+        {
+          "name": "Kimodo CPP",
+          "slug": null,
+          "what": "C++ port of NVIDIA's Kimodo text-to-motion model running locally on CPU with a browser demo UI."
+        },
+        {
+          "name": "Blender",
+          "slug": "blender/blender",
+          "what": "Used to convert models to FBX and to export the albedo texture lost during retargeting."
+        },
+        {
+          "name": "AccuRig",
+          "slug": null,
+          "what": "Local auto-rigging tool that rigs the FBX character in about a minute and exports in T-pose."
+        }
+      ],
+      "key_moments": [
+        {
+          "timestamp": "0:04",
+          "label": "Runs on CPU",
+          "description": "Opens with the claim that NVIDIA Kimodo now runs locally on any CPU, completely free."
+        },
+        {
+          "timestamp": "1:31",
+          "label": "One-click installer",
+          "description": "Introduces the prepared Windows install script that fetches models, requirements and Vulkan shaders."
+        },
+        {
+          "timestamp": "3:42",
+          "label": "Soma 1.1 only",
+          "description": "Notes only the Soma 1.1 motion model is available; the rest are marked coming soon."
+        },
+        {
+          "timestamp": "5:58",
+          "label": "Export the motion",
+          "description": "Downloads the animated GLB and locates the UE animation file in the demo output folder."
+        },
+        {
+          "timestamp": "11:03",
+          "label": "Retarget in Unreal",
+          "description": "Right-click to retarget animations onto SK_Manny_Simple or the AccuRig-rigged custom character."
+        }
+      ]
+    },
+    "nglqTHwuZ-8": {
+      "summary": "A podcast episode with host Greg and guest Ross Mike deliberately avoiding 3D demos in favor of money-making and productivity uses for 'GPT-6 Astra' — nine concrete agent prompts, then a detailed account of designing a DIY Raspberry Pi smart speaker with Blender, purchased parts and a merged PR. The transcript is TRUNCATED mid-sentence at the sign-off ('And thank you,'). ASR garbles 'GPT-6' variously as 'GP6', 'GPC6' and 'GBT-6', renders 'Omarchy' as 'Omarchi', and at 21:22 produces the nonsensical 'Anthropic is sweat for circumference'.",
+      "digest": {
+        "core_takeaway": "The wasteful use of a frontier model is generating landing pages; the actual unlock is delegating audits, operations and — newly — physical hardware design, which the hosts call the start of 'vibe manufacturing'.",
+        "key_points": [
+          "Two immediate wins on any existing app: ask for a full performance review (one app went from ~800ms to 20-30ms) and a security audit, which caught real exposure on a live payments product.",
+          "Nine shared prompts include a bill renegotiator that chats with providers, an agency-to-software reverse-engineering prompt targeting $500-$5,000/month products, and a Facebook Marketplace/Craigslist mispricing scanner pitched at people who can't find work.",
+          "Operational prompts: a one-person-company weekly operator dashboard from docs/Stripe/analytics, an audit of which tasks should go to agents before hiring, a nightly QA agent that flags broken and confusing flows, and a monthly competitor report.",
+          "The last prompt builds a browser game with real progression and lead capture tied to a core product, rather than a demo nobody forwards.",
+          "The hardware story: unable to jailbreak a HomePod, the guest had the agent connect to Blender, model a speaker, produce a wiring diagram, spec a Raspberry Pi build at $561 before tax with Amazon links, and then write and open a PR against his agent repo — about half an hour total.",
+          "Cost framing: the model is OpenAI's most expensive but efficient in steps and heavily subsidized on a Codex subscription; the guest measured over $24,000 of usage in a week against a couple of $200 subscriptions.",
+          "Prototype throwaway clones for 15 minutes before building, because intelligence has risen but people's bravery to attempt new things has not."
+        ],
+        "why_it_matters": "It reframes a 3D-capable model as a business tool — the same Blender access that makes demos also makes physical product prototyping accessible to web developers, opening a lane of small niche hardware businesses."
+      },
+      "oss": [
+        {
+          "name": "Blender",
+          "slug": "blender/blender",
+          "what": "Used by the agent to model the speaker and lay out the physical Raspberry Pi wiring diagram."
+        },
+        {
+          "name": "Omarchy",
+          "slug": null,
+          "what": "Linux distro discussed as a candidate for repurposing an idle PS4 into a Linux lab."
+        },
+        {
+          "name": "Daytona",
+          "slug": null,
+          "what": "Sandbox provider the guest builds in after prototyping a throwaway clone first."
+        }
+      ],
+      "key_moments": [
+        {
+          "timestamp": "2:23",
+          "label": "Performance audit",
+          "description": "Recommends asking the Codex agent for a full app performance update; results went from ~800ms to 20-30ms."
+        },
+        {
+          "timestamp": "2:47",
+          "label": "Security audit",
+          "description": "Describes running a security audit on a live payments side project and finding serious exposure."
+        },
+        {
+          "timestamp": "12:52",
+          "label": "Blender for hardware",
+          "description": "Asks the agent to connect to Blender and model a HomePod-like speaker for a DIY build."
+        },
+        {
+          "timestamp": "15:09",
+          "label": "It opened a PR",
+          "description": "The agent wrote the code to load his agent onto the Raspberry Pi and opened a pull request he merged."
+        },
+        {
+          "timestamp": "20:28",
+          "label": "Vibe manufacturing",
+          "description": "Frames the shift as OpenAI spearheading vibe manufacturing and thousands of $1M/year niche businesses."
+        }
+      ]
+    }
+  },
+  "topics": [
+    {
+      "name": "Higgsfield's Blender plugin as the agent's toolbelt",
+      "video_ids": [
+        "QkLKpUDDdgo",
+        "8MUk-tQTiwE",
+        "lj-xPo7ueGA"
+      ],
+      "quote_ts": "0:00",
+      "quote": "Higgsfield now has an extension that connects to Blender."
+    },
+    {
+      "name": "Seedance 2.5 finishing low-poly Blender playblasts",
+      "video_ids": [
+        "8MUk-tQTiwE",
+        "QkLKpUDDdgo",
+        "h_mR2BRibZ8"
+      ],
+      "quote_ts": "10:23",
+      "quote": "AI filmmaking is real and you can actually direct it."
+    },
+    {
+      "name": "GPT-6 Astra rigging and animating in Blender",
+      "video_ids": [
+        "8MUk-tQTiwE",
+        "h_mR2BRibZ8",
+        "lj-xPo7ueGA",
+        "nglqTHwuZ-8"
+      ],
+      "quote_ts": "1:27",
+      "quote": "And there is no problem with weights."
+    },
+    {
+      "name": "MCP access beats computer use for 3D agents",
+      "video_ids": [
+        "8MUk-tQTiwE",
+        "h_mR2BRibZ8",
+        "QkLKpUDDdgo"
+      ],
+      "quote_ts": "9:08",
+      "quote": "We are 100 % not doing this through computer use."
+    },
+    {
+      "name": "C++ ports bringing NVIDIA motion AI to CPU",
+      "video_ids": [
+        "Du8EjlPePYM",
+        "lj-xPo7ueGA"
+      ],
+      "quote_ts": "0:04",
+      "quote": "NVIDIA Kimodo runs now locally on any CPU."
+    },
+    {
+      "name": "Tripo P2 for clean low-poly quad topology",
+      "video_ids": [
+        "h_mR2BRibZ8",
+        "wknRD5g-vvk",
+        "Du8EjlPePYM"
+      ],
+      "quote_ts": "1:51",
+      "quote": "Recently shipped amazing Tripo P2 that does crazy good low poly."
+    },
+    {
+      "name": "Blender as the hub of every AI 3D pipeline",
+      "video_ids": [
+        "wknRD5g-vvk",
+        "QkLKpUDDdgo",
+        "h_mR2BRibZ8",
+        "Du8EjlPePYM",
+        "RKND9_gAtXo"
+      ],
+      "quote_ts": "6:19",
+      "quote": "just the best tool to work with 3D"
+    },
+    {
+      "name": "Free and local-first tooling",
+      "video_ids": [
+        "wknRD5g-vvk",
+        "Du8EjlPePYM",
+        "QkLKpUDDdgo",
+        "RKND9_gAtXo"
+      ],
+      "quote_ts": "0:41",
+      "quote": "how to do that only using free AI tools."
+    },
+    {
+      "name": "Unreal Engine as the destination for AI assets",
+      "video_ids": [
+        "Du8EjlPePYM",
+        "lj-xPo7ueGA",
+        "wknRD5g-vvk"
+      ],
+      "quote_ts": "11:03",
+      "quote": "retarget animations. And then it's really easy."
+    },
+    {
+      "name": "Stop building demos, build businesses",
+      "video_ids": [
+        "nglqTHwuZ-8",
+        "8MUk-tQTiwE"
+      ],
+      "quote_ts": "16:43",
+      "quote": "it's a sad use of intelligence."
+    }
+  ]
+}

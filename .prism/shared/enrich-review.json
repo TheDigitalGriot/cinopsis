@@ -1,0 +1,362 @@
+{
+  "unmatched_slugs": [
+    [
+      "fwDyOvUOmy8",
+      "Shshtwy/bare-browser"
+    ],
+    [
+      "ajSNbf_s_2g",
+      "JingMatrix/TEESimulator"
+    ],
+    [
+      "ajSNbf_s_2g",
+      "NUKnightLab/sql-mysteries"
+    ],
+    [
+      "UK2xbBmxywg",
+      "huggingface:mlx-community/Qwen3.8-27B-4bit"
+    ]
+  ],
+  "noslug_tools": [
+    {
+      "name": "Claude Code /design",
+      "what": "canvas feature in the Claude Code app that generates and iterates UI variations from your codebase.",
+      "vid": "Ojo8c_Xq4ms"
+    },
+    {
+      "name": "Apache Mocha",
+      "what": "local-first agent workspace recording an append-only runtime log across desktop/terminal/CLI.",
+      "vid": "fwDyOvUOmy8"
+    },
+    {
+      "name": "Open Deep Research",
+      "what": "open-source, model-agnostic deep-research tool that writes cited reports from one question (Perplexity alternative).",
+      "vid": "k4x7YJhhn_E"
+    },
+    {
+      "name": "OmniRoute (omniroute.online)",
+      "what": "local AI gateway aggregating ~295 providers behind one endpoint with quota-aware failover and model \"combos\".",
+      "vid": "NJ0TQ-pyMDY"
+    },
+    {
+      "name": "OpenRouter",
+      "what": "provider whose free models are imported via API key.",
+      "vid": "NJ0TQ-pyMDY"
+    },
+    {
+      "name": "Kiro AI",
+      "what": "provider (Google login) exposing Claude Sonnet/Haiku-class models.",
+      "vid": "NJ0TQ-pyMDY"
+    },
+    {
+      "name": "Anti-gravity",
+      "what": "provider (Gmail auth) exposing Claude Opus/Sonnet and Gemini Flash variants.",
+      "vid": "NJ0TQ-pyMDY"
+    },
+    {
+      "name": "Nvidia NIM",
+      "what": "provider (API key) offering GLM models.",
+      "vid": "NJ0TQ-pyMDY"
+    },
+    {
+      "name": "Higgsfield AI",
+      "what": "all-in-one AI creative platform (image, video, 3D, voice, dubbing, upscaling) used for the whole film workflow.",
+      "vid": "tKEFUwTAcpg"
+    },
+    {
+      "name": "SeeDance 2.5 (SeaDance)",
+      "what": "AI video model (1080p, up to 30s clips) used for image-to-video generation on Higgsfield.",
+      "vid": "tKEFUwTAcpg"
+    },
+    {
+      "name": "GPT image model",
+      "what": "image-generation model (referenced as \"GPT image 2\" / \"GPT-1 image 2\") used to render storyboard panels.",
+      "vid": "tKEFUwTAcpg"
+    },
+    {
+      "name": "Nano Banana Pro",
+      "what": "image model referenced in a promotional discount offer.",
+      "vid": "tKEFUwTAcpg"
+    },
+    {
+      "name": "Kling",
+      "what": "AI video model referenced in a promotional discount offer.",
+      "vid": "tKEFUwTAcpg"
+    },
+    {
+      "name": "Evoke",
+      "what": "open-source (Apache 2) 14B real-time interactive world video model; image + joystick/text input, generates in 3 steps.",
+      "vid": "rQ4yX5qNYdY"
+    },
+    {
+      "name": "4D Anyone",
+      "what": "turns a single video of a person into a 4D Gaussian-splat reconstruction viewable from any angle (~12GB model).",
+      "vid": "rQ4yX5qNYdY"
+    },
+    {
+      "name": "SenseNova U 1.5 8B",
+      "what": "open-source image generator/editor producing native 4K end-to-end in pixel space (no VAE); Apache 2, ~50GB.",
+      "vid": "rQ4yX5qNYdY"
+    },
+    {
+      "name": "Ornith 1.5",
+      "what": "open-source model family (9B/35B/397B MoE) trained via a self-improvement task-proposal loop; GGUF quants available.",
+      "vid": "rQ4yX5qNYdY"
+    },
+    {
+      "name": "GeoWeaver",
+      "what": "long-video-to-3D reconstruction method using chunked prediction and stitching to reduce drift (paper released).",
+      "vid": "rQ4yX5qNYdY"
+    },
+    {
+      "name": "Qwen VideoEdit",
+      "what": "text-prompt video editing that plugs Qwen-Image-Edit into Alibaba's Wan for frame-by-frame edits; code + training script released.",
+      "vid": "rQ4yX5qNYdY"
+    },
+    {
+      "name": "Qwen-Image-Edit",
+      "what": "image editor used as the per-frame engine inside Qwen VideoEdit.",
+      "vid": "rQ4yX5qNYdY"
+    },
+    {
+      "name": "Wan (Alibaba)",
+      "what": "video-generation workflow used by Qwen VideoEdit.",
+      "vid": "rQ4yX5qNYdY"
+    },
+    {
+      "name": "DeepSeek V4 Flash Vision Experimental",
+      "what": "vision-capable variant of DeepSeek V4 Flash matching Opus-class on agentic coding benchmarks (API-only).",
+      "vid": "rQ4yX5qNYdY"
+    },
+    {
+      "name": "Comfy MCP",
+      "what": "ComfyUI's open-source agentic connector letting an AI agent drive ComfyUI workflows/models via natural language.",
+      "vid": "rQ4yX5qNYdY"
+    },
+    {
+      "name": "ComfyUI",
+      "what": "node-based generative workflow tool that Comfy MCP connects agents to.",
+      "vid": "rQ4yX5qNYdY"
+    },
+    {
+      "name": "Nvidia AO",
+      "what": "agentic harness/pipeline that raised Claude Opus 5 from 30% to 100% on the ARC-AGI-3 public set.",
+      "vid": "rQ4yX5qNYdY"
+    },
+    {
+      "name": "Gen 1.5",
+      "what": "robot foundation model that can attempt a task from a single 3–12s demonstration (59% one-shot, 83% with ~5 min data).",
+      "vid": "rQ4yX5qNYdY"
+    },
+    {
+      "name": "Happy Shrimp",
+      "what": "free AI music generator (style + lyrics or instrumental) from the lab behind \"Happy Horse\".",
+      "vid": "rQ4yX5qNYdY"
+    },
+    {
+      "name": "ARC-AGI-3",
+      "what": "benchmark of instruction-free video-game environments testing on-the-fly learning (referenced as evaluation target).",
+      "vid": "rQ4yX5qNYdY"
+    },
+    {
+      "name": "k-transformers (KTransformers)",
+      "what": "engine cited for making \"missed expert as compute\" fast; part of the MoE-offload lineage.",
+      "vid": "Mlo16hrA5wQ"
+    },
+    {
+      "name": "Fiddler",
+      "what": "prior work that proposed treating a missed expert as work (compute) rather than data to fetch.",
+      "vid": "Mlo16hrA5wQ"
+    },
+    {
+      "name": "DeepSeek V4 Flash",
+      "what": "MoE model (256 experts/layer, 43 layers, 6 fire per token) used as a benchmark target.",
+      "vid": "Mlo16hrA5wQ"
+    },
+    {
+      "name": "Qwen 35B",
+      "what": "MoE model used in Free Token's throughput benchmarks.",
+      "vid": "Mlo16hrA5wQ"
+    },
+    {
+      "name": "GLM 5.2",
+      "what": "model benchmarked on the workstation card (14.9 tok/s Free Token vs 7.3 llama.cpp).",
+      "vid": "Mlo16hrA5wQ"
+    },
+    {
+      "name": "Kie.ai",
+      "what": "aggregator API (\"OpenRouter for image/video models\") used by the skill to generate images/videos from an API key in the project's env vars.",
+      "vid": "QUI6Ug4cHnE"
+    },
+    {
+      "name": "Prime Intellect",
+      "what": "decentralized training/RL research lab that maintains Prime Agent and the surrounding stack.",
+      "vid": "1BY_RNBP9F0"
+    },
+    {
+      "name": "PyMono agent",
+      "what": "the agent repository Prime Agent was originally forked from.",
+      "vid": "1BY_RNBP9F0"
+    },
+    {
+      "name": "Prime Intellect verifiers",
+      "what": "evaluation component of the surrounding family of tools.",
+      "vid": "1BY_RNBP9F0"
+    },
+    {
+      "name": "IPython kernel",
+      "what": "the single persistent REPL/control environment the agent runs everything through.",
+      "vid": "1BY_RNBP9F0"
+    },
+    {
+      "name": "Agent Skills format",
+      "what": "skill spec Prime Agent implements and extends so skills can be importable Python packages.",
+      "vid": "1BY_RNBP9F0"
+    },
+    {
+      "name": "Viking protocol",
+      "what": "addressing scheme giving every memory entry a file-path-like address.",
+      "vid": "P-458yO0eak"
+    },
+    {
+      "name": "Nous Research portal",
+      "what": "model access portal used to route bots to models like Qwen 3.",
+      "vid": "2Q-xW88YARg"
+    },
+    {
+      "name": "agentwikis.com",
+      "what": "the creator's project offering free (and paid pro) LLM research \"wikis.\"",
+      "vid": "2Q-xW88YARg"
+    },
+    {
+      "name": "SOUL.md",
+      "what": "per-bot mission/config file defining each bot's role.",
+      "vid": "2Q-xW88YARg"
+    },
+    {
+      "name": "NVIDIA RTX Spark",
+      "what": "on-device platform with 128 GB unified memory enabling a local agent to hold a full codebase in context.",
+      "vid": "WCRNR1Ve9s0"
+    },
+    {
+      "name": "Hermes agent",
+      "what": "the long-running local agent that monitors channels, debugs, and runs QA on the device.",
+      "vid": "WCRNR1Ve9s0"
+    },
+    {
+      "name": "Qwen (\"Quant 3.6\") model",
+      "what": "local model running on RTX Spark to ingest the codebase and find the fix.",
+      "vid": "WCRNR1Ve9s0"
+    },
+    {
+      "name": "Computer-use agent",
+      "what": "sub-agent spun up during the QA pass to navigate and test the UI autonomously.",
+      "vid": "WCRNR1Ve9s0"
+    },
+    {
+      "name": "Hyperframes / Hyperframe Studio",
+      "what": "tool (with a browser-based, After-Effects-like studio) used with Claude to build and preview code-driven motion graphics.",
+      "vid": "7ixWO1SeEZo"
+    },
+    {
+      "name": "Remotion",
+      "what": "programmatic video/animation framework used in the workflow.",
+      "vid": "7ixWO1SeEZo"
+    },
+    {
+      "name": "Motion design skill GitHub repo (by \"Nattu\")",
+      "what": "Claude skill with a core SKILL.md eight-step checklist and director/patterns/reference folders encoding motion-design best practices.",
+      "vid": "7ixWO1SeEZo"
+    },
+    {
+      "name": "Eisenberg paper kit",
+      "what": "the creator's downloadable zip bundling a demo project, motion design skill, readme, scripts, setup, and the \"paper mache\" style.",
+      "vid": "7ixWO1SeEZo"
+    },
+    {
+      "name": "Huffman coding",
+      "what": "variable-length prefix compression assigning fewer bits to common characters.",
+      "vid": "TOr1Vvji6jA"
+    },
+    {
+      "name": "Arithmetic coding",
+      "what": "alternative entropy coder considered for better ratios but rejected as too complex.",
+      "vid": "TOr1Vvji6jA"
+    },
+    {
+      "name": "boot.dev",
+      "what": "paid interactive platform for learning programming and databases (Python, Go, TypeScript, SQL); video sponsor.",
+      "vid": "TOr1Vvji6jA"
+    },
+    {
+      "name": "100k web-crawler links dataset (GitHub)",
+      "what": "used to estimate character frequencies.",
+      "vid": "TOr1Vvji6jA"
+    },
+    {
+      "name": "1M Reddit links dataset",
+      "what": "more representative sample used to build the compression dictionaries.",
+      "vid": "TOr1Vvji6jA"
+    },
+    {
+      "name": "QR alphanumeric mode",
+      "what": "QR data mode Hammer uses instead of byte mode for denser-optimal codes.",
+      "vid": "TOr1Vvji6jA"
+    },
+    {
+      "name": "NVFP4",
+      "what": "4-bit quantized model format run on the DGX Spark cluster.",
+      "vid": "UK2xbBmxywg"
+    },
+    {
+      "name": "DGX Spark",
+      "what": "Nvidia compute used to host the model (compute sponsored by Nvidia).",
+      "vid": "UK2xbBmxywg"
+    },
+    {
+      "name": "Speculative decoding (draft model)",
+      "what": "technique enabled to speed generation.",
+      "vid": "UK2xbBmxywg"
+    },
+    {
+      "name": "DeepSeek V4 Pro",
+      "what": "flagship model tested via the harness; one-shot-built an app for ~30 cents.",
+      "vid": "xBByvFrqmWU"
+    },
+    {
+      "name": "Cordis",
+      "what": "small framework DeepSeek built to facilitate the plugin architecture.",
+      "vid": "xBByvFrqmWU"
+    },
+    {
+      "name": "Blue.impact",
+      "what": "nonprofit offering free AI courses (future of AI, AI governance, biosecurity); video sponsor.",
+      "vid": "xBByvFrqmWU"
+    },
+    {
+      "name": "Multi-token prediction",
+      "what": "drafts several tokens ahead for up to 78% faster generation.",
+      "vid": "kyYepbhe1g8"
+    },
+    {
+      "name": "Model distillation",
+      "what": "training one student model from 10+ specialist teacher checkpoints.",
+      "vid": "kyYepbhe1g8"
+    },
+    {
+      "name": "Lambda (lambda.ai)",
+      "what": "Nvidia-GPU cloud for running/training/fine-tuning models and reproducing papers; video sponsor.",
+      "vid": "kyYepbhe1g8"
+    },
+    {
+      "name": "DeepSpark",
+      "what": "DeepSeek-related tool/platform the host recommends using alongside DeepSeek.",
+      "vid": "kyYepbhe1g8"
+    },
+    {
+      "name": "DeepSeek agent harness",
+      "what": "novel \"no agent\" harness design teased for a future breakdown.",
+      "vid": "kyYepbhe1g8"
+    }
+  ]
+}

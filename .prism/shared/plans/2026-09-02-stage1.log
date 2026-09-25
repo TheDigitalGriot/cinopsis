@@ -1,0 +1,53 @@
+`CLAUDE.md` was already modified before my run — it has a BOM and mojibake (`—` → `â€"`) from an earlier session. **Not mine, and I did not touch it**; flagging rather than fixing since it's your file.
+
+HB:I1-exporter
+HB:I2-reindex
+HB:I3-backfill
+HB:I4-vault
+HB:V-validate
+HB:DONE
+
+---
+
+## Summary
+
+### Files changed (5)
+| File | Change |
+|---|---|
+| `scripts/_utils.py` | +55 — new `COOKIE_FILENAME`, `cookie_targets()`, `resolve_cookies()` as the single source of truth |
+| `scripts/fetch_playlist.py` | −23 — deleted its private `resolve_cookies`, now imports the shared one |
+| `scripts/get_transcript.py` | +11/−4 — yt-dlp rung uses the shared resolver instead of an inlined copy |
+| `scripts/compare_server.py` | +48 — new `GET /vault` and `GET /api/vault` |
+| `viewer/viewer.html` | +5 — additive "Vault" link + `a.library-btn` rule |
+
+### Files created (4)
+- `scripts/export_yt_cookies.py` — hardened (was untracked/drafted; **all `C:\Users\digit\` literals removed**)
+- `scripts/reindex_sessions.py` — recovers on-disk sessions missing from `index.json`
+- `scripts/backfill_catchups.py` — rebuilds the 4 catch-ups offline
+- `viewer/vault.html` — flat per-video library page
+- `tests/test_vault_and_reindex.py` — 17 new tests
+
+### Validation
+```
+claude plugin validate .        PASS
+ast-parse 24 scripts            PASS
+import 10 modules               PASS
+pytest tests/                   57 passed (40 pre-existing + 17 new)
+/api/sessions   200 · 30 sessions (was 24) · all 6 target dirs present
+/api/session x6 200 · 4 catch-ups carry rich analysis
+/vault          200 · griotwave frame applied
+/api/vault      200 · 240 videos · dedup clean · 27 sessions
+/api/videos     200 · payload shape UNCHANGED (back-compat)
+network calls   NONE
+```
+Index went **24 → 26** (reindex) **→ 30** (backfill), +112 videos. Counts cross-validate against each digest's own claims (23/33/22/34).
+
+### Three things you should decide on
+
+1. **08-16 video IDs are genuinely unrecoverable offline.** I tried matching digest text against cached transcript *content* — it produced only 4/23 confident matches with single IDs winning unrelated bullets at zero margin, so I **rejected it rather than fabricate mappings**. Those 23 entries carry a synthetic `unresolved-<hash>` id (required — `_build_video_lookup` silently drops falsy ids) plus a YouTube *search* URL, tagged `id_status:"unresolved"`. Similarly 08-23 lost its titles at digest time, so those 22 use a clipped Core Takeaway tagged `title_status:"derived-from-digest"`. Both gaps are machine-readable and refillable.
+
+2. **The 2 reindexed 2026-07-31 orphans are probably junk.** They hold the *same 3 videos* as the already-indexed `kimi-k3-and-the-open-weight-explosion-lo`, and both have empty analysis — superseded intermediate builds. Your viewer now shows 2 empty near-duplicates. Say the word and I'll drop those 2 index entries; vault counts are unaffected either way.
+
+3. **`prism:graph-navigator` is broken plugin-wide.** Every dispatch fails with *"would be spawned with zero tools — unrecognized [codebase-memory-mcp, (all 11 tools)]"*. Its `tools:` frontmatter isn't parseable. I switched surface to `codebase-analyzer`/`codebase-locator` per the Stuck Protocol, but this is worth a fix in the Prism plugin since it silently disables your primary structural-query agent.
+
+Note on I4: `/api/videos` and a "Library" modal **already existed** — I reused `_build_video_lookup()` and left both untouched rather than building a duplicate, so dedup rules can't drift between the two endpoints.

@@ -1,0 +1,635 @@
+{
+ "videos": {
+  "o7VJnIN31Ds": {
+   "summary": "Philip from Pixel Artistry walks through the brand-new native ComfyUI integration of Trellis 2 and a second image-to-3D generator, showing model downloads, workflow settings and quality tips on 6GB VRAM. ASR note: the second generator's name is garbled throughout, appearing as 'PixArt-alpha', 'Pixel 3D', 'PixArt 3D' and 'Pixologic 3D'; 'Trellis 2' also appears as 'Trality 2' and 'trellis tool', and a normal-map model is transcribed as 'Emoji 2' and a repo as 'Visual Bruno'.",
+   "digest": {
+    "core_takeaway": "Two leading open-source image-to-3D generators now run natively in ComfyUI with zero extra dependencies, which removes the CUDA build-tool and Torch-breakage pain that made them hard to install. A 6GB-VRAM quantized path makes the whole mesh-plus-texture workflow reachable on modest GPUs.",
+    "key_points": [
+     "Kijai rebuilt the model code and the full post-processing chain (re-meshing, decimating, UV unwrapping, texture bake) in pure PyTorch, so no CUDA libraries are required and the code is no longer Nvidia-exclusive in principle, though AMD and Intel are untested.",
+     "You must update ComfyUI to 'latest on GitHub' rather than the stable channel, or the nodes will not appear; desktop and portable installs both work.",
+     "The one mistake almost everyone makes when switching models: each generator needs its own conditioning node, so pairing a Trellis 2 model with the other generator's conditioning node errors out.",
+     "Quality knobs are steps (12 default, up to ~50; 30 on low VRAM), resolution up to 64, upsampling up to 2K, and texture size at 4K, with adaptive versus packed UV unwrap modes.",
+     "Reported run times on an RTX 5080 16GB: 282s for the int8 model, 245s for the BF16 full model, 186s for Trellis 2 on a different image.",
+     "Current limitations are no true multi-view support and UV unwrap VRAM spikes at 4K on smaller cards; workarounds include unloading models and cache, exporting GLB manually from the viewer, and muting texture-bake nodes with Ctrl+B when only the mesh is needed."
+    ],
+    "why_it_matters": "Installation friction, not quality, was the barrier keeping local 3D AI generation out of most artists' hands, and core integration removes it. It puts a full mesh-to-textured-asset pipeline inside a tool many creators already run."
+   },
+   "oss": [
+    {
+     "name": "ComfyUI",
+     "slug": "comfyanonymous/ComfyUI",
+     "what": "Node-based generative workflow app that now ships both 3D generators in core."
+    },
+    {
+     "name": "Trellis 2",
+     "slug": null,
+     "what": "Open-source image-to-3D generator, now a native ComfyUI model and conditioning node pair."
+    },
+    {
+     "name": "Pixel 3D / PixArt 3D (ASR-garbled name)",
+     "slug": null,
+     "what": "The second image-to-3D generator, said to give slightly more shape accuracy than Trellis 2."
+    },
+    {
+     "name": "Blender",
+     "slug": null,
+     "what": "Used to import the exported GLB and inspect mesh, textures and wireframe."
+    },
+    {
+     "name": "DINOv3",
+     "slug": null,
+     "what": "One of the required vision models the workflow's red nodes ask you to download."
+    },
+    {
+     "name": "Hugging Face (Comfy Org repos)",
+     "slug": null,
+     "what": "Where the clip vision, diffusion and VAE safetensors for both workflows are hosted."
+    }
+   ],
+   "key_moments": [
+    {
+     "timestamp": "1:01",
+     "label": "Pure PyTorch rebuild",
+     "description": "Kijai rebuilt the models and the whole post-processing chain so there are zero extra dependencies."
+    },
+    {
+     "timestamp": "2:01",
+     "label": "Update to latest on GitHub",
+     "description": "The stable ComfyUI channel will not work; you must switch the update window to latest on GitHub."
+    },
+    {
+     "timestamp": "6:49",
+     "label": "The switching mistake",
+     "description": "Each generator needs its matching conditioning node or the workflow will error."
+    },
+    {
+     "timestamp": "8:14",
+     "label": "Quality settings pass",
+     "description": "Steps, resolution, upsampling stage and 4K texture size are the dials that buy better output."
+    },
+    {
+     "timestamp": "10:52",
+     "label": "Known limitations",
+     "description": "No real multi-view yet, and UV unwrap can spike VRAM at 4K on smaller cards."
+    }
+   ]
+  },
+  "JlmNBGcZ3Ik": {
+   "summary": "A developer converts Vertex Arcade's Blender sketch shader into two Three.js portfolio-website demos, then breaks down the hatching and outline techniques plus his AI-assisted workflow. ASR note: 'Three.js' is consistently transcribed as '3GS'/'3JS', 'Claude' appears as 'Clades', and 'Krita' appears as 'Critter'.",
+   "digest": {
+    "core_takeaway": "A simple Blender sketch shader translates cleanly to the web if you understand the two underlying tricks: channel-packed hatching textures and an inverted-hull outline. The AI does the porting, but only if you feed it a well-named scene and make it iterate on optimization.",
+    "key_points": [
+     "Figma MCP can export a layout's images as planes straight into an empty Blender file in the same orientation, though it burns MCP calls fast on the free plan and needs explicit instructions to use a mesh-plane image setup wired to Principled BSDF.",
+     "Cross-hatching uses the Vertex Arcade RGB trick: three black-and-white patterns packed into the red, green and blue channels of one texture, then cycled over time in TSL; a sprite sheet, three separate textures or UV distortion work equally well.",
+     "Outlines here are the classic inverted hull: a solidify modifier with flipped normals, a second material slot via material offset, and back-face culling, which the code then displaces per-vertex.",
+     "UV-based hatching keeps the shadow locked to the surface as the object rotates, while screen-space hatching reads as a fixed overlay; edge-detection outlines instead compare normals, pixel color differences and depth.",
+     "Practical AI advice: ask for optimization three or four times, have it detect FPS and auto-adjust quality, and let it invent its own method first before reading your Blender node graph, which parses better than a cold 'read this and recreate it'.",
+     "A skills.md file can tell the agent to swap an expensive procedural node, such as a noise texture, for a pre-rendered image texture instead of recreating the algorithm, which is a standard web optimization."
+    ],
+    "why_it_matters": "It shows 3D artists a concrete route from a Blender look-dev experiment to a shipped interactive website without writing shader math themselves. The named failure modes, from MCP call limits to repeated optimization passes, are the parts most tutorials leave out."
+   },
+   "oss": [
+    {
+     "name": "Blender",
+     "slug": null,
+     "what": "Source of the sketch shader, the scene layout and the solidify-modifier outline setup."
+    },
+    {
+     "name": "Three.js (transcribed as '3GS')",
+     "slug": null,
+     "what": "The web renderer the Blender scenes and shaders are ported into."
+    },
+    {
+     "name": "TSL (Three.js Shading Language)",
+     "slug": null,
+     "what": "Used to write the RGB-channel hatching and the brightness/contrast adjust function."
+    },
+    {
+     "name": "Figma MCP",
+     "slug": null,
+     "what": "MCP server used to export Figma images as oriented planes into Blender."
+    },
+    {
+     "name": "Blender MCP",
+     "slug": null,
+     "what": "Lets the AI agent read your open Blender file's node setup for clues."
+    },
+    {
+     "name": "Asset Reloader add-on",
+     "slug": null,
+     "what": "The author's own Blender add-on that re-exports a collection and hot-reloads it in the browser with Shift+E."
+    },
+    {
+     "name": "glTF Report",
+     "slug": null,
+     "what": "Browser tool used to inspect the exported GLB and catch a suspect material setup."
+    }
+   ],
+   "key_moments": [
+    {
+     "timestamp": "1:48",
+     "label": "Figma to Blender via MCP",
+     "description": "Exports Figma images as planes into an empty Blender file, hitting free-plan MCP call limits partway."
+    },
+    {
+     "timestamp": "6:10",
+     "label": "In-browser path tool",
+     "description": "A #debug path tool captures camera pose and rotation to generate a curve without a Blender curve exporter."
+    },
+    {
+     "timestamp": "6:50",
+     "label": "RGB channel hatching",
+     "description": "Three hatch patterns packed into red, green and blue channels and cycled over time."
+    },
+    {
+     "timestamp": "8:50",
+     "label": "Inverted hull outline",
+     "description": "Solidify modifier with flipped normals plus a second material slot produces the outline."
+    },
+    {
+     "timestamp": "13:51",
+     "label": "skills.md optimization trick",
+     "description": "Tell the agent to use a pre-rendered noise image instead of recreating the noise algorithm."
+    }
+   ]
+  },
+  "y9t-0-vj25s": {
+   "summary": "A short making-of showing how a multi-dimensional-travel animation was built end to end in iClone 8, then re-rendered in several AI styles through the new AI Studio workspace. ASR note: several product names are garbled, including 'ElevenLabs' as '11 Labs/11 laps', 'AccuLips' as 'aculips/IQ lips', 'Seedance 2.0' as 'sedance/Cance 2.0', 'iClone' as 'icon/icone', and 'origami' as 'origyami'.",
+   "digest": {
+    "core_takeaway": "You can keep full 3D control over camera, lighting and performance in iClone while swapping the final render into completely different AI-generated art styles. AI Studio turns one finished real-time scene into 2D anime, origami, minimal cartoon or any other style without rebuilding anything.",
+    "key_points": [
+     "The whole scene, animation, camera moves and real-time render were prepared in iClone 8, using only two light colors, red and blue, to set the cinematography.",
+     "The character Liam was built in Character Creator 5 with the new Headshot 3 plugin, then imported into the iClone scene.",
+     "Green particle effects came from the Popcorn effects plugin inside iClone.",
+     "Voice-over was generated as text-to-speech in ElevenLabs, imported onto the character, and lip-synced automatically with AccuLips.",
+     "The AI Studio workflow is two stages: 3D-to-image on a frame captured from the viewport (Nano Banana Pro, roughly one to two minutes), then 3D-to-video with Seedance 2.0 at 720p or 1080p with 'apply camera movement' checked.",
+     "Styles ship with editable default prompts you can expand and extend, and swapping style is the only change needed to re-render the same shot a different way.",
+     "The creator closes by noting iClone personal is now free to download."
+    ],
+    "why_it_matters": "It is a practical answer to the consistency problem in AI video: the 3D scene holds camera, timing and blocking steady while the style layer changes freely. That makes stylistic exploration cheap for solo animators rather than a full re-production."
+   },
+   "oss": [
+    {
+     "name": "iClone 8",
+     "slug": null,
+     "what": "Real-time animation app where the scene, lights, camera moves and render were built."
+    },
+    {
+     "name": "AI Studio (iClone workspace)",
+     "slug": null,
+     "what": "New render alternative that turns a viewport capture into AI-styled image and video output."
+    },
+    {
+     "name": "Character Creator 5",
+     "slug": null,
+     "what": "Used to create the character Liam before importing into iClone."
+    },
+    {
+     "name": "Headshot 3",
+     "slug": null,
+     "what": "Character Creator plugin for building the custom head."
+    },
+    {
+     "name": "Popcorn effects",
+     "slug": null,
+     "what": "iClone plugin that produced the green particle effect."
+    },
+    {
+     "name": "ElevenLabs",
+     "slug": null,
+     "what": "Text-to-speech source for the voice-over audio."
+    },
+    {
+     "name": "AccuLips",
+     "slug": null,
+     "what": "iClone lip-sync feature applied to the imported audio."
+    },
+    {
+     "name": "Nano Banana Pro",
+     "slug": null,
+     "what": "Model chosen for the 3D-to-image style pass."
+    },
+    {
+     "name": "Seedance 2.0",
+     "slug": null,
+     "what": "Model chosen for the 3D-to-video pass with camera movement applied."
+    }
+   ],
+   "key_moments": [
+    {
+     "timestamp": "1:53",
+     "label": "Character from CC5",
+     "description": "Liam was created in Character Creator 5 using the new Headshot 3 plugin."
+    },
+    {
+     "timestamp": "4:43",
+     "label": "Voice and lip sync",
+     "description": "ElevenLabs TTS audio imported onto the character and synced with AccuLips."
+    },
+    {
+     "timestamp": "5:08",
+     "label": "Switch to AI Studio workspace",
+     "description": "One button swaps the real-time renderer for the AI styling workspace."
+    },
+    {
+     "timestamp": "5:42",
+     "label": "3D to image pass",
+     "description": "Capture a frame from the viewport, pick a style, expand its prompt, and generate in under two minutes."
+    },
+    {
+     "timestamp": "7:25",
+     "label": "3D to video pass",
+     "description": "Seedance 2.0 with resolution, aspect ratio and apply-camera-movement produces the styled clip."
+    }
+   ]
+  },
+  "Ff_tdMsndzQ": {
+   "summary": "Philip from Pixel Artistry builds a game-ready, rigged 3D character entirely on a local GPU from a single generated image, taking it from concept art through part separation, mesh generation, texturing, retopology, baking and rigging into a playable Unreal Engine character. ASR note: heavy garbling of tool names, with ComfyUI as 'Confui/Confi', Flux.2 Klein as 'flux to client/flux decline', LoRA as 'lura/Laura', AutoRemesher as 'auto measure/auto remeasure', Tripo as 'Trio/Creo', Hunyuan3D as 'Hanu 3D', and the second 3D generator again as 'Pixel 3D/Pixar 3D'; the transcript also cuts off mid-sentence at the very end.",
+   "digest": {
+    "core_takeaway": "A complete image-to-playable-character pipeline can run locally on 6GB of VRAM without any paid cloud service, provided you split the character into parts before generating meshes. The one genuinely weak link is retopology, where the free local options still produce holes and the best results come from paid tools.",
+    "key_points": [
+     "Part separation is the leverage point: a Flux.2 Klein separation LoRA extracts head, body armor and other pieces onto white backgrounds, and generating each part individually yields far more detail than one whole-character mesh.",
+     "The mesh workflow runs Trellis 2 and the second generator side by side through a group muter node, so you can compare both on every part and keep whichever wins; the author found one better at hats and the other better at fine armor detail.",
+     "Two texturing routes are shown: a basic pipeline that also auto-UV-unwraps, and a multi-view projection method that renders depth maps at adjustable camera elevations and blends per-angle Flux textures using albedo and consistency LoRAs.",
+     "The author is candid that open-source retopology is poor: AutoRemesher leaves holes on the head model, the Blender auto-remesh add-on works better after merging vertices by distance and a 0.002 voxel remesh, and the genuinely good options are paid (Quad Remesher at $19 perpetual, or Tripo's smart topology, called the best auto-topology he has seen).",
+     "High-to-low baking requires exporting from Blender with 'selected objects' enabled and never moving the object, or the bake silently produces wrong results; roughness and metallic can be baked alongside color.",
+     "Final assembly is Ctrl+J to merge parts, FBX or GLB export, rigging through a skin-tokens workflow targeted at Unreal Engine 5, then control rig, retargeting, scaling fixes and constraining the sword to the right-hand socket.",
+     "Model quantization is the VRAM dial: Q8 for stronger GPUs, Q4 or Q5 at 6GB."
+    ],
+    "why_it_matters": "It closes the gap between 'AI made a mesh' and an actual riggable, playable game asset, which is where most AI-to-3D demos stop. The honest accounting of where open source falls short tells artists exactly which one step still costs money."
+   },
+   "oss": [
+    {
+     "name": "ComfyUI",
+     "slug": "comfyanonymous/ComfyUI",
+     "what": "Host for every generation stage, from concept art to mesh, texture, bake and rig."
+    },
+    {
+     "name": "ComfyUI Easy Install",
+     "slug": null,
+     "what": "Install package by Ivo that the author recommends over a manual ComfyUI setup."
+    },
+    {
+     "name": "Trellis 2",
+     "slug": null,
+     "what": "One of two image-to-3D mesh generators, compared side by side per character part."
+    },
+    {
+     "name": "Pixel 3D / Pixar 3D (ASR-garbled name)",
+     "slug": null,
+     "what": "The second image-to-3D generator, noted as strong on hats."
+    },
+    {
+     "name": "Flux.2 Klein (transcribed 'flux to client')",
+     "slug": null,
+     "what": "Image editing model used to repose the character and separate it into parts."
+    },
+    {
+     "name": "Flux.2 Klein separation LoRA",
+     "slug": null,
+     "what": "LoRA whose 'separate X onto a white background' keyword splits the character into parts."
+    },
+    {
+     "name": "Krea 2 Turbo (transcribed 'Cray 2 Turbo')",
+     "slug": null,
+     "what": "Model used for the initial full-body character concept art generation."
+    },
+    {
+     "name": "AutoRemesher",
+     "slug": null,
+     "what": "Free open-source auto-retopology, run both from a ComfyUI node and a Blender bridge add-on."
+    },
+    {
+     "name": "Blender",
+     "slug": null,
+     "what": "Used for merge-by-distance cleanup, voxel remesh, part assembly, merging and FBX/GLB export."
+    },
+    {
+     "name": "Quad Remesher",
+     "slug": null,
+     "what": "Paid local Blender add-on recommended as a better retopology option, $19 perpetual."
+    },
+    {
+     "name": "Tripo P2.0 smart topology",
+     "slug": null,
+     "what": "Paid cloud retopology the author calls the best auto-topology he has seen."
+    },
+    {
+     "name": "Hunyuan3D Studio (transcribed 'Hanu 3D')",
+     "slug": null,
+     "what": "Mentioned as another high-quality option for the retopology step."
+    },
+    {
+     "name": "Skin Tokens workflow",
+     "slug": null,
+     "what": "ComfyUI workflow that auto-rigs the merged mesh with an Unreal Engine 5 skeleton."
+    },
+    {
+     "name": "Unreal Engine 5",
+     "slug": null,
+     "what": "Final destination, where the rig is retargeted to the third-person playable character."
+    }
+   ],
+   "key_moments": [
+    {
+     "timestamp": "7:44",
+     "label": "Separation LoRA splits the character",
+     "description": "The keyword 'separate the head from the character onto a white background' isolates each part for higher-detail meshing."
+    },
+    {
+     "timestamp": "11:23",
+     "label": "Trellis 2 vs the other generator",
+     "description": "A group muter node lets you generate the same part with both models and compare side by side."
+    },
+    {
+     "timestamp": "13:34",
+     "label": "Multi-view texture projection",
+     "description": "Depth maps at adjustable camera elevations let Flux paint each angle, then blend for a better texture."
+    },
+    {
+     "timestamp": "15:51",
+     "label": "Retopology honesty",
+     "description": "He states outright there are not many good open-source retopology options and shows AutoRemesher leaving holes."
+    },
+    {
+     "timestamp": "24:36",
+     "label": "Rigging for Unreal",
+     "description": "The skin tokens workflow exports a rigged model with an Unreal Engine 5 skeleton."
+    }
+   ]
+  },
+  "LmUd1rvZum4": {
+   "summary": "A sponsored one-shot benchmark pitting Kimi K3 against Opus 5, Grok 4.6 and GPT-5.6 Sol across thirteen Blender and game-development tasks, scored on output quality, time and cost. ASR note: model names are garbled throughout, with Kimi K3 as 'Kimik 3/Kim K3/Kimmy', Grok as 'Grock/Groia', GPT-5.6 Sol as 'GBT/GPT 5.6 Soul', Qwen 3.8 Max as 'Quen', and Sekiro as 'Securo'.",
+   "digest": {
+    "core_takeaway": "Across thirteen 3D and game tasks, Opus 5 usually produces the best-looking output but costs the most and takes by far the longest, while Kimi K3 and Grok 4.6 deliver most of the quality for a fraction of the price and time. No single model wins outright, and each fails on a different test.",
+    "key_points": [
+     "Format is deliberately harsh: one shot per model, same prompts, judged only on what each actually produces.",
+     "Opus 5 wins on completeness and polish, producing 12 self-made assets in the saloon test, fully rigging and animating the snowboarding character, and taking the ancient temple and gothic city flood tests, but at 5 hours 39 minutes on one task and the highest cost.",
+     "Kimi K3 is repeatedly the cost winner, matching or beating others at roughly a third of Grok's price on the fighter arena and producing cleaner scenes than Grok on the shrine village test.",
+     "Grok 4.6 is the speed and price-efficiency story, over-performing on the cathedral test to land closer to Opus 5 than GPT-5.6, but it fails outright on the off-road truck test and on spaceflight, where you can land but never take off.",
+     "GPT-5.6 Sol is uneven: over an hour for only three assets in the saloon test, the worst snowboarding controls, yet among the best on the Sekiro main menu and off-road truck tests.",
+     "The JRPG test is now too easy, with only the previously tested Qwen 3.8 Max failing it, so the author plans a harder stage two.",
+     "Failure modes are specific and visible: gaps between rooftops, artifacts strewn across a diorama, an over-cluttered scene that reads as over-engineered, and a chassis and tire bug Opus 5 never QA'd out after 2 hours 40 minutes."
+    ],
+    "why_it_matters": "For anyone paying per token for 3D and game asset generation, the interesting axis is not raw quality but quality per dollar and per hour. This comparison shows the cheap open-weight option is now close enough that the premium model's edge is polish, not capability."
+   },
+   "oss": [
+    {
+     "name": "Kimi K3",
+     "slug": null,
+     "what": "Moonshot's open-source model, 2.8T total parameters, 1M token context, native multimodality; the video's sponsor."
+    },
+    {
+     "name": "Blender",
+     "slug": null,
+     "what": "The tool every model must build its assets and scenes in."
+    },
+    {
+     "name": "Opus 5",
+     "slug": null,
+     "what": "Best overall output on most tests, but slowest and most expensive."
+    },
+    {
+     "name": "Grok 4.6",
+     "slug": null,
+     "what": "Fastest and cheapest of the frontier models, with two outright test failures."
+    },
+    {
+     "name": "GPT-5.6 Sol",
+     "slug": null,
+     "what": "Uneven performer, strong on the Sekiro menu and off-road truck tests."
+    },
+    {
+     "name": "Qwen 3.8 Max",
+     "slug": null,
+     "what": "Tested previously; the only model so far to fail the JRPG test."
+    }
+   ],
+   "key_moments": [
+    {
+     "timestamp": "1:03",
+     "label": "Saloon asset test",
+     "description": "Opus 5 makes 12 assets, Kimi K3 nine for far less, GPT-5.6 only three after over an hour."
+    },
+    {
+     "timestamp": "1:53",
+     "label": "Snowboarding game loop",
+     "description": "Opus 5 rigs and animates the character in 5h39m, but Grok's controls feel better to play."
+    },
+    {
+     "timestamp": "5:24",
+     "label": "Cathedral over-performance",
+     "description": "Grok 4.6's cathedral looks like a lower-effort Opus 5 output at a fraction of price and time."
+    },
+    {
+     "timestamp": "5:56",
+     "label": "Off-road truck failure",
+     "description": "Grok 4.6 produces no playable result while Opus 5 ships uncaught chassis and tire bugs."
+    },
+    {
+     "timestamp": "7:29",
+     "label": "Shrine village clutter",
+     "description": "Opus 5's diorama is cluttered with artifacts and reads as over-engineered next to cleaner rivals."
+    }
+   ]
+  },
+  "jq_15AnOALM": {
+   "summary": "The Animworks founder unveils Animworks Keyframe, a browser-based animation review player built by animators for animators, walking through versioning, animator-specific statuses, drawing tools, range comments and live collaborative sessions. ASR note: the product name is garbled as 'Animors/Animra/Animorg/Animarks' throughout, and the transcript cuts off mid-sentence at the end.",
+   "digest": {
+    "core_takeaway": "Existing review players are built for video production, not animation, so they miss the things animators actually need: frame-exact scrubbing, versioning, onion skinning and pass-based statuses. Animworks Keyframe is a ground-up rebuild around those needs, free during a batched-invite beta before becoming paid.",
+    "key_points": [
+     "Frame exactness is the founding complaint: online players are not frame exact, and for animators frames are everything.",
+     "Versioning replaces the blocking / blocking-two file-naming mess, stacking versions under one clip with their own notes, comments and per-version status icons.",
+     "Statuses are animation passes rather than generic video stages: blocking, spline, polish, final, approved, and changing one pings a named director or mentor who lands directly on the updated version.",
+     "Comment handling is built for noisy group reviews: grouping by person with collapse, search, filtering by drawings or references, threaded replies, resolve-as-done for fix lists, attached links or uploaded reference, and range comments that span a frame range and render purple.",
+     "Drawing exists on both a free whiteboard canvas and as an overlay on the player, with layers, brushes, shapes, images, erase and onion skinning with adjustable opacity, plus ghosting and loop sections.",
+     "Live sessions go further than link sharing: 'present to everybody' takes over viewers' players with a visible cursor, guests can point with the option key, webcams can be shared, and any guest can break away to scrub independently.",
+     "Share links carry per-link settings for expiry, note permission, download permission and watermarking; comments and annotations export to PDF; an in-app bug reporter with screenshot sits on every screen."
+    ],
+    "why_it_matters": "Review tooling is where animation collaboration actually happens, and animators have been borrowing film-industry software that never modeled passes or versions. A tool that encodes the discipline's own vocabulary removes a daily source of friction for teams, mentors and students."
+   },
+   "oss": [
+    {
+     "name": "Animworks Keyframe",
+     "slug": null,
+     "what": "Browser-based frame-exact animation review player with versioning, annotation and live sessions (proprietary, free beta)."
+    },
+    {
+     "name": "Animworks account",
+     "slug": null,
+     "what": "Existing account system used for beta signup, profile avatars and notifications."
+    },
+    {
+     "name": "Wacom tablet",
+     "slug": null,
+     "what": "Mentioned as the expected input device for the drawing and whiteboard tools."
+    }
+   ],
+   "key_moments": [
+    {
+     "timestamp": "3:29",
+     "label": "Frame exactness thesis",
+     "description": "Online players are not frame exact, and frames are everything for animators."
+    },
+    {
+     "timestamp": "9:51",
+     "label": "Versioning per clip",
+     "description": "Versions stack under one clip with their own notes and comments, ending the blocking-two rename problem."
+    },
+    {
+     "timestamp": "11:09",
+     "label": "Animator pass statuses",
+     "description": "Blocking, spline, polish, final and approved statuses ping a named director straight to the updated version."
+    },
+    {
+     "timestamp": "16:08",
+     "label": "Range comments",
+     "description": "A comment can span a frame range rather than a single frame and shows purple to distinguish it."
+    },
+    {
+     "timestamp": "20:59",
+     "label": "Present to everybody",
+     "description": "Live takeover of viewers' players with visible cursor, guest option-key pointing and shared webcams."
+    }
+   ]
+  },
+  "uYjbylNqUpI": {
+   "summary": "A short, profane data-viz experiment graphing all roughly 3,000 Blender shortcuts as connected nodes, uncovering the key-context system and the design logic underneath the key map. Transcript is clean with no notable ASR garbling, though profanity is censored.",
+   "digest": {
+    "core_takeaway": "Blender fits 3,000 shortcuts onto a 100-key keyboard because it has 280 separate mini key maps called contexts, so the same chord means different things in different places. Graphing the whole thing reveals the key map is unusually consistent and mnemonic rather than arbitrary.",
+    "key_points": [
+     "Blender uses key contexts: not one key map but 280 mini key maps invoked by situation, so Ctrl+R can add loop cuts, walk a mesh or roll a bone.",
+     "Context sizes are wildly uneven: the 3D viewport has 116 shortcuts, the node editor 105, and, surprisingly, the Outliner 104, while 93 contexts hold just a single shortcut each.",
+     "The most-referenced key in the whole key map is not on the keyboard at all; it is the left mouse button, with A as the most-used keyboard key because selection precedes everything.",
+     "Behavior is consistent across contexts: G always moves, X always deletes, A always selects, whether the target is a mesh, a keyframe or a node.",
+     "Roughly 20 percent of shortcuts are mnemonic, such as A for all, L for linked, P for parent, G for grab and R for rotate.",
+     "Modifiers carry their own meaning: Shift refines an existing action (front view becomes front view of selection; brush size becomes brush strength) and Alt reverses it (Alt+G undoes a move, Alt+P orphans a parent), holding about 60 percent of the time."
+    ],
+    "why_it_matters": "It is a rare empirical look at how a mature piece of software's interaction design holds up at scale, and the answer is that consistency and mnemonics are what make 3,000 shortcuts learnable. For Blender users it doubles as a map of where the shortcuts they never found are hiding."
+   },
+   "oss": [
+    {
+     "name": "Blender",
+     "slug": null,
+     "what": "The software whose entire ~3,000-shortcut key map was extracted and graphed."
+    }
+   ],
+   "key_moments": [
+    {
+     "timestamp": "1:06",
+     "label": "280 contexts",
+     "description": "There are 280 separate context key maps, including ones for VR and for the eyedropper during color ramp sampling."
+    },
+    {
+     "timestamp": "1:48",
+     "label": "The Outliner surprise",
+     "description": "The Outliner ranks third with 104 shortcuts, behind the 3D viewport's 116 and the node editor's 105."
+    },
+    {
+     "timestamp": "2:48",
+     "label": "Most-used key is a mouse button",
+     "description": "The left mouse button beats every keyboard key; A is the most-used key that is actually on the keyboard."
+    },
+    {
+     "timestamp": "3:25",
+     "label": "Mnemonic pattern",
+     "description": "About 20 percent of shortcuts are mnemonics like A for all, P for parent, G for grab."
+    },
+    {
+     "timestamp": "4:01",
+     "label": "Shift refines, Alt reverses",
+     "description": "Shift modifies an action further while Alt inverts it, holding roughly 60 percent of the time."
+    }
+   ]
+  }
+ },
+ "topics": [
+  {
+   "name": "Local open-source 3D AI generation on consumer GPUs",
+   "video_ids": [
+    "o7VJnIN31Ds",
+    "Ff_tdMsndzQ"
+   ],
+   "quote_ts": "0:16",
+   "quote": "it will even run on just 6 GB of VRAM"
+  },
+  {
+   "name": "Installation friction was the real barrier, not model quality",
+   "video_ids": [
+    "o7VJnIN31Ds"
+   ],
+   "quote_ts": "0:50",
+   "quote": "The problem was never really the quality itself"
+  },
+  {
+   "name": "Retopology is the pipeline's remaining weak link",
+   "video_ids": [
+    "Ff_tdMsndzQ"
+   ],
+   "quote_ts": "16:10",
+   "quote": "there are not that many good options out there"
+  },
+  {
+   "name": "Blender as the hub every workflow routes through",
+   "video_ids": [
+    "Ff_tdMsndzQ",
+    "JlmNBGcZ3Ik",
+    "uYjbylNqUpI",
+    "LmUd1rvZum4"
+   ],
+   "quote_ts": "3:08",
+   "quote": "I noticed how consistent Blender is across the board"
+  },
+  {
+   "name": "AI agents as 3D-to-web translators needing iteration",
+   "video_ids": [
+    "JlmNBGcZ3Ik"
+   ],
+   "quote_ts": "11:30",
+   "quote": "definitely ask it to optimize over and over again"
+  },
+  {
+   "name": "Keeping 3D control while swapping the render style",
+   "video_ids": [
+    "y9t-0-vj25s",
+    "JlmNBGcZ3Ik"
+   ],
+   "quote_ts": "13:51",
+   "quote": "render in different styles but maintaining your 3D control"
+  },
+  {
+   "name": "Cost and time efficiency beating raw model quality",
+   "video_ids": [
+    "LmUd1rvZum4"
+   ],
+   "quote_ts": "1:49",
+   "quote": "Kimik3 performed the best, especially with cost and time considered"
+  },
+  {
+   "name": "Tools built by practitioners for their own discipline",
+   "video_ids": [
+    "jq_15AnOALM",
+    "uYjbylNqUpI"
+   ],
+   "quote_ts": "2:10",
+   "quote": "a tool that is made by animators for animators"
+  },
+  {
+   "name": "Splitting work into parts to gain detail and control",
+   "video_ids": [
+    "Ff_tdMsndzQ",
+    "o7VJnIN31Ds"
+   ],
+   "quote_ts": "8:50",
+   "quote": "it will give us way more detail in the next step"
+  },
+  {
+   "name": "Frame-level precision as a hard requirement",
+   "video_ids": [
+    "jq_15AnOALM"
+   ],
+   "quote_ts": "3:41",
+   "quote": "because frames is everything for us"
+  }
+ ]
+}

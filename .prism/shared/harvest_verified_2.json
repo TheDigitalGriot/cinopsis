@@ -1,0 +1,1199 @@
+{
+ "harvest": "Cinopsis catch-up 2026-09-18 (3D/AI-3D/Blender x22 + ML/systems-design x13)",
+ "generated": "2026-09-18",
+ "verifier": "gh api repos/<slug> as TheDigitalGriot",
+ "counts": {
+  "tools_landed": 92,
+  "slug_verified": 45,
+  "closed_no_repo": 36,
+  "unresolved_slug_unverified": 11
+ },
+ "tools": [
+  {
+   "name": "Blender",
+   "slug": "blender/blender",
+   "state": "verified",
+   "cat": "3d",
+   "video": "8MUk-tQTiwE",
+   "source": "Cinopsis 3D catch-up - GPT-6 Astra stress-test in Blender",
+   "targets": [
+    "R3F Studio",
+    "Anansi",
+    "Lucid",
+    "GBFolio"
+   ]
+  },
+  {
+   "name": "ArmorPaint",
+   "slug": "armory3d/armorpaint",
+   "state": "verified",
+   "cat": "3d",
+   "video": "RKND9_gAtXo",
+   "source": "Cinopsis 3D catch-up - ArmorPaint README read-through",
+   "targets": [
+    "R3F Studio",
+    "Lucid",
+    "GBFolio"
+   ]
+  },
+  {
+   "name": "BlenderKit",
+   "slug": "BlenderKit/Blendkit",
+   "state": "verified",
+   "cat": "3d",
+   "video": "QkLKpUDDdgo",
+   "source": "Cinopsis 3D catch-up - Higgsfield Blender extension walkthrough",
+   "targets": [
+    "R3F Studio",
+    "Lucid",
+    "Anansi"
+   ]
+  },
+  {
+   "name": "Node Wrangler",
+   "slug": "blender/blender-addons",
+   "state": "verified",
+   "cat": "3d",
+   "video": "wknRD5g-vvk",
+   "source": "Cinopsis 3D catch-up - free-AI pirate-cave level pipeline",
+   "targets": [
+    "R3F Studio",
+    "Lucid"
+   ]
+  },
+  {
+   "name": "UV Packer",
+   "slug": "",
+   "state": "closed",
+   "cat": "3d",
+   "video": "wknRD5g-vvk",
+   "source": "Cinopsis 3D catch-up - free-AI pirate-cave level pipeline",
+   "targets": [
+    "R3F Studio",
+    "GBFolio",
+    "Anansi"
+   ]
+  },
+  {
+   "name": "Godot",
+   "slug": "godotengine/godot",
+   "state": "verified",
+   "cat": "3d",
+   "video": "gvPMjz08DDA",
+   "source": "Cinopsis 3D catch-up - agent orchestrator builds four Godot games",
+   "targets": [
+    "Anansi",
+    "R3F Studio",
+    "AUXGOD"
+   ]
+  },
+  {
+   "name": "Unreal Engine 5",
+   "slug": "",
+   "state": "closed",
+   "cat": "3d",
+   "video": "Ff_tdMsndzQ",
+   "source": "Cinopsis 3D catch-up - fully-local game-ready character on one GPU",
+   "targets": [
+    "Anansi",
+    "R3F Studio",
+    "GBFolio"
+   ]
+  },
+  {
+   "name": "three.js",
+   "slug": "mrdoob/three.js",
+   "state": "verified",
+   "cat": "3d",
+   "video": "nHBNa2IKWvk",
+   "source": "Cinopsis 3D catch-up - Codex CLI + Blender/Unity/Godot MCP rig",
+   "targets": [
+    "R3F Studio",
+    "GBFolio",
+    "Anansi",
+    "Lucid"
+   ]
+  },
+  {
+   "name": "TSL (Three.js Shading Language)",
+   "slug": "mrdoob/three.js",
+   "state": "verified",
+   "cat": "3d",
+   "video": "JlmNBGcZ3Ik",
+   "source": "Cinopsis 3D catch-up - Blender sketch shader ported to Three.js",
+   "targets": [
+    "R3F Studio",
+    "GBFolio",
+    "Lucid"
+   ]
+  },
+  {
+   "name": "Kimodo CPP",
+   "slug": "localai-org/kimodo.cpp",
+   "state": "verified",
+   "cat": "3d",
+   "video": "Du8EjlPePYM",
+   "source": "Cinopsis 3D catch-up - Kimodo CPP local text-to-motion",
+   "targets": [
+    "R3F Studio",
+    "Anansi",
+    "The Griot Model"
+   ]
+  },
+  {
+   "name": "MotionBricks",
+   "slug": "Aero-Ex/Nvidia_MotionBricks",
+   "state": "verified",
+   "cat": "3d",
+   "video": "lj-xPo7ueGA",
+   "source": "Cinopsis 3D catch-up - MotionBricks CPP running on CPU",
+   "targets": [
+    "Anansi",
+    "R3F Studio",
+    "AUXGOD"
+   ]
+  },
+  {
+   "name": "MotionBricks CPP",
+   "slug": "localai-org/motion-bricks.cpp",
+   "state": "verified",
+   "cat": "3d",
+   "video": "lj-xPo7ueGA",
+   "source": "Cinopsis 3D catch-up - MotionBricks CPP running on CPU",
+   "targets": [
+    "Anansi",
+    "R3F Studio",
+    "The Griot Model"
+   ]
+  },
+  {
+   "name": "SkinTokens",
+   "slug": "VAST-AI-Research/SkinTokens",
+   "state": "verified",
+   "cat": "3d",
+   "video": "Ff_tdMsndzQ",
+   "source": "Cinopsis 3D catch-up - fully-local game-ready character on one GPU",
+   "targets": [
+    "R3F Studio",
+    "GBFolio",
+    "Anansi"
+   ]
+  },
+  {
+   "name": "SkinTokens CPP",
+   "slug": "localai-org/skin-tokens.cpp",
+   "state": "verified",
+   "cat": "3d",
+   "video": "lj-xPo7ueGA",
+   "source": "Cinopsis 3D catch-up - MotionBricks CPP running on CPU",
+   "targets": [
+    "R3F Studio",
+    "GBFolio",
+    "The Griot Model"
+   ]
+  },
+  {
+   "name": "Hunyuan 3D",
+   "slug": "Tencent-Hunyuan/Hunyuan3D-2.1",
+   "state": "verified",
+   "cat": "3d",
+   "video": "6Ytluv_DiSo",
+   "source": "Cinopsis 3D catch-up - free-tools pirate-cave level build",
+   "targets": [
+    "R3F Studio",
+    "Lucid",
+    "Anansi"
+   ]
+  },
+  {
+   "name": "Hunyuan3D Studio",
+   "slug": "",
+   "state": "closed",
+   "cat": "3d",
+   "video": "Ff_tdMsndzQ",
+   "source": "Cinopsis 3D catch-up - fully-local game-ready character on one GPU",
+   "targets": [
+    "R3F Studio",
+    "Lucid"
+   ]
+  },
+  {
+   "name": "Tripo",
+   "slug": "",
+   "state": "closed",
+   "cat": "3d",
+   "video": "URjhE8QEhJU",
+   "source": "Cinopsis 3D catch-up - non-humanoid character full pipeline",
+   "targets": [
+    "R3F Studio",
+    "Lucid",
+    "Anansi"
+   ]
+  },
+  {
+   "name": "Rodin / Hyper3D WorldGen",
+   "slug": "",
+   "state": "closed",
+   "cat": "3d",
+   "video": "KlzzBa1sZX0",
+   "source": "Cinopsis 3D catch-up - Rodin / Hyper3D WorldGen hands-on",
+   "targets": [
+    "GBFolio",
+    "R3F Studio",
+    "Lucid"
+   ]
+  },
+  {
+   "name": "Atlas (World Labs)",
+   "slug": "",
+   "state": "closed",
+   "cat": "3d",
+   "video": "ouACKu1cwoU",
+   "source": "Cinopsis 3D catch-up - weekly 3D-AI news roundup",
+   "targets": [
+    "GBFolio",
+    "Lucid",
+    "R3F Studio"
+   ]
+  },
+  {
+   "name": "Microsoft quad-topology model",
+   "slug": "",
+   "state": "unresolved",
+   "cat": "3d",
+   "video": "ouACKu1cwoU",
+   "source": "Cinopsis 3D catch-up - weekly 3D-AI news roundup",
+   "targets": [
+    "R3F Studio",
+    "Anansi"
+   ]
+  },
+  {
+   "name": "Mini Face",
+   "slug": "",
+   "state": "unresolved",
+   "cat": "3d",
+   "video": "ouACKu1cwoU",
+   "source": "Cinopsis 3D catch-up - weekly 3D-AI news roundup",
+   "targets": [
+    "GBFolio",
+    "R3F Studio",
+    "Ashe"
+   ]
+  },
+  {
+   "name": "Quad Remesher",
+   "slug": "",
+   "state": "closed",
+   "cat": "3d",
+   "video": "Ff_tdMsndzQ",
+   "source": "Cinopsis 3D catch-up - fully-local game-ready character on one GPU",
+   "targets": [
+    "R3F Studio",
+    "GBFolio"
+   ]
+  },
+  {
+   "name": "Marmoset Toolbag",
+   "slug": "",
+   "state": "closed",
+   "cat": "3d",
+   "video": "URjhE8QEhJU",
+   "source": "Cinopsis 3D catch-up - non-humanoid character full pipeline",
+   "targets": [
+    "R3F Studio",
+    "GBFolio"
+   ]
+  },
+  {
+   "name": "Mixamo",
+   "slug": "",
+   "state": "closed",
+   "cat": "3d",
+   "video": "URjhE8QEhJU",
+   "source": "Cinopsis 3D catch-up - non-humanoid character full pipeline",
+   "targets": [
+    "GBFolio",
+    "R3F Studio",
+    "Anansi"
+   ]
+  },
+  {
+   "name": "AccuRig",
+   "slug": "",
+   "state": "closed",
+   "cat": "3d",
+   "video": "Du8EjlPePYM",
+   "source": "Cinopsis 3D catch-up - Kimodo CPP local text-to-motion",
+   "targets": [
+    "R3F Studio",
+    "GBFolio",
+    "Anansi"
+   ]
+  },
+  {
+   "name": "AccuLips",
+   "slug": "",
+   "state": "closed",
+   "cat": "3d",
+   "video": "y9t-0-vj25s",
+   "source": "Cinopsis 3D catch-up - iClone 8 AI Studio making-of",
+   "targets": [
+    "R3F Studio",
+    "GBFolio",
+    "Ashe"
+   ]
+  },
+  {
+   "name": "iClone 8",
+   "slug": "",
+   "state": "closed",
+   "cat": "3d",
+   "video": "y9t-0-vj25s",
+   "source": "Cinopsis 3D catch-up - iClone 8 AI Studio making-of",
+   "targets": [
+    "R3F Studio",
+    "GBFolio",
+    "Ashe"
+   ]
+  },
+  {
+   "name": "iClone AI Studio",
+   "slug": "",
+   "state": "closed",
+   "cat": "creative",
+   "video": "y9t-0-vj25s",
+   "source": "Cinopsis 3D catch-up - iClone 8 AI Studio making-of",
+   "targets": [
+    "Lucid",
+    "Ashe",
+    "R3F Studio"
+   ]
+  },
+  {
+   "name": "Character Creator 5",
+   "slug": "",
+   "state": "closed",
+   "cat": "3d",
+   "video": "y9t-0-vj25s",
+   "source": "Cinopsis 3D catch-up - iClone 8 AI Studio making-of",
+   "targets": [
+    "GBFolio",
+    "R3F Studio",
+    "Anansi"
+   ]
+  },
+  {
+   "name": "Headshot 3",
+   "slug": "",
+   "state": "closed",
+   "cat": "3d",
+   "video": "y9t-0-vj25s",
+   "source": "Cinopsis 3D catch-up - iClone 8 AI Studio making-of",
+   "targets": [
+    "GBFolio",
+    "R3F Studio"
+   ]
+  },
+  {
+   "name": "Popcorn effects (iClone PopcornFX)",
+   "slug": "",
+   "state": "closed",
+   "cat": "3d",
+   "video": "y9t-0-vj25s",
+   "source": "Cinopsis 3D catch-up - iClone 8 AI Studio making-of",
+   "targets": [
+    "Lucid",
+    "Ashe",
+    "R3F Studio"
+   ]
+  },
+  {
+   "name": "Lychee Studio",
+   "slug": "",
+   "state": "closed",
+   "cat": "3d",
+   "video": "URjhE8QEhJU",
+   "source": "Cinopsis 3D catch-up - non-humanoid character full pipeline",
+   "targets": [
+    "Lucid",
+    "R3F Studio"
+   ]
+  },
+  {
+   "name": "Moondiff",
+   "slug": "",
+   "state": "closed",
+   "cat": "3d",
+   "video": "URjhE8QEhJU",
+   "source": "Cinopsis 3D catch-up - non-humanoid character full pipeline",
+   "targets": [
+    "R3F Studio",
+    "Lucid",
+    "GBFolio"
+   ]
+  },
+  {
+   "name": "Animate Anything",
+   "slug": "",
+   "state": "closed",
+   "cat": "3d",
+   "video": "URjhE8QEhJU",
+   "source": "Cinopsis 3D catch-up - non-humanoid character full pipeline",
+   "targets": [
+    "Anansi",
+    "R3F Studio",
+    "AUXGOD"
+   ]
+  },
+  {
+   "name": "Mesh to Motion",
+   "slug": "",
+   "state": "closed",
+   "cat": "3d",
+   "video": "URjhE8QEhJU",
+   "source": "Cinopsis 3D catch-up - non-humanoid character full pipeline",
+   "targets": [
+    "Anansi",
+    "R3F Studio"
+   ]
+  },
+  {
+   "name": "Ultra Dynamic Sky / Weather",
+   "slug": "",
+   "state": "closed",
+   "cat": "3d",
+   "video": "6Ytluv_DiSo",
+   "source": "Cinopsis 3D catch-up - free-tools pirate-cave level build",
+   "targets": [
+    "Anansi",
+    "GBFolio",
+    "R3F Studio"
+   ]
+  },
+  {
+   "name": "PixArt 3D / Pixel 3D",
+   "slug": "",
+   "state": "unresolved",
+   "cat": "3d",
+   "video": "o7VJnIN31Ds",
+   "source": "Cinopsis 3D catch-up - Trellis 2 native in ComfyUI",
+   "targets": [
+    "R3F Studio",
+    "Lucid"
+   ]
+  },
+  {
+   "name": "Animworks Keyframe",
+   "slug": "",
+   "state": "closed",
+   "cat": "creative",
+   "video": "jq_15AnOALM",
+   "source": "Cinopsis 3D catch-up - Animworks Keyframe review player",
+   "targets": [
+    "Ashe",
+    "Kweli",
+    "Lucid"
+   ]
+  },
+  {
+   "name": "Codex CLI",
+   "slug": "openai/codex",
+   "state": "verified",
+   "cat": "agent",
+   "video": "8MUk-tQTiwE",
+   "source": "Cinopsis 3D catch-up - GPT-6 Astra stress-test in Blender",
+   "targets": [
+    "Prism",
+    "Djeli",
+    "Valence"
+   ]
+  },
+  {
+   "name": "Claude Code",
+   "slug": "anthropics/claude-code",
+   "state": "verified",
+   "cat": "agent",
+   "video": "URjhE8QEhJU",
+   "source": "Cinopsis 3D catch-up - non-humanoid character full pipeline",
+   "targets": [
+    "Prism",
+    "Djeli",
+    "R3F Studio",
+    "Anansi"
+   ]
+  },
+  {
+   "name": "Higgsfield Blender plugin / MCP",
+   "slug": "",
+   "state": "closed",
+   "cat": "agent",
+   "video": "nHBNa2IKWvk",
+   "source": "Cinopsis 3D catch-up - Codex CLI + Blender/Unity/Godot MCP rig",
+   "targets": [
+    "R3F Studio",
+    "Lucid",
+    "Djeli"
+   ]
+  },
+  {
+   "name": "Unity MCP Server",
+   "slug": "CoplayDev/unity-mcp",
+   "state": "verified",
+   "cat": "agent",
+   "video": "nHBNa2IKWvk",
+   "source": "Cinopsis 3D catch-up - Codex CLI + Blender/Unity/Godot MCP rig",
+   "targets": [
+    "Anansi",
+    "Prism",
+    "R3F Studio"
+   ]
+  },
+  {
+   "name": "VibeUE",
+   "slug": "kevinpbuckley/VibeUE",
+   "state": "verified",
+   "cat": "agent",
+   "video": "nHBNa2IKWvk",
+   "source": "Cinopsis 3D catch-up - Codex CLI + Blender/Unity/Godot MCP rig",
+   "targets": [
+    "Anansi",
+    "R3F Studio",
+    "Prism"
+   ]
+  },
+  {
+   "name": "fal.ai MCP server",
+   "slug": "luminarylane/fal-mcp-server",
+   "state": "verified",
+   "cat": "agent",
+   "video": "nHBNa2IKWvk",
+   "source": "Cinopsis 3D catch-up - Codex CLI + Blender/Unity/Godot MCP rig",
+   "targets": [
+    "Lucid",
+    "Ashe",
+    "Sigil"
+   ]
+  },
+  {
+   "name": "Figma MCP",
+   "slug": "GLips/Figma-Context-MCP",
+   "state": "verified",
+   "cat": "agent",
+   "video": "JlmNBGcZ3Ik",
+   "source": "Cinopsis 3D catch-up - Blender sketch shader ported to Three.js",
+   "targets": [
+    "Lucid",
+    "Sigil",
+    "Djeli"
+   ]
+  },
+  {
+   "name": "Prime Agent",
+   "slug": "PrimeIntellect-ai/prime-agent",
+   "state": "verified",
+   "cat": "agent",
+   "video": "n9xKblqyQ28",
+   "source": "Cinopsis ideas catch-up - YC Paper Club harness night",
+   "targets": [
+    "Prism",
+    "Djeli",
+    "Valence"
+   ]
+  },
+  {
+   "name": "verifiers",
+   "slug": "PrimeIntellect-ai/verifiers",
+   "state": "verified",
+   "cat": "agent",
+   "video": "n9xKblqyQ28",
+   "source": "Cinopsis ideas catch-up - YC Paper Club harness night",
+   "targets": [
+    "Prism",
+    "Valence",
+    "Kente"
+   ]
+  },
+  {
+   "name": "Open Jarvis",
+   "slug": "",
+   "state": "unresolved",
+   "cat": "agent",
+   "video": "n9xKblqyQ28",
+   "source": "Cinopsis ideas catch-up - YC Paper Club harness night",
+   "targets": [
+    "The Griot Model",
+    "Kaleidoscope",
+    "Meridian"
+   ]
+  },
+  {
+   "name": "QM",
+   "slug": "",
+   "state": "unresolved",
+   "cat": "agent",
+   "video": "n9xKblqyQ28",
+   "source": "Cinopsis ideas catch-up - YC Paper Club harness night",
+   "targets": [
+    "Griot Hub",
+    "Prism",
+    "Valence"
+   ]
+  },
+  {
+   "name": "DSPy",
+   "slug": "stanfordnlp/dspy",
+   "state": "verified",
+   "cat": "agent",
+   "video": "n9xKblqyQ28",
+   "source": "Cinopsis ideas catch-up - YC Paper Club harness night",
+   "targets": [
+    "Prism",
+    "Kente",
+    "SkillForge"
+   ]
+  },
+  {
+   "name": "Tesana",
+   "slug": "",
+   "state": "unresolved",
+   "cat": "agent",
+   "video": "gvPMjz08DDA",
+   "source": "Cinopsis 3D catch-up - agent orchestrator builds four Godot games",
+   "targets": [
+    "Prism",
+    "Anansi",
+    "Djeli"
+   ]
+  },
+  {
+   "name": "Margin Notes",
+   "slug": "",
+   "state": "unresolved",
+   "cat": "devex",
+   "video": "MccJdr61xnc",
+   "source": "Cinopsis ideas catch-up - Geoffrey Litt on dynamic documents",
+   "targets": [
+    "Kaleidoscope",
+    "Valence",
+    "Djeli"
+   ]
+  },
+  {
+   "name": "Ruby TracePoint",
+   "slug": "ruby/ruby",
+   "state": "verified",
+   "cat": "devex",
+   "video": "MccJdr61xnc",
+   "source": "Cinopsis ideas catch-up - Geoffrey Litt on dynamic documents",
+   "targets": [
+    "Valence",
+    "Kaleidoscope",
+    "Prism"
+   ]
+  },
+  {
+   "name": "Embark",
+   "slug": "",
+   "state": "unresolved",
+   "cat": "knowledge",
+   "video": "MccJdr61xnc",
+   "source": "Cinopsis ideas catch-up - Geoffrey Litt on dynamic documents",
+   "targets": [
+    "Synaptiq",
+    "Kaleidoscope",
+    "Meridian"
+   ]
+  },
+  {
+   "name": "Riffle",
+   "slug": "",
+   "state": "unresolved",
+   "cat": "knowledge",
+   "video": "MccJdr61xnc",
+   "source": "Cinopsis ideas catch-up - Geoffrey Litt on dynamic documents",
+   "targets": [
+    "Synaptiq",
+    "Kaleidoscope",
+    "Griot Hub"
+   ]
+  },
+  {
+   "name": "Notion HTML blocks",
+   "slug": "",
+   "state": "closed",
+   "cat": "knowledge",
+   "video": "MccJdr61xnc",
+   "source": "Cinopsis ideas catch-up - Geoffrey Litt on dynamic documents",
+   "targets": [
+    "Synaptiq",
+    "Kaleidoscope",
+    "Lucid"
+   ]
+  },
+  {
+   "name": "fuzzyset",
+   "slug": "Glench/fuzzyset.js",
+   "state": "verified",
+   "cat": "devex",
+   "video": "MccJdr61xnc",
+   "source": "Cinopsis ideas catch-up - Geoffrey Litt on dynamic documents",
+   "targets": [
+    "Prism",
+    "Griot Viz Templates",
+    "Kaleidoscope"
+   ]
+  },
+  {
+   "name": "Omarchy",
+   "slug": "omacom/omarchy",
+   "state": "verified",
+   "cat": "desktop",
+   "video": "nglqTHwuZ-8",
+   "source": "Cinopsis 3D catch-up - agents for money + a DIY Pi speaker",
+   "targets": [
+    "Tesseract",
+    "keylink",
+    "Personal"
+   ]
+  },
+  {
+   "name": "Daytona",
+   "slug": "daytonaio/daytona",
+   "state": "verified",
+   "cat": "devex",
+   "video": "nglqTHwuZ-8",
+   "source": "Cinopsis 3D catch-up - agents for money + a DIY Pi speaker",
+   "targets": [
+    "Prism",
+    "Djeli",
+    "Valence"
+   ]
+  },
+  {
+   "name": "DaVinci Resolve",
+   "slug": "",
+   "state": "closed",
+   "cat": "creative",
+   "video": "Ovi1xszAphk",
+   "source": "Cinopsis 3D catch-up - Blender canyon chase into Seedance",
+   "targets": [
+    "Ashe",
+    "Lucid"
+   ]
+  },
+  {
+   "name": "TensorRT Model Connect",
+   "slug": "NVIDIA/TensorRT",
+   "state": "verified",
+   "cat": "infra",
+   "video": "wcqQDpRd7nM",
+   "source": "Cinopsis ideas catch-up - NVIDIA TensorRT Model Connect livestream",
+   "targets": [
+    "The Griot Model",
+    "Kente",
+    "Valence"
+   ]
+  },
+  {
+   "name": "NVIDIA Cosmos",
+   "slug": "NVIDIA/cosmos",
+   "state": "verified",
+   "cat": "infra",
+   "video": "wcqQDpRd7nM",
+   "source": "Cinopsis ideas catch-up - NVIDIA TensorRT Model Connect livestream",
+   "targets": [
+    "The Griot Model",
+    "Lucid",
+    "Anansi"
+   ]
+  },
+  {
+   "name": "Nemotron voice chat",
+   "slug": "NVIDIA-NeMo/Speech",
+   "state": "verified",
+   "cat": "audio",
+   "video": "wcqQDpRd7nM",
+   "source": "Cinopsis ideas catch-up - NVIDIA TensorRT Model Connect livestream",
+   "targets": [
+    "Audion",
+    "The Griot Model",
+    "Damus",
+    "Kora"
+   ]
+  },
+  {
+   "name": "PyTorch",
+   "slug": "pytorch/pytorch",
+   "state": "verified",
+   "cat": "infra",
+   "video": "wcqQDpRd7nM",
+   "source": "Cinopsis ideas catch-up - NVIDIA TensorRT Model Connect livestream",
+   "targets": [
+    "Kente",
+    "The Griot Model",
+    "PlantID CNN"
+   ]
+  },
+  {
+   "name": "Hugging Face Hub",
+   "slug": "huggingface/huggingface_hub",
+   "state": "verified",
+   "cat": "infra",
+   "video": "wcqQDpRd7nM",
+   "source": "Cinopsis ideas catch-up - NVIDIA TensorRT Model Connect livestream",
+   "targets": [
+    "Kente",
+    "The Griot Model",
+    "R3F Studio"
+   ]
+  },
+  {
+   "name": "vLLM",
+   "slug": "vllm-project/vllm",
+   "state": "verified",
+   "cat": "infra",
+   "video": "n9xKblqyQ28",
+   "source": "Cinopsis ideas catch-up - YC Paper Club harness night",
+   "targets": [
+    "The Griot Model",
+    "Kente",
+    "Valence"
+   ]
+  },
+  {
+   "name": "Opus 5",
+   "slug": "",
+   "state": "closed",
+   "cat": "infra",
+   "video": "LmUd1rvZum4",
+   "source": "Cinopsis 3D catch-up - Kimi K3 vs frontier models on Blender tasks",
+   "targets": [
+    "Prism",
+    "Djeli",
+    "R3F Studio"
+   ]
+  },
+  {
+   "name": "Grok 4.6",
+   "slug": "",
+   "state": "closed",
+   "cat": "infra",
+   "video": "LmUd1rvZum4",
+   "source": "Cinopsis 3D catch-up - Kimi K3 vs frontier models on Blender tasks",
+   "targets": [
+    "Prism",
+    "Djeli"
+   ]
+  },
+  {
+   "name": "GPT-5.6 Sol",
+   "slug": "",
+   "state": "closed",
+   "cat": "infra",
+   "video": "LmUd1rvZum4",
+   "source": "Cinopsis 3D catch-up - Kimi K3 vs frontier models on Blender tasks",
+   "targets": [
+    "Prism",
+    "Djeli"
+   ]
+  },
+  {
+   "name": "Flux.2 Klein",
+   "slug": "black-forest-labs/flux",
+   "state": "verified",
+   "cat": "creative",
+   "video": "Ff_tdMsndzQ",
+   "source": "Cinopsis 3D catch-up - fully-local game-ready character on one GPU",
+   "targets": [
+    "Lucid",
+    "R3F Studio",
+    "Sigil"
+   ]
+  },
+  {
+   "name": "Flux.2 Klein separation LoRA",
+   "slug": "",
+   "state": "unresolved",
+   "cat": "creative",
+   "video": "Ff_tdMsndzQ",
+   "source": "Cinopsis 3D catch-up - fully-local game-ready character on one GPU",
+   "targets": [
+    "Lucid",
+    "Kente",
+    "R3F Studio"
+   ]
+  },
+  {
+   "name": "Krea 2 Turbo",
+   "slug": "",
+   "state": "closed",
+   "cat": "creative",
+   "video": "Ff_tdMsndzQ",
+   "source": "Cinopsis 3D catch-up - fully-local game-ready character on one GPU",
+   "targets": [
+    "Lucid",
+    "Sigil"
+   ]
+  },
+  {
+   "name": "Nano Banana",
+   "slug": "",
+   "state": "closed",
+   "cat": "creative",
+   "video": "URjhE8QEhJU",
+   "source": "Cinopsis 3D catch-up - non-humanoid character full pipeline",
+   "targets": [
+    "Lucid",
+    "R3F Studio",
+    "Sigil"
+   ]
+  },
+  {
+   "name": "Nano Banana Pro",
+   "slug": "",
+   "state": "closed",
+   "cat": "creative",
+   "video": "y9t-0-vj25s",
+   "source": "Cinopsis 3D catch-up - iClone 8 AI Studio making-of",
+   "targets": [
+    "Lucid",
+    "Ashe",
+    "GBFolio"
+   ]
+  },
+  {
+   "name": "Google AI Studio",
+   "slug": "",
+   "state": "closed",
+   "cat": "creative",
+   "video": "6Ytluv_DiSo",
+   "source": "Cinopsis 3D catch-up - free-tools pirate-cave level build",
+   "targets": [
+    "Lucid",
+    "Sigil"
+   ]
+  },
+  {
+   "name": "Seedance 2.0",
+   "slug": "",
+   "state": "closed",
+   "cat": "creative",
+   "video": "y9t-0-vj25s",
+   "source": "Cinopsis 3D catch-up - iClone 8 AI Studio making-of",
+   "targets": [
+    "Ashe",
+    "Lucid",
+    "GBFolio",
+    "AUXGOD"
+   ]
+  },
+  {
+   "name": "Grok Imagine",
+   "slug": "",
+   "state": "closed",
+   "cat": "creative",
+   "video": "gvPMjz08DDA",
+   "source": "Cinopsis 3D catch-up - agent orchestrator builds four Godot games",
+   "targets": [
+    "Lucid",
+    "Sigil"
+   ]
+  },
+  {
+   "name": "DINOv3",
+   "slug": "facebookresearch/dinov3",
+   "state": "verified",
+   "cat": "mlviz",
+   "video": "o7VJnIN31Ds",
+   "source": "Cinopsis 3D catch-up - Trellis 2 native in ComfyUI",
+   "targets": [
+    "R3F Studio",
+    "Lucid",
+    "PlantID CNN"
+   ]
+  },
+  {
+   "name": "DINOv2",
+   "slug": "facebookresearch/dinov2",
+   "state": "verified",
+   "cat": "mlviz",
+   "video": "QgH9sr7G13Q",
+   "source": "Cinopsis ideas catch-up - ResNet and the residual stream",
+   "targets": [
+    "Ophenia",
+    "Kente",
+    "PlantID CNN"
+   ]
+  },
+  {
+   "name": "ComfyUI Easy Install",
+   "slug": "Tavris1/ComfyUI-Easy-Install",
+   "state": "verified",
+   "cat": "devex",
+   "video": "Ff_tdMsndzQ",
+   "source": "Cinopsis 3D catch-up - fully-local game-ready character on one GPU",
+   "targets": [
+    "R3F Studio",
+    "Lucid",
+    "Kente"
+   ]
+  },
+  {
+   "name": "ElevenLabs",
+   "slug": "elevenlabs/elevenlabs-python",
+   "state": "verified",
+   "cat": "audio",
+   "video": "y9t-0-vj25s",
+   "source": "Cinopsis 3D catch-up - iClone 8 AI Studio making-of",
+   "targets": [
+    "Audion",
+    "Ashe",
+    "GBFolio",
+    "Lucid"
+   ]
+  },
+  {
+   "name": "Asset Reloader",
+   "slug": "",
+   "state": "unresolved",
+   "cat": "devex",
+   "video": "JlmNBGcZ3Ik",
+   "source": "Cinopsis 3D catch-up - Blender sketch shader ported to Three.js",
+   "targets": [
+    "R3F Studio",
+    "GBFolio",
+    "Anansi"
+   ]
+  },
+  {
+   "name": "glTF Report",
+   "slug": "",
+   "state": "closed",
+   "cat": "devex",
+   "video": "JlmNBGcZ3Ik",
+   "source": "Cinopsis 3D catch-up - Blender sketch shader ported to Three.js",
+   "targets": [
+    "R3F Studio",
+    "GBFolio",
+    "Anansi"
+   ]
+  },
+  {
+   "name": "Prometheus",
+   "slug": "prometheus/prometheus",
+   "state": "verified",
+   "cat": "data",
+   "video": "QMPCogrLTeA",
+   "source": "Cinopsis ideas catch-up - metrics across 100+ microservices",
+   "targets": [
+    "Valence",
+    "Meridian",
+    "Griot Hub"
+   ]
+  },
+  {
+   "name": "Thanos",
+   "slug": "thanos-io/thanos",
+   "state": "verified",
+   "cat": "data",
+   "video": "QMPCogrLTeA",
+   "source": "Cinopsis ideas catch-up - metrics across 100+ microservices",
+   "targets": [
+    "Valence",
+    "Meridian",
+    "Kaleidoscope"
+   ]
+  },
+  {
+   "name": "Grafana",
+   "slug": "grafana/grafana",
+   "state": "verified",
+   "cat": "data",
+   "video": "QMPCogrLTeA",
+   "source": "Cinopsis ideas catch-up - metrics across 100+ microservices",
+   "targets": [
+    "Valence",
+    "Meridian",
+    "Griot Hub"
+   ]
+  },
+  {
+   "name": "Kubernetes",
+   "slug": "kubernetes/kubernetes",
+   "state": "verified",
+   "cat": "infra",
+   "video": "QMPCogrLTeA",
+   "source": "Cinopsis ideas catch-up - metrics across 100+ microservices",
+   "targets": [
+    "Valence",
+    "Prism"
+   ]
+  },
+  {
+   "name": "Amazon S3",
+   "slug": "",
+   "state": "closed",
+   "cat": "data",
+   "video": "QMPCogrLTeA",
+   "source": "Cinopsis ideas catch-up - metrics across 100+ microservices",
+   "targets": [
+    "Valence",
+    "Meridian",
+    "Kaleidoscope"
+   ]
+  },
+  {
+   "name": "Apache Cassandra",
+   "slug": "apache/cassandra",
+   "state": "verified",
+   "cat": "data",
+   "video": "juMinZqHAPQ",
+   "source": "Cinopsis ideas catch-up - polyglot persistence at Netflix",
+   "targets": [
+    "Valence",
+    "Meridian",
+    "Synaptiq"
+   ]
+  },
+  {
+   "name": "Elasticsearch",
+   "slug": "elastic/elasticsearch",
+   "state": "verified",
+   "cat": "data",
+   "video": "juMinZqHAPQ",
+   "source": "Cinopsis ideas catch-up - polyglot persistence at Netflix",
+   "targets": [
+    "Kaleidoscope",
+    "Synaptiq",
+    "Cinopsis"
+   ]
+  },
+  {
+   "name": "EVCache",
+   "slug": "Netflix/EVCache",
+   "state": "verified",
+   "cat": "data",
+   "video": "juMinZqHAPQ",
+   "source": "Cinopsis ideas catch-up - polyglot persistence at Netflix",
+   "targets": [
+    "Griot Hub",
+    "Meridian",
+    "Valence"
+   ]
+  },
+  {
+   "name": "scikit-learn",
+   "slug": "scikit-learn/scikit-learn",
+   "state": "verified",
+   "cat": "mlviz",
+   "video": "Oli_3IUjti4",
+   "source": "Cinopsis ideas catch-up - feature engineering primer",
+   "targets": [
+    "Kente",
+    "PlantID CNN",
+    "Personal"
+   ]
+  }
+ ]
+}

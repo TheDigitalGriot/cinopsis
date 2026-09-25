@@ -1,0 +1,80 @@
+{
+  "id": "27qpBfBhpDk",
+  "title": "GPT-6 Astra Can Build 3D Worlds to Learn Anything (title from repo catalog .prism/shared/pot/catalog_local.json; no description file present)",
+  "core_takeaway": "The presenter used OpenAI Codex driving GPT-6 Astra, plus Blender for asset creation and Babylon.js for browser rendering, to autonomously build and host a 12-station 3D learning world that teaches how Codex itself works. The whole run took ~18 hours and ~8 million tokens on Astra medium, unattended, because the plan — not the prompting — carried the weight: an explicit definition of done, a small visual target package rendered before committing to full production, a failure-mode test matrix executed in the agent's internal browser, and a quality rubric for the 'vibe' dimensions a test suite cannot assert. The claim is that this pattern generalizes to any subject better learned spatially than from a PDF.",
+  "key_points": [
+    "Blender is installed through Codex's plugin menu rather than manually: two plugins exist ('Game Development Studio' and 'build 3D game rooms'), and the plugin carries a skill that acts as a cheat sheet for building 3D experiences with less back-and-forth.",
+    "Babylon.js is the piece most people miss: Blender creates the 3D assets, Babylon renders them so the world is actually playable in a browser.",
+    "The plan opens with a definition-of-done sentence enumerating scope — 12 core missions, three chapters, one capstone, a feature atlas, downloadable resources — which also implies browser storage for the downloadable markdown/PDF.",
+    "Before full production the agent was told to produce a visual target package: arrival shot, mascot close-up, one learning exhibit, a material sheet, and a 15-20 second motion sample, to catch blurry labels, bad lighting and missing backdrops cheaply.",
+    "Testing was scoped to the agent's internal browser specifically so it would not contend with the user's own Chrome session during a multi-hour unattended run.",
+    "The test matrix names concrete failure modes: corrupted old saves, disabled storage, missing assets, slow networks (to measure render latency), aborted downloads, decoder failures, graphics context loss, and unsupported graphics.",
+    "A rubric covers what tests cannot: mascot identity, character performance, spatiality, lighting, teaching quality, camera navigation, and non-sequential station hopping without breaking fluidity.",
+    "Deliverables were demanded explicitly: source Blender masters, asset provenance per scene element (so a broken piece is swapped rather than the world rebuilt), a reproducible build, a lesson source catalog, browser visual evidence, and the final hosted URL.",
+    "The run cost ~18 hours and ~8M tokens on Astra medium, executed via a '/goal' loop because Astra was behaving lazily at the time; the presenter says he would now plan on Astra medium/high and execute with Soul or Luna instead of using /goal."
+  ],
+  "why_it_matters": "This is a concrete recipe for long-horizon unattended agent work: the leverage is entirely in plan artifacts — definition of done, cheap visual pre-vis, explicit failure-mode matrix, provenance requirements, and a rubric for subjective quality — not in a clever prompt. For a creative technologist, the Blender-to-Babylon pipeline plus asset provenance is a directly reusable spine for generative 3D deliverables, and the internal-browser testing constraint is the small detail that makes overnight runs survivable.",
+  "key_moments": [
+    {
+      "t": 48.0,
+      "label": "Tour of the generated 3D world and its guiding cards"
+    },
+    {
+      "t": 150.08,
+      "label": "Installing Blender through the Codex plugin menu"
+    },
+    {
+      "t": 239.92,
+      "label": "Internal-browser testing so it doesn't fight your Chrome"
+    },
+    {
+      "t": 345.44,
+      "label": "Definition-of-done sentence that fixes scope"
+    },
+    {
+      "t": 376.88,
+      "label": "Visual target package before committing to full production"
+    },
+    {
+      "t": 436.08,
+      "label": "Blender builds assets, Babylon renders them in-browser"
+    },
+    {
+      "t": 609.6,
+      "label": "Quality rubric for what tests can't assert"
+    },
+    {
+      "t": 690.959,
+      "label": "Cost: ~18 hours, ~8M tokens on Astra medium"
+    }
+  ],
+  "oss": [
+    {
+      "name": "Blender",
+      "slug": "blender/blender",
+      "note": "Used to generate all 3D assets; installed and driven by the agent through a Codex plugin that bundles a 3D-building skill, with 'source Blender masters' demanded as a deliverable."
+    },
+    {
+      "name": "Babylon.js",
+      "slug": "BabylonJS/Babylon.js",
+      "note": "The browser 3D engine that renders the Blender-produced assets so the learning world is playable on the web — the dependency the presenter says he did not anticipate needing."
+    },
+    {
+      "name": "Mermaid",
+      "slug": "mermaid-js/mermaid",
+      "note": "Used in the plan to diagram the frame-by-frame player flow so the agent could reason about and test the sequence."
+    },
+    {
+      "name": "OpenAI Codex",
+      "slug": "openai/codex",
+      "note": "The agent harness running GPT-6 Astra that planned, built, tested and shipped the world, including plugin install and internal-browser testing."
+    }
+  ],
+  "topics": [
+    "agentic workflows",
+    "3D web",
+    "Blender",
+    "prompt/plan engineering",
+    "edtech"
+  ]
+}

@@ -1,0 +1,75 @@
+{
+  "id": "RTmTebnxwKc",
+  "title": "One Byte Costs Cloudflare 250GB of Memory (title from repo catalog .prism/shared/pot/catalog_local.json; no description file present)",
+  "core_takeaway": "Cloudflare's 1.1.1.1 resolver (a Rust service called Big Pineapple) holds ~250 billion DNS cache entries, so one wasted byte per entry costs ~250GB of RAM fleetwide. Five layout-level changes cut the per-entry footprint from 953 to 420 bytes (56%) and allocated memory from 1.1KB to 461 bytes (58%), freeing roughly 100TB of RAM while also making inserts 43% faster and lookups 19% faster. Every change came from looking at what the data actually does at runtime — cache entries are write-once, read-many — rather than from algorithmic cleverness.",
+  "key_points": [
+    "Big Pineapple is Cloudflare's Rust DNS resolver behind 1.1.1.1, holding over 250 billion cache entries at any one time.",
+    "Change 1: entries were full of Vecs, but cache entries are written once and never grown, so the Vec's capacity field (a usize, 8 bytes) plus over-allocated spare heap was pure waste. Swapping Vec for Box (and String for boxed str) across eight fields saved 64 bytes per entry and over 15TB fleetwide.",
+    "Change 2: the answer, authority and additional record lists are always written together, read together and in the same order, so three lists (3 x pointer+length = 48 bytes, 3 heap allocations) became one list plus two u16 offsets (4 bytes), saving 28 bytes per entry plus struct-padding savings.",
+    "Change 3: every record stored its owner domain even though the query domain was already the cache key, so the field became an Option<Box<Name>> storing None when it matches — saving a whole heap allocation per record while still handling CNAME chains where the owner genuinely differs.",
+    "Change 4: the record-data enum was always as large as its biggest variant (NAPTR at 136 bytes, 144 with tag and padding), so an A record needing 4 bytes occupied 144. Boxing the big variants (TXT, SVCB, NAPTR) left A and AAAA inline and saved ~120 bytes each, which matters because the benchmark traffic mix is 56% A and 25% AAAA.",
+    "Boxing introduced two new costs: jemalloc rounds allocations up into fixed size bins (a 40-byte MX record lands in a 48-byte bin, quietly losing 8 bytes), and boxed data loses cache locality, forcing an extra cache-line fetch through a pointer.",
+    "Change 5 is the middle ground that undoes both costs: keep the rest of the entry structured, but store all record data as one boxed u8 array with each record written as a 2-byte length prefix plus its bytes — one allocation, contiguous, no per-record bin rounding.",
+    "Measured outcome: per-entry 953 to 420 bytes, allocated 1.1KB to 461 bytes, insert throughput 625K to 893K entries/sec (+43%), lookups 828ns to 670ns (19% faster).",
+    "In production, P99 resident memory fell from 9.3GB to 5.3GB (43%), roughly 100TB fleetwide, about 130 servers' worth of RAM, which will be reinvested as a larger cache."
+  ],
+  "why_it_matters": "It is a clean worked example of profiling the shape of your data rather than your algorithms: every win came from noticing that stored values never grow, repeat the key, or sit in an enum sized for a rare variant. The Box-vs-Vec, merged-list-with-offsets and length-prefixed-bytes patterns transfer directly to any hot in-memory index or cache in a tooling suite, and the boxing regression is a reminder that allocator bin rounding and cache locality can eat a paper win. The closing framing — the 2018 design was right for 2018 economics — is a useful rule for when to revisit a data layout at all.",
+  "key_moments": [
+    {
+      "t": 40.0,
+      "label": "Big Pineapple: the Rust resolver behind 1.1.1.1"
+    },
+    {
+      "t": 70.0,
+      "label": "Change 1: Vec capacity overhead on write-once entries"
+    },
+    {
+      "t": 167.0,
+      "label": "Change 2: three record lists merged into one plus offsets"
+    },
+    {
+      "t": 233.0,
+      "label": "Change 3: dropping the redundant owner name"
+    },
+    {
+      "t": 362.0,
+      "label": "The boxing trade-off: jemalloc bin rounding and lost locality"
+    },
+    {
+      "t": 414.0,
+      "label": "Change 5: store record data as length-prefixed raw wire bytes"
+    },
+    {
+      "t": 505.0,
+      "label": "Production impact: P99 memory 9.3GB to 5.3GB, ~100TB freed"
+    },
+    {
+      "t": 530.0,
+      "label": "Closing: was the original layout premature optimization?"
+    }
+  ],
+  "oss": [
+    {
+      "name": "Rust",
+      "slug": "rust-lang/rust",
+      "note": "The implementation language of Big Pineapple; every optimization discussed is a Rust type-layout decision (Vec vs Box, enum variant sizing, struct padding, Option<Box<T>> niche)."
+    },
+    {
+      "name": "jemalloc (captioned 'Gemillock')",
+      "slug": "jemalloc/jemalloc",
+      "note": "The allocator Cloudflare uses; its fixed-size bin rounding is what silently ate part of the boxing win and motivated the final raw-bytes design."
+    },
+    {
+      "name": "Big Pineapple (Cloudflare 1.1.1.1 resolver)",
+      "slug": "",
+      "note": "The subject system. Cloudflare's internal Rust DNS resolver, described via their engineering blog post; not an open-source project, so no slug."
+    }
+  ],
+  "topics": [
+    "Rust",
+    "memory optimization",
+    "DNS",
+    "systems engineering",
+    "Cloudflare"
+  ]
+}

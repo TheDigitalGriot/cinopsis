@@ -1,0 +1,80 @@
+{
+  "id": "9RtywbN--QE",
+  "title": "Forget Suno. New BEST local AI music generator is here! (title from repo catalog .prism/shared/pot/catalog_local.json; no description file present)",
+  "core_takeaway": "A new open-weights music generation model (spoken as 'UA2'/'YuE 2' in the auto-captions, exact spelling unverified without a description file) generates a full song by first writing an editable ABC-notation score for the vocal and instrumental parts, then rendering audio from that score. Because the score is an intermediate artifact, it can do things closed tools cannot: cover versions of an existing track, melody transfer, key changes major-to-minor, and lyric swaps across languages. It runs locally in ComfyUI on a quantized checkpoint that fits under 4GB of VRAM, and the presenter's benchmark chart puts it above Suno v6 and v5.5 on a song-quality index while still trailing Suno v5.",
+  "key_points": [
+    "The model generates an intermediate ABC-style notation (vocal melody + instrumental melody, key, tempo) and uses that score as the backbone for the audio render, which is what makes editing and covers possible.",
+    "Reference-audio mode accepts an existing track and lets you choose melody-only or full-song reference: demos convert Auld Lang Syne into jazz funk, a Beethoven track into theatrical hard rock, and Jingle Bells into a minor key.",
+    "Multilingual vocals demonstrated: Spanish flamenco, Russian folktronica, Korean emo, plus English jazz and 1930s boogie-woogie.",
+    "Claimed benchmark (song quality index) beats MiniMax Music and 'AEP 1.5' (likely ACE-Step 1.5, caption-garbled) among open models, and beats Suno v6 and v5.5 among closed models, but scores under Suno v5.",
+    "Distribution is a ComfyUI workflow JSON plus two downloads: a 1.4GB audio encoder into models/audio_encoders and a checkpoint into models/checkpoints (BF16 is 7.8GB, quantized is 3.96GB for sub-4GB VRAM).",
+    "Generation of a full song took just over two minutes on a laptop RTX 5000-class GPU with 16GB VRAM; the demo used 32 steps and a fixed seed of 7 (same seed + same prompt reproduces the same song).",
+    "The decode node has two variants: regular decode above roughly 12GB VRAM, tiled decode below it, wired by rerouting the connection in the graph.",
+    "Licensing is split: code and docs are Apache 2.0, but the model weights carry a Creative Commons non-commercial license, so monetizing generations is legally unclear.",
+    "The presenter also drives the model from an agent (GPT Astra or GLM) to iteratively edit a song by text prompt, e.g. 'keep the melody and lyrics but make it more jazzy through reharmonization', then 'remove the guitar'."
+  ],
+  "why_it_matters": "A generative model that emits an editable symbolic intermediate before rendering is exactly the architecture a tooling suite can hook into: the score is inspectable state an agent can diff, version, and mutate, instead of an opaque prompt-to-waveform black box. Because it ships as a ComfyUI graph, it slots into an existing node-based automation surface and can be driven headlessly by an agent loop. The non-commercial weights license is the constraint to design around before it goes anywhere near a product.",
+  "key_moments": [
+    {
+      "t": 2.48,
+      "label": "Claim: best open-source music generator, runs under 4GB VRAM"
+    },
+    {
+      "t": 23.92,
+      "label": "Text-to-song demo: smoky jazz"
+    },
+    {
+      "t": 318.56,
+      "label": "Reference-audio / cover-song mode explained"
+    },
+    {
+      "t": 475.199,
+      "label": "Driving the model from an agent for iterative editing"
+    },
+    {
+      "t": 596.8,
+      "label": "Benchmark chart vs Suno and open models"
+    },
+    {
+      "t": 731.12,
+      "label": "Install path: run it as a ComfyUI workflow"
+    },
+    {
+      "t": 811.2,
+      "label": "Downloading the audio encoder and checkpoint"
+    },
+    {
+      "t": 1398.4,
+      "label": "License split: Apache 2.0 code, non-commercial weights"
+    }
+  ],
+  "oss": [
+    {
+      "name": "UA2 / U2 (open-source music generator)",
+      "slug": "",
+      "note": "The subject of the video: text-to-song and song-editing model that writes ABC notation first and renders audio from it. The name is only ever spoken, and auto-captions render it 'UA 2' / 'U2' / 'YuE 2'; with no description file present the real repo could not be resolved, so no slug is guessed."
+    },
+    {
+      "name": "ComfyUI",
+      "slug": "comfyanonymous/ComfyUI",
+      "note": "Node-graph runtime used to run the model locally; the workflow ships as a drag-and-drop JSON, and model files go under models/audio_encoders and models/checkpoints."
+    },
+    {
+      "name": "MiniMax Music",
+      "slug": "",
+      "note": "Named as a competing open music model that this one beats on the quality index; slug not stated in the video."
+    },
+    {
+      "name": "AEP 1.5 (likely ACE-Step 1.5, caption-garbled)",
+      "slug": "",
+      "note": "Other open-source music model used as a benchmark comparison; spelling unverified without a description file."
+    }
+  ],
+  "topics": [
+    "open-source models",
+    "music generation",
+    "ComfyUI",
+    "local inference",
+    "licensing"
+  ]
+}

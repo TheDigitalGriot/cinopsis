@@ -1,0 +1,1072 @@
+[
+  {
+    "name": "Nautilus Trader",
+    "what": "Rust-core/Python algorithmic trading engine unifying backtest and live execution.",
+    "source_video_id": "ST5h94WTcDA"
+  },
+  {
+    "name": "Immich",
+    "what": "self-hosted photo/video backup alternative to cloud services (NestJS/Svelte/Flutter).",
+    "source_video_id": "ST5h94WTcDA"
+  },
+  {
+    "name": "Almarky",
+    "what": "opinionated preconfigured Arch Linux distro on Hyprland + Quickshell.",
+    "source_video_id": "ST5h94WTcDA"
+  },
+  {
+    "name": "Buzz",
+    "what": "self-hosted human+agent team workspace built on a Nostr relay.",
+    "source_video_id": "ST5h94WTcDA"
+  },
+  {
+    "name": "Fee (PI) Agent Harness",
+    "what": "modular toolkit/CLI for building AI coding agents with a unified multi-provider LLM API.",
+    "source_video_id": "ST5h94WTcDA"
+  },
+  {
+    "name": "Deep Tutor",
+    "what": "agent-native tutoring workspace using LlamaIndex, GraphRAG, and PageIndex for grounded answers.",
+    "source_video_id": "ST5h94WTcDA"
+  },
+  {
+    "name": "AirLLM",
+    "what": "Python library running large LLMs on low-memory GPUs by loading one layer at a time.",
+    "source_video_id": "ST5h94WTcDA"
+  },
+  {
+    "name": "Terminal Browser",
+    "what": "CLI tool rendering a real Chromium browser inside a terminal via the kitty graphics protocol.",
+    "source_video_id": "ST5h94WTcDA"
+  },
+  {
+    "name": "Open Logi",
+    "what": "local-first Logitech mouse config app/CLI over HID++ with no cloud account.",
+    "source_video_id": "ST5h94WTcDA"
+  },
+  {
+    "name": "Blobatar",
+    "what": "JavaScript library generating deterministic geometric avatars from any string.",
+    "source_video_id": "ST5h94WTcDA"
+  },
+  {
+    "name": "Kumara",
+    "what": "cross-platform team chat treating AI agents as full participants (Express/Postgres/Redis).",
+    "source_video_id": "ST5h94WTcDA"
+  },
+  {
+    "name": "Aura",
+    "what": "web tool/library generating layered CSS gradient backgrounds (Next.js/React/Tailwind).",
+    "source_video_id": "ST5h94WTcDA"
+  },
+  {
+    "name": "HQ Base",
+    "what": "self-hosted shared team email workspace deployed to Cloudflare Workers with an OAuth MCP server.",
+    "source_video_id": "ST5h94WTcDA"
+  },
+  {
+    "name": "North Cinder",
+    "what": "ad-neutral local MCP server that ranks shopping options across store adapters.",
+    "source_video_id": "ST5h94WTcDA"
+  },
+  {
+    "name": "Slop Trim",
+    "what": "local Python/Claude Code plugin scoring prose for AI-writing patterns (no network).",
+    "source_video_id": "ST5h94WTcDA"
+  },
+  {
+    "name": "macOS Harness",
+    "what": "minimal Python toolkit giving agents raw six-primitive control of a Mac.",
+    "source_video_id": "ST5h94WTcDA"
+  },
+  {
+    "name": "Dagit",
+    "what": "Git server/forge running on Cloudflare Workers with per-repo Durable Object + SQLite.",
+    "source_video_id": "ST5h94WTcDA"
+  },
+  {
+    "name": "Core Framework",
+    "what": "visual design-token builder outputting portable CSS across web/WordPress/Figma.",
+    "source_video_id": "ST5h94WTcDA"
+  },
+  {
+    "name": "MorphNext",
+    "what": "Flutter library for interruptible spring-driven icon morphing.",
+    "source_video_id": "ST5h94WTcDA"
+  },
+  {
+    "name": "Halcyon Video",
+    "what": "self-hosted three.js app turning a Jellyfin library into a walkable 3D video-rental store.",
+    "source_video_id": "ST5h94WTcDA"
+  },
+  {
+    "name": "Dupe",
+    "what": "open-source real-time collaborative design canvas where humans and AI agents (e.g. Claude Code) build together.",
+    "source_video_id": "Sx-YBDt0oc8"
+  },
+  {
+    "name": "Claude Code /design",
+    "what": "canvas feature in the Claude Code app that generates and iterates UI variations from your codebase.",
+    "source_video_id": "Ojo8c_Xq4ms"
+  },
+  {
+    "name": "Iris",
+    "what": "screenshot CLI that doubles as an MCP server, driving Chrome over DevTools protocol.",
+    "source_video_id": "fwDyOvUOmy8"
+  },
+  {
+    "name": "Wake",
+    "what": "native macOS app aggregating local agent histories (Claude Code, Codex) with SQLite full-text search.",
+    "source_video_id": "fwDyOvUOmy8"
+  },
+  {
+    "name": "Apache Mocha",
+    "what": "local-first agent workspace recording an append-only runtime log across desktop/terminal/CLI.",
+    "source_video_id": "fwDyOvUOmy8"
+  },
+  {
+    "name": "Three UI Community",
+    "what": "login-free catalog of interactive React and three.js components runnable locally with Vite.",
+    "source_video_id": "fwDyOvUOmy8"
+  },
+  {
+    "name": "Open Bot",
+    "what": "per-agent containerized Chromium with a gateway that audits and rule-checks every tool call.",
+    "source_video_id": "fwDyOvUOmy8"
+  },
+  {
+    "name": "Mango Disk",
+    "what": "cross-platform disk analyzer/cleaner that defaults to scanning, not deleting.",
+    "source_video_id": "fwDyOvUOmy8"
+  },
+  {
+    "name": "Mu",
+    "what": "self-hosted personal agent with an email address, exposing tools via MCP/HTTP/CLI (Go).",
+    "source_video_id": "fwDyOvUOmy8"
+  },
+  {
+    "name": "Terminal Code",
+    "what": "runs VS Code in the terminal by stacking code-server with a kitty-graphics terminal browser.",
+    "source_video_id": "fwDyOvUOmy8"
+  },
+  {
+    "name": "FX",
+    "what": "compact coding agent written in Zig, embeddable as native binary or WebAssembly.",
+    "source_video_id": "fwDyOvUOmy8"
+  },
+  {
+    "name": "Scandinavian Design",
+    "what": "Cursor agent skill applying a restrained Nordic redesign to an existing interface.",
+    "source_video_id": "fwDyOvUOmy8"
+  },
+  {
+    "name": "Marketing OS",
+    "what": "pure-markdown agent skill turning Claude/Codex/Cursor into a structured marketing workspace.",
+    "source_video_id": "fwDyOvUOmy8"
+  },
+  {
+    "name": "Zootrope",
+    "what": "terminal live flow-graph of a running Claude Code session and its sub-agents/tool calls.",
+    "source_video_id": "fwDyOvUOmy8"
+  },
+  {
+    "name": "Imagined 3D",
+    "what": "turns a product description + images into an editable parametric build123d Python CAD source.",
+    "source_video_id": "fwDyOvUOmy8"
+  },
+  {
+    "name": "Auto Prompt",
+    "what": "coding-agent skill turning one goal into a managed scope/implement/test/review/repair loop.",
+    "source_video_id": "fwDyOvUOmy8"
+  },
+  {
+    "name": "Claude DB",
+    "what": "persistent memory for Claude Code with a local code graph (SQLite/MongoDB/Postgres).",
+    "source_video_id": "fwDyOvUOmy8"
+  },
+  {
+    "name": "Jixsu",
+    "what": "TypeScript harness running one agent in a durable, replayable event-logged thread.",
+    "source_video_id": "fwDyOvUOmy8"
+  },
+  {
+    "name": "Nopus",
+    "what": "scores agent replies for overworked prose and requests one clearer rewrite.",
+    "source_video_id": "fwDyOvUOmy8"
+  },
+  {
+    "name": "Vomit",
+    "what": "pipes coding-agent output through a local model to shorten it, fully offline.",
+    "source_video_id": "fwDyOvUOmy8"
+  },
+  {
+    "name": "Microlighter",
+    "what": "dependency-free browser syntax highlighter using the CSS Custom Highlight API.",
+    "source_video_id": "fwDyOvUOmy8"
+  },
+  {
+    "name": "Benjamin Plus",
+    "what": "instruction set teaching coding agents to use fewer tokens (JetBrains reports ~17.9% median cost cut).",
+    "source_video_id": "fwDyOvUOmy8"
+  },
+  {
+    "name": "Full Stack Agent",
+    "what": "Claude Code wizard that assembles a complete personal agent setup (memory vault, voice, visualizer).",
+    "source_video_id": "fwDyOvUOmy8"
+  },
+  {
+    "name": "Paper Aquarium",
+    "what": "turns a child's paper coloring into a swimming 3D fish in a three.js aquarium.",
+    "source_video_id": "fwDyOvUOmy8"
+  },
+  {
+    "name": "ProCoder",
+    "what": "Go binary commit gate checking formatting, tests, secrets, and release readiness.",
+    "source_video_id": "fwDyOvUOmy8"
+  },
+  {
+    "name": "Kinder Grim",
+    "what": "browser procedural art system generating consistent hand-drawn characters from JSON recipes.",
+    "source_video_id": "fwDyOvUOmy8"
+  },
+  {
+    "name": "Renox",
+    "what": "terminal bulk file renamer with preview, regex rules, and undo/redo.",
+    "source_video_id": "fwDyOvUOmy8"
+  },
+  {
+    "name": "Highlight Studio",
+    "what": "drives the Pixel 11 Pro LED array from notifications with no internet/contacts permission.",
+    "source_video_id": "fwDyOvUOmy8"
+  },
+  {
+    "name": "Scroll Craft",
+    "what": "Claude Code skill verifying scroll-driven sites by screenshotting its own scroll.",
+    "source_video_id": "fwDyOvUOmy8"
+  },
+  {
+    "name": "Hermes 3D",
+    "what": "retro 3D-office visualization layer rendering agents as workers (points at a Herms/HTTP backend).",
+    "source_video_id": "fwDyOvUOmy8"
+  },
+  {
+    "name": "H Flow",
+    "what": "pipeline SDK for robot demonstration data using MCAP-chunked episodes.",
+    "source_video_id": "fwDyOvUOmy8"
+  },
+  {
+    "name": "Brave",
+    "what": "de-Googled Chromium for Android shipped as a 68-patch series keeping Manifest V2/uBlock Origin.",
+    "source_video_id": "fwDyOvUOmy8"
+  },
+  {
+    "name": "SSH Clipboard",
+    "what": "shared native clipboard across Mac/Linux over peer-to-peer SSH (no cloud).",
+    "source_video_id": "fwDyOvUOmy8"
+  },
+  {
+    "name": "AlvaMethod",
+    "what": "agent skills packaging a probe/DAG/teach/quiz learning loop.",
+    "source_video_id": "fwDyOvUOmy8"
+  },
+  {
+    "name": "FreeCAD",
+    "what": "free open-source parametric 3D modeler built on the OpenCascade geometry engine.",
+    "source_video_id": "ajSNbf_s_2g"
+  },
+  {
+    "name": "Local Deep Researcher",
+    "what": "local research agent using Ollama or LM Studio to iteratively search, summarize, and cite.",
+    "source_video_id": "ajSNbf_s_2g"
+  },
+  {
+    "name": "Skills",
+    "what": "curated collection of agent skills for designers/builders (Codex/Claude/Cursor).",
+    "source_video_id": "ajSNbf_s_2g"
+  },
+  {
+    "name": "QQ Chat Exporter",
+    "what": "local tool exporting QQ chat history to HTML/JSON/TXT/Excel.",
+    "source_video_id": "ajSNbf_s_2g"
+  },
+  {
+    "name": "Local LLM's Web UI",
+    "what": "one local web interface for running LLMs and multimodal models.",
+    "source_video_id": "ajSNbf_s_2g"
+  },
+  {
+    "name": "Picnic CSS",
+    "what": "lightweight (<10KB) CSS library for buttons, forms, nav, and modals.",
+    "source_video_id": "ajSNbf_s_2g"
+  },
+  {
+    "name": "Algorithmic Trading with Python",
+    "what": "companion code for Chris Conlan's book with indicators, backtesting, and grid search.",
+    "source_video_id": "ajSNbf_s_2g"
+  },
+  {
+    "name": "FireRedOpen Storyline",
+    "what": "agent turning natural language into actual video edits with reusable style skills.",
+    "source_video_id": "ajSNbf_s_2g"
+  },
+  {
+    "name": "Clean Go Article",
+    "what": "reference guide with Go-specific clean-code refactoring examples.",
+    "source_video_id": "ajSNbf_s_2g"
+  },
+  {
+    "name": "HMA OSS",
+    "what": "Zygisk module (fork of Hide My Applist) that hides app lists from detection.",
+    "source_video_id": "ajSNbf_s_2g"
+  },
+  {
+    "name": "Angular Local Storage",
+    "what": "AngularJS module wrapping the storage API with cookie fallback.",
+    "source_video_id": "ajSNbf_s_2g"
+  },
+  {
+    "name": "Python Social Auth",
+    "what": "social-login/OAuth library (successor to Django Social Auth).",
+    "source_video_id": "ajSNbf_s_2g"
+  },
+  {
+    "name": "Makie.jl",
+    "what": "Julia visualization ecosystem (GLMakie, WGLMakie, CairoMakie, RPRMakie).",
+    "source_video_id": "ajSNbf_s_2g"
+  },
+  {
+    "name": "CrossC2",
+    "what": "generates cross-platform (Linux/macOS) Cobalt Strike beacons.",
+    "source_video_id": "ajSNbf_s_2g"
+  },
+  {
+    "name": "BiliSync",
+    "what": "Rust/Tokio tool syncing Bilibili favorites/collections to a NAS, merging with FFmpeg.",
+    "source_video_id": "ajSNbf_s_2g"
+  },
+  {
+    "name": "Codex CLI",
+    "what": "OpenAI's lightweight terminal-based coding agent running locally.",
+    "source_video_id": "ajSNbf_s_2g"
+  },
+  {
+    "name": "TEE Simulator",
+    "what": "runs a software keymint in the real keystore daemon to simulate hardware key attestation.",
+    "source_video_id": "ajSNbf_s_2g"
+  },
+  {
+    "name": "Paper Banana",
+    "what": "open-source agentic framework for publication-ready figures/slides from text.",
+    "source_video_id": "ajSNbf_s_2g"
+  },
+  {
+    "name": "Intra",
+    "what": "Android app encrypting DNS lookups via DNS-over-HTTPS (Cloudflare/Google).",
+    "source_video_id": "ajSNbf_s_2g"
+  },
+  {
+    "name": "SQL Murder Mystery",
+    "what": "detective game teaching SQL joins, aggregations, and subqueries.",
+    "source_video_id": "ajSNbf_s_2g"
+  },
+  {
+    "name": "Fosilib",
+    "what": "universal software supply-chain platform supporting 20+ package formats and Hugging Face model sync.",
+    "source_video_id": "ajSNbf_s_2g"
+  },
+  {
+    "name": "Adafruit SSD1306",
+    "what": "Arduino library for monochrome 128x64/128x32 OLED displays over I2C/SPI.",
+    "source_video_id": "ajSNbf_s_2g"
+  },
+  {
+    "name": "Coop",
+    "what": "CLI performance tool using Linux perf_event_open to compare commands' memory and hardware counters.",
+    "source_video_id": "ajSNbf_s_2g"
+  },
+  {
+    "name": "Open Deep Research",
+    "what": "open-source, model-agnostic deep-research tool that writes cited reports from one question (Perplexity alternative).",
+    "source_video_id": "k4x7YJhhn_E"
+  },
+  {
+    "name": "OmniRoute (omniroute.online)",
+    "what": "local AI gateway aggregating ~295 providers behind one endpoint with quota-aware failover and model \"combos\".",
+    "source_video_id": "NJ0TQ-pyMDY"
+  },
+  {
+    "name": "OpenRouter",
+    "what": "provider whose free models are imported via API key.",
+    "source_video_id": "NJ0TQ-pyMDY"
+  },
+  {
+    "name": "OpenCode",
+    "what": "free provider requiring no authentication (offers DeepSeek and other models).",
+    "source_video_id": "NJ0TQ-pyMDY"
+  },
+  {
+    "name": "Kiro AI",
+    "what": "provider (Google login) exposing Claude Sonnet/Haiku-class models.",
+    "source_video_id": "NJ0TQ-pyMDY"
+  },
+  {
+    "name": "Anti-gravity",
+    "what": "provider (Gmail auth) exposing Claude Opus/Sonnet and Gemini Flash variants.",
+    "source_video_id": "NJ0TQ-pyMDY"
+  },
+  {
+    "name": "Nvidia NIM",
+    "what": "provider (API key) offering GLM models.",
+    "source_video_id": "NJ0TQ-pyMDY"
+  },
+  {
+    "name": "Claude Code",
+    "what": "Anthropic's CLI coding agent, configured to route through OmniRoute.",
+    "source_video_id": "NJ0TQ-pyMDY"
+  },
+  {
+    "name": "Node.js",
+    "what": "runtime prerequisite for installing/running OmniRoute.",
+    "source_video_id": "NJ0TQ-pyMDY"
+  },
+  {
+    "name": "MoneyPrinterTurbo",
+    "what": "open-source tool generating HD short videos from a topic (narration, stock footage, voiceover, subtitles); web UI/API/CLI.",
+    "source_video_id": "9pduFkZEQPc"
+  },
+  {
+    "name": "CareerOps",
+    "what": "turns any AI coding CLI (Claude Code, Codex, OpenCode) into a job-search command center that scores/drafts applications locally.",
+    "source_video_id": "9pduFkZEQPc"
+  },
+  {
+    "name": "Misemantica",
+    "what": "Python knowledge-graph infrastructure layer giving agents W3C PROV-O audit trails and deterministic Rete/Datalog/SPARQL reasoning.",
+    "source_video_id": "9pduFkZEQPc"
+  },
+  {
+    "name": "Micro Sandbox",
+    "what": "local-first micro VM runtime for untrusted workloads; runs OCI images, SDKs for Rust/Python/TS/Go/Ruby, CLI + MCP server.",
+    "source_video_id": "9pduFkZEQPc"
+  },
+  {
+    "name": "EC OmniRoute",
+    "what": "free open-source AI gateway fronting 340 providers/1,200+ models behind one OpenAI-compatible endpoint with quota-aware fallback.",
+    "source_video_id": "9pduFkZEQPc"
+  },
+  {
+    "name": "Dansant DB agent memory",
+    "what": "self-hostable memory hub turning conversations/docs/code into chat memory, versioned skills, LLM wiki, and code graph.",
+    "source_video_id": "9pduFkZEQPc"
+  },
+  {
+    "name": "World Monitor",
+    "what": "open-source intelligence dashboard aggregating 500 feeds into AI briefs on a 3D globe; runs locally with Ollama.",
+    "source_video_id": "9pduFkZEQPc"
+  },
+  {
+    "name": "J Space cognition suite",
+    "what": "model-agnostic inference-time cognitive control layer packaged as an agent skill (no weights/fine-tuning).",
+    "source_video_id": "9pduFkZEQPc"
+  },
+  {
+    "name": "VSIFX",
+    "what": "tiny native terminal coding agent by Verso Labs, written in Zig as a single binary; MCP client with skills/plugins/subagents.",
+    "source_video_id": "9pduFkZEQPc"
+  },
+  {
+    "name": "Caprover",
+    "what": "self-hosted PaaS running Docker Swarm + Nginx + Let's Encrypt, controlled via web UI or CLI.",
+    "source_video_id": "9pduFkZEQPc"
+  },
+  {
+    "name": "Remotion (component library)",
+    "what": "Shadcn-style copy-paste animation components for Remotion videos, with a Claude Code skill.",
+    "source_video_id": "9pduFkZEQPc"
+  },
+  {
+    "name": "Comet",
+    "what": "control coding agents (Claude Code, Codex) across devices via a synced daemon on an always-on machine.",
+    "source_video_id": "9pduFkZEQPc"
+  },
+  {
+    "name": "Y ICM Architect",
+    "what": "Claude skill turning a process/idea into a structured folder+markdown workspace (interpretable context methodology).",
+    "source_video_id": "9pduFkZEQPc"
+  },
+  {
+    "name": "Bear Hands",
+    "what": "webcam hand-gesture interface for AI assistants using Google MediaPipe + Three.js, local Python server.",
+    "source_video_id": "9pduFkZEQPc"
+  },
+  {
+    "name": "DEUS as Logo",
+    "what": "compact agent skill enforcing a strict formula for simplified mascot-style logos (open agent skills format).",
+    "source_video_id": "9pduFkZEQPc"
+  },
+  {
+    "name": "Endoplexity",
+    "what": "Chrome extension letting a coding CLI act on your logged-in browser via a local MCP bridge, using accessibility-tree snapshots.",
+    "source_video_id": "9pduFkZEQPc"
+  },
+  {
+    "name": "TrueForge",
+    "what": "open vendor-neutral agent harness from TrueFoundry running the model/MCP/skills/sandbox/approval loop; multi-provider.",
+    "source_video_id": "9pduFkZEQPc"
+  },
+  {
+    "name": "Apex Inference Chip",
+    "what": "open hardware transformer-decoder design compressing the KV cache on-chip; verified on FPGA against a NumPy reference.",
+    "source_video_id": "9pduFkZEQPc"
+  },
+  {
+    "name": "Desktop Fly",
+    "what": "macOS app running a real flywire fruit-fly connectome as a leaky-integrate-and-fire spiking simulation driving a desktop pet.",
+    "source_video_id": "9pduFkZEQPc"
+  },
+  {
+    "name": "Viscose",
+    "what": "portfolio carousel built with Next.js/React/Three.js/GSAP rendered as a single WebGL fragment shader using signed distance fields.",
+    "source_video_id": "9pduFkZEQPc"
+  },
+  {
+    "name": "Ollama",
+    "what": "local LLM runtime used to run World Monitor without API keys.",
+    "source_video_id": "9pduFkZEQPc"
+  },
+  {
+    "name": "Google MediaPipe",
+    "what": "hand-tracking library powering Bear Hands.",
+    "source_video_id": "9pduFkZEQPc"
+  },
+  {
+    "name": "Three.js",
+    "what": "3D rendering library used by Bear Hands and Viscose.",
+    "source_video_id": "9pduFkZEQPc"
+  },
+  {
+    "name": "Higgsfield AI",
+    "what": "all-in-one AI creative platform (image, video, 3D, voice, dubbing, upscaling) used for the whole film workflow.",
+    "source_video_id": "tKEFUwTAcpg"
+  },
+  {
+    "name": "SeeDance 2.5 (SeaDance)",
+    "what": "AI video model (1080p, up to 30s clips) used for image-to-video generation on Higgsfield.",
+    "source_video_id": "tKEFUwTAcpg"
+  },
+  {
+    "name": "GPT image model",
+    "what": "image-generation model (referenced as \"GPT image 2\" / \"GPT-1 image 2\") used to render storyboard panels.",
+    "source_video_id": "tKEFUwTAcpg"
+  },
+  {
+    "name": "ChatGPT",
+    "what": "used to generate story ideas, the scene script, and image-to-video prompts.",
+    "source_video_id": "tKEFUwTAcpg"
+  },
+  {
+    "name": "Claude",
+    "what": "named as an alternative to ChatGPT for storyboard-prompt creation.",
+    "source_video_id": "tKEFUwTAcpg"
+  },
+  {
+    "name": "Nano Banana Pro",
+    "what": "image model referenced in a promotional discount offer.",
+    "source_video_id": "tKEFUwTAcpg"
+  },
+  {
+    "name": "Kling",
+    "what": "AI video model referenced in a promotional discount offer.",
+    "source_video_id": "tKEFUwTAcpg"
+  },
+  {
+    "name": "Evoke",
+    "what": "open-source (Apache 2) 14B real-time interactive world video model; image + joystick/text input, generates in 3 steps.",
+    "source_video_id": "rQ4yX5qNYdY"
+  },
+  {
+    "name": "4D Anyone",
+    "what": "turns a single video of a person into a 4D Gaussian-splat reconstruction viewable from any angle (~12GB model).",
+    "source_video_id": "rQ4yX5qNYdY"
+  },
+  {
+    "name": "SenseNova U 1.5 8B",
+    "what": "open-source image generator/editor producing native 4K end-to-end in pixel space (no VAE); Apache 2, ~50GB.",
+    "source_video_id": "rQ4yX5qNYdY"
+  },
+  {
+    "name": "Bernini v2",
+    "what": "ByteDance open-source omnimodal natural-language video editor (~180GB).",
+    "source_video_id": "rQ4yX5qNYdY"
+  },
+  {
+    "name": "Ornith 1.5",
+    "what": "open-source model family (9B/35B/397B MoE) trained via a self-improvement task-proposal loop; GGUF quants available.",
+    "source_video_id": "rQ4yX5qNYdY"
+  },
+  {
+    "name": "Audio8TS",
+    "what": "tiny (0.1B, ~1.7GB) multilingual voice-cloning text-to-speech model with released code/weights.",
+    "source_video_id": "rQ4yX5qNYdY"
+  },
+  {
+    "name": "GeoWeaver",
+    "what": "long-video-to-3D reconstruction method using chunked prediction and stitching to reduce drift (paper released).",
+    "source_video_id": "rQ4yX5qNYdY"
+  },
+  {
+    "name": "Qwen VideoEdit",
+    "what": "text-prompt video editing that plugs Qwen-Image-Edit into Alibaba's Wan for frame-by-frame edits; code + training script released.",
+    "source_video_id": "rQ4yX5qNYdY"
+  },
+  {
+    "name": "Qwen-Image-Edit",
+    "what": "image editor used as the per-frame engine inside Qwen VideoEdit.",
+    "source_video_id": "rQ4yX5qNYdY"
+  },
+  {
+    "name": "Wan (Alibaba)",
+    "what": "video-generation workflow used by Qwen VideoEdit.",
+    "source_video_id": "rQ4yX5qNYdY"
+  },
+  {
+    "name": "DeepSeek V4 Flash Vision Experimental",
+    "what": "vision-capable variant of DeepSeek V4 Flash matching Opus-class on agentic coding benchmarks (API-only).",
+    "source_video_id": "rQ4yX5qNYdY"
+  },
+  {
+    "name": "Comfy MCP",
+    "what": "ComfyUI's open-source agentic connector letting an AI agent drive ComfyUI workflows/models via natural language.",
+    "source_video_id": "rQ4yX5qNYdY"
+  },
+  {
+    "name": "ComfyUI",
+    "what": "node-based generative workflow tool that Comfy MCP connects agents to.",
+    "source_video_id": "rQ4yX5qNYdY"
+  },
+  {
+    "name": "Nvidia AO",
+    "what": "agentic harness/pipeline that raised Claude Opus 5 from 30% to 100% on the ARC-AGI-3 public set.",
+    "source_video_id": "rQ4yX5qNYdY"
+  },
+  {
+    "name": "Gen 1.5",
+    "what": "robot foundation model that can attempt a task from a single 3–12s demonstration (59% one-shot, 83% with ~5 min data).",
+    "source_video_id": "rQ4yX5qNYdY"
+  },
+  {
+    "name": "Happy Shrimp",
+    "what": "free AI music generator (style + lyrics or instrumental) from the lab behind \"Happy Horse\".",
+    "source_video_id": "rQ4yX5qNYdY"
+  },
+  {
+    "name": "ARC-AGI-3",
+    "what": "benchmark of instruction-free video-game environments testing on-the-fly learning (referenced as evaluation target).",
+    "source_video_id": "rQ4yX5qNYdY"
+  },
+  {
+    "name": "Free Token",
+    "what": "Apache-licensed inference engine using a routing-aware expert cache to run large MoE models on a single GPU (Nvidia CUDA / Linux, beta).",
+    "source_video_id": "Mlo16hrA5wQ"
+  },
+  {
+    "name": "llama.cpp",
+    "what": "Georgi Gerganov's incumbent local inference engine (17 hardware backends, GGUF, Apache); baseline compared against, with the -n-cpu-moe static split.",
+    "source_video_id": "Mlo16hrA5wQ"
+  },
+  {
+    "name": "vLLM",
+    "what": "cloud inference engine (co-authored by Ion Stoica) referenced as prior work by the same research crowd.",
+    "source_video_id": "Mlo16hrA5wQ"
+  },
+  {
+    "name": "k-transformers (KTransformers)",
+    "what": "engine cited for making \"missed expert as compute\" fast; part of the MoE-offload lineage.",
+    "source_video_id": "Mlo16hrA5wQ"
+  },
+  {
+    "name": "Fiddler",
+    "what": "prior work that proposed treating a missed expert as work (compute) rather than data to fetch.",
+    "source_video_id": "Mlo16hrA5wQ"
+  },
+  {
+    "name": "DeepSeek V4 Flash",
+    "what": "MoE model (256 experts/layer, 43 layers, 6 fire per token) used as a benchmark target.",
+    "source_video_id": "Mlo16hrA5wQ"
+  },
+  {
+    "name": "Qwen 35B",
+    "what": "MoE model used in Free Token's throughput benchmarks.",
+    "source_video_id": "Mlo16hrA5wQ"
+  },
+  {
+    "name": "GLM 5.2",
+    "what": "model benchmarked on the workstation card (14.9 tok/s Free Token vs 7.3 llama.cpp).",
+    "source_video_id": "Mlo16hrA5wQ"
+  },
+  {
+    "name": "ScrollCraft",
+    "what": "free Claude/Claude Code skill that builds premium scroll-driven interactive landing pages via an interview, asset generation, and a verification pass.",
+    "source_video_id": "QUI6Ug4cHnE"
+  },
+  {
+    "name": "Claude Code (desktop)",
+    "what": "the coding-agent environment used to run the ScrollCraft skill.",
+    "source_video_id": "QUI6Ug4cHnE"
+  },
+  {
+    "name": "Kie.ai",
+    "what": "aggregator API (\"OpenRouter for image/video models\") used by the skill to generate images/videos from an API key in the project's env vars.",
+    "source_video_id": "QUI6Ug4cHnE"
+  },
+  {
+    "name": "Prime Agent",
+    "what": "open-source MIT-licensed RLM coding agent from Prime Intellect (persistent kernel, recursive sub-agents, skills as code).",
+    "source_video_id": "1BY_RNBP9F0"
+  },
+  {
+    "name": "Prime Intellect",
+    "what": "decentralized training/RL research lab that maintains Prime Agent and the surrounding stack.",
+    "source_video_id": "1BY_RNBP9F0"
+  },
+  {
+    "name": "PyMono agent",
+    "what": "the agent repository Prime Agent was originally forked from.",
+    "source_video_id": "1BY_RNBP9F0"
+  },
+  {
+    "name": "Prime Intellect verifiers",
+    "what": "evaluation component of the surrounding family of tools.",
+    "source_video_id": "1BY_RNBP9F0"
+  },
+  {
+    "name": "prime-rl (prim RL training stack)",
+    "what": "Prime Intellect's reinforcement-learning training stack.",
+    "source_video_id": "1BY_RNBP9F0"
+  },
+  {
+    "name": "IPython kernel",
+    "what": "the single persistent REPL/control environment the agent runs everything through.",
+    "source_video_id": "1BY_RNBP9F0"
+  },
+  {
+    "name": "Agent Skills format",
+    "what": "skill spec Prime Agent implements and extends so skills can be importable Python packages.",
+    "source_video_id": "1BY_RNBP9F0"
+  },
+  {
+    "name": "Viking / OpenViking context database",
+    "what": "open-source tiered \"context database for AI agents\" exposing memory as a virtual file system (LS/tree/find/grep), backing a VLDB 2026 paper, AGPLv3.",
+    "source_video_id": "P-458yO0eak"
+  },
+  {
+    "name": "Viking protocol",
+    "what": "addressing scheme giving every memory entry a file-path-like address.",
+    "source_video_id": "P-458yO0eak"
+  },
+  {
+    "name": "Plain-markdown agent memory project",
+    "what": "long-term memory shared across coding agents, stored as greppable markdown in a git repo via lifecycle hooks (permissive license, loopback-only).",
+    "source_video_id": "P-458yO0eak"
+  },
+  {
+    "name": "Ollama",
+    "what": "local model runtime the context-database wizard can detect, install, and pull hardware-suited models for, enabling a fully offline memory layer.",
+    "source_video_id": "P-458yO0eak"
+  },
+  {
+    "name": "Obsidian",
+    "what": "markdown editor cited as a way to open/browse the plain-text memory wiki.",
+    "source_video_id": "P-458yO0eak"
+  },
+  {
+    "name": "rsync",
+    "what": "used to back up the plain-text memory repo.",
+    "source_video_id": "P-458yO0eak"
+  },
+  {
+    "name": "Hermes Agent Desktop (bot mode)",
+    "what": "Nous Research desktop app whose bot mode lets multiple agent profiles communicate via agent inboxes and work as a team.",
+    "source_video_id": "2Q-xW88YARg"
+  },
+  {
+    "name": "Nous Research portal",
+    "what": "model access portal used to route bots to models like Qwen 3.",
+    "source_video_id": "2Q-xW88YARg"
+  },
+  {
+    "name": "agentwikis.com",
+    "what": "the creator's project offering free (and paid pro) LLM research \"wikis.\"",
+    "source_video_id": "2Q-xW88YARg"
+  },
+  {
+    "name": "Playwright",
+    "what": "browser automation used by the QA bot to test the built game.",
+    "source_video_id": "2Q-xW88YARg"
+  },
+  {
+    "name": "WebGL 2",
+    "what": "the raw browser graphics API the game was implemented in.",
+    "source_video_id": "2Q-xW88YARg"
+  },
+  {
+    "name": "SOUL.md",
+    "what": "per-bot mission/config file defining each bot's role.",
+    "source_video_id": "2Q-xW88YARg"
+  },
+  {
+    "name": "NVIDIA RTX Spark",
+    "what": "on-device platform with 128 GB unified memory enabling a local agent to hold a full codebase in context.",
+    "source_video_id": "WCRNR1Ve9s0"
+  },
+  {
+    "name": "Hermes agent",
+    "what": "the long-running local agent that monitors channels, debugs, and runs QA on the device.",
+    "source_video_id": "WCRNR1Ve9s0"
+  },
+  {
+    "name": "Qwen (\"Quant 3.6\") model",
+    "what": "local model running on RTX Spark to ingest the codebase and find the fix.",
+    "source_video_id": "WCRNR1Ve9s0"
+  },
+  {
+    "name": "Computer-use agent",
+    "what": "sub-agent spun up during the QA pass to navigate and test the UI autonomously.",
+    "source_video_id": "WCRNR1Ve9s0"
+  },
+  {
+    "name": "Hyperframes / Hyperframe Studio",
+    "what": "tool (with a browser-based, After-Effects-like studio) used with Claude to build and preview code-driven motion graphics.",
+    "source_video_id": "7ixWO1SeEZo"
+  },
+  {
+    "name": "Remotion",
+    "what": "programmatic video/animation framework used in the workflow.",
+    "source_video_id": "7ixWO1SeEZo"
+  },
+  {
+    "name": "Motion design skill GitHub repo (by \"Nattu\")",
+    "what": "Claude skill with a core SKILL.md eight-step checklist and director/patterns/reference folders encoding motion-design best practices.",
+    "source_video_id": "7ixWO1SeEZo"
+  },
+  {
+    "name": "Claude Code",
+    "what": "the coding-agent session (Opus/\"Fable 5\") that reads the skill and generates the animations.",
+    "source_video_id": "7ixWO1SeEZo"
+  },
+  {
+    "name": "Eisenberg paper kit",
+    "what": "the creator's downloadable zip bundling a demo project, motion design skill, readme, scripts, setup, and the \"paper mache\" style.",
+    "source_video_id": "7ixWO1SeEZo"
+  },
+  {
+    "name": "Hammer",
+    "what": "the author's offline link shortener / QR generator; algorithm and dictionaries to be published on GitHub.",
+    "source_video_id": "TOr1Vvji6jA"
+  },
+  {
+    "name": "Huffman coding",
+    "what": "variable-length prefix compression assigning fewer bits to common characters.",
+    "source_video_id": "TOr1Vvji6jA"
+  },
+  {
+    "name": "Arithmetic coding",
+    "what": "alternative entropy coder considered for better ratios but rejected as too complex.",
+    "source_video_id": "TOr1Vvji6jA"
+  },
+  {
+    "name": "boot.dev",
+    "what": "paid interactive platform for learning programming and databases (Python, Go, TypeScript, SQL); video sponsor.",
+    "source_video_id": "TOr1Vvji6jA"
+  },
+  {
+    "name": "100k web-crawler links dataset (GitHub)",
+    "what": "used to estimate character frequencies.",
+    "source_video_id": "TOr1Vvji6jA"
+  },
+  {
+    "name": "1M Reddit links dataset",
+    "what": "more representative sample used to build the compression dictionaries.",
+    "source_video_id": "TOr1Vvji6jA"
+  },
+  {
+    "name": "QR alphanumeric mode",
+    "what": "QR data mode Hammer uses instead of byte mode for denser-optimal codes.",
+    "source_video_id": "TOr1Vvji6jA"
+  },
+  {
+    "name": "Qwen 3.8 27B",
+    "what": "dense local multimodal model runnable on consumer hardware; available on Hugging Face.",
+    "source_video_id": "UK2xbBmxywg"
+  },
+  {
+    "name": "DeepSeek Harness",
+    "what": "plugin-based coding agent harness with an auditable trajectory view; configured via YAML.",
+    "source_video_id": "UK2xbBmxywg"
+  },
+  {
+    "name": "Hugging Face",
+    "what": "model distribution hub where Qwen 3.8 is hosted.",
+    "source_video_id": "UK2xbBmxywg"
+  },
+  {
+    "name": "MLX",
+    "what": "Apple Silicon inference framework recommended for running the model.",
+    "source_video_id": "UK2xbBmxywg"
+  },
+  {
+    "name": "vLLM",
+    "what": "inference server option for Linux/Windows.",
+    "source_video_id": "UK2xbBmxywg"
+  },
+  {
+    "name": "SGLang (\"C Lang\")",
+    "what": "inference option mentioned alongside vLLM.",
+    "source_video_id": "UK2xbBmxywg"
+  },
+  {
+    "name": "OpenCV",
+    "what": "Python computer-vision library the model used for edge/corner detection.",
+    "source_video_id": "UK2xbBmxywg"
+  },
+  {
+    "name": "NVFP4",
+    "what": "4-bit quantized model format run on the DGX Spark cluster.",
+    "source_video_id": "UK2xbBmxywg"
+  },
+  {
+    "name": "DGX Spark",
+    "what": "Nvidia compute used to host the model (compute sponsored by Nvidia).",
+    "source_video_id": "UK2xbBmxywg"
+  },
+  {
+    "name": "Speculative decoding (draft model)",
+    "what": "technique enabled to speed generation.",
+    "source_video_id": "UK2xbBmxywg"
+  },
+  {
+    "name": "Pandas",
+    "what": "Python library for crunching large amounts of data.",
+    "source_video_id": "uerEG_yigco"
+  },
+  {
+    "name": "NumPy",
+    "what": "Python numerical computing library.",
+    "source_video_id": "uerEG_yigco"
+  },
+  {
+    "name": "TensorFlow",
+    "what": "Python library for building AI models.",
+    "source_video_id": "uerEG_yigco"
+  },
+  {
+    "name": "PyTorch",
+    "what": "Python deep-learning library.",
+    "source_video_id": "uerEG_yigco"
+  },
+  {
+    "name": "Django",
+    "what": "Python web framework.",
+    "source_video_id": "uerEG_yigco"
+  },
+  {
+    "name": "Flask",
+    "what": "Python web (micro)framework.",
+    "source_video_id": "uerEG_yigco"
+  },
+  {
+    "name": "Java Virtual Machine (JVM)",
+    "what": "translator layer enabling Java's write-once-run-anywhere.",
+    "source_video_id": "uerEG_yigco"
+  },
+  {
+    "name": "Unreal Engine",
+    "what": "C++-based game engine.",
+    "source_video_id": "uerEG_yigco"
+  },
+  {
+    "name": "Unity",
+    "what": "game engine using C#, behind ~half of mobile games.",
+    "source_video_id": "uerEG_yigco"
+  },
+  {
+    "name": "Docker",
+    "what": "containerization tool built in Go.",
+    "source_video_id": "uerEG_yigco"
+  },
+  {
+    "name": "Kubernetes",
+    "what": "cloud orchestration tool built in Go.",
+    "source_video_id": "uerEG_yigco"
+  },
+  {
+    "name": "WordPress",
+    "what": "PHP-based website platform running much of the web.",
+    "source_video_id": "uerEG_yigco"
+  },
+  {
+    "name": "DeepSeek Harness",
+    "what": "plugin-based (\"everything is a plugin\") coding agent harness configured via YAML.",
+    "source_video_id": "xBByvFrqmWU"
+  },
+  {
+    "name": "DeepSeek V4 Pro",
+    "what": "flagship model tested via the harness; one-shot-built an app for ~30 cents.",
+    "source_video_id": "xBByvFrqmWU"
+  },
+  {
+    "name": "Cordis",
+    "what": "small framework DeepSeek built to facilitate the plugin architecture.",
+    "source_video_id": "xBByvFrqmWU"
+  },
+  {
+    "name": "OpenAI Codex",
+    "what": "coding harness cited as a comparison point.",
+    "source_video_id": "xBByvFrqmWU"
+  },
+  {
+    "name": "Claude Code",
+    "what": "Anthropic's coding harness (its TypeScript source leaked via an NPM source map).",
+    "source_video_id": "xBByvFrqmWU"
+  },
+  {
+    "name": "Open Code",
+    "what": "open-source coding harness named as an example.",
+    "source_video_id": "xBByvFrqmWU"
+  },
+  {
+    "name": "Blue.impact",
+    "what": "nonprofit offering free AI courses (future of AI, AI governance, biosecurity); video sponsor.",
+    "source_video_id": "xBByvFrqmWU"
+  },
+  {
+    "name": "DeepSeek V4 Pro (0813)",
+    "what": "MIT-licensed open-weight model with specialist-distillation training and multi-token prediction.",
+    "source_video_id": "kyYepbhe1g8"
+  },
+  {
+    "name": "Multi-token prediction",
+    "what": "drafts several tokens ahead for up to 78% faster generation.",
+    "source_video_id": "kyYepbhe1g8"
+  },
+  {
+    "name": "Model distillation",
+    "what": "training one student model from 10+ specialist teacher checkpoints.",
+    "source_video_id": "kyYepbhe1g8"
+  },
+  {
+    "name": "Lambda (lambda.ai)",
+    "what": "Nvidia-GPU cloud for running/training/fine-tuning models and reproducing papers; video sponsor.",
+    "source_video_id": "kyYepbhe1g8"
+  },
+  {
+    "name": "DeepSpark",
+    "what": "DeepSeek-related tool/platform the host recommends using alongside DeepSeek.",
+    "source_video_id": "kyYepbhe1g8"
+  },
+  {
+    "name": "DeepSeek agent harness",
+    "what": "novel \"no agent\" harness design teased for a future breakdown.",
+    "source_video_id": "kyYepbhe1g8"
+  }
+]

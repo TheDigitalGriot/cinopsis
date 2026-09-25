@@ -1,0 +1,95 @@
+{
+  "id": "oUHpTApgbhQ",
+  "title": "EXO: Can Frontier AI Models Now Run Locally? (title from repo catalog .prism/shared/pot/catalog_local.json; no description file present)",
+  "core_takeaway": "exo splits one model across machines you already own — auto-discovery, tensor parallelism, day-zero RDMA over Thunderbolt 5 — and its headline result is a 2.8x speedup from pairing an NVIDIA DGX Spark (compute-heavy prefill) with an Apple Mac Studio (bandwidth-heavy decode), streaming the KV cache layer by layer so transfer hides behind compute. The video's argument is that the win is real but entirely front-loaded: generation time on the cluster was identical to the Mac alone (0.85s), the whole saving sits in prefill, and the benchmark was Llama 3.1 8B with an 8,192-token prompt generating just 32 tokens. Scaled to a frontier model like the 2.8T-parameter Kimi K3, the hardware floor is ~16 B200s, local attempts degrade to ~2 tokens/sec or 3.5 seconds per token, and nobody outside exo has reproduced device clustering at that scale.",
+  "key_points": [
+    "exo requires no YAML or manual IPs — devices running it discover each other automatically — and splits model layers using tensor parallelism, with creators claiming up to 3.2x scaling on four devices.",
+    "The core insight is that prefill is compute-bound (attention over all input tokens at once) while decode is memory-bandwidth-bound (dragging all weights through the processor per token), so the two phases want opposite hardware.",
+    "Benchmark on an 8B model: Mac Studio alone 6.42s, DGX Spark alone 4.34s, combined 2.32s — the headline 2.8x.",
+    "The critical caveat: generation time was 0.85s on the Mac alone and identical on the cluster. The entire saving is prefill dropping under 1.5s, so the technique shortens your wait, not your work.",
+    "The benchmark generated exactly 32 tokens from an 8,192-token prompt on Llama 3.1 8B; Hacker News critics noted the gain amortizes away as soon as sustained generation dominates, which is exactly the coding-agent case.",
+    "exo's repo does publish larger benchmarks — DeepSeek v3.1 at 671B in 8-bit and Kimi K2 Thinking in native 4-bit — but on a stack of four 512GB Mac Studios, i.e. 2TB of unified memory in one room, not spare devices.",
+    "Kimi K3 is a 2.8T-parameter open-weight model from Moonshot AI (released July 16, 2026) targeting long-horizon agentic workflows with a 1M-token context; its own README targets ~16 nodes and ~4.8TB of aggregate memory.",
+    "Real local attempts: a DGX Spark at Q4_K_M caps at ~2 tokens/sec with a measured 97-second prefill (versus 1.47s on a small model); a community project streams all 16 routed experts on demand from SSD on a single laptop with nothing pruned, at ~3.5 seconds per token.",
+    "Hosted is not a uniform fallback: OpenRouter lists 19 providers for the same model name, $2.40-$6 pricing, 6 to 92 tokens/sec (a 15x spread), latency from under a second to nearly a minute, uptime as low as 87%, and some hosts substituting FP8 for the native MXFP4 weights, which degrades agentic tool-calling."
+  ],
+  "why_it_matters": "It separates two things that get conflated in every local-AI pitch: 'local frontier inference is possible' and 'you can do it on hardware you already own'. The first is true on four chained Mac Studios; the second remains untested. The practical takeaway for a tooling suite is a routing rule — long prompt, short answer is where clustering pays; sustained generation is where it does not — plus the reminder that a hosted model name is not a product: precision, provider and hardware all vary behind one label, and agentic tool-calling is exactly what quantization substitution degrades.",
+  "key_moments": [
+    {
+      "t": 0.0,
+      "label": "Framing: Kimi K3's 16x B200 hardware floor"
+    },
+    {
+      "t": 130.0,
+      "label": "The core split: compute-bound prefill vs bandwidth-bound decode"
+    },
+    {
+      "t": 306.0,
+      "label": "KV cache streaming to overlap transfer with compute"
+    },
+    {
+      "t": 509.0,
+      "label": "The catch: 8,192-token prompt, only 32 tokens generated"
+    },
+    {
+      "t": 678.0,
+      "label": "Kimi K3's actual scale and Moonshot's release"
+    },
+    {
+      "t": 974.0,
+      "label": "Laptop attempt: SSD-streamed experts at seconds per token"
+    },
+    {
+      "t": 1086.0,
+      "label": "Outside reproduction attempt falls back to CPU"
+    },
+    {
+      "t": 1469.0,
+      "label": "The threshold where clustering actually pays"
+    }
+  ],
+  "oss": [
+    {
+      "name": "exo",
+      "slug": "exo-explore/exo",
+      "note": "The subject: software that clusters your own devices into one inference pool with automatic peer discovery, tensor parallelism and RDMA over Thunderbolt 5, and that publishes the prefill/decode disaggregation benchmarks the video interrogates."
+    },
+    {
+      "name": "vLLM",
+      "slug": "vllm-project/vllm",
+      "note": "Standard serving framework that failed outright with a weight-loading memory bug on the dual-node H200 attempt at Kimi K3."
+    },
+    {
+      "name": "SGLang",
+      "slug": "sgl-project/sglang",
+      "note": "The only serving framework that worked on the 16x H200 cluster, and even then with a 13-minute cold start and 16.8 tokens/sec single-request decode."
+    },
+    {
+      "name": "Kimi K3 (Moonshot AI)",
+      "slug": "",
+      "note": "2.8T-parameter open-weight model released July 16 2026 for long-horizon agentic work with a 1M-token context, shipped natively 4-bit from QAT; the video never states the repo path, so no slug is guessed."
+    },
+    {
+      "name": "DeepSeek v3.1",
+      "slug": "",
+      "note": "671B open-weight model exo benchmarks at 8-bit as its largest published clustering result; repo path not stated in the video."
+    },
+    {
+      "name": "Llama 3.1 8B",
+      "slug": "",
+      "note": "The model actually used for the headline 2.8x benchmark — roughly 350x smaller than the frontier model being discussed; repo path not stated in the video."
+    },
+    {
+      "name": "OpenRouter",
+      "slug": "",
+      "note": "The hosted marketplace used to show that one model name maps to 19 providers with 15x throughput variance and differing weight precision; a service, not a repo the video points to."
+    }
+  ],
+  "topics": [
+    "local inference",
+    "distributed systems",
+    "exo",
+    "quantization",
+    "hardware"
+  ]
+}

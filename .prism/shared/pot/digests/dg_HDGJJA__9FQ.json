@@ -1,0 +1,90 @@
+{
+  "id": "HDGJJA__9FQ",
+  "title": "Beginner's Guide to Agent Wikis (title from repo catalog .prism/shared/pot/catalog_local.json; no description file present)",
+  "core_takeaway": "The creator walks through Agent Wikis (agentwikis.com), a library of 60+ pre-compiled, agent-readable knowledge bases exposed over a free MCP server, built on his open-sourced 'LLM Wiki' markdown format. The pitch is measured, not vibes: answering the same question through the wiki MCP used 27.8K tokens versus 59.3K through ordinary web search, because the agent navigates a curated synthesis instead of crawling docs. Each wiki is compiled from official docs, the project repo, its issues, and community sources like Reddit so it captures gotchas, and is explicitly built to answer 'I don't know' rather than confidently hallucinate.",
+  "key_points": [
+    "The format originates from an Andrej Karpathy post (around April) on LLM knowledge bases: store information in a single wiki the agent queries first, falling back to web search and writing the answer back into the wiki.",
+    "The creator open-sourced his template as a format called 'LLM Wiki' on his own GitHub before consolidating the wikis onto a dedicated site.",
+    "The site is deliberately built for agents, not humans: a minimal front end, and every page exposes an llms.txt as a standard entry point plus raw markdown.",
+    "Setup is self-serve: point an agent at the site and tell it to install the MCP server; the tool surface is just list wikis, open wiki, search, and read document.",
+    "Head-to-head token measurement on the same question ('three features of Hermes agent bot mode and one gotcha'): 59.3K context via normal web-search tools versus 27.8K via the Agent Wikis MCP, for equivalent answers.",
+    "Each wiki is a synthesis of official docs, the repo itself, repo issues, and community sources such as Reddit — the stated goal is capturing gotchas that official docs omit.",
+    "Coverage scope is explicit: the wikis state what they do and do not cover, and are built to say 'I don't know', because the dangerous failure is a confident wrong answer, not a missing one.",
+    "Compiling a wiki is expensive and slow up front but amortizes across repeated queries — the creator's months-long Hermes agent masterclass series ran entirely off one prewarmed wiki with less hallucination and lower token use.",
+    "The wikis and the MCP server stay free; a pro tier at $9.99/month (rising to $19.99 on October 1, with early subscribers grandfathered) adds oversized 'XL' wikis, custom skills, custom agent profiles, custom workflows and gated videos."
+  ],
+  "why_it_matters": "This is the clearest working argument for precompiled context as infrastructure: a one-time synthesis pass turns repeated agent research into a bounded, cheap lookup, with a measured 2x token reduction and fewer hallucinations. The design choices are the transferable part — agent-first pages with llms.txt and raw markdown, a four-verb MCP surface, community sources folded in for gotchas, and explicit coverage boundaries so the wiki can refuse. Any suite that repeatedly asks agents about the same stack should be compiling its own wikis rather than paying web-search tokens forever.",
+  "key_moments": [
+    {
+      "t": 67.0,
+      "label": "Origin: Karpathy's LLM knowledge-base post"
+    },
+    {
+      "t": 103.0,
+      "label": "Open-sourcing the LLM Wiki template format"
+    },
+    {
+      "t": 235.0,
+      "label": "Installing the MCP server by pointing an agent at the site"
+    },
+    {
+      "t": 311.0,
+      "label": "The four MCP tools: list, open, search, read"
+    },
+    {
+      "t": 424.0,
+      "label": "Wiki MCP answers the same question in 27.8K tokens"
+    },
+    {
+      "t": 456.0,
+      "label": "Coverage boundaries and refusing rather than hallucinating"
+    },
+    {
+      "t": 563.0,
+      "label": "Custom skills are the creator's real working skills"
+    },
+    {
+      "t": 680.0,
+      "label": "Planned role-shaped custom agent profiles"
+    }
+  ],
+  "oss": [
+    {
+      "name": "LLM Wiki (template format)",
+      "slug": "",
+      "note": "The creator's open-sourced markdown knowledge-base format that Agent Wikis is built on. He names his GitHub only verbally (captioned 'Toby Studio'), so the owner/repo could not be confirmed and no slug is guessed."
+    },
+    {
+      "name": "Agent Wikis MCP server",
+      "slug": "",
+      "note": "Free MCP server exposing 60+ precompiled wikis with four tools (list wikis, open wiki, search, read document); hosted service at agentwikis.com rather than a named repo."
+    },
+    {
+      "name": "Model Context Protocol (MCP)",
+      "slug": "modelcontextprotocol/modelcontextprotocol",
+      "note": "The integration surface for the whole product — the wikis are consumed by agents purely as MCP tools."
+    },
+    {
+      "name": "llms.txt",
+      "slug": "",
+      "note": "Used as the standard machine entry point on every wiki page alongside raw markdown; a convention, not a repo the video points to."
+    },
+    {
+      "name": "Hermes agent",
+      "slug": "",
+      "note": "The creator's primary agent throughout — the subject of his biggest wiki, of the token benchmark question, and the target for the installed skill. Spelling comes from captions only and the repo is never named."
+    },
+    {
+      "name": "ComfyUI (captioned 'combon flow')",
+      "slug": "comfyanonymous/ComfyUI",
+      "note": "Named as the basis for the planned custom workflows (integration chains for local generative media); the caption garbles the name, so treat the identification as probable rather than certain."
+    }
+  ],
+  "topics": [
+    "MCP",
+    "agent memory",
+    "knowledge bases",
+    "token efficiency",
+    "local AI"
+  ]
+}

@@ -1,0 +1,65 @@
+{
+  "id": "YoEWjZSwoys",
+  "title": "Claude Is Now Leaving Invisible Fingerprints In Its Text (title from repo catalog .prism/shared/pot/catalog_local.json; no description file present)",
+  "core_takeaway": "Anthropic is rolling out statistical text watermarking on Claude output: at each generation step the sampler secretly partitions candidate tokens into 'green' (preferred) and 'red' sets and nudges green tokens upward, so a detector holding the key can count green-token density and compute how implausibly high it is for human text. The mark is invisible to readers, survives copy-paste and light editing, and only 'eligible organizations' can run the detector. It does not identify the author, only that the text was machine-generated or heavily machine-edited, and the presenter's stated remedy is to run open-weights models you control.",
+  "key_points": [
+    "The scheme is token-level, not hidden characters: candidate next-tokens are secretly colored green/red and green ones get a small probability nudge during sampling.",
+    "Detection is a statistical count, not a lookup: enough green tokens in a passage makes the human-authored hypothesis vanishingly unlikely (the presenter's example: 21 greens in a paragraph is less likely than a lottery win).",
+    "Green words can be any ordinary word and the green/red assignment can rotate over time, so a reader cannot spot or blacklist them.",
+    "The presenter states Anthropic is likely using a SynthID-style variant with context-dependent probabilities and a tournament sampling step, though the core mechanism matches the published research.",
+    "The mark survives copy-paste and light editing; swapping a few words does not clear it.",
+    "Rewriting the whole text word-by-word does remove it, and an open-weights LLM running locally can be used to do that rewrite.",
+    "The watermark does not trace text to an individual — it only shows the text was Claude-written or heavily Claude-edited.",
+    "Detection is not open to the public: only certain eligible organizations can check, which is the asymmetry the presenter objects to.",
+    "The presenter's stated conclusion is to use free, open-weights systems you run yourself because they 'work for you, not against you'."
+  ],
+  "why_it_matters": "If provider-side watermarking becomes standard, any pipeline that emits model text into a product carries a machine-readable provenance signal that neither the builder nor the end user can inspect or remove, and detection sits with parties you are not one of. For a suite built on agent-generated artifacts — docs, code comments, marketing copy, digests — that is a supply-chain property worth tracking per model, and it strengthens the case for keeping an open-weights path in the stack for anything that must be provenance-neutral.",
+  "key_moments": [
+    {
+      "t": 0.0,
+      "label": "Setup: Anthropic is watermarking generated text now"
+    },
+    {
+      "t": 40.44,
+      "label": "The mark is a machine-detectable fingerprint, not hidden characters"
+    },
+    {
+      "t": 77.24,
+      "label": "Mechanism: green/red token coloring and the probability nudge"
+    },
+    {
+      "t": 104.4,
+      "label": "Detection: counting green-token density"
+    },
+    {
+      "t": 142.12,
+      "label": "Likely a SynthID-style variant with tournament sampling"
+    },
+    {
+      "t": 165.32,
+      "label": "Misconception 1: it identifies the model, not the author"
+    },
+    {
+      "t": 195.92,
+      "label": "What actually removes it: a full word-by-word rewrite"
+    },
+    {
+      "t": 212.08,
+      "label": "Only eligible organizations can run the detector"
+    }
+  ],
+  "oss": [
+    {
+      "name": "Open-weights LLMs (generic)",
+      "slug": "",
+      "note": "The presenter's recommended countermeasure and closing position — run models you control locally — but no specific project or repo is named in the video."
+    }
+  ],
+  "topics": [
+    "AI watermarking",
+    "provenance",
+    "Anthropic",
+    "open weights",
+    "LLM sampling"
+  ]
+}

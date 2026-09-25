@@ -1,0 +1,690 @@
+{
+  "session": "2026-09-18_ai-news-catch-up-2026-09-18-1",
+  "digest": "C:\\\\Users\\\\digit\\\\GriotApps\\\\Cinopsis\\\\.prism\\\\shared\\\\digests\\\\digest_ai_b.json",
+  "harvested_at": "2026-09-18T15:18:55.624Z",
+  "videos": {
+    "ji04cNSIn1c": [
+      "AI News catch-up 2026-09-18 - Worktrunk walkthrough",
+      "https://www.youtube.com/watch?v=ji04cNSIn1c"
+    ],
+    "xb1rYopNAyw": [
+      "AI News catch-up 2026-09-18 - YuE2 music generation",
+      "https://www.youtube.com/watch?v=xb1rYopNAyw"
+    ],
+    "OlWhp3wBAN8": [
+      "AI News catch-up 2026-09-18 - WP CodeBox + Claude Code for WordPress",
+      "https://www.youtube.com/watch?v=OlWhp3wBAN8"
+    ],
+    "woEuEAwffOA": [
+      "AI News catch-up 2026-09-18 - WebAssembly showcase (BrowserPod, PGlite)",
+      "https://www.youtube.com/watch?v=woEuEAwffOA"
+    ]
+  },
+  "counts": {
+    "unique_named": 29,
+    "new_tools": 23,
+    "verified": 15,
+    "unverified_no_repo": 8,
+    "skipped_dupes": 7
+  },
+  "tools": [
+    {
+      "n": "Git worktree",
+      "slug": "git/git",
+      "vid": "ji04cNSIn1c",
+      "cat": "devex",
+      "b": "Git's native worktree feature - each branch gets its own working directory off one repo, which is the isolation primitive that lets several agents edit concurrently without colliding. Not a separate project (it ships inside git itself); the video's whole argument is that the capability is already there and only the CLI ergonomics are broken.",
+      "tg": [
+        [
+          "Prism",
+          3,
+          "the native isolation primitive Prism's parallel-agent worktree workflow already rides on"
+        ],
+        [
+          "Djeli",
+          2,
+          "per-agent working directory inside the IDE"
+        ],
+        [
+          "Prism Gavel",
+          1,
+          "isolated branch per ruling batch"
+        ]
+      ],
+      "srcName": "AI News catch-up 2026-09-18 - Worktrunk walkthrough",
+      "src": "potluck:ji04cNSIn1c",
+      "srcUrl": "https://github.com/git/git",
+      "verified": true
+    },
+    {
+      "n": "Homebrew",
+      "slug": "Homebrew/brew",
+      "vid": "ji04cNSIn1c",
+      "cat": "devex",
+      "b": "The macOS/Linux package manager, cited as Worktrunk's primary install path (brew install worktrunk). Relevant to the suite only as a distribution channel - if Prism's CLI or a Fragment-scaffolded tool ever ships beyond winget, a tap is the expected front door.",
+      "tg": [
+        [
+          "Prism",
+          1,
+          "macOS/Linux install lane for the CLI"
+        ],
+        [
+          "Fragment",
+          1,
+          "distribution target for scaffolded CLIs"
+        ]
+      ],
+      "srcName": "AI News catch-up 2026-09-18 - Worktrunk walkthrough",
+      "src": "potluck:ji04cNSIn1c",
+      "srcUrl": "https://github.com/Homebrew/brew",
+      "verified": true
+    },
+    {
+      "n": "Cargo",
+      "slug": "rust-lang/cargo",
+      "vid": "ji04cNSIn1c",
+      "cat": "devex",
+      "b": "Rust's build tool and package manager; the second install lane for Worktrunk (cargo install worktrunk). Already the de-facto build surface for keylink's Tauri2/Rust stack, so it is infrastructure the suite is standing on rather than a candidate to adopt.",
+      "tg": [
+        [
+          "keylink",
+          2,
+          "the build/publish tool for keylink's Tauri2/Rust stack"
+        ],
+        [
+          "Tesseract",
+          1,
+          "Rust-side tooling if a native shim lands"
+        ],
+        [
+          "Prism",
+          1,
+          "cargo install as a distribution lane"
+        ]
+      ],
+      "srcName": "AI News catch-up 2026-09-18 - Worktrunk walkthrough",
+      "src": "potluck:ji04cNSIn1c",
+      "srcUrl": "https://github.com/rust-lang/cargo",
+      "verified": true
+    },
+    {
+      "n": "SignPath",
+      "slug": "",
+      "srcUrl": "https://signpath.io",
+      "vid": "ji04cNSIn1c",
+      "cat": "devex",
+      "b": "CLOSED commercial code-signing service (signpath.io, garbled as 'sin path io' in the ASR) - no public repo, so no slug. It grants free signing certificates to open-source projects, which is how Worktrunk ships a signed Windows binary. Directly relevant because Prism's NSIS installer and Tesseract's WinUI3 build both hit the unsigned-binary SmartScreen wall on Windows.",
+      "tg": [
+        [
+          "Prism",
+          2,
+          "free code signing for the Windows CLI/installer"
+        ],
+        [
+          "Tesseract",
+          2,
+          "signed WinUI3 installer"
+        ],
+        [
+          "keylink",
+          1,
+          "signed Tauri build"
+        ]
+      ],
+      "srcName": "AI News catch-up 2026-09-18 - Worktrunk walkthrough",
+      "src": "potluck:ji04cNSIn1c",
+      "verified": false
+    },
+    {
+      "n": "SheetSage 2",
+      "slug": "",
+      "srcUrl": "https://github.com/multimodal-art-projection/YuE",
+      "vid": "xb1rYopNAyw",
+      "cat": "audio",
+      "b": "Audio-to-lead-sheet transcription model used by YuE2 to turn a source recording into an editable score before a cover is rendered; reported top on 10 of 13 benchmark metrics. NO standalone repo found for v2 - it is documented inside the YuE2 repo with weights on Hugging Face; v1 (SheetSage) is real and public at chrisdonahue/sheetsage. Slug left blank deliberately rather than guessed.",
+      "tg": [
+        [
+          "Kora",
+          3,
+          "audio-to-score transcription in front of the Ableton control layer"
+        ],
+        [
+          "Ashe",
+          1,
+          "score metadata for music-driven edits"
+        ],
+        [
+          "AUXGOD",
+          1,
+          "transcribe reference tracks"
+        ]
+      ],
+      "srcName": "AI News catch-up 2026-09-18 - YuE2 music generation",
+      "src": "potluck:xb1rYopNAyw",
+      "verified": false
+    },
+    {
+      "n": "MERT 2",
+      "slug": "",
+      "srcUrl": "https://github.com/multimodal-art-projection/YuE",
+      "vid": "xb1rYopNAyw",
+      "cat": "audio",
+      "b": "Music-understanding representation model used as SheetSage 2's encoder; reported top on 14 of 15 MARBLE metrics (garbled as 'Merit 2' in the ASR). NO public repo for v2 - weights on Hugging Face, documented in the YuE2 README; MERT v1 is real and public at yizhilll/MERT. Slug deliberately blank - unverified rather than invented.",
+      "tg": [
+        [
+          "Kora",
+          2,
+          "music-understanding encoder for the Ableton control layer"
+        ],
+        [
+          "Kente",
+          1,
+          "a domain encoder worth a rung on the customization ladder"
+        ],
+        [
+          "AUXGOD",
+          1,
+          "music understanding for the card game"
+        ]
+      ],
+      "srcName": "AI News catch-up 2026-09-18 - YuE2 music generation",
+      "src": "potluck:xb1rYopNAyw",
+      "verified": false
+    },
+    {
+      "n": "WildSongBench",
+      "slug": "",
+      "srcUrl": "https://github.com/multimodal-art-projection/YuE",
+      "vid": "xb1rYopNAyw",
+      "cat": "audio",
+      "b": "Evaluation benchmark and prompt set YuE2 reports its SongBench average against. NO separate repo found - it ships inside the YuE2 release, so no slug. Worth keeping for the evidence discipline it models: YuE2 states its cross-model margins are not statistically significant and only makes a confident claim where the ablation gap is real (0.647 vs 0.006 mAP on 948 works).",
+      "tg": [
+        [
+          "Kora",
+          1,
+          "evaluation discipline for generated music"
+        ],
+        [
+          "Kente",
+          1,
+          "benchmark-honesty pattern for the forge's eval stage"
+        ]
+      ],
+      "srcName": "AI News catch-up 2026-09-18 - YuE2 music generation",
+      "src": "potluck:xb1rYopNAyw",
+      "verified": false
+    },
+    {
+      "n": "ABC notation",
+      "slug": "",
+      "srcUrl": "https://abcnotation.com",
+      "vid": "xb1rYopNAyw",
+      "cat": "audio",
+      "b": "Plain-text music notation format (a community standard, not a repo) that YuE2 exports its melody-and-chord plan in. The pattern is the point for Kora: put a human-readable, agent-editable intermediate between the prompt and the render, so music generation becomes iterable instead of prompt-and-pray. Note YuE2 re-renders from the edited score - the original waveform is not preserved.",
+      "tg": [
+        [
+          "Kora",
+          3,
+          "a text score is the editable intermediate an agent can read and rewrite"
+        ],
+        [
+          "Ashe",
+          1,
+          "text-native score/timing data in a programmatic edit"
+        ],
+        [
+          "Lucid",
+          1,
+          "editable intermediate representation pattern"
+        ]
+      ],
+      "srcName": "AI News catch-up 2026-09-18 - YuE2 music generation",
+      "src": "potluck:xb1rYopNAyw",
+      "verified": false
+    },
+    {
+      "n": "WP CodeBox",
+      "slug": "",
+      "srcUrl": "https://wpcodebox.com",
+      "vid": "OlWhp3wBAN8",
+      "cat": "devex",
+      "b": "CLOSED commercial WordPress snippet manager (wpcodebox.com) - no public repo, so no slug. Its MCP server is what lets Claude Code write and activate PHP snippets on a live site, and it refuses to keep a snippet active once it errors. The safety pattern, not the product, is the takeaway: give the agent write access behind a guard that auto-disables broken code and hands the error back for repair.",
+      "tg": [
+        [
+          "Prism",
+          2,
+          "MCP-server-plus-snippet-manager as the shape of agent write access to a live system"
+        ],
+        [
+          "Kweli",
+          1,
+          "client-site changes an agent makes and a human can read"
+        ]
+      ],
+      "srcName": "AI News catch-up 2026-09-18 - WP CodeBox + Claude Code for WordPress",
+      "src": "potluck:OlWhp3wBAN8",
+      "verified": false
+    },
+    {
+      "n": "Agent Connector",
+      "slug": "soflyy/agent-connector-for-wp",
+      "vid": "OlWhp3wBAN8",
+      "cat": "agent",
+      "b": "Open WordPress MCP stack from Soflyy giving agents shell, PHP eval, filesystem and process access - named in the video as the free alternative to WP CodeBox. Explicitly scoped to trusted dev environments only, which is the honest version of the permission boundary Prism keeps negotiating through its Model Control Plane.",
+      "tg": [
+        [
+          "Prism",
+          2,
+          "unrestricted agent execution behind an explicit trusted-environment boundary"
+        ],
+        [
+          "Kweli",
+          1,
+          "alternative WordPress MCP lane for client sites"
+        ]
+      ],
+      "srcName": "AI News catch-up 2026-09-18 - WP CodeBox + Claude Code for WordPress",
+      "src": "potluck:OlWhp3wBAN8",
+      "srcUrl": "https://github.com/soflyy/agent-connector-for-wp",
+      "verified": true
+    },
+    {
+      "n": "Breadcrumb NavXT",
+      "slug": "mtekk/Breadcrumb-NavXT",
+      "vid": "OlWhp3wBAN8",
+      "cat": "productivity",
+      "b": "Long-running open WordPress breadcrumb plugin, deactivated live in the demo to prove an agent-written snippet was rendering the breadcrumbs itself. No suite fit on its own - parked as evidence for the video's real claim: a large share of installed plugins are small enough that an agent reproduces them on demand, moving the cost from vendor dependency to snippet maintenance.",
+      "tg": [
+        [
+          "Kweli",
+          1,
+          "one of the nine plugins an agent replaced with a snippet"
+        ],
+        [
+          "Realtor CMS",
+          1,
+          "stock plugin a client CMS would otherwise install"
+        ]
+      ],
+      "srcName": "AI News catch-up 2026-09-18 - WP CodeBox + Claude Code for WordPress",
+      "src": "potluck:OlWhp3wBAN8",
+      "srcUrl": "https://github.com/mtekk/Breadcrumb-NavXT",
+      "verified": true
+    },
+    {
+      "n": "Breakdance",
+      "slug": "",
+      "srcUrl": "https://breakdance.io",
+      "vid": "OlWhp3wBAN8",
+      "cat": "creative",
+      "b": "CLOSED commercial WordPress page builder from Soflyy (breakdance.io) - no public repo, so no slug. It is in the harvest because it caused the demo's one real failure: the agent's page-duplication snippet copied the post but dropped Breakdance's design data from post meta, and even after the unslashing fix the CSS only reappeared after a re-save. The lesson generalises - agent-written code fails on the state nobody told it about.",
+      "tg": [
+        [
+          "Kweli",
+          1,
+          "page-builder post meta as the state a naive duplication drops"
+        ],
+        [
+          "Realtor CMS",
+          1,
+          "candidate builder for a client site"
+        ]
+      ],
+      "srcName": "AI News catch-up 2026-09-18 - WP CodeBox + Claude Code for WordPress",
+      "src": "potluck:OlWhp3wBAN8",
+      "verified": false
+    },
+    {
+      "n": "WordPress",
+      "slug": "WordPress/WordPress",
+      "vid": "OlWhp3wBAN8",
+      "cat": "productivity",
+      "b": "The GPL CMS itself, plus the application-password mechanism that authenticates an MCP connection into a live site. Relevant to the dormant client lane as a base that already has a sanctioned agent write path, rather than something to build from scratch.",
+      "tg": [
+        [
+          "Realtor CMS",
+          2,
+          "the obvious CMS base for the dormant realtor build"
+        ],
+        [
+          "Kweli",
+          1,
+          "client-facing content surface"
+        ],
+        [
+          "Mentorship Platform",
+          1,
+          "content host for lesson material"
+        ]
+      ],
+      "srcName": "AI News catch-up 2026-09-18 - WP CodeBox + Claude Code for WordPress",
+      "src": "potluck:OlWhp3wBAN8",
+      "srcUrl": "https://github.com/WordPress/WordPress",
+      "verified": true
+    },
+    {
+      "n": "Numba",
+      "slug": "numba/numba",
+      "vid": "woEuEAwffOA",
+      "cat": "devex",
+      "b": "Python JIT that compiles numeric code to machine code via LLVM - and now, via QuantStack's port, runs entirely inside a browser notebook, with the demo showing roughly a 300x speedup on the math Python handles badly natively. The in-browser half is what matters: Kente's notebooks and the Math Formalism surface could ship compute to a tab instead of a backend.",
+      "tg": [
+        [
+          "Kente",
+          2,
+          "njit-level speedups for notebook-side feature work"
+        ],
+        [
+          "Math Formalism Ideation",
+          2,
+          "fast numeric evaluation behind the interactive formula surface"
+        ],
+        [
+          "PlantID CNN",
+          1,
+          "preprocessing speedups"
+        ]
+      ],
+      "srcName": "AI News catch-up 2026-09-18 - WebAssembly showcase (BrowserPod, PGlite)",
+      "src": "potluck:woEuEAwffOA",
+      "srcUrl": "https://github.com/numba/numba",
+      "verified": true
+    },
+    {
+      "n": "LLVM",
+      "slug": "llvm/llvm-project",
+      "vid": "woEuEAwffOA",
+      "cat": "devex",
+      "b": "The compiler infrastructure under Numba's JIT - notable here because the entire LLVM-powered JIT was itself compiled to WebAssembly, which is the proof that binary-dependent stacks are now portable to a browser tab. Infrastructure to know about, not to adopt.",
+      "tg": [
+        [
+          "Kente",
+          1,
+          "the compiler stack under Numba's JIT"
+        ],
+        [
+          "Anansi",
+          1,
+          "toolchain under a Wasm runtime target"
+        ]
+      ],
+      "srcName": "AI News catch-up 2026-09-18 - WebAssembly showcase (BrowserPod, PGlite)",
+      "src": "potluck:woEuEAwffOA",
+      "srcUrl": "https://github.com/llvm/llvm-project",
+      "verified": true
+    },
+    {
+      "n": "QuantStack",
+      "slug": "",
+      "srcUrl": "https://quantstack.net",
+      "vid": "woEuEAwffOA",
+      "cat": "devex",
+      "b": "The open-source group that ported Numba and its LLVM JIT to WebAssembly (garbled as 'Quatstack' in the ASR). An ORG, not a repo - no slug, deliberately. Worth tracking as the maintainers of the in-browser Jupyter/scientific-Python stack that a browser-side Kente notebook lane would sit on.",
+      "tg": [
+        [
+          "Kente",
+          1,
+          "the group behind the in-browser scientific-Python stack"
+        ],
+        [
+          "Math Formalism Ideation",
+          1,
+          "Jupyter-adjacent browser tooling lineage"
+        ]
+      ],
+      "srcName": "AI News catch-up 2026-09-18 - WebAssembly showcase (BrowserPod, PGlite)",
+      "src": "potluck:woEuEAwffOA",
+      "verified": false
+    },
+    {
+      "n": "Jupyter",
+      "slug": "jupyterlab/jupyterlab",
+      "vid": "woEuEAwffOA",
+      "cat": "knowledge",
+      "b": "The notebook environment where the in-browser Numba demo and its timings run, with Python itself executing locally rather than on a backend. Already the de-facto surface for Kente's forge and the Math Formalism thread; the Wasm story means that surface can now run client-side with a real JIT behind it.",
+      "tg": [
+        [
+          "Kente",
+          3,
+          "the notebook surface the forge is built around"
+        ],
+        [
+          "Math Formalism Ideation",
+          2,
+          "the notebook-born home of the formula explorer"
+        ],
+        [
+          "PlantID CNN",
+          2,
+          "applied-CNN notebook work"
+        ]
+      ],
+      "srcName": "AI News catch-up 2026-09-18 - WebAssembly showcase (BrowserPod, PGlite)",
+      "src": "potluck:woEuEAwffOA",
+      "srcUrl": "https://github.com/jupyterlab/jupyterlab",
+      "verified": true
+    },
+    {
+      "n": "BrowserPod",
+      "slug": "leaningtech/browserpod-meta",
+      "vid": "woEuEAwffOA",
+      "cat": "infra",
+      "b": "Browser-native sandbox from Leaning Technologies that runs Linux applications (Node, Rust, C++, Python preview) compiled to Wasm, with a persistent virtual filesystem, controlled networking, parallelism and multithreading - its makers call it an OS kernel for the web platform. Two claims worth testing: you target it directly instead of rewriting against WASI, and disk images stream block-by-block so only the parts of a stdlib you actually use get downloaded. That is a container-free execution lane for anything Djeli or Prism needs to run untrusted.",
+      "tg": [
+        [
+          "Djeli",
+          2,
+          "browser-native sandbox for running agent output without a container"
+        ],
+        [
+          "Prism",
+          2,
+          "run-anywhere execution lane with no toolchain install"
+        ],
+        [
+          "Anansi",
+          1,
+          "browser-native runtime for the agent-first engine"
+        ],
+        [
+          "Kente",
+          1,
+          "notebook compute without a backend"
+        ]
+      ],
+      "srcName": "AI News catch-up 2026-09-18 - WebAssembly showcase (BrowserPod, PGlite)",
+      "src": "potluck:woEuEAwffOA",
+      "srcUrl": "https://github.com/leaningtech/browserpod-meta",
+      "verified": true
+    },
+    {
+      "n": "WASI",
+      "slug": "WebAssembly/WASI",
+      "vid": "woEuEAwffOA",
+      "cat": "infra",
+      "b": "The standard WebAssembly system interface for filesystem, clock and network syscalls outside the browser (garbled as 'WSI' and 'wazi' in the ASR). In the harvest as the baseline BrowserPod claims you can skip - if that claim holds, a Wasm execution lane costs no code changes; if it does not, WASI is the porting tax.",
+      "tg": [
+        [
+          "Djeli",
+          1,
+          "the standard system interface a Wasm execution lane would otherwise target"
+        ],
+        [
+          "Anansi",
+          1,
+          "portable runtime interface for the engine"
+        ]
+      ],
+      "srcName": "AI News catch-up 2026-09-18 - WebAssembly showcase (BrowserPod, PGlite)",
+      "src": "potluck:woEuEAwffOA",
+      "srcUrl": "https://github.com/WebAssembly/WASI",
+      "verified": true
+    },
+    {
+      "n": "PGlite",
+      "slug": "electric-sql/pglite",
+      "vid": "woEuEAwffOA",
+      "cat": "data",
+      "b": "Full Postgres compiled to WebAssembly - runs in a browser tab or embedded in Node.js, persists to local storage, and supports extensions including pgvector. This is the strongest single pull of the batch for the knowledge lane: Synaptiq, Kaleidoscope and Meridian all want a real relational-plus-vector store with zero server to run, and this is it.",
+      "tg": [
+        [
+          "Synaptiq",
+          3,
+          "a real Postgres for the knowledge graph with no server to run"
+        ],
+        [
+          "Kaleidoscope",
+          2,
+          "local queryable store for the memory/context porter"
+        ],
+        [
+          "Meridian",
+          2,
+          "local attention substrate persisted without a backend"
+        ],
+        [
+          "Djeli",
+          1,
+          "embeddable store inside the IDE"
+        ],
+        [
+          "Cinopsis",
+          1,
+          "local digest store"
+        ]
+      ],
+      "srcName": "AI News catch-up 2026-09-18 - WebAssembly showcase (BrowserPod, PGlite)",
+      "src": "potluck:woEuEAwffOA",
+      "srcUrl": "https://github.com/electric-sql/pglite",
+      "verified": true
+    },
+    {
+      "n": "pgvector",
+      "slug": "pgvector/pgvector",
+      "vid": "woEuEAwffOA",
+      "cat": "data",
+      "b": "Postgres extension for vector similarity search, and the reason PGlite is more than a toy: a local in-tab Postgres with pgvector makes low-profile semantic search viable with no vector-DB service at all. Graft's embeddings-first-class premise and Synaptiq's graph both land on this.",
+      "tg": [
+        [
+          "Synaptiq",
+          3,
+          "vector search over the canvas knowledge graph"
+        ],
+        [
+          "Kaleidoscope",
+          2,
+          "embedding search across memory surfaces"
+        ],
+        [
+          "Hazine",
+          2,
+          "semantic retrieval over the archive"
+        ],
+        [
+          "Graft",
+          1,
+          "embeddings as first-class in the belief-state graph"
+        ]
+      ],
+      "srcName": "AI News catch-up 2026-09-18 - WebAssembly showcase (BrowserPod, PGlite)",
+      "src": "potluck:woEuEAwffOA",
+      "srcUrl": "https://github.com/pgvector/pgvector",
+      "verified": true
+    },
+    {
+      "n": "Rust",
+      "slug": "rust-lang/rust",
+      "vid": "woEuEAwffOA",
+      "cat": "devex",
+      "b": "The language itself, cited as a first-class Wasm compile target and BrowserPod's first deployment priority - and already the implementation language of keylink and of Worktrunk. Listed for completeness rather than as a decision; it is a substrate the suite has chosen in places.",
+      "tg": [
+        [
+          "keylink",
+          3,
+          "keylink's Tauri2/Rust implementation language"
+        ],
+        [
+          "Tesseract",
+          1,
+          "native Windows-side performance work"
+        ],
+        [
+          "Prism",
+          1,
+          "the language Worktrunk and much agent tooling ships in"
+        ]
+      ],
+      "srcName": "AI News catch-up 2026-09-18 - WebAssembly showcase (BrowserPod, PGlite)",
+      "src": "potluck:woEuEAwffOA",
+      "srcUrl": "https://github.com/rust-lang/rust",
+      "verified": true
+    },
+    {
+      "n": "Docker",
+      "slug": "moby/moby",
+      "vid": "woEuEAwffOA",
+      "cat": "devex",
+      "b": "The container runtime, named in the InfoWorld piece only as the thing this whole approach deliberately avoids needing - the words Docker and containers never once came up. Parked as the baseline to measure against: if a Wasm lane can isolate agent output, the suite skips a container runtime it never wanted to wrangle.",
+      "tg": [
+        [
+          "Prism",
+          1,
+          "the containerization the Wasm argument is positioned against"
+        ],
+        [
+          "Djeli",
+          1,
+          "current isolation lane to compare against a browser sandbox"
+        ]
+      ],
+      "srcName": "AI News catch-up 2026-09-18 - WebAssembly showcase (BrowserPod, PGlite)",
+      "src": "potluck:woEuEAwffOA",
+      "srcUrl": "https://github.com/moby/moby",
+      "verified": true
+    }
+  ],
+  "skipped": [
+    {
+      "n": "Worktrunk",
+      "slug": "max-sixty/worktrunk",
+      "vid": "ji04cNSIn1c",
+      "why": "already on shelf from the 2026-09-17 landing (src potluck:d4Wfpg6Y7J4)"
+    },
+    {
+      "n": "YuE2",
+      "slug": "multimodal-art-projection/YuE",
+      "vid": "xb1rYopNAyw",
+      "why": "already on shelf from the 2026-09-17 landing (src potluck:d4Wfpg6Y7J4)"
+    },
+    {
+      "n": "YuE (YuE1)",
+      "slug": "multimodal-art-projection/YuE",
+      "vid": "xb1rYopNAyw",
+      "why": "same repo as YuE2 (a YuE1 branch) - not a separate card"
+    },
+    {
+      "n": "Claude Code",
+      "slug": "anthropics/claude-code",
+      "vid": "ji04cNSIn1c,OlWhp3wBAN8",
+      "why": "already on shelf"
+    },
+    {
+      "n": "Codex",
+      "slug": "openai/codex",
+      "vid": "ji04cNSIn1c",
+      "why": "already on shelf (Codex CLI)"
+    },
+    {
+      "n": "Hugging Face",
+      "slug": "huggingface/huggingface_hub",
+      "vid": "xb1rYopNAyw",
+      "why": "already on shelf (Hugging Face Hub)"
+    },
+    {
+      "n": "MCP",
+      "slug": "modelcontextprotocol/modelcontextprotocol",
+      "vid": "OlWhp3wBAN8",
+      "why": "already on shelf"
+    }
+  ]
+}

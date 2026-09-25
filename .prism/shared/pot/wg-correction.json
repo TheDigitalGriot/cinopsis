@@ -1,0 +1,17 @@
+{
+ "nodes": [],
+ "edges": [],
+ "corrections": [
+  {
+   "target": "N65",
+   "wasClaimed": "INV2 had ONE violation, not forty-five - and the earlier count of 45 was wrong because it predated the description-source backfill.",
+   "isTrue": "INV2 has 43 violations, concentrated in two July sessions (2026-07-14 comparison-oss-repo-roundups and 2026-07-29 kimi-k3-landscape-griot-model). The originally-reported figure of ~45 was close to correct; the correction claiming 'one' was itself the error. The single violation that WAS found and fixed - the Brooklyn-loft R&B mix with captions disabled - is real and remains fixed, and syncing that fix into the canonical store moved the count 44 -> 43.",
+   "cause": "verify_invariants.py was run through device_bash, whose Linux VM mounts only C:\\Users\\digit\\GriotApps\\Cinopsis\\data - ONE store, 12 sessions. Run natively it enumerates TWO stores, adding the canonical plugin store at C:\\Users\\digit\\.claude\\plugins\\data\\cinopsis-cinopsis with 37 more sessions, for 49 sessions and 1378 digest entries. The gate was reporting honestly about a partial view; the surface it ran on silently narrowed the corpus. A count taken through the bridge is a count of the repo, never of the ecosystem.",
+   "state": "corrected-verified",
+   "verification": {
+    "evidence": "bridge run: 'store: .../GriotApps/Cinopsis/data (canonical) -- 12 sessions' -> INV2 PASS. Native run: 'store: C:\\Users\\digit\\.claude\\plugins\\data\\cinopsis-cinopsis (canonical) -- 37 sessions' + 'store: ...GriotApps\\Cinopsis\\data -- 12 sessions' -> INV2 FAIL, 44 violations across 49 sessions; after syncing the 2026-09-02 description-backed digest into canonical, 43.",
+    "result": "corrected-verified - the node's own claim is overturned by a wider measurement, and the lesson is the measurement surface, not the number: always run the invariant gate natively, never through the bridge."
+   }
+  }
+ ]
+}

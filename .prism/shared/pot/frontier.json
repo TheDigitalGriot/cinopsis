@@ -1,0 +1,191 @@
+{
+ "ingested_universe": 351,
+ "run_threshold": 5,
+ "playlists": {
+  "AI News": {
+   "total": 2078,
+   "frontier_index": 0,
+   "gap_count": 0,
+   "gap_ids": [],
+   "already_in_gap_span": 0,
+   "top150_density": "111111000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+   "first_ingested_index": 0
+  },
+  "Idea Systems": {
+   "total": 156,
+   "frontier_index": 16,
+   "gap_count": 15,
+   "gap_ids": [
+    "NR01bkPag1c",
+    "wcqQDpRd7nM",
+    "mOvtumfyjCs",
+    "FVpfCJfV110",
+    "n9xKblqyQ28",
+    "ve7AA01vplE",
+    "MccJdr61xnc",
+    "xS7hFYpLqMo",
+    "Oli_3IUjti4",
+    "PK_twqwWqp4",
+    "gAm5Athct6Y",
+    "QMPCogrLTeA",
+    "juMinZqHAPQ",
+    "QgH9sr7G13Q",
+    "QnGNF8k_uoc"
+   ],
+   "already_in_gap_span": 1,
+   "top150_density": "000001000000000011111111111111111111111111111100001000000000000000000000000000000000000000001110000000000000000000000000000000000000000000000000000000",
+   "first_ingested_index": 5
+  },
+  "3D PixelArt style": {
+   "total": 119,
+   "frontier_index": 26,
+   "gap_count": 23,
+   "gap_ids": [
+    "h_mR2BRibZ8",
+    "lj-xPo7ueGA",
+    "Du8EjlPePYM",
+    "RKND9_gAtXo",
+    "nglqTHwuZ-8",
+    "nHBNa2IKWvk",
+    "8MUk-tQTiwE",
+    "Ovi1xszAphk",
+    "ouACKu1cwoU",
+    "KlzzBa1sZX0",
+    "URjhE8QEhJU",
+    "taBDh525-PY",
+    "6Ytluv_DiSo",
+    "wknRD5g-vvk",
+    "gvPMjz08DDA",
+    "o7VJnIN31Ds",
+    "JlmNBGcZ3Ik",
+    "QkLKpUDDdgo",
+    "y9t-0-vj25s",
+    "Ff_tdMsndzQ",
+    "LmUd1rvZum4",
+    "jq_15AnOALM",
+    "uYjbylNqUpI"
+   ],
+   "already_in_gap_span": 3,
+   "top150_density": "00000000000000000000101100111110000001110000000000000011101101100010001000100000000101001111111111111111111111111111111",
+   "first_ingested_index": 20
+  }
+ },
+ "unique_gap": 38,
+ "dupes_in_gap": {},
+ "membership": {
+  "NR01bkPag1c": [
+   "Idea Systems"
+  ],
+  "wcqQDpRd7nM": [
+   "Idea Systems"
+  ],
+  "mOvtumfyjCs": [
+   "Idea Systems"
+  ],
+  "FVpfCJfV110": [
+   "Idea Systems"
+  ],
+  "n9xKblqyQ28": [
+   "Idea Systems"
+  ],
+  "ve7AA01vplE": [
+   "Idea Systems"
+  ],
+  "MccJdr61xnc": [
+   "Idea Systems"
+  ],
+  "xS7hFYpLqMo": [
+   "Idea Systems"
+  ],
+  "Oli_3IUjti4": [
+   "Idea Systems"
+  ],
+  "PK_twqwWqp4": [
+   "Idea Systems"
+  ],
+  "gAm5Athct6Y": [
+   "Idea Systems"
+  ],
+  "QMPCogrLTeA": [
+   "Idea Systems"
+  ],
+  "juMinZqHAPQ": [
+   "Idea Systems"
+  ],
+  "QgH9sr7G13Q": [
+   "Idea Systems"
+  ],
+  "QnGNF8k_uoc": [
+   "Idea Systems"
+  ],
+  "h_mR2BRibZ8": [
+   "3D PixelArt style"
+  ],
+  "lj-xPo7ueGA": [
+   "3D PixelArt style"
+  ],
+  "Du8EjlPePYM": [
+   "3D PixelArt style"
+  ],
+  "RKND9_gAtXo": [
+   "3D PixelArt style"
+  ],
+  "nglqTHwuZ-8": [
+   "3D PixelArt style"
+  ],
+  "nHBNa2IKWvk": [
+   "3D PixelArt style"
+  ],
+  "8MUk-tQTiwE": [
+   "3D PixelArt style"
+  ],
+  "Ovi1xszAphk": [
+   "3D PixelArt style"
+  ],
+  "ouACKu1cwoU": [
+   "3D PixelArt style"
+  ],
+  "KlzzBa1sZX0": [
+   "3D PixelArt style"
+  ],
+  "URjhE8QEhJU": [
+   "3D PixelArt style"
+  ],
+  "taBDh525-PY": [
+   "3D PixelArt style"
+  ],
+  "6Ytluv_DiSo": [
+   "3D PixelArt style"
+  ],
+  "wknRD5g-vvk": [
+   "3D PixelArt style"
+  ],
+  "gvPMjz08DDA": [
+   "3D PixelArt style"
+  ],
+  "o7VJnIN31Ds": [
+   "3D PixelArt style"
+  ],
+  "JlmNBGcZ3Ik": [
+   "3D PixelArt style"
+  ],
+  "QkLKpUDDdgo": [
+   "3D PixelArt style"
+  ],
+  "y9t-0-vj25s": [
+   "3D PixelArt style"
+  ],
+  "Ff_tdMsndzQ": [
+   "3D PixelArt style"
+  ],
+  "LmUd1rvZum4": [
+   "3D PixelArt style"
+  ],
+  "jq_15AnOALM": [
+   "3D PixelArt style"
+  ],
+  "uYjbylNqUpI": [
+   "3D PixelArt style"
+  ]
+ }
+}

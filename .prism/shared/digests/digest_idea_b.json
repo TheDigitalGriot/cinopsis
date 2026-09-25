@@ -1,0 +1,384 @@
+{
+  "videos": {
+    "Oli_3IUjti4": {
+      "summary": "A fast-paced primer arguing that a simple model with well-engineered features beats a deep network fed raw data, organized around four pillars: transformation, construction, selection, and extraction. Note: the cached transcript is truncated mid-sentence at 4:11 ('pure predictive rocket fuel. to'), and ASR garbles several terms - 'Uklitian' is Euclidean, 'NIST digit data set' is MNIST, and 'scikitlearn' is scikit-learn.",
+      "digest": {
+        "core_takeaway": "Your algorithm is only as good as the representation you feed it, so feature engineering - not deeper layers - is where most predictive power is won. Four pillars cover the whole discipline: transformation, construction, selection, and extraction.",
+        "key_points": [
+          "Transformation handles raw-data defects: median/mode imputation for missing values, one-hot encoding for categorical text, binning for noisy continuous columns, and clipping for outliers.",
+          "Outliers matter mechanically, not just cosmetically - in linear regression a single extreme point exerts immense leverage and pulls the fitted line away from the true trend.",
+          "Feature scaling is required whenever features live on conflicting scales; unscaled salary magnitudes overpower age in distance-based formulas, reducing age to near-zero influence.",
+          "Construction fuses weak signals using domain knowledge - the Titanic sibling/spouse and parent/child columns combine into a single family-size feature that predicts survival directly.",
+          "Selection discards dead weight: flattening a 28x28 digit image yields 784 columns, but the empty border pixels can be dropped, speeding training and improving accuracy.",
+          "Extraction compresses rather than discards - PCA rotates the axes along maximum variance, turning correlated features like rooms and bathrooms into orthogonal principal components."
+        ],
+        "why_it_matters": "Practitioners default to bigger architectures when the actual bottleneck is representation, wasting compute on problems a few engineered columns would solve. The four-pillar framing gives a checklist to run before writing any training code."
+      },
+      "oss": [
+        {
+          "name": "scikit-learn",
+          "slug": "scikit-learn/scikit-learn",
+          "what": "Core ML library cited as unable to process null gaps, forcing imputation before training."
+        }
+      ],
+      "key_moments": [
+        {
+          "timestamp": "0:35",
+          "label": "Four pillars",
+          "description": "Frames the entire video: master four foundational pillars before writing a line of training code."
+        },
+        {
+          "timestamp": "1:13",
+          "label": "One-hot encoding",
+          "description": "Categorical text like dog, cat, or lion expands into binary vector channels of zeros and ones."
+        },
+        {
+          "timestamp": "2:00",
+          "label": "Conflicting scales",
+          "description": "Age 0-100 versus salary in the hundreds of thousands collapses Euclidean distance until features are scaled."
+        },
+        {
+          "timestamp": "3:01",
+          "label": "Feature selection",
+          "description": "The 784-column MNIST example shows hundreds of dead border pixels can simply be dropped."
+        },
+        {
+          "timestamp": "3:33",
+          "label": "PCA extraction",
+          "description": "When columns cannot be discarded, PCA compresses correlated dimensions into orthogonal components."
+        }
+      ]
+    },
+    "gAm5Athct6Y": {
+      "summary": "A neuroscience explainer showing how motor cortex holds a fully formed movement plan before any muscle moves, using neural state space, flow fields, fixed points, and the null space. ASR garbles the 'go cue' as 'go Q' and 'Goku', and renders synapses as 'sinapses'.",
+      "digest": {
+        "core_takeaway": "Motor cortex is not a relay that passes commands along but a pattern generator whose recurrent wiring already contains the whole movement repertoire. Producing a movement is a matter of parking the population at the right initial condition and letting the dynamics unspool.",
+        "key_points": [
+          "Recording N neurons gives N firing rates, which are coordinates of a single point in an N-dimensional neural state space; activity over a reach becomes a curve through that space.",
+          "Because cortical neurons mostly talk to each other, the network has autonomous dynamics - x-dot equals f of x - drawn as a flow field of arrows that cannot cross, so the starting point determines the whole trajectory.",
+          "The paradox: the same state must both sit still for an unpredictable delay and immediately launch the reach. Adding an external input term resolves it - input arrows cancel the recurrent arrows, creating a fixed point.",
+          "Two contextual inputs during the delay - one carrying the target, one signaling hold - place that fixed point at the movement-specific state; the go cue simply switches them off and the recurrent flow takes over.",
+          "Instead, muscle readout weights are fixed, so states producing identical muscle output form parallel planes; directions inside a plane are the null space (muscle-blind) and the perpendicular one is output-potent.",
+          "Preparation is silent by construction, not muted - it lives entirely in the null space, which is enormous because neurons vastly outnumber muscles. The reach begins the instant the trajectory acquires a potent component."
+        ],
+        "why_it_matters": "It replaces the intuition of the brain as a command relay with a dynamical-systems picture where one circuit generates every movement from different starting points. The null-space idea also explains how a region can be loud with movement-specific activity while the limb stays perfectly still."
+      },
+      "oss": [],
+      "key_moments": [
+        {
+          "timestamp": "2:31",
+          "label": "100 neurons, one point",
+          "description": "Firing rates of 100 recorded neurons become the coordinates of a single point in a 100-dimensional space."
+        },
+        {
+          "timestamp": "3:11",
+          "label": "Neural state space",
+          "description": "Names the central construct and reduces it to a two-neuron toy plane for visualization."
+        },
+        {
+          "timestamp": "4:31",
+          "label": "Flow field",
+          "description": "Attaching an arrow to every point gives a geometric description of the network's rules, shaped by learned connection strengths."
+        },
+        {
+          "timestamp": "10:00",
+          "label": "Fixed point",
+          "description": "When external input cancels the recurrent flow, total flow is zero - a resting state the population can hold indefinitely."
+        },
+        {
+          "timestamp": "17:02",
+          "label": "Null space named",
+          "description": "The muscle-blind directions get their name; preparatory activity can be large and specific as long as it stays inside them."
+        }
+      ]
+    },
+    "QMPCogrLTeA": {
+      "summary": "A compact system-design walkthrough of collecting metrics from 100+ microservices in Kubernetes, layering Thanos on Prometheus to escape single-disk retention limits. ASR renders Grafana as 'Graphana'/'Graphfana' and runs 'Thanos query' together as 'Thanosquery'.",
+      "digest": {
+        "core_takeaway": "Vanilla Prometheus is bounded by one disk and one retention setting, so long-term metric storage needs object storage plus a query layer. Thanos supplies both, and Grafana talks only to a single front door.",
+        "key_points": [
+          "Prometheus scrapes each service's /metrics endpoint every 15 seconds, stores values with timestamps, and groups older data into blocks kept on the pod's own disk.",
+          "Past the retention window the oldest blocks are deleted, which is the fundamental limit the rest of the design works around.",
+          "S3 is cheap, durable, and effectively unlimited, but Prometheus cannot talk to it - the Thanos sidecar runs inside each Prometheus pod and uploads sealed (finished, immutable) blocks.",
+          "A single Prometheus pod loses the most recent minutes if it dies, so run two replicas for redundancy on fresh data.",
+          "S3 is dumb object storage that cannot answer queries, so the Thanos store gateway sits in front of the bucket, understands the block format, and makes historical blocks queryable.",
+          "With fresh data in sidecars and old data behind the store gateway, Thanos Query becomes the single front door that fans out and returns one clean answer to Grafana."
+        ],
+        "why_it_matters": "This is the standard escape hatch for teams whose Prometheus retention window is too short and whose dashboards need history. The sidecar/store-gateway/query split is a reusable pattern for any hot-plus-cold storage tier."
+      },
+      "oss": [
+        {
+          "name": "Prometheus",
+          "slug": "prometheus/prometheus",
+          "what": "Scrapes each service's /metrics endpoint every 15 seconds and stores timestamped values in blocks."
+        },
+        {
+          "name": "Thanos",
+          "slug": "thanos-io/thanos",
+          "what": "Open-source Prometheus add-on providing the sidecar, store gateway, and query components."
+        },
+        {
+          "name": "Grafana",
+          "slug": "grafana/grafana",
+          "what": "Dashboard layer pointed at Thanos Query rather than at Prometheus directly."
+        },
+        {
+          "name": "Kubernetes",
+          "slug": "kubernetes/kubernetes",
+          "what": "The cluster hosting the 100+ microservices being scraped."
+        },
+        {
+          "name": "Amazon S3",
+          "slug": null,
+          "what": "Cheap, durable, effectively unlimited object storage for sealed metric blocks."
+        }
+      ],
+      "key_moments": [
+        {
+          "timestamp": "0:11",
+          "label": "Prometheus scrape",
+          "description": "Prometheus reads every /metrics endpoint on a 15-second interval and groups values into blocks."
+        },
+        {
+          "timestamp": "0:40",
+          "label": "Why S3",
+          "description": "Local disk plus retention is the bottleneck; S3 is introduced as the long-term store."
+        },
+        {
+          "timestamp": "0:58",
+          "label": "Thanos sidecar",
+          "description": "A helper container in each Prometheus pod uploads sealed blocks to the bucket."
+        },
+        {
+          "timestamp": "1:39",
+          "label": "Store gateway",
+          "description": "Sits in front of S3 and makes the stored block format queryable."
+        },
+        {
+          "timestamp": "2:03",
+          "label": "Thanos Query front door",
+          "description": "Unifies fresh sidecar data and historical bucket data into one answer for Grafana."
+        }
+      ]
+    },
+    "juMinZqHAPQ": {
+      "summary": "A short explainer defining polyglot persistence through Netflix's use of four different data stores, then listing the operational costs it brings. The cached transcript is truncated mid-sentence at 2:06 ('It is not where new systems'), cutting off the closing caveat.",
+      "digest": {
+        "core_takeaway": "Polyglot persistence means one application stores data in several database types at once, each matched to a specific workload. It is where big systems end up, not where new systems should start.",
+        "key_points": [
+          "Netflix is the worked example: MySQL for billing and payments because money needs strict correctness, Cassandra for viewing history because it absorbs huge write volume.",
+          "Search is served by Elasticsearch, and EVCache fronts the homepage so it loads fast - four stores for four distinct access patterns.",
+          "First cost: the same fact lives in multiple places. Your pause position at minute 40 is written to Cassandra and also cached for the continue-watching row.",
+          "Second cost: keeping store and cache in sync is hard when watch progress changes every few seconds for millions of viewers, so the systems agree eventually rather than instantly.",
+          "The user-visible symptom of eventual consistency is pausing on TV at minute 40 and having your phone report minute 35.",
+          "Third cost: network calls multiply - opening the app hits every store, and each store needs its own backups, monitoring, and maintenance team."
+        ],
+        "why_it_matters": "It reframes multi-database architecture as an endpoint reached under scale pressure rather than a default starting design, and names the concrete taxes - duplication, eventual consistency, and per-store operational overhead - teams pay for it."
+      },
+      "oss": [
+        {
+          "name": "MySQL",
+          "slug": "mysql/mysql-server",
+          "what": "Holds billing and payment data where strict correctness is required."
+        },
+        {
+          "name": "Apache Cassandra",
+          "slug": "apache/cassandra",
+          "what": "Absorbs the huge write volume of viewing-history play/pause events."
+        },
+        {
+          "name": "Elasticsearch",
+          "slug": "elastic/elasticsearch",
+          "what": "Powers show search because it is built to serve queries fast."
+        },
+        {
+          "name": "EVCache",
+          "slug": "Netflix/EVCache",
+          "what": "Caching layer that makes the homepage, including continue-watching, load quickly."
+        }
+      ],
+      "key_moments": [
+        {
+          "timestamp": "0:16",
+          "label": "MySQL for money",
+          "description": "Billing and payment data goes to MySQL because money-related jobs need strict correctness."
+        },
+        {
+          "timestamp": "0:25",
+          "label": "Cassandra for writes",
+          "description": "Viewing history lands in Cassandra, built to accept a huge number of writes."
+        },
+        {
+          "timestamp": "0:42",
+          "label": "Elasticsearch for search",
+          "description": "Show search is split out to a store designed for fast query serving."
+        },
+        {
+          "timestamp": "1:02",
+          "label": "Duplicated state",
+          "description": "The pause position exists in both Cassandra and the cache, creating the first consistency problem."
+        },
+        {
+          "timestamp": "1:46",
+          "label": "Eventual consistency",
+          "description": "TV says minute 40 while the phone says minute 35 - the stores agree eventually, not instantly."
+        }
+      ]
+    },
+    "QgH9sr7G13Q": {
+      "summary": "A deeply illustrated history of the ResNet paper: why depth stopped working in 2015, how skip connections fixed it, and how that led to the residual stream as a working memory in modern AI. ASR garbles many names - Jian Sun appears as 'Giansoon'/'GNS', Kaiming He as 'Kaiming Hu', ReLU as 'RLU', ImageNet as 'imageet', AlexNet as 'Alexet', DINOv2 as 'DOV2', COCO as 'KCO', and Planck, Krizhevsky, Sutskever, Bohr, Schrodinger, and Dirac all appear phonetically mangled; the 1,202-layer figure is also corrupted to ',2 layers'.",
+      "digest": {
+        "core_takeaway": "Adding a one-line identity shortcut around every pair of layers - the skip connection - fixed the degradation that had capped deep networks at 20-30 layers and made the ResNet paper the most cited of the century. Its lasting contribution was not depth but the residual stream, an unbroken data path that later became the backbone of transformers.",
+        "key_points": [
+          "By 2015 depth had inverted: a 74-layer model scored 38.9% on ImageNet while an 8-layer model reached 44.1%, even though a deeper net could trivially match a shallow one by appending identity layers.",
+          "The failure was in optimization, not capacity. Loss-landscape probes of early layers grow chaotic with depth, and a 2017 paper named this the shattered gradient problem - gradients in deep feed-forward nets increasingly resemble white noise.",
+          "The fix is to add each layer pair's input tensor to its output. Applied to the 74-layer network, accuracy jumped from 38.9% to 72.6% and the early-layer loss landscape became smooth and convex.",
+          "A Cornell team then showed layers of a 56-layer ResNet can be deleted or shuffled with only small, smooth performance loss - impossible for hierarchical-representation networks like AlexNet.",
+          "Redrawing skip connections as one straight line reveals the residual stream: output equals input plus each block's contribution, with layers iteratively refining a shared channel rather than each building on the last.",
+          "A 2023 Meta team found vision transformers dumping global info into high-activation tokens on unimportant patches; those embeddings hit 85.2% on the cars dataset versus 10.8%, and adding register tokens made the artifact vanish."
+        ],
+        "why_it_matters": "It explains why nearly every modern architecture, from LLMs to diffusion models, is built around a residual backbone, and reframes layers as editors of shared memory rather than links in a hierarchy. The video also argues the field is mid-cascade, comparing ResNet to Planck's quantum hypothesis as an early domino."
+      },
+      "oss": [
+        {
+          "name": "DINOv2",
+          "slug": "facebookresearch/dinov2",
+          "what": "The 40-layer vision model whose residual stream showed the high-activation artifact that register tokens fixed."
+        }
+      ],
+      "key_moments": [
+        {
+          "timestamp": "0:16",
+          "label": "Depth stops working",
+          "description": "Past 20-30 layers, performance gains stall and then reverse - a 74-layer model loses to an 8-layer one."
+        },
+        {
+          "timestamp": "16:11",
+          "label": "Shattered gradients",
+          "description": "The gradient signal that drives learning starts to resemble white noise as depth increases."
+        },
+        {
+          "timestamp": "17:21",
+          "label": "The skip connection",
+          "description": "Add each layer pair's input to its output, giving activations and gradients a direct path around the compute."
+        },
+        {
+          "timestamp": "26:23",
+          "label": "Residual stream named",
+          "description": "Input plus each block's contribution forms an unbroken stream that layers iteratively refine."
+        },
+        {
+          "timestamp": "31:14",
+          "label": "Register tokens",
+          "description": "Dedicated storage slots absorb the global information the model had been hiding in unimportant patches."
+        }
+      ]
+    },
+    "QnGNF8k_uoc": {
+      "summary": "A short commentary on an unreleased Claude model improving a bound related to the Riemann hypothesis past the human record, focused on the AI-process details rather than the mathematics. ASR garbles the Riemann hypothesis as 'Rayman', the host Karoly Zsolnai-Feher as 'Dr. Koa Eher', and 'variants' as 'varants'.",
+      "digest": {
+        "core_takeaway": "The model did not prove the Riemann hypothesis, but it improved a related bound beyond the human record - and it did so after roughly 650 failed attempts, driven by a non-mathematician whose prompts were mostly encouragement. The process story, not the proof, is the point.",
+        "key_points": [
+          "The human operator, Jared, was not a mathematician, and his input was described as mostly limited to messages of encouragement - variants of keep going and believe in yourself.",
+          "This was not a one-off: similar encouragement-style prompting reportedly helped Claude disprove the Jacobian conjecture.",
+          "The full technical paper is tough enough that the AI was asked to explain its own findings, and a formalized, automatically verifiable version of the proof is available to run.",
+          "From over 100 pages of transcripts: the model had internet access but did not need it during the key breakthrough run, and it went down many wrong roads before recovering.",
+          "The crucial result surfaced after about 37 minutes of radio silence, and the model flagged its own output as suspiciously good - 'too strong to be new'.",
+          "The narrator is careful that AI 'surprise' is not human surprise but a pattern learned from training data, while noting even Claude may underestimate the rate of AI progress."
+        ],
+        "why_it_matters": "It is a concrete data point that persistence across hundreds of failed attempts, not expert prompt engineering, can be the binding constraint on frontier AI research output. It also shows verification infrastructure - formalized, machine-checkable proofs - is what makes such a claim auditable at all."
+      },
+      "oss": [
+        {
+          "name": "Weave (Weights & Biases)",
+          "slug": "wandb/weave",
+          "what": "Sponsor toolkit mentioned for tracing data flow and running evaluations on LLM applications."
+        }
+      ],
+      "key_moments": [
+        {
+          "timestamp": "0:07",
+          "label": "The problem posed",
+          "description": "An unreleased Claude version was asked to attack the Riemann hypothesis, a statement about prime distribution."
+        },
+        {
+          "timestamp": "0:23",
+          "label": "Beyond human record",
+          "description": "It did not prove the hypothesis but improved a related bound past the best human result."
+        },
+        {
+          "timestamp": "1:14",
+          "label": "650 failures",
+          "description": "The first 650 tries did not work, and the operator was not a mathematician."
+        },
+        {
+          "timestamp": "1:24",
+          "label": "Encouragement as prompting",
+          "description": "The quoted input was mostly messages of encouragement rather than mathematical guidance."
+        },
+        {
+          "timestamp": "3:03",
+          "label": "37 minutes of silence",
+          "description": "The first crucial result appeared after a long silent stretch, and the model called it too strong to be new."
+        }
+      ]
+    }
+  },
+  "topics": [
+    {
+      "name": "Representation beats raw model capacity",
+      "video_ids": [
+        "Oli_3IUjti4",
+        "QgH9sr7G13Q"
+      ],
+      "quote_ts": "0:13",
+      "quote": "Your algorithm is only as good as the representation"
+    },
+    {
+      "name": "Deceptively simple ideas unlock stuck fields",
+      "video_ids": [
+        "QgH9sr7G13Q",
+        "QnGNF8k_uoc"
+      ],
+      "quote_ts": "0:22",
+      "quote": "turned out to be a shockingly simple idea"
+    },
+    {
+      "name": "High-dimensional geometry as an explanatory tool",
+      "video_ids": [
+        "gAm5Athct6Y",
+        "Oli_3IUjti4",
+        "QgH9sr7G13Q"
+      ],
+      "quote_ts": "3:11",
+      "quote": "This is called the neural state space."
+    },
+    {
+      "name": "Single-store limits force tiered architectures",
+      "video_ids": [
+        "QMPCogrLTeA",
+        "juMinZqHAPQ"
+      ],
+      "quote_ts": "0:34",
+      "quote": "you're bounded by one disk and one retention setting"
+    },
+    {
+      "name": "Scale complexity is an endpoint, not a starting point",
+      "video_ids": [
+        "juMinZqHAPQ",
+        "QMPCogrLTeA"
+      ],
+      "quote_ts": "2:01",
+      "quote": "Polyglot persistence is where big systems end up"
+    },
+    {
+      "name": "Machines pushing past human benchmarks",
+      "video_ids": [
+        "QnGNF8k_uoc",
+        "QgH9sr7G13Q"
+      ],
+      "quote_ts": "0:23",
+      "quote": "improve a related bound beyond human record"
+    }
+  ]
+}

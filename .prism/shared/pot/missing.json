@@ -1,0 +1,4468 @@
+[
+ {
+  "n": "Kuzu (Kuzu-Wasm)",
+  "slug": "kuzudb/kuzu",
+  "cat": "knowledge",
+  "src": "scan",
+  "srcName": "deepwiki",
+  "srcUrl": "https://github.com/kuzudb/kuzu",
+  "b": "Embedded graph DB - Cypher, columnar+CSR, vectorized; Kuzu-Wasm in-browser. MIT. The prism-graph embedded DB.",
+  "tg": [
+   [
+    "Prism",
+    3,
+    "embedded graph DB for prism-graph"
+   ],
+   [
+    "Synaptiq",
+    2,
+    "KG substrate"
+   ],
+   [
+    "Hazine",
+    2,
+    "embedded graph DB Cypher (MIT)"
+   ]
+  ]
+ },
+ {
+  "n": "open-compute",
+  "slug": "elliothux/open-compute",
+  "cat": "devex",
+  "src": "potluck:etbGWMJIbik",
+  "srcName": "GitHub Trending Weekly #49 (video description)",
+  "srcUrl": "https://github.com/elliothux/open-compute",
+  "b": "Self-hosted, Cloudflare-Workers-compatible runtime in one Rust binary — KV, D1, R2, Durable Objects, Queues and Workflows without the vendor. Matters because the suite's sync/services layer could run edge-shaped locally and deploy anywhere instead of being tied to a Cloudflare account.",
+  "tg": [
+   [
+    "Griot Hub",
+    2,
+    "local-first backend for launcher sync/services"
+   ],
+   [
+    "Prism",
+    1,
+    "deploy target for scaffolded surfaces"
+   ],
+   [
+    "Djeli",
+    1,
+    "self-hosted workspace services"
+   ]
+  ]
+ },
+ {
+  "n": "VoiceStudio",
+  "slug": "debpalash/VoiceStudio",
+  "cat": "audio",
+  "src": "potluck:etbGWMJIbik",
+  "srcName": "GitHub Trending Weekly #49 (video description)",
+  "srcUrl": "https://github.com/debpalash/VoiceStudio",
+  "b": "Fully-local ElevenLabs alternative — voice cloning, voice design, dubbing, dictation, transcription and audiobook build across 646 languages. Direct fit for Audion's capture/transcribe thread and Ashe's narration track, with no cloud TTS bill and nothing leaving the box.",
+  "tg": [
+   [
+    "Audion",
+    3,
+    "local transcription + dictation engine"
+   ],
+   [
+    "Ashe",
+    3,
+    "narration and dubbing for programmatic video"
+   ],
+   [
+    "Lucid",
+    2,
+    "voice asset generation"
+   ],
+   [
+    "Cinopsis",
+    2,
+    "local transcript fallback"
+   ]
+  ]
+ },
+ {
+  "n": "fugleramme",
+  "slug": "arnegiacomo/fugleramme",
+  "cat": "creative",
+  "src": "potluck:etbGWMJIbik",
+  "srcName": "GitHub Trending Weekly #49 (video description)",
+  "srcUrl": "https://github.com/arnegiacomo/fugleramme",
+  "b": "E-ink bird frame for Raspberry Pi: real-time bird ID from audio, fully local, rendered as hand-cut 1800s illustrations. Not a suite tool — parked as a reference for ambient always-on local-AI objects and for how a local audio classifier pairs with a calm display surface.",
+  "tg": [
+   [
+    "Personal",
+    1,
+    "ambient local-AI object reference"
+   ],
+   [
+    "Audion",
+    1,
+    "local audio classification pattern"
+   ]
+  ]
+ },
+ {
+  "n": "jevlike",
+  "slug": "vinnylarouge/jevlike",
+  "cat": "devex",
+  "src": "potluck:etbGWMJIbik",
+  "srcName": "GitHub Trending Weekly #49 (video description)",
+  "srcUrl": "https://github.com/vinnylarouge/jevlike",
+  "b": "Python project surfaced in the trending roundup with NO repo description — verified real (706 stars) but its purpose is unread. Parked undecided under the standing Potluck rule so it is not silently dropped; needs a read before any suite fit is claimed.",
+  "tg": [
+   [
+    "Prism",
+    1,
+    "unclassified — needs a read before any fit is claimed"
+   ]
+  ]
+ },
+ {
+  "n": "shadcn lint",
+  "slug": "shadcn-ui/lint",
+  "cat": "devex",
+  "src": "potluck:etbGWMJIbik",
+  "srcName": "GitHub Trending Weekly #49 (video description)",
+  "srcUrl": "https://github.com/shadcn-ui/lint",
+  "b": "Agent-first linter for Tailwind design systems — design-system rules written so an agent can verify them. This is the missing enforcement half of Griotwave: ember tokens, the glass/neumorphic registers and the Afrik header could become machine-checkable rules instead of prose.",
+  "tg": [
+   [
+    "Sigil",
+    3,
+    "machine-verifiable design-system rules"
+   ],
+   [
+    "Lucid",
+    2,
+    "generated-asset conformance"
+   ],
+   [
+    "Prism",
+    2,
+    "lint gate in the pipeline"
+   ],
+   [
+    "Djeli",
+    2,
+    "design-mode rule checking"
+   ]
+  ]
+ },
+ {
+  "n": "plexo",
+  "slug": "anmolkapil/plexo",
+  "cat": "devex",
+  "src": "potluck:etbGWMJIbik",
+  "srcName": "GitHub Trending Weekly #49 (video description)",
+  "srcUrl": "https://github.com/anmolkapil/plexo",
+  "b": "Parallel multi-connection download accelerator. Small utility, but the suite pulls big things constantly — model weights, browser bundles, CC5/Blender assets — and a scriptable parallel fetcher is a real speedup for Kente's model fetches and R3F Studio's asset pulls.",
+  "tg": [
+   [
+    "Kente",
+    2,
+    "fast model/LoRA weight fetch"
+   ],
+   [
+    "R3F Studio",
+    1,
+    "large 3D asset pulls"
+   ],
+   [
+    "The Griot Model",
+    1,
+    "weight distribution"
+   ]
+  ]
+ },
+ {
+  "n": "pizza-bot",
+  "slug": "pizza-bot-app/pizza-bot",
+  "cat": "agent",
+  "src": "potluck:etbGWMJIbik",
+  "srcName": "GitHub Trending Weekly #49 (video description)",
+  "srcUrl": "https://github.com/pizza-bot-app/pizza-bot",
+  "b": "Local-first inbox for long-running AI agents, built on DeepAgents and LangGraph. The inbox metaphor for async agent work — queued, resumable, reviewable — is a concrete UX answer to Griot Hub's open 'orchestrator vs mirror' question and to Valence's run surface.",
+  "tg": [
+   [
+    "Griot Hub",
+    3,
+    "inbox UX for long-running agent runs"
+   ],
+   [
+    "Valence",
+    2,
+    "agent run review surface"
+   ],
+   [
+    "Prism",
+    2,
+    "async task queue pattern"
+   ],
+   [
+    "Djeli",
+    2,
+    "agent inbox panel"
+   ]
+  ]
+ },
+ {
+  "n": "bg0",
+  "slug": "opencoredev/bg0",
+  "cat": "creative",
+  "src": "potluck:etbGWMJIbik",
+  "srcName": "GitHub Trending Weekly #49 (video description)",
+  "srcUrl": "https://github.com/opencoredev/bg0",
+  "b": "Private, unlimited background removal running entirely in the browser. Drop-in for Lucid's asset pipeline and Sigil's brand-mark prep — no upload, no quota, works inside an Electron or web surface.",
+  "tg": [
+   [
+    "Lucid",
+    3,
+    "in-browser background removal for asset gen"
+   ],
+   [
+    "Sigil",
+    2,
+    "logo and mark prep"
+   ],
+   [
+    "GBFolio",
+    1,
+    "portfolio image prep"
+   ]
+  ]
+ },
+ {
+  "n": "Editable-Design",
+  "slug": "yejy53/Editable-Design",
+  "cat": "creative",
+  "src": "potluck:etbGWMJIbik",
+  "srcName": "GitHub Trending Weekly #49 (video description)",
+  "srcUrl": "https://github.com/yejy53/Editable-Design",
+  "b": "Agent-driven creation of editable, tastefully crafted visual artifacts — the output stays a real editable document, not a flattened render. That editability contract is precisely what Lucid needs so generated assets can be revised rather than regenerated.",
+  "tg": [
+   [
+    "Lucid",
+    3,
+    "agent-generated but still-editable artifacts"
+   ],
+   [
+    "Sigil",
+    2,
+    "editable brand artifacts"
+   ],
+   [
+    "Ashe",
+    1,
+    "editable video scaffolds"
+   ]
+  ]
+ },
+ {
+  "n": "page-mascot",
+  "slug": "nilbuild/page-mascot",
+  "cat": "creative",
+  "src": "potluck:etbGWMJIbik",
+  "srcName": "GitHub Trending Weekly #49 (video description)",
+  "srcUrl": "https://github.com/nilbuild/page-mascot",
+  "b": "A mascot that watches the cursor and blinks when you poke it. Pure delight-layer reference — the pointer-linked micro-interaction Griotwave's motion language already reaches for, worth stealing as a presence cue in Griot Hub or GBFolio.",
+  "tg": [
+   [
+    "GBFolio",
+    2,
+    "pointer-linked delight interaction"
+   ],
+   [
+    "Griot Hub",
+    1,
+    "presence / idle cue"
+   ],
+   [
+    "Lucid",
+    1,
+    "motion-design reference"
+   ]
+  ]
+ },
+ {
+  "n": "AgentVerse-OS",
+  "slug": "agentverse-os/AgentVerse-OS",
+  "cat": "devex",
+  "src": "potluck:etbGWMJIbik",
+  "srcName": "GitHub Trending Weekly #49 (video description)",
+  "srcUrl": "https://github.com/agentverse-os/AgentVerse-OS",
+  "b": "Personal cloud OS for a developer and their agents: windowed browser desktop, isolated workspaces with VS Code / Claude Code / Codex, a 944-app self-hosted store, Tailscale-only access, Rust core and Svelte UI. The closest existing thing to Griot Hub's launcher ambition and to Djeli's multi-workspace shell.",
+  "tg": [
+   [
+    "Griot Hub",
+    3,
+    "windowed workspace-launcher architecture"
+   ],
+   [
+    "Djeli",
+    3,
+    "isolated agent workspaces"
+   ],
+   [
+    "Tesseract",
+    2,
+    "windowing / workspace model"
+   ],
+   [
+    "Prism",
+    1,
+    "per-workspace agent isolation"
+   ]
+  ]
+ },
+ {
+  "n": "ToolReplay",
+  "slug": "Matthew0822/ToolReplay",
+  "cat": "agent",
+  "src": "potluck:etbGWMJIbik",
+  "srcName": "GitHub Trending Weekly #49 (video description)",
+  "srcUrl": "https://github.com/Matthew0822/ToolReplay",
+  "b": "Audits agent tool-call transcripts: hash-chain sealing, deterministic replay and scope-overreach checks in a dependency-free Python CLI. This is Valence's missing forensic layer — a sealed, replayable record of what an agent actually did, and a ready gate for Prism Gavel's verify.",
+  "tg": [
+   [
+    "Valence",
+    3,
+    "sealed, replayable agent tool-call audit"
+   ],
+   [
+    "Prism Gavel",
+    3,
+    "evidence for the verify step"
+   ],
+   [
+    "Prism",
+    2,
+    "run provenance"
+   ],
+   [
+    "Kaleidoscope",
+    1,
+    "write-path audit"
+   ]
+  ]
+ },
+ {
+  "n": "sonar.cool",
+  "slug": "eperez28/sonar.cool",
+  "cat": "desktop",
+  "src": "potluck:etbGWMJIbik",
+  "srcName": "GitHub Trending Weekly #49 (video description)",
+  "srcUrl": "https://github.com/eperez28/sonar.cool",
+  "b": "Camera-free gesture control for macOS that uses the speakers and microphone as sonar — scroll, swipe and zoom with your hand. Input-method research: a privacy-preserving presence and gesture signal Meridian could read as attention state and Tesseract could bind to desktop switching.",
+  "tg": [
+   [
+    "Tesseract",
+    2,
+    "gesture-driven desktop switching"
+   ],
+   [
+    "Meridian",
+    2,
+    "camera-free presence signal"
+   ],
+   [
+    "keylink",
+    1,
+    "alternative input binding"
+   ]
+  ]
+ },
+ {
+  "n": "AuK",
+  "slug": "Tencent-Hunyuan/AuK",
+  "cat": "audio",
+  "src": "potluck:etbGWMJIbik",
+  "srcName": "GitHub Trending Weekly #49 (video description)",
+  "srcUrl": "https://github.com/Tencent-Hunyuan/AuK",
+  "b": "Open foundational model for speech generation AND editing — not just TTS but surgical edits to existing speech. Audion gains a local voice engine, Ashe gains narration that can be corrected without a re-record, Kente gains a speech base model for the customization ladder.",
+  "tg": [
+   [
+    "Audion",
+    3,
+    "local speech generation + editing"
+   ],
+   [
+    "Ashe",
+    2,
+    "narration repair without a re-record"
+   ],
+   [
+    "Kente",
+    2,
+    "speech base model for the forge"
+   ],
+   [
+    "Kora",
+    1,
+    "vocal synthesis in the Ableton lane"
+   ]
+  ]
+ },
+ {
+  "n": "window-sweaters",
+  "slug": "saragordic/window-sweaters",
+  "cat": "desktop",
+  "src": "potluck:etbGWMJIbik",
+  "srcName": "GitHub Trending Weekly #49 (video description)",
+  "srcUrl": "https://github.com/saragordic/window-sweaters",
+  "b": "macOS menu-bar app that dresses your windows in knitted borders. A joke with a real payload: a working example of chrome-level window decoration driven from a menu-bar agent, which is the exact surface Tesseract needs for per-space window identity.",
+  "tg": [
+   [
+    "Tesseract",
+    2,
+    "window-chrome decoration from a menu-bar agent"
+   ],
+   [
+    "Griot Hub",
+    1,
+    "window identity and theming"
+   ]
+  ]
+ },
+ {
+  "n": "video-generator-client",
+  "slug": "letorig/video-generator-client",
+  "cat": "creative",
+  "src": "potluck:etbGWMJIbik",
+  "srcName": "GitHub Trending Weekly #49 (video description)",
+  "srcUrl": "https://github.com/letorig/video-generator-client",
+  "b": "Async Python wrapper over Seedance, Kling, MiniMax and Wan video generation with a CLI and local web UI. One adapter giving Lucid and Ashe multi-provider video gen without writing four clients — the same shape as Fragment's multi-target adapter compiler.",
+  "tg": [
+   [
+    "Lucid",
+    3,
+    "multi-provider video-gen adapter"
+   ],
+   [
+    "Ashe",
+    3,
+    "video generation backend"
+   ],
+   [
+    "Glenn Lewis · IME",
+    1,
+    "music-video generation"
+   ],
+   [
+    "AUXGOD",
+    1,
+    "promo video generation"
+   ]
+  ]
+ },
+ {
+  "n": "ember (scratch OS)",
+  "slug": "Made-In-Basement/ember",
+  "cat": "desktop",
+  "src": "potluck:etbGWMJIbik",
+  "srcName": "GitHub Trending Weekly #49 (video description)",
+  "srcUrl": "https://github.com/Made-In-Basement/ember",
+  "b": "An operating system written from scratch in assembly — boot sector, FAT filesystem, DOS-compatible interrupts, sound, a 32-bit runtime and a graphical desktop. No suite fit; parked as a systems-teaching artifact and a candidate Mentorship Platform lesson arc on how a machine actually boots. (Name collides with the suite's 'ember' colour token — unrelated.)",
+  "tg": [
+   [
+    "Mentorship Platform",
+    1,
+    "systems-from-scratch lesson arc"
+   ],
+   [
+    "Personal",
+    1,
+    "study reference"
+   ]
+  ]
+ },
+ {
+  "n": "design-studio-ai",
+  "slug": "bestagentkits/design-studio-ai",
+  "cat": "creative",
+  "src": "potluck:etbGWMJIbik",
+  "srcName": "GitHub Trending Weekly #49 (video description)",
+  "srcUrl": "https://github.com/bestagentkits/design-studio-ai",
+  "b": "MIT open design workspace for agents AND humans — cloud editing, 3D, motion, MCP, WebMCP, CLI and BYOK. The closest prior art to Lucid, and a direct reference for Djeli's design mode: a canvas where the agent is a first-class editor rather than a chat sidebar.",
+  "tg": [
+   [
+    "Lucid",
+    3,
+    "agent-first design workspace prior art"
+   ],
+   [
+    "Djeli",
+    3,
+    "design-mode canvas"
+   ],
+   [
+    "Sigil",
+    2,
+    "brand-asset editing surface"
+   ],
+   [
+    "R3F Studio",
+    2,
+    "3D + motion inside a web canvas"
+   ]
+  ]
+ },
+ {
+  "n": "regen-icons",
+  "slug": "kazdenc/regen-icons",
+  "cat": "creative",
+  "src": "potluck:etbGWMJIbik",
+  "srcName": "GitHub Trending Weekly #49 (video description)",
+  "srcUrl": "https://github.com/kazdenc/regen-icons",
+  "b": "Icon regeneration utility surfaced in the trending roundup; the repo carries NO description, so the exact mechanism is unread. Flagged because the suite already runs griot-app-icons for per-app ember recolouring and this may be a ready-made batch path.",
+  "tg": [
+   [
+    "Sigil",
+    2,
+    "batch icon regeneration across the ember set"
+   ],
+   [
+    "Lucid",
+    1,
+    "icon asset generation"
+   ]
+  ]
+ },
+ {
+  "n": "airspace",
+  "slug": "danielroe/airspace",
+  "cat": "data",
+  "src": "potluck:etbGWMJIbik",
+  "srcName": "GitHub Trending Weekly #49 (video description)",
+  "srcUrl": "https://github.com/danielroe/airspace",
+  "b": "\"The database you already have\" — treats existing infrastructure as the datastore instead of adding one more service. Interesting for Synaptiq and Kaleidoscope, where the graph / knowledge store keeps threatening to become another daemon to run.",
+  "tg": [
+   [
+    "Synaptiq",
+    2,
+    "no-new-service graph persistence"
+   ],
+   [
+    "Kaleidoscope",
+    2,
+    "store where it already lives"
+   ],
+   [
+    "Hazine",
+    1,
+    "archive persistence"
+   ]
+  ]
+ },
+ {
+  "n": "keystone-bench",
+  "slug": "xinxuxin/keystone-bench",
+  "cat": "mlviz",
+  "src": "potluck:etbGWMJIbik",
+  "srcName": "GitHub Trending Weekly #49 (video description)",
+  "srcUrl": "https://github.com/xinxuxin/keystone-bench",
+  "b": "Clinical decision-evidence benchmark built on HealthBench: pull the one fact an answer rests on, then check whether the assistant's action moves when that evidence moves. The evidence-sensitivity method generalises — a real eval shape for Prism's model gating and Kente's fine-tune scoring.",
+  "tg": [
+   [
+    "Kente",
+    2,
+    "evidence-sensitivity eval for tuned models"
+   ],
+   [
+    "Prism",
+    2,
+    "model-gating eval method"
+   ],
+   [
+    "The Griot Model",
+    2,
+    "lane-selection evidence"
+   ],
+   [
+    "PlantID CNN",
+    1,
+    "decision-evidence framing"
+   ]
+  ]
+ },
+ {
+  "n": "claude-siri-ai",
+  "slug": "mpociot/claude-siri-ai",
+  "cat": "agent",
+  "src": "potluck:etbGWMJIbik",
+  "srcName": "GitHub Trending Weekly #49 (video description)",
+  "srcUrl": "https://github.com/mpociot/claude-siri-ai",
+  "b": "Experimental macOS App Intents model-delegation provider backed by Claude Code — the OS assistant hands work to a real coding agent. The delegation seam matters for Damus (system-level assistant invocation) and for Prism's multi-surface adapters.",
+  "tg": [
+   [
+    "Damus",
+    3,
+    "OS-level assistant delegation to an agent"
+   ],
+   [
+    "Prism",
+    2,
+    "surface adapter for OS intents"
+   ],
+   [
+    "Griot Hub",
+    1,
+    "system entry point"
+   ]
+  ]
+ },
+ {
+  "n": "RSIAgent",
+  "slug": "AetherLabsAI/RSIAgent",
+  "cat": "agent",
+  "src": "potluck:etbGWMJIbik",
+  "srcName": "GitHub Trending Weekly #49 (video description)",
+  "srcUrl": "https://github.com/AetherLabsAI/RSIAgent",
+  "b": "Training-free multi-agent framework for recursive self-improvement — broad-then-deep autonomous exploration with reusable memory. The broad-then-deep loop plus reusable memory is a direct read for Prism's RPIV phases and for Ophenia's perceive / discern / grow thesis.",
+  "tg": [
+   [
+    "Prism",
+    3,
+    "recursive self-improvement across the RPIV phases"
+   ],
+   [
+    "Ophenia",
+    3,
+    "perceive-discern-grow prior art"
+   ],
+   [
+    "Valence",
+    1,
+    "multi-agent run observation"
+   ],
+   [
+    "Kaleidoscope",
+    1,
+    "reusable memory store"
+   ]
+  ]
+ },
+ {
+  "n": "O.status",
+  "slug": "CATCHINGL/O.status",
+  "cat": "desktop",
+  "src": "potluck:etbGWMJIbik",
+  "srcName": "GitHub Trending Weekly #49 (video description)",
+  "srcUrl": "https://github.com/CATCHINGL/O.status",
+  "b": "Clean, minimal Android status indicator for cellular, Wi-Fi and battery. Android-only and outside the suite's surfaces — parked as a status-density design reference for Griot Hub's chrome and Tesseract's per-monitor indicators.",
+  "tg": [
+   [
+    "Griot Hub",
+    1,
+    "status-density design reference"
+   ],
+   [
+    "Tesseract",
+    1,
+    "compact status indicators"
+   ]
+  ]
+ },
+ {
+  "n": "kinesis",
+  "slug": "callbacked/kinesis",
+  "cat": "desktop",
+  "src": "potluck:etbGWMJIbik",
+  "srcName": "GitHub Trending Weekly #49 (video description)",
+  "srcUrl": "https://github.com/callbacked/kinesis",
+  "b": "Native macOS controls for the Meta neural band — highly experimental EMG input. Parked as the far edge of the input-device thread keylink and Tesseract already occupy, and as a Meridian signal source if wrist-level intent ever becomes readable.",
+  "tg": [
+   [
+    "keylink",
+    2,
+    "non-keyboard input device binding"
+   ],
+   [
+    "Meridian",
+    1,
+    "intent / attention signal source"
+   ],
+   [
+    "Tesseract",
+    1,
+    "gesture-driven desktop control"
+   ]
+  ]
+ },
+ {
+  "n": "Status Trio",
+  "slug": "lingyired/status-trio",
+  "cat": "desktop",
+  "src": "potluck:etbGWMJIbik",
+  "srcName": "GitHub Trending Weekly #49 (video description)",
+  "srcUrl": "https://github.com/lingyired/status-trio",
+  "b": "Native macOS app combining Wi-Fi, battery and volume into one compact, configurable status icon for the menu bar, the Dock, or both. Same family as O.status — a concrete reference for Tesseract's per-monitor status chrome and Griot Hub's compact system readout.",
+  "tg": [
+   [
+    "Tesseract",
+    2,
+    "compact combined status chrome"
+   ],
+   [
+    "Griot Hub",
+    1,
+    "system readout in the launcher"
+   ]
+  ]
+ },
+ {
+  "n": "gap-trap",
+  "slug": "pliablepixels/gap-trap",
+  "cat": "devex",
+  "src": "potluck:etbGWMJIbik",
+  "srcName": "GitHub Trending Weekly #49 (video description)",
+  "srcUrl": "https://github.com/pliablepixels/gap-trap",
+  "b": "Sets up rules and gates in a repo so AI-written code stays correct without reviewing every line — vibe coding with guardrails. This is Prism's closing-ceremony philosophy packaged as repo scaffolding, and a ready template for what Fragment should emit into every new project.",
+  "tg": [
+   [
+    "Prism",
+    3,
+    "repo-level gates for agent-written code"
+   ],
+   [
+    "Fragment",
+    3,
+    "gate scaffolding emitted into new repos"
+   ],
+   [
+    "Prism Gavel",
+    2,
+    "gate definitions behind a ruling"
+   ],
+   [
+    "Djeli",
+    1,
+    "in-IDE gate surfacing"
+   ]
+  ]
+ },
+ {
+  "n": "iPhone Duo macOS animation",
+  "slug": "lqSky7/iphone-duo-macos-animation",
+  "cat": "desktop",
+  "src": "potluck:etbGWMJIbik",
+  "srcName": "GitHub Trending Weekly #49 (video description)",
+  "srcUrl": "https://github.com/lqSky7/iphone-duo-macos-animation",
+  "b": "Native Swift clone of the iPhone Duo fold progressive-blur animation, driven by the MacBook lid tilt sensor. A motion-design reference for Griotwave — physical-sensor-driven progressive blur is exactly the rim-light / specular register the design language reaches for.",
+  "tg": [
+   [
+    "Lucid",
+    2,
+    "progressive-blur motion reference"
+   ],
+   [
+    "GBFolio",
+    2,
+    "sensor-driven motion in the portfolio"
+   ],
+   [
+    "Tesseract",
+    1,
+    "lid / state-driven transitions"
+   ]
+  ]
+ },
+ {
+  "n": "omarchy-trackpad-plus",
+  "slug": "davefano/omarchy-trackpad-plus",
+  "cat": "desktop",
+  "src": "potluck:etbGWMJIbik",
+  "srcName": "GitHub Trending Weekly #49 (video description)",
+  "srcUrl": "https://github.com/davefano/omarchy-trackpad-plus",
+  "b": "Fine-grained per-device trackpad controls and pointer-feel tuning for Omarchy. Straight into keylink's lane — per-device input profiles and feel tuning, just on Linux instead of Windows.",
+  "tg": [
+   [
+    "keylink",
+    3,
+    "per-device pointer / trackpad profile tuning"
+   ],
+   [
+    "Tesseract",
+    1,
+    "input config alongside desktops"
+   ]
+  ]
+ },
+ {
+  "n": "arsumbris",
+  "slug": "arsumbris/arsumbris",
+  "cat": "knowledge",
+  "src": "potluck:etbGWMJIbik",
+  "srcName": "GitHub Trending Weekly #49 (video description)",
+  "srcUrl": "https://github.com/arsumbris/arsumbris",
+  "b": "A malleable, agent-native IDE for typed knowledge — structure the knowledge and the editor bends to it. Sits squarely between Synaptiq's typed graph and Djeli's agentic IDE; 'typed knowledge as the substrate the UI derives from' is the framing Synaptiq keeps circling.",
+  "tg": [
+   [
+    "Synaptiq",
+    3,
+    "typed-knowledge substrate driving the UI"
+   ],
+   [
+    "Djeli",
+    3,
+    "agent-native malleable IDE"
+   ],
+   [
+    "Kaleidoscope",
+    2,
+    "typed knowledge porting"
+   ],
+   [
+    "Graft",
+    1,
+    "typed belief-state"
+   ]
+  ]
+ },
+ {
+  "n": "nix-graph",
+  "slug": "AlexAntonik/nix-graph",
+  "cat": "devex",
+  "src": "potluck:etbGWMJIbik",
+  "srcName": "GitHub Trending Weekly #49 (video description)",
+  "srcUrl": "https://github.com/AlexAntonik/nix-graph",
+  "b": "Interactive TUI viewer for Nix dependency graphs. The TUI graph-navigation pattern is directly liftable for Graft's belief-state graph and Valence's dependency views — a working example of making a large graph legible in a terminal.",
+  "tg": [
+   [
+    "Graft",
+    2,
+    "TUI navigation of a large dependency graph"
+   ],
+   [
+    "Valence",
+    2,
+    "dependency and graph views"
+   ],
+   [
+    "Synaptiq",
+    1,
+    "graph legibility patterns"
+   ]
+  ]
+ },
+ {
+  "n": "panel (greentfrapp)",
+  "slug": "greentfrapp/panel",
+  "cat": "devex",
+  "src": "potluck:etbGWMJIbik",
+  "srcName": "GitHub Trending Weekly #49 (video description)",
+  "srcUrl": "https://github.com/greentfrapp/panel",
+  "b": "Python repo named 'panel' surfaced in the trending roundup with NO description — verified real but unread. Parked undecided rather than dropped; needs a read before any panel / dashboard fit is claimed.",
+  "tg": [
+   [
+    "Griot Hub",
+    1,
+    "unclassified — needs a read before any fit is claimed"
+   ]
+  ]
+ },
+ {
+  "n": "Minted",
+  "slug": "haplollc/Minted",
+  "cat": "3d",
+  "src": "potluck:etbGWMJIbik",
+  "srcName": "GitHub Trending Weekly #49 (video description)",
+  "srcUrl": "https://github.com/haplollc/Minted",
+  "b": "Turns any SVG into a physically-lit 3D gold medallion for SwiftUI. Exactly the Griotwave move — a flat mark becomes a lit material object. Direct reference for Sigil's mark rendering and R3F Studio's SVG-to-3D path.",
+  "tg": [
+   [
+    "Sigil",
+    3,
+    "flat mark to physically-lit 3D object"
+   ],
+   [
+    "R3F Studio",
+    3,
+    "SVG-to-3D material pipeline"
+   ],
+   [
+    "GBFolio",
+    2,
+    "medallion / badge rendering"
+   ],
+   [
+    "AUXGOD",
+    1,
+    "card-face material treatment"
+   ]
+  ]
+ },
+ {
+  "n": "monid",
+  "slug": "monid-ai/monid",
+  "cat": "agent",
+  "src": "potluck:etbGWMJIbik",
+  "srcName": "GitHub Trending Weekly #49 (video description)",
+  "srcUrl": "https://github.com/monid-ai/monid",
+  "b": "\"OpenRouter for agent tools\" — one broker in front of many tool providers. That is the missing middle for Prism's Model Control Plane on the tool side, and for Djeli routing tool calls across panels without hardwiring each provider.",
+  "tg": [
+   [
+    "Prism",
+    3,
+    "tool-side broker for the Model Control Plane"
+   ],
+   [
+    "Djeli",
+    2,
+    "tool routing across panels"
+   ],
+   [
+    "Valence",
+    2,
+    "single choke point to observe tool calls"
+   ],
+   [
+    "Fragment",
+    1,
+    "tool adapter emission"
+   ]
+  ]
+ },
+ {
+  "n": "markitdown",
+  "slug": "microsoft/markitdown",
+  "cat": "knowledge",
+  "src": "potluck:d4Wfpg6Y7J4",
+  "srcName": "Top Dev Tool Projects roundup (video description)",
+  "srcUrl": "https://github.com/microsoft/markitdown",
+  "b": "Converts files and office documents to Markdown — the unglamorous ingest step everything else depends on. Direct drop-in for Kaleidoscope's porting path, Synaptiq's node ingest and the Secure Doc Repository / Paralegal document lanes.",
+  "tg": [
+   [
+    "Kaleidoscope",
+    3,
+    "document ingest into a portable form"
+   ],
+   [
+    "Synaptiq",
+    3,
+    "file-to-node ingest"
+   ],
+   [
+    "Hazine",
+    2,
+    "archive normalisation"
+   ],
+   [
+    "Secure Doc Repository",
+    2,
+    "document conversion"
+   ],
+   [
+    "Paralegal Project",
+    2,
+    "legal document ingest"
+   ]
+  ]
+ },
+ {
+  "n": "OpenMAIC",
+  "slug": "THU-MAIC/OpenMAIC",
+  "cat": "knowledge",
+  "src": "potluck:d4Wfpg6Y7J4",
+  "srcName": "Top Dev Tool Projects roundup (video description)",
+  "srcUrl": "https://github.com/THU-MAIC/OpenMAIC",
+  "b": "Open Multi-Agent Interactive Classroom — an immersive, multi-agent learning experience in one click. The clearest prior art for the Mentorship Platform's Scrimba-style interactive-tutorial ambition, with agents as the teaching staff.",
+  "tg": [
+   [
+    "Mentorship Platform",
+    3,
+    "multi-agent interactive classroom"
+   ],
+   [
+    "Kweli",
+    2,
+    "guided comprehension sessions"
+   ],
+   [
+    "Synaptiq",
+    1,
+    "learning artefacts as nodes"
+   ]
+  ]
+ },
+ {
+  "n": "Cursor plugins",
+  "slug": "cursor/plugins",
+  "cat": "devex",
+  "src": "potluck:d4Wfpg6Y7J4",
+  "srcName": "Top Dev Tool Projects roundup (video description)",
+  "srcUrl": "https://github.com/cursor/plugins",
+  "b": "Cursor's plugin specification and official plugins. A second real-world plugin spec to compare against Claude Code's — direct input for Fragment's multi-target adapter compiler and for SkillForge's manager, since Cursor is a surface the suite may need to emit for.",
+  "tg": [
+   [
+    "Fragment",
+    3,
+    "another target for the adapter compiler"
+   ],
+   [
+    "SkillForge",
+    3,
+    "a plugin spec the manager must understand"
+   ],
+   [
+    "Prism",
+    2,
+    "surface adapter"
+   ],
+   [
+    "Djeli",
+    1,
+    "plugin-host reference"
+   ]
+  ]
+ },
+ {
+  "n": "vphone-cli",
+  "slug": "Lakr233/vphone-cli",
+  "cat": "desktop",
+  "src": "potluck:d4Wfpg6Y7J4",
+  "srcName": "Top Dev Tool Projects roundup (video description)",
+  "srcUrl": "https://github.com/Lakr233/vphone-cli",
+  "b": "Swift CLI around a virtual-phone surface; the repo carries NO description so the exact scope is unread despite heavy star weight. Parked as a possible device / emulator control lane next to Tesseract and keylink until someone reads it.",
+  "tg": [
+   [
+    "Tesseract",
+    1,
+    "virtual-device surface, unread"
+   ],
+   [
+    "keylink",
+    1,
+    "device control, unread"
+   ]
+  ]
+ },
+ {
+  "n": "Coder",
+  "slug": "coder/coder",
+  "cat": "devex",
+  "src": "potluck:d4Wfpg6Y7J4",
+  "srcName": "Top Dev Tool Projects roundup (video description)",
+  "srcUrl": "https://github.com/coder/coder",
+  "b": "Secure, provisioned environments for developers and their agents. The workspace-isolation and remote-dev story Djeli needs when an agent runs untrusted code, and the multi-workspace backbone Griot Hub would otherwise hand-roll.",
+  "tg": [
+   [
+    "Djeli",
+    3,
+    "isolated workspaces for agent execution"
+   ],
+   [
+    "Griot Hub",
+    2,
+    "workspace provisioning backbone"
+   ],
+   [
+    "Prism",
+    2,
+    "sandboxed run environments"
+   ],
+   [
+    "Valence",
+    1,
+    "per-workspace observability"
+   ]
+  ]
+ },
+ {
+  "n": "PR Lens",
+  "slug": "coldteadotai/pr-lens",
+  "cat": "devex",
+  "src": "potluck:d4Wfpg6Y7J4",
+  "srcName": "Top Dev Tool Projects roundup (video description)",
+  "srcUrl": "https://github.com/coldteadotai/pr-lens",
+  "b": "Draws every PR as an animated architecture and data-flow walkthrough inside the pull request — GitHub App, Action, CLI or agent skill. The visual-first contract applied to code review; a direct model for Prism's describe_pr and for Kweli's \"comprehension before commitment\" thesis.",
+  "tg": [
+   [
+    "Prism",
+    3,
+    "animated PR walkthrough for describe_pr"
+   ],
+   [
+    "Kweli",
+    3,
+    "comprehension layer over technical change"
+   ],
+   [
+    "Valence",
+    2,
+    "change visualisation"
+   ],
+   [
+    "Djeli",
+    2,
+    "in-IDE review visual"
+   ]
+  ]
+ },
+ {
+  "n": "whiteboard-animator",
+  "slug": "masihsultani/whiteboard-animator",
+  "cat": "creative",
+  "src": "potluck:d4Wfpg6Y7J4",
+  "srcName": "Top Dev Tool Projects roundup (video description)",
+  "srcUrl": "https://github.com/masihsultani/whiteboard-animator",
+  "b": "Turns a whiteboard-style image into a hand-drawn reveal video — the render engine behind Kinoslide. A ready effect module for Ashe's Remotion pipeline and Lucid's explainer lane, and a natural fit for the Mentorship Platform's lesson visuals.",
+  "tg": [
+   [
+    "Ashe",
+    3,
+    "hand-drawn reveal effect for programmatic video"
+   ],
+   [
+    "Lucid",
+    2,
+    "explainer asset generation"
+   ],
+   [
+    "Mentorship Platform",
+    2,
+    "lesson visuals"
+   ],
+   [
+    "Math Formalism Ideation",
+    1,
+    "derivation reveal animation"
+   ]
+  ]
+ },
+ {
+  "n": "DeepSelect",
+  "slug": "deepseek-ai/DeepSelect",
+  "cat": "infra",
+  "src": "potluck:d4Wfpg6Y7J4",
+  "srcName": "Top Dev Tool Projects roundup (video description)",
+  "srcUrl": "https://github.com/deepseek-ai/DeepSelect",
+  "b": "TopK CUDA kernels for DeepSeek Sparse Attention and samplers. Low-level but load-bearing for the big-local lane — sparse-attention kernels are what make long-context local inference viable on a single consumer GPU.",
+  "tg": [
+   [
+    "The Griot Model",
+    2,
+    "sparse-attention kernels for the big-local lane"
+   ],
+   [
+    "Kente",
+    2,
+    "inference kernels under the forge"
+   ],
+   [
+    "Prism",
+    1,
+    "local model serving"
+   ]
+  ]
+ },
+ {
+  "n": "YuE2",
+  "slug": "multimodal-art-projection/YuE",
+  "cat": "audio",
+  "src": "potluck:d4Wfpg6Y7J4",
+  "srcName": "Top Dev Tool Projects roundup (video description)",
+  "srcUrl": "https://github.com/multimodal-art-projection/YuE",
+  "b": "Frontier music generation with symbolic planning, zero-shot covers and agentic music editing. Symbolic planning plus agentic editing is exactly Kora's thesis on top of Ableton, and the generative engine AUXGOD and the Glenn Lewis IME would draw on.",
+  "tg": [
+   [
+    "Kora",
+    3,
+    "agentic music generation + editing over a symbolic plan"
+   ],
+   [
+    "AUXGOD",
+    2,
+    "music generation for the card game"
+   ],
+   [
+    "Glenn Lewis · IME",
+    2,
+    "neo-soul generative material"
+   ],
+   [
+    "Lucid",
+    1,
+    "audio asset generation"
+   ]
+  ]
+ },
+ {
+  "n": "oh-my-hermes",
+  "slug": "rlaope/oh-my-hermes",
+  "cat": "agent",
+  "src": "potluck:d4Wfpg6Y7J4",
+  "srcName": "Top Dev Tool Projects roundup (video description)",
+  "srcUrl": "https://github.com/rlaope/oh-my-hermes",
+  "b": "All-in-one plugin for Hermes Agent: coding intelligence, a long-term memory system and model-optimised workflow packages. The bundle shape — one plugin carrying memory plus workflow packs — is the template SkillForge manages and Fragment emits.",
+  "tg": [
+   [
+    "SkillForge",
+    3,
+    "plugin bundle with memory + workflow packs"
+   ],
+   [
+    "Fragment",
+    2,
+    "bundle emission target"
+   ],
+   [
+    "Kaleidoscope",
+    2,
+    "long-term memory system"
+   ],
+   [
+    "Prism",
+    2,
+    "model-optimised workflow packages"
+   ]
+  ]
+ },
+ {
+  "n": "RuView",
+  "slug": "ruvnet/RuView",
+  "cat": "mlviz",
+  "src": "potluck:d4Wfpg6Y7J4",
+  "srcName": "Top Dev Tool Projects roundup (video description)",
+  "srcUrl": "https://github.com/ruvnet/RuView",
+  "b": "Turns commodity WiFi signals into real-time spatial intelligence, vital-sign monitoring and presence detection with no camera. A camera-free presence and state sensor — the ambient substrate Meridian wants to observe attention from, and Ophenia's kind of raw perceptual signal.",
+  "tg": [
+   [
+    "Meridian",
+    3,
+    "camera-free presence + state sensing substrate"
+   ],
+   [
+    "Ophenia",
+    2,
+    "raw perceptual signal to discern pattern from"
+   ],
+   [
+    "Personal",
+    1,
+    "health / vital monitoring"
+   ],
+   [
+    "Tesseract",
+    1,
+    "presence-aware desktop"
+   ]
+  ]
+ },
+ {
+  "n": "spotifast",
+  "slug": "crmne/spotifast",
+  "cat": "audio",
+  "src": "potluck:d4Wfpg6Y7J4",
+  "srcName": "Top Dev Tool Projects roundup (video description)",
+  "srcUrl": "https://github.com/crmne/spotifast",
+  "b": "Native, fast Rust Spotify client with local playback and Spotify Connect across Linux, macOS and Windows. Reference for Kora's local-first audio surface, and a measurement of what a lightweight native media client costs versus an Electron one.",
+  "tg": [
+   [
+    "Kora",
+    2,
+    "native local-first audio client reference"
+   ],
+   [
+    "Personal",
+    1,
+    "daily-driver music surface"
+   ],
+   [
+    "Griot Hub",
+    1,
+    "native vs Electron cost reference"
+   ]
+  ]
+ },
+ {
+  "n": "SlowBooks Pro",
+  "slug": "VonHoltenCodes/SlowBooks-Pro-2026",
+  "cat": "productivity",
+  "src": "potluck:d4Wfpg6Y7J4",
+  "srcName": "Top Dev Tool Projects roundup (video description)",
+  "srcUrl": "https://github.com/VonHoltenCodes/SlowBooks-Pro-2026",
+  "b": "Source-available double-entry accounting with invoicing, US payroll, inventory and bank feeds — desktop app plus a multi-user server edition, no cloud and no caps. A QuickBooks replacement for the studio's own books and a candidate spine for client back-office work.",
+  "tg": [
+   [
+    "Personal",
+    3,
+    "studio bookkeeping without a cloud subscription"
+   ],
+   [
+    "Kweli",
+    1,
+    "client invoicing surface"
+   ],
+   [
+    "Realtor CMS",
+    1,
+    "client back-office reference"
+   ]
+  ]
+ },
+ {
+  "n": "SQLite",
+  "slug": "sqlite/sqlite",
+  "cat": "data",
+  "src": "potluck:8tcHlirj3rM",
+  "srcName": "Cinopsis catch-up · why SQLite is in every phone app",
+  "srcUrl": "https://github.com/sqlite/sqlite",
+  "b": "The embedded database in nearly every phone app, and the right default for every local-first surface in the suite — Synaptiq's graph, Meridian's event log, Cinopsis's digests, Tesseract's layout state. Zero services to run is the whole point.",
+  "tg": [
+   [
+    "Synaptiq",
+    3,
+    "embedded local-first graph store"
+   ],
+   [
+    "Meridian",
+    3,
+    "local event / attention log"
+   ],
+   [
+    "Cinopsis",
+    2,
+    "digest storage"
+   ],
+   [
+    "Tesseract",
+    2,
+    "desktop layout state"
+   ],
+   [
+    "Hazine",
+    2,
+    "archive index"
+   ]
+  ]
+ },
+ {
+  "n": "CPython",
+  "slug": "python/cpython",
+  "cat": "devex",
+  "src": "potluck:bMzs2mcy8-s",
+  "srcName": "Cinopsis catch-up · which python are you actually running",
+  "srcUrl": "https://github.com/python/cpython",
+  "b": "The reference Python implementation. Shelf-listed because the catch-up flagged a concrete trap — 'python' may not be the interpreter you think it is — which is a real failure mode for the suite's Python tooling (Kente, PlantID CNN, the Cinopsis scripts) on a machine carrying several runtimes.",
+  "tg": [
+   [
+    "Kente",
+    2,
+    "interpreter pinning for the forge's Python stack"
+   ],
+   [
+    "PlantID CNN",
+    1,
+    "notebook environment correctness"
+   ],
+   [
+    "Prism",
+    1,
+    "toolchain pinning in scaffolds"
+   ]
+  ]
+ },
+ {
+  "n": "ExLlamaV3",
+  "slug": "turboderp-org/exllamav3",
+  "cat": "infra",
+  "src": "potluck:ROHgM8uV_8M",
+  "srcName": "Cinopsis catch-up · EXL3 quantisation explainer",
+  "srcUrl": "https://github.com/turboderp-org/exllamav3",
+  "b": "Optimised EXL3 quantisation and inference for consumer GPUs, built on Cornell's QTIP work. The quantisation half of Kente's ladder — how a fine-tuned model actually becomes something the RTX 5060 can serve.",
+  "tg": [
+   [
+    "Kente",
+    3,
+    "quantise tuned models for consumer GPUs"
+   ],
+   [
+    "The Griot Model",
+    3,
+    "fast-local quantisation format"
+   ],
+   [
+    "Prism",
+    1,
+    "local serving"
+   ]
+  ]
+ },
+ {
+  "n": "Jan",
+  "slug": "janhq/jan",
+  "cat": "infra",
+  "src": "potluck:xPhLXefM4g4",
+  "srcName": "Cinopsis catch-up · Jan offline desktop AI",
+  "srcUrl": "https://github.com/janhq/jan",
+  "b": "Open-source ChatGPT alternative that runs fully offline with no account, email or card. The clearest reference for what a local-first desktop AI surface costs to build, and a candidate shell for the fast-local lane inside Griot Hub.",
+  "tg": [
+   [
+    "The Griot Model",
+    3,
+    "offline local-first chat surface"
+   ],
+   [
+    "Griot Hub",
+    2,
+    "desktop AI shell reference"
+   ],
+   [
+    "Prism",
+    1,
+    "local model provider"
+   ],
+   [
+    "Damus",
+    1,
+    "offline assistant surface"
+   ]
+  ]
+ },
+ {
+  "n": "Whisper",
+  "slug": "openai/whisper",
+  "cat": "audio",
+  "src": "potluck:scan",
+  "srcName": "AI News catch-up 2026-09-17 · supporting mention",
+  "srcUrl": "https://github.com/openai/whisper",
+  "b": "Robust speech recognition via large-scale weak supervision — still the baseline every local transcription path is measured against. Audion's capture thread and Cinopsis's transcript fallback both sit on this class of model.",
+  "tg": [
+   [
+    "Audion",
+    3,
+    "baseline local ASR for live capture"
+   ],
+   [
+    "Cinopsis",
+    3,
+    "transcript extraction fallback"
+   ],
+   [
+    "Ashe",
+    2,
+    "caption and subtitle generation"
+   ],
+   [
+    "Kora",
+    1,
+    "vocal transcription"
+   ]
+  ]
+ },
+ {
+  "n": "screenshot-to-code",
+  "slug": "abi/screenshot-to-code",
+  "cat": "devex",
+  "src": "potluck:scan",
+  "srcName": "AI News catch-up 2026-09-17 · supporting mention",
+  "srcUrl": "https://github.com/abi/screenshot-to-code",
+  "b": "Drop in a screenshot, get clean HTML/Tailwind/React/Vue. The design-to-code seam Djeli's design mode and Lucid's handoff to Sigil keep needing, and a working reference for Prism's visual-first verify loop running in reverse.",
+  "tg": [
+   [
+    "Djeli",
+    3,
+    "design-mode screenshot-to-code seam"
+   ],
+   [
+    "Lucid",
+    2,
+    "visual to implementation handoff"
+   ],
+   [
+    "Prism",
+    2,
+    "visual-first scaffolding"
+   ],
+   [
+    "Sigil",
+    1,
+    "brand mock to markup"
+   ]
+  ]
+ },
+ {
+  "n": "MLX",
+  "slug": "ml-explore/mlx",
+  "cat": "infra",
+  "src": "potluck:scan",
+  "srcName": "AI News catch-up 2026-09-17 · supporting mention",
+  "srcUrl": "https://github.com/ml-explore/mlx",
+  "b": "Apple-silicon array framework — the substrate behind the Mac-side local inference wave the catch-up covered. Relevant to the suite's secondary MacBook lane and to Kente if a tuning or eval step ever needs to run off the Blackwell box.",
+  "tg": [
+   [
+    "The Griot Model",
+    2,
+    "Apple-silicon inference lane on the secondary machine"
+   ],
+   [
+    "Kente",
+    2,
+    "Mac-side training / eval path"
+   ],
+   [
+    "Prism",
+    1,
+    "cross-platform model runtime"
+   ]
+  ]
+ },
+ {
+  "n": "Tinycast",
+  "slug": "abue-ammar/tinycast",
+  "cat": "desktop",
+  "src": "potluck:GrJrjadnnio",
+  "srcName": "Cinopsis catch-up · tinycast README narration",
+  "srcUrl": "https://github.com/abue-ammar/tinycast",
+  "b": "Fully native macOS launcher, hotkeys and clipboard history in SwiftUI/AppKit — zero third-party deps, no Electron, no telemetry, under 100 MB of RAM. Griot Hub's launcher is Electron; this is the honest counterargument, plus a keylink-adjacent hotkey model.",
+  "tg": [
+   [
+    "Griot Hub",
+    3,
+    "native launcher counterpoint to the Electron shell"
+   ],
+   [
+    "keylink",
+    2,
+    "hotkey binding model"
+   ],
+   [
+    "Tesseract",
+    2,
+    "native desktop shell patterns"
+   ],
+   [
+    "Damus",
+    1,
+    "lightweight floating surface"
+   ]
+  ]
+ },
+ {
+  "n": "PostgreSQL",
+  "slug": "postgres/postgres",
+  "cat": "data",
+  "src": "potluck:8tcHlirj3rM",
+  "srcName": "Cinopsis catch-up · why SQLite is in every phone app",
+  "srcUrl": "https://github.com/postgres/postgres",
+  "b": "The server-side database the SQLite explainer contrasted against. The right answer when a suite surface genuinely outgrows embedded storage — Kweli's multi-user work and the Realtor CMS / Secure Doc Repository lanes.",
+  "tg": [
+   [
+    "Kweli",
+    2,
+    "multi-user client-facing datastore"
+   ],
+   [
+    "Realtor CMS",
+    2,
+    "CMS / CRM backend"
+   ],
+   [
+    "Secure Doc Repository",
+    2,
+    "document metadata store"
+   ],
+   [
+    "Synaptiq",
+    1,
+    "scale-out option beyond SQLite"
+   ]
+  ]
+ },
+ {
+  "n": "MySQL Server",
+  "slug": "mysql/mysql-server",
+  "cat": "data",
+  "src": "potluck:8tcHlirj3rM",
+  "srcName": "Cinopsis catch-up · why SQLite is in every phone app",
+  "srcUrl": "https://github.com/mysql/mysql-server",
+  "b": "The other server database in the SQLite comparison. Carried on the shelf for completeness and because client work inherits MySQL far more often than it chooses it — the Realtor CMS and WooCommerce-shaped client lanes.",
+  "tg": [
+   [
+    "Realtor CMS",
+    2,
+    "inherited client database"
+   ],
+   [
+    "Secure Doc Repository",
+    1,
+    "client stack compatibility"
+   ],
+   [
+    "Kweli",
+    1,
+    "client stack compatibility"
+   ]
+  ]
+ },
+ {
+  "n": "trigger.dev",
+  "slug": "triggerdotdev/trigger.dev",
+  "cat": "devex",
+  "src": "potluck:FqnNL8fnUWo",
+  "srcName": "Cinopsis catch-up · hosting Codex automations on trigger.dev",
+  "srcUrl": "https://github.com/triggerdotdev/trigger.dev",
+  "b": "Build and deploy durable AI agents and workflows — scheduled, webhook and event-triggered runs that survive restarts, and the catch-up's answer to burning a weekly agent usage limit on automations. Durable execution is the gap between Prism's daemon and Kente's Temporal + Dramatiq stack.",
+  "tg": [
+   [
+    "Prism",
+    3,
+    "durable scheduled / webhook agent runs off the daemon"
+   ],
+   [
+    "Kente",
+    2,
+    "durable workflow alternative to Temporal+Dramatiq"
+   ],
+   [
+    "Valence",
+    2,
+    "run scheduling and observation"
+   ],
+   [
+    "Griot Hub",
+    1,
+    "automation surface"
+   ]
+  ]
+ },
+ {
+  "n": "MiniCPM5",
+  "slug": "OpenBMB/MiniCPM",
+  "cat": "infra",
+  "src": "potluck:Wik_JQ-enUA",
+  "srcName": "Cinopsis catch-up · MiniCPM5 2B sceptical review",
+  "srcUrl": "https://github.com/OpenBMB/MiniCPM",
+  "b": "On-device LLMs — a 2B posting SWE-bench Verified 46, beating models twice its size, though the catch-up flagged quantised GGUF builds running away into infinite repetition. A strong fast-local candidate with a verification caveat attached.",
+  "tg": [
+   [
+    "The Griot Model",
+    3,
+    "fast-local on-device candidate (with a GGUF caveat)"
+   ],
+   [
+    "Kente",
+    2,
+    "small base model for the ladder"
+   ],
+   [
+    "Damus",
+    1,
+    "on-device assistant model"
+   ],
+   [
+    "Prism",
+    1,
+    "local model option"
+   ]
+  ]
+ },
+ {
+  "n": "Blender",
+  "slug": "blender/blender",
+  "cat": "3d",
+  "src": "potluck:8MUk-tQTiwE",
+  "srcName": "Cinopsis 3D catch-up - GPT-6 Astra stress-test in Blender",
+  "srcUrl": "https://github.com/blender/blender",
+  "b": "The GPL 3D suite that every single pipeline in this catch-up runs through - modelling, UV, bake, rig, animate, export. Both catch-ups converge on one point: Blender is the hub the AI 3D toolchain plugs into, so the suite's 3D spine (R3F Studio's CC5/iClone-to-Blender-to-web path) is already standing on the right substrate.",
+  "tg": [
+   [
+    "R3F Studio",
+    3,
+    "the pipeline hub R3F Studio already builds on"
+   ],
+   [
+    "Anansi",
+    2,
+    "authoring side of the agent-native engine"
+   ],
+   [
+    "Lucid",
+    2,
+    "3D asset generation surface"
+   ],
+   [
+    "GBFolio",
+    2,
+    "avatar + scene authoring"
+   ]
+  ]
+ },
+ {
+  "n": "ArmorPaint",
+  "slug": "armory3d/armorpaint",
+  "cat": "3d",
+  "src": "potluck:RKND9_gAtXo",
+  "srcName": "Cinopsis 3D catch-up - ArmorPaint README read-through",
+  "srcUrl": "https://github.com/armory3d/armorpaint",
+  "b": "Open-source 3D PBR texture painting app (Armory3D lineage) built from source per platform - a Substance Painter substitute with no licence tether. A free texturing station for the R3F Studio asset path, and a source-readable reference for how a GPU paint tool is structured if Lucid ever needs an in-app texture surface.",
+  "tg": [
+   [
+    "R3F Studio",
+    3,
+    "free PBR texturing station in the asset path"
+   ],
+   [
+    "Lucid",
+    2,
+    "in-app texture-paint surface reference"
+   ],
+   [
+    "GBFolio",
+    1,
+    "avatar texture touch-ups"
+   ]
+  ]
+ },
+ {
+  "n": "BlenderKit",
+  "slug": "BlenderKit/Blendkit",
+  "cat": "3d",
+  "src": "potluck:QkLKpUDDdgo",
+  "srcName": "Cinopsis 3D catch-up - Higgsfield Blender extension walkthrough",
+  "srcUrl": "https://github.com/BlenderKit/Blendkit",
+  "b": "In-viewport asset library add-on for Blender - searchable models, materials and HDRIs pulled straight into the scene. The pattern worth harvesting is the in-viewport asset browser itself: R3F Studio and Lucid both need a way to reach a library without leaving the canvas.",
+  "tg": [
+   [
+    "R3F Studio",
+    3,
+    "in-viewport asset-library pattern"
+   ],
+   [
+    "Lucid",
+    2,
+    "asset browser inside the creation surface"
+   ],
+   [
+    "Anansi",
+    1,
+    "runtime asset catalog"
+   ]
+  ]
+ },
+ {
+  "n": "Node Wrangler",
+  "slug": "blender/blender-addons",
+  "cat": "3d",
+  "src": "potluck:wknRD5g-vvk",
+  "srcName": "Cinopsis 3D catch-up - free-AI pirate-cave level pipeline",
+  "srcUrl": "https://github.com/blender/blender-addons",
+  "b": "Blender-bundled add-on whose Ctrl+T shortcut wires mapping nodes for texture-scale control in one keystroke - the small ergonomics that decide whether a shader pass takes 20 seconds or two minutes. A concrete example of the shortcut-as-macro idea R3F Studio's node editor should copy.",
+  "tg": [
+   [
+    "R3F Studio",
+    3,
+    "shortcut-as-macro ergonomics for the node editor"
+   ],
+   [
+    "Lucid",
+    1,
+    "material editing shortcuts"
+   ]
+  ]
+ },
+ {
+  "n": "UV Packer",
+  "slug": "",
+  "cat": "3d",
+  "src": "potluck:wknRD5g-vvk",
+  "srcName": "Cinopsis 3D catch-up - free-AI pirate-cave level pipeline",
+  "srcUrl": "https://www.youtube.com/watch?v=wknRD5g-vvk",
+  "b": "Free (proprietary) Blender add-on that unwraps and packs non-overlapping UV islands before atlas baking - named in both pirate-cave pipelines as the step that makes a single-atlas game asset possible. Free to use but closed source: no public repo, so this is a pipeline dependency to adopt, not code to harvest.",
+  "tg": [
+   [
+    "R3F Studio",
+    3,
+    "UV/atlas step in the web-export pipeline"
+   ],
+   [
+    "GBFolio",
+    2,
+    "single-atlas avatar assets"
+   ],
+   [
+    "Anansi",
+    1,
+    "runtime draw-call budget"
+   ]
+  ]
+ },
+ {
+  "n": "Godot",
+  "slug": "godotengine/godot",
+  "cat": "3d",
+  "src": "potluck:gvPMjz08DDA",
+  "srcName": "Cinopsis 3D catch-up - agent orchestrator builds four Godot games",
+  "srcUrl": "https://github.com/godotengine/godot",
+  "b": "MIT game engine that an agent orchestrator drove end to end for four shipped games, exportable as source or a desktop/web build. The single most relevant prior art for Anansi: an engine whose whole project is plain text an agent can read and rewrite, which is exactly the agent-native property Anansi is chasing.",
+  "tg": [
+   [
+    "Anansi",
+    3,
+    "agent-drivable engine - the closest prior art"
+   ],
+   [
+    "R3F Studio",
+    2,
+    "scene-format and export lessons"
+   ],
+   [
+    "AUXGOD",
+    1,
+    "card-game runtime candidate"
+   ]
+  ]
+ },
+ {
+  "n": "Unreal Engine 5",
+  "slug": "",
+  "cat": "3d",
+  "src": "potluck:Ff_tdMsndzQ",
+  "srcName": "Cinopsis 3D catch-up - fully-local game-ready character on one GPU",
+  "srcUrl": "https://www.youtube.com/watch?v=Ff_tdMsndzQ",
+  "b": "The destination every AI-3D pipeline in this batch exports to - retargeting, PBR rebuild, lighting and the playable third-person character. Source-available behind Epic's EULA rather than open source, so there is no public repo to link; it matters as the format and retarget target the suite's export path must satisfy.",
+  "tg": [
+   [
+    "Anansi",
+    2,
+    "export/retarget target to satisfy"
+   ],
+   [
+    "R3F Studio",
+    2,
+    "FBX/GLB + skeleton interop"
+   ],
+   [
+    "GBFolio",
+    1,
+    "avatar retarget destination"
+   ]
+  ]
+ },
+ {
+  "n": "three.js",
+  "slug": "mrdoob/three.js",
+  "cat": "3d",
+  "src": "potluck:nHBNa2IKWvk",
+  "srcName": "Cinopsis 3D catch-up - Codex CLI + Blender/Unity/Godot MCP rig",
+  "srcUrl": "https://github.com/mrdoob/three.js",
+  "b": "The MIT WebGL/WebGPU renderer under React Three Fiber - used in this batch both for procedural VFX and jelly-physics browser demos and as the target a Blender sketch shader was ported into. It is literally the layer R3F Studio, GBFolio and Anansi all sit on, so its release cadence is the suite's 3D floor.",
+  "tg": [
+   [
+    "R3F Studio",
+    3,
+    "the renderer the studio is built on"
+   ],
+   [
+    "GBFolio",
+    3,
+    "portfolio runtime"
+   ],
+   [
+    "Anansi",
+    3,
+    "TS/R3F runtime substrate"
+   ],
+   [
+    "Lucid",
+    2,
+    "web preview of generated assets"
+   ]
+  ]
+ },
+ {
+  "n": "TSL (Three.js Shading Language)",
+  "slug": "mrdoob/three.js",
+  "cat": "3d",
+  "src": "potluck:JlmNBGcZ3Ik",
+  "srcName": "Cinopsis 3D catch-up - Blender sketch shader ported to Three.js",
+  "srcUrl": "https://github.com/mrdoob/three.js",
+  "b": "The node-based shading language inside three.js (same repo, not a separate project) used here to write RGB-channel hatching and a brightness/contrast adjust function - the route by which a Blender shader becomes a WebGPU shader. This is the concrete mechanism for R3F Studio's Blender-to-web material parity claim.",
+  "tg": [
+   [
+    "R3F Studio",
+    3,
+    "Blender-to-web material parity mechanism"
+   ],
+   [
+    "GBFolio",
+    2,
+    "stylised portfolio shaders"
+   ],
+   [
+    "Lucid",
+    1,
+    "stylised render output"
+   ]
+  ]
+ },
+ {
+  "n": "Kimodo CPP",
+  "slug": "localai-org/kimodo.cpp",
+  "cat": "3d",
+  "src": "potluck:Du8EjlPePYM",
+  "srcName": "Cinopsis 3D catch-up - Kimodo CPP local text-to-motion",
+  "srcUrl": "https://github.com/localai-org/kimodo.cpp",
+  "b": "C++/GGML port of NVIDIA's Kimodo text-to-motion model, animating skeletons from natural language locally on CPU with a browser demo UI and GLB output for retargeting. The suite-relevant move is the port itself: a GGML conversion turns a GPU-gated research model into something the ProArt can run offline, which is the same lane The Griot Model is arguing for.",
+  "tg": [
+   [
+    "R3F Studio",
+    3,
+    "local text-to-motion in the animation path"
+   ],
+   [
+    "Anansi",
+    2,
+    "runtime motion generation"
+   ],
+   [
+    "The Griot Model",
+    2,
+    "GGML-port pattern for the fast-local lane"
+   ]
+  ]
+ },
+ {
+  "n": "MotionBricks",
+  "slug": "Aero-Ex/Nvidia_MotionBricks",
+  "cat": "3d",
+  "src": "potluck:lj-xPo7ueGA",
+  "srcName": "Cinopsis 3D catch-up - MotionBricks CPP running on CPU",
+  "srcUrl": "https://github.com/Aero-Ex/Nvidia_MotionBricks",
+  "b": "NVIDIA's open-sourced real-time motion system - a modular latent generative model with smart primitives that replaces the classic state-machine animation graph. Directly relevant to Anansi: if motion is generated from primitives at runtime rather than authored as clips, the Trigger-Condition-Instruction model gets a generative animation layer under it. Slug points at the public mirror of the NVIDIA release.",
+  "tg": [
+   [
+    "Anansi",
+    3,
+    "generative animation layer under the TCI model"
+   ],
+   [
+    "R3F Studio",
+    2,
+    "real-time motion in the 3D pipeline"
+   ],
+   [
+    "AUXGOD",
+    1,
+    "character motion for the card-battle experience"
+   ]
+  ]
+ },
+ {
+  "n": "MotionBricks CPP",
+  "slug": "localai-org/motion-bricks.cpp",
+  "cat": "3d",
+  "src": "potluck:lj-xPo7ueGA",
+  "srcName": "Cinopsis 3D catch-up - MotionBricks CPP running on CPU",
+  "srcUrl": "https://github.com/localai-org/motion-bricks.cpp",
+  "b": "Community C++/GGML port of MotionBricks that dynamically generates animation from keyframes on low-VRAM GPUs or pure CPU, plugged into Unreal through MCP. Same lesson as kimodo.cpp and worth pairing with it: the GGML conversion is what makes a real-time motion model usable inside an engine on a laptop.",
+  "tg": [
+   [
+    "Anansi",
+    3,
+    "CPU-capable runtime motion for the engine"
+   ],
+   [
+    "R3F Studio",
+    2,
+    "low-VRAM motion generation"
+   ],
+   [
+    "The Griot Model",
+    1,
+    "GGML-port lane"
+   ]
+  ]
+ },
+ {
+  "n": "SkinTokens",
+  "slug": "VAST-AI-Research/SkinTokens",
+  "cat": "3d",
+  "src": "potluck:Ff_tdMsndzQ",
+  "srcName": "Cinopsis 3D catch-up - fully-local game-ready character on one GPU",
+  "srcUrl": "https://github.com/VAST-AI-Research/SkinTokens",
+  "b": "A learned compact representation for unified autoregressive rigging - predicts a skeleton and weight distribution straight from a mesh, and drove the ComfyUI workflow that auto-rigged a generated character with a UE5 skeleton. This is the missing automation in R3F Studio's CC5-to-Blender path: rigging without a manual weight-paint pass.",
+  "tg": [
+   [
+    "R3F Studio",
+    3,
+    "auto-rig step in the character pipeline"
+   ],
+   [
+    "GBFolio",
+    3,
+    "avatar rigging without manual weights"
+   ],
+   [
+    "Anansi",
+    2,
+    "runtime-ready rigged characters"
+   ]
+  ]
+ },
+ {
+  "n": "SkinTokens CPP",
+  "slug": "localai-org/skin-tokens.cpp",
+  "cat": "3d",
+  "src": "potluck:lj-xPo7ueGA",
+  "srcName": "Cinopsis 3D catch-up - MotionBricks CPP running on CPU",
+  "srcUrl": "https://github.com/localai-org/skin-tokens.cpp",
+  "b": "C++/GGML conversion of VAST-AI's SkinTokens that auto-rigs a mesh ready for animation without a CUDA stack - the third of the localai-org ports (with kimodo.cpp and motion-bricks.cpp) that together form a CPU-runnable rig-and-animate chain. Worth treating as one shelf cluster rather than three unrelated repos.",
+  "tg": [
+   [
+    "R3F Studio",
+    3,
+    "CPU-runnable auto-rig for the pipeline"
+   ],
+   [
+    "GBFolio",
+    2,
+    "avatar rigging offline"
+   ],
+   [
+    "The Griot Model",
+    1,
+    "GGML-port lane"
+   ]
+  ]
+ },
+ {
+  "n": "Hunyuan 3D",
+  "slug": "Tencent-Hunyuan/Hunyuan3D-2.1",
+  "cat": "3d",
+  "src": "potluck:6Ytluv_DiSo",
+  "srcName": "Cinopsis 3D catch-up - free-tools pirate-cave level build",
+  "srcUrl": "https://github.com/Tencent-Hunyuan/Hunyuan3D-2.1",
+  "b": "Tencent's open image-to-3D generator, with a smart-topology mode for low-poly meshes and (per the pipeline videos) the useful property of returning models in their original position so multi-part characters reassemble. The free, self-hostable half of the generation step that Tripo charges for.",
+  "tg": [
+   [
+    "R3F Studio",
+    3,
+    "open image-to-3D in the asset pipeline"
+   ],
+   [
+    "Lucid",
+    3,
+    "3D generation adapter"
+   ],
+   [
+    "Anansi",
+    1,
+    "asset source for the engine"
+   ]
+  ]
+ },
+ {
+  "n": "Hunyuan3D Studio",
+  "slug": "",
+  "cat": "3d",
+  "src": "potluck:Ff_tdMsndzQ",
+  "srcName": "Cinopsis 3D catch-up - fully-local game-ready character on one GPU",
+  "srcUrl": "https://www.youtube.com/watch?v=Ff_tdMsndzQ",
+  "b": "Tencent's hosted product layer over the Hunyuan3D models, named as a high-quality option for the retopology step specifically. The models are open (Hunyuan3D-2.1) but the Studio app is a closed hosted service - land it as a service to evaluate, not code to lift.",
+  "tg": [
+   [
+    "R3F Studio",
+    2,
+    "hosted retopology option"
+   ],
+   [
+    "Lucid",
+    1,
+    "3D generation service option"
+   ]
+  ]
+ },
+ {
+  "n": "Tripo",
+  "slug": "",
+  "cat": "3d",
+  "src": "potluck:URjhE8QEhJU",
+  "srcName": "Cinopsis 3D catch-up - non-humanoid character full pipeline",
+  "srcUrl": "https://www.youtube.com/watch?v=URjhE8QEhJU",
+  "b": "Commercial image/text-to-3D service whose P2 model is rated the best auto-topology in this batch - low-poly quads directly, no manual retopo. Closed paid product with no public repo; VAST AI's open TripoSR/TripoSG line is the research it descends from. Honest read: the quality bar R3F Studio's open pipeline is measured against.",
+  "tg": [
+   [
+    "R3F Studio",
+    2,
+    "the auto-topology quality bar"
+   ],
+   [
+    "Lucid",
+    2,
+    "paid 3D generation adapter"
+   ],
+   [
+    "Anansi",
+    1,
+    "asset source"
+   ]
+  ]
+ },
+ {
+  "n": "Rodin / Hyper3D WorldGen",
+  "slug": "",
+  "cat": "3d",
+  "src": "potluck:KlzzBa1sZX0",
+  "srcName": "Cinopsis 3D catch-up - Rodin / Hyper3D WorldGen hands-on",
+  "srcUrl": "https://www.youtube.com/watch?v=KlzzBa1sZX0",
+  "b": "Deemos' image-to-editable-3D-world tool: part extraction into real meshes, scene placement, a 3D Gaussian Splat background and export to Blender and Unreal. Closed commercial product - but the architecture (meshes for the things you touch, splats for everything else) is the single most transferable idea here for GBFolio's environment story. Also named separately in the news roundup as the Hyper3D world generator.",
+  "tg": [
+   [
+    "GBFolio",
+    3,
+    "mesh-foreground plus splat-background scene architecture"
+   ],
+   [
+    "R3F Studio",
+    3,
+    "world-generation step in the pipeline"
+   ],
+   [
+    "Lucid",
+    2,
+    "scene generation adapter"
+   ]
+  ]
+ },
+ {
+  "n": "Atlas (World Labs)",
+  "slug": "",
+  "cat": "3d",
+  "src": "potluck:ouACKu1cwoU",
+  "srcName": "Cinopsis 3D catch-up - weekly 3D-AI news roundup",
+  "srcUrl": "https://www.youtube.com/watch?v=ouACKu1cwoU",
+  "b": "World Labs' next-generation world model, stitching one or more images into a navigable 3D world; waitlist-only with no code or repo. Tracked as a watch item: if navigable-world generation becomes reachable, GBFolio's portfolio environment and Lucid's scene output both change shape.",
+  "tg": [
+   [
+    "GBFolio",
+    2,
+    "navigable environment generation - watch"
+   ],
+   [
+    "Lucid",
+    1,
+    "scene generation - watch"
+   ],
+   [
+    "R3F Studio",
+    1,
+    "world-model pipeline - watch"
+   ]
+  ]
+ },
+ {
+  "n": "Microsoft quad-topology model",
+  "slug": "",
+  "cat": "3d",
+  "src": "potluck:ouACKu1cwoU",
+  "srcName": "Cinopsis 3D catch-up - weekly 3D-AI news roundup",
+  "srcUrl": "https://github.com/search?q=Microsoft%20quad-topology%20model&type=repositories",
+  "b": "Microsoft research model that recalculates scans, reconstructions and AI meshes into editable quad topology, with code reportedly released. The ASR renders the name as 'Squad Gen' and no repo resolved on a direct GitHub probe - slug unverified, needs a manual pass before it can be adopted. If real, it is the open answer to Tripo P2's retopology.",
+  "tg": [
+   [
+    "R3F Studio",
+    3,
+    "open auto-retopology candidate"
+   ],
+   [
+    "Anansi",
+    1,
+    "clean meshes for the runtime"
+   ]
+  ]
+ },
+ {
+  "n": "Mini Face",
+  "slug": "",
+  "cat": "3d",
+  "src": "potluck:ouACKu1cwoU",
+  "srcName": "Cinopsis 3D catch-up - weekly 3D-AI news roundup",
+  "srcUrl": "https://github.com/search?q=Mini%20Face&type=repositories",
+  "b": "Free webcam face-capture tool recording ARKit-style shape keys and head motion as a track for game engines. No repo resolved on a direct probe - slug unverified. Relevant as the cheap facial-performance input for GBFolio's avatar work and for anything Ashe drives with a talking head.",
+  "tg": [
+   [
+    "GBFolio",
+    3,
+    "webcam facial performance capture for the avatar"
+   ],
+   [
+    "R3F Studio",
+    2,
+    "ARKit shape-key capture in the pipeline"
+   ],
+   [
+    "Ashe",
+    1,
+    "performance-driven video"
+   ]
+  ]
+ },
+ {
+  "n": "Quad Remesher",
+  "slug": "",
+  "cat": "3d",
+  "src": "potluck:Ff_tdMsndzQ",
+  "srcName": "Cinopsis 3D catch-up - fully-local game-ready character on one GPU",
+  "srcUrl": "https://www.youtube.com/watch?v=Ff_tdMsndzQ",
+  "b": "Exoside's paid local Blender add-on for auto-retopology, recommended in the fully-local character build as the better option over free remeshers at a $19 perpetual price. Closed commercial add-on, no repo - a cheap dependency for the R3F Studio pipeline rather than something to build.",
+  "tg": [
+   [
+    "R3F Studio",
+    2,
+    "paid local retopology option"
+   ],
+   [
+    "GBFolio",
+    1,
+    "avatar mesh cleanup"
+   ]
+  ]
+ },
+ {
+  "n": "Marmoset Toolbag",
+  "slug": "",
+  "cat": "3d",
+  "src": "potluck:URjhE8QEhJU",
+  "srcName": "Cinopsis 3D catch-up - non-humanoid character full pipeline",
+  "srcUrl": "https://www.youtube.com/watch?v=URjhE8QEhJU",
+  "b": "Commercial baking and look-dev tool with a proper cage, described as easier for beginners than Blender's baker. Closed product, no repo. Named here because the baking step is where the AI-generated-asset pipeline most often breaks - worth knowing the escape hatch exists.",
+  "tg": [
+   [
+    "R3F Studio",
+    2,
+    "baking escape hatch when Blender's baker fights you"
+   ],
+   [
+    "GBFolio",
+    1,
+    "avatar look-dev"
+   ]
+  ]
+ },
+ {
+  "n": "Mixamo",
+  "slug": "",
+  "cat": "3d",
+  "src": "potluck:URjhE8QEhJU",
+  "srcName": "Cinopsis 3D catch-up - non-humanoid character full pipeline",
+  "srcUrl": "https://www.youtube.com/watch?v=URjhE8QEhJU",
+  "b": "Adobe's free hosted auto-rigger and animation library, used here only as a source of an exported T-pose skeleton for the humanoid half of a hybrid creature. Closed service with no repo, and a long-term risk as a pipeline dependency - which is exactly why SkinTokens and AccuRig matter.",
+  "tg": [
+   [
+    "GBFolio",
+    2,
+    "T-pose skeleton source for avatars"
+   ],
+   [
+    "R3F Studio",
+    2,
+    "humanoid rig fallback"
+   ],
+   [
+    "Anansi",
+    1,
+    "animation library"
+   ]
+  ]
+ },
+ {
+  "n": "AccuRig",
+  "slug": "",
+  "cat": "3d",
+  "src": "potluck:Du8EjlPePYM",
+  "srcName": "Cinopsis 3D catch-up - Kimodo CPP local text-to-motion",
+  "srcUrl": "https://www.youtube.com/watch?v=Du8EjlPePYM",
+  "b": "Reallusion's free local marker-based auto-rigger: rigs an FBX character in about a minute and exports in T-pose, and worked even on the upper body of a non-humanoid. Free but closed, no repo. It already sits in R3F Studio's Reallusion lineage (CC5/iClone8), so it is the incumbent the open SkinTokens route has to beat.",
+  "tg": [
+   [
+    "R3F Studio",
+    3,
+    "incumbent auto-rigger in the CC5 pipeline"
+   ],
+   [
+    "GBFolio",
+    2,
+    "avatar rigging"
+   ],
+   [
+    "Anansi",
+    1,
+    "rigged character source"
+   ]
+  ]
+ },
+ {
+  "n": "AccuLips",
+  "slug": "",
+  "cat": "3d",
+  "src": "potluck:y9t-0-vj25s",
+  "srcName": "Cinopsis 3D catch-up - iClone 8 AI Studio making-of",
+  "srcUrl": "https://www.youtube.com/watch?v=y9t-0-vj25s",
+  "b": "iClone's lip-sync feature, applied to imported ElevenLabs audio to drive a character's mouth. Closed Reallusion feature, no repo. The suite-relevant piece is the shape of the step - audio in, viseme track out - which is the contract any open replacement in the R3F/GBFolio avatar path has to meet.",
+  "tg": [
+   [
+    "R3F Studio",
+    2,
+    "audio-to-viseme contract in the avatar path"
+   ],
+   [
+    "GBFolio",
+    2,
+    "talking avatar"
+   ],
+   [
+    "Ashe",
+    1,
+    "lip-synced video output"
+   ]
+  ]
+ },
+ {
+  "n": "iClone 8",
+  "slug": "",
+  "cat": "3d",
+  "src": "potluck:y9t-0-vj25s",
+  "srcName": "Cinopsis 3D catch-up - iClone 8 AI Studio making-of",
+  "srcUrl": "https://www.youtube.com/watch?v=y9t-0-vj25s",
+  "b": "Reallusion's real-time animation app where the scene, lights, camera moves and final render were built before any AI pass. Closed commercial product. It is already one end of R3F Studio's declared pipeline (CC5/iClone8 into Blender into the ecosystem), so this batch is direct evidence about the tool the pipeline starts in.",
+  "tg": [
+   [
+    "R3F Studio",
+    3,
+    "the declared front end of the 3D pipeline"
+   ],
+   [
+    "GBFolio",
+    2,
+    "avatar scene authoring"
+   ],
+   [
+    "Ashe",
+    1,
+    "animated shot production"
+   ]
+  ]
+ },
+ {
+  "n": "iClone AI Studio",
+  "slug": "",
+  "cat": "creative",
+  "src": "potluck:y9t-0-vj25s",
+  "srcName": "Cinopsis 3D catch-up - iClone 8 AI Studio making-of",
+  "srcUrl": "https://www.youtube.com/watch?v=y9t-0-vj25s",
+  "b": "New iClone workspace that turns a viewport capture into AI-styled image and video output - a render alternative that swaps the render farm for a diffusion pass. Closed feature, no repo. This is exactly the 3D-to-styled-output adapter Lucid is supposed to own, demonstrated inside someone else's app.",
+  "tg": [
+   [
+    "Lucid",
+    3,
+    "3D-capture to AI-styled render adapter"
+   ],
+   [
+    "Ashe",
+    2,
+    "stylised shot generation"
+   ],
+   [
+    "R3F Studio",
+    2,
+    "render alternative for the pipeline"
+   ]
+  ]
+ },
+ {
+  "n": "Character Creator 5",
+  "slug": "",
+  "cat": "3d",
+  "src": "potluck:y9t-0-vj25s",
+  "srcName": "Cinopsis 3D catch-up - iClone 8 AI Studio making-of",
+  "srcUrl": "https://www.youtube.com/watch?v=y9t-0-vj25s",
+  "b": "Reallusion's character authoring app, used to build the character before importing into iClone. Closed commercial product. Named in the suite context already (the CC5 half of the CC5/iClone8-to-Blender path) - this batch confirms the workflow is still the working route for a production-grade rigged human.",
+  "tg": [
+   [
+    "GBFolio",
+    3,
+    "the avatar authoring front end"
+   ],
+   [
+    "R3F Studio",
+    3,
+    "CC5 half of the declared pipeline"
+   ],
+   [
+    "Anansi",
+    1,
+    "character source"
+   ]
+  ]
+ },
+ {
+  "n": "Headshot 3",
+  "slug": "",
+  "cat": "3d",
+  "src": "potluck:y9t-0-vj25s",
+  "srcName": "Cinopsis 3D catch-up - iClone 8 AI Studio making-of",
+  "srcUrl": "https://www.youtube.com/watch?v=y9t-0-vj25s",
+  "b": "Character Creator plugin that builds a custom head from reference. Closed Reallusion plugin, no repo. The photo-to-head step in the avatar pipeline - worth naming because it is the piece most likely to be replaced by an open image-to-3D model in the next year.",
+  "tg": [
+   [
+    "GBFolio",
+    2,
+    "photo-to-head step for the avatar"
+   ],
+   [
+    "R3F Studio",
+    2,
+    "head authoring in the CC5 path"
+   ]
+  ]
+ },
+ {
+  "n": "Popcorn effects (iClone PopcornFX)",
+  "slug": "",
+  "cat": "3d",
+  "src": "potluck:y9t-0-vj25s",
+  "srcName": "Cinopsis 3D catch-up - iClone 8 AI Studio making-of",
+  "srcUrl": "https://www.youtube.com/watch?v=y9t-0-vj25s",
+  "b": "iClone's PopcornFX-based particle plugin, used for the green particle effect in the making-of. Closed plugin, no repo. Tracked as the VFX/particle layer of the real-time animation stack - the thing Lucid and Ashe both eventually need an answer for.",
+  "tg": [
+   [
+    "Lucid",
+    2,
+    "particle/VFX layer for generated shots"
+   ],
+   [
+    "Ashe",
+    1,
+    "VFX in programmatic video"
+   ],
+   [
+    "R3F Studio",
+    1,
+    "particle systems"
+   ]
+  ]
+ },
+ {
+  "n": "Lychee Studio",
+  "slug": "",
+  "cat": "3d",
+  "src": "potluck:URjhE8QEhJU",
+  "srcName": "Cinopsis 3D catch-up - non-humanoid character full pipeline",
+  "srcUrl": "https://www.youtube.com/watch?v=URjhE8QEhJU",
+  "b": "Hosted hub that chains prop extraction, multiview, Tripo generation, retopology and some texturing in one place, with free credits on signup. Closed product, no repo. Its real value as a reference is the chaining: it is a worked example of the multi-stage 3D pipeline UI that Lucid is meant to be for the suite.",
+  "tg": [
+   [
+    "Lucid",
+    3,
+    "worked example of a chained multi-stage 3D pipeline UI"
+   ],
+   [
+    "R3F Studio",
+    2,
+    "pipeline orchestration reference"
+   ]
+  ]
+ },
+ {
+  "n": "Moondiff",
+  "slug": "",
+  "cat": "3d",
+  "src": "potluck:URjhE8QEhJU",
+  "srcName": "Cinopsis 3D catch-up - non-humanoid character full pipeline",
+  "srcUrl": "https://www.youtube.com/watch?v=URjhE8QEhJU",
+  "b": "Free AI texturing tool that respects the baked normal map, with projection and patch brushes for inpainting broken texture regions and full re-projection as layers. Named in two separate pipelines as the fix for AI-generated texture damage. No repo resolved - free but closed. The 'respects the normal map' behaviour is the requirement, whoever supplies it.",
+  "tg": [
+   [
+    "R3F Studio",
+    3,
+    "texture repair step after AI generation"
+   ],
+   [
+    "Lucid",
+    2,
+    "texture inpainting adapter"
+   ],
+   [
+    "GBFolio",
+    1,
+    "avatar texture fixes"
+   ]
+  ]
+ },
+ {
+  "n": "Animate Anything",
+  "slug": "",
+  "cat": "3d",
+  "src": "potluck:URjhE8QEhJU",
+  "srcName": "Cinopsis 3D catch-up - non-humanoid character full pipeline",
+  "srcUrl": "https://www.youtube.com/watch?v=URjhE8QEhJU",
+  "b": "Creature-rigging service with template skeletons (a spider template here) plus ready idle, walk and attack animations - the non-humanoid answer to Mixamo. Closed hosted service, no repo. Relevant to Anansi precisely because non-humanoid rigs are where every automatic pipeline in this batch fell over.",
+  "tg": [
+   [
+    "Anansi",
+    2,
+    "non-humanoid creature rigs for the engine"
+   ],
+   [
+    "R3F Studio",
+    2,
+    "creature rigging in the pipeline"
+   ],
+   [
+    "AUXGOD",
+    1,
+    "character animation"
+   ]
+  ]
+ },
+ {
+  "n": "Mesh to Motion",
+  "slug": "",
+  "cat": "3d",
+  "src": "potluck:URjhE8QEhJU",
+  "srcName": "Cinopsis 3D catch-up - non-humanoid character full pipeline",
+  "srcUrl": "https://www.youtube.com/watch?v=URjhE8QEhJU",
+  "b": "Alternative creature-rigging tool named as a community favourite alongside Animate Anything. Closed service, no repo resolved. Parked undecided next to its sibling - two services solving the same non-humanoid rig gap is a signal that the gap is real and open code will follow.",
+  "tg": [
+   [
+    "Anansi",
+    2,
+    "non-humanoid rigging alternative"
+   ],
+   [
+    "R3F Studio",
+    1,
+    "creature rig option"
+   ]
+  ]
+ },
+ {
+  "n": "Ultra Dynamic Sky / Weather",
+  "slug": "",
+  "cat": "3d",
+  "src": "potluck:6Ytluv_DiSo",
+  "srcName": "Cinopsis 3D catch-up - free-tools pirate-cave level build",
+  "srcUrl": "https://www.youtube.com/watch?v=6Ytluv_DiSo",
+  "b": "Unreal marketplace add-ons for sky, weather and mood that the creator says he uses constantly. Closed paid assets, no repo. Named because it points at a real gap: an agent-native engine needs a first-class environment/time-of-day system, not a per-scene hand-build.",
+  "tg": [
+   [
+    "Anansi",
+    2,
+    "environment + time-of-day system as a first-class module"
+   ],
+   [
+    "GBFolio",
+    1,
+    "scene mood"
+   ],
+   [
+    "R3F Studio",
+    1,
+    "sky/lighting setup"
+   ]
+  ]
+ },
+ {
+  "n": "PixArt 3D / Pixel 3D",
+  "slug": "",
+  "cat": "3d",
+  "src": "potluck:o7VJnIN31Ds",
+  "srcName": "Cinopsis 3D catch-up - Trellis 2 native in ComfyUI",
+  "srcUrl": "https://github.com/search?q=PixArt%203D%20%20%20Pixel%203D&type=repositories",
+  "b": "The second image-to-3D generator now shipping natively in ComfyUI alongside Trellis 2, said to give slightly more shape accuracy and to be strong on hats and hard-surface parts. The name is badly ASR-garbled across two videos (PixArt-alpha, Pixel 3D, PixArt 3D, Pixologic 3D) and no repo resolved on a direct probe - slug unverified, needs a manual identification pass.",
+  "tg": [
+   [
+    "R3F Studio",
+    3,
+    "second local image-to-3D generator in the pipeline"
+   ],
+   [
+    "Lucid",
+    2,
+    "3D generation adapter"
+   ]
+  ]
+ },
+ {
+  "n": "Animworks Keyframe",
+  "slug": "",
+  "cat": "creative",
+  "src": "potluck:jq_15AnOALM",
+  "srcName": "Cinopsis 3D catch-up - Animworks Keyframe review player",
+  "srcUrl": "https://www.youtube.com/watch?v=jq_15AnOALM",
+  "b": "Browser-based, frame-exact animation review player built by animators: versioning, animator-specific statuses, drawing tools, range comments and live collaborative sessions. Proprietary, currently free beta. The review-and-annotate layer is a direct model for Ashe (shot review) and for Kweli's comprehension-before-commitment approval loop.",
+  "tg": [
+   [
+    "Ashe",
+    3,
+    "frame-exact review + annotation layer for shots"
+   ],
+   [
+    "Kweli",
+    2,
+    "versioned review-and-approve loop with non-technical clients"
+   ],
+   [
+    "Lucid",
+    1,
+    "asset review surface"
+   ]
+  ]
+ },
+ {
+  "n": "Claude Code",
+  "slug": "anthropics/claude-code",
+  "cat": "agent",
+  "src": "potluck:URjhE8QEhJU",
+  "srcName": "Cinopsis 3D catch-up - non-humanoid character full pipeline",
+  "srcUrl": "https://github.com/anthropics/claude-code",
+  "b": "Used across this batch as the local agent for brainstorming, reference prep, and the procedural/IK leg animation work in Unity and Unreal - i.e. as a 3D-pipeline participant, not just a code tool. Worth landing on the shelf in its own right because it is the runtime the whole Griot plugin/skill layer targets.",
+  "tg": [
+   [
+    "Prism",
+    3,
+    "the runtime the plugin and skill layer targets"
+   ],
+   [
+    "Djeli",
+    3,
+    "agent brain inside the IDE"
+   ],
+   [
+    "R3F Studio",
+    2,
+    "agent-driven procedural animation"
+   ],
+   [
+    "Anansi",
+    1,
+    "agent-authored game logic"
+   ]
+  ]
+ },
+ {
+  "n": "Higgsfield Blender plugin / MCP",
+  "slug": "",
+  "cat": "agent",
+  "src": "potluck:nHBNa2IKWvk",
+  "srcName": "Cinopsis 3D catch-up - Codex CLI + Blender/Unity/Godot MCP rig",
+  "srcUrl": "https://www.youtube.com/watch?v=nHBNa2IKWvk",
+  "b": "Free (account-gated) Blender extension exposing Blender tools plus 3D, image and video generation APIs to any agent, with an in-viewport chat. Closed product, no repo. The pattern to steal is the bundling: one MCP surface that gives the agent both the DCC's operations and the generation APIs, rather than making it juggle two servers.",
+  "tg": [
+   [
+    "R3F Studio",
+    3,
+    "one MCP surface bundling DCC ops + generation APIs"
+   ],
+   [
+    "Lucid",
+    2,
+    "generation APIs behind one adapter"
+   ],
+   [
+    "Djeli",
+    2,
+    "3D panel MCP pattern"
+   ]
+  ]
+ },
+ {
+  "n": "Unity MCP Server",
+  "slug": "CoplayDev/unity-mcp",
+  "cat": "agent",
+  "src": "potluck:nHBNa2IKWvk",
+  "srcName": "Cinopsis 3D catch-up - Codex CLI + Blender/Unity/Godot MCP rig",
+  "srcUrl": "https://github.com/CoplayDev/unity-mcp",
+  "b": "Open MCP server that lets an agent drive, run and test a Unity project - not just edit files but execute the loop. The run-and-test half is the part Anansi needs: an agent-native engine is only agent-native if the agent can also observe the result of what it built.",
+  "tg": [
+   [
+    "Anansi",
+    3,
+    "agent drives AND tests the runtime, not just edits"
+   ],
+   [
+    "Prism",
+    2,
+    "MCP server shape for a DCC/engine"
+   ],
+   [
+    "R3F Studio",
+    1,
+    "engine bridge reference"
+   ]
+  ]
+ },
+ {
+  "n": "VibeUE",
+  "slug": "kevinpbuckley/VibeUE",
+  "cat": "agent",
+  "src": "potluck:nHBNa2IKWvk",
+  "srcName": "Cinopsis 3D catch-up - Codex CLI + Blender/Unity/Godot MCP rig",
+  "srcUrl": "https://github.com/kevinpbuckley/VibeUE",
+  "b": "Unreal Engine agent tooling paired with UE 5.8's own native MCP - free with registration, and the most mature engine-side agent bridge in this batch. Reference implementation for how an engine bridge splits work between the engine's native MCP and a community layer on top.",
+  "tg": [
+   [
+    "Anansi",
+    2,
+    "engine-side agent bridge architecture"
+   ],
+   [
+    "R3F Studio",
+    2,
+    "UE bridge in the export path"
+   ],
+   [
+    "Prism",
+    1,
+    "MCP layering pattern"
+   ]
+  ]
+ },
+ {
+  "n": "fal.ai MCP server",
+  "slug": "luminarylane/fal-mcp-server",
+  "cat": "agent",
+  "src": "potluck:nHBNa2IKWvk",
+  "srcName": "Cinopsis 3D catch-up - Codex CLI + Blender/Unity/Godot MCP rig",
+  "srcUrl": "https://github.com/luminarylane/fal-mcp-server",
+  "b": "MCP server fronting fal.ai - the broadest model coverage in the batch (sound, music, video, 3D) with the caveat that you must pick the model by hand. That caveat is the product gap Lucid is for: one surface that routes to the right generator instead of making you name it.",
+  "tg": [
+   [
+    "Lucid",
+    3,
+    "multi-modal generation behind one MCP - and the routing gap Lucid fills"
+   ],
+   [
+    "Ashe",
+    2,
+    "video/audio generation adapter"
+   ],
+   [
+    "Sigil",
+    1,
+    "brand asset generation"
+   ]
+  ]
+ },
+ {
+  "n": "Figma MCP",
+  "slug": "GLips/Figma-Context-MCP",
+  "cat": "agent",
+  "src": "potluck:JlmNBGcZ3Ik",
+  "srcName": "Cinopsis 3D catch-up - Blender sketch shader ported to Three.js",
+  "srcUrl": "https://github.com/GLips/Figma-Context-MCP",
+  "b": "MCP server that hands an agent Figma design context - used here to export Figma images as oriented planes into Blender, which is a design-to-3D bridge nobody planned for. Relevant to Lucid and Sigil as the design-source adapter, and to Djeli as a panel that makes design context first-class.",
+  "tg": [
+   [
+    "Lucid",
+    3,
+    "design-source adapter into the generation surface"
+   ],
+   [
+    "Sigil",
+    2,
+    "brand assets into the pipeline"
+   ],
+   [
+    "Djeli",
+    2,
+    "design context as an IDE panel"
+   ]
+  ]
+ },
+ {
+  "n": "verifiers",
+  "slug": "PrimeIntellect-ai/verifiers",
+  "cat": "agent",
+  "src": "potluck:n9xKblqyQ28",
+  "srcName": "Cinopsis ideas catch-up - YC Paper Club harness night",
+  "srcUrl": "https://github.com/PrimeIntellect-ai/verifiers",
+  "b": "Prime Intellect's evaluation package - the speaker's claim is that it reproduces every eval shown in the talk, which is the whole point: a harness without reproducible evals is an anecdote. This is the missing gate under prism-eval's version comparisons.",
+  "tg": [
+   [
+    "Prism",
+    3,
+    "reproducible eval harness under prism-eval"
+   ],
+   [
+    "Valence",
+    2,
+    "agent evaluation signal"
+   ],
+   [
+    "Kente",
+    1,
+    "model evaluation in the forge"
+   ]
+  ]
+ },
+ {
+  "n": "Open Jarvis",
+  "slug": "",
+  "cat": "agent",
+  "src": "potluck:n9xKblqyQ28",
+  "srcName": "Cinopsis ideas catch-up - YC Paper Club harness night",
+  "srcUrl": "https://github.com/search?q=Open%20Jarvis&type=repositories",
+  "b": "Stanford project running the entire personal AI stack - inference, agents, memory, learning - on device, with llama.cpp/Ollama/vLLM/SGLang listed as interchangeable inference primitives. No repo resolved on a direct probe: slug unverified. It is the closest published statement of the thesis The Griot Model is arguing, so it deserves a manual identification pass.",
+  "tg": [
+   [
+    "The Griot Model",
+    3,
+    "on-device full-stack personal AI - the same thesis, published"
+   ],
+   [
+    "Kaleidoscope",
+    2,
+    "on-device memory layer"
+   ],
+   [
+    "Meridian",
+    1,
+    "personal substrate running locally"
+   ]
+  ]
+ },
+ {
+  "n": "DSPy",
+  "slug": "stanfordnlp/dspy",
+  "cat": "agent",
+  "src": "potluck:n9xKblqyQ28",
+  "srcName": "Cinopsis ideas catch-up - YC Paper Club harness night",
+  "srcUrl": "https://github.com/stanfordnlp/dspy",
+  "b": "Optimises a system prompt by genetic search over candidate prompts rather than backpropagation - prompts as a trainable artifact. Directly relevant to Prism's skill layer: if a skill's instructions are searchable rather than hand-tuned, prism-eval stops being a vibe check.",
+  "tg": [
+   [
+    "Prism",
+    3,
+    "prompts as trainable artifacts under the skill layer"
+   ],
+   [
+    "Kente",
+    2,
+    "prompt rung of the customization ladder"
+   ],
+   [
+    "SkillForge",
+    2,
+    "optimising skill instructions"
+   ]
+  ]
+ },
+ {
+  "n": "Tesana",
+  "slug": "",
+  "cat": "agent",
+  "src": "potluck:gvPMjz08DDA",
+  "srcName": "Cinopsis 3D catch-up - agent orchestrator builds four Godot games",
+  "srcUrl": "https://github.com/search?q=Tesana&type=repositories",
+  "b": "The agent-orchestrator platform that built four games end to end in loop mode in this video - the creator's assessment of where it genuinely works and where it fails is the useful content. The name is heavily ASR-garbled (Tisana, the Sun, to sauna) and was not captured in the digest's own OSS list; no repo resolved - slug unverified. Landed anyway so the loop-mode orchestration lesson is not lost.",
+  "tg": [
+   [
+    "Prism",
+    2,
+    "loop-mode orchestration - what it does and does not do"
+   ],
+   [
+    "Anansi",
+    2,
+    "agent building whole games as the target workflow"
+   ],
+   [
+    "Djeli",
+    1,
+    "orchestrator panel"
+   ]
+  ]
+ },
+ {
+  "n": "Margin Notes",
+  "slug": "",
+  "cat": "devex",
+  "src": "potluck:MccJdr61xnc",
+  "srcName": "Cinopsis ideas catch-up - Geoffrey Litt on dynamic documents",
+  "srcUrl": "https://github.com/search?q=Margin%20Notes&type=repositories",
+  "b": "Geoffrey Litt's live-programming tool showing recorded return values and object state beside Ruby code - eight years on, still the cleanest demo of 'the program's actual behaviour, rendered in the margin'. Described as source available but no repo resolved on a probe: slug unverified. The margin-as-evidence-surface idea is the one Kaleidoscope and Valence keep reaching for.",
+  "tg": [
+   [
+    "Kaleidoscope",
+    3,
+    "recorded behaviour rendered beside the source"
+   ],
+   [
+    "Valence",
+    2,
+    "agent run evidence in the margin"
+   ],
+   [
+    "Djeli",
+    2,
+    "live-programming panel in the IDE"
+   ]
+  ]
+ },
+ {
+  "n": "Ruby TracePoint",
+  "slug": "ruby/ruby",
+  "cat": "devex",
+  "src": "potluck:MccJdr61xnc",
+  "srcName": "Cinopsis ideas catch-up - Geoffrey Litt on dynamic documents",
+  "srcUrl": "https://github.com/ruby/ruby",
+  "b": "The Ruby interpreter's hook API for method call/return events - the single primitive that made Margin Notes trivial to build. The lesson is the leverage: one runtime hook turned an ambitious tool into a weekend. Worth asking what the equivalent single hook is for agent runs in Valence.",
+  "tg": [
+   [
+    "Valence",
+    3,
+    "one runtime hook as the leverage point for observability"
+   ],
+   [
+    "Kaleidoscope",
+    2,
+    "capture primitive for the write path"
+   ],
+   [
+    "Prism",
+    1,
+    "instrumentation pattern"
+   ]
+  ]
+ },
+ {
+  "n": "Embark",
+  "slug": "",
+  "cat": "knowledge",
+  "src": "potluck:MccJdr61xnc",
+  "srcName": "Cinopsis ideas catch-up - Geoffrey Litt on dynamic documents",
+  "srcUrl": "https://github.com/search?q=Embark&type=repositories",
+  "b": "Ink & Switch's dynamic-document prototype: an outliner where mentions, formulas and map/table/calendar views all sit over the same content. No public repo resolved - research prototype, slug unverified. This is Synaptiq's thesis stated by someone else: one substrate, many views, with agents as just another reader.",
+  "tg": [
+   [
+    "Synaptiq",
+    3,
+    "one substrate, many views - the canvas thesis stated elsewhere"
+   ],
+   [
+    "Kaleidoscope",
+    2,
+    "document-as-database pattern"
+   ],
+   [
+    "Meridian",
+    1,
+    "calendar/time view over the same store"
+   ]
+  ]
+ },
+ {
+  "n": "Riffle",
+  "slug": "",
+  "cat": "knowledge",
+  "src": "potluck:MccJdr61xnc",
+  "srcName": "Cinopsis ideas catch-up - Geoffrey Litt on dynamic documents",
+  "srcUrl": "https://github.com/search?q=Riffle&type=repositories",
+  "b": "Research project whose rule is that all UI state must live in a multiplayer-synced database - no component-local state at all. No public repo resolved: slug unverified. A hard architectural constraint worth testing against Synaptiq's canvas, where agent writes and human edits have to converge on the same store anyway.",
+  "tg": [
+   [
+    "Synaptiq",
+    3,
+    "all UI state in the synced store - agent and human writes converge"
+   ],
+   [
+    "Kaleidoscope",
+    2,
+    "single-store architecture"
+   ],
+   [
+    "Griot Hub",
+    1,
+    "shared state across the launcher"
+   ]
+  ]
+ },
+ {
+  "n": "Notion HTML blocks",
+  "slug": "",
+  "cat": "knowledge",
+  "src": "potluck:MccJdr61xnc",
+  "srcName": "Cinopsis ideas catch-up - Geoffrey Litt on dynamic documents",
+  "srcUrl": "https://www.youtube.com/watch?v=MccJdr61xnc",
+  "b": "Shipped Notion primitive letting a coding agent embed arbitrary interactive HTML inside an editable document - the commercial proof that agent-authored interactive content inside a document is now table stakes. Closed product feature, no repo. Exactly the seam between Synaptiq's canvas and the artifact-style output the suite already produces.",
+  "tg": [
+   [
+    "Synaptiq",
+    3,
+    "agent-authored interactive blocks inside an editable doc"
+   ],
+   [
+    "Kaleidoscope",
+    2,
+    "embedding live views in captured knowledge"
+   ],
+   [
+    "Lucid",
+    1,
+    "interactive output target"
+   ]
+  ]
+ },
+ {
+  "n": "fuzzyset",
+  "slug": "Glench/fuzzyset.js",
+  "cat": "devex",
+  "src": "potluck:MccJdr61xnc",
+  "srcName": "Cinopsis ideas catch-up - Geoffrey Litt on dynamic documents",
+  "srcUrl": "https://github.com/Glench/fuzzyset.js",
+  "b": "Fuzzy string matching library whose README was a set of interactive explorations rather than prose - cited in the talk as the proof that documentation can be a thing you operate instead of a thing you read. That is the visual-first contract, shipped in a library README.",
+  "tg": [
+   [
+    "Prism",
+    2,
+    "docs you operate, not read - for the generated doc surfaces"
+   ],
+   [
+    "Griot Viz Templates",
+    2,
+    "interactive explanation as the default doc form"
+   ],
+   [
+    "Kaleidoscope",
+    1,
+    "explorable documentation"
+   ]
+  ]
+ },
+ {
+  "n": "Daytona",
+  "slug": "daytonaio/daytona",
+  "cat": "devex",
+  "src": "potluck:nglqTHwuZ-8",
+  "srcName": "Cinopsis 3D catch-up - agents for money + a DIY Pi speaker",
+  "srcUrl": "https://github.com/daytonaio/daytona",
+  "b": "Sandbox/dev-environment provider the guest builds in after prototyping a throwaway clone first - the workflow being: one disposable environment per experiment, kept isolated from the real machine. That is the missing boundary around Prism's autonomous runs and Spectrum's parallel stories.",
+  "tg": [
+   [
+    "Prism",
+    3,
+    "disposable sandbox per autonomous run"
+   ],
+   [
+    "Djeli",
+    2,
+    "per-experiment environment in the IDE"
+   ],
+   [
+    "Valence",
+    1,
+    "isolated runs to observe"
+   ]
+  ]
+ },
+ {
+  "n": "DaVinci Resolve",
+  "slug": "",
+  "cat": "creative",
+  "src": "potluck:Ovi1xszAphk",
+  "srcName": "Cinopsis 3D catch-up - Blender canyon chase into Seedance",
+  "srcUrl": "https://www.youtube.com/watch?v=Ovi1xszAphk",
+  "b": "Blackmagic's free-tier NLE, used here to put a Blender playblast and the AI-generated video side by side for comparison. Closed product, no repo. Named because the A/B comparison step - render versus generation, same timeline - is a real workflow primitive Ashe should have rather than an afterthought.",
+  "tg": [
+   [
+    "Ashe",
+    2,
+    "side-by-side render-vs-generation comparison as a primitive"
+   ],
+   [
+    "Lucid",
+    1,
+    "output comparison surface"
+   ]
+  ]
+ },
+ {
+  "n": "TensorRT Model Connect",
+  "slug": "NVIDIA/TensorRT",
+  "cat": "infra",
+  "src": "potluck:wcqQDpRd7nM",
+  "srcName": "Cinopsis ideas catch-up - NVIDIA TensorRT Model Connect livestream",
+  "srcUrl": "https://github.com/NVIDIA/TensorRT",
+  "b": "Open TensorRT feature that turns a Hugging Face checkpoint name into an optimised, deployable bundle in two commands, then runs inference - demoed across speech, reasoning, search, segmentation, depth, full-duplex voice and multi-GPU video on DGX Spark hardware. Covers both the Model Connect layer and the TensorRT compiler underneath it. The two-command checkpoint-to-deployable path is precisely the rung Kente's forge is trying to automate, and the cu128 Blackwell story matters directly on the ProArt's RTX 5060.",
+  "tg": [
+   [
+    "The Griot Model",
+    3,
+    "checkpoint to deployable bundle in two commands"
+   ],
+   [
+    "Kente",
+    3,
+    "the deploy station at the end of the forge"
+   ],
+   [
+    "Valence",
+    1,
+    "inference telemetry"
+   ]
+  ]
+ },
+ {
+  "n": "NVIDIA Cosmos",
+  "slug": "NVIDIA/cosmos",
+  "cat": "infra",
+  "src": "potluck:wcqQDpRd7nM",
+  "srcName": "Cinopsis ideas catch-up - NVIDIA TensorRT Model Connect livestream",
+  "srcUrl": "https://github.com/NVIDIA/cosmos",
+  "b": "NVIDIA's open physics-aware world/video generation model family, used in the two-Spark multi-device demo. Open weights and open code, which makes it the rare world model the suite could actually run rather than watch - relevant to Lucid's video path and to Anansi if physics-aware generation ever meets the runtime.",
+  "tg": [
+   [
+    "The Griot Model",
+    2,
+    "open physics-aware model in the big-local lane"
+   ],
+   [
+    "Lucid",
+    2,
+    "video generation with open weights"
+   ],
+   [
+    "Anansi",
+    1,
+    "physics-aware world generation"
+   ]
+  ]
+ },
+ {
+  "n": "Nemotron voice chat",
+  "slug": "NVIDIA-NeMo/Speech",
+  "cat": "audio",
+  "src": "potluck:wcqQDpRd7nM",
+  "srcName": "Cinopsis ideas catch-up - NVIDIA TensorRT Model Connect livestream",
+  "srcUrl": "https://github.com/NVIDIA-NeMo/Speech",
+  "b": "NVIDIA's open full-duplex speech-to-speech model, demoed live - full duplex meaning it listens and speaks at once instead of taking turns. That is the exact property Audion's real-time listening and teleprompter overlay needs, and the open-weights version removes the API dependency from the critical path.",
+  "tg": [
+   [
+    "Audion",
+    3,
+    "open full-duplex speech-to-speech for the live overlay"
+   ],
+   [
+    "The Griot Model",
+    2,
+    "speech lane of the open-weights strategy"
+   ],
+   [
+    "Damus",
+    1,
+    "spoken assistant responses"
+   ],
+   [
+    "Kora",
+    1,
+    "voice control surface"
+   ]
+  ]
+ },
+ {
+  "n": "PyTorch",
+  "slug": "pytorch/pytorch",
+  "cat": "infra",
+  "src": "potluck:wcqQDpRd7nM",
+  "srcName": "Cinopsis ideas catch-up - NVIDIA TensorRT Model Connect livestream",
+  "srcUrl": "https://github.com/pytorch/pytorch",
+  "b": "The framework whose checkpoints Model Connect converts from, and the stated baseline every optimisation is measured against. Named here because it is the floor of Kente's forge and the reason the cu128 Blackwell wheel problem on the ProArt is a recurring tax rather than a one-off.",
+  "tg": [
+   [
+    "Kente",
+    3,
+    "the framework floor of the forge"
+   ],
+   [
+    "The Griot Model",
+    2,
+    "training and inference baseline"
+   ],
+   [
+    "PlantID CNN",
+    2,
+    "the CNN training stack"
+   ]
+  ]
+ },
+ {
+  "n": "Hugging Face Hub",
+  "slug": "huggingface/huggingface_hub",
+  "cat": "infra",
+  "src": "potluck:wcqQDpRd7nM",
+  "srcName": "Cinopsis ideas catch-up - NVIDIA TensorRT Model Connect livestream",
+  "srcUrl": "https://github.com/huggingface/huggingface_hub",
+  "b": "Where Model Connect pulls weights from and where the ComfyUI workflows in the 3D batch fetch their clip-vision, diffusion and VAE safetensors - i.e. the single distribution point both halves of this catch-up depend on. Kente's ranked base-model and LoRA shortlists are, in practice, queries against this hub.",
+  "tg": [
+   [
+    "Kente",
+    3,
+    "the model registry behind the ranked shortlists"
+   ],
+   [
+    "The Griot Model",
+    3,
+    "weight distribution for all three inference lanes"
+   ],
+   [
+    "R3F Studio",
+    1,
+    "3D model weights for the ComfyUI path"
+   ]
+  ]
+ },
+ {
+  "n": "vLLM",
+  "slug": "vllm-project/vllm",
+  "cat": "infra",
+  "src": "potluck:n9xKblqyQ28",
+  "srcName": "Cinopsis ideas catch-up - YC Paper Club harness night",
+  "srcUrl": "https://github.com/vllm-project/vllm",
+  "b": "High-throughput serving engine listed as one of the interchangeable local inference primitives under Open Jarvis. The interchangeability claim is the useful part: if llama.cpp, Ollama, vLLM and SGLang are swap-in equivalents behind one interface, The Griot Model's three-lane story needs exactly that interface.",
+  "tg": [
+   [
+    "The Griot Model",
+    3,
+    "serving engine for the big-local lane"
+   ],
+   [
+    "Kente",
+    2,
+    "serving the forged model"
+   ],
+   [
+    "Valence",
+    1,
+    "inference observability"
+   ]
+  ]
+ },
+ {
+  "n": "Opus 5",
+  "slug": "",
+  "cat": "infra",
+  "src": "potluck:LmUd1rvZum4",
+  "srcName": "Cinopsis 3D catch-up - Kimi K3 vs frontier models on Blender tasks",
+  "srcUrl": "https://www.youtube.com/watch?v=LmUd1rvZum4",
+  "b": "Best overall output across thirteen Blender and game-dev tasks in the one-shot benchmark, but slowest and most expensive - the quality ceiling with a cost tail. Closed frontier model, no repo. Concrete evidence for Prism's Model Control Plane: the per-model ask/allow/deny policy exists because this trade-off is real and task-shaped.",
+  "tg": [
+   [
+    "Prism",
+    3,
+    "benchmark evidence for the Model Control Plane's routing policy"
+   ],
+   [
+    "Djeli",
+    2,
+    "which model the IDE reaches for"
+   ],
+   [
+    "R3F Studio",
+    1,
+    "3D task capability data"
+   ]
+  ]
+ },
+ {
+  "n": "Grok 4.6",
+  "slug": "",
+  "cat": "infra",
+  "src": "potluck:LmUd1rvZum4",
+  "srcName": "Cinopsis 3D catch-up - Kimi K3 vs frontier models on Blender tasks",
+  "srcUrl": "https://www.youtube.com/watch?v=LmUd1rvZum4",
+  "b": "Fastest and cheapest of the frontier models tested, with two outright failures across thirteen Blender and game-dev tasks. Closed model, no repo. The other end of the Model Control Plane trade-off - cheap enough to retry, unreliable enough that the retry has to be gated.",
+  "tg": [
+   [
+    "Prism",
+    2,
+    "cheap-and-fast lane in the routing policy"
+   ],
+   [
+    "Djeli",
+    1,
+    "model choice in the IDE"
+   ]
+  ]
+ },
+ {
+  "n": "GPT-5.6 Sol",
+  "slug": "",
+  "cat": "infra",
+  "src": "potluck:LmUd1rvZum4",
+  "srcName": "Cinopsis 3D catch-up - Kimi K3 vs frontier models on Blender tasks",
+  "srcUrl": "https://www.youtube.com/watch?v=LmUd1rvZum4",
+  "b": "Uneven performer in the same thirteen-task benchmark - strong on the Sekiro menu and off-road truck tests, weak elsewhere. Closed model, no repo. Useful as data rather than as a tool: task-shaped capability is the argument for per-task model selection rather than one default.",
+  "tg": [
+   [
+    "Prism",
+    2,
+    "task-shaped capability data for per-task model selection"
+   ],
+   [
+    "Djeli",
+    1,
+    "model routing"
+   ]
+  ]
+ },
+ {
+  "n": "Flux.2 Klein",
+  "slug": "black-forest-labs/flux",
+  "cat": "creative",
+  "src": "potluck:Ff_tdMsndzQ",
+  "srcName": "Cinopsis 3D catch-up - fully-local game-ready character on one GPU",
+  "srcUrl": "https://github.com/black-forest-labs/flux",
+  "b": "Black Forest Labs' image model, used here to repose a generated character and split it into separable parts for per-part 3D generation. Open weights and open inference code. The part-separation trick is the pipeline unlock: it is what turns a single concept image into a multi-part 3D character.",
+  "tg": [
+   [
+    "Lucid",
+    3,
+    "image generation + part separation in the asset path"
+   ],
+   [
+    "R3F Studio",
+    3,
+    "concept-to-parts step before 3D generation"
+   ],
+   [
+    "Sigil",
+    1,
+    "brand image generation"
+   ]
+  ]
+ },
+ {
+  "n": "Flux.2 Klein separation LoRA",
+  "slug": "",
+  "cat": "creative",
+  "src": "potluck:Ff_tdMsndzQ",
+  "srcName": "Cinopsis 3D catch-up - fully-local game-ready character on one GPU",
+  "srcUrl": "https://github.com/search?q=Flux.2%20Klein%20separation%20LoRA&type=repositories",
+  "b": "The LoRA whose 'separate X onto a white background' keyword actually performs the character-into-parts split. Distributed as weights rather than a code repo and not resolved on a direct probe - slug unverified. A small, sharp example of the LoRA rung on Kente's customization ladder doing real pipeline work.",
+  "tg": [
+   [
+    "Lucid",
+    2,
+    "the LoRA that performs the part split"
+   ],
+   [
+    "Kente",
+    2,
+    "LoRA rung doing concrete pipeline work"
+   ],
+   [
+    "R3F Studio",
+    2,
+    "part separation step"
+   ]
+  ]
+ },
+ {
+  "n": "Krea 2 Turbo",
+  "slug": "",
+  "cat": "creative",
+  "src": "potluck:Ff_tdMsndzQ",
+  "srcName": "Cinopsis 3D catch-up - fully-local game-ready character on one GPU",
+  "srcUrl": "https://www.youtube.com/watch?v=Ff_tdMsndzQ",
+  "b": "Model used for the initial full-body character concept art before anything is generated in 3D. Closed hosted product, no repo. Named as the front of the concept-to-character pipeline - the step where art direction is still cheap to change.",
+  "tg": [
+   [
+    "Lucid",
+    2,
+    "concept-art front end of the character pipeline"
+   ],
+   [
+    "Sigil",
+    1,
+    "visual direction exploration"
+   ]
+  ]
+ },
+ {
+  "n": "Nano Banana",
+  "slug": "",
+  "cat": "creative",
+  "src": "potluck:URjhE8QEhJU",
+  "srcName": "Cinopsis 3D catch-up - non-humanoid character full pipeline",
+  "srcUrl": "https://www.youtube.com/watch?v=URjhE8QEhJU",
+  "b": "Google's image editing model, used across two pipelines to split concepts into building-block references, generate tileable textures, and derive additional PBR property maps from one well-structured colour map. Closed, no repo. That last trick - one colour map into a full material set - is a genuinely useful shortcut for the R3F Studio texture path.",
+  "tg": [
+   [
+    "Lucid",
+    3,
+    "concept splitting + tileable texture generation"
+   ],
+   [
+    "R3F Studio",
+    3,
+    "one colour map into a full PBR material set"
+   ],
+   [
+    "Sigil",
+    1,
+    "brand asset editing"
+   ]
+  ]
+ },
+ {
+  "n": "Nano Banana Pro",
+  "slug": "",
+  "cat": "creative",
+  "src": "potluck:y9t-0-vj25s",
+  "srcName": "Cinopsis 3D catch-up - iClone 8 AI Studio making-of",
+  "srcUrl": "https://www.youtube.com/watch?v=y9t-0-vj25s",
+  "b": "The larger Nano Banana variant chosen for the 3D-to-image style pass in the iClone making-of - taking a rendered viewport and restyling it. Closed, no repo. Parked alongside its sibling; the 3D-capture-to-styled-image step is a Lucid adapter either way.",
+  "tg": [
+   [
+    "Lucid",
+    2,
+    "3D capture to styled image adapter"
+   ],
+   [
+    "Ashe",
+    1,
+    "stylised frames"
+   ],
+   [
+    "GBFolio",
+    1,
+    "portfolio stills"
+   ]
+  ]
+ },
+ {
+  "n": "Google AI Studio",
+  "slug": "",
+  "cat": "creative",
+  "src": "potluck:6Ytluv_DiSo",
+  "srcName": "Cinopsis 3D catch-up - free-tools pirate-cave level build",
+  "srcUrl": "https://www.youtube.com/watch?v=6Ytluv_DiSo",
+  "b": "The free surface used for the concept-splitting and tileable-texture generation in the all-free pipeline. Closed hosted product, no repo. Worth landing because the free tier is what makes the whole pirate-cave pipeline reproducible - a cost floor the suite's own adapters should respect.",
+  "tg": [
+   [
+    "Lucid",
+    2,
+    "free-tier generation adapter"
+   ],
+   [
+    "Sigil",
+    1,
+    "brand exploration surface"
+   ]
+  ]
+ },
+ {
+  "n": "Seedance 2.0",
+  "slug": "",
+  "cat": "creative",
+  "src": "potluck:y9t-0-vj25s",
+  "srcName": "Cinopsis 3D catch-up - iClone 8 AI Studio making-of",
+  "srcUrl": "https://www.youtube.com/watch?v=y9t-0-vj25s",
+  "b": "ByteDance's video model, used to turn a 3D viewport capture into a moving shot with camera motion applied - and, in three other videos in this batch, to upgrade a low-poly Blender playblast into a finished-looking shot. Closed, no repo. The playblast-as-video-reference workflow is the single most repeated technique across the whole 3D catch-up and belongs in Ashe.",
+  "tg": [
+   [
+    "Ashe",
+    3,
+    "playblast-as-video-reference - the batch's most repeated technique"
+   ],
+   [
+    "Lucid",
+    3,
+    "3D-to-video generation adapter"
+   ],
+   [
+    "GBFolio",
+    1,
+    "portfolio motion pieces"
+   ],
+   [
+    "AUXGOD",
+    1,
+    "music-experience visuals"
+   ]
+  ]
+ },
+ {
+  "n": "Grok Imagine",
+  "slug": "",
+  "cat": "creative",
+  "src": "potluck:gvPMjz08DDA",
+  "srcName": "Cinopsis 3D catch-up - agent orchestrator builds four Godot games",
+  "srcUrl": "https://www.youtube.com/watch?v=gvPMjz08DDA",
+  "b": "Image generator used for reference art with a distinctive style that happened to fit one of the four games. Closed, no repo. Landed as one more generation adapter and as evidence for the routing argument: style fit, not benchmark score, is what decided which model got used.",
+  "tg": [
+   [
+    "Lucid",
+    2,
+    "style-fit routing between image generators"
+   ],
+   [
+    "Sigil",
+    1,
+    "visual style exploration"
+   ]
+  ]
+ },
+ {
+  "n": "DINOv3",
+  "slug": "facebookresearch/dinov3",
+  "cat": "mlviz",
+  "src": "potluck:o7VJnIN31Ds",
+  "srcName": "Cinopsis 3D catch-up - Trellis 2 native in ComfyUI",
+  "srcUrl": "https://github.com/facebookresearch/dinov3",
+  "b": "Meta's self-supervised vision backbone, required as one of the vision models the native ComfyUI image-to-3D workflows ask you to download. Open weights. Quietly the most load-bearing model in the 3D batch: the generators lean on its features rather than shipping their own encoder.",
+  "tg": [
+   [
+    "R3F Studio",
+    2,
+    "vision backbone under the image-to-3D workflows"
+   ],
+   [
+    "Lucid",
+    1,
+    "shared vision encoder"
+   ],
+   [
+    "PlantID CNN",
+    1,
+    "self-supervised features for the identifier"
+   ]
+  ]
+ },
+ {
+  "n": "DINOv2",
+  "slug": "facebookresearch/dinov2",
+  "cat": "mlviz",
+  "src": "potluck:QgH9sr7G13Q",
+  "srcName": "Cinopsis ideas catch-up - ResNet and the residual stream",
+  "srcUrl": "https://github.com/facebookresearch/dinov2",
+  "b": "The 40-layer vision model whose residual stream showed the high-activation artifact that register tokens were introduced to fix - the worked example in the ResNet-to-residual-stream history. Directly useful to Ophenia: it is a published case of a model's internal state carrying a readable artifact, which is what perceiving your own cognition would have to look like.",
+  "tg": [
+   [
+    "Ophenia",
+    3,
+    "a model's residual stream carrying a readable artifact"
+   ],
+   [
+    "Kente",
+    2,
+    "vision backbone for the forge"
+   ],
+   [
+    "PlantID CNN",
+    2,
+    "pretrained features for invasive-plant ID"
+   ]
+  ]
+ },
+ {
+  "n": "ComfyUI Easy Install",
+  "slug": "Tavris1/ComfyUI-Easy-Install",
+  "cat": "devex",
+  "src": "potluck:Ff_tdMsndzQ",
+  "srcName": "Cinopsis 3D catch-up - fully-local game-ready character on one GPU",
+  "srcUrl": "https://github.com/Tavris1/ComfyUI-Easy-Install",
+  "b": "One-click portable ComfyUI installer for Windows, macOS and Linux with a dashboard for packages, environments and configuration - recommended over a manual setup by the creator who runs the whole local character pipeline. The install-and-environment problem is the real barrier to the local 3D lane on the ProArt; this is the shortest path past it.",
+  "tg": [
+   [
+    "R3F Studio",
+    3,
+    "shortest path to a working local ComfyUI 3D lane"
+   ],
+   [
+    "Lucid",
+    2,
+    "local generation backend setup"
+   ],
+   [
+    "Kente",
+    1,
+    "environment management pattern"
+   ]
+  ]
+ },
+ {
+  "n": "ElevenLabs",
+  "slug": "elevenlabs/elevenlabs-python",
+  "cat": "audio",
+  "src": "potluck:y9t-0-vj25s",
+  "srcName": "Cinopsis 3D catch-up - iClone 8 AI Studio making-of",
+  "srcUrl": "https://github.com/elevenlabs/elevenlabs-python",
+  "b": "Text-to-speech source for the voice-over that then drove the lip-sync pass - closed service, but with an official open Python SDK (the slug) that is what an integration actually touches. The TTS-into-viseme chain is the same seam Audion, Ashe and GBFolio's talking avatar all need.",
+  "tg": [
+   [
+    "Audion",
+    2,
+    "TTS side of the voice pipeline"
+   ],
+   [
+    "Ashe",
+    3,
+    "voice-over for programmatic video"
+   ],
+   [
+    "GBFolio",
+    2,
+    "talking avatar audio"
+   ],
+   [
+    "Lucid",
+    1,
+    "audio generation adapter"
+   ]
+  ]
+ },
+ {
+  "n": "Asset Reloader",
+  "slug": "",
+  "cat": "devex",
+  "src": "potluck:JlmNBGcZ3Ik",
+  "srcName": "Cinopsis 3D catch-up - Blender sketch shader ported to Three.js",
+  "srcUrl": "https://github.com/search?q=Asset%20Reloader&type=repositories",
+  "b": "The video author's own Blender add-on that re-exports a collection and hot-reloads it in the browser on Shift+E - Blender-to-three.js hot reload in one keystroke. No repo resolved on a probe: slug unverified. This is the dev-loop ergonomics R3F Studio's Blender bridge is missing, described precisely enough to rebuild.",
+  "tg": [
+   [
+    "R3F Studio",
+    3,
+    "Blender-to-web hot reload as the dev loop"
+   ],
+   [
+    "GBFolio",
+    2,
+    "iterate on portfolio scenes without re-export friction"
+   ],
+   [
+    "Anansi",
+    1,
+    "asset hot reload in the runtime"
+   ]
+  ]
+ },
+ {
+  "n": "glTF Report",
+  "slug": "",
+  "cat": "devex",
+  "src": "potluck:JlmNBGcZ3Ik",
+  "srcName": "Cinopsis 3D catch-up - Blender sketch shader ported to Three.js",
+  "srcUrl": "https://www.youtube.com/watch?v=JlmNBGcZ3Ik",
+  "b": "Browser tool for inspecting an exported GLB - used here to catch a suspect material setup that would have shipped silently. The site itself is closed-source (its public repo is a feedback tracker, donmccurdy/glTF-Report-Feedback) and it runs on the open glTF-Transform engine, which is already on the shelf. A GLB lint pass belongs in R3F Studio's export gate.",
+  "tg": [
+   [
+    "R3F Studio",
+    3,
+    "GLB lint pass in the export gate"
+   ],
+   [
+    "GBFolio",
+    2,
+    "catch bad materials before they ship"
+   ],
+   [
+    "Anansi",
+    1,
+    "asset validation"
+   ]
+  ]
+ },
+ {
+  "n": "Prometheus",
+  "slug": "prometheus/prometheus",
+  "cat": "data",
+  "src": "potluck:QMPCogrLTeA",
+  "srcName": "Cinopsis ideas catch-up - metrics across 100+ microservices",
+  "srcUrl": "https://github.com/prometheus/prometheus",
+  "b": "Scrapes each service's /metrics endpoint on a fixed interval and stores timestamped values in blocks - the pull-based collection model for 100+ microservices. Valence is Datadog-shaped for agents, and this is the reference architecture for the collection half: agents expose, the collector pulls, nobody writes a bespoke reporter.",
+  "tg": [
+   [
+    "Valence",
+    3,
+    "pull-based metric collection for agent fleets"
+   ],
+   [
+    "Meridian",
+    2,
+    "time-series substrate for attention data"
+   ],
+   [
+    "Griot Hub",
+    1,
+    "ecosystem health metrics"
+   ]
+  ]
+ },
+ {
+  "n": "Thanos",
+  "slug": "thanos-io/thanos",
+  "cat": "data",
+  "src": "potluck:QMPCogrLTeA",
+  "srcName": "Cinopsis ideas catch-up - metrics across 100+ microservices",
+  "srcUrl": "https://github.com/thanos-io/thanos",
+  "b": "Prometheus add-on - sidecar, store gateway and query components - that breaks the single-disk retention limit by sealing blocks to object storage and querying across them. This is the exact problem Valence hits the moment agent telemetry has to be retained longer than a laptop disk allows.",
+  "tg": [
+   [
+    "Valence",
+    3,
+    "long-retention tier over the collector"
+   ],
+   [
+    "Meridian",
+    2,
+    "historical attention data beyond local disk"
+   ],
+   [
+    "Kaleidoscope",
+    1,
+    "long-horizon store"
+   ]
+  ]
+ },
+ {
+  "n": "Grafana",
+  "slug": "grafana/grafana",
+  "cat": "data",
+  "src": "potluck:QMPCogrLTeA",
+  "srcName": "Cinopsis ideas catch-up - metrics across 100+ microservices",
+  "srcUrl": "https://github.com/grafana/grafana",
+  "b": "The dashboard layer, pointed at the federated query component rather than at any single collector - a deliberate decoupling so the dashboard never knows which store answered. Valence's UI should inherit that separation instead of binding panels to a specific backend.",
+  "tg": [
+   [
+    "Valence",
+    3,
+    "dashboard decoupled from the store behind a query layer"
+   ],
+   [
+    "Meridian",
+    2,
+    "reflect surfaces over the time-series"
+   ],
+   [
+    "Griot Hub",
+    1,
+    "ecosystem dashboard"
+   ]
+  ]
+ },
+ {
+  "n": "Kubernetes",
+  "slug": "kubernetes/kubernetes",
+  "cat": "infra",
+  "src": "potluck:QMPCogrLTeA",
+  "srcName": "Cinopsis ideas catch-up - metrics across 100+ microservices",
+  "srcUrl": "https://github.com/kubernetes/kubernetes",
+  "b": "The cluster hosting the 100+ microservices being scraped - present here as the environment that makes service discovery automatic rather than as a thing to adopt. Named so the shelf records the assumption: this architecture's ergonomics come from discovery, and a suite without an orchestrator has to supply that some other way.",
+  "tg": [
+   [
+    "Valence",
+    2,
+    "service discovery is what makes fleet observability cheap"
+   ],
+   [
+    "Prism",
+    1,
+    "deploy target for scaffolded surfaces"
+   ]
+  ]
+ },
+ {
+  "n": "Amazon S3",
+  "slug": "",
+  "cat": "data",
+  "src": "potluck:QMPCogrLTeA",
+  "srcName": "Cinopsis ideas catch-up - metrics across 100+ microservices",
+  "srcUrl": "https://www.youtube.com/watch?v=QMPCogrLTeA",
+  "b": "Cheap, durable, effectively unlimited object storage for sealed metric blocks - the bottom tier that makes unbounded retention affordable. Closed commercial service, no repo; the interface is the point, and any S3-compatible store satisfies it. Landed as the storage assumption under the Thanos pattern.",
+  "tg": [
+   [
+    "Valence",
+    2,
+    "object-storage tier under long retention"
+   ],
+   [
+    "Meridian",
+    1,
+    "archival of reflect history"
+   ],
+   [
+    "Kaleidoscope",
+    1,
+    "cold store for captured knowledge"
+   ]
+  ]
+ },
+ {
+  "n": "Apache Cassandra",
+  "slug": "apache/cassandra",
+  "cat": "data",
+  "src": "potluck:juMinZqHAPQ",
+  "srcName": "Cinopsis ideas catch-up - polyglot persistence at Netflix",
+  "srcUrl": "https://github.com/apache/cassandra",
+  "b": "Absorbs the huge write volume of viewing-history play/pause events at Netflix - the write-heavy leg of the polyglot-persistence example. Relevant to Valence and Meridian for the same reason: agent-step and attention events are high-volume appends, not transactions.",
+  "tg": [
+   [
+    "Valence",
+    2,
+    "write-heavy event store for agent step telemetry"
+   ],
+   [
+    "Meridian",
+    2,
+    "high-volume attention event ingest"
+   ],
+   [
+    "Synaptiq",
+    1,
+    "graph event log"
+   ]
+  ]
+ },
+ {
+  "n": "Elasticsearch",
+  "slug": "elastic/elasticsearch",
+  "cat": "data",
+  "src": "potluck:juMinZqHAPQ",
+  "srcName": "Cinopsis ideas catch-up - polyglot persistence at Netflix",
+  "srcUrl": "https://github.com/elastic/elasticsearch",
+  "b": "Powers search at Netflix because it is built to serve queries fast, sitting alongside three other stores rather than replacing them. The polyglot lesson lands directly on Kaleidoscope: the knowledge porter spans Claude memory, session JSONL, project docs and codebase docs, and pretending one store fits all of them is the mistake.",
+  "tg": [
+   [
+    "Kaleidoscope",
+    3,
+    "search tier in a deliberately polyglot knowledge store"
+   ],
+   [
+    "Synaptiq",
+    2,
+    "search over the graph"
+   ],
+   [
+    "Cinopsis",
+    1,
+    "digest search"
+   ]
+  ]
+ },
+ {
+  "n": "EVCache",
+  "slug": "Netflix/EVCache",
+  "cat": "data",
+  "src": "potluck:juMinZqHAPQ",
+  "srcName": "Cinopsis ideas catch-up - polyglot persistence at Netflix",
+  "srcUrl": "https://github.com/Netflix/EVCache",
+  "b": "Netflix's memcached-based caching layer that makes the homepage - including continue-watching - load fast. The continue-watching shape is the interesting one for Griot Hub: a launcher's whole job is to answer 'where was I' instantly across every app, which is a cache problem before it is an orchestration problem.",
+  "tg": [
+   [
+    "Griot Hub",
+    2,
+    "'where was I' across apps is a cache problem first"
+   ],
+   [
+    "Meridian",
+    2,
+    "fast resume surface"
+   ],
+   [
+    "Valence",
+    1,
+    "hot telemetry cache"
+   ]
+  ]
+ },
+ {
+  "n": "scikit-learn",
+  "slug": "scikit-learn/scikit-learn",
+  "cat": "mlviz",
+  "src": "potluck:Oli_3IUjti4",
+  "srcName": "Cinopsis ideas catch-up - feature engineering primer",
+  "srcUrl": "https://github.com/scikit-learn/scikit-learn",
+  "b": "The core classical-ML library, cited in the feature-engineering primer as the thing that will not process null gaps - forcing an explicit imputation decision before training. The primer's thesis (a simple model with well-engineered features beats a deep net fed raw data) is the argument for Kente's lower rungs existing at all.",
+  "tg": [
+   [
+    "Kente",
+    3,
+    "classical baseline the forge's lower rungs should reach for first"
+   ],
+   [
+    "PlantID CNN",
+    2,
+    "feature work before the CNN"
+   ],
+   [
+    "Personal",
+    1,
+    "fitness dataset analysis"
+   ]
+  ]
+ },
+ {
+  "n": "Git worktree",
+  "slug": "git/git",
+  "cat": "devex",
+  "src": "potluck:ji04cNSIn1c",
+  "srcName": "AI News catch-up 2026-09-18 - Worktrunk walkthrough",
+  "srcUrl": "https://github.com/git/git",
+  "b": "Git's native worktree feature - each branch gets its own working directory off one repo, which is the isolation primitive that lets several agents edit concurrently without colliding. Not a separate project (it ships inside git itself); the video's whole argument is that the capability is already there and only the CLI ergonomics are broken.",
+  "tg": [
+   [
+    "Prism",
+    3,
+    "the native isolation primitive Prism's parallel-agent worktree workflow already rides on"
+   ],
+   [
+    "Djeli",
+    2,
+    "per-agent working directory inside the IDE"
+   ],
+   [
+    "Prism Gavel",
+    1,
+    "isolated branch per ruling batch"
+   ]
+  ]
+ },
+ {
+  "n": "Homebrew",
+  "slug": "Homebrew/brew",
+  "cat": "devex",
+  "src": "potluck:ji04cNSIn1c",
+  "srcName": "AI News catch-up 2026-09-18 - Worktrunk walkthrough",
+  "srcUrl": "https://github.com/Homebrew/brew",
+  "b": "The macOS/Linux package manager, cited as Worktrunk's primary install path (brew install worktrunk). Relevant to the suite only as a distribution channel - if Prism's CLI or a Fragment-scaffolded tool ever ships beyond winget, a tap is the expected front door.",
+  "tg": [
+   [
+    "Prism",
+    1,
+    "macOS/Linux install lane for the CLI"
+   ],
+   [
+    "Fragment",
+    1,
+    "distribution target for scaffolded CLIs"
+   ]
+  ]
+ },
+ {
+  "n": "Cargo",
+  "slug": "rust-lang/cargo",
+  "cat": "devex",
+  "src": "potluck:ji04cNSIn1c",
+  "srcName": "AI News catch-up 2026-09-18 - Worktrunk walkthrough",
+  "srcUrl": "https://github.com/rust-lang/cargo",
+  "b": "Rust's build tool and package manager; the second install lane for Worktrunk (cargo install worktrunk). Already the de-facto build surface for keylink's Tauri2/Rust stack, so it is infrastructure the suite is standing on rather than a candidate to adopt.",
+  "tg": [
+   [
+    "keylink",
+    2,
+    "the build/publish tool for keylink's Tauri2/Rust stack"
+   ],
+   [
+    "Tesseract",
+    1,
+    "Rust-side tooling if a native shim lands"
+   ],
+   [
+    "Prism",
+    1,
+    "cargo install as a distribution lane"
+   ]
+  ]
+ },
+ {
+  "n": "SignPath",
+  "slug": "",
+  "cat": "devex",
+  "src": "potluck:ji04cNSIn1c",
+  "srcName": "AI News catch-up 2026-09-18 - Worktrunk walkthrough",
+  "srcUrl": "https://signpath.io",
+  "b": "CLOSED commercial code-signing service (signpath.io, garbled as 'sin path io' in the ASR) - no public repo, so no slug. It grants free signing certificates to open-source projects, which is how Worktrunk ships a signed Windows binary. Directly relevant because Prism's NSIS installer and Tesseract's WinUI3 build both hit the unsigned-binary SmartScreen wall on Windows.",
+  "tg": [
+   [
+    "Prism",
+    2,
+    "free code signing for the Windows CLI/installer"
+   ],
+   [
+    "Tesseract",
+    2,
+    "signed WinUI3 installer"
+   ],
+   [
+    "keylink",
+    1,
+    "signed Tauri build"
+   ]
+  ]
+ },
+ {
+  "n": "SheetSage 2",
+  "slug": "",
+  "cat": "audio",
+  "src": "potluck:xb1rYopNAyw",
+  "srcName": "AI News catch-up 2026-09-18 - YuE2 music generation",
+  "srcUrl": "https://github.com/multimodal-art-projection/YuE",
+  "b": "Audio-to-lead-sheet transcription model used by YuE2 to turn a source recording into an editable score before a cover is rendered; reported top on 10 of 13 benchmark metrics. NO standalone repo found for v2 - it is documented inside the YuE2 repo with weights on Hugging Face; v1 (SheetSage) is real and public at chrisdonahue/sheetsage. Slug left blank deliberately rather than guessed.",
+  "tg": [
+   [
+    "Kora",
+    3,
+    "audio-to-score transcription in front of the Ableton control layer"
+   ],
+   [
+    "Ashe",
+    1,
+    "score metadata for music-driven edits"
+   ],
+   [
+    "AUXGOD",
+    1,
+    "transcribe reference tracks"
+   ]
+  ]
+ },
+ {
+  "n": "MERT 2",
+  "slug": "",
+  "cat": "audio",
+  "src": "potluck:xb1rYopNAyw",
+  "srcName": "AI News catch-up 2026-09-18 - YuE2 music generation",
+  "srcUrl": "https://github.com/multimodal-art-projection/YuE",
+  "b": "Music-understanding representation model used as SheetSage 2's encoder; reported top on 14 of 15 MARBLE metrics (garbled as 'Merit 2' in the ASR). NO public repo for v2 - weights on Hugging Face, documented in the YuE2 README; MERT v1 is real and public at yizhilll/MERT. Slug deliberately blank - unverified rather than invented.",
+  "tg": [
+   [
+    "Kora",
+    2,
+    "music-understanding encoder for the Ableton control layer"
+   ],
+   [
+    "Kente",
+    1,
+    "a domain encoder worth a rung on the customization ladder"
+   ],
+   [
+    "AUXGOD",
+    1,
+    "music understanding for the card game"
+   ]
+  ]
+ },
+ {
+  "n": "WildSongBench",
+  "slug": "",
+  "cat": "audio",
+  "src": "potluck:xb1rYopNAyw",
+  "srcName": "AI News catch-up 2026-09-18 - YuE2 music generation",
+  "srcUrl": "https://github.com/multimodal-art-projection/YuE",
+  "b": "Evaluation benchmark and prompt set YuE2 reports its SongBench average against. NO separate repo found - it ships inside the YuE2 release, so no slug. Worth keeping for the evidence discipline it models: YuE2 states its cross-model margins are not statistically significant and only makes a confident claim where the ablation gap is real (0.647 vs 0.006 mAP on 948 works).",
+  "tg": [
+   [
+    "Kora",
+    1,
+    "evaluation discipline for generated music"
+   ],
+   [
+    "Kente",
+    1,
+    "benchmark-honesty pattern for the forge's eval stage"
+   ]
+  ]
+ },
+ {
+  "n": "ABC notation",
+  "slug": "",
+  "cat": "audio",
+  "src": "potluck:xb1rYopNAyw",
+  "srcName": "AI News catch-up 2026-09-18 - YuE2 music generation",
+  "srcUrl": "https://abcnotation.com",
+  "b": "Plain-text music notation format (a community standard, not a repo) that YuE2 exports its melody-and-chord plan in. The pattern is the point for Kora: put a human-readable, agent-editable intermediate between the prompt and the render, so music generation becomes iterable instead of prompt-and-pray. Note YuE2 re-renders from the edited score - the original waveform is not preserved.",
+  "tg": [
+   [
+    "Kora",
+    3,
+    "a text score is the editable intermediate an agent can read and rewrite"
+   ],
+   [
+    "Ashe",
+    1,
+    "text-native score/timing data in a programmatic edit"
+   ],
+   [
+    "Lucid",
+    1,
+    "editable intermediate representation pattern"
+   ]
+  ]
+ },
+ {
+  "n": "WP CodeBox",
+  "slug": "",
+  "cat": "devex",
+  "src": "potluck:OlWhp3wBAN8",
+  "srcName": "AI News catch-up 2026-09-18 - WP CodeBox + Claude Code for WordPress",
+  "srcUrl": "https://wpcodebox.com",
+  "b": "CLOSED commercial WordPress snippet manager (wpcodebox.com) - no public repo, so no slug. Its MCP server is what lets Claude Code write and activate PHP snippets on a live site, and it refuses to keep a snippet active once it errors. The safety pattern, not the product, is the takeaway: give the agent write access behind a guard that auto-disables broken code and hands the error back for repair.",
+  "tg": [
+   [
+    "Prism",
+    2,
+    "MCP-server-plus-snippet-manager as the shape of agent write access to a live system"
+   ],
+   [
+    "Kweli",
+    1,
+    "client-site changes an agent makes and a human can read"
+   ]
+  ]
+ },
+ {
+  "n": "Agent Connector",
+  "slug": "soflyy/agent-connector-for-wp",
+  "cat": "agent",
+  "src": "potluck:OlWhp3wBAN8",
+  "srcName": "AI News catch-up 2026-09-18 - WP CodeBox + Claude Code for WordPress",
+  "srcUrl": "https://github.com/soflyy/agent-connector-for-wp",
+  "b": "Open WordPress MCP stack from Soflyy giving agents shell, PHP eval, filesystem and process access - named in the video as the free alternative to WP CodeBox. Explicitly scoped to trusted dev environments only, which is the honest version of the permission boundary Prism keeps negotiating through its Model Control Plane.",
+  "tg": [
+   [
+    "Prism",
+    2,
+    "unrestricted agent execution behind an explicit trusted-environment boundary"
+   ],
+   [
+    "Kweli",
+    1,
+    "alternative WordPress MCP lane for client sites"
+   ]
+  ]
+ },
+ {
+  "n": "Breadcrumb NavXT",
+  "slug": "mtekk/Breadcrumb-NavXT",
+  "cat": "productivity",
+  "src": "potluck:OlWhp3wBAN8",
+  "srcName": "AI News catch-up 2026-09-18 - WP CodeBox + Claude Code for WordPress",
+  "srcUrl": "https://github.com/mtekk/Breadcrumb-NavXT",
+  "b": "Long-running open WordPress breadcrumb plugin, deactivated live in the demo to prove an agent-written snippet was rendering the breadcrumbs itself. No suite fit on its own - parked as evidence for the video's real claim: a large share of installed plugins are small enough that an agent reproduces them on demand, moving the cost from vendor dependency to snippet maintenance.",
+  "tg": [
+   [
+    "Kweli",
+    1,
+    "one of the nine plugins an agent replaced with a snippet"
+   ],
+   [
+    "Realtor CMS",
+    1,
+    "stock plugin a client CMS would otherwise install"
+   ]
+  ]
+ },
+ {
+  "n": "Breakdance",
+  "slug": "",
+  "cat": "creative",
+  "src": "potluck:OlWhp3wBAN8",
+  "srcName": "AI News catch-up 2026-09-18 - WP CodeBox + Claude Code for WordPress",
+  "srcUrl": "https://breakdance.io",
+  "b": "CLOSED commercial WordPress page builder from Soflyy (breakdance.io) - no public repo, so no slug. It is in the harvest because it caused the demo's one real failure: the agent's page-duplication snippet copied the post but dropped Breakdance's design data from post meta, and even after the unslashing fix the CSS only reappeared after a re-save. The lesson generalises - agent-written code fails on the state nobody told it about.",
+  "tg": [
+   [
+    "Kweli",
+    1,
+    "page-builder post meta as the state a naive duplication drops"
+   ],
+   [
+    "Realtor CMS",
+    1,
+    "candidate builder for a client site"
+   ]
+  ]
+ },
+ {
+  "n": "WordPress",
+  "slug": "WordPress/WordPress",
+  "cat": "productivity",
+  "src": "potluck:OlWhp3wBAN8",
+  "srcName": "AI News catch-up 2026-09-18 - WP CodeBox + Claude Code for WordPress",
+  "srcUrl": "https://github.com/WordPress/WordPress",
+  "b": "The GPL CMS itself, plus the application-password mechanism that authenticates an MCP connection into a live site. Relevant to the dormant client lane as a base that already has a sanctioned agent write path, rather than something to build from scratch.",
+  "tg": [
+   [
+    "Realtor CMS",
+    2,
+    "the obvious CMS base for the dormant realtor build"
+   ],
+   [
+    "Kweli",
+    1,
+    "client-facing content surface"
+   ],
+   [
+    "Mentorship Platform",
+    1,
+    "content host for lesson material"
+   ]
+  ]
+ },
+ {
+  "n": "Numba",
+  "slug": "numba/numba",
+  "cat": "devex",
+  "src": "potluck:woEuEAwffOA",
+  "srcName": "AI News catch-up 2026-09-18 - WebAssembly showcase (BrowserPod, PGlite)",
+  "srcUrl": "https://github.com/numba/numba",
+  "b": "Python JIT that compiles numeric code to machine code via LLVM - and now, via QuantStack's port, runs entirely inside a browser notebook, with the demo showing roughly a 300x speedup on the math Python handles badly natively. The in-browser half is what matters: Kente's notebooks and the Math Formalism surface could ship compute to a tab instead of a backend.",
+  "tg": [
+   [
+    "Kente",
+    2,
+    "njit-level speedups for notebook-side feature work"
+   ],
+   [
+    "Math Formalism Ideation",
+    2,
+    "fast numeric evaluation behind the interactive formula surface"
+   ],
+   [
+    "PlantID CNN",
+    1,
+    "preprocessing speedups"
+   ]
+  ]
+ },
+ {
+  "n": "LLVM",
+  "slug": "llvm/llvm-project",
+  "cat": "devex",
+  "src": "potluck:woEuEAwffOA",
+  "srcName": "AI News catch-up 2026-09-18 - WebAssembly showcase (BrowserPod, PGlite)",
+  "srcUrl": "https://github.com/llvm/llvm-project",
+  "b": "The compiler infrastructure under Numba's JIT - notable here because the entire LLVM-powered JIT was itself compiled to WebAssembly, which is the proof that binary-dependent stacks are now portable to a browser tab. Infrastructure to know about, not to adopt.",
+  "tg": [
+   [
+    "Kente",
+    1,
+    "the compiler stack under Numba's JIT"
+   ],
+   [
+    "Anansi",
+    1,
+    "toolchain under a Wasm runtime target"
+   ]
+  ]
+ },
+ {
+  "n": "QuantStack",
+  "slug": "",
+  "cat": "devex",
+  "src": "potluck:woEuEAwffOA",
+  "srcName": "AI News catch-up 2026-09-18 - WebAssembly showcase (BrowserPod, PGlite)",
+  "srcUrl": "https://quantstack.net",
+  "b": "The open-source group that ported Numba and its LLVM JIT to WebAssembly (garbled as 'Quatstack' in the ASR). An ORG, not a repo - no slug, deliberately. Worth tracking as the maintainers of the in-browser Jupyter/scientific-Python stack that a browser-side Kente notebook lane would sit on.",
+  "tg": [
+   [
+    "Kente",
+    1,
+    "the group behind the in-browser scientific-Python stack"
+   ],
+   [
+    "Math Formalism Ideation",
+    1,
+    "Jupyter-adjacent browser tooling lineage"
+   ]
+  ]
+ },
+ {
+  "n": "Jupyter",
+  "slug": "jupyterlab/jupyterlab",
+  "cat": "knowledge",
+  "src": "potluck:woEuEAwffOA",
+  "srcName": "AI News catch-up 2026-09-18 - WebAssembly showcase (BrowserPod, PGlite)",
+  "srcUrl": "https://github.com/jupyterlab/jupyterlab",
+  "b": "The notebook environment where the in-browser Numba demo and its timings run, with Python itself executing locally rather than on a backend. Already the de-facto surface for Kente's forge and the Math Formalism thread; the Wasm story means that surface can now run client-side with a real JIT behind it.",
+  "tg": [
+   [
+    "Kente",
+    3,
+    "the notebook surface the forge is built around"
+   ],
+   [
+    "Math Formalism Ideation",
+    2,
+    "the notebook-born home of the formula explorer"
+   ],
+   [
+    "PlantID CNN",
+    2,
+    "applied-CNN notebook work"
+   ]
+  ]
+ },
+ {
+  "n": "BrowserPod",
+  "slug": "leaningtech/browserpod-meta",
+  "cat": "infra",
+  "src": "potluck:woEuEAwffOA",
+  "srcName": "AI News catch-up 2026-09-18 - WebAssembly showcase (BrowserPod, PGlite)",
+  "srcUrl": "https://github.com/leaningtech/browserpod-meta",
+  "b": "Browser-native sandbox from Leaning Technologies that runs Linux applications (Node, Rust, C++, Python preview) compiled to Wasm, with a persistent virtual filesystem, controlled networking, parallelism and multithreading - its makers call it an OS kernel for the web platform. Two claims worth testing: you target it directly instead of rewriting against WASI, and disk images stream block-by-block so only the parts of a stdlib you actually use get downloaded. That is a container-free execution lane for anything Djeli or Prism needs to run untrusted.",
+  "tg": [
+   [
+    "Djeli",
+    2,
+    "browser-native sandbox for running agent output without a container"
+   ],
+   [
+    "Prism",
+    2,
+    "run-anywhere execution lane with no toolchain install"
+   ],
+   [
+    "Anansi",
+    1,
+    "browser-native runtime for the agent-first engine"
+   ],
+   [
+    "Kente",
+    1,
+    "notebook compute without a backend"
+   ]
+  ]
+ },
+ {
+  "n": "WASI",
+  "slug": "WebAssembly/WASI",
+  "cat": "infra",
+  "src": "potluck:woEuEAwffOA",
+  "srcName": "AI News catch-up 2026-09-18 - WebAssembly showcase (BrowserPod, PGlite)",
+  "srcUrl": "https://github.com/WebAssembly/WASI",
+  "b": "The standard WebAssembly system interface for filesystem, clock and network syscalls outside the browser (garbled as 'WSI' and 'wazi' in the ASR). In the harvest as the baseline BrowserPod claims you can skip - if that claim holds, a Wasm execution lane costs no code changes; if it does not, WASI is the porting tax.",
+  "tg": [
+   [
+    "Djeli",
+    1,
+    "the standard system interface a Wasm execution lane would otherwise target"
+   ],
+   [
+    "Anansi",
+    1,
+    "portable runtime interface for the engine"
+   ]
+  ]
+ },
+ {
+  "n": "PGlite",
+  "slug": "electric-sql/pglite",
+  "cat": "data",
+  "src": "potluck:woEuEAwffOA",
+  "srcName": "AI News catch-up 2026-09-18 - WebAssembly showcase (BrowserPod, PGlite)",
+  "srcUrl": "https://github.com/electric-sql/pglite",
+  "b": "Full Postgres compiled to WebAssembly - runs in a browser tab or embedded in Node.js, persists to local storage, and supports extensions including pgvector. This is the strongest single pull of the batch for the knowledge lane: Synaptiq, Kaleidoscope and Meridian all want a real relational-plus-vector store with zero server to run, and this is it.",
+  "tg": [
+   [
+    "Synaptiq",
+    3,
+    "a real Postgres for the knowledge graph with no server to run"
+   ],
+   [
+    "Kaleidoscope",
+    2,
+    "local queryable store for the memory/context porter"
+   ],
+   [
+    "Meridian",
+    2,
+    "local attention substrate persisted without a backend"
+   ],
+   [
+    "Djeli",
+    1,
+    "embeddable store inside the IDE"
+   ],
+   [
+    "Cinopsis",
+    1,
+    "local digest store"
+   ]
+  ]
+ },
+ {
+  "n": "pgvector",
+  "slug": "pgvector/pgvector",
+  "cat": "data",
+  "src": "potluck:woEuEAwffOA",
+  "srcName": "AI News catch-up 2026-09-18 - WebAssembly showcase (BrowserPod, PGlite)",
+  "srcUrl": "https://github.com/pgvector/pgvector",
+  "b": "Postgres extension for vector similarity search, and the reason PGlite is more than a toy: a local in-tab Postgres with pgvector makes low-profile semantic search viable with no vector-DB service at all. Graft's embeddings-first-class premise and Synaptiq's graph both land on this.",
+  "tg": [
+   [
+    "Synaptiq",
+    3,
+    "vector search over the canvas knowledge graph"
+   ],
+   [
+    "Kaleidoscope",
+    2,
+    "embedding search across memory surfaces"
+   ],
+   [
+    "Hazine",
+    2,
+    "semantic retrieval over the archive"
+   ],
+   [
+    "Graft",
+    1,
+    "embeddings as first-class in the belief-state graph"
+   ]
+  ]
+ },
+ {
+  "n": "Rust",
+  "slug": "rust-lang/rust",
+  "cat": "devex",
+  "src": "potluck:woEuEAwffOA",
+  "srcName": "AI News catch-up 2026-09-18 - WebAssembly showcase (BrowserPod, PGlite)",
+  "srcUrl": "https://github.com/rust-lang/rust",
+  "b": "The language itself, cited as a first-class Wasm compile target and BrowserPod's first deployment priority - and already the implementation language of keylink and of Worktrunk. Listed for completeness rather than as a decision; it is a substrate the suite has chosen in places.",
+  "tg": [
+   [
+    "keylink",
+    3,
+    "keylink's Tauri2/Rust implementation language"
+   ],
+   [
+    "Tesseract",
+    1,
+    "native Windows-side performance work"
+   ],
+   [
+    "Prism",
+    1,
+    "the language Worktrunk and much agent tooling ships in"
+   ]
+  ]
+ },
+ {
+  "n": "Docker",
+  "slug": "moby/moby",
+  "cat": "devex",
+  "src": "potluck:woEuEAwffOA",
+  "srcName": "AI News catch-up 2026-09-18 - WebAssembly showcase (BrowserPod, PGlite)",
+  "srcUrl": "https://github.com/moby/moby",
+  "b": "The container runtime, named in the InfoWorld piece only as the thing this whole approach deliberately avoids needing - the words Docker and containers never once came up. Parked as the baseline to measure against: if a Wasm lane can isolate agent output, the suite skips a container runtime it never wanted to wrangle.",
+  "tg": [
+   [
+    "Prism",
+    1,
+    "the containerization the Wasm argument is positioned against"
+   ],
+   [
+    "Djeli",
+    1,
+    "current isolation lane to compare against a browser sandbox"
+   ]
+  ]
+ }
+]

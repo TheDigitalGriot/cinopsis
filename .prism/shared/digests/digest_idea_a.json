@@ -1,0 +1,462 @@
+{
+  "videos": {
+    "mOvtumfyjCs": {
+      "summary": "Two Minute Papers reports that OpenAI's system very likely resolved the Navier-Stokes existence-and-smoothness problem in about three and a half days, walks through what the equations actually say, and flags an attribution controversy involving two outside scientists. ASR garbles several names ('Terren Tao' = Terence Tao, 'Na'vi Stokes' = Navier-Stokes, 'Demi Hassabis' = Demis Hassabis, 'Chad GPT' = ChatGPT, 'Dr. Koja' = the host).",
+      "digest": {
+        "core_takeaway": "The reported answer to the millennium problem is that Navier-Stokes smoothness can break down in finite time, and AI got there fast because mathematics is automatically verifiable in a way prose is not.",
+        "key_points": [
+          "OpenAI reportedly ran a system more powerful than its public models and produced the result in roughly 3.5 days, not months of stealth work.",
+          "Two scientists outside OpenAI had made related progress that Terence Tao thought could extend to Navier-Stokes; the host credits them explicitly and questions what attribution they will get.",
+          "Asked whether their heavy use of proprietary chatbots fed the result, OpenAI would only say it 'cannot rule out' that data derived from their product usage helped improve its models - the host's argument for running open-weights systems locally.",
+          "The equations reduce to three understandable terms - advection, pressure, diffusion - plus an incompressibility condition, and each is simple to evaluate once discretised onto a grid.",
+          "The blow-up construction starts from rest with carefully engineered external forces: an inward-spiralling, stretching vortex whose velocity grows without bound in finite time while total energy stays finite.",
+          "Verifiability is the host's explanation for AI's speed in math - roughly 100 human-checked lessons per hour versus 100 million automatically checked ones - and he extends the argument speculatively to curing disease."
+        ],
+        "why_it_matters": "If harness-free model capability is now producing genuine mathematical firsts, the bottleneck for AI progress shifts to which domains can be made automatically verifiable. The episode also makes the training-data question concrete: prompts sent to proprietary models may come back as someone else's breakthrough."
+      },
+      "oss": [
+        {
+          "name": "DeepSeek",
+          "slug": null,
+          "what": "Named as an example of an open-weights chatbot/agent you can run yourself so prompts never leave your machine."
+        }
+      ],
+      "key_moments": [
+        {
+          "timestamp": "1:14",
+          "label": "OpenAI fires up the system",
+          "description": "After hearing rumours of the related result, OpenAI ran a system described as more powerful than its public models."
+        },
+        {
+          "timestamp": "1:59",
+          "label": "The one-sentence answer",
+          "description": "OpenAI's official line: while unlikely, it cannot rule out that data derived from the scientists' product usage helped improve its models."
+        },
+        {
+          "timestamp": "6:01",
+          "label": "The answer is yes",
+          "description": "The mathematics can break down - the equations are not guaranteed to behave nicely forever."
+        },
+        {
+          "timestamp": "7:07",
+          "label": "Three and a half days",
+          "description": "The host's surprise reveal that the run took about 3.5 days rather than a year in stealth."
+        },
+        {
+          "timestamp": "7:36",
+          "label": "Math is verifiable",
+          "description": "The core explanation for why AI improves so fast at mathematics: checking is automatic, so lessons scale by millions per hour."
+        }
+      ]
+    },
+    "NR01bkPag1c": {
+      "summary": "A one-minute explainer on why AI agent memory needs vector search rather than dumping every stored memory into the context window.",
+      "digest": {
+        "core_takeaway": "Embedding both the query and every stored memory, then ranking by cosine similarity and injecting only the top-k, keeps a specific request from being buried under irrelevant facts.",
+        "key_points": [
+          "Dumping all memories into context causes catastrophic token waste and prompt dilution - a trip-planning query gets buried under 'likes pizza' or 'wants dark mode'.",
+          "Both query and memories are transformed into dense vectors by embedding models, where similar concepts naturally cluster in high-dimensional semantic space.",
+          "Cosine similarity - the dot product with length normalised away - measures angular alignment, isolating pure meaning instead of naive keyword matching.",
+          "Only the top-k semantically closest memories get injected, acting as a cognitive lens that filters noise."
+        ],
+        "why_it_matters": "It is the minimum viable retrieval design for agent memory: the difference between an agent that recalls the one relevant fact and one that drowns its own prompt."
+      },
+      "oss": [],
+      "key_moments": [
+        {
+          "timestamp": "0:04",
+          "label": "The failure mode",
+          "description": "Dumping every stored memory into context produces token waste and prompt dilution."
+        },
+        {
+          "timestamp": "0:21",
+          "label": "Embed everything",
+          "description": "Query and memories become dense vectors where similar meanings cluster together."
+        },
+        {
+          "timestamp": "0:49",
+          "label": "Top-k only",
+          "description": "Only the closest memories light up and get injected into the prompt."
+        }
+      ]
+    },
+    "wcqQDpRd7nM": {
+      "summary": "An NVIDIA livestream demoing TensorRT Model Connect: two commands take an open model from a Hugging Face checkpoint to an optimised, deployable bundle and run inference, with demos spanning speech, reasoning, search, segmentation, depth, full-duplex voice, and multi-GPU video generation. ASR garbles most product names - 'tens' = TensorRT, 'DJX Spark' = DGX Spark, 'MVF4/MVFP4' = NVFP4, 'Nimatron/Neimotron/Nemetron' = Nemotron, 'emvida/avidia' = NVIDIA, 'Cosmo 3' = Cosmos, 'nickel' = NCCL, 'onyx' = ONNX, 'food duplex' = full duplex, 'Q3/QN3/Qin' = Qwen3.",
+      "digest": {
+        "core_takeaway": "Model Connect is a feature layered on TensorRT rather than a new product: it absorbs the export, import, and conversion steps so a supported open model goes from checkpoint name to end-to-end inference in two commands.",
+        "key_points": [
+          "The build command runs TensorRT's graph fusion and tactic selection and writes engines plus weights into a 'bundle' - a minute or two for a small model, up to 45 minutes for a large one - then a CLI run command serves it.",
+          "Coverage goes well past LLMs: audio generation, classification CNNs, embeddings, feature extraction, diffusion image models, video generation, object detection, pose refinement, re-ranking and segmentation, all listed on a model support page.",
+          "Every demo ran on a consumer RTX 5090, and support reaches back to roughly the 70-series/Turing era; fitting the model in VRAM is the real constraint.",
+          "Demos shown: voice dictation with LLM cleanup, constraint reasoning, semantic search over help articles, click-to-segment on a photo, image understanding, image-to-depth with point cloud generation, and an interruptible single-model full-duplex voice chat with no ASR/LLM/TTS pipeline.",
+          "The team calls it an AI-native project - the per-model implementations were written by a swarm of AI agents - and is asking for community PRs, especially on quantisation for model families that lack it.",
+          "Multi-device is now integrated: a context-parallel Cosmos video generation demo sharded a long sequence across two DGX Sparks over Ethernet with NCCL, and about 60 models already ship multi-device configs."
+        ],
+        "why_it_matters": "It removes the export/convert step that makes local deployment of open models painful, which matters for anyone who wants C++-runtime, latency-sensitive inference on hardware they already own rather than a hosted API."
+      },
+      "oss": [
+        {
+          "name": "TensorRT Model Connect",
+          "slug": null,
+          "what": "Open-source TensorRT feature turning a checkpoint name into a deployable bundle in two commands."
+        },
+        {
+          "name": "TensorRT",
+          "slug": null,
+          "what": "NVIDIA's deep learning inference compiler that Model Connect builds on."
+        },
+        {
+          "name": "Hugging Face",
+          "slug": null,
+          "what": "Where Model Connect pulls model weights and checkpoints from."
+        },
+        {
+          "name": "NVIDIA Cosmos (Cosmos 3 Nano)",
+          "slug": null,
+          "what": "Open physics-aware video generation model used in the two-Spark multi-device demo."
+        },
+        {
+          "name": "Nemotron voice chat",
+          "slug": null,
+          "what": "NVIDIA's open full-duplex speech-to-speech model demoed live (ASR-rendered 'Nimatron')."
+        },
+        {
+          "name": "PyTorch",
+          "slug": null,
+          "what": "The framework whose checkpoints Model Connect converts from, and the stated baseline for comparison."
+        }
+      ],
+      "key_moments": [
+        {
+          "timestamp": "2:24",
+          "label": "Two commands",
+          "description": "The pitch: no exporting, no importing, no conversion - a Python build command and a CLI run command."
+        },
+        {
+          "timestamp": "5:59",
+          "label": "Not just LLMs",
+          "description": "Walk through the model support table: audio generation, CNNs, embeddings, DINOv3-style feature extraction, diffusion, video, detection, segmentation."
+        },
+        {
+          "timestamp": "13:53",
+          "label": "Architecture overview",
+          "description": "Pre-implemented model families feed a task-level API, then the TensorRT compiler, then x86/ARM/Jetson hardware."
+        },
+        {
+          "timestamp": "20:04",
+          "label": "Full-duplex voice",
+          "description": "A single interruptible speech-to-speech model replaces the ASR-LLM-TTS pipeline, cutting latency."
+        },
+        {
+          "timestamp": "23:13",
+          "label": "Two Sparks, one video",
+          "description": "Context parallelism shards a long sequence across two DGX Sparks over Ethernet to generate Cosmos video."
+        }
+      ]
+    },
+    "FVpfCJfV110": {
+      "summary": "A two-host paper walkthrough of 'LpWM: A Case for Sparse Representations in World Models' (Kuang et al., August 2026), which argues that sparse JEPA-style latents make dynamics simple enough for near-linear predictors to plan. The transcript badly garbles technical names ('jeepa' = JEPA, 'Vikra/Vigrag/Vicreg' = VICReg, 'sigereg/sigreg' = SIGReg, 'lelass' = Laplace, 'peacewise' = piecewise, 'jakard/jackard' = Jaccard, 'aphine' = affine, 'lipshits' = Lipschitz, 'Waserstein' = Wasserstein) and cuts off mid-word in the sign-off.",
+      "digest": {
+        "core_takeaway": "Changing one knob - the latent's target distribution, from a Gaussian to a rectified Laplace - produces exactly-zero coordinates, and that sparsity buys up to 57 points of planning success at intermediate predictor capacity.",
+        "key_points": [
+          "Proposition 1: for any compact state space with Lipschitz dynamics, a one-hot cell encoding makes the dynamics exactly linear - each action becomes a matrix moving the hot entry - with error bounded by the cell radius. The catch is that exact one-hot codes need exponentially many dimensions, which the authors concede.",
+          "The practical relaxation is RDMREG: project the batch onto random unit directions and push each projection toward a rectified generalised Gaussian using 2-Wasserstein distance. A reparameterised ReLU gives true zeros on the forward pass while borrowing a smooth gradient backward so neurons do not die; 30-65% of coordinates stay active versus 100% dense.",
+          "Setting the target back to a plain Gaussian recovers the dense baseline exactly, so encoder, predictor and planner are shared and one knob separates sparse from dense.",
+          "Evaluation is a ladder of predictors from a one-frame linear map up to a six-layer DiT (34M to 822M parameters). Wall is a null result by design; PushT is the story - sparse beats dense by 24-57 points with an MLP-LTI predictor, and at width 768 a 3M-parameter predictor plans at about 70% on sparse codes versus about 7% on dense.",
+          "Interpretability: in a piecewise-affine room, a code's binary support decodes which zone the agent is in at about 97% - as well as the full vector - while magnitudes decode position within the zone, and it still works when the zones are not visually rendered.",
+          "Honest limits: on contact-rich OGBench Cube the support is just a motion detector (contact correlation 0.05) until an optional, hand-weighted temporal Jaccard loss lifts it to 0.61; sparse only ties dense at the top of the ladder; all four environments are simulated with one training seed."
+        ],
+        "why_it_matters": "It reframes latent shape as a design choice rather than a side effect of the regulariser, and offers a route to world models whose planner is small and cheap instead of a large transformer."
+      },
+      "oss": [],
+      "key_moments": [
+        {
+          "timestamp": "1:01",
+          "label": "The headline number",
+          "description": "Sparse codes beat dense ones by up to 57 points of planning success at intermediate predictor capacity."
+        },
+        {
+          "timestamp": "3:02",
+          "label": "One-hot makes physics linear",
+          "description": "The thought experiment behind Proposition 1: nonlinear dynamics become a lookup table wearing a linear-algebra costume."
+        },
+        {
+          "timestamp": "8:15",
+          "label": "The middle of the ladder",
+          "description": "Both fail at the bottom rung and tie at the top; the whole result lives in the intermediate predictors."
+        },
+        {
+          "timestamp": "11:15",
+          "label": "The code found the physics",
+          "description": "Support overlap still tracks zone boundaries when the zones are not rendered - no colour, no visual cue."
+        },
+        {
+          "timestamp": "13:00",
+          "label": "Temporal loss flips contact",
+          "description": "Adding the temporal Jaccard penalty moves contact correlation from 0.05 to 0.61 without changing planning success."
+        }
+      ]
+    },
+    "n9xKblqyQ28": {
+      "summary": "YC Paper Club 'harness night': a whirlwind history of agent harnesses from the GPT-2 while-loop to self-modifying meta-harnesses, followed by three talks - Prime Agent (Prime Intellect), Open Jarvis (Stanford), and QM (YC's internal agent). Many names and model versions are ASR-garbled ('GSMAK' = GSM8K, 'megpt' = MemGPT, 'Japa' = GEPA, 'Chris Ray' = Chris Re, 'Quen' = Qwen, 'Laura' = LoRA, 'GPT soul' and 'Kim K3' = unclear model variants), and the transcript is truncated mid-sentence during QM's closing.",
+      "digest": {
+        "core_takeaway": "On identical model weights the harness - context management, tools, sub-agents, and now self-modification - is worth the gap between 30% and 95% on ARC-AGI, so scaffolding deserves treatment as research rather than dismissal as a wrapper.",
+        "key_points": [
+          "Framing: Opus was verified at 30% on the ARC-AGI-3 private holdout; harness work took Prime Agent to 95.5% and an NVIDIA entry to 100% - an 18-point-plus swing attributable to scaffolding alone.",
+          "Lineage sketched in five minutes: GPT-2's while-not-EOS loop, few-shot prompting, chain of thought, WebGPT/Toolformer for tools, MemGPT for CRUD on your own context, Voyager for skills, InterCode for code as action space, ReAct/self-refine/Reflexion, sub-agents, then recursive language models.",
+          "The self-improving era: DSPy learns the optimal system prompt by genetic search over candidates; Darwin-style machines let the agent rewrite the harness code itself, with an archive, a fitness function, and a meta-harness whose job is producing harnesses.",
+          "Prime Agent treats context as an L1/L2/L3 cache - weights, active context, then a live Python REPL and filesystem - with persistent messageable sub-agents, 'agentic garbage collection', and compaction as the oldest general harness tool. Cost-to-performance is emphasised: one competing harness burned $5,000 with little gain.",
+          "Open Jarvis asks how much of a personal AI stack (inference, agent logic, memory, learning) can run entirely on-device; local models trail the frontier by 6-12 months, and having a cloud model optimise the local config offline yielded roughly 800x lower cost plus latency and quality gains.",
+          "QM centralises all agent state in Postgres instead of trapping it inside a per-user sandbox, demotes sandboxes to a resource the agent reaches for by workload size, and keeps three core tools. Open problems: agents give up too early (hence a 'grind tool' setting wall-clock and token budgets), agents get confused about multiplayer context, and agents have no social model of what information may be shared."
+        ],
+        "why_it_matters": "It is the clearest current argument that most near-term capability gains are available without new weights, and it names the specific mechanisms - context caching, persistent sub-agents, budgets, self-modification - teams can copy into their own agents today."
+      },
+      "oss": [
+        {
+          "name": "Prime Agent",
+          "slug": null,
+          "what": "Prime Intellect's self-improving recursive-LM harness with a Python REPL and persistent sub-agents."
+        },
+        {
+          "name": "verifiers",
+          "slug": null,
+          "what": "Prime Intellect package the speaker says reproduces every eval shown in the talk."
+        },
+        {
+          "name": "Open Jarvis",
+          "slug": null,
+          "what": "Stanford project running the whole personal AI stack - inference, agents, memory, learning - on device."
+        },
+        {
+          "name": "QM",
+          "slug": null,
+          "what": "YC's open-source agent harness for work, used daily in Slack and a web UI."
+        },
+        {
+          "name": "DSPy",
+          "slug": "stanfordnlp/dspy",
+          "what": "Optimises the system prompt by genetic search over candidate prompts rather than backprop."
+        },
+        {
+          "name": "OpenClaw",
+          "slug": null,
+          "what": "Personal agent with its own computer that YC partners adopted before QM was built."
+        },
+        {
+          "name": "llama.cpp / Ollama / vLLM / SGLang",
+          "slug": null,
+          "what": "Interchangeable local inference engines listed as Open Jarvis primitives."
+        }
+      ],
+      "key_moments": [
+        {
+          "timestamp": "3:53",
+          "label": "30% to 95%",
+          "description": "Same weights, different harness: the verified Opus score versus what scaffolding achieved on ARC-AGI-3."
+        },
+        {
+          "timestamp": "14:16",
+          "label": "The harness learns itself",
+          "description": "Transition from static harnesses to learning the system prompt and then the harness code itself."
+        },
+        {
+          "timestamp": "32:48",
+          "label": "95.5% with Opus",
+          "description": "Prime Agent's headline result, with a note that an earlier 99.9% run turned out to be cheating before sandboxing."
+        },
+        {
+          "timestamp": "38:28",
+          "label": "Local models are good enough",
+          "description": "On-device models now trail the frontier by only 6-12 months, which is the premise of Open Jarvis."
+        },
+        {
+          "timestamp": "52:09",
+          "label": "Brain out of the sandbox",
+          "description": "QM's key design move: centralise agent state in Postgres so sessions are not trapped inside one machine."
+        }
+      ]
+    },
+    "MccJdr61xnc": {
+      "summary": "Geoffrey Litt's Recurse Center talk traces eight years of pursuing 'dynamic documents as personal software' - Margin Notes, Ink & Switch's Embark, and current Notion work - framed as a guide to taking a rabbit hole seriously. The transcript has short audio dropouts around 17:08 and 18:06 and garbles some names ('Incan Switch' = Ink & Switch, 'Hyperard' = HyperCard, 'Omachi' = Omarchy, 'Alex Worth' = Alex Warth).",
+      "digest": {
+        "core_takeaway": "Documents, not apps, are the better substrate for personal software: a note is where people already start, and data, computation and views can be layered onto it incrementally instead of bundled by someone else.",
+        "key_points": [
+          "Margin Notes used Ruby's TracePoint interpreter hook to record real method calls and show the last few return values and object state beside the code you are reading; running the test suite is a low-friction way to capture examples without touching production data.",
+          "An app is a bundle of data, operations and views that somebody decided belong in one box; Embark pulls those apart into an outliner with three primitives - mentions for structured data, formulas for computation, and views like maps, tables and calendars.",
+          "The flip is that you bring the tool to your workbench rather than going to the weather app: formulas inherit context from the surrounding outline, repeat down a trip, chain into cost calculations, and let a calendar show hourly forecast against an event in one place.",
+          "Embark's first prototype was a spatial canvas of chained widgets that demoed beautifully and failed in real use - the team needed somewhere to write down their thinking, which sent them back to the note.",
+          "At Notion, HTML blocks let a coding agent produce 'literate diffs': background on the engine and coordinate system first, intuition before details, interactive figures, a staged tour of the code, and a quiz the author makes himself pass before merging. Alpha custom blocks add shared database state so multiple UIs coordinate.",
+          "Career thread: academic workshops give brutally serious feedback plus legibility; grad school is a bundle of modest money, mentorship, community and near-total freedom; research is the ring of good ideas nobody will pay for yet, and a platform shift is the moment to move inward.",
+          "The unsolved problem is the low floor, not the ceiling - templates do not teach you what they are made of, so they degrade into a badly made app, and AI doing it for you can skip the learning entirely."
+        ],
+        "why_it_matters": "It offers a concrete alternative to the app-store model for AI-generated software: if vibe-coded tools live inside shareable documents with shared state, distribution and composition come for free instead of producing a million isolated one-off apps."
+      },
+      "oss": [
+        {
+          "name": "Margin Notes",
+          "slug": null,
+          "what": "Live-programming tool showing recorded return values and object state beside Ruby code; described as source available."
+        },
+        {
+          "name": "Ruby TracePoint",
+          "slug": null,
+          "what": "Interpreter hook API for method call/return events that made Margin Notes trivial to build."
+        },
+        {
+          "name": "Embark",
+          "slug": null,
+          "what": "Ink & Switch dynamic-document prototype: an outliner with mentions, formulas and map/table/calendar views."
+        },
+        {
+          "name": "Riffle",
+          "slug": null,
+          "what": "Grad-school project where all UI state must live in a multiplayer-synced database."
+        },
+        {
+          "name": "Notion HTML blocks",
+          "slug": null,
+          "what": "Shipped primitive letting a coding agent embed arbitrary interactive HTML inside an editable doc."
+        },
+        {
+          "name": "fuzzyset",
+          "slug": null,
+          "what": "Fuzzy string matching library whose README was a set of interactive explorations rather than prose."
+        },
+        {
+          "name": "Omarchy",
+          "slug": null,
+          "what": "AI-customisable Linux setup he wants to try, cited as malleable software (ASR-rendered 'Omachi')."
+        }
+      ],
+      "key_moments": [
+        {
+          "timestamp": "6:46",
+          "label": "Margin Notes demo",
+          "description": "Click a method and see what it actually returned the last five times it ran, plus the object state."
+        },
+        {
+          "timestamp": "19:28",
+          "label": "Three primitives",
+          "description": "Embark adds mentions, formulas and views to an outliner to make a document dynamic."
+        },
+        {
+          "timestamp": "27:22",
+          "label": "The prototype that failed",
+          "description": "The spatial canvas looked cool but broke on real trip planning because they needed a note to think in."
+        },
+        {
+          "timestamp": "35:17",
+          "label": "Literate diffs",
+          "description": "The agent's output is a staged tour of the code with explanations, not a raw diff - and he prints them out."
+        },
+        {
+          "timestamp": "51:13",
+          "label": "The low floor problem",
+          "description": "The hardest part is getting started; templates hide what they are made of and become a crappy app."
+        }
+      ]
+    },
+    "xS7hFYpLqMo": {
+      "summary": "A one-minute explainer showing that the tilt of a linear model's decision boundary directly encodes which input feature matters most.",
+      "digest": {
+        "core_takeaway": "Because the boundary slope is -W1/W2, gradient descent physically pivots the decision line toward the more predictive feature, so the geometry itself is a readable importance signal.",
+        "key_points": [
+          "With two features (CGPA and IQ) and equal initial weights, the boundary sits at a default 45 degrees, wrongly assuming both contribute identically and misclassifying candidates strong in only one.",
+          "During training, gradient descent rescales weights by true predictive power, and the changing weight ratio pivots the boundary in the plane.",
+          "A large CGPA weight drives the line nearly vertical, pointing the normal vector along the most important feature axis.",
+          "Reading that geometric tilt gives direct, transparent interpretability for linear weights."
+        ],
+        "why_it_matters": "It grounds feature importance in something visible rather than an attribution score, which is a useful intuition to carry into higher-dimensional models."
+      },
+      "oss": [],
+      "key_moments": [
+        {
+          "timestamp": "0:05",
+          "label": "Two features, 45 degrees",
+          "description": "Equal initial weights assume CGPA and IQ contribute identically."
+        },
+        {
+          "timestamp": "0:24",
+          "label": "Gradient descent pivots the line",
+          "description": "Weights rescale by true predictive power and the boundary rotates."
+        },
+        {
+          "timestamp": "0:47",
+          "label": "Normal vector points at importance",
+          "description": "The geometric tilt of linear weights is direct model interpretability."
+        }
+      ]
+    }
+  },
+  "topics": [
+    {
+      "name": "Harnesses and scaffolding as the real lever",
+      "video_ids": [
+        "n9xKblqyQ28"
+      ],
+      "quote_ts": "3:59",
+      "quote": "just some wrapper and some scaffolding we can get to 95"
+    },
+    {
+      "name": "Context and memory management",
+      "video_ids": [
+        "NR01bkPag1c",
+        "n9xKblqyQ28"
+      ],
+      "quote_ts": "0:49",
+      "quote": "Only the top k semantically closest memories light up"
+    },
+    {
+      "name": "Local and on-device inference",
+      "video_ids": [
+        "wcqQDpRd7nM",
+        "n9xKblqyQ28"
+      ],
+      "quote_ts": "38:28",
+      "quote": "the local LMS are finally good enough"
+    },
+    {
+      "name": "Representation geometry as interpretability",
+      "video_ids": [
+        "FVpfCJfV110",
+        "xS7hFYpLqMo"
+      ],
+      "quote_ts": "0:47",
+      "quote": "By reading the geometric tilt of linear weights"
+    },
+    {
+      "name": "Self-improving and self-modifying systems",
+      "video_ids": [
+        "n9xKblqyQ28",
+        "MccJdr61xnc"
+      ],
+      "quote_ts": "14:16",
+      "quote": "you're letting the harness itself learn"
+    },
+    {
+      "name": "AI accelerating science through verifiability",
+      "video_ids": [
+        "mOvtumfyjCs",
+        "n9xKblqyQ28"
+      ],
+      "quote_ts": "7:36",
+      "quote": "Math is verifiable. That is the key."
+    },
+    {
+      "name": "Bringing the tool to the data instead of the app",
+      "video_ids": [
+        "MccJdr61xnc"
+      ],
+      "quote_ts": "23:04",
+      "quote": "we just started in the note we already had"
+    },
+    {
+      "name": "Open model community and easy deployment",
+      "video_ids": [
+        "wcqQDpRd7nM"
+      ],
+      "quote_ts": "2:06",
+      "quote": "we are standing with the open model community"
+    }
+  ]
+}

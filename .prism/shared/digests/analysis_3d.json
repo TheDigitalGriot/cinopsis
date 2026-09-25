@@ -1,0 +1,300 @@
+{
+  "unified_summary": "Taken together, these 22 videos argue that the bottleneck in AI 3D has moved from model capability to plumbing and craft. The technical verdict is unusually firm: agents should drive Blender through MCP servers (the official Blender MCP, Higgsfield's free plugin, Unity/Godot/Unreal MCPs) rather than computer use, which h_mR2BRibZ8 rules out entirely and 8MUk-tQTiwE watched spend ten minutes saving a single file. Three genuine through-lines follow. Blender is the unavoidable hub, whether hosting Higgsfield's viewport chat, previewing Rodin WorldGen's splats through a supplied script, or hiding 3,000 shortcuts across 280 key contexts. Parts-based generation beats one-shot meshes everywhere it is tested, from Tripo P2 creature limbs to Flux.2 Klein separation LoRAs feeding Trellis 2. And a rough 3D blockout has become the control layer for video models, with Ovi1xszAphk one-shotting Seedance 2.5 from a 17-minute canyon animation. Where they contradict each other is what remains human. h_mR2BRibZ8 rigs and animates a scorpion in two hours while gvPMjz08DDA calls rigging a generated non-humanoid impossible; 8MUk-tQTiwE builds whole scenes from one prompt while 6Ytluv_DiSo spends an hour placing assets by hand and insists placement is the art; and LmUd1rvZum4's benchmark undercuts everyone's 'it's cheap' framing.",
+  "topics": [
+    {
+      "name": "Blender as the hub every AI 3D workflow routes through",
+      "coverage": [
+        "uYjbylNqUpI",
+        "Ff_tdMsndzQ",
+        "JlmNBGcZ3Ik",
+        "LmUd1rvZum4",
+        "wknRD5g-vvk",
+        "6Ytluv_DiSo",
+        "QkLKpUDDdgo",
+        "h_mR2BRibZ8",
+        "Du8EjlPePYM",
+        "URjhE8QEhJU",
+        "KlzzBa1sZX0",
+        "o7VJnIN31Ds",
+        "RKND9_gAtXo"
+      ],
+      "consensus": "Every pipeline here passes through Blender regardless of what generated the asset: it hosts the Higgsfield extension and Blender MCP, receives Trellis 2 GLBs out of ComfyUI, runs the script that makes Rodin WorldGen's Gaussian splats previewable, and supplies the albedo re-export Du8EjlPePYM needs after Unreal retargeting strips textures. The framing differs sharply on why. The agentic videos treat Blender as an API surface the model manipulates, while wknRD5g-vvk, 6Ytluv_DiSo, URjhE8QEhJU and Ff_tdMsndzQ treat it as a craft workbench where hotkeys, sculpt brushes, knife cuts, UV seams and baking decide whether AI output is usable. uYjbylNqUpI supplies the underlying reason it absorbs all this: 280 context key maps and a consistent, mnemonic shortcut system make it learnable at scale.",
+      "entry": {
+        "video_id": "uYjbylNqUpI",
+        "timestamp": "3:08",
+        "quote": "I noticed how consistent Blender is across the board"
+      }
+    },
+    {
+      "name": "MCP access beats computer use for driving 3D tools",
+      "coverage": [
+        "h_mR2BRibZ8",
+        "nHBNa2IKWvk",
+        "8MUk-tQTiwE",
+        "QkLKpUDDdgo",
+        "ouACKu1cwoU",
+        "JlmNBGcZ3Ik"
+      ],
+      "consensus": "This is the closest thing to unanimity in the whole set: screen-clicking control of Blender is slow, token-expensive and shallow, while MCP servers let the agent go further and faster. nHBNa2IKWvk quantifies it as efficiency (no tokens burned on screenshots and clicks), 8MUk-tQTiwE as wall-clock waste (ten minutes to save a file, an hour on one samurai), h_mR2BRibZ8 as a hard prerequisite. The framing differs on strictness: 8MUk-tQTiwE says computer use works but is painful, whereas h_mR2BRibZ8 rules it out as a category error before starting. JlmNBGcZ3Ik extends the same idea sideways, using Figma MCP and Blender MCP so the agent can read a node graph rather than look at pictures of one.",
+      "entry": {
+        "video_id": "h_mR2BRibZ8",
+        "timestamp": "9:08",
+        "quote": "We are 100 % not doing this through computer use."
+      }
+    },
+    {
+      "name": "GPT-6 Astra as the headline 3D modeling and rigging agent",
+      "coverage": [
+        "8MUk-tQTiwE",
+        "h_mR2BRibZ8",
+        "nHBNa2IKWvk",
+        "Ovi1xszAphk",
+        "ouACKu1cwoU",
+        "lj-xPo7ueGA",
+        "nglqTHwuZ-8"
+      ],
+      "consensus": "Six of these creators independently make Astra the story of the cycle: clean weights plus an unrequested IK control rig (8MUk-tQTiwE), a rigged and animated scorpion with five animations (h_mR2BRibZ8), a bespoke quadruped skeleton and a weighted blink on a static mesh (nHBNa2IKWvk), a 30-second animated canyon chase in 17 minutes (Ovi1xszAphk), and a MotionBricks install delegated straight from a git URL (lj-xPo7ueGA). The framing splits on what it is for. ouACKu1cwoU treats it as a news item whose demos looked so good people accused them of using stolen assets, while nglqTHwuZ-8 deliberately refuses 3D demos and points the same Blender access at physical product design. nHBNa2IKWvk is the dissenting note on the model itself: out of the box it underdelivers, and only the MCP stack makes it capable.",
+      "entry": {
+        "video_id": "8MUk-tQTiwE",
+        "timestamp": "1:27",
+        "quote": "And there is no problem with weights."
+      }
+    },
+    {
+      "name": "Higgsfield's Blender plugin as the agent's toolbelt",
+      "coverage": [
+        "QkLKpUDDdgo",
+        "8MUk-tQTiwE",
+        "nHBNa2IKWvk",
+        "Ovi1xszAphk",
+        "lj-xPo7ueGA"
+      ],
+      "consensus": "Four creators converge on the same free plugin as the aggregator that puts 3D, image and video generation plus Blender operations behind one interface, and QkLKpUDDdgo walks the install (drag the zip onto a running Blender, authorize, verify under Edit > Preferences > Add-ons). The framing differs on trust. 8MUk-tQTiwE and nHBNa2IKWvk present it as a core stack component alongside Blender MCP and Unity MCP, while QkLKpUDDdgo shows the built-in scene builder failing twice to fix one mis-placed track section, and Ovi1xszAphk bypasses the plugin entirely for Higgsfield's Supercomputer because the plugin did not yet expose GPT-6 Astra.",
+      "entry": {
+        "video_id": "QkLKpUDDdgo",
+        "timestamp": "0:00",
+        "quote": "Higgsfield now has an extension that connects to Blender."
+      }
+    },
+    {
+      "name": "3D blockouts as the control layer for AI video and style",
+      "coverage": [
+        "Ovi1xszAphk",
+        "8MUk-tQTiwE",
+        "QkLKpUDDdgo",
+        "h_mR2BRibZ8",
+        "y9t-0-vj25s",
+        "KlzzBa1sZX0",
+        "URjhE8QEhJU"
+      ],
+      "consensus": "The strongest emerging consensus after MCP: render a rough 3D pass and feed it to a video model as reference instead of gambling on text-to-video. Ovi1xszAphk deliberately builds occlusions, crossing cars and 3/4-rear angles to break spatial logic, and Seedance 2.5 matches the blockout on the first try; QkLKpUDDdgo does the same with a 60-frame low-poly car sequence; y9t-0-vj25s runs the identical logic in iClone, where the 3D scene holds camera and timing steady while Nano Banana Pro and Seedance 2.0 swap the art style. The framing differs on purpose. Ovi1xszAphk and KlzzBa1sZX0 use 3D as disposable scaffolding for a video deliverable, while h_mR2BRibZ8 and URjhE8QEhJU reverse the arrow, generating video only as an animation reference the agent must match frame by frame in the actual rig.",
+      "entry": {
+        "video_id": "Ovi1xszAphk",
+        "timestamp": "11:12",
+        "quote": "one shotted the C dance 2.5 sequence"
+      }
+    },
+    {
+      "name": "Rigging and animation as the pipeline's weak link",
+      "coverage": [
+        "gvPMjz08DDA",
+        "URjhE8QEhJU",
+        "ouACKu1cwoU",
+        "nHBNa2IKWvk",
+        "h_mR2BRibZ8",
+        "Ff_tdMsndzQ",
+        "Du8EjlPePYM"
+      ],
+      "consensus": "Everyone agrees rigging is the gate, and nobody agrees on whether it is still shut. gvPMjz08DDA states flatly that a generated non-humanoid (a Tripo deer) cannot be rigged at all, while h_mR2BRibZ8 and nHBNa2IKWvk report agents producing working custom skeletons for a scorpion and a quadruped. URjhE8QEhJU occupies the honest middle: rigging only worked by splitting the character, borrowing a spider template for the lower half and a Mixamo skeleton for the humanoid half, then joining skeletons and hand-fixing weights. The framing also differs on route, with Du8EjlPePYM and Ff_tdMsndzQ sidestepping authored rigs entirely via retargeting and a skin-tokens workflow, and QkLKpUDDdgo conceding its 20-second AI animation floats with weird arms.",
+      "entry": {
+        "video_id": "gvPMjz08DDA",
+        "timestamp": "23:24",
+        "quote": "to do the rigging it's not there yet"
+      }
+    },
+    {
+      "name": "Retopology and normal baking are what make AI meshes usable",
+      "coverage": [
+        "URjhE8QEhJU",
+        "Ff_tdMsndzQ",
+        "6Ytluv_DiSo",
+        "wknRD5g-vvk",
+        "ouACKu1cwoU",
+        "h_mR2BRibZ8"
+      ],
+      "consensus": "The shared claim is that raw generated topology is unusable and the fix is quads plus high-to-low baking: URjhE8QEhJU and 6Ytluv_DiSo both bake normals so a decimated mesh reads as high poly, and both rate Tripo above Hunyuan on topology quality. The disagreement is over cost. Ff_tdMsndzQ says outright that open-source retopology is poor, showing AutoRemesher leaving holes and recommending the paid Quad Remesher or Tripo smart topology, while ouACKu1cwoU reports Microsoft's quad-topology model and TriFlow releasing code, and 6Ytluv_DiSo gets acceptable low poly straight out of Hunyuan's free smart-topology mode. h_mR2BRibZ8 argues the problem is avoidable upstream by generating at very low poly with quads in the first place.",
+      "entry": {
+        "video_id": "URjhE8QEhJU",
+        "timestamp": "11:38",
+        "quote": "Tripo retopology is still the best"
+      }
+    },
+    {
+      "name": "Split the subject into parts before generating anything",
+      "coverage": [
+        "Ff_tdMsndzQ",
+        "URjhE8QEhJU",
+        "h_mR2BRibZ8",
+        "6Ytluv_DiSo",
+        "wknRD5g-vvk",
+        "o7VJnIN31Ds"
+      ],
+      "consensus": "This is the most transferable technique in the set, and it is stated almost identically by creators working on different subjects: never generate the whole thing at once. Ff_tdMsndzQ uses a Flux.2 Klein separation LoRA to isolate head and armor onto white backgrounds, URjhE8QEhJU splits a spider-woman into logical parts that then drive assembly, animation and texture sharing, h_mR2BRibZ8 blames failed limbs and broken weights on single-mesh output, and 6Ytluv_DiSo circles regions of a concept image in Nano Banana to extract building blocks. The framing differs on the payoff claimed: detail and mesh quality for the character videos, versus token economy and reusable kit pieces for the level-building videos.",
+      "entry": {
+        "video_id": "Ff_tdMsndzQ",
+        "timestamp": "8:50",
+        "quote": "it will give us way more detail in the next step"
+      }
+    },
+    {
+      "name": "Free tiers and local hardware as the whole pipeline",
+      "coverage": [
+        "o7VJnIN31Ds",
+        "Ff_tdMsndzQ",
+        "Du8EjlPePYM",
+        "lj-xPo7ueGA",
+        "6Ytluv_DiSo",
+        "wknRD5g-vvk",
+        "URjhE8QEhJU",
+        "nHBNa2IKWvk",
+        "ouACKu1cwoU",
+        "RKND9_gAtXo"
+      ],
+      "consensus": "A large bloc argues the zero-dollar path is now complete end to end, but via two different routes. The cloud-free-tier route (6Ytluv_DiSo, wknRD5g-vvk, URjhE8QEhJU) leans on Hunyuan's 23 daily generations, Nano Banana in Google AI Studio, Moondiff texturing and free Blender add-ons like UV Packer and RetopoFlow. The local route (o7VJnIN31Ds, Ff_tdMsndzQ, Du8EjlPePYM, lj-xPo7ueGA) runs Trellis 2 in ComfyUI on 6GB of VRAM with quantization, or NVIDIA's motion models on pure CPU through community C++ ports. o7VJnIN31Ds makes the sharpest version of the argument: installation friction, not quality, was the barrier, and Kijai's pure-PyTorch rebuild removed it. RKND9_gAtXo is the same economics in miniature, with ArmorPaint free from source and paid as a binary.",
+      "entry": {
+        "video_id": "o7VJnIN31Ds",
+        "timestamp": "0:16",
+        "quote": "it will even run on just 6 GB of VRAM"
+      }
+    },
+    {
+      "name": "Human taste, assembly and level design still decide the result",
+      "coverage": [
+        "6Ytluv_DiSo",
+        "wknRD5g-vvk",
+        "gvPMjz08DDA",
+        "URjhE8QEhJU",
+        "QkLKpUDDdgo"
+      ],
+      "consensus": "The counterweight to the agentic videos: generated assets are not a level and generated mechanics are not a game. 6Ytluv_DiSo and wknRD5g-vvk spend an hour hand-placing a pier chunk, argue assembly order matters (size-known assets first, accessories last), and point out a rope is faster as a Bezier curve than as a generation. gvPMjz08DDA reaches the same conclusion from the opposite direction, finding an autonomous orchestrator nails mechanics but cannot build interesting levels, which he calls more than half a game. The framing differs on whether this is permanent: gvPMjz08DDA predicts designed, balanced levels will be the separator as everything else commoditizes, while QkLKpUDDdgo treats the artist-as-director stance as a temporary condition of very early tooling.",
+      "entry": {
+        "video_id": "6Ytluv_DiSo",
+        "timestamp": "23:54",
+        "quote": "AI alone will not be able to do that great job"
+      }
+    },
+    {
+      "name": "Cost and time per result, not raw quality, as the benchmark",
+      "coverage": [
+        "LmUd1rvZum4",
+        "nHBNa2IKWvk",
+        "8MUk-tQTiwE",
+        "Ovi1xszAphk",
+        "nglqTHwuZ-8"
+      ],
+      "consensus": "Everyone reports numbers, and they do not tell the same story. nHBNa2IKWvk prices a 2.5-hour Mario-64-style build at 30M tokens, about 7 percent of a weekly Max plan or roughly $46 on API, and 8MUk-tQTiwE reports over ten tests on the same 7 percent budget; Ovi1xszAphk measures in Higgsfield credits at about 500 per 30-second scene. LmUd1rvZum4 reframes all of it by benchmarking thirteen Blender tasks and concluding the premium model's edge is polish rather than capability, with Kimi K3 and Grok 4.6 delivering most of the quality at a fraction of price and time. nglqTHwuZ-8 exposes the hidden variable: $24,000 of measured weekly usage against a couple of $200 subscriptions, meaning the cheapness everyone reports is subsidy, not cost.",
+      "entry": {
+        "video_id": "LmUd1rvZum4",
+        "timestamp": "1:49",
+        "quote": "Kimik3 performed the best, especially with cost and time considered"
+      }
+    },
+    {
+      "name": "Tools built by practitioners for their own discipline",
+      "coverage": [
+        "jq_15AnOALM",
+        "uYjbylNqUpI",
+        "JlmNBGcZ3Ik",
+        "RKND9_gAtXo"
+      ],
+      "consensus": "A quieter through-line running under the AI coverage: the tools that fit are the ones whose authors do the work. jq_15AnOALM rebuilds a review player around animation's own vocabulary (frame exactness, versions stacked per clip, blocking/spline/polish/final statuses, onion skinning) because film-industry players never modeled passes. uYjbylNqUpI reaches the same conclusion empirically, finding Blender's 3,000 shortcuts coherent rather than arbitrary. JlmNBGcZ3Ik ships his own Asset Reloader add-on for hot-reloading exports, and RKND9_gAtXo documents ArmorPaint's build-it-yourself repo. The framing differs on distribution: jq_15AnOALM is proprietary with a free invite beta, while the others are open or self-built.",
+      "entry": {
+        "video_id": "jq_15AnOALM",
+        "timestamp": "2:10",
+        "quote": "a tool that is made by animators for animators"
+      }
+    }
+  ],
+  "disagreements": [
+    {
+      "topic": "Whether an AI can rig a generated non-humanoid creature today",
+      "positions": [
+        {
+          "video_id": "gvPMjz08DDA",
+          "position": "States it outright as a hard blocker: generated non-humanoid models, specifically a Tripo deer, cannot be rigged for animation at all. Animation and VFX libraries exist and the agent knows how to combine them, but the rigging step simply does not, which is why his four games rely on described libraries rather than custom creatures."
+        },
+        {
+          "video_id": "h_mR2BRibZ8",
+          "position": "Demonstrates the opposite on a scorpion: GPT-6 Astra working through the official Blender MCP from Codex CLI produced what he calls a fantastic rig in about thirty minutes, running its own tests repeatedly, then five animations in roughly two hours total. His condition is upstream preparation, generating the creature as separate low-poly quad parts rather than one solid mesh."
+        },
+        {
+          "video_id": "URjhE8QEhJU",
+          "position": "Lands in between and contradicts both framings. Rigging his spider-woman was only solved by splitting the problem: a spider template from a creature-rigging service for the lower body, an exported Mixamo skeleton with automatic weights for the humanoid half, then joining the skeletons and hand-fixing weights. He calls weight painting and rigging transitions between body types explicitly non-automatable."
+        },
+        {
+          "video_id": "nHBNa2IKWvk",
+          "position": "Reports custom rigging as the single biggest surprise of his whole MCP stack test: the agent built a bespoke skeleton for a quadruped from scratch and even weighted a blink animation onto a static mesh, which he presents as evidence that the remaining gap is tool plumbing rather than model capability."
+        }
+      ]
+    },
+    {
+      "topic": "Whether an agent can author a scene or level, or whether placement stays human",
+      "positions": [
+        {
+          "video_id": "8MUk-tQTiwE",
+          "position": "Argues a single prompt now produces a complete scene: a full shrine and island with procedural backgrounds and animated flames, plus a separate test rebuilding a reference image entirely from primitives with professionally set lighting and staged renders. He plays a timelapse specifically to prove no human placement was involved."
+        },
+        {
+          "video_id": "6Ytluv_DiSo",
+          "position": "Argues the opposite is where the craft lives. A good level is a curated kit of prepared building blocks assembled by hand, with assembly order mattering (size-known piers and ladders first, accessories last); the main pier chunk took an hour of manual placement and the cave 25 minutes, and he notes a rope is faster made from a Bezier curve than generated at all."
+        },
+        {
+          "video_id": "gvPMjz08DDA",
+          "position": "Tests an autonomous orchestrator across four complete games in loop mode and reports a clean split: it masters mechanics but cannot build interesting levels or locations, which he calls more than half of a game. His proposed fix is a level editor for humans, and he predicts designed, balanced levels will be what separates AI-built games."
+        },
+        {
+          "video_id": "QkLKpUDDdgo",
+          "position": "Shows the middle failure mode from inside the tooling: the Higgsfield scene builder generated a low-poly forest from one prompt and organized it into its own collection, but when asked twice to fix a mis-placed racetrack section it failed to pick up the problem, which he takes as evidence the artist is still the director."
+        }
+      ]
+    },
+    {
+      "topic": "Whether agentic 3D work is actually cheap, and which model is worth paying for",
+      "positions": [
+        {
+          "video_id": "8MUk-tQTiwE",
+          "position": "Presents cost as the surprise upside: more than ten separate Blender tests consumed only about 7 percent of a weekly limit on GPT-6 Astra, against a rival model where a single task drained the plan. Cheapness is the argument for adopting the frontier model now."
+        },
+        {
+          "video_id": "LmUd1rvZum4",
+          "position": "Contradicts that framing with a thirteen-task benchmark. Opus 5 generally produces the best output but is slowest and most expensive, taking 5 hours 39 minutes on one task and shipping chassis and tire bugs it never QA'd out, while Kimi K3 is repeatedly the cost winner and Grok 4.6 lands near Opus 5 quality at a fraction of price. His conclusion is that the premium model's edge is polish, not capability."
+        },
+        {
+          "video_id": "nglqTHwuZ-8",
+          "position": "Reframes the whole comparison as subsidy rather than price. He calls the model OpenAI's most expensive but efficient in steps, and reports measuring over $24,000 of usage in a single week against a couple of $200 subscriptions, which means the low weekly-limit percentages other creators quote are not the real cost of the work."
+        },
+        {
+          "video_id": "nHBNa2IKWvk",
+          "position": "Quantifies it in tokens instead and sides with affordability: a 2.5-hour Mario-64-style Unity build consumed 30 million tokens, about 7 percent of a weekly Max-plan limit or roughly $46 on API, and a trials-bike game 17 million, which he presents as cheap enough for hobbyist iteration."
+        }
+      ]
+    },
+    {
+      "topic": "Whether usable retopology requires paying for it",
+      "positions": [
+        {
+          "video_id": "Ff_tdMsndzQ",
+          "position": "Says plainly that open-source retopology is the weak link in an otherwise fully local pipeline: AutoRemesher leaves holes on the head model, and Blender's auto-remesh only works after merge-by-distance and a 0.002 voxel remesh. The genuinely good options are paid, Quad Remesher at $19 perpetual or Tripo's smart topology, which he calls the best auto-topology he has seen."
+        },
+        {
+          "video_id": "6Ytluv_DiSo",
+          "position": "Runs the entire asset pipeline on free tools and treats Hunyuan's smart-topology lab mode as sufficient for low-poly level props, positioning Tripo P2 only as an optional paid upgrade for better quads and high poly. The heavy lifting is done instead by decimating rocks from a million polygons to about a thousand and baking 4K normals in Blender."
+        },
+        {
+          "video_id": "ouACKu1cwoU",
+          "position": "Reports the paid gap closing from the research side: Microsoft's quad-topology model, which recalculates scans, reconstructions and AI meshes into editable quads, has code released, and TriFlow's retopology code is out although still under a non-commercial license. He frames quad topology as one of three fronts deciding whether AI output is production-usable."
+        }
+      ]
+    }
+  ]
+}

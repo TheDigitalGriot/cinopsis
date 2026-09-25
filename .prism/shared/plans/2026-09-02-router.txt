@@ -1,0 +1,6 @@
+Read the file .prism/shared/plans/2026-09-02-cinopsis-cookie-and-vault-CONTEXT.md in full, then execute Stage R (research only) exactly as that contract specifies.
+Use the prism code-intel agents graph-navigator and codebase-analyzer to map the code. Do not photocopy whole files; read only the slices you need.
+Do not edit any code. Do not run any network, yt-dlp, or YouTube calls. This is read-only research.
+Write your findings to .prism/shared/plans/2026-09-02-cinopsis-cookie-and-vault-FINDINGS.md.
+Print each heartbeat token on its own line as you finish that step: HB:R1-cookiepath, HB:R2-exporter, HB:R3-vaultflow, HB:R4-backfill, then HB:DONE.
+When finished, print the absolute path to the FINDINGS file.

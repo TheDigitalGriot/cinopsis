@@ -1,0 +1,85 @@
+{
+  "id": "ANJTdT0Ggrw",
+  "title": "Free LLM - for building, agents, images, etc. (title from repo catalog .prism/shared/pot/catalog_local.json; no description file present)",
+  "core_takeaway": "A guest (Tash/Tosh) demos an open-source project called Free LLM API: a local router that aggregates the free-tier quotas of ~45 model providers behind one unified API key, with automatic failover between providers serving the same model and a Thompson-sampling router that ranks models on reliability, speed and intelligence. He reports burning ~2.8 billion tokens (~$500 of value) at zero cost, and hands the unified key to coding agents (Claude Code, OpenCode, Cline) via a copy-paste CLI setup command. The stated boundary: providers encourage this for prototyping and experimentation, but using free quotas in production apps is discouraged.",
+  "key_points": [
+    "The dashboard shows ~2.8 billion tokens consumed and ~1.8 billion of monthly quota remaining, all from free tiers across providers.",
+    "Multiple providers often serve the same model, so they are bundled and an automatic fallback chain switches provider without changing the model — no silent mid-project model swap.",
+    "Distribution is broad: GitHub repo plus a macOS app, a Windows app, a Docker one-liner, a Google Play app and an iOS App Store app; the desktop app lives in the system tray.",
+    "Roughly 45 providers are configured; a dead provider key can be edited and replaced in the UI and traffic resumes.",
+    "The output is one unified API key you paste into an agent; an agents page carries automatic setup commands for Claude Code, OpenCode and Cline-style CLIs.",
+    "The router uses Thompson sampling (explore/exploit) to keep sending traffic to the best-ranked models while occasionally probing others to update the ranking.",
+    "Coverage is not text-only: embeddings for RAG, image, video and audio models, plus an experimental 'fusion' mode that combines multiple models into one output.",
+    "Providers reportedly encourage it — Alibaba is said to have asked for its models to be added as a funnel from free trial to paid usage.",
+    "Explicit caveat: some providers discourage free quotas in production codebases, so the guest recommends it for personal prototyping only."
+  ],
+  "why_it_matters": "This is the routing layer a multi-agent suite eventually needs anyway — provider abstraction, health-aware failover, and a bandit policy that scores models on the axis you care about — implemented against free tiers rather than paid ones. The design worth stealing is not the free tokens but the shape: one key, per-model multi-provider bundles, and explore/exploit ranking so the router learns which backend is actually good for a given job. The production caveat means treat it as a prototyping fixture, not a runtime dependency.",
+  "key_moments": [
+    {
+      "t": 0.0,
+      "label": "Premise: free LLM access for agents, images and building"
+    },
+    {
+      "t": 20.88,
+      "label": "Dashboard: ~$500 and 2.8B tokens consumed for free"
+    },
+    {
+      "t": 84.6,
+      "label": "Bundling providers serving the same model, auto failover"
+    },
+    {
+      "t": 167.52,
+      "label": "Where to get it: repo plus macOS/Windows/Docker/mobile apps"
+    },
+    {
+      "t": 221.4,
+      "label": "Unified API key handed to the coding agent"
+    },
+    {
+      "t": 253.72,
+      "label": "Agent setup commands"
+    },
+    {
+      "t": 434.32,
+      "label": "Router internals: Thompson sampling over reliability/speed/intelligence"
+    },
+    {
+      "t": 472.88,
+      "label": "Beyond text: embeddings, image, video, audio and 'fusion'"
+    }
+  ],
+  "oss": [
+    {
+      "name": "Free LLM API",
+      "slug": "",
+      "note": "The subject: open-source local router aggregating ~45 providers' free tiers behind one unified API key, with auto-failover and Thompson-sampling model ranking. The GitHub repo is shown on screen but its owner/name is never spoken and no description file exists, so no slug is guessed."
+    },
+    {
+      "name": "Claude Code",
+      "slug": "",
+      "note": "Named as a supported agent target for the unified key; Anthropic's CLI coding agent, not an open-source repo the video points to."
+    },
+    {
+      "name": "OpenCode",
+      "slug": "",
+      "note": "Named (captioned 'open code') as one of the agent CLIs with an automatic setup command; slug not stated in the video."
+    },
+    {
+      "name": "Cline (captioned 'fine')",
+      "slug": "",
+      "note": "Named as another coding agent that is harder to wire up manually and that the project auto-configures; the caption garbles the name, so the slug is left unresolved."
+    },
+    {
+      "name": "Hermes agent",
+      "slug": "",
+      "note": "The host's own agent, cited as something you can hand the unified key to directly; name spelling is uncertain from captions and the repo is never stated."
+    }
+  ],
+  "topics": [
+    "LLM routing",
+    "free tiers",
+    "coding agents",
+    "API gateways",
+    "bandit algorithms"
+  ]
+}

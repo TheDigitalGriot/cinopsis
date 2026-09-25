@@ -1,0 +1,8 @@
+Use the skill prism:griot-agent-architect.
+Read the stage contract at .prism/shared/plans/yt-ladder-fix-CONTEXT.md and execute it exactly as written.
+It carries the verified findings and the locked decisions, so do not re-investigate them and do not relitigate them.
+Load only what each numbered step needs. Use the Prism discovery agents - codebase-locator then codebase-analyzer - and query the code graph rather than reading whole files.
+Print each heartbeat token to stdout the moment its stage completes.
+The open profile-lock problem in the contract is the real work. Solve it, implement the winner, and write down why each rejected alternative lost.
+A rung is only proven by a transcript on disk, never by a clean exit code.
+Finish by printing DONE_YT_LADDER_FIX followed by a short report of what changed and the per-video segment counts from the live pull.

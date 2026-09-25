@@ -1,0 +1,47 @@
+import json, os, subprocess, sys, time
+REPO = r"C:\Users\digit\GriotApps\Cinopsis"
+TMP  = os.path.join(os.environ["TEMP"], "cinopsis_probe")
+VENV = r"C:\Users\digit\.claude\plugins\data\cinopsis-cinopsis\venv\Scripts\python.exe"
+sys.path.insert(0, os.path.join(REPO, "scripts"))
+os.chdir(REPO)
+
+ids = [l.strip() for l in open(os.path.join(TMP, "drain_ids.txt")) if l.strip()]
+# the one Gavin just added to AI News, newest at index 0
+ids = ["OyEHFmJ_fPs_PLACEHOLDER"] if False else ids
+
+prog = os.path.join(TMP, "drain_progress.txt")
+def beat(msg):
+    with open(prog, "a", encoding="utf-8") as f:
+        f.write(f"{time.strftime('%H:%M:%S')} {msg}\n")
+
+def gate():
+    p = os.path.join(REPO, "data", "fetch_ratelimit.json")
+    try:
+        return json.load(open(p))
+    except Exception:
+        return {}
+
+beat(f"START {len(ids)} ids")
+CH = 5
+for i in range(0, len(ids), CH):
+    chunk = ids[i:i+CH]
+    g = gate()
+    fs = g.get("fail_streak", 0)
+    door = (g.get("doors", {}).get("timedtext", {}) or {}).get("fail_streak", 0)
+    if fs or door:
+        beat(f"ABORT gate fail_streak={fs} timedtext={door} at chunk {i//CH+1}")
+        break
+    beat(f"chunk {i//CH+1}/{(len(ids)+CH-1)//CH} gate_ok fetching {len(chunk)}")
+    r = subprocess.run([VENV, r"scripts\fetch_transcripts.py", "--ids"] + chunk + ["--chunk", "5"],
+                       capture_output=True, text=True)
+    out = r.stdout or ""
+    got = out.count("cached ")
+    fail = out.count("FAILED ")
+    beat(f"chunk {i//CH+1} done cached={got} failed={fail}")
+    time.sleep(3)
+
+g = gate()
+beat(f"END gate fail_streak={g.get('fail_streak')} timedtext={(g.get('doors',{}).get('timedtext',{}) or {}).get('fail_streak')}")
+cached = sum(1 for v in ids if os.path.exists(os.path.join(REPO, "data", f"transcript_{v}.json")))
+beat(f"TOTAL cached {cached}/{len(ids)}")
+open(os.path.join(TMP, "DRAIN_DONE"), "w").write(f"{cached}/{len(ids)}")

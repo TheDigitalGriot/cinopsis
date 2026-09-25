@@ -1,0 +1,215 @@
+{
+  "unified_summary": "Watched together these thirteen videos are an argument about where capability actually lives, and they do not agree. The loudest claim is that it lives outside the weights: YC's harness night has Opus verified at 30% on the ARC-AGI-3 private holdout while scaffolding alone carries Prime Agent to 95.5% and an NVIDIA entry to 100%. Two Minute Papers pushes the opposite way, crediting a system more powerful than OpenAI's public models with settling Navier-Stokes blow-up in roughly 3.5 days, and the Riemann clip splits the difference, attributing the record-beating bound to about 650 failed attempts and a non-mathematician typing encouragement. Underneath that sits an older fight about representation. LpWM swaps the latent's target distribution from a Gaussian to a rectified Laplace, gets exactly-zero coordinates, and buys 24 to 57 points of planning success, about 70% versus 7% at width 768 with a 3M-parameter predictor. The ResNet history argues the reverse: a dense residual stream that layers edit in place, where the fix for vision transformers hiding global state in junk patches (85.2% versus 10.8% on cars) was adding dense register slots, not sparsifying. The feature-engineering primer, the motor-cortex null space and the Thanos and Netflix pieces restate the same methodological point from four unrelated fields: the shape of the container, not the size of the engine, decides what you can compute cheaply.",
+  "topics": [
+    {
+      "name": "Representation beats raw model capacity",
+      "coverage": [
+        "Oli_3IUjti4",
+        "FVpfCJfV110",
+        "QgH9sr7G13Q"
+      ],
+      "consensus": "All three agree that the win comes from reshaping what the model sees rather than enlarging the model, but they locate the reshaping at different layers. Oli_3IUjti4 does it by hand before training - family-size from the Titanic sibling and parent columns, dropping dead border pixels from MNIST's 784 - while FVpfCJfV110 learns it, changing one distributional target so a 3M-parameter predictor plans at about 70% where a dense code gives about 7%. QgH9sr7G13Q makes the strongest version of the claim historically: the 74-layer network's jump from 38.9% to 72.6% came from restructuring the data path, not from capacity, since the deep net already could have matched the shallow one.",
+      "entry": {
+        "video_id": "Oli_3IUjti4",
+        "timestamp": "0:13",
+        "quote": "Your algorithm is only as good as the representation"
+      }
+    },
+    {
+      "name": "Geometry as the interpretability instrument",
+      "coverage": [
+        "xS7hFYpLqMo",
+        "gAm5Athct6Y",
+        "FVpfCJfV110",
+        "QgH9sr7G13Q"
+      ],
+      "consensus": "These four all read meaning off the shape of a high-dimensional object rather than off an attribution score, and they treat that as the explanation itself. xS7hFYpLqMo is the minimal case - the boundary slope is -W1/W2, so the tilt is the feature importance - and gAm5Athct6Y scales the same move to 100 recorded neurons, where a flow field and a muscle-blind null space explain how preparation can be loud while the limb is still. FVpfCJfV110 and QgH9sr7G13Q differ in what they read: LpWM decodes a code's binary support to place the agent in a zone at about 97%, while the ResNet video reads the residual stream as shared working memory and proves it by deleting and shuffling layers of a 56-layer net with only small, smooth loss.",
+      "entry": {
+        "video_id": "xS7hFYpLqMo",
+        "timestamp": "0:47",
+        "quote": "By reading the geometric tilt of linear weights"
+      }
+    },
+    {
+      "name": "Scaffolding and self-modification versus model weights",
+      "coverage": [
+        "n9xKblqyQ28",
+        "QnGNF8k_uoc",
+        "mOvtumfyjCs",
+        "MccJdr61xnc"
+      ],
+      "consensus": "This is the session's live argument rather than a consensus. n9xKblqyQ28 makes scaffolding the whole story, tracing the lineage from GPT-2's while-not-EOS loop through MemGPT and ReAct to DSPy's genetic prompt search and Darwin-style machines that rewrite their own harness code. mOvtumfyjCs assumes the opposite - a bigger internal model, no harness talk - while QnGNF8k_uoc describes a setup with essentially no engineering at all, and MccJdr61xnc frames the harness as an authoring problem instead, where the agent's job is to emit a literate diff the author must pass a quiz on before merging.",
+      "entry": {
+        "video_id": "n9xKblqyQ28",
+        "timestamp": "3:59",
+        "quote": "just some wrapper and some scaffolding we can get to 95"
+      }
+    },
+    {
+      "name": "Tiered memory: what stays hot and what gets fetched",
+      "coverage": [
+        "NR01bkPag1c",
+        "n9xKblqyQ28",
+        "QMPCogrLTeA"
+      ],
+      "consensus": "All three build the same hot-plus-cold tier and differ only in the retrieval key. NR01bkPag1c ranks by cosine similarity and injects only the top-k so a trip-planning query is not buried under 'likes pizza', and n9xKblqyQ28 generalises that to an explicit L1/L2/L3 cache - weights, active context, then a live Python REPL and filesystem - with compaction called the oldest general harness tool. QMPCogrLTeA is the same architecture in infrastructure clothing: fresh data in the Prometheus sidecars, sealed blocks in S3 behind a store gateway, and one query layer fanning out, with the key being a time range instead of a semantic distance.",
+      "entry": {
+        "video_id": "NR01bkPag1c",
+        "timestamp": "0:49",
+        "quote": "Only the top k semantically closest memories light up"
+      }
+    },
+    {
+      "name": "Scale complexity is an endpoint, not a starting point",
+      "coverage": [
+        "juMinZqHAPQ",
+        "QMPCogrLTeA",
+        "n9xKblqyQ28"
+      ],
+      "consensus": "Each of these adds machinery only once a specific limit bites, and each names the tax it pays for it. juMinZqHAPQ is explicit that four stores for four access patterns is where Netflix ended up, not where it started, and prices it in duplicated state, eventual consistency (minute 40 on the TV, minute 35 on the phone) and per-store backups and on-call. QMPCogrLTeA works around exactly one limit - the retention window on a single pod's disk - and n9xKblqyQ28 applies the same discipline to agents, demoting the sandbox to a resource sized by workload and citing a rival harness that burned $5,000 for little gain.",
+      "entry": {
+        "video_id": "juMinZqHAPQ",
+        "timestamp": "2:01",
+        "quote": "Polyglot persistence is where big systems end up"
+      }
+    },
+    {
+      "name": "Verifiability as the accelerant for machine-made science",
+      "coverage": [
+        "mOvtumfyjCs",
+        "QnGNF8k_uoc",
+        "n9xKblqyQ28"
+      ],
+      "consensus": "These agree that automatic checkability, not raw reasoning, is what lets AI outrun humans in a domain, and both math videos point at the same infrastructure. mOvtumfyjCs makes it a rate argument - roughly 100 human-checked lessons per hour against 100 million automatically checked ones - and extends it speculatively to curing disease. QnGNF8k_uoc supplies the audit trail that claim needs, noting a formalized, automatically verifiable version of the proof you can run, and n9xKblqyQ28 shows the same instinct in engineering with a verifiers package that reproduces every eval in the talk.",
+      "entry": {
+        "video_id": "mOvtumfyjCs",
+        "timestamp": "7:36",
+        "quote": "Math is verifiable. That is the key."
+      }
+    },
+    {
+      "name": "One small knob unsticks a stuck field",
+      "coverage": [
+        "QgH9sr7G13Q",
+        "FVpfCJfV110",
+        "xS7hFYpLqMo",
+        "QnGNF8k_uoc"
+      ],
+      "consensus": "Each of these hangs a large result on a change small enough to state in a sentence, and three of the four are careful about where the change does nothing. QgH9sr7G13Q adds each layer pair's input to its output and takes a 74-layer net from 38.9% to 72.6%, while FVpfCJfV110 changes only the latent's target distribution and can recover the dense baseline exactly by setting the target back to a Gaussian - the same encoder, predictor and planner throughout. The honesty differs: FVpfCJfV110 reports Wall as a null result by design and admits sparse only ties dense at the top of the predictor ladder, whereas QnGNF8k_uoc's small change is procedural rather than technical and has no ablation at all.",
+      "entry": {
+        "video_id": "QgH9sr7G13Q",
+        "timestamp": "0:22",
+        "quote": "turned out to be a shockingly simple idea"
+      }
+    },
+    {
+      "name": "Local, on-device and open-weights inference",
+      "coverage": [
+        "wcqQDpRd7nM",
+        "n9xKblqyQ28",
+        "mOvtumfyjCs"
+      ],
+      "consensus": "All three want the model on hardware you own, but for different reasons and with different confidence. wcqQDpRd7nM is the tooling argument - two commands from a Hugging Face checkpoint to a deployable bundle, every demo on a consumer RTX 5090, with VRAM as the real constraint - and n9xKblqyQ28's Open Jarvis is the capability argument, claiming local models trail the frontier by only 6-12 months and that letting a cloud model tune the local config offline gave roughly 800x lower cost. mOvtumfyjCs arrives at local from privacy instead, citing OpenAI's line that it cannot rule out that data derived from the scientists' product usage helped improve its models.",
+      "entry": {
+        "video_id": "n9xKblqyQ28",
+        "timestamp": "38:28",
+        "quote": "the local LMS are finally good enough"
+      }
+    },
+    {
+      "name": "Shared state and the document as substrate",
+      "coverage": [
+        "MccJdr61xnc",
+        "n9xKblqyQ28"
+      ],
+      "consensus": "Both argue that state should live outside the box someone else drew around it, and both reached that conclusion by watching a prettier design fail. MccJdr61xnc abandoned Embark's spatial canvas of chained widgets because the team needed a note to think in, and now uses Notion HTML blocks plus alpha custom blocks with shared database state so multiple UIs coordinate. n9xKblqyQ28's QM makes the identical move in infrastructure, centralising all agent state in Postgres rather than trapping it in a per-user sandbox, which is what lets an agent's session survive the machine it started on.",
+      "entry": {
+        "video_id": "MccJdr61xnc",
+        "timestamp": "23:04",
+        "quote": "we just started in the note we already had"
+      }
+    }
+  ],
+  "disagreements": [
+    {
+      "topic": "Where the next increment of capability actually comes from: the harness, the weights, or neither",
+      "positions": [
+        {
+          "video_id": "n9xKblqyQ28",
+          "position": "Capability is mostly available without new weights. Opus was verified at 30% on the ARC-AGI-3 private holdout and harness work took Prime Agent to 95.5% on the same weights, so scaffolding deserves treatment as research rather than dismissal as a wrapper. The named mechanisms - L1/L2/L3 context caching, persistent messageable sub-agents, agentic garbage collection, wall-clock and token budgets, and harnesses that rewrite their own code - are things teams can copy today."
+        },
+        {
+          "video_id": "mOvtumfyjCs",
+          "position": "The breakthrough is attributed to raw model power, not scaffolding. OpenAI reportedly fired up a system more powerful than its public models and produced the Navier-Stokes blow-up result in roughly 3.5 days, and the explanation offered for the speed is that mathematics is automatically verifiable, not that anyone built a clever loop around the model. On this account the bottleneck shifts to which domains can be made verifiable, not to harness design."
+        },
+        {
+          "video_id": "QnGNF8k_uoc",
+          "position": "Neither engineering nor model choice is the binding constraint - persistence is. The operator, Jared, was not a mathematician and his input was described as mostly variants of keep going and believe in yourself, yet the first 650 attempts failed before an unreleased Claude improved a bound related to the Riemann hypothesis past the human record. The crucial result surfaced after about 37 minutes of silence, with the model flagging its own output as too strong to be new."
+        },
+        {
+          "video_id": "Oli_3IUjti4",
+          "position": "The premise of the whole argument is wrong for most practitioners, because the bottleneck is upstream of both model and harness. Practitioners default to bigger architectures when the actual problem is representation, and four pillars - transformation, construction, selection, extraction - should be run before writing a line of training code. A single engineered column like Titanic family size, or dropping MNIST's dead border pixels from 784, does what more layers will not."
+        }
+      ]
+    },
+    {
+      "topic": "Sparse versus dense latents: should a representation have exact zeros, or a fully occupied shared channel",
+      "positions": [
+        {
+          "video_id": "FVpfCJfV110",
+          "position": "Sparsity is the design variable. Replacing the Gaussian latent target with a rectified generalised Gaussian under RDMREG gives exactly-zero coordinates - 30-65% of coordinates active rather than 100% dense - which makes dynamics simple enough for near-linear predictors, worth 24 to 57 points of planning success on PushT and about 70% versus 7% at width 768. The paper concedes the ceiling: sparse only ties dense once the predictor is a six-layer DiT."
+        },
+        {
+          "video_id": "QgH9sr7G13Q",
+          "position": "The winning structure is a dense, unbroken residual stream that every block writes into, with layers acting as editors of shared memory rather than links in a hierarchy - which is why a 56-layer ResNet tolerates layer deletion and shuffling. When a model did spontaneously concentrate information into a few high-activation tokens, that was diagnosed as a pathology, and the fix was to add dedicated dense register slots, not to encourage sparsity; those hijacked embeddings scored 85.2% on cars against 10.8%."
+        },
+        {
+          "video_id": "gAm5Athct6Y",
+          "position": "Massive dense over-parameterisation is the feature, not the waste. Because neurons vastly outnumber muscles, the null space is enormous, and that surplus of muscle-blind directions is exactly what lets motor cortex hold a large, movement-specific preparatory state while the limb stays perfectly still. Compressing the representation toward the minimum needed for output would destroy the mechanism this video is built to explain."
+        },
+        {
+          "video_id": "Oli_3IUjti4",
+          "position": "Sparsity is worth having but should be imposed by deletion in the input space, before any model sees it, not learned in a latent. Flattening a 28x28 digit gives 784 columns of which the empty border pixels can simply be dropped, speeding training and improving accuracy. Where columns cannot be discarded, the prescription is PCA - rotating axes along maximum variance into dense orthogonal components - which is compression toward a fully occupied code, the opposite of exact zeros."
+        }
+      ]
+    },
+    {
+      "topic": "Whether the interesting work can be run on hardware you own",
+      "positions": [
+        {
+          "video_id": "n9xKblqyQ28",
+          "position": "Yes, and that is Open Jarvis's premise: the entire personal stack - inference, agent logic, memory, learning - can run on-device because local models now trail the frontier by only 6-12 months. Having a cloud model optimise the local configuration offline produced roughly 800x lower cost plus latency and quality gains, so the cloud becomes a one-time compiler rather than a runtime dependency."
+        },
+        {
+          "video_id": "wcqQDpRd7nM",
+          "position": "Yes, and the remaining obstacle is packaging rather than capability. Model Connect absorbs export, import and conversion so a supported open model goes from checkpoint name to end-to-end inference in two commands, with a build taking a minute or two for a small model and up to 45 minutes for a large one. Every demo ran on a consumer RTX 5090 with support back to roughly the Turing era, and fitting the model in VRAM is the real constraint."
+        },
+        {
+          "video_id": "mOvtumfyjCs",
+          "position": "Wants local for privacy but concedes the result was not obtainable there. The argument for running open-weights systems like DeepSeek locally rests on OpenAI saying only that it cannot rule out that data derived from the scientists' product usage helped improve its models - yet the Navier-Stokes result itself came from a system explicitly described as more powerful than anything OpenAI ships publicly, let alone anything runnable on a desktop."
+        },
+        {
+          "video_id": "QnGNF8k_uoc",
+          "position": "Implicitly no, at least for frontier research output. The bound past the human record came from an unreleased Claude model, not a public or open-weights one, and the run's shape - over 100 pages of transcripts, roughly 650 failed attempts, a 37-minute silent stretch - describes a budget of frontier inference that the local-first videos are not claiming to match."
+        }
+      ]
+    },
+    {
+      "topic": "Duplicated state: an operational tax to minimise, or the mechanism itself",
+      "positions": [
+        {
+          "video_id": "juMinZqHAPQ",
+          "position": "Duplication is named as the first and root cost of polyglot persistence: the same fact lives in multiple places, so a pause position at minute 40 is written to Cassandra and also cached for the continue-watching row. Keeping them in sync is hard when watch progress changes every few seconds for millions of viewers, so the stores agree eventually rather than instantly, and the user sees minute 40 on the TV and minute 35 on the phone."
+        },
+        {
+          "video_id": "QMPCogrLTeA",
+          "position": "Duplication is prescribed as the fix. Because a single Prometheus pod loses the most recent minutes if it dies, the design runs two replicas for redundancy on fresh data, and the same blocks are deliberately copied out to S3 by the Thanos sidecar so they outlive the retention window. Thanos Query then hides the resulting overlap by fanning out and returning one clean answer to Grafana."
+        },
+        {
+          "video_id": "NR01bkPag1c",
+          "position": "Duplication is the entire retrieval mechanism. Every stored memory is copied into a second, dense-vector form by an embedding model, and the query is embedded too, precisely so cosine similarity can rank them; without that redundant representation there is no top-k to inject. The cost being optimised here is not storage or consistency but context - token waste and prompt dilution."
+        }
+      ]
+    }
+  ]
+}

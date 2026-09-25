@@ -1,0 +1,75 @@
+{
+  "id": "OQipTxv9Qv0",
+  "title": "I Tested Every GPT-6 Astra Effort Level. Here's What I'd Use (title from repo catalog .prism/shared/pot/catalog_local.json; no description file present)",
+  "core_takeaway": "The presenter ran one identical research-and-build prompt across every GPT-6 Astra effort level (low, medium, high, extra high, max, ultra) plus Soul high as a control, holding context, tools/MCPs, skills, scope and conditions constant, and logging wall time and token spend for each. Higher effort did not buy proportionally better output or more autonomy: token spend was non-monotonic (low ~15M, medium ~10M, high ~14M, extra high ~12M, max ~10M, ultra ~22M) and quality plateaued between medium and high, with extra-high output measurably worse than high. His practical conclusion is Astra medium on fast mode for day-to-day work, with high only when you want a small quality bump.",
+  "key_points": [
+    "OpenAI's own docs say the model is designed to be a more effective collaborator and 'more likely to ask questions', which the presenter identifies as the documented root of the perceived laziness.",
+    "The threads were spun up by asking Codex itself to create multiple named threads, each pinned to a different effort level, all running the same prompt simultaneously — a trick that works in both Claude and Codex.",
+    "The task was deliberately multi-part: research X and Reddit for a SaaS opportunity for service businesses of 2-20 employees, evidence three alternatives, build an Excalidraw-style diagram file without using a skill, build a polished explainer site, and build a working prototype.",
+    "The key prompt line was 'assume customers and competitors can use Astra to reproduce competent software quickly' — i.e. do not propose a SaaS that can be vibe-coded in a weekend; there must be a moat.",
+    "Measured results: low 37min/~15M tokens/8 Reddit threads and zero X evidence; medium 30min/~10M; high 40min/~14M and the first X sourcing; extra high 45min/~12M; max 46min/~10M and again no X; ultra 42min/~22M.",
+    "Token spend is not a proxy for effort level and is highly unpredictable across runs, while wall time stayed roughly comparable — the presenter cites this as evidence against the AGI framing.",
+    "Extra high produced a site on par with high visually but worse underneath: fewer references, less detail, plainer canvas — more spend for less substance.",
+    "Four of six effort levels independently converged on the commercial/residential cleaning industry despite the prompt never naming a vertical.",
+    "The Soul high control took 32 minutes and only ~6M tokens and produced a functional but visually poor site, which the presenter frames as: Astra is much better at generating a polished site, but Soul plus a site-building skill may be the cheaper path."
+  ],
+  "why_it_matters": "This is an empirical answer to a question every agent-suite builder has to price: effort/reasoning knobs are sold as a quality dial but behave as an unpredictable cost dial, so defaults should sit at medium with escalation reserved for specific task shapes. The multi-thread self-spawning trick is a cheap harness for running your own A/B evals on model settings, and the 'assume competitors can vibe-code this' prompt line is a reusable filter for moat-testing product ideas.",
+  "key_moments": [
+    {
+      "t": 46.0,
+      "label": "Origin: the claim that Astra low beats Soul high"
+    },
+    {
+      "t": 133.0,
+      "label": "The six controlled variables for the experiment"
+    },
+    {
+      "t": 150.0,
+      "label": "Trick: have Codex spawn and label per-effort-level threads"
+    },
+    {
+      "t": 162.0,
+      "label": "The single prompt sent to all seven threads"
+    },
+    {
+      "t": 446.0,
+      "label": "Results: medium"
+    },
+    {
+      "t": 574.0,
+      "label": "Results: extra high and the unpredictable token spend"
+    },
+    {
+      "t": 774.0,
+      "label": "Results: ultra at ~22M tokens"
+    },
+    {
+      "t": 928.0,
+      "label": "Verdict: Astra medium on fast mode as the default"
+    }
+  ],
+  "oss": [
+    {
+      "name": "Excalidraw (captioned 'Excal')",
+      "slug": "excalidraw/excalidraw",
+      "note": "The hand-drawn-style diagram format the models were told to produce directly as JSON without using a helper skill, used as one axis of the comparison."
+    },
+    {
+      "name": "OpenAI Codex",
+      "slug": "openai/codex",
+      "note": "The agent harness used to run every thread, including the self-spawning multi-thread setup at different effort levels."
+    },
+    {
+      "name": "MCP (Model Context Protocol)",
+      "slug": "modelcontextprotocol/modelcontextprotocol",
+      "note": "Named as one of the controlled variables — every thread got the same tools, MCP servers and skills."
+    }
+  ],
+  "topics": [
+    "model evaluation",
+    "reasoning effort",
+    "agent cost",
+    "Codex",
+    "benchmarking"
+  ]
+}

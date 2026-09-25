@@ -15,7 +15,7 @@ __pycache__/
 .superpowers/
 
 # Prism working directory
-.prism/
+.prism/local/
 
 # Design docs are tracked
 !docs/

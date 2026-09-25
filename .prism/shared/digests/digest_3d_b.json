@@ -1,0 +1,728 @@
+{
+  "videos": {
+    "nHBNa2IKWvk": {
+      "summary": "A walkthrough of the creator's GPT-6 (Astra) agentic setup for 3D game creation: Codex CLI in YOLO mode plus Blender, Unity, Godot and Higgsfield MCPs, demonstrated on several playable prototypes. ASR garbles several names: 'Hicksfield/Hicksville/Higgs field' is Higgsfield, 'Go Doat/go dot' is Godot, 'ZDance/C-dance 2.5' is Seedance 2.5, '3gs' is three.js, 'full MCP/full AI' is fal.ai, 'SILA' is unclear; a few short mid-sentence gaps exist around 08:57 and 13:38 but the transcript is otherwise complete.",
+      "digest": {
+        "core_takeaway": "GPT-6 out of the box underdelivers; wiring it to Codex CLI plus a stack of mostly free MCP servers turns it into a genuinely capable 3D game-building agent. The creator's tests produced playable Unity, three.js and Godot prototypes for a few dollars of plan usage.",
+        "key_points": [
+          "Run Codex CLI (not the desktop app) with approvals bypassed in a project folder so MCPs and skills install and load automatically.",
+          "Core stack is Unity MCP Server (open source, from a community dev), Blender MCP, the Higgsfield Blender plugin/MCP, Godot MCP and Poly AI.",
+          "MCP beats computer-use control of Blender: far faster and it does not burn tokens on screenshots and clicks.",
+          "Custom rigging was the biggest surprise - it built a bespoke skeleton for a quadruped and even weighted a blink animation on a static mesh.",
+          "Cost is the headline: a 2.5-hour Mario-64-style build was 30M tokens (about 7% of a weekly Max-plan limit, roughly $46 on API); the trials-bike game was 2 hours and 17M tokens.",
+          "An 'image to 3D' skill produced an interactive clickable typewriter; procedural VFX spells in three.js came with full parameter controls.",
+          "For other engines: Godot MCP installs without Godot present, and VibeUE plus Unreal's native MCP (5.8+) is the recommended Unreal combo."
+        ],
+        "why_it_matters": "It shows the bottleneck in AI 3D work has moved from model capability to tool plumbing, and that a free/open MCP stack now closes most of the gap. The cost comparison also reframes agentic 3D work as cheap enough for hobbyist iteration."
+      },
+      "oss": [
+        {
+          "name": "Codex CLI",
+          "slug": null,
+          "what": "Terminal agent runner used with approvals bypassed so it works uninterrupted in a project folder."
+        },
+        {
+          "name": "Unity MCP Server",
+          "slug": null,
+          "what": "Open-source MCP from a community studio that lets the agent drive, run and test Unity projects."
+        },
+        {
+          "name": "Blender MCP",
+          "slug": "ahujasid/blender-mcp",
+          "what": "Native Blender MCP server exposing Blender operations to the agent."
+        },
+        {
+          "name": "Higgsfield Blender plugin / MCP",
+          "slug": null,
+          "what": "Free plugin exposing 3D, image and video generation plus many Blender tools to the agent."
+        },
+        {
+          "name": "Godot MCP",
+          "slug": null,
+          "what": "Community MCP that builds Godot games without Godot itself installed."
+        },
+        {
+          "name": "VibeUE",
+          "slug": null,
+          "what": "Free (registration-required) Unreal Engine agent tooling, paired with UE 5.8's native MCP."
+        },
+        {
+          "name": "fal.ai MCP server",
+          "slug": null,
+          "what": "Broadest model coverage (sound, music, video, 3D) but requires manual model selection."
+        },
+        {
+          "name": "three.js",
+          "slug": "mrdoob/three.js",
+          "what": "Used for the procedural VFX and jelly-physics browser demos."
+        }
+      ],
+      "key_moments": [
+        {
+          "timestamp": "1:55",
+          "label": "Use Codex CLI",
+          "description": "First recommendation: install Codex CLI instead of the ChatGPT/Codex desktop app and run it per-folder."
+        },
+        {
+          "timestamp": "3:38",
+          "label": "The MCP list",
+          "description": "Shows his installed MCPs - Blender, Godot, Higgsfield, Poly AI and Unity - and argues that's all you need for a 3D game."
+        },
+        {
+          "timestamp": "6:15",
+          "label": "MCP vs computer use",
+          "description": "Explains MCP is far more efficient than computer use, which is slow and burns tokens for no reason."
+        },
+        {
+          "timestamp": "8:06",
+          "label": "Time and token cost",
+          "description": "The first Unity game took 2.5 hours and 30 million tokens - about 7% of his weekly Max-plan limit."
+        },
+        {
+          "timestamp": "9:31",
+          "label": "Image-to-3D skill",
+          "description": "Installs an image-to-3D skill by pasting a link, producing an interactive typewriter you can actually type on."
+        },
+        {
+          "timestamp": "17:09",
+          "label": "Godot and Unreal paths",
+          "description": "Recommends Godot MCP for Godot and VibeUE plus UE 5.8's native MCP for Unreal."
+        }
+      ]
+    },
+    "Ovi1xszAphk": {
+      "summary": "A start-to-finish demo of using GPT-6 Astra to build an animated 30-second canyon car-chase scene in Blender, then feeding the playblast plus character sheets into Seedance 2.5 as a video reference. ASR garbles 'Seedance 2.5' as 'C-DANCE/C dance', 'Higgsfield' as 'Higgs Field/Higgs Build', and the image model named around 08:04 as 'GPT-2'; the transcript is otherwise complete.",
+      "digest": {
+        "core_takeaway": "Blocking a scene in Blender with GPT-6 Astra and using the rendered playblast as a video reference gives Seedance 2.5 camera and spatial control that text-to-video cannot match. The whole build took 17 minutes and about 500 credits.",
+        "key_points": [
+          "Work was driven through Higgsfield's Supercomputer because the Blender plugin did not yet expose GPT-6 Astra.",
+          "A pasted Blender specification produced a modeled canyon road in 5 minutes 28 seconds and a fully animated 30-second scene in 17 minutes 23 seconds.",
+          "Astra's speed versus Claude is the stated benefit; three versions averaged roughly 500 credits each, camera and car animation included.",
+          "Camera moves were deliberately made hard - cars crossing, occluding each other, 3/4-rear angles - to stress-test spatial logic that text-to-video breaks on.",
+          "Cars were generated as separate character-sheet images (no IP logos or plates) and plugged in as image references alongside the playblast video.",
+          "Because the cameras are locked into the Blender animation, restyling the shot (2D, animated, other looks) only requires re-rendering the car references.",
+          "Closing note: Higgsfield shipped '3D jutsu' right after filming, which can skip Blender entirely, though the creator prefers the extra control."
+        ],
+        "why_it_matters": "It hands experienced 3D artists a concrete place to insert their existing skills into an AI video pipeline. It also turns video generation from a lottery into a directable, re-renderable process that saves credits over repeated text-to-video attempts."
+      },
+      "oss": [
+        {
+          "name": "Blender",
+          "slug": null,
+          "what": "Where the canyon scene, car animation and camera moves are built and playblasted."
+        },
+        {
+          "name": "DaVinci Resolve",
+          "slug": null,
+          "what": "Used to compare the Blender playblast and the generated video side by side."
+        }
+      ],
+      "key_moments": [
+        {
+          "timestamp": "0:52",
+          "label": "Why Supercomputer",
+          "description": "Uses Higgsfield's Supercomputer because the Blender plugin does not have GPT-6 Astra yet."
+        },
+        {
+          "timestamp": "2:08",
+          "label": "Road in 5 minutes",
+          "description": "The canyon road is modeled in 5 minutes and 28 seconds from the pasted specification."
+        },
+        {
+          "timestamp": "2:56",
+          "label": "Credit cost",
+          "description": "Credit counter shown at 22,900; three versions of the scene averaged about 500 credits each."
+        },
+        {
+          "timestamp": "4:24",
+          "label": "Scene finished",
+          "description": "After 17 minutes 23 seconds the full project including preview images is done."
+        },
+        {
+          "timestamp": "5:53",
+          "label": "Stressing spatial logic",
+          "description": "Explains the deliberately difficult camera and car crossings designed to break spatial consistency."
+        },
+        {
+          "timestamp": "11:10",
+          "label": "One-shot result",
+          "description": "The Seedance 2.5 generation matches the blockout on the first try, shown side by side."
+        },
+        {
+          "timestamp": "12:02",
+          "label": "Cameras locked in",
+          "description": "Restyling to 2D or animation only needs the car references re-rendered; the camera work is preserved."
+        }
+      ]
+    },
+    "ouACKu1cwoU": {
+      "summary": "A weekly 3D-AI news roundup covering GPT-6 Astra's 3D modeling ability, image-to-editable-world generators, local rigging and animation tools, PixArt 3D multiview, Unreal Engine 5.9 and a new World Labs world model. Heavy ASR garbling of names: 'Lumera/Lumina' (the editable-worlds paper), 'Kimoto/Kimodo CPP', 'Pixai/Pixart 3D', 'Squad Gen' (Microsoft's quad-topology model), 'Word Labs' for World Labs and 'skin token'; the transcript itself is complete.",
+      "digest": {
+        "core_takeaway": "The week's throughline is that AI 3D is shifting from single objects to full editable worlds, and from cloud services to things that run locally. GPT-6 Astra is the headline because it models and builds games well enough that people accused its demos of being stolen assets.",
+        "key_points": [
+          "A new paper generates editable, layered worlds from one image with light passes and accurate assembly - pure 3D rather than splat-only, with Blender and Unreal export shown, but no code or weights released.",
+          "GPT-6 Astra is singled out for 3D: voice-driven Blender modeling, three.js interactive exploded-view demos, detailed locomotive builds with sane non-triangulated topology, and full working games.",
+          "OpenAI also published an architectural-visualization breakdown showing how they structured a whole house build with GPT-6.",
+          "Hyper3D shipped a usable image-to-world tool with part extraction, scene placement and 3DGS backgrounds, including a Blender export that previews splats via their own script.",
+          "Local tooling: a CPP port runs rigging and animation on CPU only, with companion real-time animation and mesh-retargeting workflows from the same developer.",
+          "PixArt 3D added multiview input, fixing its long-standing guessing of side and back views; inference code is out, ComfyUI support is not.",
+          "Unreal Engine 5.9 was sneak-peeked with an Epic Developer Assistant, semantic search and an AI enhancement layer over rendered frames; World Labs released Atlas, a next-gen world model with smooth camera paths.",
+          "Retopology news: Microsoft's quad-topology model has code released, and TriFlow's retopology code is out but still non-commercial."
+        ],
+        "why_it_matters": "It maps where the 3D AI stack is consolidating: editable worlds, quad topology and local inference are the three fronts that decide whether AI output is production-usable. Several of these tools are free or open, so the barrier is dropping fast."
+      },
+      "oss": [
+        {
+          "name": "Hyper3D world generator",
+          "slug": null,
+          "what": "Image-to-3D-world tool with part extraction, scene placement, 3DGS backgrounds and Blender export."
+        },
+        {
+          "name": "Kimodo CPP",
+          "slug": null,
+          "what": "CPU-only local port for rigging/animation, with a browser demo and GLB output for retargeting."
+        },
+        {
+          "name": "Motion Bricks CPP",
+          "slug": null,
+          "what": "Real-time pose-driven animation plus a mesh retargeting workflow from the same developer."
+        },
+        {
+          "name": "Mini Face",
+          "slug": null,
+          "what": "Free webcam face capture recording ARKit-style shape keys and motion as a track for game engines."
+        },
+        {
+          "name": "PixArt 3D",
+          "slug": null,
+          "what": "Local 3D generation model; multiview input added with inference code released."
+        },
+        {
+          "name": "Atlas (World Labs)",
+          "slug": null,
+          "what": "Next-gen world model stitching one or more images into a navigable 3D world; waitlist only."
+        },
+        {
+          "name": "TriFlow",
+          "slug": null,
+          "what": "AI retopology research with code now released under a non-commercial license."
+        },
+        {
+          "name": "Microsoft quad-topology model",
+          "slug": null,
+          "what": "Recalculates scans, reconstructions and AI meshes into editable quad topology; code released."
+        },
+        {
+          "name": "ComfyUI",
+          "slug": "comfyanonymous/ComfyUI",
+          "what": "Referenced as the local node workflow where these models are expected to land."
+        }
+      ],
+      "key_moments": [
+        {
+          "timestamp": "0:23",
+          "label": "Editable worlds paper",
+          "description": "Opens with a paper generating editable, multi-layer worlds from one image prompt, with light passes and accurate assembly."
+        },
+        {
+          "timestamp": "1:27",
+          "label": "GPT-6 Astra for 3D",
+          "description": "Covers the release and why it matters: voice-driven Blender modeling, detailed topology and full working games."
+        },
+        {
+          "timestamp": "4:02",
+          "label": "Hyper3D image-to-world",
+          "description": "A world generator you can actually try, with auto part extraction and 3DGS backgrounds that export into Blender."
+        },
+        {
+          "timestamp": "5:07",
+          "label": "Local CPU rigging",
+          "description": "A CPP port runs rigging and animation locally without a GPU, with a browser demo and GLB export."
+        },
+        {
+          "timestamp": "7:06",
+          "label": "PixArt 3D multiview",
+          "description": "Multiview support lands, removing the need to guess side and back views from a single front image."
+        },
+        {
+          "timestamp": "8:45",
+          "label": "Atlas by World Labs",
+          "description": "A next-gen world model that stitches images into smooth, camera-controllable 3D worlds, including robotics sims."
+        }
+      ]
+    },
+    "KlzzBa1sZX0": {
+      "summary": "A hands-on review of Rodin/Hyper3D's WorldGen, which turns a single image into an editable 3D scene mixing extracted meshes with a 3D Gaussian Splat background, then exports to Blender and Unreal. ASR garbles 'Rodin' as 'Rodent/Rodeon', 'physics correction' as 'Fizz Correction', and the Unreal splat plugin name (heard as 'NanoJS'); a couple of stray non-English words appear but the transcript is complete.",
+      "digest": {
+        "core_takeaway": "WorldGen is the most complete image-to-editable-world tool available right now: real meshes you can edit, a splat background, physics properties, and working exports into Blender and Unreal. Its strongest near-term use is blocking out shots for AI video rather than shipping game environments.",
+        "key_points": [
+          "Two extraction modes: auto, which finds objects one by one and builds the 3D space in real time, or manual pin-based selection with add/remove points.",
+          "Every extracted object can be examined, regenerated, boundary-refined, or have its source image edited - useful for splitting a group of barrels into single props.",
+          "SimReady adds AI-assigned physical properties for robotics training, but forces USDZ export since that format carries the physics data.",
+          "Physics correction re-composes objects to match their placement in the source image - not perfectly accurate, but accurate enough to work with.",
+          "3DGS environment generation has fast and high-quality modes; the high-quality option advertises 10 minutes but took 15-20 in testing.",
+          "A bundled Blender script makes splats preview correctly despite Blender lacking native splat support, and it does not lag - meshes stay editable alongside.",
+          "Unreal import worked within minutes via a splat plugin; a built-in AI Render feature turns the assembled scene into images or video.",
+          "Rodin offers a two-week free trial for new users and does not charge per click, though video generation still consumes credits."
+        ],
+        "why_it_matters": "Batch-extracting a whole image's worth of props into usable meshes collapses a tedious part of environment art. And having a complete scene with background you can actually direct shots in is something no video AI tool currently offers."
+      },
+      "oss": [
+        {
+          "name": "Rodin / Hyper3D WorldGen",
+          "slug": null,
+          "what": "Image-to-editable-3D-world tool with part extraction, 3DGS backgrounds and multi-engine export."
+        },
+        {
+          "name": "Blender",
+          "slug": null,
+          "what": "Export target; a provided script enables splat preview despite no native support."
+        },
+        {
+          "name": "Unreal Engine",
+          "slug": null,
+          "what": "Second export target, running the optimized splats via a third-party splat plugin."
+        }
+      ],
+      "key_moments": [
+        {
+          "timestamp": "0:21",
+          "label": "WorldGen drops",
+          "description": "Introduces Hyper3D's WorldGen, released August 31st, as a one-image-to-editable-world tool."
+        },
+        {
+          "timestamp": "0:55",
+          "label": "Auto vs manual extraction",
+          "description": "Shows auto part-by-part extraction building the scene live, then manual pin-based object selection."
+        },
+        {
+          "timestamp": "2:46",
+          "label": "SimReady physics",
+          "description": "AI-assigned physical properties for robotics simulation, exportable only as USDZ."
+        },
+        {
+          "timestamp": "4:09",
+          "label": "3DGS environment",
+          "description": "Two quality tiers for the splat background; the high-quality pass actually took 15-20 minutes."
+        },
+        {
+          "timestamp": "6:29",
+          "label": "Splats in Blender",
+          "description": "A supplied script renders good-quality splats in Blender via a proxy object, with no lag and editable meshes."
+        },
+        {
+          "timestamp": "7:56",
+          "label": "Running it in Unreal",
+          "description": "Imports the scene into Unreal with a splat plugin in a few minutes; splats are already optimized."
+        }
+      ]
+    },
+    "URjhE8QEhJU": {
+      "summary": "A full step-by-step pipeline for creating non-humanoid characters with AI - a Japanese spider-woman - covering reference generation, part extraction, 3D generation, Blender assembly, retopology, UV/baking, texturing, rigging and animation. ASR garbles 'Lychee Studio' as 'litchi/leachy', 'Hunyuan' as 'Hunyon', 'AccuRIG' as 'akrig/acric/accurac', 'Mixamo' as 'exam or', 'Seedance 2.5' as 'cdance 2.5' and 'Moondiff' inconsistently; the transcript also drops a few words mid-sentence (e.g. around 07:45 and 23:00) and cuts off on the final outro word.",
+      "digest": {
+        "core_takeaway": "Creatures are beyond one-shot AI generation, so the working method is to split the character into logical parts, generate each separately, and assemble in Blender. The hard, non-automatable steps remain UV mapping, weight painting and rigging transitions between body types.",
+        "key_points": [
+          "Part splitting is the whole game: it drives assembly, animation and optimization (one big leg mirrored six times shares a texture), and prop extraction tooling makes it fast.",
+          "Choose generation mode per part - low poly straight away for hair and head, high poly plus retopology and baking for body, armor and limbs.",
+          "Assembly happens in Blender's sculpt mode with about five or six brushes; elastic wrap and snake hook do most of the reshaping, with mirror modifiers for symmetry.",
+          "Tripo retopology is rated best, though its models return in a different position than they were sent, unlike Hunyuan's; the polygon budget per part needs a few retries.",
+          "UV is the step AI still cannot do reliably - manual seams in Blender, checked with UV stretch preview and packed with a free UV packer add-on.",
+          "Normal and ambient-occlusion baking from high to low poly (Blender or Marmoset) is what makes the low-poly result read as high poly.",
+          "Texturing in most 3D AI ignores your baked normal map; Moondiff is recommended because it respects it, using projection plus brush patching.",
+          "Rigging was solved by splitting the character: a spider template from a creature-rigging service for the lower body, plus an exported Mixamo skeleton parented with automatic weights for the humanoid half - then joining skeletons and hand-fixing weights.",
+          "Animation combined ready-made clips with Seedance 2.5 reference videos and Claude Code-driven procedural/IK animation in Unity and Unreal - explicitly not one-shot."
+        ],
+        "why_it_matters": "It is a realistic accounting of where AI genuinely saves time in character work and where human 3D skill is still mandatory. Anyone planning a creature-heavy game gets a map of which steps to budget real hours for."
+      },
+      "oss": [
+        {
+          "name": "Lychee Studio",
+          "slug": null,
+          "what": "Hub used for prop extraction, multiview, Tripo generation, retopology and some texturing; free credits on signup."
+        },
+        {
+          "name": "Tripo (P1/P2)",
+          "slug": null,
+          "what": "3D generation and retopology; P2 supports low poly directly and is rated best for retopology."
+        },
+        {
+          "name": "Hunyuan 3D",
+          "slug": null,
+          "what": "Alternative generator/retopology; worse quality but returns models in their original position."
+        },
+        {
+          "name": "Blender",
+          "slug": null,
+          "what": "Assembly, sculpting, UV, baking, weight painting and skeleton joining."
+        },
+        {
+          "name": "RetopoFlow",
+          "slug": "CGCookie/retopoflow",
+          "what": "Free Blender add-on for manually rebuilding broken low-poly areas over the high-poly source."
+        },
+        {
+          "name": "UV Packer",
+          "slug": null,
+          "what": "Free add-on that packs UV islands neatly before texturing."
+        },
+        {
+          "name": "Moondiff",
+          "slug": null,
+          "what": "Free AI texturing tool that respects the baked normal map, with projection and patch brushes."
+        },
+        {
+          "name": "Marmoset",
+          "slug": null,
+          "what": "Alternative baking tool with a cage, described as easier for beginners than Blender."
+        },
+        {
+          "name": "Mixamo",
+          "slug": null,
+          "what": "Source of an exported T-pose skeleton used for the humanoid half via automatic weights."
+        },
+        {
+          "name": "AccuRIG",
+          "slug": null,
+          "what": "Marker-based auto-rigger that also worked for the upper body."
+        },
+        {
+          "name": "Animate Anything",
+          "slug": null,
+          "what": "Creature rigging service with a spider template plus idle, walk and attack animations."
+        },
+        {
+          "name": "Mesh to Motion",
+          "slug": null,
+          "what": "Alternative creature rigging tool mentioned as a community favorite."
+        },
+        {
+          "name": "Claude Code",
+          "slug": null,
+          "what": "Drove the procedural and IK leg animation work in Unity and Unreal."
+        },
+        {
+          "name": "Nano Banana",
+          "slug": null,
+          "what": "Image editing model used to derive additional property maps from a well-structured color map."
+        }
+      ],
+      "key_moments": [
+        {
+          "timestamp": "1:15",
+          "label": "Split into parts",
+          "description": "Generating a creature at once will not work; splitting into logical parts drives assembly, animation and optimization."
+        },
+        {
+          "timestamp": "5:14",
+          "label": "High poly vs low poly",
+          "description": "Two generation routes explained, with low poly straight away recommended for hair and head."
+        },
+        {
+          "timestamp": "6:37",
+          "label": "Blender sculpt assembly",
+          "description": "Uses sculpt and mask mode with elastic wrap and snake hook to cut, splice and reshape the generated parts."
+        },
+        {
+          "timestamp": "11:38",
+          "label": "Retopology choice",
+          "description": "Tripo retopology rated best despite returning models out of position; polygon counts need per-part tuning."
+        },
+        {
+          "timestamp": "17:01",
+          "label": "Why bake",
+          "description": "Baking the high-poly normal map is what makes the low poly read as high poly under light."
+        },
+        {
+          "timestamp": "19:46",
+          "label": "Texturing that respects normals",
+          "description": "Most AI texturing mismatches the baked normal map; Moondiff is used because it honors it."
+        },
+        {
+          "timestamp": "23:40",
+          "label": "Split rigging strategy",
+          "description": "Rigs the spider half from a creature template and the humanoid half from an exported Mixamo skeleton, then joins them."
+        },
+        {
+          "timestamp": "28:57",
+          "label": "Procedural animation",
+          "description": "After a few hours of iteration with Claude Code across Blender, Unity and Unreal, a playable character with IK leg animation - explicitly not one-shot."
+        }
+      ]
+    },
+    "6Ytluv_DiSo": {
+      "summary": "A complete free-tools workflow for building a pirate-cave game level: concept splitting with Nano Banana, 3D generation on Hunyuan, asset prep and baking in Blender, assembly by hand, then lighting and setup in Unreal Engine. ASR garbles 'Moondiff' as 'motif', 'fal.ai' as 'fall .AI', 'Tripo P2' and 'Node Wrangler' survive intact; several stray non-English words appear and the outro is cut off mid-sentence, but the body is complete.",
+      "digest": {
+        "core_takeaway": "A good AI game level is not a pile of generated assets - it is a curated kit of prepared building blocks assembled by hand in Blender. The entire asset pipeline here runs on free tools, and the human assembly is what makes it look designed.",
+        "key_points": [
+          "Step one is splitting one concept image into chunks and circling parts in Gemini/Nano Banana to extract individual building blocks, generating grouped props where possible to save time and tokens.",
+          "Hunyuan's free tier gives 23 daily generations, with a smart-topology lab mode for low poly; Tripo P2 is the paid upgrade for better quads and high poly.",
+          "Moondiff (free) fixes broken texture sides by inpainting or re-projecting whole views as layers, far better than the original generation.",
+          "Blender's clone brush handles small texture artifacts faster than a round trip to an AI tool; color nodes fix inconsistent colors between generated assets, then get baked down.",
+          "Multiple objects can be joined, re-unwrapped with a free UV packer and baked into a single texture atlas so they share one material.",
+          "The big cave was built from rock chunks decimated from 1 million to about 1,000 polygons, with 4K normal maps baked from the originals and a Gemini-generated tileable texture on top.",
+          "Assembly order matters: start with size-known assets (piers, ladders, hut), build big shapes first, save accessories for last; the main chunk took one hour, the cave 25 minutes.",
+          "Some things are faster without AI - a rope was made from a Bezier curve with depth in a fraction of the time it takes to generate one.",
+          "Two hours in Unreal for lighting, weather add-ons, VFX and simple boat animations finished the level."
+        ],
+        "why_it_matters": "It proves a polished-looking game level is achievable on a zero-dollar asset budget, and it names exactly which Blender skills you need rather than 'learn Blender'. The framing that placement decisions are the art is the real argument against pure prompt-to-level tools."
+      },
+      "oss": [
+        {
+          "name": "Google AI Studio / Nano Banana",
+          "slug": null,
+          "what": "Free image generation and editing used to split concepts into building-block references and tileable textures."
+        },
+        {
+          "name": "Hunyuan 3D",
+          "slug": null,
+          "what": "Free 3D generation with 23 daily credits plus a smart-topology mode for low poly meshes."
+        },
+        {
+          "name": "Tripo P2",
+          "slug": null,
+          "what": "Paid alternative generator, top ranked for high poly and newly supporting quads."
+        },
+        {
+          "name": "Moondiff",
+          "slug": null,
+          "what": "Free AI texturing used for inpainting broken texture areas and full re-projection as layers."
+        },
+        {
+          "name": "Blender",
+          "slug": null,
+          "what": "Asset prep, clone-brush fixes, color correction, decimation, UV, baking, assembly and export."
+        },
+        {
+          "name": "UV Packer",
+          "slug": null,
+          "what": "Free add-on for non-overlapping UV packing before atlas baking."
+        },
+        {
+          "name": "Node Wrangler",
+          "slug": null,
+          "what": "Built-in Blender add-on enabling Ctrl+T mapping nodes to control texture scale."
+        },
+        {
+          "name": "Unreal Engine",
+          "slug": null,
+          "what": "Final assembly, PBR material rebuild, lighting, water, VFX and animations."
+        },
+        {
+          "name": "Ultra Dynamic Sky / Weather",
+          "slug": null,
+          "what": "Unreal add-ons the creator uses constantly for sky, weather and mood."
+        }
+      ],
+      "key_moments": [
+        {
+          "timestamp": "1:32",
+          "label": "Free concept splitting",
+          "description": "Google AI Studio with free Nano Banana is used to circle parts of a concept image and extract building blocks."
+        },
+        {
+          "timestamp": "3:24",
+          "label": "Free 3D generation",
+          "description": "Hunyuan's 23 free daily generations, plus the smart-topology lab mode for low poly meshes."
+        },
+        {
+          "timestamp": "6:58",
+          "label": "Fixing textures free",
+          "description": "Moondiff inpaints broken sides and re-projects whole views as layers, beating the original Hunyuan texture."
+        },
+        {
+          "timestamp": "12:41",
+          "label": "Baking a texture atlas",
+          "description": "Joins objects, re-packs UVs and bakes several assets into one shared texture and material."
+        },
+        {
+          "timestamp": "16:02",
+          "label": "Cave from rock chunks",
+          "description": "Decimates rocks from a million polygons to about a thousand, then bakes 4K normals and adds a tileable texture."
+        },
+        {
+          "timestamp": "23:23",
+          "label": "One hour of assembly",
+          "description": "The main pier chunk is done in an hour, with the argument that placement decisions are where the art lives."
+        },
+        {
+          "timestamp": "28:22",
+          "label": "Into Unreal",
+          "description": "Rebuilds PBR materials, then spends about two hours on lighting, weather, VFX and boat animations."
+        }
+      ]
+    },
+    "gvPMjz08DDA": {
+      "summary": "The creator uses an AI agent orchestrator to build four games end to end in loop mode, then assesses what it genuinely does well and where it fails. ASR garbles the platform name badly - it appears as 'Tisana', 'the Sun', 'to sauna' and similar throughout (Tesana) - and 'Claude Code' appears as 'Claude Coate/Codd/Court/quad'; 'Grok Imagine' appears as 'grock imagined'. The outro is cut off mid-sentence but the content is complete.",
+      "digest": {
+        "core_takeaway": "An orchestrator bundling multiple models, generation APIs and described asset libraries can autonomously produce genuinely playable games overnight. But it masters mechanics, not level design - and levels are where good games are actually won.",
+        "key_points": [
+          "The platform combines Claude, GPT and Kimi K3 with layered skills, plus image and 3D generation APIs wired in seamlessly so the agent creates its own assets.",
+          "The differentiating layer is described animation and VFX libraries - the agent knows how to combine them, which visibly lifts how the games look.",
+          "It is not a black box: everything is built on Godot and exportable as source or an app, which the creator says is why the video was possible at all.",
+          "Loop mode takes a credit budget (30k-60k per game) and iterates overnight - building, self-reviewing, fixing bugs; it also proposes next features, which is addictive.",
+          "Most of his feedback across all four games was about home screens and loading screens, not gameplay - the default menus are a plain image on black.",
+          "Games built: a black-hole collection game, a duck-army survival runner, a 3D pachinko roguelike with connectable bonuses, an auto-battler with procedurally generated units, and an open-space tower defense.",
+          "Clear verdict on limits - it cannot build interesting levels or locations, and that is more than half of a game; a level editor is his suggested fix.",
+          "Rigging non-humanoid generated models (a Tripo deer) remains impossible; animation libraries exist but the rigging step does not.",
+          "Prediction: as most games get made with AI tools, the ones with strong ideas, designed levels and real balancing will separate from the rest."
+        ],
+        "why_it_matters": "It is a rare honest test of an autonomous game-building agent with the failure modes named, not hidden. The mechanics-versus-levels split is a useful frame for anyone deciding what to hand to an agent and what to keep."
+      },
+      "oss": [
+        {
+          "name": "Godot",
+          "slug": "godotengine/godot",
+          "what": "The engine everything is built on, making projects exportable as source or a desktop/web app."
+        },
+        {
+          "name": "Claude Code",
+          "slug": null,
+          "what": "The creator's own local agent used for brainstorming ideas and preparing reference images and prompts."
+        },
+        {
+          "name": "Tripo",
+          "slug": null,
+          "what": "Named as the 3D generation source whose models still cannot be rigged for animation."
+        },
+        {
+          "name": "Grok Imagine",
+          "slug": null,
+          "what": "Image generator used for reference art with a distinctive style that fit one game."
+        },
+        {
+          "name": "Whisper",
+          "slug": "openai/whisper",
+          "what": "Used for dictating feedback to the agent instead of typing."
+        }
+      ],
+      "key_moments": [
+        {
+          "timestamp": "0:46",
+          "label": "What the orchestrator is",
+          "description": "Combines Claude, GPT and Kimi K3 with layered skills and all the generation APIs in one place."
+        },
+        {
+          "timestamp": "1:31",
+          "label": "Described asset libraries",
+          "description": "The layer that makes the biggest visual difference - animation and VFX libraries the agent knows how to combine."
+        },
+        {
+          "timestamp": "2:12",
+          "label": "Not a black box",
+          "description": "Everything is Godot-based and exportable as source or an app, which is why he was willing to test it."
+        },
+        {
+          "timestamp": "2:32",
+          "label": "Loop mode",
+          "description": "Give the agent a credit budget and it builds, reviews itself, fixes bugs and iterates unattended."
+        },
+        {
+          "timestamp": "9:26",
+          "label": "The levels problem",
+          "description": "It nails mechanics but cannot build interesting game levels, which he calls more than half the game."
+        },
+        {
+          "timestamp": "23:08",
+          "label": "Rigging still blocked",
+          "description": "Generated non-humanoid models cannot be rigged - animation libraries exist but rigging does not."
+        },
+        {
+          "timestamp": "25:14",
+          "label": "What will separate games",
+          "description": "Predicts AI-idea games will fail while strong ideas with designed, balanced levels succeed."
+        }
+      ]
+    }
+  },
+  "topics": [
+    {
+      "name": "GPT-6 Astra as a 3D modeling agent",
+      "video_ids": [
+        "nHBNa2IKWvk",
+        "Ovi1xszAphk",
+        "ouACKu1cwoU"
+      ],
+      "quote_ts": "0:28",
+      "quote": "this is absolutely the best one yet"
+    },
+    {
+      "name": "MCP servers beat computer-use for 3D tools",
+      "video_ids": [
+        "nHBNa2IKWvk",
+        "ouACKu1cwoU",
+        "6Ytluv_DiSo"
+      ],
+      "quote_ts": "6:15",
+      "quote": "It is way more efficient than computer use"
+    },
+    {
+      "name": "One image into an editable 3D world",
+      "video_ids": [
+        "KlzzBa1sZX0",
+        "ouACKu1cwoU"
+      ],
+      "quote_ts": "0:01",
+      "quote": "take one image and turn it in 3D editable world"
+    },
+    {
+      "name": "3D Gaussian Splats inside Blender and Unreal",
+      "video_ids": [
+        "KlzzBa1sZX0",
+        "ouACKu1cwoU"
+      ],
+      "quote_ts": "6:41",
+      "quote": "it's a good quality Splats right in Blender"
+    },
+    {
+      "name": "Retopology and normal baking make AI meshes usable",
+      "video_ids": [
+        "URjhE8QEhJU",
+        "6Ytluv_DiSo",
+        "ouACKu1cwoU"
+      ],
+      "quote_ts": "11:38",
+      "quote": "Tripo retopology is still the best"
+    },
+    {
+      "name": "Free-tier stacks for the whole pipeline",
+      "video_ids": [
+        "6Ytluv_DiSo",
+        "nHBNa2IKWvk",
+        "URjhE8QEhJU"
+      ],
+      "quote_ts": "0:27",
+      "quote": "only using free AI tools"
+    },
+    {
+      "name": "Blender blockouts as video-AI references",
+      "video_ids": [
+        "Ovi1xszAphk",
+        "KlzzBa1sZX0",
+        "URjhE8QEhJU"
+      ],
+      "quote_ts": "11:12",
+      "quote": "one shotted the C dance 2.5 sequence"
+    },
+    {
+      "name": "Rigging and animation remain the weak link",
+      "video_ids": [
+        "gvPMjz08DDA",
+        "URjhE8QEhJU",
+        "ouACKu1cwoU",
+        "nHBNa2IKWvk"
+      ],
+      "quote_ts": "23:24",
+      "quote": "to do the rigging it's not there yet"
+    },
+    {
+      "name": "Human taste still decides the outcome",
+      "video_ids": [
+        "6Ytluv_DiSo",
+        "gvPMjz08DDA",
+        "URjhE8QEhJU"
+      ],
+      "quote_ts": "23:54",
+      "quote": "AI alone will not be able to do that great job"
+    }
+  ]
+}

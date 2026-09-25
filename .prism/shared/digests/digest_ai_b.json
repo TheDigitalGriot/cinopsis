@@ -1,0 +1,206 @@
+{
+  "videos": {
+    "ji04cNSIn1c": {
+      "summary": "A narrated walkthrough of the Worktrunk GitHub README: a Rust-installable CLI that makes git worktrees as easy as branches so you can run five to ten AI coding agents in parallel without them colliding. Short and thin README-narration rather than a real demo, and the ASR garbles the product name throughout ('work trunk' / 'work drunk' / 'WT'), the terminal multiplexer ('zelled'/'zage' tabs, likely Zellij), 'clawed' for Claude, 'codecs' for Codex, 'sin path io' for SignPath, and 'feed'/'featuring' for feature branch names.",
+      "digest": {
+        "core_takeaway": "Git's native worktree feature already gives each parallel AI agent its own working directory, but its CLI ergonomics are bad enough to block the workflow; Worktrunk wraps it so worktrees are addressed by branch name and paths are computed from a template.",
+        "key_points": [
+          "The motivating problem is stated concretely: creating a worktree makes you type the branch name three times (git worktree add, the path, then cd).",
+          "Four core commands carry the tool: wt switch, wt list, wt merge, wt remove; commands that take a branch also accept the worktree path.",
+          "Agent-parallel use is the headline case: wt switch with an -x flag launches Claude in the new worktree, so several agents run at once in separate tabs.",
+          "Workflow automation includes create/pre-merge/post-merge hooks, LLM-generated commit messages from diffs, and a merge command that squashes, rebases, merges, and cleans up in one step.",
+          "Practical affordances: shared build caches (target and node_modules) across worktrees, per-worktree dev-server ports via a hash-port template filter, CI status in the listing, and PR checkout with wt switch pr 123.",
+          "Install is Homebrew or cargo on macOS/Linux and winget on Windows, where the default wt command collides with Windows Terminal's alias; all paths then need wt config shell install."
+        ],
+        "why_it_matters": "If agents can now run unsupervised for long stretches, the bottleneck moves from model capability to the human's ability to juggle many concurrent working copies. Worktrunk is a bet that the bottleneck is ergonomic, not technical."
+      },
+      "oss": [
+        {"name": "Worktrunk", "slug": "max-sixty/worktrunk", "what": "CLI wrapper over git worktrees built for running AI agents in parallel."},
+        {"name": "Git worktree", "slug": null, "what": "The native git feature giving each branch its own working directory, which Worktrunk wraps."},
+        {"name": "Claude Code", "slug": null, "what": "Coding agent launched per worktree via the -x flag; also cited as a long-running agent."},
+        {"name": "Codex", "slug": null, "what": "Named alongside Claude Code ('codecs' in the ASR) as an agent that handles long tasks unsupervised."},
+        {"name": "Homebrew", "slug": null, "what": "macOS/Linux install path: brew install worktrunk."},
+        {"name": "Cargo", "slug": null, "what": "Rust package manager install path: cargo install worktrunk."},
+        {"name": "SignPath", "slug": null, "what": "Provides free code signing for the project ('sin path io' in the ASR)."}
+      ],
+      "key_moments": [
+        {"timestamp": "0:18", "label": "What it is", "description": "Worktrunk is defined as a CLI for managing git worktrees designed to run AI agents in parallel."},
+        {"timestamp": "1:03", "label": "The clunky-UX problem", "description": "Starting a new worktree requires typing the branch name three times, which is the friction the tool exists to remove."},
+        {"timestamp": "1:29", "label": "Core commands", "description": "Switching, creating, removing, listing, and merging worktrees, all addressed by branch name rather than path."},
+        {"timestamp": "1:55", "label": "Automation layer", "description": "Hooks on create/pre-merge/post-merge, LLM commit messages generated from diffs, and a one-command merge workflow."},
+        {"timestamp": "2:53", "label": "Install and the Windows collision", "description": "Homebrew and cargo on macOS/Linux; on Windows the default wt command conflicts with Windows Terminal's alias."}
+      ]
+    },
+    "xb1rYopNAyw": {
+      "summary": "A narrated walkthrough of the YuE2 GitHub README, a music-generation model that first writes an editable melody-and-chord plan in ABC notation and only then renders it to audio with vocals and accompaniment. This is README narration rather than commentary, and the ASR mangles nearly every proper noun: 'U'/'U2'/'YuE' for YuE and YuE2, 'Merit 2'/'Mer 2'/'Merch 2' for MERT 2, 'sheet sage 2' for SheetSage 2, 'VD' for VAE, 'audio box' for AudioBox, 'CCB bank 4.0' for a Creative Commons license, and arXiv IDs read aloud as garbled digit strings that should not be trusted.",
+      "digest": {
+        "core_takeaway": "YuE2's distinguishing move is symbolic planning: because the model emits a readable score before it renders audio, the melody and chords become explicit controls a human or an agent can inspect and edit, rather than a prompt-and-pray black box.",
+        "key_points": [
+          "Pipeline is four stages exposed through a Python API: plan, generate semantic, synthesize, decode; an AR mixture-of-transformers predicts score and semantic tokens, flow matching produces acoustic latents, and a VAE decodes to stereo.",
+          "A cot argument selects the mode: 'full' produces an editable melody and chord plan, 'melody' gives a melody plan with free accompaniment, and 'off' goes straight from lyrics to audio.",
+          "Editing works by exporting the plan, revising the ABC score, and re-rendering; the narration is explicit that the resulting recording is completely new and the original waveform is not preserved.",
+          "Covers require transcribing a source recording with SheetSage 2 first, then supplying new lyrics or a target style; the demo turns a Mandarin pop song into English jazz with a saxophone solo.",
+          "The strongest quantitative claim is the score ablation on covers: 0.647 mean average precision with a full score against 0.006 without one, on 948 works.",
+          "The repo ships an agent skill package in SKILL.md form, so an agent can be taught to generate, transcribe, cover, and edit scores; code and skill are Apache 2.0 while model weights carry a Creative Commons license."
+        ],
+        "why_it_matters": "Generative audio has mostly been unsteerable after the fact. Putting a human-readable score in the middle of the pipeline turns music generation into something an agent can iterate on conversationally."
+      },
+      "oss": [
+        {"name": "YuE2", "slug": "multimodal-art-projection/YuE", "what": "Music generation model that plans a score symbolically, then renders it to full song audio."},
+        {"name": "YuE (YuE1)", "slug": null, "what": "The original release, preserved with its code, docs, and license in a YuE1 branch."},
+        {"name": "SheetSage 2", "slug": null, "what": "Transcription model that converts a source recording to a score for covers; tops 10 of 13 benchmark metrics."},
+        {"name": "MERT 2", "slug": null, "what": "Music understanding model used as SheetSage 2's encoder; reported top on 14 of 15 MARBLE metrics."},
+        {"name": "WildSongBench", "slug": null, "what": "Evaluation benchmark and prompt set the model reports its SongBench average against."},
+        {"name": "Hugging Face", "slug": null, "what": "Hosts YuE2-3B, the decoders, SheetSage 2, and MERT 2 weights, downloaded on first use."},
+        {"name": "ABC notation", "slug": null, "what": "The score format the editable plan is exported and re-imported in."}
+      ],
+      "key_moments": [
+        {"timestamp": "0:04", "label": "The pitch", "description": "Lyrics plus a style prompt produce a melody and chord plan, which is then realized as a full song with vocals."},
+        {"timestamp": "0:28", "label": "Why symbolic planning", "description": "Because the composition is symbolic, a user can read, play, and change it before anything is rendered."},
+        {"timestamp": "1:05", "label": "Architecture", "description": "AR mixture-of-transformers backbone, flow matching for acoustic latents, VAE decoding to stereo audio."},
+        {"timestamp": "1:44", "label": "Hardware floor", "description": "Linux, Python 3.12, and an NVIDIA GPU with BF16 support and at least 24 GB VRAM."},
+        {"timestamp": "5:11", "label": "The score ablation", "description": "On 948 works, covers with a full score hit 0.647 mAP versus 0.006 without one."}
+      ]
+    },
+    "OlWhp3wBAN8": {
+      "summary": "Elijah from WP CodeBox demonstrates live, on a local WordPress site, replacing nine single-purpose plugins with Claude Code-authored snippets written through WP CodeBox's MCP server. This is the only genuine screen-recorded demo of the four, and it includes the failures: one snippet errors on save and has to be fixed by pasting the error back, and the page-duplication snippet initially drops Breakdance post meta. The transcript is truncated, cutting off mid-sentence at the sign-off ('Thanks for'). ASR renders Claude as 'clawed' and 'Claw' throughout.",
+      "digest": {
+        "core_takeaway": "Nine narrow WordPress plugins were replaced with code snippets in roughly fourteen minutes by pointing Claude Code at a WordPress MCP server, with eight landing cleanly and one needing two rounds of repair.",
+        "key_points": [
+          "Setup is small: enable MCP/AI in WP CodeBox, grant capabilities, generate a WordPress application password, and register the server so claude mcp list shows it.",
+          "The presenter switches Claude Code to auto mode so it stops asking for confirmation, then deactivates each plugin before prompting for its replacement snippet.",
+          "Prompts must say 'activate the snippet once you're done' or the snippet is written but left off, which costs him a debugging detour on the login-customizer.",
+          "The error loop is the main practical lesson: WP CodeBox refuses to keep a broken snippet active, and pasting the raw error message back to the agent resolves it quickly.",
+          "Batching works: one prompt asking for five snippets at once (duplicate button, hide admin bar, lightbox, maintenance-mode toggle, social share buttons) produced four clean wins and one defect.",
+          "The lone real failure was post meta: the page-duplication snippet did not carry Breakdance design data, and even after the unslashing fix the CSS only appeared after re-saving.",
+          "He closes by noting WP CodeBox is not required; Agent Connector or other WordPress MCP servers work, but snippets give easier management, visible code, and error-handling safety compared to MU plugins."
+        ],
+        "why_it_matters": "It reframes the plugin economy: a large share of installed plugins are small enough that an agent with write access can reproduce them on demand, shifting the cost from vendor dependency to snippet maintenance."
+      },
+      "oss": [
+        {"name": "WP CodeBox", "slug": null, "what": "WordPress code-snippet manager whose MCP server lets an agent write and activate snippets."},
+        {"name": "Claude Code", "slug": null, "what": "The coding agent writing every snippet, run in auto mode from the local site folder."},
+        {"name": "MCP", "slug": null, "what": "The protocol connecting Claude Code to WordPress; verified with claude mcp list."},
+        {"name": "Agent Connector", "slug": null, "what": "Named as an alternative WordPress MCP server if you do not use WP CodeBox."},
+        {"name": "Breadcrumb NavXT", "slug": null, "what": "One of the nine plugins replaced, disabled to prove the snippet was rendering the breadcrumbs."},
+        {"name": "Breakdance", "slug": null, "what": "Page builder whose post meta the duplication snippet initially failed to copy."},
+        {"name": "WordPress", "slug": null, "what": "The host platform; application passwords authenticate the MCP connection."}
+      ],
+      "key_moments": [
+        {"timestamp": "0:36", "label": "Wiring up MCP", "description": "Enabling MCP/AI in WP CodeBox, picking capabilities, and authenticating with a WordPress application password."},
+        {"timestamp": "4:47", "label": "The error loop", "description": "A snippet is auto-disabled by an error; copying the error message back into Claude fixes it, and the agent visits the page to confirm."},
+        {"timestamp": "7:57", "label": "Batching five at once", "description": "A single prompt requests duplicate button, hide admin bar, lightbox, maintenance-mode toggle, and social share buttons together."},
+        {"timestamp": "9:41", "label": "The one real failure", "description": "The duplicate-page snippet copies the page but drops the Breakdance design data stored in post meta."},
+        {"timestamp": "13:00", "label": "You don't need this product", "description": "He concedes any WordPress MCP server works, and argues snippets beat MU plugins on manageability and error safety."}
+      ]
+    },
+    "woEuEAwffOA": {
+      "summary": "An InfoWorld showcase of three projects arguing that WebAssembly now runs things we assumed needed a desktop or a server: Numba with its LLVM JIT compiled to Wasm, BrowserPod aiming at a Linux user space in the browser, and PGlite running Postgres locally. Compact and well-sourced, though the ASR garbles QuantStack as 'Quatstack' and WASI as both 'WSI' and 'wazi'.",
+      "digest": {
+        "core_takeaway": "WebAssembly's frontier has moved from porting single programs to porting whole runtime stacks, so the delivery story becomes 'open a browser' rather than 'install a toolchain or a container runtime'.",
+        "key_points": [
+          "QuantStack ported Numba, including the entire LLVM-powered JIT compiler it depends on, to WebAssembly, so a Jupyter notebook in the browser gets Numba's njit decorator.",
+          "The demo shows roughly a 300x speedup on math Python handles badly natively, with Python itself running locally in the browser rather than on a backend.",
+          "BrowserPod compiles Linux applications to Wasm and supplies a persistent virtual filesystem, controlled network access, parallelism, and multithreading; its makers call it an OS kernel for the web platform.",
+          "BrowserPod's specific claim is that you target it directly instead of rewriting code against WASI, so a program runs as-is with no WASI-specific changes.",
+          "Block-based streaming addresses the big-download problem: disk images stream progressively, so a language's standard library only downloads the parts actually used.",
+          "PGlite is a full Postgres in Wasm with a live demo, local-storage persistence, Node.js embedding, and extensions including pgvector, which makes it viable for low-profile vector search.",
+          "The closing argument is deliberately anti-container: Docker and containers never came up, because not everyone wants to wrangle a container runtime when click-and-run will do."
+        ],
+        "why_it_matters": "If binary-dependent stacks like LLVM and Postgres can ship to a browser tab, the default unit of software distribution stops being an image or an installer and becomes a URL."
+      },
+      "oss": [
+        {"name": "Numba", "slug": null, "what": "Python JIT library that compiles numeric code to assembly, now running in-browser via Wasm."},
+        {"name": "LLVM", "slug": null, "what": "The compiler infrastructure inside Numba's JIT that was itself ported to WebAssembly."},
+        {"name": "QuantStack", "slug": null, "what": "The group that ported Numba and its JIT compiler to WebAssembly ('Quatstack' in the ASR)."},
+        {"name": "Jupyter", "slug": null, "what": "The in-browser notebook where the Numba demo and its timings run."},
+        {"name": "BrowserPod", "slug": null, "what": "Compile target that runs Linux applications in Wasm with a virtual filesystem, networking, and threads."},
+        {"name": "WASI", "slug": null, "what": "The standard Wasm system interface BrowserPod claims you can skip adapting code to."},
+        {"name": "PGlite", "slug": null, "what": "Full Postgres compiled to WebAssembly, persistable to local storage and embeddable in Node.js."},
+        {"name": "pgvector", "slug": null, "what": "Postgres extension supported by PGlite, enabling in-browser vector search."},
+        {"name": "Rust", "slug": null, "what": "Cited as a language that compiles to Wasm and is BrowserPod's first deployment priority."},
+        {"name": "Docker", "slug": null, "what": "Named only as the technology this approach deliberately avoids needing."}
+      ],
+      "key_moments": [
+        {"timestamp": "0:35", "label": "Numba in the browser", "description": "A Python library that previously required a system-native binary install now runs entirely client-side."},
+        {"timestamp": "1:47", "label": "The 300x number", "description": "Notebook timings show roughly a 300x speedup, computed locally rather than on a backend server."},
+        {"timestamp": "2:04", "label": "BrowserPod's premise", "description": "Any Linux application compiled to Wasm, with a persistent filesystem and multithreading, described as an OS kernel for the web."},
+        {"timestamp": "3:17", "label": "Block-based streaming", "description": "Disk images stream progressively so only the parts of a standard library you actually use get downloaded."},
+        {"timestamp": "3:51", "label": "Postgres in a tab", "description": "PGlite runs a full Postgres in Wasm with local-storage persistence and pgvector support."}
+      ]
+    }
+  },
+  "topics": [
+    {
+      "name": "Parallel and unsupervised agent workflows",
+      "video_ids": ["ji04cNSIn1c", "OlWhp3wBAN8", "xb1rYopNAyw"],
+      "quote_ts": "0:55",
+      "quote": "five to 10 or more in parallel"
+    },
+    {
+      "name": "Tooling friction as the real bottleneck",
+      "video_ids": ["ji04cNSIn1c", "woEuEAwffOA"],
+      "quote_ts": "1:03",
+      "quote": "git work tree user experience is clunky"
+    },
+    {
+      "name": "Editable intermediate representations instead of black boxes",
+      "video_ids": ["xb1rYopNAyw", "OlWhp3wBAN8"],
+      "quote_ts": "0:30",
+      "quote": "read, play, and change the composition before rendering"
+    },
+    {
+      "name": "MCP and skill packages as the agent's interface to a system",
+      "video_ids": ["OlWhp3wBAN8", "xb1rYopNAyw"],
+      "quote_ts": "0:04",
+      "quote": "replace nine popular plugins with clawed code"
+    },
+    {
+      "name": "Distribution without installers or containers",
+      "video_ids": ["woEuEAwffOA"],
+      "quote_ts": "4:41",
+      "quote": "the words Docker and containers never once came up here"
+    },
+    {
+      "name": "Honest reporting of benchmark margins",
+      "video_ids": ["xb1rYopNAyw"],
+      "quote_ts": "5:06",
+      "quote": "differences between the models across all metrics are small"
+    },
+    {
+      "name": "Generated artifacts are new, not patched in place",
+      "video_ids": ["xb1rYopNAyw", "OlWhp3wBAN8"],
+      "quote_ts": "4:19",
+      "quote": "the original waveform is not preserved"
+    }
+  ],
+  "unified_summary": "The through-line across these four is that the interesting work has moved from the model to the substrate it acts on. Worktrunk's whole premise is that git worktrees already isolate parallel agents and the only thing broken is having to type a branch name three times; WP CodeBox's argument is that WordPress already has everything Claude Code needs, it just needed an MCP server and an application password; YuE2 inserts an ABC score between prompt and audio so a human or agent has something to edit; BrowserPod and PGlite compile LLVM and Postgres to Wasm so nothing needs installing at all. All four are plumbing arguments dressed as capability arguments. They also converge on isolation without containers: Worktrunk isolates by directory, Wasm by browser sandbox, and the InfoWorld piece makes that explicit by noting Docker never came up. Where they part is evidence discipline and trust in generated code. YuE2 volunteers that its SongBench margins are not statistically significant, then reports a 0.647-versus-0.006 cover ablation that actually carries weight. Worktrunk asserts it is the most popular worktree manager and that there is no slop, with nothing behind either claim.",
+  "disagreements": [
+    {
+      "topic": "Whether agent-generated code is acceptable as the product or only as scaffolding around handwritten code",
+      "positions": [
+        {
+          "video_id": "ji04cNSIn1c",
+          "position": "Worktrunk opens by insisting it is built with love and that there is no slop, positioning handcrafted quality as the differentiator. The tool's entire purpose is to marshal five to ten Claude Code and Codex agents at once, but the tool itself is presented as explicitly not that kind of output. Agents are the workload; the harness around them is not agent-written."
+        },
+        {
+          "video_id": "OlWhp3wBAN8",
+          "position": "Elijah takes the opposite stance and ships agent-written code straight into a live WordPress install, switching Claude Code to auto mode so it stops asking permission. He accepts a failure rate as the cost of doing business: the login-customizer snippet errors on save, the duplicate-page snippet loses Breakdance post meta, and both are fixed by pasting the error back. Nine plugins' worth of functionality, none of it read line by line first."
+        }
+      ]
+    },
+    {
+      "topic": "How much evidence a superiority claim needs before you make it",
+      "positions": [
+        {
+          "video_id": "xb1rYopNAyw",
+          "position": "YuE2 claims frontier song quality and the best SongBench average on WildSongBench, then immediately undercuts itself by stating the differences between models across all metrics are small and no result is statistically significant. It reserves its confident claim for the ablation that has a real gap: 0.647 mAP with a score against 0.006 without."
+        },
+        {
+          "video_id": "ji04cNSIn1c",
+          "position": "Worktrunk asserts it was released at the start of the year and has quickly become the most popular git worktree manager, with no download counts, comparison, or named alternative anywhere in the transcript. The quality claim, no slop, is similarly unfalsifiable. Its only concrete evidence is a demo of Claude agents running in tabs."
+        }
+      ]
+    }
+  ]
+}
