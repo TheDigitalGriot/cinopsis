@@ -319,6 +319,50 @@ input{font-family:inherit}
 .km-body .kt{font-size:12.5px; line-height:1.5; color:var(--on-light); font-weight:500}
 .km-body .kc{font-size:10.5px; margin-top:5px; font-family:"IBM Plex Mono"}
 
+/* WORKFLOW STEPS - the ordered procedure, distinct from key moments.
+   Tokens only: no hardcoded background, so both themes are inherited. */
+.ws-phase{margin-top:18px}
+.ws-phase .ph{display:flex; align-items:baseline; gap:9px; margin-bottom:9px}
+.ws-phase .ph .pn{font-size:12.5px; font-weight:600; color:var(--on-light)}
+.ws-phase .ph .pr{font-family:"IBM Plex Mono"; font-size:10.5px; color:var(--on-light-3)}
+.ws-phase .ph .line{height:1px; flex:1; background:linear-gradient(90deg,rgba(0,0,0,.13),transparent)}
+.app[data-theme="dark"] .ws-phase .ph .line{background:linear-gradient(90deg,rgba(255,255,255,.16),transparent)}
+.ws-list{display:flex; flex-direction:column; gap:9px}
+.ws{display:grid; grid-template-columns:44px 1fr; gap:13px; padding:13px 15px; border-radius:var(--r-xl);
+  background:var(--paper-hi); border:1px solid var(--card-line); box-shadow:var(--card-soft);
+  transition:transform .3s var(--song)}
+.ws:hover{transform:translateY(-2px)}
+.ws .ix{font-family:"Sora"; font-size:17px; font-weight:700; line-height:1.1; text-align:right}
+.ws .ixs{display:block; font-family:"IBM Plex Mono"; font-size:9.5px; font-weight:400; color:var(--on-light-3); margin-top:3px}
+.ws .act{font-size:13px; line-height:1.5; color:var(--on-light); font-weight:500}
+.ws .crumb{margin-top:6px; font-family:"IBM Plex Mono"; font-size:10.5px; color:var(--on-light-2);
+  display:flex; align-items:center; gap:5px; flex-wrap:wrap}
+.ws .crumb .sep{color:var(--on-light-3)}
+.ws .kind{font-family:"IBM Plex Mono"; font-size:9.5px; letter-spacing:.06em; text-transform:uppercase;
+  padding:1px 6px; border-radius:var(--r-pill); border:1px solid var(--card-line); color:var(--on-light-2)}
+.ws .tgt{font-weight:600; color:var(--on-light)}
+.ws .opts{margin-top:6px; display:flex; gap:5px; flex-wrap:wrap}
+.ws .opts .op{font-size:10.5px; padding:1px 7px; border-radius:var(--r-pill);
+  border:1px dashed var(--card-line); color:var(--on-light-2)}
+.ws .opts .op.on{border-style:solid; border-color:var(--ember); color:var(--ember-ink); font-weight:600}
+.app[data-theme="dark"] .ws .opts .op.on{color:var(--ember-hot)}
+.ws .params{margin-top:6px; display:flex; gap:5px; flex-wrap:wrap}
+.ws .params .pp{font-family:"IBM Plex Mono"; font-size:10px; padding:1px 7px; border-radius:5px;
+  background:var(--ember-soft); color:var(--on-light)}
+.ws .res{margin-top:7px; font-size:11.5px; line-height:1.5; color:var(--on-light-2)}
+.ws .res .arw{color:var(--on-light-3); margin-right:5px}
+.ws .foot{margin-top:8px; display:flex; align-items:center; gap:8px; flex-wrap:wrap;
+  font-family:"IBM Plex Mono"; font-size:10px; color:var(--on-light-3)}
+/* confidence is the honesty field - it is COLOURED, not hidden, so a claim
+   never reads like an observation at a glance. */
+.ws .conf{padding:1px 6px; border-radius:var(--r-pill); border:1px solid currentColor; font-weight:600;
+  letter-spacing:.05em; text-transform:uppercase}
+.ws .conf.shown{color:var(--t-green)}
+.ws .conf.spoken{color:var(--t-blue)}
+.ws .conf.inferred{color:var(--t-amber)}
+.ws .frm{color:var(--on-light-3)}
+.ws .frm.miss{color:var(--on-light-3); opacity:.7; font-style:italic}
+
 /* LIBRARY */
 .lib-toolbar{display:flex; gap:10px; align-items:center; margin-bottom:16px; flex-wrap:wrap}
 .lib-search{flex:1; min-width:220px; position:relative}
@@ -1331,7 +1375,8 @@ body.resizing{cursor:col-resize; user-select:none}
       '</div>' +
       buildTimeline(v, moments, dur) +
       '<div class="eyebrow" style="margin-top:22px">Key moments <span class="line"></span></div>' +
-      '<div class="km-grid" id="kmGrid">' + moments.map(function (m, i) { return kmCard(m, i, v); }).join('') + '</div>';
+      '<div class="km-grid" id="kmGrid">' + moments.map(function (m, i) { return kmCard(m, i, v); }).join('') + '</div>' +
+      wsSection(a, v);
 
     $('#videoBody').innerHTML = html;
     wireTimeline(v, dur);
@@ -1342,6 +1387,126 @@ body.resizing{cursor:col-resize; user-select:none}
         if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); pick(); }
       });
     });
+  }
+
+  /* WORKFLOW STEPS -------------------------------------------------------
+     The ordered procedure the video demonstrates. Deliberately NOT merged
+     with key moments: moments answer "what mattered", steps answer "what do
+     I do, in what order". Renders in `index` order and groups by `phase`
+     when phases exist. Returns '' for a video with no steps, so a session
+     that predates the field renders exactly as it did before. */
+
+  var UI_KINDS = { dropdown: 1, checkbox: 1, slider: 1, button: 1, field: 1, menu: 1,
+                   tab: 1, canvas: 1, list: 1, radio: 1, other: 1 };
+  var CONFIDENCES = { spoken: 1, shown: 1, inferred: 1 };
+
+  function stepsFor(a, v) {
+    var steps = (a && a.workflow_steps) || [];
+    if (!Array.isArray(steps)) return [];
+    return steps.filter(function (s) {
+      return s && (!s.video_id || s.video_id === v.id);
+    }).slice().sort(function (x, y) {
+      var xi = Number(x.index), yi = Number(y.index);
+      if (isFinite(xi) && isFinite(yi) && xi !== yi) return xi - yi;
+      /* no usable index: fall back to the span start so order is still honest */
+      return (Number(x.t_start) || 0) - (Number(y.t_start) || 0);
+    });
+  }
+
+  function wsCrumb(s) {
+    var path = Array.isArray(s.ui_path) ? s.ui_path : [];
+    var bits = path.map(function (seg) { return esc(seg); });
+    var kind = String(s.ui_kind || '');
+    var chip = UI_KINDS[kind] ? '<span class="kind">' + esc(kind) + '</span>' : '';
+    var target = s.ui_target ? '<span class="tgt">' + esc(s.ui_target) + '</span>' : '';
+    if (!bits.length && !chip && !target) return '';
+    var trail = bits.join(' <span class="sep">&#8250;</span> ');
+    return '<div class="crumb">' + chip +
+      (trail ? (chip ? ' ' : '') + trail : '') +
+      (target ? (trail ? ' <span class="sep">&#8250;</span> ' : ' ') + target : '') + '</div>';
+  }
+
+  function wsOptions(s) {
+    var opts = Array.isArray(s.ui_options) ? s.ui_options : [];
+    if (!opts.length) return '';
+    /* the chosen option is also named in `result` - mark it so the control can be
+       redrawn with its selection, not just listed */
+    var res = String(s.result == null ? '' : s.result).toLowerCase();
+    return '<div class="opts">' + opts.map(function (o) {
+      var label = String(o == null ? '' : o);
+      var on = label && res.indexOf(label.toLowerCase()) !== -1;
+      return '<span class="op' + (on ? ' on' : '') + '">' + esc(label) + '</span>';
+    }).join('') + '</div>';
+  }
+
+  function wsParams(s) {
+    var params = s.parameters;
+    if (!params || typeof params !== 'object' || Array.isArray(params)) return '';
+    var keys = Object.keys(params);
+    if (!keys.length) return '';
+    return '<div class="params">' + keys.map(function (k) {
+      return '<span class="pp">' + esc(k) + ': ' + esc(params[k]) + '</span>';
+    }).join('') + '</div>';
+  }
+
+  function wsFoot(s) {
+    var span = fmtTs(s.t_start) + (s.t_end != null ? '&#8211;' + fmtTs(s.t_end) : '');
+    var conf = String(s.confidence || '');
+    /* confidence is REQUIRED; an absent one is reported, never quietly defaulted */
+    var confChip = CONFIDENCES[conf]
+      ? '<span class="conf ' + conf + '">' + esc(conf) + '</span>'
+      : '<span class="conf inferred">no confidence</span>';
+    var app = s.app ? '<span>' + esc(s.app) + '</span>' : '';
+    /* frame_ref is a PATH, never base64 - so it is NAMED here, not decoded */
+    var frame = s.frame_ref
+      ? '<span class="frm">&#9673; ' + esc(s.frame_ref) + '</span>'
+      : '<span class="frm miss">no frame captured</span>';
+    return '<div class="foot"><span>' + span + '</span>' + app + confChip + frame + '</div>';
+  }
+
+  function wsCard(s, i) {
+    var c = hue(i);
+    var idx = isFinite(Number(s.index)) ? Number(s.index) : (i + 1);
+    return '<div class="ws">' +
+      '<div class="ix" style="color:' + c + '">' + idx +
+        '<span class="ixs">' + fmtTs(s.t_start) + '</span></div>' +
+      '<div><div class="act">' + esc(s.action || '(no action recorded)') + '</div>' +
+      wsCrumb(s) + wsOptions(s) + wsParams(s) +
+      (s.result ? '<div class="res"><span class="arw">&#8594;</span>' + esc(s.result) + '</div>' : '') +
+      wsFoot(s) + '</div></div>';
+  }
+
+  function wsSection(a, v) {
+    var steps = stepsFor(a, v);
+    if (!steps.length) return '';
+
+    /* group into consecutive runs of the same phase, preserving index order.
+       No phases anywhere -> one ungrouped list. */
+    var grouped = steps.some(function (s) { return s.phase; });
+    var body, n = 0;
+    if (!grouped) {
+      body = '<div class="ws-list">' + steps.map(function (s) { return wsCard(s, n++); }).join('') + '</div>';
+    } else {
+      var runs = [];
+      steps.forEach(function (s) {
+        var phase = s.phase || '';
+        var last = runs[runs.length - 1];
+        if (!last || last.phase !== phase) runs.push({ phase: phase, items: [s] });
+        else last.items.push(s);
+      });
+      body = runs.map(function (r) {
+        var label = r.phase || 'Unphased';
+        return '<div class="ws-phase"><div class="ph">' +
+          '<span class="pn">' + esc(label) + '</span>' +
+          '<span class="pr">' + r.items.length + (r.items.length === 1 ? ' step' : ' steps') + '</span>' +
+          '<span class="line"></span></div>' +
+          '<div class="ws-list">' + r.items.map(function (s) { return wsCard(s, n++); }).join('') + '</div></div>';
+      }).join('');
+    }
+
+    return '<div class="eyebrow" style="margin-top:26px">Workflow steps ' +
+      '<span class="pr" style="font-family:\'IBM Plex Mono\';text-transform:none;letter-spacing:0">' +
+      steps.length + '</span><span class="line"></span></div>' + body;
   }
 
   /* watch-stats graphline: derived from OUR key-moment density (we have no
