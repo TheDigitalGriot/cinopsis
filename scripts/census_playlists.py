@@ -81,6 +81,39 @@ CONTIGUOUS_CAVEAT = (
     "untouched run at the very top of the list."
 )
 
+# A blank title DECLARES itself. Parenthesised on purpose: a real YouTube title is
+# never parenthesised in full, so this cannot be mistaken for one -- and it is never
+# the id, because echoing an identity into a label field is the other failure mode.
+TITLE_UNAVAILABLE = "(title unavailable)"
+
+
+def display_title(raw):
+    """The entry's title, or a DECLARED placeholder when the source gave us nothing.
+
+    yt-dlp returns an EMPTY STRING -- not null -- for an entry whose id still
+    resolves but whose metadata does not: private, deleted, or region-blocked while
+    it keeps its slot in the list. Measured 2026-09-26: exactly one of 69 named
+    entries across the three configured lists came back as `"title": ""`, and the
+    census passed the blank straight through. The url derived correctly; only the
+    title degraded, and it degraded SILENTLY.
+
+    Silence is the defect. A blank title is indistinguishable from the id-only
+    projection this named head was built to remove -- a reader cannot tell a degraded
+    record from a broken pipeline. A declared placeholder is honest; a blank hides
+    the very failure the field exists to expose.
+
+    Applied where the entry dict is BUILT, once, so every consumer of
+    `unread_entries` inherits it and no print site has to remember. The walk cache
+    format is untouched: a cached blank still yields the placeholder at READ time, so
+    `--from-cache` behaves identically and no cache rebuild is required.
+
+    A non-blank title is returned verbatim -- not stripped, not normalised. This
+    substitutes for nothing but absence.
+    """
+    if raw is None or not str(raw).strip():
+        return TITLE_UNAVAILABLE
+    return raw
+
 
 def force_utf8_console():
     """Make stdout/stderr survive a YouTube title.
@@ -286,6 +319,11 @@ def unread_entries(ordered_ids, titles, union, examined):
     Titles are a LABEL, never an identity: the membership test below is `vid not in
     union` -- id only. Creators run title tests and one upload answers to three
     names within hours, so nothing here matches, dedups or diffs on a title.
+
+    THIS IS THE ONE PLACE A MISSING TITLE IS HANDLED. Every title goes through
+    display_title(), so an absent or blank one leaves here as `(title unavailable)`
+    and never as an empty string or an echoed id. Count it via the playlist's
+    `fallbacks` field rather than re-testing for blanks downstream.
     """
     out = []
     for i in range(min(examined, len(ordered_ids))):
@@ -295,7 +333,7 @@ def unread_entries(ordered_ids, titles, union, examined):
         out.append({
             "index": i,
             "id": vid,
-            "title": titles[i] if i < len(titles) else "",
+            "title": display_title(titles[i] if i < len(titles) else None),
             "url": f"https://www.youtube.com/watch?v={vid}",
         })
     return out
@@ -478,6 +516,7 @@ def census(name=None, start_n=DEFAULT_START_N, from_cache=False, cookies=None):
 
         head = measure_head(ids, union, start_n)
         contiguous = measure_contiguous(ids, union)
+        named = unread_entries(ids, titles, union, head["examined"])
         results.append({
             "name": pl_name,
             "list_id": list_id,
@@ -491,7 +530,12 @@ def census(name=None, start_n=DEFAULT_START_N, from_cache=False, cookies=None):
             "unread_behind_processed": max(
                 0, head["unread"] - contiguous["contiguous_frontier"]
             ),
-            "unread_entries": unread_entries(ids, titles, union, head["examined"]),
+            "unread_entries": named,
+            # How many of the named entries lost their title at the source. A
+            # degraded record has to be COUNTABLE, not just visible: 0 is a clean
+            # list, and a number moving upward is the source degrading, which no
+            # amount of reading a list of titles reliably surfaces.
+            "fallbacks": sum(1 for e in named if e["title"] == TITLE_UNAVAILABLE),
         })
 
     if cache_dirty:
@@ -575,6 +619,10 @@ def print_report(res):
                   "(index = 0-based position in the list, same convention as the "
                   "contiguous index)")
             print("    id is the identity; the title is only a label (creators retitle)")
+            if pl.get("fallbacks"):
+                print(f"    {pl['fallbacks']} of them read {TITLE_UNAVAILABLE} -- the source "
+                      "returned no title (private, deleted or region-blocked); the id and "
+                      "url are still good")
             for e in entries:
                 print(f"    [{e['index']:>4}]  {e['id']}  {e['title']}")
         else:

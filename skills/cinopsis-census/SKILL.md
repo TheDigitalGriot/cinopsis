@@ -166,6 +166,23 @@ activation.** *Symptom:* the call resolves or rejects quietly and nothing arrive
 Browser output cannot be handed back to the device that way - return it through the
 tool's own stdout/JSON instead.
 
+**(d) yt-dlp returns an EMPTY STRING - not null - for a title it could not read.**
+The entry keeps its slot and its id still resolves (private, deleted, or
+region-blocked), so the url derives correctly and only the **title** degrades.
+*Symptom:* a named head entry with a blank where its title should be - which is
+indistinguishable from the id-only projection the named head was built to remove, so
+a reader cannot tell a degraded record from a broken pipeline. *Measured 2026-09-26:*
+**exactly 1 of 69** named entries across the three configured lists came back
+`"title": ""`, and the census passed the blank straight through. Now a blank
+**declares itself** as `(title unavailable)` - parenthesised on purpose, because a
+real title is never fully parenthesised and the placeholder is **never** the id
+(echoing an identity into a label field is the other failure mode). It is applied
+once, where the entry dict is built, so every consumer inherits it; and each playlist
+carries a **`fallbacks`** integer so a degraded record is COUNTABLE, not merely
+visible - `0` is a clean list. The **walk cache format does not change**: a cached
+blank yields the placeholder at read time, so `--from-cache` behaves identically and
+no cache rebuild is required.
+
 ## Follow-on (documented, NOT implemented) - the browser enrich lane
 
 Per-video **title, duration, chapters and caption availability** can be read
