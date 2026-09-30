@@ -5,15 +5,46 @@ All notable changes to **Cinopsis** are documented here.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [2.8.1] - 2026-09-30
+## [2.9.0] - 2026-09-30
+
+### Added
+- **Cinopsis has a real release path for the first time.** `cinopsis-closing-ceremony`
+  (audit gate → `cinopsis-bookend` → `cinopsis-release`) replaces "nothing failed
+  locally" with a fail-closed gate that proves the shared marketplace mirror actually
+  moved before a release is called done — the exact gap that let the published
+  `cinopsis-plugin/` mirror ship for months missing `viewer/`, the census skill, and
+  several scripts while every local check stayed green. `scripts/pre-release-audit.mjs`
+  and `scripts/sync-to-marketplace.sh` are the mechanism; `skills/cinopsis-bookend/`
+  and `skills/cinopsis-release/` are the ceremony halves.
+- **Playlist census.** `cinopsis-census` + `scripts/census_playlists.py` — a read-only
+  survey of a subscribed playlist whose scanned head window grows itself as the
+  playlist grows, rather than a fixed cutoff that silently stops covering new videos.
+- **`workflow_steps[]` in the analysis schema.** Ordered procedure capture alongside
+  the existing digest fields, so a video that walks through a sequence of steps
+  records that structure instead of flattening it into prose.
 
 ### Fixed
+- **The YouTube transcript ladder was dead on three independent faults**, not one —
+  repaired across `chrome_session.py`, `grab_transcript_cdp.py`, `panel_transcript.py`
+  and `get_transcript.py`. Headless sessions never render YouTube's transcript panel
+  (now structural, not a flag anyone can forget); the panel rungs now only ATTACH to
+  an already-debug-launched Chrome (`launch_chrome_debug.ps1`) instead of each trying
+  to launch and pick its own profile; both panel rungs now take their session from one
+  shared `chrome_session.acquire_session()` instead of one of them re-solving a
+  problem the other had already solved, badly, with a throwaway signed-out profile.
 - **Stale model pins bumped to the current default.** `scripts/app_settings.py` and
   `scripts/providers/claude_key.py` both still pinned `claude-sonnet-4-6` (two
   generations stale against the current `claude-sonnet-5-5` default) — found via a
   sweep after fixing the one instance the source handoff named.
 - **`agents/video-fetcher.md` carried an invalid `effort: low`** on a `model: haiku`
   agent — Haiku 4.5 supports zero effort levels, so the field was a no-op at best.
+- **A blank census title now declares itself** instead of degrading silently into an
+  empty-looking row.
+- **`--name` on a playlist command now resolves through `url_or_id`/`url`/`id`**
+  correctly, and each playlist's sort order is stored per-playlist rather than shared.
+- **Two em-dashes in `plugin.json` stored as cp1252-reencoded mojibake**, and a UTF-8
+  BOM on both `marketplace.json` and `plugin.json` — both repaired, the same
+  ANSI-vs-UTF-8 defect class documented at the ontology level (drift #56).
 
 ## [2.8.0] - 2026-09-06
 
