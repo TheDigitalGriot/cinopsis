@@ -5,6 +5,16 @@ All notable changes to **Cinopsis** are documented here.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [2.8.1] - 2026-09-30
+
+### Fixed
+- **Stale model pins bumped to the current default.** `scripts/app_settings.py` and
+  `scripts/providers/claude_key.py` both still pinned `claude-sonnet-4-6` (two
+  generations stale against the current `claude-sonnet-5-5` default) — found via a
+  sweep after fixing the one instance the source handoff named.
+- **`agents/video-fetcher.md` carried an invalid `effort: low`** on a `model: haiku`
+  agent — Haiku 4.5 supports zero effort levels, so the field was a no-op at best.
+
 ## [2.8.0] - 2026-09-06
 
 ### Added
