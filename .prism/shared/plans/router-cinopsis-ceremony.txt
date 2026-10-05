@@ -1,0 +1,5 @@
+﻿Read the stage contract at .prism/shared/plans/closing-ceremony-cinopsis-CONTEXT.md and execute it exactly.
+Step 1 is a hard precondition - honour it. Load only what each numbered step needs.
+Invoke the cinopsis-closing-ceremony skill to do the work. Do not improvise around a failed gate.
+Append each heartbeat token to .prism/shared/plans/.hb-cinopsis-ceremony as you reach it.
+Finish by writing the terminal marker file described in the contract.

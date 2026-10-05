@@ -23,8 +23,10 @@ from pathlib import Path
 # scripts/ is sys.path[0] when run directly, so these bare imports resolve.
 from fetch_videos import load_channels, fetch_channel_videos, is_ai_related, OUTPUT_FILE
 from fetch_playlist import fetch_playlist_new, private_playlist_hint
-from get_transcript import fetch_transcript, format_transcript, integrity_gate
-from capture_frames import extract_video_id, capture_frame as _capture_frame
+from get_transcript import fetch_transcript, format_transcript, integrity_gate, describe_failure
+from chrome_session import ChromeProfileLockedError
+from capture_frames import (extract_video_id, capture_frame as _capture_frame,
+                            capture_session_frames, resolve_session_file, BATCH_CHUNK, DATA_DIR)
 from compare_videos import parse_urls, process_video, build_comparison_data, save_session
 from compare_server import create_app
 
@@ -41,7 +43,7 @@ except Exception as _bus_err:  # pragma: no cover - bus is optional, server must
 
 mcp = FastMCP("cinopsis")
 
-TOOL_NAMES = ["fetch_videos", "fetch_playlist", "get_transcript", "compare_videos", "launch_viewer", "capture_frame"]
+TOOL_NAMES = ["fetch_videos", "fetch_playlist", "get_transcript", "compare_videos", "launch_viewer", "capture_frame", "harvest_frames"]
 
 _viewer = {"port": None}
 
@@ -180,16 +182,23 @@ def get_transcript(video_id: str) -> str:
     Returns timestamped plain text, or an error message if unavailable.
 
     Goes through the SAME ladder dispatcher every other surface uses
-    (cache -> innertube -> api -> yt-dlp -> asr -> cdp-panel), so this tool is
-    cache-served when possible and is gated by the anti-hammer rate-limit gate.
+    (cache -> the BROWSER transcript panel in your already-running Chrome), so
+    this tool is cache-served when possible and is gated by the anti-hammer
+    rate-limit gate. The HTTP rungs (innertube / api / yt-dlp / asr) are
+    secondary/legacy and OFF by default - opt in only via the environment
+    (CINOPSIS_ALLOW_HTTP_RUNGS=1); this tool never enables them itself.
     Never calls a rung directly — no rung may bypass the gate.
     """
     vid = extract_video_id(video_id)
-    with _quiet_stdout():
-        transcript, lang, method = fetch_transcript(vid)
-        if transcript:
-            from _utils import DATA_DIR
-            (DATA_DIR / f"transcript_{vid}.txt").write_text(format_transcript(transcript), encoding="utf-8")
+    try:
+        with _quiet_stdout():
+            transcript, lang, method = fetch_transcript(vid)
+            if transcript:
+                from _utils import DATA_DIR
+                (DATA_DIR / f"transcript_{vid}.txt").write_text(format_transcript(transcript), encoding="utf-8")
+    except ChromeProfileLockedError as e:
+        # F1: no Chrome debug port. Loud, actionable, and NEVER a fallback to an HTTP door.
+        return f"F1 - {e}"
 
     if not transcript:
         if method == "rate-limited":
@@ -212,9 +221,7 @@ def get_transcript(video_id: str) -> str:
                     f"and no retry was attempted.{detail} "
                     f"Run `python scripts/ratelimit.py` for the per-door breakdown, or "
                     f"`python scripts/ratelimit.py --reset` after moving to a clean network.")
-        return (f"No transcript available for {vid} — every rung failed "
-                f"(innertube / api / yt-dlp / asr / cdp-panel). The video may require "
-                f"login, have no subtitles, or need the agent-side Chrome caption-scrape.")
+        return describe_failure(method, vid)
 
     gate = integrity_gate(transcript)
     return (f"Transcript for {vid} ({lang}, {len(transcript)} entries, via {method}):"
@@ -281,6 +288,112 @@ def capture_frame(video_id: str, timestamp_seconds: int) -> str:
         return json.dumps({"status": "ok", "video_id": vid, "timestamp": int(timestamp_seconds)})
     return json.dumps({"status": "failed", "video_id": vid, "timestamp": int(timestamp_seconds),
                        "note": "Frame capture failed; the dashboard will fall back to the YouTube thumbnail."})
+
+
+@mcp.tool()
+def harvest_frames(session: str) -> str:
+    """Paired harvest pass: write a frame_ref onto every workflow step of a session.
+
+    Calls capture_session_frames() per video, in BATCH_CHUNK slices, and checks the
+    ratelimit "frames" gate BETWEEN slices. When the gate is cooling it stops,
+    leaves the unframed steps' frame_ref null, and reports them as deferred rather
+    than burning them as failures. The session file is rewritten after every slice,
+    so calling this again RESUMES: only steps with no frame_ref, or whose PNG is
+    missing on disk, are re-entered. `session` is a dir, dir name or
+    comparison_data.json path.
+
+    This tool defines NO moment or step model of its own. It reads the companion's
+    existing schema (skills/cinopsis/references/comparison-schema.md):
+    analysis.workflow_steps[].{video_id, t_start, frame_ref} and
+    analysis.key_moments[].{video_id, timestamp}, exactly as capture_frames'
+    collect_capture_timestamps() does. key_moments contribute timestamps only; they
+    gain no field. A step without a usable video_id or t_start cannot be framed and
+    is reported as `malformed`, never counted as a capture failure.
+    """
+    import ratelimit
+    data_file = resolve_session_file(session)
+    if not data_file.exists():
+        return json.dumps({"status": "failed", "note": f"No comparison_data.json at {data_file}"})
+    data = json.loads(data_file.read_text(encoding="utf-8"))
+    analysis = data.get("analysis") or {}
+    steps = [s for s in analysis.get("workflow_steps") or [] if isinstance(s, dict)]
+
+    def _framed(step):
+        ref = step.get("frame_ref")
+        return bool(ref) and (DATA_DIR / ref).exists()
+
+    def _usable(step):
+        # The two fields the schema requires for a frame to be capturable at all.
+        if not step.get("video_id"):
+            return False
+        try:
+            return float(step.get("t_start")) >= 0
+        except (TypeError, ValueError):
+            return False
+
+    malformed = [s for s in steps if not _usable(s)]
+    steps = [s for s in steps if _usable(s)]
+
+    pending = {}
+    for step in steps:
+        if not _framed(step):
+            pending.setdefault(step.get("video_id"), []).append(step)
+    moments = [m for m in analysis.get("key_moments") or [] if isinstance(m, dict)]
+    summary = {"captured": 0, "failed": 0, "deferred": 0, "stopped_by_gate": False, "seconds_left": 0}
+
+    def _persist():
+        tmp = data_file.with_suffix(".json.tmp")
+        tmp.write_text(json.dumps(data, indent=2, ensure_ascii=False), encoding="utf-8")
+        tmp.replace(data_file)
+
+    for video_id, vsteps in pending.items():
+        for start in range(0, len(vsteps), BATCH_CHUNK):
+            gate = ratelimit.status()
+            if gate["blocked"]:
+                summary["stopped_by_gate"] = True
+                summary["seconds_left"] = gate["seconds_left"]
+                break
+            chunk = vsteps[start:start + BATCH_CHUNK]
+            sub = {"analysis": {"workflow_steps": chunk,
+                                "key_moments": [m for m in moments if m.get("video_id") == video_id]
+                                if start == 0 else []}}
+            with _quiet_stdout():
+                res = capture_session_frames(sub, verbose=False)
+            summary["captured"] += res["captured"]
+            gate = ratelimit.status()
+            lost = [s for s in chunk if not _framed(s)]
+            if gate["blocked"] and lost:
+                # The gate tripped inside this slice: those nulls are not real failures.
+                summary["deferred"] += len(lost)
+                summary["stopped_by_gate"] = True
+                summary["seconds_left"] = gate["seconds_left"]
+            else:
+                summary["failed"] += len(lost)
+            _persist()
+            if summary["stopped_by_gate"]:
+                break
+        if summary["stopped_by_gate"]:
+            break
+
+    remaining = sum(1 for s in steps if not _framed(s))
+    summary.update({"status": "partial" if summary["stopped_by_gate"] else "ok",
+                    "remaining": remaining, "total_steps": len(steps),
+                    "malformed": len(malformed),
+                    "frames_dir": str(DATA_DIR / "frames"),
+                    "session_file": str(data_file)})
+    # Known companion defect (MAP B1/B2): PNGs land in DATA_DIR/frames, the viewer's
+    # server reads canonical_data_dir()/frames, and no route serves frame_ref. Say so
+    # rather than let a green "ok" imply the companion can display these frames.
+    try:
+        from _utils import canonical_data_dir
+        if canonical_data_dir().resolve() != DATA_DIR.resolve():
+            summary["warning"] = ("frames written under DATA_DIR differ from the canonical data dir "
+                                  "the viewer serves; frame_ref will not resolve there yet")
+    except Exception:
+        pass
+    if summary["stopped_by_gate"]:
+        summary["note"] = "Frames gate is cooling. Call harvest_frames again after seconds_left; it resumes."
+    return json.dumps(summary, ensure_ascii=False)
 
 
 def _advertise_bus_surfaces() -> None:

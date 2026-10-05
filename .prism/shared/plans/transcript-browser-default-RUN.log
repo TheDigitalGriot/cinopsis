@@ -1,0 +1,35 @@
+The browser transcript panel is now the only transcript path that runs by default. Nothing is committed or pushed.
+
+I never launched a browser, instantiated a webdriver or loaded a YouTube page. Everything below was verified offline.
+
+`★ Insight ─────────────────────────────────────`
+- **A hidden H0 violation.** `chrome_session.acquire_session()` had a LAUNCH branch, so the code would have opened Chrome on your desktop whenever no debug port was found. I removed it. It now only attaches, and raises F1 if nothing is listening.
+- **The proven recipe now lives in one place.** `panel_transcript.py` has R1–R8, including the "Transcript" tab click (the panel opens on Chapters) and the 14 × 2.2s spinner wait. `fetch_transcripts`, `compare_videos`, `digest_all`, the MCP `get_transcript` tool and the CLI all go through that single ladder: cache, then browser panel.
+- **I made the no-browser rule structural.** `tests/conftest.py` stubs the debug-port probe and replaces `selenium.webdriver.Chrome` with a raiser, so a stray test can't attach to your real Chrome.
+`─────────────────────────────────────────────────`
+
+**What changed**
+- **HTTP rungs:** innertube, api, yt-dlp, raw-CDP and asr are still in the code, labelled secondary/legacy, and off by default. They run only with `--allow-http-rungs` or `CINOPSIS_ALLOW_HTTP_RUNGS=1`, and are never a silent fallback.
+- **F1:** a missing debug port raises F1 naming `launch_chrome_debug.ps1`, even when you've opted in to HTTP.
+- **F2 and F3:** both are worded "not a block".
+- **Docs:** `SKILL.md` has a browser-first block added, with the old ladder relabelled rather than stripped. `CHANGELOG.md` and an old docs page also have notes.
+
+**Verification**
+
+| Check | Result |
+|---|---|
+| `pytest tests` | `219 passed` |
+| `claude plugin validate .` | `Validation passed` |
+| `validate-skill.sh skills/cinopsis` | `Validation passed with 1 warning(s)` |
+
+The 37 new tests are in `tests/test_transcript_browser_default.py`. They cover the tab-click ordering, the 30s wait, no dependence on the stale selector, and HTTP rungs staying unreachable by default.
+
+Four old ladder tests had to be updated for the new default. Two `find_chrome` tests were already broken at HEAD, and I rewrote them around the no-launch rule. The hook-schema validator flags 3 "Missing 'matcher'" errors in `hooks.json`, which I didn't touch. They are identical on HEAD.
+
+**Open items**
+- **Live read deferred.** I couldn't verify the recipe against YouTube's real DOM without a browser. Run `python scripts/panel_transcript.py jphEXauoASw` once on your attached Chrome; the expected row count is 80.
+- **Spinner selectors are my reading.** The contract named the spinner signal but not the selectors, so I guessed `tp-yt-paper-spinner` and `yt-spinner`. They are untested live.
+- **F3 is capped.** I capped the spinner wait at about 92s rather than waiting forever. After that it reports "still loading, not a block".
+- **Metadata still uses yt-dlp.** Playlist listing, video metadata, thumbnails and frames still go through yt-dlp. They aren't transcript doors, so I left them. Tonight's block at video 15 could have partly come from that traffic. Do you want a follow-up contract to move metadata to the browser as well?
+
+Everything is in `.prism/shared/plans/transcript-browser-default-RESULT.md`. Heartbeats and the `TRANSCRIPT-BROWSER-DEFAULT-COMPLETE` marker are in `transcript-browser-default-HEARTBEAT.txt`.

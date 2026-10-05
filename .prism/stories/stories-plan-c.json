@@ -1,0 +1,144 @@
+{
+  "_note": "Plan C stories — authored 2026-07-22. SEPARATE FILE (stories-plan-c.json) so it does not clobber Plan A's active .prism/stories/stories.json driven by /prism-subagent. Merge into stories.json when Plan A is done, or run Plan C from this file directly.",
+  "epic": {
+    "name": "Cinopsis Plan C — Viewer Refresh + Refraction Surface",
+    "source": ".prism/shared/plans/2026-07-22-cinopsis-plan-c-viewer-refraction.md",
+    "qualityGates": [
+      "Render viewer/viewer.html against a real multi-video session; assert every analysis panel populates and the browser console is error-free (browser-verifier)."
+    ],
+    "decisions": [
+      "UI/interaction only. The data layer — fetch, analysis, and the _has_analysis promotion (compare_server.py:369) — is untouched; that is Plan A's.",
+      "USE /prism:cl-plugin-structure for the interactive surface; never edit that skill. Reconcile across surfaces later via /prism:fragment-sync (Plan B).",
+      "viewer/viewer.html stays a single self-contained file: assets (mark SVG, favicon) are inlined as data URIs, not external paths.",
+      "Griotwave tokens and the 'wave' (ember) logo variant are consumed from existing assets, not redesigned.",
+      "The graph reads existing analysis.topics/disagreements/key_moments from comparison_data.json — no new backend or pipeline.",
+      "sendPrompt() exists only when the viewer is embedded in a Cowork widget host — NOT in the Flask-served browser view (localhost:5123). drive() buttons must feature-detect and no-op gracefully; the true refraction surface is a Cowork-embedded rendering path."
+    ],
+    "references": [
+      ".prism/shared/plans/2026-07-22-cinopsis-plan-c-viewer-refraction.md",
+      ".prism/shared/brand/00-START-HERE.md",
+      ".prism/shared/brand/assets/bundles/cinopsis-wave/",
+      ".prism/shared/research/cinopsis_missing-text-bug_root-cause.md",
+      "Desktop artifact: refraction-pattern (the thesis)",
+      "Cowork session 00791624 (Lucid griot-suite consolidation) — sendPrompt CTA + clickable layer/card widget patterns"
+    ],
+    "outOfScope": [
+      "Any fetch / transcript / ASR change (Plan A).",
+      "Changing the _has_analysis promotion logic (Plan A invariant, locked).",
+      "A new analysis pipeline or backend — the graph reads existing fields only.",
+      "Native (electron/vscode) drive() parity — via Fragment (Plan B rollout).",
+      "Editing /prism:cl-plugin-structure itself."
+    ],
+    "risks": [
+      "viewer.html is an 89 KB hand-authored single file — the restyle must preserve inline JS selectors and data bindings.",
+      "sendPrompt is host-specific: the Flask browser view has no sendPrompt, so C4 must feature-detect or the buttons appear broken.",
+      "A large session can clutter the node-graph — cap nodes / simplify layout."
+    ],
+    "grounding": [
+      "viewer.html is 2170 lines and ALREADY token-based: :root at lines 10-21 (--bg #0f1117, --panel-bg #0d0f1a, --card-bg #1a1d2e, --text-primary #e2e8f0, --brand-purple #a78bfa, --active-purple #7c3aed). C1 is a token REMAP to Griotwave ember + glass, not a rewrite.",
+      "Tab system exists: switchTab() + .nav-tab buttons in #nav-bar (viewer.html:726-735 - Dashboard / By Topic / By Video). C3 adds a 'Connections' tab the same way; C4's control row lives in #nav-bar.",
+      "Analysis fields destructured at viewer.html:1083-1086 (analysis.topics / disagreements / key_moments / unified_summary) and re-collected at 1741-1749 - the graph reads from there. statCard() at ~1098 is the existing render helper.",
+      "Header title = #nav-session-title (viewer.html:730); existing button onclick pattern at 711/733 is the model for C4's drive() buttons."
+    ]
+  },
+  "stories": [
+    {
+      "id": "STORY-C1",
+      "title": "Griotwave token pass on viewer.html",
+      "description": "Replace ad-hoc styles in viewer/viewer.html with Griotwave tokens (glass surfaces, ember accents, type scale, Afrik wordmark header) while preserving the existing layout and every JS data binding.",
+      "priority": 1,
+      "status": "pending",
+      "blockedBy": null,
+      "files": [
+        {"path": "viewer/viewer.html", "action": "modify"}
+      ],
+      "steps": [
+        {"description": "Read viewer/viewer.html fully; inventory the existing CSS (colors, fonts, layout) and every JS data-binding point. Do not alter bindings or element ids/classes the JS depends on.", "done": false},
+        {"description": "Pull tokens from the Griotwave master (C:/Users/digit/GriotMeta/SkillsForge/griotwave/griotwave-library/_master/griotwave.tokens.json): bg, glass, ember, text, radius, blur.", "done": false},
+        {"description": "Add a :root token block and map existing colors to it: glass surfaces (blur(40px) saturate(140%)), ember accent, warm off-white text. Replace ad-hoc hex with var(--...).", "done": false},
+        {"description": "Set the header wordmark to Afrik (embed via @font-face data URI if available, else a styled serif fallback). Keep the layout grid intact.", "done": false},
+        {"description": "Render against a real session dir; confirm all cards/panels still populate (no binding regressions) and text is legible in light + dark.", "done": false}
+      ],
+      "context": {
+        "why": "The viewer is the refraction surface; it must read as ember-bloom Griotwave while staying a single self-contained file.",
+        "risks": ["Restyle can break inline JS if selectors/ids change."],
+        "edgeCases": ["Sessions with many videos", "Very long transcripts", "Missing thumbnails"],
+        "patterns": ["existing viewer.html structure", "griotwave master tokens", "griotwave-pencil-transformer token names"],
+        "graphTargets": []
+      }
+    },
+    {
+      "id": "STORY-C2",
+      "title": "Wire the wave (ember) logo variant",
+      "description": "Install the already-generated brand assets — favicon, header mark (cinopsis-mark.svg), app icon — the 'wave' (ember) variant, inlined as data URIs so the viewer stays self-contained.",
+      "priority": 2,
+      "status": "pending",
+      "blockedBy": "STORY-C1",
+      "files": [
+        {"path": "viewer/viewer.html", "action": "modify"}
+      ],
+      "steps": [
+        {"description": "Read .prism/shared/brand/assets/cinopsis-mark.svg and .prism/shared/brand/assets/bundles/cinopsis-wave/favicon.ico.", "done": false},
+        {"description": "Inline the mark SVG into the header (or a data: URL); set the favicon via a <link rel=icon> data URI. Use the wave variant, not debug/prod.", "done": false},
+        {"description": "Verify the header mark and favicon render; confirm no external asset references remain (self-contained).", "done": false}
+      ],
+      "context": {
+        "why": "Logos are already generated; this is install, not design.",
+        "risks": ["viewer is self-contained -> assets MUST be inlined, not linked by path."],
+        "edgeCases": ["SVG mark scaling in the header", "favicon data-URI browser support"],
+        "patterns": ["brand/assets/cinopsis-mark.svg", "griot-app-icons bundle layout"],
+        "graphTargets": []
+      }
+    },
+    {
+      "id": "STORY-C3",
+      "title": "Connections graph view on the cross-video panel",
+      "description": "Add a node-graph to the cross-video panel: nodes = videos, edges = shared topics / disagreements, edge weight ~ shared key_moments. Reads existing analysis fields from comparison_data.json; no new backend.",
+      "priority": 3,
+      "status": "pending",
+      "blockedBy": "STORY-C1",
+      "files": [
+        {"path": "viewer/viewer.html", "action": "modify"}
+      ],
+      "steps": [
+        {"description": "Locate the cross-video panel in viewer.html (unified_summary / topics / disagreements section).", "done": false},
+        {"description": "Add an inline SVG node-graph: one node per video, edges between videos that share a topic or co-appear in a disagreement; edge weight from shared key_moments count. Node color = per-video ember variant.", "done": false},
+        {"description": "Read from the already-loaded comparison_data.json analysis fields; do not fetch. Lay out nodes on a simple circle/force-lite layout.", "done": false},
+        {"description": "Empty-analysis state: hide the graph or show 'run analysis to see connections'.", "done": false},
+        {"description": "Verify against a real multi-video session; confirm single-video and empty-analysis sessions degrade cleanly.", "done": false}
+      ],
+      "context": {
+        "why": "Makes the compare read as genuine visual analysis — the Griot node-graph motif landing where it belongs.",
+        "risks": ["Many nodes clutter -> cap/greedy layout", "Performance for large sessions"],
+        "edgeCases": ["Single-video session (no edges)", "Empty analysis", "All videos share every topic (hairball)"],
+        "patterns": ["griotwave node-graph motif", "comparison_data.json analysis shape (topics/disagreements/key_moments)", "viewer.html:1083-1086 + 1741-1749 (analysis fields already parsed)", "viewer.html:733-735 switchTab() nav-tab pattern - add a 'Connections' tab"],
+        "graphTargets": []
+      }
+    },
+    {
+      "id": "STORY-C4",
+      "title": "drive() buttons in the viewer (refraction surface)",
+      "description": "Add interactive CTAs that advance the agent: Re-run analysis, Capture frame, Write digest, Generate icons (/griot-app-icons). Each calls a driveOrPrompt() helper that uses sendPrompt() in a Cowork widget host, a native drive bridge if present, and disables gracefully in a plain browser. Modeled on session 00791624's sendPrompt CTA pattern.",
+      "priority": 4,
+      "status": "pending",
+      "blockedBy": "STORY-C1",
+      "files": [
+        {"path": "viewer/viewer.html", "action": "modify"}
+      ],
+      "steps": [
+        {"description": "Add a control row to the header/panel with CTAs: Re-run analysis, Capture frame, Write digest, Generate icons.", "done": false},
+        {"description": "Implement driveOrPrompt(text): if typeof sendPrompt === 'function' -> sendPrompt(text) (Cowork widget host); else if a native drive bridge exists -> call it; else disable the button + tooltip 'available in Cowork / native'.", "done": false},
+        {"description": "Wire each CTA to a concrete prompt. e.g. Generate icons -> 'Use /griot-app-icons on the Cinopsis mark to regenerate the viewer icon bundle.'; Re-run analysis -> 'Re-run compare analysis for session <id> and refresh the viewer.'", "done": false},
+        {"description": "Guarantee the plain Flask/browser view (no sendPrompt) still fully works — buttons inert/disabled, viewer unaffected.", "done": false},
+        {"description": "Verify: embedded in a Cowork widget the button injects the prompt; standalone the viewer renders and buttons no-op. Confirm cl-plugin-structure interactive-surface conformance.", "done": false}
+      ],
+      "context": {
+        "why": "The refraction surface: the read-out becomes a control that DRIVES the agent — the sendPrompt/drive pattern generalized from prism-brainstorm's click-to-wake.",
+        "risks": ["sendPrompt exists only in the Cowork widget host, NOT the Flask browser view -> MUST feature-detect."],
+        "edgeCases": ["Flask browser view (no sendPrompt) -> disabled buttons", "Native surface with a drive bridge", "Missing session id for the Re-run prompt"],
+        "patterns": ["session 00791624: cta.addEventListener('click',()=>sendPrompt(...))", "cl-plugin-structure interactive-surface conventions", "Fragment drive() (CHANGELOG 4.4.0)", "viewer.html:726 #nav-bar (control-row target); existing onclick buttons at 711/733"],
+        "graphTargets": []
+      }
+    }
+  ]
+}

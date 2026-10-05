@@ -1,0 +1,6 @@
+Follow the stage contract at .prism/shared/plans/cinopsis-harvest-CONTEXT.md in this repo.
+Read it first. It is an AMENDMENT to existing work - revise in place, do not restart.
+Execute its numbered Process in order. Step 1 is code-intel mapping via graph-navigator and
+codebase-analyzer - query the code graph, do not read whole files. Honour the DO NOT TOUCH
+list. Use griot-agent-architect conventions and RUN its bundled validator at step 5.
+Do not commit. Do not push. Append heartbeat tokens and finish with the terminal marker.

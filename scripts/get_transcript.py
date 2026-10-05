@@ -1,20 +1,28 @@
 #!/usr/bin/env python3
-"""Fetch video transcripts via an environment-aware fallback ladder.
+"""Fetch video transcripts. THE BROWSER TRANSCRIPT PANEL IS THE ONLY AUTO-USED PATH.
 
-Ladder (cloud <-> local aware; each rung degrades to the next):
-  0. cache     - reuse data/transcript_<id>.json if present (idempotent, ungated)
-  1. innertube - Door 2: youtubei/v1/get_transcript, the endpoint the transcript
-                 PANEL uses; survives the /api/timedtext IP-block, so it goes FIRST
-  2. api       - Door 1: youtube-transcript-api, instance .fetch() (shim for old
-                 .get_transcript); fastest, but the first thing to get IP-blocked
-  3. yt-dlp    - Door 1: subtitle download with cookie fallbacks
-  4. asr       - OPTIONAL rung for caption-LESS videos: yt-dlp audio -> faster-whisper
-                 (only fires if faster-whisper is importable; else logs an enable hint)
-  5. cdp-panel - Door 2 via a live Chrome: drive the real transcript panel over CDP
-Each rung is gated INDEPENDENTLY by the door it goes through - a cooling door
-skips its rung and the ladder continues. If every rung fails, the caller is told
-to use the Chrome caption-scrape rung (agent-side: read
-ytInitialPlayerResponse.captionTracks off the loaded watch page).
+DEFAULT ladder (stage contract transcript-browser-default, 2026-10-01):
+  0. cache         - reuse data/transcript_<id>.json if present (no network, ungated)
+  1. browser-panel - read YouTube's on-page transcript PANEL in Gavin's
+                     ALREADY-RUNNING Chrome (panel_transcript.py - the proven
+                     recipe, attach-only, never launches a browser).
+That is the whole default ladder. A browser-path failure NEVER silently degrades
+to an HTTP door - it returns / raises a clear, named error:
+  ChromeProfileLockedError (F1) - no CDP debug port; run launch_chrome_debug.ps1
+  method "no-transcript"   (F2) - the video has no transcript (NOT a block)
+  method "still-loading"   (F3) - panel still loading (NOT a block)
+
+SECONDARY / LEGACY rungs (RETAINED, DISABLED BY DEFAULT). Every call below goes
+over the HTTP doors whose repeated use IP-blocked Gavin's residential address
+(video 15 of 21). They are reachable ONLY by an explicit opt-in -
+`--allow-http-rungs` / `fetch_transcript(..., allow_http_rungs=True)` or
+CINOPSIS_ALLOW_HTTP_RUNGS=1 - and are never fallen back into automatically:
+  innertube - Door 2: youtubei/v1/get_transcript
+  api       - Door 1: youtube-transcript-api
+  yt-dlp    - Door 1: subtitle download with cookie fallbacks
+  cdp-panel - raw-CDP panel reader (stale selector; superseded by browser-panel)
+  asr       - caption-LESS videos: yt-dlp audio -> faster-whisper
+Each enabled rung is still gated INDEPENDENTLY by the door it goes through.
 
 Why this exists: the working method kept getting re-derived every session. It is
 now baked into the tool + pinned in SKILL.md and /topics/cinopsis-method.
@@ -30,6 +38,8 @@ import subprocess
 from pathlib import Path
 
 from _utils import find_ytdlp, get_env, DATA_DIR, resolve_cookies
+import chrome_session
+import panel_transcript
 
 
 def _find_ytdlp():
@@ -1210,80 +1220,115 @@ def get_transcript_cdp(video_id):
     return _cdp_impl(video_id)
 
 
-def get_transcript_selenium(video_id):
-    """selenium-panel rung: Chrome reads the transcript PANEL directly
-    (panel_transcript.py), via the SAME chrome_session.py seam cdp-panel uses
-    (D3, "ONE ORIGINAL") - Profile 1, attach-first/launch-fallback, never its
-    own profile or cookie handling. Same in-browser pipeline as cdp-panel, a
-    different transport (Selenium's debugger_address attach vs a raw CDP
-    websocket client). Shares DOOR_CDP.
+def get_transcript_browser(video_id):
+    """browser-panel rung - THE default transcript path (D1).
 
-    OFF by default, and staying that way on purpose (contract Process step 6
-    asks this to be justified, not just left over): cdp-panel is ordered
-    immediately before this rung and drives the identical session/profile, so
-    in the normal case cdp-panel already succeeds and this rung never even
-    gets a gate check. Turning it on too would mean every caption-less
-    fallback drives Chrome TWICE (once per rung) for no extra chance of
-    success. It remains one env var away (CINOPSIS_ENABLE_SELENIUM=1) as a
-    genuine backup transport if cdp-panel's raw-CDP path itself ever regresses
-    - which is exactly when you want a second, differently-implemented rung
-    behind it, not concurrently with it. That env check runs BEFORE any
-    import or launch, so a gated-off ladder never touches the network (and
-    the zero-network test harness stays honest).
-    Returns (transcript, lang) or (None, None); never raises."""
-    # ON BY DEFAULT (corrected 2026-09-18 by a live pull, not by reasoning).
-    # This rung was left opt-in on the argument that it is "a redundant, slower
-    # backup behind cdp-panel driving the identical session". The measurement says
-    # the opposite: on the SAME attached Profile-1 session, cdp-panel reports
-    # "transcript panel never populated" while selenium-panel returns 487 entries
-    # for the same video. Until cdp-panel's panel-click is fixed, selenium-panel is
-    # the rung that actually works, so it must not be gated off by default.
-    # Opt OUT with CINOPSIS_ENABLE_SELENIUM=0.
-    if os.environ.get("CINOPSIS_ENABLE_SELENIUM", "1").strip().lower() in (
-            "0", "false", "no", "off"):
-        return None, None
+    Reads the on-page transcript PANEL in Gavin's ALREADY-RUNNING Chrome via
+    panel_transcript.fetch_transcript_panel (the proven recipe R1-R8). It
+    ATTACHES through chrome_session.acquire_session() and never launches a
+    browser. Returns (transcript, "en") with transcript =
+    [{"start": int seconds, "text": str}, ...].
+
+    RAISES (never swallowed, never degraded to an HTTP door):
+      chrome_session.ChromeProfileLockedError  F1 - no CDP debug port
+      panel_transcript.NoTranscriptAvailable   F2 - the video has no transcript
+      panel_transcript.TranscriptStillLoading  F3 - panel still loading
+    """
+    segs = panel_transcript.fetch_transcript_panel(video_id)
+    return (segs, "en") if segs else (None, None)
+
+
+def get_transcript_selenium(video_id):
+    """LEGACY alias, retained. The old selenium-panel rung is superseded by
+    get_transcript_browser (same Selenium-attach transport, but the proven recipe
+    and named failures). Not on any ladder. Never raises: returns (None, None)
+    on any failure, exactly as before."""
     try:
-        import panel_transcript as _pt
+        return get_transcript_browser(video_id)
     except Exception as e:
-        print(f"  [selenium-panel] unavailable ({type(e).__name__}: {e}); skipping rung",
-              flush=True)
+        print(f"  [selenium-panel] (legacy alias) {type(e).__name__}: {e}", flush=True)
         return None, None
-    try:
-        segs = _pt.fetch_segments(video_id)
-    except Exception as e:
-        print(f"  [selenium-panel] error: {type(e).__name__}: {e}", flush=True)
-        return None, None
-    if not segs:
-        return None, None
-    def _to_sec(t):
-        try:
-            acc = 0
-            for part in t.split(":"):
-                acc = acc * 60 + int(part)
-            return float(acc)
-        except Exception:
-            return 0.0
-    transcript = [{"start": _to_sec(x.get("t", "")), "text": x["text"]}
-                  for x in segs]
-    return transcript, "en"
+
+
+# ---------------------------------------------------------------------------
+# The HTTP-rung opt-in (D2). The HTTP doors stay in this file, labelled
+# SECONDARY/LEGACY, and are unreachable unless the caller asks for them.
+# ---------------------------------------------------------------------------
+ALLOW_HTTP_ENV = "CINOPSIS_ALLOW_HTTP_RUNGS"
+
+
+def http_rungs_allowed(flag=None):
+    """True only on an EXPLICIT opt-in: a truthy `flag` (the --allow-http-rungs
+    CLI switch / allow_http_rungs=True), or CINOPSIS_ALLOW_HTTP_RUNGS=1. An
+    explicit False/None flag falls through to the env var; unset means OFF."""
+    if flag:
+        return True
+    return os.environ.get(ALLOW_HTTP_ENV, "").strip().lower() in ("1", "true", "yes", "on")
+
+
+def _legacy_http_rungs():
+    """The SECONDARY rungs, in their historical order. Resolved at call time so
+    the module attributes can be swapped. NEVER part of the default ladder."""
+    return (
+        ("innertube", get_transcript_innertube, DOOR_INNERTUBE),
+        ("api",       get_transcript_api,       DOOR_TIMEDTEXT),
+        ("yt-dlp",    get_transcript_ytdlp,     DOOR_TIMEDTEXT),
+        ("cdp-panel", get_transcript_cdp,       DOOR_CDP),
+        # asr downloads audio and transcribes locally - it is not a caption
+        # "door" at all, so it gates through the door-less (shared) path.
+        ("asr",       get_transcript_asr,       None),
+    )
+
+
+# Failure "methods" returned as the third tuple element when no rung produced text.
+FAILURE_NO_TRANSCRIPT = "no-transcript"     # F2
+FAILURE_STILL_LOADING = "still-loading"     # F3
+FAILURE_PANEL_ERROR = "panel-error"         # browser machinery failed (not F1/F2/F3)
+
+
+def describe_failure(method, video_id=""):
+    """Human message for a (None, None, method) result. One place, so the CLI,
+    the MCP tool and the batch scripts all say the same thing."""
+    who = f" for {video_id}" if video_id else ""
+    if method == "rate-limited":
+        return (f"Every rung was refused by the rate-limit gate{who} (all doors cooling); "
+                "no request was made. Run `python ratelimit.py` for the per-door breakdown.")
+    if method == FAILURE_NO_TRANSCRIPT:
+        return f"No transcript available{who} - the video has none (this is not a block)."
+    if method == FAILURE_STILL_LOADING:
+        return (f"The transcript panel{who} was still loading after the full wait "
+                "(spinner active) - NOT a block and NOT 'no transcript'; retry later.")
+    if method == FAILURE_PANEL_ERROR:
+        return (f"The browser transcript path failed{who} (see the [ladder] line "
+                "above). No HTTP rung was tried - they are disabled by default; "
+                f"opt in with --allow-http-rungs or {ALLOW_HTTP_ENV}=1 only if you accept "
+                "the IP-block risk.")
+    return (f"No transcript obtained{who} via the browser panel. HTTP rungs are disabled "
+            f"by default (opt in: --allow-http-rungs / {ALLOW_HTTP_ENV}=1).")
 
 
 # ---------------------------------------------------------------------------
 # The ladder dispatcher
 # ---------------------------------------------------------------------------
-def fetch_transcript(video_id, allow_cache=True, refresh=False):
-    """Run the fallback ladder. Returns (transcript, lang, method).
+def fetch_transcript(video_id, allow_cache=True, refresh=False, allow_http_rungs=None):
+    """Run the ladder. Returns (transcript, lang, method).
 
-    Gating is PER RUNG, not once up front. Each rung declares the upstream "door"
-    it goes through; a rung whose door is cooling is SKIPPED and the ladder
-    CONTINUES to the next one. That is the whole point: when Door 1 (timedtext) is
-    IP-blocked, the Door-2 rungs must still be reachable.
+    DEFAULT ladder: cache -> browser-panel. Nothing else. The HTTP rungs run
+    only when http_rungs_allowed(allow_http_rungs) - an explicit opt-in - and
+    even then a browser-path failure is never SILENT: it is printed, and F1
+    (no CDP debug port) always raises regardless of the opt-in.
+
+    Gating is PER RUNG. Each rung declares the upstream "door" it goes through; a
+    rung whose door is cooling is SKIPPED and the ladder CONTINUES.
 
     Return contract:
-      (t, lang, name)            - a rung succeeded
-      (None, None, None)         - at least one rung ran and every rung failed
-      (None, None, "rate-limited") - EVERY rung was gate-skipped; no rung ran and
-                                     no network was touched
+      (t, lang, name)                - a rung succeeded
+      (None, None, "no-transcript")  - F2: the video has no transcript
+      (None, None, "still-loading")  - F3: panel still loading, not a block
+      (None, None, "panel-error")    - the browser machinery failed
+      (None, None, None)             - at least one rung ran and every rung failed
+      (None, None, "rate-limited")   - EVERY rung was gate-skipped; no network touched
+    RAISES chrome_session.ChromeProfileLockedError (F1).
     """
     # Rung 0 (cache) is deliberately UNGATED and ahead of everything: it performs
     # no network I/O, so a cooldown must never withhold an already-fetched result.
@@ -1301,25 +1346,18 @@ def fetch_transcript(video_id, allow_cache=True, refresh=False):
     except Exception:
         ratelimit = None
 
+    rungs = [("browser-panel", get_transcript_browser, DOOR_CDP)]
+    if http_rungs_allowed(allow_http_rungs):
+        print(f"  [ladder] HTTP rungs ENABLED by explicit opt-in "
+              f"({ALLOW_HTTP_ENV} / --allow-http-rungs) - secondary/legacy, IP-block risk",
+              flush=True)
+        rungs.extend(_legacy_http_rungs())
+
     ran_any = False       # did any rung actually get to run?
     gate_skipped = []     # rungs refused by the gate (never touched the network)
+    failure = None        # the browser path's named failure, if any
 
-    for name, fn, door in (
-        ("innertube", get_transcript_innertube, DOOR_INNERTUBE),
-        ("api",       get_transcript_api,       DOOR_TIMEDTEXT),
-        ("yt-dlp",    get_transcript_ytdlp,     DOOR_TIMEDTEXT),
-        # PANEL RUNGS BEFORE ASR (Gavin's call, 2026-09-18). The panel rungs read
-        # YouTube's OWN caption track through a real browser, so they return the
-        # real transcript; asr GUESSES the words from audio. asr also costs an
-        # audio download plus local transcription per video. It is the LAST RESORT
-        # - for videos with no captions at all - and must never pre-empt a rung
-        # that can return the genuine text.
-        ("cdp-panel", get_transcript_cdp,       DOOR_CDP),
-        ("selenium-panel", get_transcript_selenium, DOOR_CDP),
-        # asr downloads audio and transcribes locally - it is not a caption
-        # "door" at all, so it gates through the door-less (shared) path.
-        ("asr",       get_transcript_asr,       None),
-    ):
+    for name, fn, door in rungs:
         # One gate check per rung attempt - no more. check_gate does NOT stamp
         # last_call on a refusal, so a skipped rung costs no pacing time.
         if ratelimit is not None:
@@ -1343,12 +1381,24 @@ def fetch_transcript(video_id, allow_cache=True, refresh=False):
             # A clean (None, None) is a non-block failure. Deliberately NOT
             # recorded: a fabricated detail could collide with a BLOCK_MARKER and
             # cost an hour-long cooldown for a video that simply has no captions.
+        except chrome_session.ChromeProfileLockedError:
+            raise                                   # F1 - never degrades, never swallowed
+        except panel_transcript.NoTranscriptAvailable as e:
+            failure = failure or FAILURE_NO_TRANSCRIPT
+            print(f"  [ladder] {name}: {e}", flush=True)
+        except panel_transcript.TranscriptStillLoading as e:
+            failure = failure or FAILURE_STILL_LOADING
+            print(f"  [ladder] {name}: {e}", flush=True)
         except Exception as e:
             detail = f"{type(e).__name__}: {e}"
             print(f"  [ladder] {name} error: {detail}", flush=True)
-            # Report to the gate scoped to THIS rung's door, so a marker-bearing
-            # failure arms the right cooldown and leaves the other door open.
-            if ratelimit is not None:
+            if name == "browser-panel":
+                # Browser machinery failure (selenium missing, driver error...).
+                # Not a block: do NOT feed the gate - a fabricated cooldown helps nobody.
+                failure = failure or FAILURE_PANEL_ERROR
+            elif ratelimit is not None:
+                # Report to the gate scoped to THIS rung's door, so a marker-bearing
+                # failure arms the right cooldown and leaves the other door open.
                 ratelimit.record_outcome(False, detail, door=door)
 
     if not ran_any:
@@ -1356,9 +1406,12 @@ def fetch_transcript(video_id, allow_cache=True, refresh=False):
               f"no network was touched", flush=True)
         return None, None, "rate-limited"
 
-    print("  [ladder] all rungs failed. Rung 5 (agent-side): use the Chrome "
-          "caption-scrape - load the watch page and read "
-          "ytInitialPlayerResponse.captions.playerCaptionsTracklistRenderer.captionTracks.", flush=True)
+    if failure:
+        print(f"  [ladder] {describe_failure(failure, video_id)}", flush=True)
+        return None, None, failure
+
+    print("  [ladder] every enabled rung failed. " + describe_failure(None, video_id),
+          flush=True)
     return None, None, None
 
 
@@ -1469,11 +1522,17 @@ def integrity_gate(transcript, video_title=None):
 
 
 def main():
-    parser = argparse.ArgumentParser(description="Fetch YouTube video transcripts (fallback ladder)")
+    parser = argparse.ArgumentParser(
+        description="Fetch a YouTube transcript via the BROWSER transcript panel "
+                    "(attaches to your running Chrome; never launches one)")
     parser.add_argument("--video-id", required=True, help="YouTube video ID")
     parser.add_argument("--output", help="Custom output file path")
     parser.add_argument("--refresh", action="store_true", help="Ignore cache and re-fetch")
     parser.add_argument("--no-cache", action="store_true", help="Do not read the on-disk cache")
+    parser.add_argument("--allow-http-rungs", action="store_true",
+                        help="SECONDARY/LEGACY: also allow the HTTP rungs (innertube / api / "
+                             "yt-dlp / cdp-panel / asr). Off by default - these doors IP-blocked "
+                             f"the residential IP. Same as {ALLOW_HTTP_ENV}=1.")
     args = parser.parse_args()
     try:
         sys.stdout.reconfigure(encoding="utf-8", errors="replace")
@@ -1481,17 +1540,16 @@ def main():
         pass
 
     print(f"Fetching transcript: {args.video_id}", flush=True)
-    transcript, lang, method = fetch_transcript(
-        args.video_id, allow_cache=not args.no_cache, refresh=args.refresh)
+    try:
+        transcript, lang, method = fetch_transcript(
+            args.video_id, allow_cache=not args.no_cache, refresh=args.refresh,
+            allow_http_rungs=args.allow_http_rungs)
+    except chrome_session.ChromeProfileLockedError as e:        # F1 - never degrades
+        print(f"F1 - {e}")
+        raise SystemExit(3)
 
     if not transcript:
-        if method == "rate-limited":
-            print("Every rung was refused by the rate-limit gate (all doors cooling). "
-                  "Run `python ratelimit.py` for the per-door breakdown.")
-        else:
-            print("Failed to fetch transcript via every rung "
-                  "(innertube / api / yt-dlp / asr / cdp-panel). "
-                  "If you have a browser agent, use the Chrome caption-scrape rung.")
+        print(describe_failure(method, args.video_id))
         raise SystemExit(1)
 
     output_file = save_transcript(args.video_id, transcript, args.output)

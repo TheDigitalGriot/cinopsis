@@ -9,6 +9,7 @@ from pathlib import Path
 
 from fetch_videos import main as fetch_main, DATA_DIR as FETCH_DATA_DIR, OUTPUT_FILE as VIDEOS_FILE
 from get_transcript import fetch_transcript, format_transcript
+from chrome_session import ChromeProfileLockedError
 
 # HARD ANTI-HAMMER CAP - mirrors fetch_transcripts.py. This loop walks every video
 # in the digest, so without a cap a single run could fire dozens of transcript
@@ -36,6 +37,14 @@ def format_date(upload_date):
     return upload_date
 
 
+def _unavailable_note(reason):
+    """Digest block for a video whose transcript could not be obtained."""
+    return (f"*Transcript unavailable - {reason}*"+chr(10)*2
+            + "### Summary (to be filled by Claude)"+chr(10)*2
+            + "[Claude: read the transcript above and write a summary here]"+chr(10)*2
+            + "---"+chr(10)*2)
+
+
 def generate_digest(videos, include_transcript=True, limit=10):
     """Generate a Markdown digest from a list of videos."""
     today = datetime.now().strftime("%Y-%m-%d")
@@ -48,6 +57,7 @@ def generate_digest(videos, include_transcript=True, limit=10):
     # Per-run transcript budget. Dict so the loop body can mutate it without
     # a `nonlocal`/global dance.
     _fetched = {"n": 0}
+    _f1 = {"msg": None}   # F1 (no Chrome debug port) - once hit, stop trying: every video would fail the same way
 
     for i, video in enumerate(videos, 1):
         title = video.get("title", "Unknown")
@@ -72,15 +82,24 @@ def generate_digest(videos, include_transcript=True, limit=10):
                 md += "[Claude: read the transcript above and write a summary here]\n\n"
                 md += "---\n\n"
                 continue
+            if _f1["msg"]:
+                md += _unavailable_note("F1: " + _f1["msg"])
+                continue
             if _fetched["n"] > 0:
                 time.sleep(DIGEST_THROTTLE_SEC)
             print(f"  Fetching transcript for: {title}...", flush=True)
-            # Goes through the FULL gated ladder (cache -> innertube -> api ->
-            # yt-dlp -> asr -> cdp), not a raw rung. Previously this called
+            # Goes through the ladder (cache -> browser transcript panel; the HTTP
+            # rungs are opt-in only), not a raw rung. Previously this called
             # get_transcript_ytdlp directly, which bypassed the cache, the
             # Door-2 rung, and the rate-limit gate entirely - an ungated bulk
             # loop against a flagged IP.
-            transcript, lang, method = fetch_transcript(video_id)
+            try:
+                transcript, lang, method = fetch_transcript(video_id)
+            except ChromeProfileLockedError as e:
+                _f1["msg"] = str(e)
+                print(f"  F1 - {e}", flush=True)
+                md += _unavailable_note("F1: " + str(e))
+                continue
             if method != "cache":
                 _fetched["n"] += 1
             if method == "rate-limited":

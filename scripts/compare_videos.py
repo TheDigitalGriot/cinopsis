@@ -12,6 +12,7 @@ from pathlib import Path
 from _utils import find_ytdlp, get_env, DATA_DIR, canonical_data_dir
 from capture_frames import extract_video_id, capture_frame
 from get_transcript import get_transcript_ytdlp, fetch_transcript, load_cached_transcript, format_transcript
+from chrome_session import ChromeProfileLockedError
 from persist_session import persist_session
 SESSIONS_DIR = DATA_DIR / "sessions"
 CANONICAL_SESSIONS_DIR = canonical_data_dir() / "sessions"
@@ -109,7 +110,7 @@ def fetch_thumbnail_base64(video_id):
     return None
 
 
-def process_video(video_id, cache_mode="auto"):
+def process_video(video_id, cache_mode="auto", allow_http_rungs=None):
     """Fetch metadata, transcript, and thumbnail for a single video."""
     print(f"\nProcessing: {video_id}", flush=True)
 
@@ -133,7 +134,8 @@ def process_video(video_id, cache_mode="auto"):
             print("  [from-cache] no cached transcript; run fetch_transcripts.py first", flush=True)
     else:
         transcript, lang, _m = fetch_transcript(
-            video_id, allow_cache=(cache_mode != "refresh"), refresh=(cache_mode == "refresh"))
+            video_id, allow_cache=(cache_mode != "refresh"), refresh=(cache_mode == "refresh"),
+            allow_http_rungs=allow_http_rungs)
     metadata["transcript"] = transcript or []
     metadata["transcript_lang"] = lang
 
@@ -429,6 +431,7 @@ def main():
     parser.add_argument("--add-to", default=None, help="Add videos to an existing session instead of creating new")
     parser.add_argument("--from-cache", action="store_true", help="Assemble from cached transcripts only (no fetch)")
     parser.add_argument("--refresh", action="store_true", help="Force re-fetch, ignore the transcript cache")
+    parser.add_argument("--allow-http-rungs", action="store_true", help="SECONDARY/LEGACY: also allow the HTTP transcript rungs (off by default - they IP-blocked the residential IP; same as CINOPSIS_ALLOW_HTTP_RUNGS=1)")
     parser.add_argument("--chunk", type=int, default=0, help="Process at most N of the given --urls this call (resume the rest with --add-to)")
     args = parser.parse_args()
     cache_mode = "only" if args.from_cache else ("refresh" if args.refresh else "auto")
@@ -458,8 +461,13 @@ def main():
         failed = []
         for vid in video_ids:
             try:
-                video_data = process_video(vid, cache_mode=cache_mode)
+                video_data = process_video(vid, cache_mode=cache_mode,
+                                           allow_http_rungs=True if args.allow_http_rungs else None)
                 videos.append(video_data)
+            except ChromeProfileLockedError as e:
+                # F1: no Chrome debug port - every remaining video would fail the same way. Stop loudly.
+                print(f"\nF1 - {e}", flush=True)
+                raise SystemExit(3)
             except Exception as e:
                 print(f"  [warn] skipping {vid}: {e}", flush=True)
                 failed.append(vid)

@@ -5,6 +5,31 @@ All notable changes to **Cinopsis** are documented here.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [Unreleased]
+
+### Changed
+- **The browser transcript panel is now the ONLY auto-used transcript path** (stage
+  contract `transcript-browser-default`). The default ladder is `cache -> browser-panel`
+  for `get_transcript.py`, `fetch_transcripts.py`, `compare_videos.py`, `digest_all.py`,
+  the playlist/companion pull and the MCP `get_transcript` tool. The HTTP doors
+  (timedtext / youtubei / yt-dlp) IP-blocked the residential IP at video 15 of 21.
+- **`panel_transcript.py` encodes the proven recipe once**: expand description, open the
+  panel, **click the "Transcript" tab (the panel opens on Chapters)**, a patient
+  14 x 2.2s spinner wait, generic shadow-piercing timestamp extraction (the old per-row
+  custom-element selector is stale), scroll-to-stability, `[{"start": int, "text": str}]`.
+- **`chrome_session.acquire_session()` is attach-only.** The launch branch is removed;
+  with no CDP debug port it raises `ChromeProfileLockedError` (F1) naming the one-time fix
+  (`scripts/launch_chrome_debug.ps1`). Cinopsis never launches a browser.
+- Browser failures are named, never a bare "blocked": F1 (no debug port), F2 (no
+  transcript available), F3 (still loading). None degrades to an HTTP rung.
+
+### Added
+- `--allow-http-rungs` (get_transcript / fetch_transcripts / compare_videos) and
+  `CINOPSIS_ALLOW_HTTP_RUNGS=1`: explicit opt-in to the SECONDARY/LEGACY HTTP rungs
+  (innertube, api, yt-dlp, raw-CDP, asr). Retained in code, disabled by default.
+- `tests/test_transcript_browser_default.py`: network-free, browser-free coverage of the
+  above, plus a `tests/conftest.py` guard that makes any webdriver instantiation fail a test.
+
 ## [2.9.0] - 2026-09-30
 
 ### Added

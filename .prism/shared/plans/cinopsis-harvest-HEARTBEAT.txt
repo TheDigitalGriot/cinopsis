@@ -1,0 +1,8 @@
+STEP0-STARTED (no graph index in .gitnexus; no agent-spawn tool; symbol-scoped grep used)
+STEP1-MAP-DONE
+STEP2-BROKEN-REPORTED
+STEP3-RECONCILED
+STEP4-TOOL-RECONCILED
+STEP5-VALIDATED: claude plugin validate . => "Validation passed" (exit 0); validate-skill.sh => "All checks passed!" (exit 0)
+STEP6-RESULT-WRITTEN
+CINOPSIS-HARVEST-PASS2-COMPLETE

@@ -1,5 +1,11 @@
 # selenium-panel transcript rung (2026-09-06)
 
+> **SUPERSEDED 2026-10-01** by the contract `transcript-browser-default`: this reader is now
+> the DEFAULT and ONLY auto-used transcript path (`browser-panel`), rewritten around the
+> proven recipe (Transcript-tab click, 14 x 2.2s spinner wait, generic extraction). It is
+> attach-only, and the HTTP rungs described below are opt-in. The text below is the original
+> 2026-09-06 design, kept for history.
+
 ## What
 A fourth panel-reading rung, `selenium-panel`, now sits in the transcript fallback ladder
 (`scripts/get_transcript.py`) right after `cdp-panel`. It is backed by a new, self-contained

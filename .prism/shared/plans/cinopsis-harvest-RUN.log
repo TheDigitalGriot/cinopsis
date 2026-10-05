@@ -1,0 +1,37 @@
+Pass 2 is finished, but step 1 ran on grep rather than the code graph. `.gitnexus/` holds only a config file, and this session had no way to spawn graph-navigator or codebase-analyzer. I read only the line ranges I cite. Nothing is committed or pushed. `plugin.json` is unchanged, and `mcp_server.py` is the only tracked file modified.
+
+**What I changed**
+- **`cinopsis-harvest-MAP.md`:** the new map of the timeline, moment and step system with file:line references, plus the broken list.
+- **`SKILL.md`:** amended in place, with every original section kept.
+  - It now declares that it defines no moment or step model and reuses `workflow_steps[]`, `key_moments[]` and `videos[].chapters[]` by their real field names.
+  - I removed pass 1's "add a `key_moments` entry per harvested tool" step. That would have broken the schema's 3–5 significance cap and let stats drift. A harvested tool now ties to the `workflow_steps` span that covers its timestamp.
+  - A new "Known companion limits" section stops the skill promising viewer results the companion can't deliver yet.
+- **`harvest_frames` in `scripts/mcp_server.py`:** steps with no usable `video_id` or `t_start` are now reported as `malformed` instead of counted as capture failures. The response also returns `frames_dir` and a `warning` when the frames directory differs from the one the viewer serves. I tested it offline: a two-step malformed session returned `malformed: 2` and attempted no capture.
+- **`cinopsis-harvest-RESULT.md`:** what changed versus pass 1, the validator output verbatim, the broken list and my open questions.
+
+**What the map showed**
+Pass 1's premise was wrong in a useful way. The schema already separates the two notions: `key_moments` means what mattered, and `workflow_steps` means the procedure.
+
+I named 13 defects in the existing system and fixed none. They are code-reading findings, not reproduced failures. The ones most likely to match your report:
+- **Frames in two homes:** harvested frames land in `DATA_DIR/frames`, while the viewer reads the canonical data directory. The tool's new warning fired for this on your machine.
+- **No route serves `frame_ref`:** the step card prints the path as text and shows no image.
+- **User-captured frames don't persist:** they are lost on reload.
+- **User captures add moments:** they push fake "Captured frame" entries into `key_moments`, past the 3–5 cap, without updating stats.
+- **Timeline ignores steps:** the timeline draws moments only, not workflow steps.
+
+**Validators**
+- `claude plugin validate .` passed with exit 0, but its output names only the marketplace manifest. It doesn't say it checked `plugin.json` or the skills.
+- The bundled `validate-skill.sh` on `skills/cinopsis-harvest` also passed, with exit 0. I ran it as a supplement.
+- I ran no pytest, because no test covers `harvest_frames`.
+
+**Questions for you**
+1. Which of the 13 did you mean by "broken"? I can't tell from reading which ones you actually hit.
+2. Should a frame the user captures in the viewer become a key moment at all, or a separate kind of artifact? That is a schema ruling, so I left it.
+3. Do you want `.gitnexus` indexed and step 1 redone graph-driven, or is the grep-based map acceptable?
+
+The terminal marker `CINOPSIS-HARVEST-PASS2-COMPLETE` is in the heartbeat file, `.prism/shared/plans/cinopsis-harvest-HEARTBEAT.txt`.
+
+`★ Insight ─────────────────────────────────────`
+- The "two frame systems" defect (B1/B6) is a two-copy problem. Cowork's promotion copies only the session directory, so anything stored beside it, like `frames/`, silently stays behind.
+- A green `status: ok` from `harvest_frames` can't say whether the viewer can display the frames. That is why I added a `warning` field rather than trusting the status alone.
+`─────────────────────────────────────────────────`

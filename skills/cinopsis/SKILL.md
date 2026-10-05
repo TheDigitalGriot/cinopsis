@@ -127,9 +127,35 @@ unauthenticated, so the script returns 0 entries and prints a hint. Two ways in:
 
 ## Transcript fetch - the reliable ladder (cloud <-> local) [PINNED]
 
-Fetching a transcript is environment-sensitive. `get_transcript.py` / `fetch_transcript()`
-run this ladder automatically; when you drive it by hand, follow the same order. **Do not
-re-derive this every session - it is baked into the tool and pinned here.**
+### BROWSER-FIRST (current default, 2026-10-01) - read this before the legacy list below
+
+**The browser transcript PANEL is the only auto-used path.** `get_transcript.py` /
+`fetch_transcript()` / `fetch_transcripts.py` / the playlist + companion pull / the MCP
+`get_transcript` tool all run exactly two rungs: **cache -> browser-panel**. The browser rung
+(`scripts/panel_transcript.py`) reads the on-page transcript panel in Gavin's
+**already-running Chrome**. It **attaches** (`chrome_session.acquire_session()` +
+`debugger_address`) and **never launches a browser**; with no debug port it raises **F1** and stops.
+
+The recipe lives in one place (`panel_transcript.py`): expand description -> open "Show
+transcript" -> **the panel opens on the CHAPTERS tab, so click the "Transcript" tab** -> wait
+patiently for rows (14 x 2.2s, ~31s; an active spinner means *still loading*, not a block) ->
+extract generically from timestamp leaves piercing shadow roots (the old per-row
+custom-element selector is stale) -> scroll to stability -> `[{"start": int, "text": str}]`.
+
+Named failures, never a bare "blocked": **F1** `ChromeProfileLockedError` (run
+`scripts/launch_chrome_debug.ps1` once, then every run attaches) - **F2** no transcript
+available - **F3** still loading. None of them falls back to an HTTP door.
+
+The HTTP rungs (innertube / api / yt-dlp / asr, plus the raw-CDP rung) are **retained but
+DISABLED BY DEFAULT** - they are what IP-blocked the residential IP (video 15 of 21). Opt in
+explicitly with `--allow-http-rungs` or `CINOPSIS_ALLOW_HTTP_RUNGS=1`; they are never a
+silent fallback. Never open or launch a browser on Gavin's desktop to make this work.
+
+### SECONDARY / LEGACY ladder (opt-in only - kept for reference until the HTTP doors are fixed)
+
+Fetching a transcript is environment-sensitive. The list below is the OLD ladder; it runs only
+under the explicit opt-in above. **Do not re-derive this every session - it is baked into the
+tool and pinned here.**
 
 0. **Probe with ONE video first**, and never assume egress - this sandbox may or may not have
    YouTube network access (it is inconsistent per session).

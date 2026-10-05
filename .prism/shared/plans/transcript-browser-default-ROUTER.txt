@@ -1,0 +1,8 @@
+Use the griot-agent-architect skill and follow the stage contract at
+.prism/shared/plans/transcript-browser-default-CONTEXT.md in this repo.
+READ THE "HARD CONSTRAINT" SECTION FIRST AND OBEY IT ABSOLUTELY: never launch a browser,
+never instantiate a webdriver, never run a live browser test. Attach-only, or raise and stop.
+All tests are offline and network-free. Then execute the numbered Process in order, encoding
+the PROVEN RECIPE exactly as written. Retain the legacy HTTP rungs behind an explicit opt-in;
+never delete them. Run the bundled validator. Do not commit. Do not push.
+Append heartbeat tokens and finish with the terminal marker.

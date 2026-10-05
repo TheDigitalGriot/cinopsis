@@ -488,6 +488,7 @@ def _stub_rungs(monkeypatch, **overrides):
     """
     calls = []
     names = {
+        "browser-panel": "get_transcript_browser",
         "innertube": "get_transcript_innertube",
         "api": "get_transcript_api",
         "yt-dlp": "get_transcript_ytdlp",
@@ -495,7 +496,7 @@ def _stub_rungs(monkeypatch, **overrides):
         "cdp-panel": "get_transcript_cdp",
         "selenium-panel": "get_transcript_selenium",
     }
-    keys = {"innertube": "innertube", "api": "api", "yt-dlp": "ytdlp",
+    keys = {"browser-panel": "browser", "innertube": "innertube", "api": "api", "yt-dlp": "ytdlp",
             "asr": "asr", "cdp-panel": "cdp", "selenium-panel": "selenium"}
     for rung, attr in names.items():
         override = overrides.get(keys[rung])
@@ -522,16 +523,21 @@ def _innertube_payload(segments):
 
 
 def test_ladder_order(gate, data_dir, monkeypatch):
-    """Dispatch order is exactly innertube, api, yt-dlp, asr, cdp-panel.
+    """DEFAULT ladder is the browser panel ONLY; the legacy HTTP order is retained under opt-in.
 
-    WHY: innertube MUST precede api. api (youtube-transcript-api) goes through
-    timedtext -- the door that gets IP-blocked. Putting it first means every
-    fetch pokes the blocked door before trying the working one, which both
-    wastes the pacing budget and re-triggers the block.
+    WHY (contract transcript-browser-default, D1/D2): the HTTP doors IP-blocked the
+    residential IP, so nothing but the browser-panel rung runs by default. The old
+    order is kept, intact, behind allow_http_rungs: innertube MUST still precede api
+    (api goes through timedtext -- the door that gets IP-blocked), and the superseded
+    selenium-panel rung is no longer a separate ladder step.
     """
     calls = _stub_rungs(monkeypatch)
     assert gt.fetch_transcript("vid1", allow_cache=False) == (None, None, None)
-    assert calls == ["innertube", "api", "yt-dlp", "asr", "cdp-panel", "selenium-panel"]
+    assert calls == ["browser-panel"]
+
+    calls.clear()
+    assert gt.fetch_transcript("vid1", allow_cache=False, allow_http_rungs=True) == (None, None, None)
+    assert calls == ["browser-panel", "innertube", "api", "yt-dlp", "cdp-panel", "asr"]
     assert calls.index("innertube") < calls.index("api")
 
 
@@ -631,8 +637,9 @@ def test_blocked_door_skips_rung_not_ladder(gate, data_dir, monkeypatch):
     """
     gate.record_outcome(False, BLOCK, door=gate.DOOR_TIMEDTEXT)
     calls = _stub_rungs(monkeypatch, innertube=lambda vid: (SEGMENTS, "en"))
-    assert gt.fetch_transcript("vid1", allow_cache=False) == (SEGMENTS, "en", "innertube")
-    assert calls == ["innertube"]          # reached it, and stopped on success
+    assert gt.fetch_transcript("vid1", allow_cache=False,
+                               allow_http_rungs=True) == (SEGMENTS, "en", "innertube")
+    assert calls == ["browser-panel", "innertube"]   # browser first, then reached it, stopped on success
 
 
 def test_all_gate_skipped_returns_rate_limited(gate, data_dir, monkeypatch):
@@ -650,7 +657,8 @@ def test_all_gate_skipped_returns_rate_limited(gate, data_dir, monkeypatch):
 
     gate.reset()
     calls2 = _stub_rungs(monkeypatch)
-    assert gt.fetch_transcript("vid1", allow_cache=False) == (None, None, None)
+    assert gt.fetch_transcript("vid1", allow_cache=False,
+                               allow_http_rungs=True) == (None, None, None)
     assert len(calls2) == 6                                      # all ran, all failed
 
 
@@ -682,11 +690,12 @@ def test_api_rung_block_does_not_gate_door2(gate, data_dir, monkeypatch):
     monkeypatch.setitem(sys.modules, "youtube_transcript_api", fake)
 
     # every rung EXCEPT api is stubbed to a clean failure; api runs for real
-    for attr in ("get_transcript_innertube", "get_transcript_ytdlp",
+    for attr in ("get_transcript_browser", "get_transcript_innertube", "get_transcript_ytdlp",
                  "get_transcript_asr", "get_transcript_cdp"):
         monkeypatch.setattr(gt, attr, lambda vid: (None, None))
 
-    assert gt.fetch_transcript("vid1", allow_cache=False) == (None, None, None)
+    assert gt.fetch_transcript("vid1", allow_cache=False,
+                               allow_http_rungs=True) == (None, None, None)
 
     st = gate.status()
     assert st["blocked"] is False, "api's block must NOT arm the shared cooldown"
@@ -711,20 +720,16 @@ def test_cache_hit_is_ungated(gate, data_dir, monkeypatch):
     assert gt.fetch_transcript("vid1") == (SEGMENTS, "cache", "cache")
 
 
-def test_cdp_missing_chrome_no_systemexit(monkeypatch):
-    """A missing Chrome degrades the CDP rung -- SystemExit never escapes.
+def test_cdp_no_debug_port_never_launches_chrome(monkeypatch):
+    """With no Chrome on the debug port the legacy CDP rung degrades -- and NEVER launches.
 
-    WHY: find_chrome() calls sys.exit(), and SystemExit is a BaseException, so
-    the ladder's `except Exception` would NOT catch it. Without the explicit
-    catch, a machine with no Chrome would have the last rung tear down the
-    whole fetch process mid-batch.
+    WHY (contract H0/D5): chrome_session is ATTACH-ONLY. A missing debug port raises
+    F1 inside acquire_session; the legacy rung's own grab() swallows it into a clean
+    (None, None) so the rung stays ladder-safe, but no Chrome process may ever start.
+    (This test used to patch a find_chrome that grab_transcript_cdp no longer owns, so
+    it had been erroring since the chrome_session refactor.)
     """
     monkeypatch.setenv("CINOPSIS_ENABLE_CDP", "1")
-
-    def exiting_find_chrome():
-        sys.exit("Chrome not found")
-
-    monkeypatch.setattr(gtc, "find_chrome", exiting_find_chrome)
     monkeypatch.setattr(subprocess, "Popen", lambda *a, **k:
                         pytest.fail("Chrome must not be launched"))
 
@@ -733,15 +738,15 @@ def test_cdp_missing_chrome_no_systemexit(monkeypatch):
 
 
 def test_cdp_disabled_by_default(monkeypatch):
-    """With CINOPSIS_ENABLE_CDP unset, grab() never touches Chrome at all.
+    """With CINOPSIS_ENABLE_CDP=0 (explicit opt-out), grab() never touches Chrome at all.
 
-    WHY: the CDP rung pops a real browser WINDOW. Cowork/cloud/CI runs have no
-    display and no Bash tool -- an accidental launch there hangs the run. Opt-in
-    must be checked before find_chrome and before any Popen.
+    WHY: opt-out must be checked before the session is even probed and before any
+    Popen. (cdp_enabled() defaults ON, but the legacy raw-CDP rung is no longer on
+    the default ladder -- it is reachable only under the HTTP-rung opt-in.)
     """
-    monkeypatch.delenv("CINOPSIS_ENABLE_CDP", raising=False)
-    monkeypatch.setattr(gtc, "find_chrome", lambda: pytest.fail(
-        "find_chrome called while CDP is disabled"))
+    monkeypatch.setenv("CINOPSIS_ENABLE_CDP", "0")
+    monkeypatch.setattr(gtc.chrome_session, "acquire_session", lambda *a, **k: pytest.fail(
+        "acquire_session called while CDP is disabled"))
     monkeypatch.setattr(subprocess, "Popen", lambda *a, **k: pytest.fail(
         "Popen called while CDP is disabled"))
 

@@ -1,0 +1,360 @@
+{
+  "epic": {
+    "name": "Door-2 get_transcript Rung",
+    "source": ".prism/shared/plans/2026-09-03-door2-get-transcript-rung.md",
+    "createdAt": "2026-09-03T00:00:00Z",
+    "qualityGates": [
+      "python -m pytest tests/ -q",
+      "claude plugin validate ."
+    ],
+    "decisions": [
+      "Door 2 (youtubei/v1/get_transcript) is the primary rung; timedtext rungs (api, yt-dlp) are kept for the clean-IP case.",
+      "ASYMMETRIC per-door gating: a Door-1 (timedtext) block cools Door-1 ONLY so Door-2 stays reachable; a Door-2 (innertube) block arms the SHARED cooldown across all doors. Min-spacing stays global.",
+      "record_outcome must be door-aware on SUCCESS: a Door-2 success must never clear a cooldown armed by Door-1. Calls with door=None keep today's behavior exactly (backward compatible).",
+      "The gate moves from ONE pre-loop check to PER-RUNG checks. A blocked door SKIPS that rung and continues down the ladder instead of aborting the whole fetch -- this is what makes Door-2 reachable while Door-1 cools.",
+      "params protobuf uses DYNAMIC length-prefixing. kkdai/youtube's hardcoded lengths are a known landmine that silently corrupts multi-byte codes like en-US / zh-Hans / pt-BR.",
+      "Hand-roll varint encoding (~15 lines). Do NOT add a protobuf dependency -- it is not installed anywhere in the venv.",
+      "Block detection is substring matching on stringified exceptions (ratelimit BLOCK_MARKERS). Door-2 returns HTTP status codes, so it MUST raise a marker-matching detail string or the cooldown silently never arms.",
+      "The CDP rung is opt-in behind CINOPSIS_ENABLE_CDP (default OFF). Cowork has no Bash tool, so it can never run there and must degrade rather than try to launch a browser.",
+      "mcp_server.py:184 currently calls get_transcript_ytdlp directly, bypassing cache + ladder + gate. Repoint it at fetch_transcript."
+    ],
+    "references": [
+      "Invidious transcript.cr -- https://github.com/iv-org/invidious/blob/master/src/invidious/videos/transcript.cr (params DSL + response path, primary source)",
+      "Invidious youtube_api.cr -- https://github.com/iv-org/invidious/blob/master/src/invidious/yt_backend/youtube_api.cr (headers, keyless POST, context.client)",
+      "kkdai/youtube transcript.go -- https://github.com/kkdai/youtube/blob/master/transcript.go (independent Go impl, byte-literal, cross-validates field numbers)",
+      "invidious#5387 -- https://github.com/iv-org/invidious/issues/5387 (LIVE bug: some segment renderers omit 'snippet')",
+      "scripts/get_transcript.py:231-233 (the literal rung dispatch tuple)",
+      "scripts/ratelimit.py:103-147 (check_gate / record_outcome)",
+      "scripts/export_yt_cookies.py:76-112 (existing CDP launch + websocket pattern to mirror)",
+      "scripts/fetch_transcripts.py:38-57 (MAX_CHUNK=5, THROTTLE_SEC=5)"
+    ],
+    "outOfScope": [
+      "ABSOLUTE: no network calls to youtube.com from ANY story. All tests are network-free with HTTP monkeypatched. The single live probe is MANUAL, human-gated, and deliberately not a story.",
+      "No proxy, no paid transcript API, no PO-token minting.",
+      "Do not remove the api / yt-dlp / asr rungs -- they work on a clean egress.",
+      "Do not add a protobuf dependency.",
+      "Do not refactor the ladder into a registry -- the dispatch tuple stays a tuple, minimal diff.",
+      "No bulk fetching or loops anywhere, in any test or script."
+    ],
+    "risks": [
+      "The residential IP is ALREADY FLAGGED and the gate is currently armed. Any accidental live fetch deepens the block. Treat youtube.com as untouchable during implementation.",
+      "?key= is unresolved: Invidious POSTs keyless, kkdai appends the WEB key. Implement keyless-first with a keyed retry rather than guessing.",
+      "find_chrome() raises SystemExit (a BaseException) -- it will NOT be caught by the ladder's 'except Exception' and would tear down the whole fetch if unwrapped.",
+      "websocket-client is venv-only (hand-installed, REQUESTED marker). The venv bootstrap hashes requirements.txt, so a clean install would ImportError on the CDP rung.",
+      "Changing the gate from one pre-loop call to per-rung calls risks double-counting min-spacing sleeps across 5 rungs -- spacing must not multiply per rung."
+    ]
+  },
+  "stories": [
+    {
+      "id": "STORY-001",
+      "title": "Add protobuf params builder for the get_transcript endpoint",
+      "description": "Pure, network-free functions that encode the nested protobuf 'params' field: varint, length-delimited tag helper, and build_transcript_params(video_id, lang, auto_generated) -> urlsafe base64 string.",
+      "priority": 1,
+      "status": "pending",
+      "blockedBy": null,
+      "files": [
+        { "path": "scripts/get_transcript.py", "action": "modify" }
+      ],
+      "steps": [
+        { "description": "Add _varint(n) -> bytes implementing standard protobuf base-128 varint encoding.", "done": false },
+        { "description": "Add _len_delim(field_no, payload) -> bytes emitting tag ((field_no<<3)|2) + varint(len) + payload.", "done": false },
+        { "description": "Add build_transcript_params(video_id, language_code='en', auto_generated=True): inner message = field1 kind ('asr' or ''), field2 language_code, field3 empty string; base64-urlsafe the inner bytes to a STRING; outer message = field1 videoId, field2 that base64 string, field3 varint 1; return base64-urlsafe of outer.", "done": false },
+        { "description": "Use DYNAMIC length prefixes everywhere. Never hardcode byte lengths -- verify by encoding 'zh-Hans' and 'en-US' and confirming the length bytes match len(code).", "done": false },
+        { "description": "Add DOOR_TIMEDTEXT = 'timedtext' and DOOR_INNERTUBE = 'innertube' module constants.", "done": false }
+      ],
+      "context": {
+        "why": "The params field is the only non-obvious part of Door 2; two independent production implementations (Invidious, kkdai) confirm the exact field numbers and the inner-base64-as-string double encoding.",
+        "risks": ["kkdai hardcodes length prefixes and silently corrupts multi-byte language codes -- do not copy that shortcut."],
+        "edgeCases": ["zh-Hans (7 bytes)", "en-US (5 bytes)", "auto_generated=False yields kind='' (zero-length field 1)"],
+        "patterns": ["Invidious generate_param in transcript.cr", "kkdai transcriptVideoID in transcript.go"],
+        "graphTargets": ["scripts/get_transcript.py#build_transcript_params"]
+      }
+    },
+    {
+      "id": "STORY-002",
+      "title": "Add asymmetric per-door gating to ratelimit.py",
+      "description": "Extend check_gate and record_outcome with an optional door dimension so a Door-1 block cannot lock out Door-2, while a Door-2 block still arms the shared cooldown. Fully backward compatible when door is omitted.",
+      "priority": 2,
+      "status": "pending",
+      "blockedBy": null,
+      "files": [
+        { "path": "scripts/ratelimit.py", "action": "modify" }
+      ],
+      "steps": [
+        { "description": "Change signatures to check_gate(source='fetch', door=None) and record_outcome(ok, detail='', door=None).", "done": false },
+        { "description": "Add a 'doors' sub-dict to the state file holding per-door block_until / fail_streak. _load() must tolerate the existing flat schema with no migration (missing keys read as absent).", "done": false },
+        { "description": "check_gate: raise RateLimited only if THAT door is blocked (or if the shared block is armed). Keep min-spacing GLOBAL and ensure it is applied once per call, never multiplied per rung.", "done": false },
+        { "description": "record_outcome on block: if door == 'innertube' (Door 2), arm the SHARED cooldown across all doors; otherwise arm only that door's cooldown. Preserve exponential backoff BASE * 2**(streak-1) capped at MAX.", "done": false },
+        { "description": "record_outcome on success: clear the cooldown only when the stored block_door is None or equals the passed door. A Door-2 success must NOT clear a Door-1-armed cooldown.", "done": false },
+        { "description": "When door is None, behavior must be byte-for-byte identical to today so fetch_playlist / fetch_videos / capture_frames are unaffected.", "done": false }
+      ],
+      "context": {
+        "why": "check_gate fires once before the whole ladder, so without a door dimension a Door-1 IpBlocked would lock out Door-2 -- the exact door proven to still work -- defeating the entire feature.",
+        "risks": ["Moving to per-rung gating could multiply the min-spacing sleep across 5 rungs.", "Existing callers must not change behavior."],
+        "edgeCases": ["Old flat state file with no 'doors' key", "Corrupt state file (must still fail closed)", "door=None legacy callers"],
+        "patterns": ["ratelimit.py:103-147 current implementation"],
+        "graphTargets": ["scripts/ratelimit.py#check_gate", "scripts/ratelimit.py#record_outcome"]
+      }
+    },
+    {
+      "id": "STORY-003",
+      "title": "Add ytcfg scrape with TTL cache",
+      "description": "Scrape INNERTUBE clientVersion (and visitor_data if present) once from the watch page, cached to disk with a TTL, with a pinned fallback so a scrape failure never blocks the rung.",
+      "priority": 11,
+      "status": "pending",
+      "blockedBy": null,
+      "files": [
+        { "path": "scripts/get_transcript.py", "action": "modify" }
+      ],
+      "steps": [
+        { "description": "Add _scrape_ytcfg() that regex-extracts INNERTUBE_CLIENT_VERSION and VISITOR_DATA from a watch-page HTML string.", "done": false },
+        { "description": "Cache the result to DATA_DIR / 'ytcfg_cache.json' with a timestamp and TTL so the watch-page GET happens once, not per video. Never a hardcoded path.", "done": false },
+        { "description": "Fall back to a pinned clientVersion constant when scraping fails or the cache is cold and the network is unavailable.", "done": false },
+        { "description": "Keep the HTTP fetch itself in a small separate injectable function so tests can monkeypatch it with zero network.", "done": false }
+      ],
+      "context": {
+        "why": "Invidious's working implementation sends clientName/clientVersion headers; scraping keeps them fresh, while the pinned fallback keeps the rung usable offline or when the page shape changes.",
+        "risks": ["The watch-page GET is itself a request to youtube.com and must be counted by the gate and cached aggressively."],
+        "edgeCases": ["cold cache", "expired TTL", "malformed HTML", "visitor_data absent (Invidious does not send it)"],
+        "patterns": ["Invidious make_context in youtube_api.cr"],
+        "graphTargets": ["scripts/get_transcript.py#_scrape_ytcfg"]
+      }
+    },
+    {
+      "id": "STORY-004",
+      "title": "Implement get_transcript_innertube rung and response parser",
+      "description": "POST to youtubei/v1/get_transcript, parse transcript segments into the ladder's exact normalized shape, and raise block-marker-matching errors so the gate arms correctly.",
+      "priority": 12,
+      "status": "pending",
+      "blockedBy": "STORY-001",
+      "files": [
+        { "path": "scripts/get_transcript.py", "action": "modify" }
+      ],
+      "steps": [
+        { "description": "Add get_transcript_innertube(video_id) -> (transcript, lang) matching the signature contract of every other rung.", "done": false },
+        { "description": "POST https://www.youtube.com/youtubei/v1/get_transcript?prettyPrint=false with headers content-type application/json; charset=UTF-8, x-goog-api-format-version: 2, x-youtube-client-name, x-youtube-client-version, and a browser User-Agent. Body: {'context': {'client': {hl, gl, clientName, clientVersion}}, 'params': <built params>}.", "done": false },
+        { "description": "Try keyless first (Invidious style); on a 400/403 that indicates a missing key, retry once with the WEB client key appended (kkdai style). Do not guess -- implement both paths.", "done": false },
+        { "description": "Try kind='asr' first, then manual kind='' -- auto-captions are the common case.", "done": false },
+        { "description": "Parse actions[0].updateEngagementPanelAction.content.transcriptRenderer.content.transcriptSearchPanelRenderer.body.transcriptSegmentListRenderer.initialSegments[].", "done": false },
+        { "description": "Use SAFE access for 'snippet' (invidious#5387 -- it is sometimes absent) and skip transcriptSectionHeaderRenderer heading entries.", "done": false },
+        { "description": "startMs arrives as a JSON STRING in milliseconds -- convert with float(int(startMs)) / 1000.0. Emit exactly [{'start': float_seconds, 'text': str}] with no 'duration' key, matching the api/asr rungs.", "done": false },
+        { "description": "On HTTP 429/403 or a block-shaped body, raise an exception whose stringified form contains a ratelimit BLOCK_MARKERS substring (e.g. 'IpBlocked' or 'HTTP Error 429') so record_outcome actually arms the cooldown.", "done": false },
+        { "description": "Use the requests library (already declared in requirements.txt). Make the HTTP call injectable so tests can monkeypatch it with zero network.", "done": false }
+      ],
+      "context": {
+        "why": "Door 2 is the un-throttled endpoint; timedtext (api + yt-dlp on every client + TLS impersonation) all 429 on this IP while get_transcript returned 474 segments.",
+        "risks": ["Door-2 returns HTTP codes, not typed exceptions, so the gate will silently never arm unless the error string is marker-matching.", "?key= requirement is unresolved between the two reference implementations."],
+        "edgeCases": ["missing 'snippet' key (invidious#5387)", "transcriptSectionHeaderRenderer heading lines", "startMs as string not int", "video with no transcript panel at all", "empty initialSegments"],
+        "patterns": ["Invidious from_raw in transcript.cr", "existing get_transcript_api normalization at get_transcript.py:94-97"],
+        "graphTargets": ["scripts/get_transcript.py#get_transcript_innertube"]
+      }
+    },
+    {
+      "id": "STORY-005",
+      "title": "Create grab_transcript_cdp.py windowed CDP panel fallback",
+      "description": "Promote the proven CDP transcript-panel grabber to a script, reusing the existing dedicated-profile pattern, guarded so it can never crash the ladder or fire in a headless/Cowork context.",
+      "priority": 13,
+      "status": "pending",
+      "blockedBy": null,
+      "files": [
+        { "path": "scripts/grab_transcript_cdp.py", "action": "create" },
+        { "path": "requirements.txt", "action": "modify" }
+      ],
+      "steps": [
+        { "description": "Import PROFILE_DIR and find_chrome from export_yt_cookies (already portable: canonical_data_dir()/'yt-profile', env-driven).", "done": false },
+        { "description": "WRAP find_chrome() in try/except SystemExit and return None -- SystemExit is a BaseException and would otherwise tear down the entire ladder past 'except Exception'.", "done": false },
+        { "description": "Launch Chrome WINDOWED (not headless -- headless does not render the transcript panel) with --remote-debugging-port, --user-data-dir=PROFILE_DIR, --remote-allow-origins=*, --no-first-run, --no-default-browser-check.", "done": false },
+        { "description": "Discover the debug endpoint by polling http://127.0.0.1:<port>/json/version, mirroring export_yt_cookies.py:89-99. Use the websocket-client library as that file already does.", "done": false },
+        { "description": "Navigate to the watch page, click #expand, then click button[aria-label='Show transcript'], then read ytd-transcript-segment-renderer segments.", "done": false },
+        { "description": "Expose grab(video_id) -> text per the contract, plus get_transcript_cdp(video_id) -> (list[{start,text}], lang) adapting to the ladder shape.", "done": false },
+        { "description": "Guard the whole rung behind CINOPSIS_ENABLE_CDP (default OFF) so headless / Cowork / CI runs never try to open a browser window.", "done": false },
+        { "description": "Clean up in a finally block: terminate() -> wait(timeout=10) -> kill(), matching export_yt_cookies.py:159-161.", "done": false },
+        { "description": "Add websocket-client to requirements.txt -- it is currently venv-only (hand-installed) and a clean install would ImportError.", "done": false }
+      ],
+      "context": {
+        "why": "The browser panel is the only path proven to work on this flagged IP (474 segments) and is the guaranteed fallback if the pure-HTTP Door-2 call ever needs a PO token.",
+        "risks": ["find_chrome() SystemExit escaping the ladder.", "Opening a browser window in a headless or Cowork context.", "websocket-client missing on a clean install."],
+        "edgeCases": ["Chrome not installed", "debug port already in use", "transcript button absent (no captions)", "CINOPSIS_ENABLE_CDP unset"],
+        "patterns": ["scripts/export_yt_cookies.py:76-112 launch + discovery + websocket + cleanup"],
+        "graphTargets": ["scripts/grab_transcript_cdp.py#grab", "scripts/grab_transcript_cdp.py#get_transcript_cdp"]
+      }
+    },
+    {
+      "id": "STORY-006",
+      "title": "Wire both new rungs and per-rung gating into the ladder",
+      "description": "Insert innertube as rung 1 and cdp-panel as the final rung, and move gating from one pre-loop call to per-rung checks so a blocked door skips its rung instead of aborting the fetch.",
+      "priority": 21,
+      "status": "pending",
+      "blockedBy": "STORY-004",
+      "files": [
+        { "path": "scripts/get_transcript.py", "action": "modify" }
+      ],
+      "steps": [
+        { "description": "Extend the dispatch tuple to (innertube, api, yt-dlp, asr, cdp-panel) in that exact order, keeping it a literal tuple -- do not refactor into a registry.", "done": false },
+        { "description": "Map each rung to its door: innertube and cdp-panel -> DOOR_INNERTUBE; api and yt-dlp -> DOOR_TIMEDTEXT; asr -> None (no YouTube transcript door).", "done": false },
+        { "description": "Replace the single pre-loop check_gate at :225 with a per-rung check_gate(source, door=rung_door) inside the loop.", "done": false },
+        { "description": "On RateLimited for a rung, print the gate message, SKIP that rung, and CONTINUE to the next -- do not abort the ladder. This is what makes Door-2 reachable while Door-1 cools.", "done": false },
+        { "description": "Call record_outcome(ok, detail, door=rung_door) per rung so each door's state is tracked independently.", "done": false },
+        { "description": "If every rung was gate-skipped (none actually ran), preserve the existing (None, None, 'rate-limited') return contract.", "done": false },
+        { "description": "Keep the cache rung ungated and ahead of everything -- it performs no network I/O.", "done": false },
+        { "description": "Ensure global min-spacing is not multiplied across the 5 rungs.", "done": false }
+      ],
+      "context": {
+        "why": "Gating per rung rather than per fetch is the change that lets a flagged Door 1 cool down while Door 2 keeps serving transcripts.",
+        "risks": ["Aborting instead of skipping would reintroduce the exact bug this feature exists to fix.", "min-spacing multiplication across rungs."],
+        "edgeCases": ["all doors blocked", "only Door-1 blocked", "asr rung has no door", "cache hit short-circuits before any gate"],
+        "patterns": ["scripts/get_transcript.py:209-251 fetch_transcript dispatcher"],
+        "graphTargets": ["scripts/get_transcript.py#fetch_transcript"]
+      }
+    },
+    {
+      "id": "STORY-007",
+      "title": "Close the mcp_server.py gate bypass",
+      "description": "Repoint the MCP get_transcript tool from the direct get_transcript_ytdlp call to fetch_transcript so it gets cache, Door-2, and full gating.",
+      "priority": 22,
+      "status": "pending",
+      "blockedBy": "STORY-006",
+      "files": [
+        { "path": "scripts/mcp_server.py", "action": "modify" }
+      ],
+      "steps": [
+        { "description": "Replace the direct get_transcript_ytdlp(...) call at mcp_server.py:184 with fetch_transcript(...).", "done": false },
+        { "description": "Adapt for the 3-tuple return (transcript, lang, method) instead of the rung's 2-tuple.", "done": false },
+        { "description": "Preserve the existing integrity_gate banner behavior at mcp_server.py:190.", "done": false },
+        { "description": "Confirm no direct rung call remains: grep for get_transcript_ytdlp in mcp_server.py must return nothing.", "done": false }
+      ],
+      "context": {
+        "why": "This is a live un-gated hole into YouTube from the MCP surface; 'no rung bypasses the gate' is not true until it is closed.",
+        "risks": ["Return-shape mismatch: the rung returns 2 values, the dispatcher returns 3."],
+        "edgeCases": ["rate-limited return (None, None, 'rate-limited')", "cache hit path"],
+        "patterns": ["scripts/fetch_transcripts.py:59 correct call convention"],
+        "graphTargets": ["scripts/mcp_server.py"]
+      }
+    },
+    {
+      "id": "STORY-008",
+      "title": "Test params encoding including the multi-byte language landmine",
+      "description": "Network-free unit tests locking the protobuf params encoding, including the dynamic-length cases that kkdai's implementation gets wrong.",
+      "priority": 31,
+      "status": "pending",
+      "blockedBy": "STORY-001",
+      "files": [
+        { "path": "tests/test_door2_transcript.py", "action": "create" }
+      ],
+      "steps": [
+        { "description": "Add the house sys.path bootstrap to scripts/ (see tests/test_playlist_pacing.py:13-14) -- there is no conftest.py in this repo.", "done": false },
+        { "description": "test_params_encoding_golden: a known video_id + 'en' + asr encodes to an exact expected base64 string.", "done": false },
+        { "description": "test_params_dynamic_lengths: 'zh-Hans' and 'en-US' produce length prefixes equal to len(code) -- the kkdai landmine.", "done": false },
+        { "description": "test_params_kind_manual_vs_asr: auto_generated True vs False produce different, correctly-shaped payloads.", "done": false },
+        { "description": "Decode the produced bytes back and assert field numbers and wire types, so the test documents the format rather than just pinning a magic string.", "done": false }
+      ],
+      "context": {
+        "why": "params encoding is the single highest-risk piece of Door 2 and is fully testable offline.",
+        "risks": ["A golden string alone would pin a wrong encoding; round-trip decoding guards against that."],
+        "edgeCases": ["zh-Hans", "en-US", "kind=''"],
+        "patterns": ["tests/test_playlist_pacing.py pytest style"],
+        "graphTargets": []
+      }
+    },
+    {
+      "id": "STORY-009",
+      "title": "Test the three door-gating guarantees",
+      "description": "Lock the asymmetric gating semantics that make the feature work and keep the flagged IP protected.",
+      "priority": 32,
+      "status": "pending",
+      "blockedBy": "STORY-002",
+      "files": [
+        { "path": "tests/test_door2_transcript.py", "action": "modify" }
+      ],
+      "steps": [
+        { "description": "test_gate_door1_block_leaves_door2_open: after a Door-1 IpBlocked, check_gate(door='innertube') must NOT raise.", "done": false },
+        { "description": "test_gate_door2_block_arms_shared: after a Door-2 IpBlocked, BOTH doors must be blocked.", "done": false },
+        { "description": "test_gate_door2_success_preserves_door1_cooldown: a Door-2 success must leave a Door-1-armed cooldown intact.", "done": false },
+        { "description": "test_gate_backward_compat_no_door: record_outcome(ok, detail) with no door behaves exactly as before.", "done": false },
+        { "description": "test_gate_tolerates_legacy_state: an old flat state file with no 'doors' key loads without error.", "done": false },
+        { "description": "Redirect state to tmp_path via CLAUDE_PLUGIN_DATA / monkeypatched DATA_DIR so the real gate file is never touched.", "done": false }
+      ],
+      "context": {
+        "why": "These three assertions ARE the feature: without them Door 2 is unreachable, or the flagged IP loses its protection.",
+        "risks": ["Touching the real fetch_ratelimit.json during tests would corrupt live gate state."],
+        "edgeCases": ["legacy flat state", "corrupt state", "door=None"],
+        "patterns": ["tests/test_utils_paths.py env-override style"],
+        "graphTargets": ["scripts/ratelimit.py#check_gate", "scripts/ratelimit.py#record_outcome"]
+      }
+    },
+    {
+      "id": "STORY-010",
+      "title": "Test ladder order, response parsing, and CDP safety",
+      "description": "Verify Door-2 is tried first, the parser handles the known schema edge cases, and the CDP rung cannot kill the ladder.",
+      "priority": 33,
+      "status": "pending",
+      "blockedBy": "STORY-006",
+      "files": [
+        { "path": "tests/test_door2_transcript.py", "action": "modify" }
+      ],
+      "steps": [
+        { "description": "test_ladder_order_innertube_first: innertube appears before api in the dispatch order.", "done": false },
+        { "description": "test_parse_cuegroups_shape: a fixture response JSON parses to [{'start': float, 'text': str}] with no 'duration' key and start in SECONDS.", "done": false },
+        { "description": "test_parse_missing_snippet: a segment lacking 'snippet' is skipped without raising (invidious#5387).", "done": false },
+        { "description": "test_parse_section_header_skipped: transcriptSectionHeaderRenderer entries are not emitted as transcript text.", "done": false },
+        { "description": "test_blocked_door_skips_rung_not_ladder: with Door-1 blocked, the ladder still reaches and returns from the innertube rung.", "done": false },
+        { "description": "test_cdp_missing_chrome_no_systemexit: a missing Chrome returns (None, None) and does NOT raise SystemExit.", "done": false },
+        { "description": "Monkeypatch every HTTP call. Assert zero network: no test may resolve or connect to youtube.com.", "done": false }
+      ],
+      "context": {
+        "why": "These cover the three failure modes that would only otherwise surface as a live crash against a flagged IP.",
+        "risks": ["A test that accidentally performs a real fetch would deepen the IP block."],
+        "edgeCases": ["missing snippet", "section headers", "Door-1 blocked", "Chrome absent"],
+        "patterns": ["tests/test_vault_and_reindex.py fixture + monkeypatch style"],
+        "graphTargets": ["scripts/get_transcript.py#fetch_transcript"]
+      }
+    },
+    {
+      "id": "STORY-011",
+      "title": "Test the drip cap still bounds every batch",
+      "description": "Regression-lock the v2.5.0 anti-hammer pacing so the new rungs cannot be driven in a burst.",
+      "priority": 34,
+      "status": "pending",
+      "blockedBy": null,
+      "files": [
+        { "path": "tests/test_door2_transcript.py", "action": "modify" }
+      ],
+      "steps": [
+        { "description": "test_drip_cap_never_exceeds_five: a request for more than 5 videos still fetches at most 5 (fetch_transcripts.py MAX_CHUNK).", "done": false },
+        { "description": "Assert the THROTTLE_SEC gap is applied between fetches within a call but not before the first.", "done": false },
+        { "description": "Monkeypatch fetch_transcript and time.sleep so the test is instant and network-free.", "done": false }
+      ],
+      "context": {
+        "why": "The staggered drip is a non-negotiable that predates this work; adding rungs must not weaken it.",
+        "risks": ["A regression here directly translates into IP hammering."],
+        "edgeCases": ["chunk > 5 requested", "single-item batch (no leading sleep)"],
+        "patterns": ["scripts/fetch_transcripts.py:38-57", "tests/test_playlist_pacing.py"],
+        "graphTargets": ["scripts/fetch_transcripts.py"]
+      }
+    },
+    {
+      "id": "STORY-012",
+      "title": "Validate conformance and full suite",
+      "description": "Static and suite-level validation only. No live network probe -- that step is manual and human-gated.",
+      "priority": 41,
+      "status": "pending",
+      "blockedBy": "STORY-010",
+      "files": [],
+      "steps": [
+        { "description": "Run claude plugin validate . and confirm it passes clean.", "done": false },
+        { "description": "ast.parse and import every touched script: get_transcript.py, ratelimit.py, grab_transcript_cdp.py, mcp_server.py, fetch_transcripts.py.", "done": false },
+        { "description": "Run python -m pytest tests/ -q and confirm all tests pass -- the pre-change baseline was 57 passing, so the total must be 57 plus the new tests, with zero regressions.", "done": false },
+        { "description": "Grep scripts/ for hardcoded paths (C:\\\\ or /Users/) and confirm none were introduced.", "done": false },
+        { "description": "Confirm websocket-client is present in requirements.txt.", "done": false },
+        { "description": "DO NOT perform any live YouTube fetch. Report ready-for-probe and stop.", "done": false }
+      ],
+      "context": {
+        "why": "Everything verifiable offline must be green before a single live request is spent against a flagged IP.",
+        "risks": ["An autonomous live probe would violate the hardest constraint in this project."],
+        "edgeCases": [],
+        "patterns": [],
+        "graphTargets": []
+      }
+    }
+  ]
+}
