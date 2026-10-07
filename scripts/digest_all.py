@@ -9,6 +9,7 @@ from pathlib import Path
 
 from fetch_videos import main as fetch_main, DATA_DIR as FETCH_DATA_DIR, OUTPUT_FILE as VIDEOS_FILE
 from get_transcript import fetch_transcript, format_transcript
+from sources import add_source_args
 from chrome_session import ChromeProfileLockedError
 
 # HARD ANTI-HAMMER CAP - mirrors fetch_transcripts.py. This loop walks every video
@@ -45,7 +46,7 @@ def _unavailable_note(reason):
             + "---"+chr(10)*2)
 
 
-def generate_digest(videos, include_transcript=True, limit=10):
+def generate_digest(videos, include_transcript=True, limit=10, sources=None):
     """Generate a Markdown digest from a list of videos."""
     today = datetime.now().strftime("%Y-%m-%d")
     videos = videos[:limit]
@@ -94,7 +95,7 @@ def generate_digest(videos, include_transcript=True, limit=10):
             # Door-2 rung, and the rate-limit gate entirely - an ungated bulk
             # loop against a flagged IP.
             try:
-                transcript, lang, method = fetch_transcript(video_id)
+                transcript, lang, method = fetch_transcript(video_id, sources=sources)
             except ChromeProfileLockedError as e:
                 _f1["msg"] = str(e)
                 print(f"  F1 - {e}", flush=True)
@@ -137,7 +138,9 @@ def main():
     parser.add_argument("--limit", type=int, default=10, help="Max number of videos to process")
     parser.add_argument("--no-transcript", action="store_true", help="Skip transcript fetching")
     parser.add_argument("--skip-fetch", action="store_true", help="Use existing videos.json instead of re-fetching")
+    add_source_args(parser)
     args = parser.parse_args()
+    sources = args.sources or ("browser-panel,og-http" if args.allow_http_rungs else None)
 
     if not args.skip_fetch:
         import sys
@@ -152,7 +155,8 @@ def main():
         return
 
     print(f"Generating digest for {min(len(videos), args.limit)} videos...\n", flush=True)
-    digest = generate_digest(videos, include_transcript=not args.no_transcript, limit=args.limit)
+    digest = generate_digest(videos, include_transcript=not args.no_transcript, limit=args.limit,
+                             sources=sources)
 
     OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
     today = datetime.now().strftime("%Y%m%d")

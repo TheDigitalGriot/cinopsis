@@ -1,4 +1,4 @@
-yt-dlp
+yt-dlp[default]>=2026.07.04   # Agent-Reach a19a171 pyproject floor (JS-runtime era); [default] brings yt-dlp-ejs
 flask
 claude-agent-sdk
 mcp
@@ -10,3 +10,13 @@ websocket-client
 selenium>=4.49.0   # selenium-panel rung (panel_transcript.py) - F2: was installed ad hoc
                    # and missing here, so the rung had never run once
 # faster-whisper   # optional: enables the ASR rung for caption-less videos (pip install faster-whisper)
+# v3 lift (R8): runtime dependencies of the lifted upstream code, at upstream's declared versions.
+# Agent-Reach a19a171 pyproject.toml + constraints.txt (scripts/reach):
+feedparser>=6.0
+python-dotenv>=1.0
+loguru>=0.7
+pyyaml>=6.0
+rich>=13.0
+yt-dlp-ejs==0.8.0
+# claude-video 03ceb42 (scripts/media) is standard-library only; ffmpeg/ffprobe are system tools and
+# WhisperX installs into its own venv via scripts/media/watch_setup.py --install-whisperx.

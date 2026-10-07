@@ -1,0 +1,13 @@
+2026-10-06T12:42:40-04:00 STEP0 contract+skill read
+2026-10-06T12:42:51-04:00 SURVEYED yoinks@6f03720 Agent-Reach@a19a171 claude-video@03ceb42 -> GriotSandbox/cinopsis-golden-hour (licence field: MIT x3)
+2026-10-06T12:43:34-04:00 SHELF-CHECKED plan@a51793f 1356 tools: yoinks/Agent-Reach/claude-video NOT on shelf; family siblings claude-real-video (undecided/later, Cinopsis 3), Scrapling (adopt/next), agentcookie, openai/whisper (Cinopsis 3), CrisperWhisper (trial/next)
+2026-10-06T12:44:56-04:00 DISPATCHED codebase-analyzer x6 (agent-reach-channel-doctor, agent-reach-anti-block, claude-video-local-pipeline, claude-video-gemini-engine, yoinks-acquisition, cinopsis-landing-zone)
+2026-10-06T12:48:05-04:00 LANDED claude-video-gemini-engine (YT URL skips download/timedtext/Chrome; 87% metric = Google's, not tool's)
+2026-10-06T12:48:45-04:00 LANDED agent-reach-anti-block (OVERTURNED: no YT anti-block beyond plain yt-dlp; fallback is agent-prose; opencli adds desktop-Chrome dependence)
+2026-10-06T12:48:49-04:00 LANDED yoinks-acquisition (OVERTURNED: Ink front-end over yt-dlp, zero anti-block, zero subtitle code; liftables -J probe + load-info-json, after_move:filepath)
+2026-10-06T12:50:27-04:00 LANDED cinopsis-landing-zone (CORRECTION: default ladder is cache->browser-panel since 10-01; HTTP rungs opt-in; rung tuple is the seam; providers/ seam is chat-only; L7 blocker = port 9333 Chrome)
+2026-10-06T12:51:02-04:00 LANDED agent-reach-channel-doctor (OVERTURNED: installer+doctor+prompts, not a fetch lib; YT single backend yt-dlp; doctor never touches YT; ~90k stars unsourced)
+2026-10-06T12:52:56-04:00 LANDED claude-video-local-pipeline (OVERTURNED: no anti-block on local engine; default cap 100 frames)
+2026-10-06T12:52:56-04:00 GATE-PASSED 6/6 docs: file:line, LOUD corrections, metric provenance, what-not-to-copy, licence field
+2026-10-06T12:52:56-04:00 VERDICT written research/2026-10-06-cinopsis-golden-hour-harvest.md; RESULT written; handoff: claude-video trial/pattern/next, Agent-Reach defer/pattern/later, yoinks pass/pattern/later
+GOLDEN-HOUR-HARVEST-COMPLETE

@@ -1,0 +1,8 @@
+2026-10-06T12:40:50-04:00 SCHEMA_READ comparison-schema.md 205 lines
+2026-10-06T12:43:16-04:00 SLUGS_VERIFIED 38/43 (10/10 description slugs verified; 5 named products have no repo, recorded unverified)
+2026-10-06T12:48:14-04:00 ANALYSIS_DRAFTED .prism/local/golden-hour/analysis.py
+2026-10-06T12:48:42-04:00 SESSION_PERSISTED e86a2e4d7324 C:\Users\digit\.claude\plugins\data\cinopsis-cinopsis\sessions\2026-10-06_golden-hour-video-ingestion-and-agent-ac
+2026-10-06T12:48:42-04:00 PARSE_GATE pass (steps 22/20/15, key_moments 12/18/14, topics 11, disagreements 3)
+2026-10-06T12:48:59-04:00 INVARIANTS FAIL-not-ours (INV1 PASS, INV2 PASS, INV3 FAIL 2 violations both 2026-10-01_comparison-2; zero name e86a2e4d7324)
+2026-10-06T12:49:32-04:00 RESULT_WRITTEN .prism/shared/plans/2026-10-06-golden-hour-compare-RESULT.md + .prism/shared/research/2026-10-06-golden-hour-harvest.json
+GOLDEN-HOUR-COMPARE-COMPLETE

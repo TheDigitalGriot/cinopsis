@@ -20,6 +20,7 @@ from pathlib import Path
 from _utils import DATA_DIR
 from chrome_session import ChromeProfileLockedError
 from get_transcript import fetch_transcript, save_transcript, describe_failure
+from sources import add_source_args
 
 
 def is_cached(video_id):
@@ -32,9 +33,7 @@ def main():
     ap.add_argument("--chunk", type=int, default=5,
                     help="Max IDs to fetch this call (default 5; HARD-CAPPED at 5 — anti-hammer)")
     ap.add_argument("--refresh", action="store_true", help="Re-fetch even if cached")
-    ap.add_argument("--allow-http-rungs", action="store_true",
-                    help="SECONDARY/LEGACY: also allow the HTTP rungs (off by default - "
-                         "they IP-blocked the residential IP). Same as CINOPSIS_ALLOW_HTTP_RUNGS=1.")
+    add_source_args(ap)
     args = ap.parse_args()
 
     # HARD ANTI-HAMMER CAP: never fetch more than 5 IDs per invocation, no matter
@@ -64,10 +63,11 @@ def main():
         try:
             t, lang, method = fetch_transcript(
                 vid, allow_cache=not args.refresh, refresh=args.refresh,
-                allow_http_rungs=True if args.allow_http_rungs else None)
+                allow_http_rungs=True if args.allow_http_rungs else None,
+                sources=args.sources)
         except ChromeProfileLockedError as e:
-            # F1: no debug port. The whole batch would fail identically, so STOP -
-            # loudly, and never fall back to an HTTP door. Progress is still written.
+            # F1 with browser-panel as the last selected source: the whole batch would
+            # fail identically, so STOP loudly. Progress is still written.
             print(f"\nF1 - {e}", flush=True)
             f1_error = True
             break

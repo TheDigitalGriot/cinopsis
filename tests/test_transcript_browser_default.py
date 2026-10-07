@@ -407,12 +407,32 @@ def test_browser_failure_never_degrades_to_an_http_rung(gate, data_dir, monkeypa
     assert gt.fetch_transcript("vid1", allow_cache=False) == expected
 
 
-@pytest.mark.parametrize("opt_in", [False, True])
-def test_f1_always_raises_and_never_falls_back_even_when_opted_in(gate, data_dir, monkeypatch, opt_in):
-    _forbid_http(monkeypatch)
+@pytest.mark.parametrize("kw", [{}, {"allow_http_rungs": False}, {"sources": "browser-panel"},
+                                {"sources": "og-http,browser-panel"}])
+def test_f1_raises_when_browser_panel_is_the_last_source(gate, data_dir, monkeypatch, kw):
+    calls = _stub_all(monkeypatch)
     _browser(monkeypatch, _raises(cs.ChromeProfileLockedError("run launch_chrome_debug.ps1")))
     with pytest.raises(cs.ChromeProfileLockedError):
-        gt.fetch_transcript("vid1", allow_cache=False, allow_http_rungs=opt_in)
+        gt.fetch_transcript("vid1", allow_cache=False, **kw)
+    if kw.get("sources", "").startswith("og-http"):
+        assert calls == ["innertube", "api", "yt-dlp", "cdp-panel", "asr"]   # earlier source ran first
+
+
+def test_f1_no_longer_aborts_later_sources_v3_defect_fix(gate, data_dir, monkeypatch):
+    """v2.9 defect: --allow-http-rungs could not reach the HTTP rungs while no CDP port was
+    open. v3: F1 is held, the later sources run, and an all-miss reports 'no-browser'."""
+    calls = _stub_all(monkeypatch)
+    _browser(monkeypatch, _raises(cs.ChromeProfileLockedError("run launch_chrome_debug.ps1")))
+    assert gt.fetch_transcript("vid1", allow_cache=False, allow_http_rungs=True) == (None, None, "no-browser")
+    assert calls == ["innertube", "api", "yt-dlp", "cdp-panel", "asr"]
+
+
+def test_og_http_alone_never_touches_the_browser(gate, data_dir, monkeypatch):
+    calls = _stub_all(monkeypatch)
+    _browser(monkeypatch, lambda vid: pytest.fail("browser reached with --sources og-http"))
+    monkeypatch.setattr(gt, "get_transcript_api", lambda vid: (SEGMENTS, "en"))
+    assert gt.fetch_transcript("vid1", allow_cache=False, sources="og-http") == (SEGMENTS, "en", "api")
+    assert calls == ["innertube"]
 
 
 def test_a_panel_error_never_arms_the_rate_limit_cooldown(gate, data_dir, monkeypatch):
@@ -479,8 +499,9 @@ def test_failure_messages_name_the_fix_and_never_say_blocked_for_f2_f3():
     assert "not a block" in gt.describe_failure(gt.FAILURE_NO_TRANSCRIPT).lower()
     f3 = gt.describe_failure(gt.FAILURE_STILL_LOADING).lower()
     assert "not a block" in f3 and "retry later" in f3
-    assert "--allow-http-rungs" in gt.describe_failure(None)
-    assert "--allow-http-rungs" in gt.describe_failure(gt.FAILURE_PANEL_ERROR)
+    for method in (None, gt.FAILURE_PANEL_ERROR, gt.FAILURE_NO_BROWSER):
+        msg = gt.describe_failure(method)
+        assert "--sources" in msg and "doctor.py" in msg
 
 
 # ===========================================================================
@@ -489,15 +510,16 @@ def test_failure_messages_name_the_fix_and_never_say_blocked_for_f2_f3():
 def test_get_transcript_cli_defaults_to_no_http_and_names_f1(monkeypatch, data_dir, capsys):
     seen = {}
 
-    def fake(vid, allow_cache=True, refresh=False, allow_http_rungs=None):
+    def fake(vid, allow_cache=True, refresh=False, allow_http_rungs=None, sources=None):
         seen["opt"] = allow_http_rungs
+        seen["sources"] = sources
         raise cs.ChromeProfileLockedError("run launch_chrome_debug.ps1")
 
     monkeypatch.setattr(gt, "fetch_transcript", fake)
     monkeypatch.setattr(sys, "argv", ["get_transcript.py", "--video-id", "vid1"])
     with pytest.raises(SystemExit) as e:
         gt.main()
-    assert e.value.code == 3 and seen["opt"] is False
+    assert e.value.code == 3 and seen["opt"] is False and seen["sources"] is None
     assert "launch_chrome_debug.ps1" in capsys.readouterr().out
 
     monkeypatch.setattr(sys, "argv", ["get_transcript.py", "--video-id", "vid1", "--allow-http-rungs"])

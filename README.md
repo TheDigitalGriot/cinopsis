@@ -122,6 +122,39 @@ Three specialized agents handle requests automatically:
 | `digest-writer` | 🩵 Cyan | Sonnet | Single video summaries, batch digests |
 | `video-comparator` | 🟣 Magenta | Opus (1M ctx) | Multi-video comparison, deep analysis |
 
+## 🎚️ Transcript sources + doctor (v3.0.0)
+
+Transcript acquisition is a **source seam**: every entry point walks the cache, then the sources this
+Cinopsis instance selected, in order. Each source is an Agent-Reach channel (`scripts/sources/`) with its
+own rate-limit door and a `check()` the doctor runs.
+
+| source | what it does | kind |
+|---|---|---|
+| `browser-panel` | YouTube's transcript panel in your already-running Chrome (attach-only, port 9333) - **default** | caption |
+| `og-http` | the original HTTP ladder (innertube / transcript-api / yt-dlp / raw-CDP / ASR), no browser needed | caption |
+| `gemini-url` | Gemini watches the URL; Google fetches it (needs `GEMINI_API_KEY`) | model |
+| `local-pipeline` | one yt-dlp info-json + one caption track; Groq/OpenAI/WhisperX ASR when there is none; writes the description + links | caption |
+| `claude` | Claude lane for testing - restructures description material already on disk | model |
+
+```bash
+python scripts/get_transcript.py --video-id ID --sources gemini-url,local-pipeline,og-http
+export CINOPSIS_TRANSCRIPT_SOURCES=gemini-url,local-pipeline,og-http   # portable / Hazine install, no browser
+python scripts/doctor.py            # every source's real state + the live order (offline)
+python scripts/doctor.py --live     # + at most one gated request per network source
+python scripts/get_description.py --video-id ID   # description_<id>.txt + links_<id>.json
+python scripts/watch_video.py URL --engine local --detail efficient   # the Watch verb
+python scripts/capture_frames.py --video-id ID --select keyframes     # Watch frame engine
+```
+
+Order: `--sources` / MCP `sources` param -> `--allow-http-rungs` -> `CINOPSIS_TRANSCRIPT_SOURCES` ->
+`CINOPSIS_ALLOW_HTTP_RUNGS=1` -> settings `transcript_sources` -> `browser-panel`. Each saved transcript gets a
+`transcript_<id>.source.json` sidecar naming its source and kind, so model text never passes for captions.
+
+**Lifted, not re-implemented.** `scripts/media/` is claude-video's Watch engine (03ceb42) and `scripts/reach/` is
+Agent-Reach's channel/probe/doctor model (a19a171), copied raw inside `# >>> LIFT` fences; every changed line ends
+in `# seam:`. `python scripts/verify_lift.py` proves each fence against the pinned upstream sha and checks that
+every upstream function/class is lifted or parked with a contract (`scripts/lift_parked.json`).
+
 ## 📖 Manual Script Usage
 
 ```bash
@@ -229,12 +262,14 @@ The viewer also includes a **chat widget** for asking follow-up questions about 
 | Dependency | Version | Description |
 |------------|---------|-------------|
 | Python | 3.10+ | Runtime (3.10+ required for the MCP server + Agent SDK chat) |
-| yt-dlp | latest | YouTube video/subtitle download |
+| yt-dlp[default] | >=2026.07.04 | YouTube video/subtitle download (+ yt-dlp-ejs JS challenge solver) |
 | Flask | latest | Local server for comparison viewer |
 | imageio-ffmpeg | latest | Bundled ffmpeg for frame capture (no system install) |
 | mcp | latest | Local-stdio MCP server (Cowork bridge) |
 | claude-agent-sdk | latest | In-viewer chat via Claude subscription |
 | anthropic / requests | latest | API-key and local/custom chat providers |
+| pyyaml / rich / loguru / feedparser / python-dotenv | Agent-Reach floors | lifted reach layer (doctor, config) |
+| ffmpeg + ffprobe | system | Watch frame engine and ASR audio extraction |
 
 > On Cowork these are installed automatically into a per-plugin venv. For the Claude Code slash-command path, run `pip install -r requirements.txt`.
 

@@ -40,3 +40,19 @@ def _never_touch_a_browser(monkeypatch):
             "offline and browser-free")
 
     monkeypatch.setattr(webdriver, "Chrome", _boom)
+
+
+@pytest.fixture(autouse=True)
+def _isolate_transcript_sources(monkeypatch, tmp_path):
+    """v3 source seam: no test inherits this desk's source order or saved keys.
+
+    The order resolves from env CINOPSIS_TRANSCRIPT_SOURCES / CINOPSIS_ALLOW_HTTP_RUNGS
+    and settings.json; keys from GEMINI_API_KEY / GROQ_API_KEY / OPENAI_API_KEY. All are
+    cleared and settings point at an empty per-test file, so every test sees the default.
+    """
+    for var in ("CINOPSIS_TRANSCRIPT_SOURCES", "CINOPSIS_ALLOW_HTTP_RUNGS", "GEMINI_API_KEY",
+                "GROQ_API_KEY", "OPENAI_API_KEY", "CINOPSIS_GEMINI_MODEL", "LOCAL_PIPELINE_BACKEND"):
+        monkeypatch.delenv(var, raising=False)
+    import app_settings
+    settings_file = tmp_path / "isolated-settings" / "settings.json"
+    monkeypatch.setattr(app_settings, "_settings_path", lambda: settings_file)

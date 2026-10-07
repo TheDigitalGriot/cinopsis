@@ -43,7 +43,8 @@ except Exception as _bus_err:  # pragma: no cover - bus is optional, server must
 
 mcp = FastMCP("cinopsis")
 
-TOOL_NAMES = ["fetch_videos", "fetch_playlist", "get_transcript", "compare_videos", "launch_viewer", "capture_frame", "harvest_frames"]
+TOOL_NAMES = ["fetch_videos", "fetch_playlist", "get_transcript", "compare_videos", "launch_viewer", "capture_frame",
+              "harvest_frames", "doctor", "get_description", "watch_video", "watch_frames"]
 
 _viewer = {"port": None}
 
@@ -176,28 +177,27 @@ def fetch_playlist(url: str | None = None, name: str | None = None,
 
 
 @mcp.tool()
-def get_transcript(video_id: str) -> str:
+def get_transcript(video_id: str, sources: str | None = None) -> str:
     """Fetch the transcript for a single YouTube video (URL or 11-char ID).
 
     Returns timestamped plain text, or an error message if unavailable.
 
-    Goes through the SAME ladder dispatcher every other surface uses
-    (cache -> the BROWSER transcript panel in your already-running Chrome), so
-    this tool is cache-served when possible and is gated by the anti-hammer
-    rate-limit gate. The HTTP rungs (innertube / api / yt-dlp / asr) are
-    secondary/legacy and OFF by default - opt in only via the environment
-    (CINOPSIS_ALLOW_HTTP_RUNGS=1); this tool never enables them itself.
-    Never calls a rung directly — no rung may bypass the gate.
+    Goes through the SAME ladder dispatcher every other surface uses: the cache,
+    then the selected transcript sources in order. `sources` is a comma list of
+    browser-panel, og-http, gemini-url, local-pipeline, claude; empty uses this
+    instance's order (settings transcript_sources, CINOPSIS_TRANSCRIPT_SOURCES,
+    default browser-panel). Every rung passes the per-door rate-limit gate.
+    Run the `doctor` tool to see which sources are ready.
     """
     vid = extract_video_id(video_id)
     try:
         with _quiet_stdout():
-            transcript, lang, method = fetch_transcript(vid)
+            transcript, lang, method = fetch_transcript(vid, sources=sources or None)
             if transcript:
                 from _utils import DATA_DIR
                 (DATA_DIR / f"transcript_{vid}.txt").write_text(format_transcript(transcript), encoding="utf-8")
     except ChromeProfileLockedError as e:
-        # F1: no Chrome debug port. Loud, actionable, and NEVER a fallback to an HTTP door.
+        # F1: no Chrome debug port and browser-panel was the last selected source.
         return f"F1 - {e}"
 
     if not transcript:
@@ -229,17 +229,18 @@ def get_transcript(video_id: str) -> str:
 
 
 @mcp.tool()
-def compare_videos(urls: list[str], title: str | None = None) -> str:
+def compare_videos(urls: list[str], title: str | None = None, sources: str | None = None) -> str:
     """Build a comparison session from one or more YouTube URLs/IDs.
 
     Fetches metadata, thumbnail, and transcript for each video and saves a
     session. Returns the session id and the path to comparison_data.json, whose
     analysis section (unified_summary, topics, disagreements, key_moments) Claude
-    should then fill in before calling launch_viewer.
+    should then fill in before calling launch_viewer. `sources` selects the
+    transcript sources for this call (comma list; empty = this instance's order).
     """
     with _quiet_stdout():
         ids = parse_urls(urls)
-        videos = [process_video(v) for v in ids]
+        videos = [process_video(v, sources=sources or None) for v in ids]
         if not title:
             title = f"Comparison: {', '.join(v.get('channel', '?') for v in videos[:3])}"
             if len(videos) > 3:
@@ -253,6 +254,78 @@ def compare_videos(urls: list[str], title: str | None = None) -> str:
         "comparison_data_path": str(path),
         "next_step": "Read comparison_data.json, fill analysis.{unified_summary,topics,disagreements,key_moments} and per-video digest, then call launch_viewer.",
     }, ensure_ascii=False)
+
+
+@mcp.tool()
+def doctor(json_output: bool = False, live: bool = False) -> str:
+    """Health of every transcript source and the tools behind it (Agent-Reach doctor model).
+
+    Each source's check really executes what it needs (yt-dlp --version, the
+    loopback Chrome debug port, key presence - keys are never printed). Offline by
+    default. live=True adds at most ONE lightweight request per network source,
+    each behind its rate-limit door (a Gemini model GET; one youtube.com/generate_204).
+    """
+    from doctor import doctor_text
+    with _quiet_stdout():
+        return doctor_text(as_json=json_output, live=live)
+
+
+@mcp.tool()
+def get_description(video_id: str) -> str:
+    """Write data/description_<id>.txt and data/links_<id>.json (github / gitlab / huggingface).
+
+    One yt-dlp info-json call (no media, no captions), behind the timedtext door.
+    Descriptions are the authoritative source for titles and repo slugs.
+    """
+    from get_description import describe
+    vid = extract_video_id(video_id)
+    with _quiet_stdout():
+        result = describe(vid)
+    return json.dumps(result, ensure_ascii=False)
+
+
+@mcp.tool()
+def watch_video(source: str, question: str | None = None, engine: str = "auto",
+                detail: str | None = None, start: str | None = None, end: str | None = None) -> str:
+    """The Watch verb: frames + transcript of a video (local engine) or Gemini's answer about it.
+
+    engine: auto (gemini when a key exists), gemini, or local. detail: transcript,
+    efficient, balanced, token-burner. start/end narrow the range (SS, MM:SS, HH:MM:SS).
+    Returns Watch's markdown report; on the local engine it lists frame image paths
+    to Read. Working files live under the plugin data dir (watch/<timestamp>).
+    """
+    from watch_video import run_watch
+    argv = [source]
+    if question:
+        argv += ["--question", question]
+    if engine:
+        argv += ["--engine", engine]
+    if detail:
+        argv += ["--detail", detail]
+    if start:
+        argv += ["--start", start]
+    if end:
+        argv += ["--end", end]
+    with _quiet_stdout():
+        code, report = run_watch(argv, capture=True)
+    return report if code == 0 else f"watch exited {code}\n\n{report}"
+
+
+@mcp.tool()
+def watch_frames(video_id: str, mode: str = "keyframes", max_frames: int = 50) -> str:
+    """Let Watch's frame engine pick frames across a whole video (keyframes or scene).
+
+    Downloads the video once (720p cap), extracts, deletes the video, and returns
+    the frame paths, timestamps and frame_ref values under the plugin data dir.
+    """
+    from capture_frames import capture_keyframes
+    vid = extract_video_id(video_id)
+    try:
+        with _quiet_stdout():
+            result = capture_keyframes(vid, mode=mode, max_frames=int(max_frames))
+    except Exception as e:  # noqa: BLE001 - surfaced to the caller, never swallowed
+        return json.dumps({"status": "failed", "video_id": vid, "error": str(e)})
+    return json.dumps({"status": "ok", **result}, ensure_ascii=False, default=str)
 
 
 @mcp.tool()
