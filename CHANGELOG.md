@@ -7,6 +7,38 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [3.1.0] - 2026-10-07
+
+Minor: **Agent-Reach, lifted whole** (stage contract `cinopsis-v3.1`, Gavin rulings R8-R11). Every
+symbol v3.0 parked is now raw-lifted into Cinopsis's own modules inside provenance fences, adapted
+only at marked seams. Nothing is parked any more: Agent-Reach 166/166 symbols, and every line of
+both upstreams (10050/10050) sits in a fence.
+
+### Added
+- **The full Agent-Reach channel registry**: github, twitter, reddit, facebook, instagram, bilibili,
+  xiaohongshu, linkedin, boss, xiaoyuzhou, v2ex, xueqiu, rss, exa_search and web join youtube, in
+  upstream order (`scripts/reach/<channel>.py`). The doctor and the MCP `doctor` tool now report
+  all 16, followed by the five Cinopsis transcript sources.
+- **Agent-Reach's own CLI**, whole: `python scripts/reach_cli.py install | configure | uninstall |
+  skill | format | setup | doctor | check-update | watch | transcribe | version`. Upstream hints
+  that say `agent-reach <cmd>` mean this command.
+- **Cookie extraction** (`scripts/reach/cookie_extract.py`, `configure --from-browser`), the OpenCLI
+  backend probe, mcporter config inspection, and Agent-Reach's stdio MCP server
+  (`cd scripts && python -m reach.mcp_server`, not registered as a second plugin server).
+- Upstream's `skill/`, `guides/` and xiaoyuzhou transcription script, byte-identical and gated.
+- 28 more upstream test files lifted whole into `tests/lifted_reach/` (593 pass offline).
+- `requirements.txt`: `browser-cookie3>=0.19`, `mcp[cli]>=1.0` (upstream's declared extras).
+
+### Changed
+- **Reach state lives in the data dir** (R9): config.yaml, cookie-derived session files and the
+  xhs cookie export and managed tools are written under `data/reach/` (gitignored; `CINOPSIS_REACH_HOME` overrides),
+  never into `$HOME`. No `~/.agent-reach` existed on Gavin's desk, so nothing migrates.
+- **Network probes are gated** (R10): bilibili, v2ex and xueqiu check a public API only under
+  `doctor --live`, one request each, then the gate closes. A plain doctor run stays offline.
+- **No browser by default**: boss's Chrome DevTools checks run only with
+  `CINOPSIS_REACH_BROWSER_PROBES=1`.
+- `scripts/verify_lift.py` also gates **line coverage**: an upstream line outside every fence fails it.
+
 ## [3.0.0] - 2026-10-07
 
 Major: transcript acquisition becomes a **source seam**, and two upstream engines are lifted into
