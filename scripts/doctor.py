@@ -349,7 +349,10 @@ def live_results(settings=None) -> dict:
         settings = load_settings()
     out = {}
     for s in sources.SOURCES:
-        res = s.live_probe(settings)
+        try:
+            res = s.live_probe(settings)
+        except Exception as exc:  # noqa: BLE001 - one probe must never take the report down
+            res = ("error", f"probe raised {type(exc).__name__}: {exc}")
         if res:
             out[s.name] = {"status": res[0], "message": res[1]}
     try:

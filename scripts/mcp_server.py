@@ -190,6 +190,12 @@ def get_transcript(video_id: str, sources: str | None = None) -> str:
     Run the `doctor` tool to see which sources are ready.
     """
     vid = extract_video_id(video_id)
+    if sources:
+        try:
+            import sources as _src
+            _src.parse_order(sources)
+        except ValueError as e:
+            return str(e)
     try:
         with _quiet_stdout():
             transcript, lang, method = fetch_transcript(vid, sources=sources or None)
@@ -238,6 +244,12 @@ def compare_videos(urls: list[str], title: str | None = None, sources: str | Non
     should then fill in before calling launch_viewer. `sources` selects the
     transcript sources for this call (comma list; empty = this instance's order).
     """
+    if sources:
+        try:
+            import sources as _src
+            _src.parse_order(sources)
+        except ValueError as e:
+            return json.dumps({"error": str(e)})
     with _quiet_stdout():
         ids = parse_urls(urls)
         videos = [process_video(v, sources=sources or None) for v in ids]

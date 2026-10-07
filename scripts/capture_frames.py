@@ -315,15 +315,18 @@ def capture_keyframes(video_id, mode="keyframes", max_frames=50, resolution=512,
             raise RuntimeError(str(exc)) from None
         if ratelimit is not None:
             ratelimit.record_outcome(True)
-        if mode == "keyframes":
-            selected, meta = frames.extract_keyframes(media["video_path"], out, resolution=resolution,
-                                                      max_frames=max_frames, dedup=dedup)
-        else:
-            duration = frames.get_metadata(media["video_path"])["duration_seconds"]
-            fps, target = frames.auto_fps(duration, max_frames=max_frames or 100)
-            selected, meta = frames.extract_scene_or_uniform(media["video_path"], out, fps, target,
-                                                             resolution=resolution, max_frames=max_frames,
-                                                             dedup=dedup)
+        try:  # the lifted engine reports ffmpeg/ffprobe failure as SystemExit (it is a CLI)
+            if mode == "keyframes":
+                selected, meta = frames.extract_keyframes(media["video_path"], out, resolution=resolution,
+                                                          max_frames=max_frames, dedup=dedup)
+            else:
+                duration = frames.get_metadata(media["video_path"])["duration_seconds"]
+                fps, target = frames.auto_fps(duration, max_frames=max_frames or 100)
+                selected, meta = frames.extract_scene_or_uniform(media["video_path"], out, fps, target,
+                                                                 resolution=resolution, max_frames=max_frames,
+                                                                 dedup=dedup)
+        except SystemExit as exc:
+            raise RuntimeError(str(exc)) from None
     finally:
         if media and media.get("run_dir"):
             shutil.rmtree(media["run_dir"], ignore_errors=True)

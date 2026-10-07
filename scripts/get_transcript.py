@@ -1412,7 +1412,7 @@ def fetch_transcript(video_id, allow_cache=True, refresh=False, allow_http_rungs
             # recorded: a fabricated detail could collide with a BLOCK_MARKER and
             # cost an hour-long cooldown for a video that simply has no captions.
         except chrome_session.ChromeProfileLockedError as e:
-            if not any(r[3] != source_name for r in rungs[i + 1:]):
+            if source_name == "browser-panel" and not any(r[3] != source_name for r in rungs[i + 1:]):
                 raise                               # F1 - nothing after it could answer
             f1 = e
             print(f"  [ladder] {name}: F1 - {e} (continuing with the later sources)", flush=True)

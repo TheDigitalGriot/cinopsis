@@ -36,7 +36,7 @@ def fetch_claude(video_id: str):
     if not material.strip():
         return None, None
     answer = "".join(chat_stream(load_settings(), material, QUESTION))
-    if answer.startswith("[chat error]"):
+    if "[chat error]" in answer:
         raise SourceError(answer)
     if answer.strip().upper() == "NONE":
         return None, None

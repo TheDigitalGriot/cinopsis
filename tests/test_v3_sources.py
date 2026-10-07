@@ -320,3 +320,39 @@ def test_lift_gate_is_green_against_the_pinned_upstreams():
         pytest.skip(f"upstream clones not present here: {exc}")
     assert rep["green"], (rep["block_problems"][:5], rep["unaccounted"][:5], rep["bad_parks"][:5])
     assert rep["lifted"] > 0 and not rep["unaccounted"]
+
+
+# ---- review fixes (closing-ceremony quality review) ------------------------------
+
+def test_f1_from_og_http_cdp_rung_does_not_end_the_ladder(gate, data_dir, monkeypatch):
+    import chrome_session as cs
+    for attr in ("get_transcript_innertube", "get_transcript_api", "get_transcript_ytdlp"):
+        monkeypatch.setattr(gt, attr, lambda vid: (None, None))
+    monkeypatch.setattr(gt, "get_transcript_cdp", lambda vid: (_ for _ in ()).throw(cs.ChromeProfileLockedError("x")))
+    monkeypatch.setattr(gt, "get_transcript_asr", lambda vid: (SEGS, "en"))
+    assert gt.fetch_transcript("vid", allow_cache=False, sources="og-http") == (SEGS, "en", "asr")
+
+
+def test_claude_lane_mid_stream_error_is_not_a_transcript(data_dir, monkeypatch):
+    from sources import claude_lane
+    import providers
+    (data_dir / "description_vid.txt").write_text("0:00 Intro", encoding="utf-8")
+    monkeypatch.setattr(providers, "chat_stream", lambda s, c, q: iter(["[00:00] Intro", "\n[chat error] boom"]))
+    with pytest.raises(sources.SourceError):
+        claude_lane.fetch_claude("vid")
+
+
+def test_keyframe_engine_failure_is_an_exception_not_an_exit(gate, data_dir, monkeypatch, tmp_path):
+    import capture_frames
+    from media import frames
+    monkeypatch.setattr(capture_frames, "DATA_DIR", data_dir)
+    run = tmp_path / "run"; run.mkdir()
+    monkeypatch.setattr(download, "download_url", lambda url, out, **k: {"video_path": "v", "run_dir": str(run)})
+    monkeypatch.setattr(frames, "extract_keyframes", lambda *a, **k: (_ for _ in ()).throw(SystemExit("ffmpeg is not installed")))
+    with pytest.raises(RuntimeError, match="ffmpeg"):
+        capture_frames.capture_keyframes("vid")
+
+
+def test_mcp_rejects_unknown_source_with_the_valid_set():
+    import mcp_server
+    assert "valid: browser-panel" in mcp_server.get_transcript("dQw4w9WgXcQ", sources="nope")
