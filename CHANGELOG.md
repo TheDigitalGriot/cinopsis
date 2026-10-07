@@ -7,6 +7,72 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [3.0.0] - 2026-10-07
+
+Major: transcript acquisition becomes a **source seam**, and two upstream engines are lifted into
+Cinopsis's own code (stage contract `cinopsis-v3`, Gavin rulings R1-R8). The default order is
+unchanged (cache -> browser-panel), so Gavin's desk behaves as v2.9; every other instance picks
+its own ordered sources.
+
+### Added
+- **Transcript sources** (`scripts/sources/`): `browser-panel`, `og-http`, `gemini-url`,
+  `local-pipeline`, `claude`, each an Agent-Reach channel with its rungs, its rate-limit door and a
+  real `check()`. Choose per instance with `--sources a,b` (get_transcript, fetch_transcripts,
+  compare_videos, digest_all), the MCP `sources` param, `CINOPSIS_TRANSCRIPT_SOURCES`, or settings
+  `transcript_sources`. Portable/Hazine order: `gemini-url,local-pipeline,og-http`.
+- **gemini-url**: Gemini watches the YouTube URL (Google fetches it - no browser, not from this IP).
+- **local-pipeline**: one yt-dlp info-json call + one caption track (Watch engine); Groq/OpenAI
+  Whisper, Agent-Reach audio transcription or WhisperX when a video has no captions, in Agent-Reach's
+  ordered-backend order (`LOCAL_PIPELINE_BACKEND` overrides).
+- **Description writer** (R4): `description_<id>.txt` + `links_<id>.json` (github / gitlab /
+  huggingface) - `scripts/get_description.py`, MCP `get_description`, and a local-pipeline side effect.
+- **Doctor** (R3): `scripts/doctor.py` (+ `--json`, `--live`, `--watch`, `--check-update`) and MCP
+  `doctor` - Agent-Reach's doctor over every source; offline by default, `--live` = at most one gated
+  request per network source.
+- **Watch verb inside Cinopsis**: `scripts/watch_video.py` / MCP `watch_video`, and the Watch frame
+  engine via `capture_frames.py --select keyframes|scene` / MCP `watch_frames`.
+- `scripts/transcribe_audio.py`: Agent-Reach's URL/file transcription as a CLI.
+- **Raw lift with proof** (R8): claude-video 03ceb42 -> `scripts/media/`, Agent-Reach a19a171 ->
+  `scripts/reach/`, fenced `# >>> LIFT`, every change a `# seam:`. `scripts/verify_lift.py` (also run
+  by the pre-release audit) proves each fence against the pinned sha and that every upstream
+  function/class is lifted or parked with a contract (`scripts/lift_parked.json`). Upstream tests
+  that exercise lifted code run offline in `tests/lifted_watch/` and `tests/lifted_reach/`.
+- Provenance sidecar `transcript_<id>.source.json` (source + kind), so model-derived text never
+  passes for a caption track.
+- `/frames/<ref>` route on the companion server; harvested step frames render in the viewer.
+- Earlier on this cycle (5103c62): the browser transcript panel as the default path
+  (`panel_transcript.py` recipe, attach-only `chrome_session`, named F1/F2/F3), the harvest skill,
+  the comparison-schema cap raise, and the session handoff and plans.
+
+### Changed
+- **F1 is fatal only when `browser-panel` is the last selected source.** With later sources
+  selected, a missing Chrome debug port no longer stops them; an all-miss reports `no-browser`.
+  This fixes the v2.9 defect where `--allow-http-rungs` could not reach the HTTP rungs while no
+  CDP port was open. `--allow-http-rungs` now means `--sources browser-panel,og-http`.
+- MCP `get_transcript` and `compare_videos` take an optional `sources`; new tools `doctor`,
+  `get_description`, `watch_video`, `watch_frames`.
+- requirements: `yt-dlp[default]>=2026.07.04`, `yt-dlp-ejs==0.8.0`, `pyyaml`, `rich`, `loguru`,
+  `feedparser`, `python-dotenv` at Agent-Reach's declared floors.
+
+### Fixed
+- Harvest breaks: B7 `/api/screenshot` answers 400 (not 500) on a bad timestamp; B8 adding videos
+  keeps workflow steps and recomputes stats; B9 `build_session_from_analysis` knows
+  `workflow_steps`; B10 a steps-only analysis counts as analysis; B11 INV2 checks each step cites a
+  session video; B12 step phase filled from chapters (mismatches reported, never overwritten);
+  B1 promotion copies cited frames to the canonical frames dir; B2 frames render in the viewer;
+  B5 steps appear on the timeline; B6 auto-capture fills step `frame_ref`; B13 dashboard tiles count
+  the arrays and name a disagreeing stats block, plus a Workflow steps tile; B4 count stays true.
+- Hook entries carry an explicit match-all `matcher`; `cinopsis-release` description parses as YAML;
+  the widget-adapter test matches the viewer's native Griot Widget Contract.
+
+### Parked (with stage contracts)
+- B3 frame write-back (+ moving user captures out of key_moments):
+  `.prism/shared/plans/2026-10-06-frame-model-CONTEXT.md`.
+- Upstream symbols not lifted (non-YouTube channels, browser-store code, Agent-Reach installers,
+  its second MCP server): `.prism/shared/plans/2026-10-06-cinopsis-v3-unlifted-CONTEXT.md`.
+
+### Changes carried from [Unreleased] (5103c62)
+
 ### Changed
 - **The browser transcript panel is now the ONLY auto-used transcript path** (stage
   contract `transcript-browser-default`). The default ladder is `cache -> browser-panel`
