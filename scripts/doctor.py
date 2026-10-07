@@ -377,7 +377,12 @@ def doctor_text(as_json: bool = False, live: bool = False) -> str:
         # exactly one request each, only here.
         from reach.channels import open_network_probes
         open_network_probes("once")
-    results = check_all(Config(read_only=True))
+        try:
+            results = check_all(Config(read_only=True))
+        finally:
+            open_network_probes("closed")  # a long-lived MCP server must not stay open after one live call
+    else:
+        results = check_all(Config(read_only=True))
     order, origin = sources.resolve_order()
     payload = {"version": cinopsis_version(), "source_order": list(order), "order_from": origin,
                "channels": results}

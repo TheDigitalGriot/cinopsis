@@ -317,7 +317,8 @@ def _cmd_install(args):
 
     # Only a real installation may create persistent directories.
     if not dry_run and not safe_mode:
-        tools_dir = os.path.expanduser("~/.agent-reach/tools")
+        from reach.paths import reach_home  # seam: R9 write root
+        tools_dir = str(reach_home() / ".agent-reach" / "tools")  # seam: R9 managed tools live in the gitignored data dir
         os.makedirs(tools_dir, exist_ok=True)
 
     DESKTOP_ONLY_CHANNELS = {"opencli", "facebook", "instagram", "boss"}
@@ -918,7 +919,8 @@ def _install_xiaoyuzhou_deps():
     config = Config()
     print("Setting up Xiaoyuzhou podcast transcription...")
 
-    tools_dir = os.path.expanduser("~/.agent-reach/tools/xiaoyuzhou")
+    from reach.paths import reach_home  # seam: R9 write root
+    tools_dir = str(reach_home() / ".agent-reach" / "tools" / "xiaoyuzhou")  # seam: R9 managed tools live in the gitignored data dir
     script_dst = os.path.join(tools_dir, "transcribe.sh")
 
     script_src = os.path.join(

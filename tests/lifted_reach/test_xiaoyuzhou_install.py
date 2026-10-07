@@ -56,6 +56,7 @@ def test_install_xiaoyuzhou_deps_replaces_stale_managed_script(
         lambda value: value.replace("~", str(tmp_path)),
     )
     monkeypatch.setattr("reach.config.Config", lambda: _DummyConfig())  # seam: package import
+    monkeypatch.setattr("reach.paths.reach_home", lambda: tmp_path)  # seam: R9 the managed script lives under reach_home()
     monkeypatch.setattr("shutil.which", lambda _name: None)
 
     cli._install_xiaoyuzhou_deps()

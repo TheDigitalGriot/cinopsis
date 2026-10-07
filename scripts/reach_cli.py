@@ -5,9 +5,10 @@
     python scripts/reach_cli.py configure --from-browser chrome --platform xueqiu
     python scripts/reach_cli.py uninstall --dry-run | skill --install | format | transcribe <url>
 
-Everything it writes for itself (config.yaml, cookie-derived session files) stays under
-data/reach/ (reach_home(), gitignored). Installers that set up third-party platform tools
-(`install`, `skill`) write where those tools expect, exactly as upstream does.
+Everything it writes for itself (config.yaml, cookie-derived session files, managed tools)
+stays under data/reach/ (reach_home(), gitignored). What it installs FOR other programs goes
+where those programs look, exactly as upstream: `skill --install` into agent skill dirs,
+`install` through pip/npm/pipx.
 """
 import sys
 from pathlib import Path

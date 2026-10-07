@@ -242,4 +242,4 @@ def reach_home() -> Path:
     if override:
         return Path(os.path.abspath(os.path.expanduser(override)))
     data_dir = os.environ.get("CLAUDE_PLUGIN_DATA") or str(Path(__file__).resolve().parents[2] / "data")
-    return Path(data_dir) / "reach"
+    return Path(os.path.abspath(data_dir)) / "reach"

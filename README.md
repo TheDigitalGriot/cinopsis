@@ -173,10 +173,12 @@ cd scripts && python -m reach.mcp_server               # Agent-Reach's own stdio
 ```
 
 - **State stays in the data dir.** Everything the reach layer writes for itself - `config.yaml`, cookie-derived
-  session files, the xhs cookie export - lands under `data/reach/` (gitignored; `CINOPSIS_REACH_HOME` overrides),
+  session files, the xhs cookie export, managed tools such as the xiaoyuzhou script - lands under `data/reach/` (gitignored; `CINOPSIS_REACH_HOME` overrides),
   keeping upstream's home-relative layout inside it. A cookie value is never printed.
 - **Network probes are gated.** bilibili, v2ex and xueqiu check a public API; a plain doctor run never does.
-  `doctor --live` sends exactly one request per channel.
+  `doctor --live` sends exactly one request per channel, then closes the gate again. Loopback-only checks
+  are exempt by design: OpenCLI's daemon status (127.0.0.1:19825) and the xiaohongshu MCP service
+  (localhost:18060) are local services, never a browser and never the internet.
 - **No browser by default.** boss's Chrome DevTools checks (localhost:9222) run only with
   `CINOPSIS_REACH_BROWSER_PROBES=1`; cookie extraction reads a browser's cookie store only on an explicit
   `configure --from-browser`.

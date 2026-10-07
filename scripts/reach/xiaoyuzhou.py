@@ -43,7 +43,8 @@ class XiaoyuzhouChannel(Channel):
             )
 
         # Check script exists
-        script = os.path.expanduser("~/.agent-reach/tools/xiaoyuzhou/transcribe.sh")
+        from reach.paths import reach_home  # seam: R9 the installer writes the script under reach_home()
+        script = str(reach_home() / ".agent-reach" / "tools" / "xiaoyuzhou" / "transcribe.sh")  # seam: R9
         if not os.path.isfile(script):
             return "off", (
                 "转录脚本未安装。运行：\n"
