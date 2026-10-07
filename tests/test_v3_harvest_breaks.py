@@ -130,6 +130,8 @@ def test_viewer_b2_b5_b6_b13_are_wired():
     assert "function frameUrl(ref)" in html and 'class="frm-img"' in html                     # B2
     assert "buildTimeline(v, moments, dur, stepsFor(a, v))" in html and "marker step" in html  # B5
     assert "moment + step density" in html and "<b>moment density</b>" not in html            # B5 hint x2
-    assert "job.o.frame_ref = 'frames/' + job.id" in html                                     # B6
+    # B6 superseded by cc5-batch2 leak 1: steps keep their harvested frame_ref and moments/topics
+    # read the disk-only /api/frames-index; nothing POSTs /api/screenshot on open.
+    assert "localFrames[k] = frameUrl('frames/' + k" in html                                    # B6
     assert "statTile('Workflow steps', steps.length" in html and "stats says " in html        # B13
     assert "stats.key_moments = a.key_moments.length" in html                                  # B4 (count)
