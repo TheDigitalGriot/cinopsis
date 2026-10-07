@@ -1,0 +1,5 @@
+# Lifted Agent-Reach assets stay byte-identical to upstream (tests/lifted_reach/test_lifted_assets.py)
+# and the shell script must keep LF to run under bash, whatever core.autocrlf says.
+scripts/reach/skill/** text eol=lf
+scripts/reach/guides/** text eol=lf
+scripts/reach/scripts/** text eol=lf

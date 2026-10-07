@@ -75,7 +75,11 @@ def test_unknown_source_fails_loudly_never_falls_back():
 
 def test_registry_is_agent_reach_channels():
     names = [c.name for c in get_all_channels()]
-    assert names[0] == "youtube"
+    # v3.1: the full upstream registry, in upstream order, then the Cinopsis transcript sources.
+    upstream = ["github", "twitter", "youtube", "reddit", "facebook", "instagram", "bilibili",
+                "xiaohongshu", "linkedin", "boss", "xiaoyuzhou", "v2ex", "xueqiu", "rss",
+                "exa_search", "web"]
+    assert names[:len(upstream)] == upstream
     for n in sources.SOURCE_NAMES:
         assert n in names
         assert isinstance(sources.get_source(n), Channel)

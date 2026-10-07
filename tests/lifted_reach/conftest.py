@@ -1,7 +1,6 @@
 # Lifted test - Agent-Reach at the pinned sha, exercising scripts/reach.
 # Upstream test code is verbatim between the LIFT fences; changed lines end in '# seam:'.
-# Tests that exercise parked upstream modules carry a skip marker naming the module.
-
+# Seams: R9 reach_home() follows the isolated HOME (so upstream path assertions hold); R10 the network-probe gate is 'always' here; the boss CDP opt-in is set (transport mocked).
 
 # >>> LIFT agent-reach@a19a171f tests/conftest.py:1-99
 # -*- coding: utf-8 -*-
@@ -91,16 +90,21 @@ def isolated_home(tmp_path, monkeypatch):
     config_dir = home / ".agent-reach"
     monkeypatch.setattr(Config, "CONFIG_DIR", config_dir)
     monkeypatch.setattr(Config, "CONFIG_FILE", config_dir / "config.yaml")
+    import reach.paths  # seam: R9 reach_home() stands in for home_dir() at the write sites;
+    monkeypatch.setattr(reach.paths, "reach_home", reach.paths.home_dir)  # seam: R9 here it follows the isolated HOME
+    import reach.channels  # seam: R10 the lifted channel tests mock their transports
+    monkeypatch.setattr(reach.channels, "_NETWORK_PROBE_POLICY", "always")  # seam: R10
+    monkeypatch.setenv("CINOPSIS_REACH_BROWSER_PROBES", "1")  # seam: boss CDP checks are opt-in; these tests mock the CDP transport
     return home
 
 
 @pytest.fixture(autouse=True)
 def isolated_xueqiu_cookie_jar(monkeypatch):
     """Prevent the module-level Xueqiu session from leaking between tests."""
-    # from reach.channels import xueqiu  # seam: package import  # seam: xueqiu channel is parked (scripts/lift_parked.json)
+    from reach import xueqiu  # seam: package import
 
-    # xueqiu._cookie_jar.clear()  # seam: xueqiu channel is parked
-    # monkeypatch.setattr(xueqiu, "_cookies_initialized", False)  # seam: xueqiu channel is parked
+    xueqiu._cookie_jar.clear()
+    monkeypatch.setattr(xueqiu, "_cookies_initialized", False)
     yield
-    # xueqiu._cookie_jar.clear()  # seam: xueqiu channel is parked
+    xueqiu._cookie_jar.clear()
 # <<< LIFT

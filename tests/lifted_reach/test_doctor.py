@@ -1,9 +1,8 @@
-# Lifted test (partial) - Agent-Reach at the pinned sha, exercising scripts/reach.
+# Lifted test - Agent-Reach at the pinned sha, exercising scripts/reach.
 # Upstream test code is verbatim between the LIFT fences; changed lines end in '# seam:'.
-# Not lifted (they exercise parked upstream modules, see scripts/lift_parked.json):
-#   test_doctor.py:221-325 test_real_doctor_path_is_zero_write_and_never_runs_risky_status_commands uses agent_reach.backends
 
-# >>> LIFT agent-reach@a19a171f tests/test_doctor.py:2-218
+# >>> LIFT agent-reach@a19a171f tests/test_doctor.py:1-325
+# -*- coding: utf-8 -*-
 """Tests for doctor module."""
 
 import hashlib
@@ -221,4 +220,111 @@ def _snapshot_user_roots() -> tuple:
                 detail = ("other",)
             entries.append((variable, relative, detail))
     return tuple(entries)
+
+
+def test_real_doctor_path_is_zero_write_and_never_runs_risky_status_commands(
+    monkeypatch, tmp_path, capsys
+):
+    """Run the real Doctor collector with deterministic external probes."""
+    import reach.opencli as opencli  # seam: package import
+    import reach.bilibili as bilibili  # seam: package import
+    import reach.v2ex as v2ex  # seam: package import
+    import reach.xiaohongshu as xiaohongshu  # seam: package import
+    import reach.xueqiu as xueqiu  # seam: package import
+    from reach import cli  # seam: package import
+
+    workdir = tmp_path / "empty-workdir"
+    workdir.mkdir()
+    monkeypatch.chdir(workdir)
+    monkeypatch.delenv("MCPORTER_CONFIG", raising=False)
+    monkeypatch.delenv("GH_TOKEN", raising=False)
+    monkeypatch.delenv("GITHUB_TOKEN", raising=False)
+
+    available = {
+        "gh",
+        "opencli",
+        "yt-dlp",
+        "bili",
+        "ffmpeg",
+        "mcporter",
+        "twitter",
+        "rdt",
+        "xhs",
+        "deno",
+        "node",
+    }
+    monkeypatch.setattr(
+        shutil,
+        "which",
+        lambda name: f"/audit-bin/{name}" if name in available else None,
+    )
+
+    calls = []
+
+    def fake_run(command, **kwargs):
+        argv = [str(item) for item in command]
+        calls.append(argv)
+        name = Path(argv[0]).name
+        assert name != "mcporter"
+        assert argv[1:] not in (
+            ["auth", "status"],
+            ["status"],
+            ["daemon", "status"],
+        )
+        if name == "gh":
+            assert argv[1:] == ["--version"]
+            assert kwargs["env"]["GH_TELEMETRY"] == "false"
+            assert kwargs["env"]["DO_NOT_TRACK"] == "true"
+            output = "gh version 2.92.0"
+        elif name == "opencli":
+            assert argv[1:] == ["--version"]
+            output = "1.8.6"
+        elif name == "yt-dlp":
+            output = "2026.01.01"
+        elif name == "bili":
+            output = "0.3.0"
+        elif name == "ffmpeg":
+            output = "ffmpeg version 7.0"
+        else:
+            pytest.fail(f"unexpected Doctor subprocess: {argv}")
+        return subprocess.CompletedProcess(argv, 0, output, "")
+
+    monkeypatch.setattr(subprocess, "run", fake_run)
+    monkeypatch.setattr(opencli, "_fetch_daemon_status", lambda timeout=2: None)
+    monkeypatch.setattr(opencli, "_extension_installed_on_disk", lambda: False)
+    monkeypatch.setattr(
+        opencli, "_unpacked_extension_files_present", lambda: False
+    )
+    monkeypatch.setattr(bilibili, "_search_api_ok", lambda: False)
+    monkeypatch.setattr(
+        xiaohongshu, "_mcp_service_reachable", lambda timeout=3: False
+    )
+    monkeypatch.setattr(v2ex, "_get_json", lambda _url: [])
+    monkeypatch.setattr(
+        xueqiu,
+        "_get_json",
+        lambda _url, _config=None: {
+            "data": {"quote": {"symbol": "SH601138"}}
+        },
+    )
+
+    before = _snapshot_user_roots()
+    cli._cmd_doctor(Namespace(json=True))
+    after = _snapshot_user_roots()
+
+    assert after == before
+    assert calls
+    assert all(Path(call[0]).name != "mcporter" for call in calls)
+    payload = json.loads(capsys.readouterr().out)
+    assert payload["github"]["status"] == "warn"
+    assert payload["github"]["active_backend"] is None
+    for channel_name in (
+        "twitter",
+        "reddit",
+        "facebook",
+        "instagram",
+        "xiaohongshu",
+    ):
+        assert payload[channel_name]["status"] == "warn"
+        assert payload[channel_name]["active_backend"] is None
 # <<< LIFT

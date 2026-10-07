@@ -155,6 +155,34 @@ Agent-Reach's channel/probe/doctor model (a19a171), copied raw inside `# >>> LIF
 in `# seam:`. `python scripts/verify_lift.py` proves each fence against the pinned upstream sha and checks that
 every upstream function/class is lifted or parked with a contract (`scripts/lift_parked.json`).
 
+### The whole of Agent-Reach (v3.1.0)
+
+Since v3.1.0 nothing is parked: **every Agent-Reach symbol (166/166) and every upstream line (10050/10050
+across both repos) sits inside a fence**, and the gate fails if a single line falls out. The doctor now reports
+Agent-Reach's full 16-channel registry, in upstream order - github, twitter, youtube, reddit, facebook,
+instagram, bilibili, xiaohongshu, linkedin, boss, xiaoyuzhou, v2ex, xueqiu, rss, exa_search, web - followed by
+the five Cinopsis transcript sources. Upstream's messages are kept verbatim (most are in Chinese), and a message
+that says `agent-reach <command>` means `python scripts/reach_cli.py <command>` here.
+
+```bash
+python scripts/reach_cli.py --help                     # Agent-Reach's own CLI, lifted whole (reach/cli.py)
+python scripts/reach_cli.py install --dry-run          # platform tool installer, exactly as upstream
+python scripts/reach_cli.py configure --from-browser chrome --platform xueqiu   # cookie_extract
+python scripts/reach_cli.py uninstall --dry-run
+cd scripts && python -m reach.mcp_server               # Agent-Reach's own stdio MCP server (get_status)
+```
+
+- **State stays in the data dir.** Everything the reach layer writes for itself - `config.yaml`, cookie-derived
+  session files, the xhs cookie export - lands under `data/reach/` (gitignored; `CINOPSIS_REACH_HOME` overrides),
+  keeping upstream's home-relative layout inside it. A cookie value is never printed.
+- **Network probes are gated.** bilibili, v2ex and xueqiu check a public API; a plain doctor run never does.
+  `doctor --live` sends exactly one request per channel.
+- **No browser by default.** boss's Chrome DevTools checks (localhost:9222) run only with
+  `CINOPSIS_REACH_BROWSER_PROBES=1`; cookie extraction reads a browser's cookie store only on an explicit
+  `configure --from-browser`.
+- The stdio server is not registered as a second plugin server: its one tool, `get_status`, is the same
+  `doctor_report()` Cinopsis's MCP `doctor` tool serves.
+
 ## 📖 Manual Script Usage
 
 ```bash
@@ -265,10 +293,12 @@ The viewer also includes a **chat widget** for asking follow-up questions about 
 | yt-dlp[default] | >=2026.07.04 | YouTube video/subtitle download (+ yt-dlp-ejs JS challenge solver) |
 | Flask | latest | Local server for comparison viewer |
 | imageio-ffmpeg | latest | Bundled ffmpeg for frame capture (no system install) |
-| mcp | latest | Local-stdio MCP server (Cowork bridge) |
+| mcp[cli] | >=1.0 | Local-stdio MCP server (Cowork bridge) |
 | claude-agent-sdk | latest | In-viewer chat via Claude subscription |
 | anthropic / requests | latest | API-key and local/custom chat providers |
 | pyyaml / rich / loguru / feedparser / python-dotenv | Agent-Reach floors | lifted reach layer (doctor, config) |
+| browser-cookie3 | >=0.19 | lifted `reach/cookie_extract.py` (explicit `configure --from-browser` only) |
+| mcp[cli] | >=1.0 | Agent-Reach's own stdio server (`reach/mcp_server.py`) |
 | ffmpeg + ffprobe | system | Watch frame engine and ASR audio extraction |
 
 > On Cowork these are installed automatically into a per-plugin venv. For the Claude Code slash-command path, run `pip install -r requirements.txt`.

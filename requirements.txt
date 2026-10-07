@@ -1,7 +1,7 @@
 yt-dlp[default]>=2026.07.04   # Agent-Reach a19a171 pyproject floor (JS-runtime era); [default] brings yt-dlp-ejs
 flask
 claude-agent-sdk
-mcp
+mcp[cli]>=1.0   # Agent-Reach a19a171 `all` extra floor; reach/mcp_server.py (v3.1 lift)
 imageio-ffmpeg
 anthropic
 requests
@@ -18,5 +18,7 @@ loguru>=0.7
 pyyaml>=6.0
 rich>=13.0
 yt-dlp-ejs==0.8.0
+browser-cookie3>=0.19   # Agent-Reach a19a171 `cookies` extra; reach/cookie_extract.py (v3.1 lift, R9: reads this machine's
+                        # browser cookie stores only on an explicit `reach_cli.py configure --from-browser`)
 # claude-video 03ceb42 (scripts/media) is standard-library only; ffmpeg/ffprobe are system tools and
 # WhisperX installs into its own venv via scripts/media/watch_setup.py --install-whisperx.

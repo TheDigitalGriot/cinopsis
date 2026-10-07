@@ -1,34 +1,135 @@
-# Lifted test (partial) - Agent-Reach at the pinned sha, exercising scripts/reach.
+# Lifted test - Agent-Reach at the pinned sha, exercising scripts/reach.
 # Upstream test code is verbatim between the LIFT fences; changed lines end in '# seam:'.
-# Not lifted (they exercise parked upstream modules, see scripts/lift_parked.json):
-#   test_url_security.py:5-5 import of parked module
-#   test_url_security.py:6-6 import of parked module
-#   test_url_security.py:7-7 import of parked module
-#   test_url_security.py:8-8 import of parked module
-#   test_url_security.py:9-9 import of parked module
-#   test_url_security.py:10-10 import of parked module
-#   test_url_security.py:11-11 import of parked module
-#   test_url_security.py:12-12 import of parked module
-#   test_url_security.py:13-13 import of parked module
-#   test_url_security.py:14-14 import of parked module
-#   test_url_security.py:15-15 import of parked module
-#   test_url_security.py:20-33 test_credential_channels_accept_exact_hosts_and_subdomains uses TwitterChannel
-#   test_url_security.py:36-53 test_credential_channels_reject_lookalikes_and_userinfo uses TwitterChannel
-#   test_url_security.py:56-105 test_fixed_domain_channels_accept_subdomains_and_explicit_ports uses GitHubChannel
-#   test_url_security.py:108-126 test_fixed_domain_channels_reject_suffix_lookalikes_and_userinfo uses GitHubChannel
 
-# >>> LIFT agent-reach@a19a171f tests/test_url_security.py:1-3
+# >>> LIFT agent-reach@a19a171f tests/test_url_security.py:1-139
 """Credential-bearing channels must reject lookalike or disguised hosts."""
 
 import pytest
-# <<< LIFT
 
-# >>> LIFT agent-reach@a19a171f tests/test_url_security.py:16-17
+from reach.bilibili import BilibiliChannel  # seam: package import
+from reach.facebook import FacebookChannel  # seam: package import
+from reach.github import GitHubChannel  # seam: package import
+from reach.instagram import InstagramChannel  # seam: package import
+from reach.linkedin import LinkedInChannel  # seam: package import
+from reach.reddit import RedditChannel  # seam: package import
+from reach.twitter import TwitterChannel  # seam: package import
+from reach.v2ex import V2EXChannel  # seam: package import
+from reach.xiaohongshu import XiaoHongShuChannel  # seam: package import
+from reach.xiaoyuzhou import XiaoyuzhouChannel  # seam: package import
+from reach.xueqiu import XueqiuChannel  # seam: package import
 from reach.youtube import YouTubeChannel  # seam: package import
 from reach.url import host_matches  # seam: package import
-# <<< LIFT
 
-# >>> LIFT agent-reach@a19a171f tests/test_url_security.py:129-139
+
+@pytest.mark.parametrize(
+    ("channel", "valid_url"),
+    [
+        (TwitterChannel(), "https://mobile.twitter.com/user/status/1"),
+        (TwitterChannel(), "https://X.COM./user/status/1"),
+        (XiaoHongShuChannel(), "https://www.xiaohongshu.com/explore/1"),
+        (XiaoHongShuChannel(), "https://xhslink.com/a/1"),
+        (BilibiliChannel(), "https://www.bilibili.com/video/BV1"),
+        (BilibiliChannel(), "https://b23.tv/abc"),
+        (XueqiuChannel(), "https://stock.xueqiu.com/v5/stock/quote"),
+    ],
+)
+def test_credential_channels_accept_exact_hosts_and_subdomains(channel, valid_url):
+    assert channel.can_handle(valid_url)
+
+
+@pytest.mark.parametrize(
+    ("channel", "malicious_url"),
+    [
+        (TwitterChannel(), "https://x.com.evil.test/user/status/1"),
+        (TwitterChannel(), "https://notx.com/user/status/1"),
+        (TwitterChannel(), "https://x.com@evil.test/user/status/1"),
+        (TwitterChannel(), "https://user:pass@x.com/user/status/1"),
+        (TwitterChannel(), "ftp://x.com/user/status/1"),
+        (XiaoHongShuChannel(), "https://xiaohongshu.com.evil.test/explore/1"),
+        (XiaoHongShuChannel(), "https://xiaohongshu.com@evil.test/explore/1"),
+        (BilibiliChannel(), "https://bilibili.com.evil.test/video/BV1"),
+        (BilibiliChannel(), "https://b23.tv@evil.test/abc"),
+        (XueqiuChannel(), "https://xueqiu.com.evil.test/S/SH600519"),
+        (XueqiuChannel(), "https://xueqiu.com@evil.test/S/SH600519"),
+    ],
+)
+def test_credential_channels_reject_lookalikes_and_userinfo(channel, malicious_url):
+    assert not channel.can_handle(malicious_url)
+
+
+@pytest.mark.parametrize(
+    ("channel", "subdomain_url", "port_url"),
+    [
+        (
+            GitHubChannel(),
+            "https://api.github.com/repos/openai/openai-python",
+            "https://github.com:443/openai/openai-python",
+        ),
+        (
+            YouTubeChannel(),
+            "https://m.youtube.com/watch?v=abc",
+            "https://youtu.be:443/abc",
+        ),
+        (
+            RedditChannel(),
+            "https://old.reddit.com/r/python",
+            "https://reddit.com:443/r/python",
+        ),
+        (
+            LinkedInChannel(),
+            "https://www.linkedin.com/in/example",
+            "https://linkedin.com:443/in/example",
+        ),
+        (
+            V2EXChannel(),
+            "https://www.v2ex.com/t/1",
+            "https://v2ex.com:443/t/1",
+        ),
+        (
+            XiaoyuzhouChannel(),
+            "https://www.xiaoyuzhoufm.com/episode/1",
+            "https://xiaoyuzhoufm.com:443/episode/1",
+        ),
+        (
+            FacebookChannel(),
+            "https://m.facebook.com/groups/1",
+            "https://facebook.com:443/groups/1",
+        ),
+        (
+            InstagramChannel(),
+            "https://www.instagram.com/example",
+            "https://instagram.com:443/example",
+        ),
+    ],
+)
+def test_fixed_domain_channels_accept_subdomains_and_explicit_ports(
+    channel, subdomain_url, port_url
+):
+    assert channel.can_handle(subdomain_url)
+    assert channel.can_handle(port_url)
+
+
+@pytest.mark.parametrize(
+    ("channel", "official_domain"),
+    [
+        (GitHubChannel(), "github.com"),
+        (YouTubeChannel(), "youtube.com"),
+        (RedditChannel(), "reddit.com"),
+        (LinkedInChannel(), "linkedin.com"),
+        (V2EXChannel(), "v2ex.com"),
+        (XiaoyuzhouChannel(), "xiaoyuzhoufm.com"),
+        (FacebookChannel(), "facebook.com"),
+        (InstagramChannel(), "instagram.com"),
+    ],
+)
+def test_fixed_domain_channels_reject_suffix_lookalikes_and_userinfo(
+    channel, official_domain
+):
+    assert not channel.can_handle(f"https://{official_domain}.evil.test/path")
+    assert not channel.can_handle(f"https://{official_domain}@evil.test/path")
+    assert not channel.can_handle(f"https://user:pass@{official_domain}/path")
+
+
 @pytest.mark.parametrize(
     "malicious_url",
     [

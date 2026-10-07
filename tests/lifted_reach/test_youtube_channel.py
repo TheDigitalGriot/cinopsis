@@ -1,6 +1,6 @@
 # Lifted test - Agent-Reach at the pinned sha, exercising scripts/reach.
 # Upstream test code is verbatim between the LIFT fences; changed lines end in '# seam:'.
-# Tests that exercise parked upstream modules carry a skip marker naming the module.
+# Since v3.1.0 nothing is parked: every upstream module these tests exercise is lifted.
 
 
 # >>> LIFT agent-reach@a19a171f tests/test_youtube_channel.py:1-242

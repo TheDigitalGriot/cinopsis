@@ -1,8 +1,5 @@
 # Lifted test - Agent-Reach at the pinned sha, exercising scripts/reach.
 # Upstream test code is verbatim between the LIFT fences; changed lines end in '# seam:'.
-# Tests that exercise parked upstream modules carry a skip marker naming the module.
-
-import pytest  # seam: skip markers for parked modules
 
 # >>> LIFT agent-reach@a19a171f tests/test_channel_contracts.py:1-185
 # -*- coding: utf-8 -*-
@@ -52,7 +49,6 @@ def test_channel_active_backend_attribute_contract():
         assert fresh.active_backend is None or isinstance(fresh.active_backend, str)
 
 
-@pytest.mark.skip(reason="exercises parked upstream agent_reach.channels.xueqiu (scripts/lift_parked.json)")  # seam: parked
 def test_channel_active_backend_set_by_check(monkeypatch, tmp_path):
     """After check(), active_backend is None or a str — never anything else."""
     monkeypatch.setattr("shutil.which", lambda _cmd: None)
@@ -65,7 +61,7 @@ def test_channel_active_backend_set_by_check(monkeypatch, tmp_path):
         raise URLError("offline")
 
     monkeypatch.setattr(urllib.request, "urlopen", _no_net)
-    import reach.channels.xueqiu as xueqiu_mod  # seam: package import
+    import reach.xueqiu as xueqiu_mod  # seam: package import
     monkeypatch.setattr(xueqiu_mod, "_cookies_initialized", True)
     monkeypatch.setattr(xueqiu_mod._opener, "open", _no_net)
 
@@ -91,10 +87,9 @@ def test_ordered_backends_contract(tmp_path):
         assert sorted(ordered_none) == sorted(ch.backends)
 
 
-@pytest.mark.skip(reason="exercises parked upstream agent_reach.channels.twitter (scripts/lift_parked.json)")  # seam: parked
 def test_ordered_backends_override_moves_backend_to_front():
     """Config key <channel>_backend promotes the named backend to front."""
-    from reach.channels.twitter import TwitterChannel  # seam: package import
+    from reach.twitter import TwitterChannel  # seam: package import
 
     ch = TwitterChannel()
     ordered = ch.ordered_backends({"twitter_backend": "bird"})

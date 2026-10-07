@@ -372,6 +372,11 @@ def doctor_text(as_json: bool = False, live: bool = False) -> str:
     """The report as a string (the MCP tool uses this; the CLI prints it)."""
     from reach.config import Config
     from reach.doctor import check_all, format_report
+    if live:
+        # R10: the platform channels that probe a public API (bilibili, v2ex, xueqiu) send
+        # exactly one request each, only here.
+        from reach.channels import open_network_probes
+        open_network_probes("once")
     results = check_all(Config(read_only=True))
     order, origin = sources.resolve_order()
     payload = {"version": cinopsis_version(), "source_order": list(order), "order_from": origin,
