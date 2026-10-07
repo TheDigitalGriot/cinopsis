@@ -1,0 +1,15 @@
+LOADED 2026-10-07T05:42:03-04:00
+PLANNED 2026-10-07T05:45:45-04:00 .prism/shared/plans/2026-10-07-cinopsis-v3.1-PLAN.md
+SLICE foundation(reach_home,R9 config,R10 gate) 2026-10-07T05:48:29-04:00
+SLICE backends(opencli,backends,_opencli_site) 2026-10-07T05:48:29-04:00
+SLICE channels(16 + full upstream registry) 2026-10-07T05:48:29-04:00
+SLICE cookie_extract(R9) 2026-10-07T05:48:29-04:00
+SLICE mcp_server 2026-10-07T05:48:29-04:00
+SLICE cli(27 symbols, reach_cli entry, skill/guides/scripts assets) 2026-10-07T05:49:30-04:00
+SLICE tests(28 upstream test files lifted whole, 593 pass/15 platform skips) 2026-10-07T05:58:10-04:00
+GATES pytest=1093p/18s/0f lifted_reach=593p/15s(platform)/0f verify_lift=LIFT_GATE_OK(277/277 symbols, 10050/10050 lines, agent-reach 166/166) claude_plugin_validate=PASS(1 warn) architect: validate-skill x6 PASS(warn) validate-hook-schema PASS validate-agent x3 PASS(warn) verify_invariants=PASS(3/3) 2026-10-07T06:05:10-04:00
+LIVE doctor --live x1: bilibili=ok v2ex=ok xueqiu=warn(HTTP 400, no cookie) youtube-reachability=ok(204) gemini-url=off(no key, nothing probed); no browser touched, data/reach not created 2026-10-07T06:06:39-04:00
+SLICE docs(README, SKILL, docs note) + bookend(3.1.0, CHANGELOG) 2026-10-07T06:09:13-04:00
+RELEASED 61bb0c87ab445ece93d90f888ecf30fd8280e23e v3.1.0 mirror=digital-griot-marketplace@8b720025 cinopsis-plugin v3.1.0 (132 files) release=https://github.com/TheDigitalGriot/cinopsis/releases/tag/v3.1.0 2026-10-07T06:17:04-04:00
+RESULT .prism/shared/plans/2026-10-07-cinopsis-v3.1-RESULT.md 2026-10-07T06:19:51-04:00
+CINOPSIS-V31-COMPLETE
