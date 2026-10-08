@@ -1,0 +1,6869 @@
+{
+ "CC5": {
+  "(unpathed)": {
+   "count": 55,
+   "targets": [
+    [
+     "Keep Morph",
+     3
+    ],
+    [
+     "Subdivision level",
+     2
+    ],
+    [
+     "Normal map strength",
+     2
+    ],
+    [
+     "Subdivision level 1",
+     2
+    ],
+    [
+     "Viewport camera",
+     2
+    ],
+    [
+     "Root Color / End Color",
+     2
+    ],
+    [
+     "HD base",
+     1
+    ],
+    [
+     "Clothing presets",
+     1
+    ],
+    [
+     "Tongue",
+     1
+    ],
+    [
+     "Strength",
+     1
+    ],
+    [
+     "Subdivide",
+     1
+    ],
+    [
+     "Texture settings",
+     1
+    ],
+    [
+     "Texture channel",
+     1
+    ],
+    [
+     "Height Map",
+     1
+    ],
+    [
+     "Animation",
+     1
+    ],
+    [
+     "Subdivision",
+     1
+    ],
+    [
+     "Export motion",
+     1
+    ],
+    [
+     "Alt + 2",
+     1
+    ],
+    [
+     "Subdivision level 2",
+     1
+    ],
+    [
+     "Normal strength",
+     1
+    ],
+    [
+     "Wrinkle maps",
+     1
+    ],
+    [
+     "Reset expressions",
+     1
+    ],
+    [
+     "Bake Wrinkles for Current Subdivision",
+     1
+    ],
+    [
+     "Back up wrinkle maps prompt",
+     1
+    ],
+    [
+     "Save Project As",
+     1
+    ]
+   ],
+   "kinds": {
+    "other": 21,
+    "slider": 10,
+    "canvas": 6,
+    "dropdown": 2,
+    "button": 4,
+    "radio": 6,
+    "field": 3,
+    "checkbox": 1,
+    "list": 2
+   },
+   "shown_frames": [
+    "frames/C5JSlJSNkJs_276.png",
+    "frames/C5JSlJSNkJs_445.png",
+    "frames/C5JSlJSNkJs_456.png",
+    "frames/LXzjbflCe1s_354.png",
+    "frames/CQBqev6hQGw_159.png",
+    "frames/CQBqev6hQGw_268.png"
+   ]
+  },
+  "Headshot 3 > Refine Face": {
+   "count": 51,
+   "targets": [
+    [
+     "Mirror",
+     5
+    ],
+    [
+     "Preview All",
+     2
+    ],
+    [
+     "Side control points",
+     2
+    ],
+    [
+     "Apply",
+     2
+    ],
+    [
+     "Face contour control point",
+     2
+    ],
+    [
+     "Preview Current Parts",
+     2
+    ],
+    [
+     "Align view",
+     1
+    ],
+    [
+     "Crosshair 1",
+     1
+    ],
+    [
+     "Crosshair 2",
+     1
+    ],
+    [
+     "Adjust",
+     1
+    ],
+    [
+     "Finish",
+     1
+    ],
+    [
+     "Control points",
+     1
+    ],
+    [
+     "Bezier handles",
+     1
+    ],
+    [
+     "Break Tangent Handle",
+     1
+    ],
+    [
+     "Top of head points",
+     1
+    ],
+    [
+     "Wipe",
+     1
+    ],
+    [
+     "Wireframe",
+     1
+    ],
+    [
+     "Edit",
+     1
+    ],
+    [
+     "Apply All",
+     1
+    ],
+    [
+     "Eye / mouth corners",
+     1
+    ],
+    [
+     "Reset Selected to Default",
+     1
+    ],
+    [
+     "Back of head points",
+     1
+    ],
+    [
+     "Ear / jaw / mouth points",
+     1
+    ],
+    [
+     "Preview",
+     1
+    ],
+    [
+     "Reference image with control points",
+     1
+    ]
+   ],
+   "kinds": {
+    "canvas": 22,
+    "tab": 1,
+    "button": 12,
+    "menu": 3,
+    "checkbox": 11,
+    "other": 1,
+    "slider": 1
+   },
+   "shown_frames": [
+    "frames/BY7vlKwzfnk_625.png",
+    "frames/BY7vlKwzfnk_635.png",
+    "frames/BY7vlKwzfnk_651.png",
+    "frames/BY7vlKwzfnk_753.png",
+    "frames/BY7vlKwzfnk_767.png",
+    "frames/BY7vlKwzfnk_793.png"
+   ]
+  },
+  "Headshot 3 > Generate Character": {
+   "count": 19,
+   "targets": [
+    [
+     "Generate",
+     3
+    ],
+    [
+     "Generate Image",
+     2
+    ],
+    [
+     "AI",
+     1
+    ],
+    [
+     "Facial region tabs",
+     1
+    ],
+    [
+     "Square",
+     1
+    ],
+    [
+     "Hollow cheeks / Thin lips",
+     1
+    ],
+    [
+     "Reference image",
+     1
+    ],
+    [
+     "Nasolabial lines",
+     1
+    ],
+    [
+     "Body type",
+     1
+    ],
+    [
+     "AI Gen",
+     1
+    ],
+    [
+     "AI Image Generator",
+     1
+    ],
+    [
+     "Enhanced Image; Remove Hair",
+     1
+    ],
+    [
+     "Side",
+     1
+    ],
+    [
+     "Apply Images",
+     1
+    ],
+    [
+     "Facial feature presets",
+     1
+    ],
+    [
+     "Body",
+     1
+    ]
+   ],
+   "kinds": {
+    "button": 9,
+    "tab": 2,
+    "radio": 1,
+    "checkbox": 4,
+    "canvas": 1,
+    "list": 2
+   },
+   "shown_frames": [
+    "frames/BY7vlKwzfnk_273.png",
+    "frames/BY7vlKwzfnk_289.png",
+    "frames/BY7vlKwzfnk_311.png",
+    "frames/FrFJDjq7Cac_44.png",
+    "frames/FrFJDjq7Cac_55.png",
+    "frames/FrFJDjq7Cac_62.png"
+   ]
+  },
+  "Headshot 3 > AI image generator": {
+   "count": 16,
+   "targets": [
+    [
+     "Generate",
+     5
+    ],
+    [
+     "Apply Images",
+     3
+    ],
+    [
+     "Prompt",
+     1
+    ],
+    [
+     "Resolution",
+     1
+    ],
+    [
+     "Generated image",
+     1
+    ],
+    [
+     "Enhance image",
+     1
+    ],
+    [
+     "Remove options",
+     1
+    ],
+    [
+     "Side",
+     1
+    ],
+    [
+     "Apply Image",
+     1
+    ],
+    [
+     "Remove hair",
+     1
+    ]
+   ],
+   "kinds": {
+    "tab": 1,
+    "field": 1,
+    "dropdown": 1,
+    "button": 7,
+    "canvas": 1,
+    "checkbox": 5
+   },
+   "shown_frames": [
+    "frames/BY7vlKwzfnk_139.png",
+    "frames/BY7vlKwzfnk_198.png",
+    "frames/BY7vlKwzfnk_245.png",
+    "frames/BY7vlKwzfnk_687.png"
+   ]
+  },
+  "Headshot 3 > Refine Face Side": {
+   "count": 10,
+   "targets": [
+    [
+     "Refine Face Side",
+     1
+    ],
+    [
+     "Align",
+     1
+    ],
+    [
+     "Eye corner crosshair",
+     1
+    ],
+    [
+     "Mouth corner crosshair",
+     1
+    ],
+    [
+     "Head alignment tab",
+     1
+    ],
+    [
+     "Finish",
+     1
+    ],
+    [
+     "Side profile control points",
+     1
+    ],
+    [
+     "Nose control point",
+     1
+    ],
+    [
+     "Forehead control point",
+     1
+    ],
+    [
+     "Landmark points",
+     1
+    ]
+   ],
+   "kinds": {
+    "button": 2,
+    "tab": 2,
+    "canvas": 6
+   },
+   "shown_frames": [
+    "frames/FrFJDjq7Cac_541.png",
+    "frames/FrFJDjq7Cac_548.png",
+    "frames/FrFJDjq7Cac_582.png",
+    "frames/FrFJDjq7Cac_621.png"
+   ]
+  },
+  "Facial Profile Editor": {
+   "count": 8,
+   "targets": [
+    [
+     "Corrective",
+     2
+    ],
+    [
+     "Expression strength",
+     1
+    ],
+    [
+     "Expressions",
+     1
+    ],
+    [
+     "Edit Expression",
+     1
+    ],
+    [
+     "Save previous profile settings",
+     1
+    ],
+    [
+     "Corrective regions",
+     1
+    ],
+    [
+     "Expression morph slider strength",
+     1
+    ]
+   ],
+   "kinds": {
+    "slider": 2,
+    "list": 1,
+    "button": 1,
+    "checkbox": 2,
+    "other": 1,
+    "canvas": 1
+   },
+   "shown_frames": [
+    "frames/jBQBWrmRS7s_31.png",
+    "frames/jBQBWrmRS7s_35.png",
+    "frames/jBQBWrmRS7s_42.png",
+    "frames/jBQBWrmRS7s_49.png",
+    "frames/jBQBWrmRS7s_80.png",
+    "frames/jBQBWrmRS7s_91.png"
+   ]
+  },
+  "Plugins > Blender Pipeline": {
+   "count": 7,
+   "targets": [
+    [
+     "Send to Blender",
+     1
+    ],
+    [
+     "Go Blender Morph",
+     1
+    ],
+    [
+     "Export Character to Blender",
+     1
+    ],
+    [
+     "Subdivision level",
+     1
+    ],
+    [
+     "Selected Model",
+     1
+    ],
+    [
+     "Export",
+     1
+    ],
+    [
+     "Data Link",
+     1
+    ]
+   ],
+   "kinds": {
+    "button": 3,
+    "menu": 2,
+    "other": 1,
+    "dropdown": 1
+   },
+   "shown_frames": []
+  },
+  "Create > Bake Subdivision Normal Maps": {
+   "count": 7,
+   "targets": [
+    [
+     "Bake Subdivision Normal Maps",
+     2
+    ],
+    [
+     "Target subdivision level",
+     1
+    ],
+    [
+     "Detail source",
+     1
+    ],
+    [
+     "Resolution",
+     1
+    ],
+    [
+     "Body parts",
+     1
+    ],
+    [
+     "Bake (unnamed confirm)",
+     1
+    ]
+   ],
+   "kinds": {
+    "menu": 2,
+    "dropdown": 2,
+    "other": 1,
+    "checkbox": 1,
+    "button": 1
+   },
+   "shown_frames": [
+    "frames/C5JSlJSNkJs_251.png",
+    "frames/C5JSlJSNkJs_258.png",
+    "frames/C5JSlJSNkJs_260.png"
+   ]
+  },
+  "Character > Correct Position": {
+   "count": 7,
+   "targets": [
+    [
+     "Positioning",
+     4
+    ],
+    [
+     "Correct Position",
+     1
+    ],
+    [
+     "Parts",
+     1
+    ],
+    [
+     "Set Custom Position",
+     1
+    ]
+   ],
+   "kinds": {
+    "button": 2,
+    "list": 1,
+    "radio": 4
+   },
+   "shown_frames": [
+    "frames/CQBqev6hQGw_430.png",
+    "frames/CQBqev6hQGw_438.png",
+    "frames/CQBqev6hQGw_452.png",
+    "frames/CQBqev6hQGw_459.png"
+   ]
+  },
+  "Digital Human Eye shader": {
+   "count": 7,
+   "targets": [
+    [
+     "Iris Color",
+     1
+    ],
+    [
+     "Inner Scale / Inner Color",
+     1
+    ],
+    [
+     "Iris Scale",
+     1
+    ],
+    [
+     "Iris Depth Scale",
+     1
+    ],
+    [
+     "Limbus Dark Scale / Width Color",
+     1
+    ],
+    [
+     "Sclera Brightness / Roughness",
+     1
+    ],
+    [
+     "Shadow Intensity / Range / Tint",
+     1
+    ]
+   ],
+   "kinds": {
+    "slider": 7
+   },
+   "shown_frames": [
+    "frames/vq2YjJk2i4A_86.png",
+    "frames/vq2YjJk2i4A_118.png",
+    "frames/vq2YjJk2i4A_127.png"
+   ]
+  },
+  "Headshot 3": {
+   "count": 6,
+   "targets": [
+    [
+     "Image",
+     1
+    ],
+    [
+     "Preset Morph",
+     1
+    ],
+    [
+     "Regenerate Character",
+     1
+    ],
+    [
+     "Front view photo import",
+     1
+    ],
+    [
+     "Facial depth",
+     1
+    ],
+    [
+     "Iris size and color",
+     1
+    ]
+   ],
+   "kinds": {
+    "tab": 1,
+    "button": 2,
+    "other": 1,
+    "slider": 2
+   },
+   "shown_frames": [
+    "frames/BY7vlKwzfnk_667.png"
+   ]
+  },
+  "Headshot 3 > Sculpt Morph": {
+   "count": 6,
+   "targets": [
+    [
+     "Viewport",
+     2
+    ],
+    [
+     "Active Sculpt Morph",
+     1
+    ],
+    [
+     "Head scale / Profile depth",
+     1
+    ],
+    [
+     "Activate Image Matching Tools",
+     1
+    ],
+    [
+     "Profile Depth",
+     1
+    ]
+   ],
+   "kinds": {
+    "checkbox": 2,
+    "canvas": 2,
+    "slider": 2
+   },
+   "shown_frames": [
+    "frames/BY7vlKwzfnk_460.png",
+    "frames/BY7vlKwzfnk_474.png",
+    "frames/BY7vlKwzfnk_530.png",
+    "frames/BY7vlKwzfnk_544.png",
+    "frames/BY7vlKwzfnk_656.png",
+    "frames/BY7vlKwzfnk_934.png"
+   ]
+  },
+  "Character Creator 5 > Edit Expressions": {
+   "count": 6,
+   "targets": [
+    [
+     "Expression morph sliders",
+     2
+    ],
+    [
+     "Corrective region section",
+     1
+    ],
+    [
+     "Corrective morphs",
+     1
+    ],
+    [
+     "Pout expression",
+     1
+    ],
+    [
+     "Open mouth shapes",
+     1
+    ]
+   ],
+   "kinds": {
+    "list": 1,
+    "slider": 4,
+    "checkbox": 1
+   },
+   "shown_frames": [
+    "frames/L07W7AkI7ZI_212.png"
+   ]
+  },
+  "Headshot 2": {
+   "count": 5,
+   "targets": [
+    [
+     "Auto",
+     1
+    ],
+    [
+     "Photo drop area",
+     1
+    ],
+    [
+     "Female",
+     1
+    ],
+    [
+     "Clean Soft",
+     1
+    ],
+    [
+     "Generate",
+     1
+    ]
+   ],
+   "kinds": {
+    "button": 2,
+    "canvas": 1,
+    "other": 2
+   },
+   "shown_frames": [
+    "frames/LXzjbflCe1s_127.png",
+    "frames/LXzjbflCe1s_153.png"
+   ]
+  },
+  "Content > Cloth": {
+   "count": 5,
+   "targets": [
+    [
+     "Shoes item",
+     2
+    ],
+    [
+     "Shirts",
+     1
+    ],
+    [
+     "Shirt item",
+     1
+    ],
+    [
+     "Pants item",
+     1
+    ]
+   ],
+   "kinds": {
+    "tab": 1,
+    "list": 4
+   },
+   "shown_frames": [
+    "frames/LXzjbflCe1s_237.png"
+   ]
+  },
+  "Morph panel": {
+   "count": 5,
+   "targets": [
+    [
+     "Upper and lower lashes",
+     1
+    ],
+    [
+     "Upper / lower eyelash morph sliders",
+     1
+    ],
+    [
+     "Original eyelash morph sliders",
+     1
+    ],
+    [
+     "Facial structure morph sliders",
+     1
+    ],
+    [
+     "Eye size",
+     1
+    ]
+   ],
+   "kinds": {
+    "canvas": 1,
+    "slider": 4
+   },
+   "shown_frames": [
+    "frames/CQBqev6hQGw_214.png",
+    "frames/CQBqev6hQGw_249.png"
+   ]
+  },
+  "Modify": {
+   "count": 4,
+   "targets": [
+    [
+     "Transfer Skin Weights",
+     3
+    ],
+    [
+     "Search",
+     1
+    ]
+   ],
+   "kinds": {
+    "button": 3,
+    "field": 1
+   },
+   "shown_frames": [
+    "frames/BY7vlKwzfnk_448.png"
+   ]
+  },
+  "Headshot 3 > Image Matching": {
+   "count": 4,
+   "targets": [
+    [
+     "Opacity / Color mode / Contrast",
+     1
+    ],
+    [
+     "Iris UV Radius",
+     1
+    ],
+    [
+     "Iris color",
+     1
+    ],
+    [
+     "Side view",
+     1
+    ]
+   ],
+   "kinds": {
+    "slider": 2,
+    "other": 1,
+    "tab": 1
+   },
+   "shown_frames": [
+    "frames/BY7vlKwzfnk_559.png",
+    "frames/BY7vlKwzfnk_579.png"
+   ]
+  },
+  "Eye Occlusion (HD)": {
+   "count": 4,
+   "targets": [
+    [
+     "Display Blur Range",
+     2
+    ],
+    [
+     "Top Blur Contrast / Range",
+     1
+    ],
+    [
+     "Outer Blur / Inner Blur",
+     1
+    ]
+   ],
+   "kinds": {
+    "checkbox": 2,
+    "slider": 2
+   },
+   "shown_frames": [
+    "frames/vq2YjJk2i4A_163.png",
+    "frames/vq2YjJk2i4A_178.png"
+   ]
+  },
+  "Plugins > Export Character to Blender": {
+   "count": 3,
+   "targets": [
+    [
+     "Export",
+     2
+    ],
+    [
+     "Export Character to Blender",
+     1
+    ]
+   ],
+   "kinds": {
+    "menu": 1,
+    "button": 2
+   },
+   "shown_frames": []
+  },
+  "Export Character to Blender": {
+   "count": 3,
+   "targets": [
+    [
+     "Subdivision",
+     1
+    ],
+    [
+     "Export",
+     1
+    ],
+    [
+     "Animation range",
+     1
+    ]
+   ],
+   "kinds": {
+    "other": 1,
+    "button": 1,
+    "field": 1
+   },
+   "shown_frames": []
+  },
+  "Modify panel > Morph tab": {
+   "count": 3,
+   "targets": [
+    [
+     "Morph",
+     1
+    ],
+    [
+     "HD Body / HD Head morph sliders",
+     1
+    ],
+    [
+     "HD morph sliders (regional)",
+     1
+    ]
+   ],
+   "kinds": {
+    "tab": 1,
+    "slider": 2
+   },
+   "shown_frames": [
+    "frames/C5JSlJSNkJs_75.png"
+   ]
+  },
+  "Texture tab": {
+   "count": 3,
+   "targets": [
+    [
+     "Body shaders",
+     1
+    ],
+    [
+     "Brightness",
+     1
+    ],
+    [
+     "Normal strength",
+     1
+    ]
+   ],
+   "kinds": {
+    "list": 1,
+    "slider": 2
+   },
+   "shown_frames": []
+  },
+  "Headshot 3 > Shape Adjustment": {
+   "count": 3,
+   "targets": [
+    [
+     "Head Scale",
+     1
+    ],
+    [
+     "Refine Face",
+     1
+    ],
+    [
+     "Refine Face window",
+     1
+    ]
+   ],
+   "kinds": {
+    "slider": 1,
+    "button": 1,
+    "other": 1
+   },
+   "shown_frames": [
+    "frames/FrFJDjq7Cac_190.png"
+   ]
+  },
+  "Edit Expression > Correct Position": {
+   "count": 3,
+   "targets": [
+    [
+     "Adjustment regions",
+     1
+    ],
+    [
+     "Update",
+     1
+    ],
+    [
+     "Parts / Angle settings",
+     1
+    ]
+   ],
+   "kinds": {
+    "other": 2,
+    "button": 1
+   },
+   "shown_frames": []
+  },
+  "Blender Pipeline Export FBX > HD Character": {
+   "count": 2,
+   "targets": [
+    [
+     "HD Character",
+     2
+    ]
+   ],
+   "kinds": {
+    "radio": 2
+   },
+   "shown_frames": [
+    "frames/Khcg23hRy8A_140.png",
+    "frames/GWQTDKpLBcQ_280.png"
+   ]
+  },
+  "Export Character to Blender > Presets": {
+   "count": 2,
+   "targets": [
+    [
+     "Presets",
+     2
+    ]
+   ],
+   "kinds": {
+    "dropdown": 2
+   },
+   "shown_frames": []
+  },
+  "Plugins > Data Link": {
+   "count": 2,
+   "targets": [
+    [
+     "Data Link",
+     1
+    ],
+    [
+     "Send Avatar",
+     1
+    ]
+   ],
+   "kinds": {
+    "menu": 1,
+    "button": 1
+   },
+   "shown_frames": []
+  },
+  "Texture tab > Diffuse": {
+   "count": 2,
+   "targets": [
+    [
+     "Texture Strength",
+     1
+    ],
+    [
+     "Diffuse color",
+     1
+    ]
+   ],
+   "kinds": {
+    "slider": 1,
+    "other": 1
+   },
+   "shown_frames": [
+    "frames/C5JSlJSNkJs_103.png"
+   ]
+  },
+  "Skin section": {
+   "count": 2,
+   "targets": [
+    [
+     "CC5 skin content",
+     1
+    ],
+    [
+     "Mannequin Gray",
+     1
+    ]
+   ],
+   "kinds": {
+    "list": 1,
+    "other": 1
+   },
+   "shown_frames": []
+  },
+  "Normal map (right-click) > Link Settings": {
+   "count": 2,
+   "targets": [
+    [
+     "Subdivision Normal Mapping",
+     1
+    ],
+    [
+     "Normal map parts",
+     1
+    ]
+   ],
+   "kinds": {
+    "menu": 1,
+    "list": 1
+   },
+   "shown_frames": [
+    "frames/C5JSlJSNkJs_361.png"
+   ]
+  },
+  "Morph > Body Shape": {
+   "count": 2,
+   "targets": [
+    [
+     "Body Shape",
+     1
+    ],
+    [
+     "Body shape preset",
+     1
+    ]
+   ],
+   "kinds": {
+    "tab": 1,
+    "list": 1
+   },
+   "shown_frames": []
+  },
+  "File > Export": {
+   "count": 2,
+   "targets": [
+    [
+     "iAvatar",
+     1
+    ],
+    [
+     "Save",
+     1
+    ]
+   ],
+   "kinds": {
+    "menu": 1,
+    "button": 1
+   },
+   "shown_frames": [
+    "frames/LXzjbflCe1s_345.png"
+   ]
+  },
+  "Headshot 3 > Image": {
+   "count": 2,
+   "targets": [
+    [
+     "Load",
+     1
+    ],
+    [
+     "AI image generator",
+     1
+    ]
+   ],
+   "kinds": {
+    "button": 2
+   },
+   "shown_frames": [
+    "frames/BY7vlKwzfnk_84.png"
+   ]
+  },
+  "Modify > Headshot": {
+   "count": 2,
+   "targets": [
+    [
+     "Preset morph sliders",
+     1
+    ],
+    [
+     "Feature morph sliders",
+     1
+    ]
+   ],
+   "kinds": {
+    "list": 1,
+    "slider": 1
+   },
+   "shown_frames": [
+    "frames/BY7vlKwzfnk_430.png"
+   ]
+  },
+  "Character Creator 5 > Facial Puppet": {
+   "count": 2,
+   "targets": [
+    [
+     "Eyelids and eyeballs regions",
+     1
+    ],
+    [
+     "Face regions",
+     1
+    ]
+   ],
+   "kinds": {
+    "canvas": 2
+   },
+   "shown_frames": [
+    "frames/L07W7AkI7ZI_26.png",
+    "frames/L07W7AkI7ZI_35.png"
+   ]
+  },
+  "Apply Eyelash Elements": {
+   "count": 2,
+   "targets": [
+    [
+     "Replace Morph",
+     1
+    ],
+    [
+     "Apply",
+     1
+    ]
+   ],
+   "kinds": {
+    "radio": 1,
+    "button": 1
+   },
+   "shown_frames": [
+    "frames/CQBqev6hQGw_104.png",
+    "frames/CQBqev6hQGw_112.png"
+   ]
+  },
+  "Highlight": {
+   "count": 2,
+   "targets": [
+    [
+     "Color Intensity",
+     1
+    ],
+    [
+     "Range",
+     1
+    ]
+   ],
+   "kinds": {
+    "slider": 2
+   },
+   "shown_frames": [
+    "frames/CQBqev6hQGw_303.png"
+   ]
+  },
+  "Edit Expression": {
+   "count": 2,
+   "targets": [
+    [
+     "Edit Expression mode",
+     1
+    ],
+    [
+     "Correct Position",
+     1
+    ]
+   ],
+   "kinds": {
+    "other": 1,
+    "button": 1
+   },
+   "shown_frames": []
+  },
+  "Digital Human Eye shader > Texture": {
+   "count": 2,
+   "targets": [
+    [
+     "Normal map",
+     1
+    ],
+    [
+     "Sclera Flatten Normal",
+     1
+    ]
+   ],
+   "kinds": {
+    "other": 1,
+    "slider": 1
+   },
+   "shown_frames": []
+  },
+  "Tearline (HD)": {
+   "count": 2,
+   "targets": [
+    [
+     "Tiling / Micronormal",
+     1
+    ],
+    [
+     "Roughness",
+     1
+    ]
+   ],
+   "kinds": {
+    "slider": 2
+   },
+   "shown_frames": [
+    "frames/vq2YjJk2i4A_188.png",
+    "frames/vq2YjJk2i4A_196.png"
+   ]
+  },
+  "ActorMIXER > Character": {
+   "count": 1,
+   "targets": [
+    [
+     "Mixer wheel",
+     1
+    ]
+   ],
+   "kinds": {
+    "canvas": 1
+   },
+   "shown_frames": [
+    "frames/cHCWOFGuigw_41.png"
+   ]
+  },
+  "Proportion editor": {
+   "count": 1,
+   "targets": [
+    [
+     "Proportion handles",
+     1
+    ]
+   ],
+   "kinds": {
+    "canvas": 1
+   },
+   "shown_frames": []
+  },
+  "Modify > Shader Type": {
+   "count": 1,
+   "targets": [
+    [
+     "Digital_Human Hair",
+     1
+    ]
+   ],
+   "kinds": {
+    "other": 1
+   },
+   "shown_frames": [
+    "frames/cHCWOFGuigw_555.png"
+   ]
+  },
+  "Facial Profile Editor > Mesh Edit": {
+   "count": 1,
+   "targets": [
+    [
+     "Soft selection",
+     1
+    ]
+   ],
+   "kinds": {
+    "other": 1
+   },
+   "shown_frames": []
+  },
+  "Modify > Adjust Bones": {
+   "count": 1,
+   "targets": [
+    [
+     "Auto-Position",
+     1
+    ]
+   ],
+   "kinds": {
+    "button": 1
+   },
+   "shown_frames": [
+    "frames/cHCWOFGuigw_597.png"
+   ]
+  },
+  "Modify > Edit Mesh": {
+   "count": 1,
+   "targets": [
+    [
+     "Mouth area",
+     1
+    ]
+   ],
+   "kinds": {
+    "canvas": 1
+   },
+   "shown_frames": [
+    "frames/cHCWOFGuigw_628.png"
+   ]
+  },
+  "Modify > Skin Weights": {
+   "count": 1,
+   "targets": [
+    [
+     "Weight",
+     1
+    ]
+   ],
+   "kinds": {
+    "other": 1
+   },
+   "shown_frames": []
+  },
+  "Modify > Character": {
+   "count": 1,
+   "targets": [
+    [
+     "SubD Levels",
+     1
+    ]
+   ],
+   "kinds": {
+    "slider": 1
+   },
+   "shown_frames": [
+    "frames/Khcg23hRy8A_85.png"
+   ]
+  },
+  "Blender Pipeline Export FBX": {
+   "count": 1,
+   "targets": [
+    [
+     "Presets",
+     1
+    ]
+   ],
+   "kinds": {
+    "dropdown": 1
+   },
+   "shown_frames": [
+    "frames/Khcg23hRy8A_119.png"
+   ]
+  },
+  "Blender DataLink": {
+   "count": 1,
+   "targets": [
+    [
+     "Send Avatar",
+     1
+    ]
+   ],
+   "kinds": {
+    "button": 1
+   },
+   "shown_frames": [
+    "frames/Khcg23hRy8A_285.png"
+   ]
+  },
+  "Free resource pack > Embed HD morph folder": {
+   "count": 1,
+   "targets": [
+    [
+     "Embed HD morph folder",
+     1
+    ]
+   ],
+   "kinds": {
+    "other": 1
+   },
+   "shown_frames": []
+  },
+  "Morph > Full Body": {
+   "count": 1,
+   "targets": [
+    [
+     "Body Tone",
+     1
+    ]
+   ],
+   "kinds": {
+    "list": 1
+   },
+   "shown_frames": []
+  },
+  "Headshot 3 toolbar": {
+   "count": 1,
+   "targets": [
+    [
+     "Headshot",
+     1
+    ]
+   ],
+   "kinds": {
+    "button": 1
+   },
+   "shown_frames": [
+    "frames/BY7vlKwzfnk_47.png"
+   ]
+  },
+  "Plugins": {
+   "count": 1,
+   "targets": [
+    [
+     "Headshot 3",
+     1
+    ]
+   ],
+   "kinds": {
+    "menu": 1
+   },
+   "shown_frames": []
+  },
+  "Plugins > Headshot 3": {
+   "count": 1,
+   "targets": [
+    [
+     "Headshot 3",
+     1
+    ]
+   ],
+   "kinds": {
+    "menu": 1
+   },
+   "shown_frames": [
+    "frames/BY7vlKwzfnk_58.png"
+   ]
+  },
+  "Content Manager > Custom": {
+   "count": 1,
+   "targets": [
+    [
+     "Image Gen folder",
+     1
+    ]
+   ],
+   "kinds": {
+    "list": 1
+   },
+   "shown_frames": []
+  },
+  "Edit > Preferences": {
+   "count": 1,
+   "targets": [
+    [
+     "Max texture size",
+     1
+    ]
+   ],
+   "kinds": {
+    "dropdown": 1
+   },
+   "shown_frames": []
+  },
+  "Modify toolbar > Morph mode": {
+   "count": 1,
+   "targets": [
+    [
+     "Morph mode",
+     1
+    ]
+   ],
+   "kinds": {
+    "dropdown": 1
+   },
+   "shown_frames": []
+  },
+  "Headshot morph panel": {
+   "count": 1,
+   "targets": [
+    [
+     "Face Planar Perspective",
+     1
+    ]
+   ],
+   "kinds": {
+    "slider": 1
+   },
+   "shown_frames": []
+  },
+  "Headshot 3 > Currently Used": {
+   "count": 1,
+   "targets": [
+    [
+     "Feature preset sliders",
+     1
+    ]
+   ],
+   "kinds": {
+    "slider": 1
+   },
+   "shown_frames": []
+  },
+  "Headshot 3 > Headshot morph": {
+   "count": 1,
+   "targets": [
+    [
+     "Face Planar Perspective",
+     1
+    ]
+   ],
+   "kinds": {
+    "slider": 1
+   },
+   "shown_frames": []
+  },
+  "Character Creator 5": {
+   "count": 1,
+   "targets": [
+    [
+     "Edit Expressions",
+     1
+    ]
+   ],
+   "kinds": {
+    "button": 1
+   },
+   "shown_frames": [
+    "frames/L07W7AkI7ZI_128.png"
+   ]
+  },
+  "Content": {
+   "count": 1,
+   "targets": [
+    [
+     "Eyelash asset",
+     1
+    ]
+   ],
+   "kinds": {
+    "list": 1
+   },
+   "shown_frames": [
+    "frames/CQBqev6hQGw_52.png"
+   ]
+  },
+  "Morph panel > Current used": {
+   "count": 1,
+   "targets": [
+    [
+     "Eyelash morph sliders",
+     1
+    ]
+   ],
+   "kinds": {
+    "slider": 1
+   },
+   "shown_frames": []
+  },
+  "Makeup": {
+   "count": 1,
+   "targets": [
+    [
+     "Makeup settings",
+     1
+    ]
+   ],
+   "kinds": {
+    "other": 1
+   },
+   "shown_frames": []
+  },
+  "Eye Occlusion (HD) > Occlusion": {
+   "count": 1,
+   "targets": [
+    [
+     "Blur",
+     1
+    ]
+   ],
+   "kinds": {
+    "slider": 1
+   },
+   "shown_frames": []
+  },
+  "Custom": {
+   "count": 1,
+   "targets": [
+    [
+     "Nonlinear mouth morph sliders",
+     1
+    ]
+   ],
+   "kinds": {
+    "slider": 1
+   },
+   "shown_frames": []
+  }
+ },
+ "iClone8": {
+  "(unpathed)": {
+   "count": 34,
+   "targets": [
+    [
+     "Play",
+     5
+    ],
+    [
+     "iClone",
+     2
+    ],
+    [
+     "timeline",
+     2
+    ],
+    [
+     "Playback",
+     2
+    ],
+    [
+     "parkour motions",
+     1
+    ],
+    [
+     "lights",
+     1
+    ],
+    [
+     "grid",
+     1
+    ],
+    [
+     "motion",
+     1
+    ],
+    [
+     "Actor Group template (Social Actions pack)",
+     1
+    ],
+    [
+     "Actor Group",
+     1
+    ],
+    [
+     "Randomized preset",
+     1
+    ],
+    [
+     "Randomize actors",
+     1
+    ],
+    [
+     "Repetition",
+     1
+    ],
+    [
+     "Motion thumbnail reference dummy",
+     1
+    ],
+    [
+     "Two main actors",
+     1
+    ],
+    [
+     "iAvatar file",
+     1
+    ],
+    [
+     "Create Script",
+     1
+    ],
+    [
+     "TTS",
+     1
+    ],
+    [
+     "Voice",
+     1
+    ],
+    [
+     "Pitch",
+     1
+    ],
+    [
+     "Script text",
+     1
+    ],
+    [
+     "OK",
+     1
+    ],
+    [
+     "Face Key",
+     1
+    ],
+    [
+     "Save Project",
+     1
+    ],
+    [
+     "Do not open",
+     1
+    ]
+   ],
+   "kinds": {
+    "other": 15,
+    "list": 1,
+    "canvas": 4,
+    "dropdown": 2,
+    "checkbox": 1,
+    "radio": 1,
+    "slider": 1,
+    "field": 2,
+    "button": 7
+   },
+   "shown_frames": [
+    "frames/LXzjbflCe1s_399.png",
+    "frames/LXzjbflCe1s_409.png",
+    "frames/LXzjbflCe1s_439.png",
+    "frames/LXzjbflCe1s_728.png"
+   ]
+  },
+  "Data Link": {
+   "count": 8,
+   "targets": [
+    [
+     "Send Motion",
+     2
+    ],
+    [
+     "character",
+     1
+    ],
+    [
+     "Send Avatar",
+     1
+    ],
+    [
+     "Send All",
+     1
+    ],
+    [
+     "Sync Lights",
+     1
+    ],
+    [
+     "timeline",
+     1
+    ],
+    [
+     "set end frame",
+     1
+    ]
+   ],
+   "kinds": {
+    "canvas": 2,
+    "button": 6
+   },
+   "shown_frames": []
+  },
+  "Face Key": {
+   "count": 5,
+   "targets": [
+    [
+     "Neutral",
+     1
+    ],
+    [
+     "Smile",
+     1
+    ],
+    [
+     "Reset",
+     1
+    ],
+    [
+     "Surprise",
+     1
+    ],
+    [
+     "Default",
+     1
+    ]
+   ],
+   "kinds": {
+    "list": 3,
+    "other": 2
+   },
+   "shown_frames": []
+  },
+  "File > Export": {
+   "count": 5,
+   "targets": [
+    [
+     "Target Tool Preset",
+     1
+    ],
+    [
+     "Export Range",
+     1
+    ],
+    [
+     "Merge Opacity to Diffuse Texture",
+     1
+    ],
+    [
+     "Bake Texture",
+     1
+    ],
+    [
+     "Export",
+     1
+    ]
+   ],
+   "kinds": {
+    "dropdown": 1,
+    "radio": 1,
+    "checkbox": 2,
+    "button": 1
+   },
+   "shown_frames": [
+    "frames/LXzjbflCe1s_688.png"
+   ]
+  },
+  "Render > Export Audio": {
+   "count": 5,
+   "targets": [
+    [
+     "Format",
+     2
+    ],
+    [
+     "File name",
+     2
+    ],
+    [
+     "Export",
+     1
+    ]
+   ],
+   "kinds": {
+    "dropdown": 2,
+    "button": 1,
+    "field": 2
+   },
+   "shown_frames": [
+    "frames/LXzjbflCe1s_784.png",
+    "frames/LXzjbflCe1s_833.png"
+   ]
+  },
+  "Timeline": {
+   "count": 4,
+   "targets": [
+    [
+     "Frame 1",
+     2
+    ],
+    [
+     "tail",
+     1
+    ],
+    [
+     "Range end",
+     1
+    ]
+   ],
+   "kinds": {
+    "canvas": 4
+   },
+   "shown_frames": []
+  },
+  "Modify > Animation": {
+   "count": 3,
+   "targets": [
+    [
+     "Edit Motion Layer",
+     1
+    ],
+    [
+     "Set Key",
+     1
+    ],
+    [
+     "Reset",
+     1
+    ]
+   ],
+   "kinds": {
+    "button": 3
+   },
+   "shown_frames": []
+  },
+  "Modify > Pivot": {
+   "count": 3,
+   "targets": [
+    [
+     "W (pivot)",
+     1
+    ],
+    [
+     "tail pivot",
+     1
+    ],
+    [
+     "pivot point",
+     1
+    ]
+   ],
+   "kinds": {
+    "other": 1,
+    "canvas": 2
+   },
+   "shown_frames": [
+    "frames/O1IdyRmgfRk_4682.png",
+    "frames/O1IdyRmgfRk_4702.png"
+   ]
+  },
+  "Animation > Items": {
+   "count": 3,
+   "targets": [
+    [
+     "Motion",
+     1
+    ],
+    [
+     "Motion library",
+     1
+    ],
+    [
+     "Change Pose",
+     1
+    ]
+   ],
+   "kinds": {
+    "tab": 1,
+    "list": 2
+   },
+   "shown_frames": [
+    "frames/LXzjbflCe1s_596.png"
+   ]
+  },
+  "Plugins > Blender Pipeline": {
+   "count": 2,
+   "targets": [
+    [
+     "Data Link",
+     1
+    ],
+    [
+     "Start Server",
+     1
+    ]
+   ],
+   "kinds": {
+    "menu": 1,
+    "button": 1
+   },
+   "shown_frames": []
+  },
+  "Edit Motion Layer": {
+   "count": 2,
+   "targets": [
+    [
+     "hip bone",
+     1
+    ],
+    [
+     "transition curves",
+     1
+    ]
+   ],
+   "kinds": {
+    "canvas": 1,
+    "other": 1
+   },
+   "shown_frames": [
+    "frames/O1IdyRmgfRk_3243.png"
+   ]
+  },
+  "Modify panel": {
+   "count": 2,
+   "targets": [
+    [
+     "Edit mode",
+     1
+    ],
+    [
+     "Light mode",
+     1
+    ]
+   ],
+   "kinds": {
+    "other": 2
+   },
+   "shown_frames": []
+  },
+  "Motion": {
+   "count": 1,
+   "targets": [
+    [
+     "walk",
+     1
+    ]
+   ],
+   "kinds": {
+    "list": 1
+   },
+   "shown_frames": []
+  },
+  "Modify": {
+   "count": 1,
+   "targets": [
+    [
+     "Modify",
+     1
+    ]
+   ],
+   "kinds": {
+    "tab": 1
+   },
+   "shown_frames": []
+  },
+  "Timeline > RootNode": {
+   "count": 1,
+   "targets": [
+    [
+     "Transform",
+     1
+    ]
+   ],
+   "kinds": {
+    "other": 1
+   },
+   "shown_frames": [
+    "frames/O1IdyRmgfRk_4727.png"
+   ]
+  },
+  "Randomize Actor Group > Setup": {
+   "count": 1,
+   "targets": [
+    [
+     "Randomize Starting Frames",
+     1
+    ]
+   ],
+   "kinds": {
+    "checkbox": 1
+   },
+   "shown_frames": [
+    "frames/2Mu44jQc04w_80.png"
+   ]
+  },
+  "Randomize Actor Group": {
+   "count": 1,
+   "targets": [
+    [
+     "Randomize",
+     1
+    ]
+   ],
+   "kinds": {
+    "button": 1
+   },
+   "shown_frames": [
+    "frames/2Mu44jQc04w_102.png"
+   ]
+  },
+  "Content > Template": {
+   "count": 1,
+   "targets": [
+    [
+     "2Stand_Chat_Direction_G1_F1.iMotion...",
+     1
+    ]
+   ],
+   "kinds": {
+    "list": 1
+   },
+   "shown_frames": [
+    "frames/2Mu44jQc04w_128.png"
+   ]
+  },
+  "Export options window": {
+   "count": 1,
+   "targets": [
+    [
+     "Blender preset",
+     1
+    ]
+   ],
+   "kinds": {
+    "other": 1
+   },
+   "shown_frames": []
+  },
+  "Export FBX": {
+   "count": 1,
+   "targets": [
+    [
+     "Embed Textures",
+     1
+    ]
+   ],
+   "kinds": {
+    "checkbox": 1
+   },
+   "shown_frames": [
+    "frames/2Mu44jQc04w_164.png"
+   ]
+  },
+  "Render": {
+   "count": 1,
+   "targets": [
+    [
+     "Export Audio",
+     1
+    ]
+   ],
+   "kinds": {
+    "menu": 1
+   },
+   "shown_frames": []
+  }
+ },
+ "Blender": {
+  "(unpathed)": {
+   "count": 140,
+   "targets": [
+    [
+     "Sculpt brushes",
+     3
+    ],
+    [
+     "Import Character",
+     3
+    ],
+    [
+     "Camera",
+     3
+    ],
+    [
+     "Spring bones",
+     2
+    ],
+    [
+     "Render",
+     2
+    ],
+    [
+     "Tweak bones",
+     2
+    ],
+    [
+     "Hair curves",
+     2
+    ],
+    [
+     "Blender",
+     2
+    ],
+    [
+     "Go CC",
+     2
+    ],
+    [
+     "Head Follow",
+     2
+    ],
+    [
+     "Pose Mode",
+     2
+    ],
+    [
+     "Shape Key Editor",
+     2
+    ],
+    [
+     "Viewport",
+     2
+    ],
+    [
+     "Go IC",
+     2
+    ],
+    [
+     "Import FBX",
+     2
+    ],
+    [
+     "Material texture display",
+     2
+    ],
+    [
+     "Bra mesh",
+     2
+    ],
+    [
+     "Extra eye object (unnamed)",
+     2
+    ],
+    [
+     "Play",
+     2
+    ],
+    [
+     "Close Area",
+     2
+    ],
+    [
+     "Import",
+     1
+    ],
+    [
+     "Bang",
+     1
+    ],
+    [
+     "Edit Mode / Face select",
+     1
+    ],
+    [
+     "Hair card faces",
+     1
+    ],
+    [
+     "Pony tail bones",
+     1
+    ]
+   ],
+   "kinds": {
+    "other": 46,
+    "canvas": 54,
+    "field": 4,
+    "button": 19,
+    "menu": 3,
+    "tab": 2,
+    "slider": 11,
+    "dropdown": 1
+   },
+   "shown_frames": [
+    "frames/Rjpm8AJeoD0_23.png",
+    "frames/Rjpm8AJeoD0_34.png",
+    "frames/Rjpm8AJeoD0_43.png",
+    "frames/Rjpm8AJeoD0_173.png",
+    "frames/Rjpm8AJeoD0_224.png",
+    "frames/Rjpm8AJeoD0_288.png"
+   ]
+  },
+  "Timeline": {
+   "count": 14,
+   "targets": [
+    [
+     "Play",
+     7
+    ],
+    [
+     "Playback",
+     2
+    ],
+    [
+     "Frame",
+     1
+    ],
+    [
+     "Frame length",
+     1
+    ],
+    [
+     "Area divider",
+     1
+    ],
+    [
+     "Keyframes",
+     1
+    ],
+    [
+     "End",
+     1
+    ]
+   ],
+   "kinds": {
+    "button": 7,
+    "canvas": 3,
+    "field": 2,
+    "other": 2
+   },
+   "shown_frames": [
+    "frames/Rjpm8AJeoD0_261.png",
+    "frames/Rjpm8AJeoD0_314.png",
+    "frames/Rjpm8AJeoD0_699.png",
+    "frames/LXzjbflCe1s_1166.png",
+    "frames/LXzjbflCe1s_1829.png"
+   ]
+  },
+  "CC/iC Create > Spring Rigging": {
+   "count": 11,
+   "targets": [
+    [
+     "Bind Selected Hair",
+     2
+    ],
+    [
+     "Rename",
+     2
+    ],
+    [
+     "Bones from Cards",
+     1
+    ],
+    [
+     "Clear Selected Bones",
+     1
+    ],
+    [
+     "Truncate Length (cm)",
+     1
+    ],
+    [
+     "Scale Body Weights",
+     1
+    ],
+    [
+     "Weight Variance",
+     1
+    ],
+    [
+     "Bones from Grease Pencil",
+     1
+    ],
+    [
+     "Group Name",
+     1
+    ]
+   ],
+   "kinds": {
+    "button": 7,
+    "slider": 3,
+    "field": 1
+   },
+   "shown_frames": [
+    "frames/Rjpm8AJeoD0_37.png",
+    "frames/Rjpm8AJeoD0_83.png",
+    "frames/Rjpm8AJeoD0_94.png",
+    "frames/Rjpm8AJeoD0_114.png",
+    "frames/Rjpm8AJeoD0_122.png",
+    "frames/Rjpm8AJeoD0_144.png"
+   ]
+  },
+  "CC/iC Create > Rigid Body Sim": {
+   "count": 9,
+   "targets": [
+    [
+     "Build Simulation",
+     1
+    ],
+    [
+     "Influence",
+     1
+    ],
+    [
+     "Restrain",
+     1
+    ],
+    [
+     "Curve",
+     1
+    ],
+    [
+     "Mass",
+     1
+    ],
+    [
+     "Margin",
+     1
+    ],
+    [
+     "Dampening",
+     1
+    ],
+    [
+     "Stiffness",
+     1
+    ],
+    [
+     "Angle Range",
+     1
+    ]
+   ],
+   "kinds": {
+    "button": 1,
+    "slider": 8
+   },
+   "shown_frames": [
+    "frames/Rjpm8AJeoD0_253.png",
+    "frames/Rjpm8AJeoD0_336.png",
+    "frames/Rjpm8AJeoD0_343.png",
+    "frames/Rjpm8AJeoD0_362.png",
+    "frames/Rjpm8AJeoD0_384.png",
+    "frames/Rjpm8AJeoD0_400.png"
+   ]
+  },
+  "Sculpting": {
+   "count": 8,
+   "targets": [
+    [
+     "Sculpting",
+     1
+    ],
+    [
+     "Brush size",
+     1
+    ],
+    [
+     "Ears / nose",
+     1
+    ],
+    [
+     "Topology",
+     1
+    ],
+    [
+     "Face",
+     1
+    ],
+    [
+     "Body",
+     1
+    ],
+    [
+     "Setup Details for Sculpting",
+     1
+    ],
+    [
+     "Material",
+     1
+    ]
+   ],
+   "kinds": {
+    "tab": 1,
+    "slider": 1,
+    "canvas": 3,
+    "other": 1,
+    "button": 2
+   },
+   "shown_frames": [
+    "frames/O1IdyRmgfRk_744.png",
+    "frames/O1IdyRmgfRk_848.png"
+   ]
+  },
+  "Properties > Output": {
+   "count": 8,
+   "targets": [
+    [
+     "Resolution",
+     1
+    ],
+    [
+     "Frame Start / End",
+     1
+    ],
+    [
+     "File Format",
+     1
+    ],
+    [
+     "Container",
+     1
+    ],
+    [
+     "Video Codec",
+     1
+    ],
+    [
+     "Audio Codec",
+     1
+    ],
+    [
+     "Output path",
+     1
+    ],
+    [
+     "Accept",
+     1
+    ]
+   ],
+   "kinds": {
+    "field": 3,
+    "dropdown": 4,
+    "button": 1
+   },
+   "shown_frames": [
+    "frames/LXzjbflCe1s_1896.png",
+    "frames/LXzjbflCe1s_1905.png",
+    "frames/LXzjbflCe1s_1910.png",
+    "frames/LXzjbflCe1s_1937.png",
+    "frames/LXzjbflCe1s_1945.png",
+    "frames/LXzjbflCe1s_1987.png"
+   ]
+  },
+  "Spring Rig": {
+   "count": 6,
+   "targets": [
+    [
+     "Target rig",
+     1
+    ],
+    [
+     "Bind Hair",
+     1
+    ],
+    [
+     "Body weight scale",
+     1
+    ],
+    [
+     "Selected Bone",
+     1
+    ],
+    [
+     "Bind to nearest bones",
+     1
+    ],
+    [
+     "Build simulation",
+     1
+    ]
+   ],
+   "kinds": {
+    "other": 4,
+    "button": 2
+   },
+   "shown_frames": []
+  },
+  "Sculpting > Brushes": {
+   "count": 6,
+   "targets": [
+    [
+     "Elastic grab",
+     2
+    ],
+    [
+     "Nose",
+     1
+    ],
+    [
+     "Flatten",
+     1
+    ],
+    [
+     "Inflate",
+     1
+    ],
+    [
+     "Plateau",
+     1
+    ]
+   ],
+   "kinds": {
+    "button": 5,
+    "canvas": 1
+   },
+   "shown_frames": []
+  },
+  "Shader Editor > World": {
+   "count": 6,
+   "targets": [
+    [
+     "Open",
+     2
+    ],
+    [
+     "Color socket",
+     1
+    ],
+    [
+     "Environment Texture",
+     1
+    ],
+    [
+     "World",
+     1
+    ],
+    [
+     "Strength",
+     1
+    ]
+   ],
+   "kinds": {
+    "canvas": 1,
+    "list": 1,
+    "button": 2,
+    "dropdown": 1,
+    "field": 1
+   },
+   "shown_frames": [
+    "frames/LXzjbflCe1s_1366.png",
+    "frames/LXzjbflCe1s_1375.png"
+   ]
+  },
+  "CC/iC Pipeline > Scene Tools": {
+   "count": 5,
+   "targets": [
+    [
+     "Studio",
+     1
+    ],
+    [
+     "CC3 Dawn / Nostalgia",
+     1
+    ],
+    [
+     "Neon",
+     1
+    ],
+    [
+     "CC3 Dawn",
+     1
+    ],
+    [
+     "Scene Lighting",
+     1
+    ]
+   ],
+   "kinds": {
+    "button": 4,
+    "radio": 1
+   },
+   "shown_frames": [
+    "frames/Khcg23hRy8A_153.png"
+   ]
+  },
+  "Animation > Pose Mode": {
+   "count": 5,
+   "targets": [
+    [
+     "neck",
+     2
+    ],
+    [
+     "Toon Neutral_F_Rigify",
+     1
+    ],
+    [
+     "viewport",
+     1
+    ],
+    [
+     "eye control",
+     1
+    ]
+   ],
+   "kinds": {
+    "canvas": 5
+   },
+   "shown_frames": [
+    "frames/O1IdyRmgfRk_3594.png",
+    "frames/O1IdyRmgfRk_3621.png",
+    "frames/O1IdyRmgfRk_3671.png",
+    "frames/O1IdyRmgfRk_3726.png",
+    "frames/O1IdyRmgfRk_3739.png"
+   ]
+  },
+  "CC/iC > Sculpting": {
+   "count": 5,
+   "targets": [
+    [
+     "Body",
+     1
+    ],
+    [
+     "Detail",
+     1
+    ],
+    [
+     "Multires level",
+     1
+    ],
+    [
+     "Setup Detail Sculpt",
+     1
+    ],
+    [
+     "Bake",
+     1
+    ]
+   ],
+   "kinds": {
+    "other": 2,
+    "dropdown": 1,
+    "button": 2
+   },
+   "shown_frames": []
+  },
+  "Video Sequencer": {
+   "count": 5,
+   "targets": [
+    [
+     "Video Sequencer",
+     2
+    ],
+    [
+     "Sound strip",
+     2
+    ],
+    [
+     "Sound",
+     1
+    ]
+   ],
+   "kinds": {
+    "tab": 2,
+    "canvas": 2,
+    "menu": 1
+   },
+   "shown_frames": []
+  },
+  "File > Save As": {
+   "count": 5,
+   "targets": [
+    [
+     "File name",
+     4
+    ],
+    [
+     "Save",
+     1
+    ]
+   ],
+   "kinds": {
+    "field": 4,
+    "button": 1
+   },
+   "shown_frames": [
+    "frames/LXzjbflCe1s_1250.png"
+   ]
+  },
+  "Auto Setup": {
+   "count": 4,
+   "targets": [
+    [
+     "Import Character",
+     2
+    ],
+    [
+     "Export to CC",
+     1
+    ],
+    [
+     "Import",
+     1
+    ]
+   ],
+   "kinds": {
+    "button": 4
+   },
+   "shown_frames": []
+  },
+  "Preferences > Add-ons": {
+   "count": 4,
+   "targets": [
+    [
+     "Version",
+     1
+    ],
+    [
+     "Target Renderer",
+     1
+    ],
+    [
+     "Rigify",
+     1
+    ],
+    [
+     "Auto-check",
+     1
+    ]
+   ],
+   "kinds": {
+    "other": 1,
+    "dropdown": 1,
+    "checkbox": 2
+   },
+   "shown_frames": [
+    "frames/O1IdyRmgfRk_457.png",
+    "frames/O1IdyRmgfRk_498.png",
+    "frames/O1IdyRmgfRk_512.png",
+    "frames/O1IdyRmgfRk_530.png"
+   ]
+  },
+  "CC Pipeline": {
+   "count": 4,
+   "targets": [
+    [
+     "CC Pipeline",
+     2
+    ],
+    [
+     "Rigify",
+     2
+    ]
+   ],
+   "kinds": {
+    "tab": 2,
+    "button": 1,
+    "other": 1
+   },
+   "shown_frames": []
+  },
+  "Light properties": {
+   "count": 4,
+   "targets": [
+    [
+     "Strength",
+     2
+    ],
+    [
+     "Angle",
+     1
+    ],
+    [
+     "Power",
+     1
+    ]
+   ],
+   "kinds": {
+    "field": 4
+   },
+   "shown_frames": []
+  },
+  "Mini tool bar": {
+   "count": 3,
+   "targets": [
+    [
+     "Bone style",
+     1
+    ],
+    [
+     "Rest / Pose toggle",
+     1
+    ],
+    [
+     "Grease pencil draw setup",
+     1
+    ]
+   ],
+   "kinds": {
+    "button": 3
+   },
+   "shown_frames": []
+  },
+  "Items > Spring Rig": {
+   "count": 3,
+   "targets": [
+    [
+     "Group FK / IK",
+     1
+    ],
+    [
+     "Simulation influence",
+     1
+    ],
+    [
+     "Group Simulation",
+     1
+    ]
+   ],
+   "kinds": {
+    "button": 2,
+    "slider": 1
+   },
+   "shown_frames": []
+  },
+  "UCUPaint": {
+   "count": 3,
+   "targets": [
+    [
+     "Opacity",
+     1
+    ],
+    [
+     "Multires normal map layer",
+     1
+    ],
+    [
+     "Bake",
+     1
+    ]
+   ],
+   "kinds": {
+    "slider": 1,
+    "other": 1,
+    "button": 1
+   },
+   "shown_frames": []
+  },
+  "File > Export": {
+   "count": 3,
+   "targets": [
+    [
+     "FBX",
+     3
+    ]
+   ],
+   "kinds": {
+    "menu": 3
+   },
+   "shown_frames": []
+  },
+  "Shader Editor": {
+   "count": 3,
+   "targets": [
+    [
+     "Image Texture",
+     1
+    ],
+    [
+     "Mapping",
+     1
+    ],
+    [
+     "World",
+     1
+    ]
+   ],
+   "kinds": {
+    "other": 2,
+    "dropdown": 1
+   },
+   "shown_frames": []
+  },
+  "UV Editor": {
+   "count": 3,
+   "targets": [
+    [
+     "UVs",
+     2
+    ],
+    [
+     "Head normal",
+     1
+    ]
+   ],
+   "kinds": {
+    "canvas": 2,
+    "other": 1
+   },
+   "shown_frames": []
+  },
+  "Sidebar (N) > CC/IC Link": {
+   "count": 3,
+   "targets": [
+    [
+     "CC/IC Link",
+     1
+    ],
+    [
+     "Connect",
+     1
+    ],
+    [
+     "Go CC",
+     1
+    ]
+   ],
+   "kinds": {
+    "tab": 1,
+    "button": 2
+   },
+   "shown_frames": []
+  },
+  "Viewport": {
+   "count": 3,
+   "targets": [
+    [
+     "Shading mode",
+     1
+    ],
+    [
+     "R / S hotkeys",
+     1
+    ],
+    [
+     "Orthographic view",
+     1
+    ]
+   ],
+   "kinds": {
+    "button": 1,
+    "other": 2
+   },
+   "shown_frames": [
+    "frames/O1IdyRmgfRk_1965.png",
+    "frames/O1IdyRmgfRk_2004.png"
+   ]
+  },
+  "Properties > Light": {
+   "count": 3,
+   "targets": [
+    [
+     "Light",
+     1
+    ],
+    [
+     "Color",
+     1
+    ],
+    [
+     "Power / Shape / Size",
+     1
+    ]
+   ],
+   "kinds": {
+    "canvas": 1,
+    "field": 2
+   },
+   "shown_frames": []
+  },
+  "Animation": {
+   "count": 3,
+   "targets": [
+    [
+     "timeline",
+     2
+    ],
+    [
+     "Animation",
+     1
+    ]
+   ],
+   "kinds": {
+    "tab": 1,
+    "canvas": 2
+   },
+   "shown_frames": [
+    "frames/O1IdyRmgfRk_3178.png",
+    "frames/O1IdyRmgfRk_3383.png"
+   ]
+  },
+  "CC/iC Pipeline > Rigging & Animation": {
+   "count": 3,
+   "targets": [
+    [
+     "Rigify",
+     2
+    ],
+    [
+     "Metarig",
+     1
+    ]
+   ],
+   "kinds": {
+    "button": 2,
+    "radio": 1
+   },
+   "shown_frames": [
+    "frames/Khcg23hRy8A_200.png",
+    "frames/GWQTDKpLBcQ_364.png",
+    "frames/GWQTDKpLBcQ_369.png"
+   ]
+  },
+  "CC/iC Create > Sculpting": {
+   "count": 3,
+   "targets": [
+    [
+     "Detail",
+     1
+    ],
+    [
+     "Multi-res Level",
+     1
+    ],
+    [
+     "Bake",
+     1
+    ]
+   ],
+   "kinds": {
+    "radio": 1,
+    "slider": 1,
+    "button": 1
+   },
+   "shown_frames": [
+    "frames/Khcg23hRy8A_316.png",
+    "frames/Khcg23hRy8A_320.png",
+    "frames/Khcg23hRy8A_334.png"
+   ]
+  },
+  "CC/iC Pipeline > Import": {
+   "count": 3,
+   "targets": [
+    [
+     "Import Character",
+     2
+    ],
+    [
+     "Import Animations",
+     1
+    ]
+   ],
+   "kinds": {
+    "button": 3
+   },
+   "shown_frames": [
+    "frames/GWQTDKpLBcQ_101.png",
+    "frames/GWQTDKpLBcQ_578.png",
+    "frames/2Mu44jQc04w_185.png"
+   ]
+  },
+  "Graph Editor > Modifiers": {
+   "count": 2,
+   "targets": [
+    [
+     "Noise",
+     1
+    ],
+    [
+     "Strength / Scale",
+     1
+    ]
+   ],
+   "kinds": {
+    "other": 1,
+    "field": 1
+   },
+   "shown_frames": []
+  },
+  "Item > Spring Rig Properties": {
+   "count": 2,
+   "targets": [
+    [
+     "Spring Rig Layers",
+     1
+    ],
+    [
+     "IK-FK (RL_Hair_Tail_",
+     1
+    ]
+   ],
+   "kinds": {
+    "button": 1,
+    "slider": 1
+   },
+   "shown_frames": [
+    "frames/Rjpm8AJeoD0_543.png",
+    "frames/Rjpm8AJeoD0_578.png"
+   ]
+  },
+  "Edit > Preferences": {
+   "count": 2,
+   "targets": [
+    [
+     "Install",
+     1
+    ],
+    [
+     "CC/IC tools",
+     1
+    ]
+   ],
+   "kinds": {
+    "button": 1,
+    "list": 1
+   },
+   "shown_frames": []
+  },
+  "Armature > Viewport Display": {
+   "count": 2,
+   "targets": [
+    [
+     "In Front",
+     1
+    ],
+    [
+     "Display As",
+     1
+    ]
+   ],
+   "kinds": {
+    "checkbox": 1,
+    "dropdown": 1
+   },
+   "shown_frames": []
+  },
+  "Parent (Ctrl+P)": {
+   "count": 2,
+   "targets": [
+    [
+     "With Automatic Weights",
+     1
+    ],
+    [
+     "Parent",
+     1
+    ]
+   ],
+   "kinds": {
+    "menu": 2
+   },
+   "shown_frames": []
+  },
+  "Object Data > Vertex Groups": {
+   "count": 2,
+   "targets": [
+    [
+     "Delete All Unlocked Groups",
+     1
+    ],
+    [
+     "Lock",
+     1
+    ]
+   ],
+   "kinds": {
+    "menu": 1,
+    "other": 1
+   },
+   "shown_frames": []
+  },
+  "Hair Tool": {
+   "count": 2,
+   "targets": [
+    [
+     "Hair strands",
+     1
+    ],
+    [
+     "Hair baking scene",
+     1
+    ]
+   ],
+   "kinds": {
+    "canvas": 1,
+    "button": 1
+   },
+   "shown_frames": []
+  },
+  "Blender Pipeline": {
+   "count": 2,
+   "targets": [
+    [
+     "Go CC",
+     1
+    ],
+    [
+     "Send morph",
+     1
+    ]
+   ],
+   "kinds": {
+    "button": 2
+   },
+   "shown_frames": []
+  },
+  "Add > Curve": {
+   "count": 2,
+   "targets": [
+    [
+     "Path",
+     1
+    ],
+    [
+     "Curve",
+     1
+    ]
+   ],
+   "kinds": {
+    "menu": 2
+   },
+   "shown_frames": []
+  },
+  "Object Data > Shape Keys": {
+   "count": 2,
+   "targets": [
+    [
+     "Shape Keys",
+     2
+    ]
+   ],
+   "kinds": {
+    "list": 2
+   },
+   "shown_frames": []
+  },
+  "CC/iC Pipeline": {
+   "count": 2,
+   "targets": [
+    [
+     "Update Replace",
+     2
+    ]
+   ],
+   "kinds": {
+    "button": 2
+   },
+   "shown_frames": []
+  },
+  "File": {
+   "count": 2,
+   "targets": [
+    [
+     "New",
+     1
+    ],
+    [
+     "Save As",
+     1
+    ]
+   ],
+   "kinds": {
+    "menu": 2
+   },
+   "shown_frames": []
+  },
+  "CC Pipeline > Motion Sets": {
+   "count": 2,
+   "targets": [
+    [
+     "motions",
+     1
+    ],
+    [
+     "Motion Sets",
+     1
+    ]
+   ],
+   "kinds": {
+    "list": 2
+   },
+   "shown_frames": []
+  },
+  "CC/IC Create > Create Tools": {
+   "count": 2,
+   "targets": [
+    [
+     "Create Tools",
+     1
+    ],
+    [
+     "Export Accessory / Export Replace Mesh",
+     1
+    ]
+   ],
+   "kinds": {
+    "other": 1,
+    "button": 1
+   },
+   "shown_frames": [
+    "frames/O1IdyRmgfRk_4204.png",
+    "frames/O1IdyRmgfRk_4338.png"
+   ]
+  },
+  "Data Link": {
+   "count": 2,
+   "targets": [
+    [
+     "Pose / Sequence",
+     1
+    ],
+    [
+     "Sequence",
+     1
+    ]
+   ],
+   "kinds": {
+    "button": 2
+   },
+   "shown_frames": []
+  },
+  "Face Board": {
+   "count": 2,
+   "targets": [
+    [
+     "Face rig controls",
+     1
+    ],
+    [
+     "Face rig",
+     1
+    ]
+   ],
+   "kinds": {
+    "canvas": 2
+   },
+   "shown_frames": [
+    "frames/Khcg23hRy8A_221.png",
+    "frames/GWQTDKpLBcQ_461.png"
+   ]
+  },
+  "CC/iC Pipeline > Surface": {
+   "count": 2,
+   "targets": [
+    [
+     "Specular Scale",
+     1
+    ],
+    [
+     "Roughness Power",
+     1
+    ]
+   ],
+   "kinds": {
+    "slider": 2
+   },
+   "shown_frames": [
+    "frames/GWQTDKpLBcQ_123.png",
+    "frames/GWQTDKpLBcQ_127.png"
+   ]
+  },
+  "Rigging and Animation": {
+   "count": 2,
+   "targets": [
+    [
+     "CC5HD",
+     2
+    ]
+   ],
+   "kinds": {
+    "other": 2
+   },
+   "shown_frames": []
+  },
+  "Dope Sheet > Action Editor": {
+   "count": 2,
+   "targets": [
+    [
+     "Action Editor",
+     1
+    ],
+    [
+     "Action",
+     1
+    ]
+   ],
+   "kinds": {
+    "other": 1,
+    "list": 1
+   },
+   "shown_frames": []
+  },
+  "Dope Sheet > Shape Key Editor": {
+   "count": 2,
+   "targets": [
+    [
+     "Shape Key Editor",
+     1
+    ],
+    [
+     "Motion FBX",
+     1
+    ]
+   ],
+   "kinds": {
+    "other": 1,
+    "list": 1
+   },
+   "shown_frames": []
+  },
+  "Sculpt Mode": {
+   "count": 2,
+   "targets": [
+    [
+     "Head and jaw",
+     1
+    ],
+    [
+     "Eyes, eyelashes, tongue, teeth, nails",
+     1
+    ]
+   ],
+   "kinds": {
+    "canvas": 2
+   },
+   "shown_frames": [
+    "frames/99074uIeMAY_108.png"
+   ]
+  },
+  "Viewport Display": {
+   "count": 2,
+   "targets": [
+    [
+     "In Front",
+     2
+    ]
+   ],
+   "kinds": {
+    "checkbox": 2
+   },
+   "shown_frames": []
+  },
+  "Add > Light": {
+   "count": 2,
+   "targets": [
+    [
+     "Sun",
+     1
+    ],
+    [
+     "Point",
+     1
+    ]
+   ],
+   "kinds": {
+    "menu": 2
+   },
+   "shown_frames": [
+    "frames/LXzjbflCe1s_1567.png"
+   ]
+  },
+  "Properties > Render": {
+   "count": 2,
+   "targets": [
+    [
+     "Render",
+     1
+    ],
+    [
+     "Render Engine",
+     1
+    ]
+   ],
+   "kinds": {
+    "tab": 1,
+    "dropdown": 1
+   },
+   "shown_frames": [
+    "frames/LXzjbflCe1s_1885.png"
+   ]
+  },
+  "Render window": {
+   "count": 2,
+   "targets": [
+    [
+     "Render result",
+     1
+    ],
+    [
+     "Close",
+     1
+    ]
+   ],
+   "kinds": {
+    "canvas": 1,
+    "button": 1
+   },
+   "shown_frames": [
+    "frames/LXzjbflCe1s_2016.png"
+   ]
+  },
+  "Wind > Force Fields": {
+   "count": 1,
+   "targets": [
+    [
+     "Strength",
+     1
+    ]
+   ],
+   "kinds": {
+    "field": 1
+   },
+   "shown_frames": [
+    "frames/Rjpm8AJeoD0_298.png"
+   ]
+  },
+  "Rigify mini tool bar": {
+   "count": 1,
+   "targets": [
+    [
+     "Full / Base / Spring rig",
+     1
+    ]
+   ],
+   "kinds": {
+    "button": 1
+   },
+   "shown_frames": []
+  },
+  "CC/iC Pipeline > Retargeting": {
+   "count": 1,
+   "targets": [
+    [
+     "Retargeting",
+     1
+    ]
+   ],
+   "kinds": {
+    "other": 1
+   },
+   "shown_frames": [
+    "frames/Rjpm8AJeoD0_660.png"
+   ]
+  },
+  "CC/iC Pipeline > Rigid Body Sim": {
+   "count": 1,
+   "targets": [
+    [
+     "Bake Simulation",
+     1
+    ]
+   ],
+   "kinds": {
+    "button": 1
+   },
+   "shown_frames": [
+    "frames/Rjpm8AJeoD0_687.png"
+   ]
+  },
+  "CC/iC Create > Cloth Physics": {
+   "count": 1,
+   "targets": [
+    [
+     "Add Cloth Physics",
+     1
+    ]
+   ],
+   "kinds": {
+    "button": 1
+   },
+   "shown_frames": [
+    "frames/Rjpm8AJeoD0_748.png"
+   ]
+  },
+  "Add > Force Field": {
+   "count": 1,
+   "targets": [
+    [
+     "Force Field",
+     1
+    ]
+   ],
+   "kinds": {
+    "menu": 1
+   },
+   "shown_frames": [
+    "frames/Rjpm8AJeoD0_752.png"
+   ]
+  },
+  "Sidebar (N) > CC plugin": {
+   "count": 1,
+   "targets": [
+    [
+     "Import Character",
+     1
+    ]
+   ],
+   "kinds": {
+    "button": 1
+   },
+   "shown_frames": []
+  },
+  "Bone properties > Viewport Display": {
+   "count": 1,
+   "targets": [
+    [
+     "In Front",
+     1
+    ]
+   ],
+   "kinds": {
+    "checkbox": 1
+   },
+   "shown_frames": []
+  },
+  "Blender > CC_Export": {
+   "count": 1,
+   "targets": [
+    [
+     "CC_Base_Head.002",
+     1
+    ]
+   ],
+   "kinds": {
+    "canvas": 1
+   },
+   "shown_frames": [
+    "frames/jphEXauoASw_281.png"
+   ]
+  },
+  "Sidebar (N) > CC/iC Pipeline": {
+   "count": 1,
+   "targets": [
+    [
+     "Export to CC3/4",
+     1
+    ]
+   ],
+   "kinds": {
+    "button": 1
+   },
+   "shown_frames": [
+    "frames/jphEXauoASw_298.png"
+   ]
+  },
+  "Outliner": {
+   "count": 1,
+   "targets": [
+    [
+     "Accessories",
+     1
+    ]
+   ],
+   "kinds": {
+    "list": 1
+   },
+   "shown_frames": []
+  },
+  "CC/iC Pipeline > Export": {
+   "count": 1,
+   "targets": [
+    [
+     "Export Accessory",
+     1
+    ]
+   ],
+   "kinds": {
+    "button": 1
+   },
+   "shown_frames": [
+    "frames/jjh7AihrFuw_58.png"
+   ]
+  },
+  "Auto Setup > Exporting": {
+   "count": 1,
+   "targets": [
+    [
+     "Export Accessories",
+     1
+    ]
+   ],
+   "kinds": {
+    "button": 1
+   },
+   "shown_frames": []
+  },
+  "Calibration > Viewport Display": {
+   "count": 1,
+   "targets": [
+    [
+     "Names",
+     1
+    ]
+   ],
+   "kinds": {
+    "checkbox": 1
+   },
+   "shown_frames": [
+    "frames/kPtZ_ys_bcE_203.png"
+   ]
+  },
+  "Shoes > Shoes_R": {
+   "count": 1,
+   "targets": [
+    [
+     "Weight paint",
+     1
+    ]
+   ],
+   "kinds": {
+    "canvas": 1
+   },
+   "shown_frames": [
+    "frames/kPtZ_ys_bcE_265.png"
+   ]
+  },
+  "Material > Surface": {
+   "count": 1,
+   "targets": [
+    [
+     "HT_Default_Material",
+     1
+    ]
+   ],
+   "kinds": {
+    "other": 1
+   },
+   "shown_frames": [
+    "frames/cHCWOFGuigw_125.png"
+   ]
+  },
+  "Hair Tool > Hair System": {
+   "count": 1,
+   "targets": [
+    [
+     "Deformers",
+     1
+    ]
+   ],
+   "kinds": {
+    "list": 1
+   },
+   "shown_frames": [
+    "frames/cHCWOFGuigw_132.png"
+   ]
+  },
+  "Modifiers > Multires": {
+   "count": 1,
+   "targets": [
+    [
+     "Multires",
+     1
+    ]
+   ],
+   "kinds": {
+    "other": 1
+   },
+   "shown_frames": [
+    "frames/cHCWOFGuigw_266.png"
+   ]
+  },
+  "Brush assets": {
+   "count": 1,
+   "targets": [
+    [
+     "Brush name",
+     1
+    ]
+   ],
+   "kinds": {
+    "field": 1
+   },
+   "shown_frames": []
+  },
+  "Brush > Stroke": {
+   "count": 1,
+   "targets": [
+    [
+     "Stroke Method",
+     1
+    ]
+   ],
+   "kinds": {
+    "dropdown": 1
+   },
+   "shown_frames": []
+  },
+  "Ucupaint 2.3.2 > Layers": {
+   "count": 1,
+   "targets": [
+    [
+     "Coordinate",
+     1
+    ]
+   ],
+   "kinds": {
+    "dropdown": 1
+   },
+   "shown_frames": [
+    "frames/cHCWOFGuigw_315.png"
+   ]
+  },
+  "Modifiers > Multiresolution": {
+   "count": 1,
+   "targets": [
+    [
+     "Multiresolution",
+     1
+    ]
+   ],
+   "kinds": {
+    "other": 1
+   },
+   "shown_frames": []
+  },
+  "Jeans > Jeans": {
+   "count": 1,
+   "targets": [
+    [
+     "Vertex Groups",
+     1
+    ]
+   ],
+   "kinds": {
+    "list": 1
+   },
+   "shown_frames": [
+    "frames/cHCWOFGuigw_457.png"
+   ]
+  },
+  "Transform Orientation": {
+   "count": 1,
+   "targets": [
+    [
+     "Transform Orientation",
+     1
+    ]
+   ],
+   "kinds": {
+    "dropdown": 1
+   },
+   "shown_frames": []
+  },
+  "Proportional Editing": {
+   "count": 1,
+   "targets": [
+    [
+     "Proportional Editing",
+     1
+    ]
+   ],
+   "kinds": {
+    "checkbox": 1
+   },
+   "shown_frames": []
+  },
+  "Plane > Plane.002": {
+   "count": 1,
+   "targets": [
+    [
+     "Shape Keys",
+     1
+    ]
+   ],
+   "kinds": {
+    "list": 1
+   },
+   "shown_frames": [
+    "frames/cHCWOFGuigw_738.png"
+   ]
+  },
+  "Object Data > Geometry": {
+   "count": 1,
+   "targets": [
+    [
+     "Object",
+     1
+    ]
+   ],
+   "kinds": {
+    "field": 1
+   },
+   "shown_frames": []
+  },
+  "NurbsPath.001 > NurbsPath.019": {
+   "count": 1,
+   "targets": [
+    [
+     "Base Color / Alpha",
+     1
+    ]
+   ],
+   "kinds": {
+    "other": 1
+   },
+   "shown_frames": [
+    "frames/92CED6LtECo_111.png"
+   ]
+  },
+  "Viewport Shading": {
+   "count": 1,
+   "targets": [
+    [
+     "Wireframe",
+     1
+    ]
+   ],
+   "kinds": {
+    "button": 1
+   },
+   "shown_frames": []
+  },
+  "NurbsPath.005 > NurbsPath.006": {
+   "count": 1,
+   "targets": [
+    [
+     "Resolution Prev...",
+     1
+    ]
+   ],
+   "kinds": {
+    "field": 1
+   },
+   "shown_frames": [
+    "frames/92CED6LtECo_174.png"
+   ]
+  },
+  "Object context menu > Convert": {
+   "count": 1,
+   "targets": [
+    [
+     "Mesh",
+     1
+    ]
+   ],
+   "kinds": {
+    "menu": 1
+   },
+   "shown_frames": []
+  },
+  "Straight_long_low > Shape Keys": {
+   "count": 1,
+   "targets": [
+    [
+     "Value",
+     1
+    ]
+   ],
+   "kinds": {
+    "slider": 1
+   },
+   "shown_frames": [
+    "frames/92CED6LtECo_253.png"
+   ]
+  },
+  "Viewport > Navigation gizmo": {
+   "count": 1,
+   "targets": [
+    [
+     "Orthographic view",
+     1
+    ]
+   ],
+   "kinds": {
+    "canvas": 1
+   },
+   "shown_frames": []
+  },
+  "Sculpting > Symmetry": {
+   "count": 1,
+   "targets": [
+    [
+     "X",
+     1
+    ]
+   ],
+   "kinds": {
+    "button": 1
+   },
+   "shown_frames": []
+  },
+  "Workspaces": {
+   "count": 1,
+   "targets": [
+    [
+     "Animation / Layout / Shading",
+     1
+    ]
+   ],
+   "kinds": {
+    "tab": 1
+   },
+   "shown_frames": []
+  },
+  "File > Import": {
+   "count": 1,
+   "targets": [
+    [
+     "OBJ",
+     1
+    ]
+   ],
+   "kinds": {
+    "menu": 1
+   },
+   "shown_frames": []
+  },
+  "Add > Armature": {
+   "count": 1,
+   "targets": [
+    [
+     "Single Bone",
+     1
+    ]
+   ],
+   "kinds": {
+    "menu": 1
+   },
+   "shown_frames": []
+  },
+  "Viewport > Edit Mode": {
+   "count": 1,
+   "targets": [
+    [
+     "E (extrude)",
+     1
+    ]
+   ],
+   "kinds": {
+    "other": 1
+   },
+   "shown_frames": []
+  },
+  "Viewport > Object Mode": {
+   "count": 1,
+   "targets": [
+    [
+     "A (select all)",
+     1
+    ]
+   ],
+   "kinds": {
+    "other": 1
+   },
+   "shown_frames": []
+  },
+  "Ctrl+P > Armature Deform": {
+   "count": 1,
+   "targets": [
+    [
+     "With Automatic Weights",
+     1
+    ]
+   ],
+   "kinds": {
+    "menu": 1
+   },
+   "shown_frames": [
+    "frames/O1IdyRmgfRk_2062.png"
+   ]
+  },
+  "Mode": {
+   "count": 1,
+   "targets": [
+    [
+     "Weight Paint",
+     1
+    ]
+   ],
+   "kinds": {
+    "dropdown": 1
+   },
+   "shown_frames": []
+  },
+  "Properties > Vertex Groups": {
+   "count": 1,
+   "targets": [
+    [
+     "Bone vertex groups",
+     1
+    ]
+   ],
+   "kinds": {
+    "list": 1
+   },
+   "shown_frames": [
+    "frames/O1IdyRmgfRk_2104.png"
+   ]
+  },
+  "Weight Paint": {
+   "count": 1,
+   "targets": [
+    [
+     "Brush",
+     1
+    ]
+   ],
+   "kinds": {
+    "canvas": 1
+   },
+   "shown_frames": [
+    "frames/O1IdyRmgfRk_2133.png"
+   ]
+  },
+  "Data Link > Creation": {
+   "count": 1,
+   "targets": [
+    [
+     "Creation",
+     1
+    ]
+   ],
+   "kinds": {
+    "button": 1
+   },
+   "shown_frames": []
+  },
+  "CC Pipeline > Rigging and Animation": {
+   "count": 1,
+   "targets": [
+    [
+     "Rigify",
+     1
+    ]
+   ],
+   "kinds": {
+    "button": 1
+   },
+   "shown_frames": []
+  },
+  "CC/IC Link > DataLink": {
+   "count": 1,
+   "targets": [
+    [
+     "Motion Sets:",
+     1
+    ]
+   ],
+   "kinds": {
+    "list": 1
+   },
+   "shown_frames": [
+    "frames/O1IdyRmgfRk_4357.png"
+   ]
+  },
+  "Shader adjustments": {
+   "count": 1,
+   "targets": [
+    [
+     "Roughness (per region)",
+     1
+    ]
+   ],
+   "kinds": {
+    "slider": 1
+   },
+   "shown_frames": []
+  },
+  "Hair Strands": {
+   "count": 1,
+   "targets": [
+    [
+     "Hair colour / roughness / reflectivity",
+     1
+    ]
+   ],
+   "kinds": {
+    "slider": 1
+   },
+   "shown_frames": []
+  },
+  "Rig and Animation": {
+   "count": 1,
+   "targets": [
+    [
+     "CC5 HD",
+     1
+    ]
+   ],
+   "kinds": {
+    "other": 1
+   },
+   "shown_frames": []
+  },
+  "Pose Mode": {
+   "count": 1,
+   "targets": [
+    [
+     "Face rig",
+     1
+    ]
+   ],
+   "kinds": {
+    "canvas": 1
+   },
+   "shown_frames": [
+    "frames/Khcg23hRy8A_206.png"
+   ]
+  },
+  "CC/iC Pipeline > Hair Parameters": {
+   "count": 1,
+   "targets": [
+    [
+     "Color",
+     1
+    ]
+   ],
+   "kinds": {
+    "other": 1
+   },
+   "shown_frames": [
+    "frames/GWQTDKpLBcQ_130.png"
+   ]
+  },
+  "Viewport Shading > Color": {
+   "count": 1,
+   "targets": [
+    [
+     "Texture",
+     1
+    ]
+   ],
+   "kinds": {
+    "radio": 1
+   },
+   "shown_frames": [
+    "frames/GWQTDKpLBcQ_390.png"
+   ]
+  },
+  "Rigging and Animation > CC5HD": {
+   "count": 1,
+   "targets": [
+    [
+     "Rigify",
+     1
+    ]
+   ],
+   "kinds": {
+    "button": 1
+   },
+   "shown_frames": []
+  },
+  "Dope Sheet": {
+   "count": 1,
+   "targets": [
+    [
+     "Dope Sheet",
+     1
+    ]
+   ],
+   "kinds": {
+    "other": 1
+   },
+   "shown_frames": []
+  },
+  "Properties": {
+   "count": 1,
+   "targets": [
+    [
+     "Individual lights",
+     1
+    ]
+   ],
+   "kinds": {
+    "canvas": 1
+   },
+   "shown_frames": []
+  },
+  "Auto Setup > Character Build Settings": {
+   "count": 1,
+   "targets": [
+    [
+     "Rebuild scene shaders",
+     1
+    ]
+   ],
+   "kinds": {
+    "button": 1
+   },
+   "shown_frames": []
+  },
+  "Properties > Camera": {
+   "count": 1,
+   "targets": [
+    [
+     "Focal Length",
+     1
+    ]
+   ],
+   "kinds": {
+    "field": 1
+   },
+   "shown_frames": [
+    "frames/IeZhOeOk5OU_240.png"
+   ]
+  },
+  "Scene": {
+   "count": 1,
+   "targets": [
+    [
+     "Bed",
+     1
+    ]
+   ],
+   "kinds": {
+    "canvas": 1
+   },
+   "shown_frames": [
+    "frames/IeZhOeOk5OU_283.png"
+   ]
+  },
+  "Convert": {
+   "count": 1,
+   "targets": [
+    [
+     "Prop",
+     1
+    ]
+   ],
+   "kinds": {
+    "dropdown": 1
+   },
+   "shown_frames": []
+  },
+  "Auto Setup add-on > Link tab": {
+   "count": 1,
+   "targets": [
+    [
+     "Connect",
+     1
+    ]
+   ],
+   "kinds": {
+    "button": 1
+   },
+   "shown_frames": []
+  },
+  "Layer Settings": {
+   "count": 1,
+   "targets": [
+    [
+     "Normal strength",
+     1
+    ]
+   ],
+   "kinds": {
+    "other": 1
+   },
+   "shown_frames": []
+  },
+  "CC/iC > Data Link": {
+   "count": 1,
+   "targets": [
+    [
+     "Material",
+     1
+    ]
+   ],
+   "kinds": {
+    "button": 1
+   },
+   "shown_frames": []
+  },
+  "Video Sequencer > Add": {
+   "count": 1,
+   "targets": [
+    [
+     "Sound",
+     1
+    ]
+   ],
+   "kinds": {
+    "menu": 1
+   },
+   "shown_frames": []
+  },
+  "Add": {
+   "count": 1,
+   "targets": [
+    [
+     "Camera",
+     1
+    ]
+   ],
+   "kinds": {
+    "menu": 1
+   },
+   "shown_frames": []
+  },
+  "Render": {
+   "count": 1,
+   "targets": [
+    [
+     "Render Animation",
+     1
+    ]
+   ],
+   "kinds": {
+    "menu": 1
+   },
+   "shown_frames": []
+  },
+  "Render progress": {
+   "count": 1,
+   "targets": [
+    [
+     "Cancel (cross)",
+     1
+    ]
+   ],
+   "kinds": {
+    "button": 1
+   },
+   "shown_frames": []
+  }
+ },
+ "other": {
+  "Character Creator 4": {
+   "count": 15,
+   "targets": [
+    [
+     "Motion",
+     3
+    ],
+    [
+     "Import",
+     1
+    ],
+    [
+     "Cancel",
+     1
+    ],
+    [
+     "Sculpt asset",
+     1
+    ],
+    [
+     "Head mesh",
+     1
+    ],
+    [
+     "Data Link listening",
+     1
+    ],
+    [
+     "Body part in viewport",
+     1
+    ],
+    [
+     "Character model",
+     1
+    ],
+    [
+     "Send Morph",
+     1
+    ],
+    [
+     "Toon Base character",
+     1
+    ],
+    [
+     "Morph slider name",
+     1
+    ],
+    [
+     "Create Slider",
+     1
+    ],
+    [
+     "Create Head and Body Morph Slider",
+     1
+    ]
+   ],
+   "kinds": {
+    "other": 7,
+    "button": 4,
+    "canvas": 3,
+    "field": 1
+   },
+   "shown_frames": []
+  },
+  "Character Creator 4 > Modify": {
+   "count": 15,
+   "targets": [
+    [
+     "Transfer Skin Weights",
+     2
+    ],
+    [
+     "Bone preview",
+     1
+    ],
+    [
+     "Active",
+     1
+    ],
+    [
+     "Skin Weights",
+     1
+    ],
+    [
+     "Skin weights",
+     1
+    ],
+    [
+     "Create Hair, Brows and Beard",
+     1
+    ],
+    [
+     "Beard template",
+     1
+    ],
+    [
+     "Hair template",
+     1
+    ],
+    [
+     "Texture Settings",
+     1
+    ],
+    [
+     "Root Color / End Color",
+     1
+    ],
+    [
+     "Affected Range",
+     1
+    ],
+    [
+     "Create Hair, Brow and Beard",
+     1
+    ],
+    [
+     "Select Template",
+     1
+    ],
+    [
+     "Apply",
+     1
+    ]
+   ],
+   "kinds": {
+    "canvas": 1,
+    "button": 7,
+    "other": 3,
+    "list": 3,
+    "slider": 1
+   },
+   "shown_frames": [
+    "frames/jphEXauoASw_119.png",
+    "frames/jphEXauoASw_156.png",
+    "frames/jphEXauoASw_354.png",
+    "frames/92CED6LtECo_319.png",
+    "frames/92CED6LtECo_340.png",
+    "frames/92CED6LtECo_358.png"
+   ]
+  },
+  "Character Creator > Edit Spring": {
+   "count": 11,
+   "targets": [
+    [
+     "Hardness",
+     5
+    ],
+    [
+     "Mass",
+     2
+    ],
+    [
+     "Tail bones",
+     1
+    ],
+    [
+     "Active",
+     1
+    ],
+    [
+     "Rotate",
+     1
+    ],
+    [
+     "Strength",
+     1
+    ]
+   ],
+   "kinds": {
+    "list": 1,
+    "checkbox": 1,
+    "slider": 8,
+    "radio": 1
+   },
+   "shown_frames": []
+  },
+  "Character Creator": {
+   "count": 9,
+   "targets": [
+    [
+     "Character",
+     1
+    ],
+    [
+     "Character customization",
+     1
+    ],
+    [
+     "Jacket mesh",
+     1
+    ],
+    [
+     "Jacket",
+     1
+    ],
+    [
+     "cattail.fbx",
+     1
+    ],
+    [
+     "Tail transform",
+     1
+    ],
+    [
+     "viewport",
+     1
+    ],
+    [
+     "Edit Facial",
+     1
+    ],
+    [
+     "close",
+     1
+    ]
+   ],
+   "kinds": {
+    "canvas": 6,
+    "other": 2,
+    "button": 1
+   },
+   "shown_frames": [
+    "frames/O1IdyRmgfRk_1251.png",
+    "frames/O1IdyRmgfRk_1397.png",
+    "frames/O1IdyRmgfRk_2252.png",
+    "frames/O1IdyRmgfRk_2867.png"
+   ]
+  },
+  "(unpathed)": {
+   "count": 8,
+   "targets": [
+    [
+     "Motion",
+     3
+    ],
+    [
+     "AI decal images",
+     1
+    ],
+    [
+     "Webinar outline",
+     1
+    ],
+    [
+     "chat",
+     1
+    ],
+    [
+     "Headshot photo",
+     1
+    ],
+    [
+     "Export FBX",
+     1
+    ]
+   ],
+   "kinds": {
+    "other": 7,
+    "button": 1
+   },
+   "shown_frames": [
+    "frames/LXzjbflCe1s_89.png"
+   ]
+  },
+  "iClone": {
+   "count": 8,
+   "targets": [
+    [
+     "Data Link connection",
+     1
+    ],
+    [
+     "Characters and props",
+     1
+    ],
+    [
+     "Coloured lights",
+     1
+    ],
+    [
+     "Sync Camera",
+     1
+    ],
+    [
+     "ActorCore characters",
+     1
+    ],
+    [
+     "Accessories",
+     1
+    ],
+    [
+     "Motion editing tools",
+     1
+    ],
+    [
+     "Actors",
+     1
+    ]
+   ],
+   "kinds": {
+    "other": 5,
+    "canvas": 2,
+    "button": 1
+   },
+   "shown_frames": []
+  },
+  "Character Creator > Material": {
+   "count": 7,
+   "targets": [
+    [
+     "Skin head material",
+     1
+    ],
+    [
+     "Skin color / color adjustment",
+     1
+    ],
+    [
+     "Illumination / Red / Yellow",
+     1
+    ],
+    [
+     "Hue",
+     1
+    ],
+    [
+     "Hair color section",
+     1
+    ],
+    [
+     "Shirt color",
+     1
+    ],
+    [
+     "Diffuse color",
+     1
+    ]
+   ],
+   "kinds": {
+    "list": 1,
+    "checkbox": 1,
+    "slider": 3,
+    "field": 2
+   },
+   "shown_frames": []
+  },
+  "Character Creator 4 > Skin Weights": {
+   "count": 6,
+   "targets": [
+    [
+     "Grow",
+     2
+    ],
+    [
+     "1",
+     2
+    ],
+    [
+     "Vertices",
+     1
+    ],
+    [
+     "Paint Operation",
+     1
+    ]
+   ],
+   "kinds": {
+    "button": 5,
+    "canvas": 1
+   },
+   "shown_frames": [
+    "frames/jphEXauoASw_381.png",
+    "frames/jphEXauoASw_398.png",
+    "frames/jphEXauoASw_410.png",
+    "frames/jphEXauoASw_422.png",
+    "frames/jphEXauoASw_437.png"
+   ]
+  },
+  "Character Creator 4 > Edit Spring": {
+   "count": 6,
+   "targets": [
+    [
+     "Spring Type",
+     2
+    ],
+    [
+     "Activate",
+     1
+    ],
+    [
+     "Spring on",
+     1
+    ],
+    [
+     "Active Group",
+     1
+    ],
+    [
+     "Mass / Strength",
+     1
+    ]
+   ],
+   "kinds": {
+    "other": 2,
+    "dropdown": 2,
+    "button": 1,
+    "slider": 1
+   },
+   "shown_frames": [
+    "frames/jphEXauoASw_497.png"
+   ]
+  },
+  "Modify": {
+   "count": 6,
+   "targets": [
+    [
+     "Transfer Skin Weights",
+     3
+    ],
+    [
+     "Corrective Expression",
+     2
+    ],
+    [
+     "Type",
+     1
+    ]
+   ],
+   "kinds": {
+    "button": 3,
+    "other": 1,
+    "checkbox": 2
+   },
+   "shown_frames": []
+  },
+  "Character Creator > Content": {
+   "count": 6,
+   "targets": [
+    [
+     "Content Info",
+     1
+    ],
+    [
+     "Clothing pack",
+     1
+    ],
+    [
+     "Hair",
+     1
+    ],
+    [
+     "Shirt",
+     1
+    ],
+    [
+     "Pants / Coat",
+     1
+    ],
+    [
+     "Necklace / Socks",
+     1
+    ]
+   ],
+   "kinds": {
+    "menu": 1,
+    "list": 5
+   },
+   "shown_frames": []
+  },
+  "HD Face Control": {
+   "count": 6,
+   "targets": [
+    [
+     "HD face control panel",
+     2
+    ],
+    [
+     "Animation preview",
+     1
+    ],
+    [
+     "Face controllers",
+     1
+    ],
+    [
+     "Mouth controllers",
+     1
+    ],
+    [
+     "Display Layer Key Value Only",
+     1
+    ]
+   ],
+   "kinds": {
+    "canvas": 4,
+    "button": 1,
+    "checkbox": 1
+   },
+   "shown_frames": [
+    "frames/L07W7AkI7ZI_97.png",
+    "frames/L07W7AkI7ZI_340.png",
+    "frames/L07W7AkI7ZI_352.png",
+    "frames/L07W7AkI7ZI_360.png"
+   ]
+  },
+  "Plugins > Blender Pipeline": {
+   "count": 5,
+   "targets": [
+    [
+     "Export Character to Blender",
+     1
+    ],
+    [
+     "Export preset",
+     1
+    ],
+    [
+     "Import",
+     1
+    ],
+    [
+     "Delete Hidden Faces",
+     1
+    ],
+    [
+     "DataLink",
+     1
+    ]
+   ],
+   "kinds": {
+    "menu": 1,
+    "other": 2,
+    "button": 1,
+    "checkbox": 1
+   },
+   "shown_frames": [
+    "frames/kPtZ_ys_bcE_21.png",
+    "frames/O1IdyRmgfRk_380.png",
+    "frames/O1IdyRmgfRk_399.png"
+   ]
+  },
+  "Character Creator > Data Link": {
+   "count": 5,
+   "targets": [
+    [
+     "Send Avatar",
+     2
+    ],
+    [
+     "Start server",
+     1
+    ],
+    [
+     "Jacket selected",
+     1
+    ],
+    [
+     "Send Morph",
+     1
+    ]
+   ],
+   "kinds": {
+    "button": 3,
+    "other": 2
+   },
+   "shown_frames": []
+  },
+  "Character Creator > Modify": {
+   "count": 5,
+   "targets": [
+    [
+     "Morphs",
+     1
+    ],
+    [
+     "Bone scale (cheeks)",
+     1
+    ],
+    [
+     "Edit mesh",
+     1
+    ],
+    [
+     "Edit Spring",
+     1
+    ],
+    [
+     "brows",
+     1
+    ]
+   ],
+   "kinds": {
+    "tab": 1,
+    "slider": 1,
+    "button": 2,
+    "canvas": 1
+   },
+   "shown_frames": []
+  },
+  "Web browser": {
+   "count": 5,
+   "targets": [
+    [
+     "Save image as",
+     2
+    ],
+    [
+     "CC UE Control Rig",
+     1
+    ],
+    [
+     "free Reallusion character base models",
+     1
+    ],
+    [
+     "HDRI Haven search",
+     1
+    ]
+   ],
+   "kinds": {
+    "other": 2,
+    "field": 1,
+    "menu": 2
+   },
+   "shown_frames": [
+    "frames/O1IdyRmgfRk_4140.png"
+   ]
+  },
+  "ActorCore Marketplace": {
+   "count": 5,
+   "targets": [
+    [
+     "Download",
+     2
+    ],
+    [
+     "Motion collections",
+     1
+    ],
+    [
+     "Motion preview",
+     1
+    ],
+    [
+     "Embed Texture",
+     1
+    ]
+   ],
+   "kinds": {
+    "list": 1,
+    "other": 1,
+    "button": 2,
+    "checkbox": 1
+   },
+   "shown_frames": []
+  },
+  "Export FBX": {
+   "count": 5,
+   "targets": [
+    [
+     "Export",
+     2
+    ],
+    [
+     "Export FBX",
+     1
+    ],
+    [
+     "Target Tool Preset",
+     1
+    ],
+    [
+     "Export Range",
+     1
+    ]
+   ],
+   "kinds": {
+    "button": 3,
+    "dropdown": 2
+   },
+   "shown_frames": [
+    "frames/L07W7AkI7ZI_395.png",
+    "frames/jBQBWrmRS7s_211.png"
+   ]
+  },
+  "Unreal Engine > Import Options": {
+   "count": 5,
+   "targets": [
+    [
+     "Shader",
+     1
+    ],
+    [
+     "Import Morph Target",
+     1
+    ],
+    [
+     "Import Animation",
+     1
+    ],
+    [
+     "Animation Length",
+     1
+    ],
+    [
+     "Import",
+     1
+    ]
+   ],
+   "kinds": {
+    "dropdown": 2,
+    "checkbox": 2,
+    "button": 1
+   },
+   "shown_frames": [
+    "frames/L07W7AkI7ZI_416.png"
+   ]
+  },
+  "Character Creator 4 > Material": {
+   "count": 4,
+   "targets": [
+    [
+     "Shader Type",
+     1
+    ],
+    [
+     "Base Color",
+     1
+    ],
+    [
+     "Strength",
+     1
+    ],
+    [
+     "Specular direction",
+     1
+    ]
+   ],
+   "kinds": {
+    "dropdown": 1,
+    "other": 1,
+    "slider": 2
+   },
+   "shown_frames": []
+  },
+  "Character Creator > Custom morph dialog": {
+   "count": 4,
+   "targets": [
+    [
+     "Name",
+     1
+    ],
+    [
+     "Folder",
+     1
+    ],
+    [
+     "Range / Source morph",
+     1
+    ],
+    [
+     "Auto apply / Adjust bones / Create slider",
+     1
+    ]
+   ],
+   "kinds": {
+    "field": 3,
+    "checkbox": 1
+   },
+   "shown_frames": []
+  },
+  "Character Creator > Content Manager": {
+   "count": 4,
+   "targets": [
+    [
+     "Parkour Side Flip",
+     2
+    ],
+    [
+     "Animation",
+     1
+    ],
+    [
+     "spinning parkour motion",
+     1
+    ]
+   ],
+   "kinds": {
+    "list": 4
+   },
+   "shown_frames": []
+  },
+  "Character Creator 4 > Export FBX": {
+   "count": 3,
+   "targets": [
+    [
+     "Preset",
+     1
+    ],
+    [
+     "Mesh / Default pose",
+     1
+    ],
+    [
+     "Export",
+     1
+    ]
+   ],
+   "kinds": {
+    "dropdown": 1,
+    "other": 1,
+    "button": 1
+   },
+   "shown_frames": [
+    "frames/jphEXauoASw_83.png"
+   ]
+  },
+  "Character Creator 4 > Characterization": {
+   "count": 3,
+   "targets": [
+    [
+     "Cancel",
+     1
+    ],
+    [
+     "Mirror",
+     1
+    ],
+    [
+     "Select Child Bones",
+     1
+    ]
+   ],
+   "kinds": {
+    "button": 1,
+    "checkbox": 2
+   },
+   "shown_frames": []
+  },
+  "Character Creator 4 > Plugins": {
+   "count": 3,
+   "targets": [
+    [
+     "Export Character",
+     1
+    ],
+    [
+     "Import Character",
+     1
+    ],
+    [
+     "Export preset",
+     1
+    ]
+   ],
+   "kinds": {
+    "button": 2,
+    "other": 1
+   },
+   "shown_frames": []
+  },
+  "Blender Auto Setup page": {
+   "count": 3,
+   "targets": [
+    [
+     "Blender Auto Setup page",
+     1
+    ],
+    [
+     "Learning Center tutorials",
+     1
+    ],
+    [
+     "Free download",
+     1
+    ]
+   ],
+   "kinds": {
+    "other": 2,
+    "button": 1
+   },
+   "shown_frames": [
+    "frames/O1IdyRmgfRk_2639.png"
+   ]
+  },
+  "ActorCore > Motions": {
+   "count": 3,
+   "targets": [
+    [
+     "Motions",
+     1
+    ],
+    [
+     "Free",
+     1
+    ],
+    [
+     "Add to cart",
+     1
+    ]
+   ],
+   "kinds": {
+    "tab": 1,
+    "button": 2
+   },
+   "shown_frames": []
+  },
+  "iClone > Pipelines, Plug-ins & Render": {
+   "count": 3,
+   "targets": [
+    [
+     "Getting Started with Blender Data Link | Character Creator 4 Tutorial",
+     1
+    ],
+    [
+     "Transfer Scene and Crowd with Blender Data Link | Character Creator 4 Tutorial",
+     1
+    ],
+    [
+     "Importing Body & Facial Animations to Blender | iClone 8 Tutorial",
+     1
+    ]
+   ],
+   "kinds": {
+    "list": 3
+   },
+   "shown_frames": [
+    "frames/O1IdyRmgfRk_4451.png",
+    "frames/O1IdyRmgfRk_4466.png",
+    "frames/O1IdyRmgfRk_4482.png"
+   ]
+  },
+  "Character Creator 4 > Modify panel": {
+   "count": 3,
+   "targets": [
+    [
+     "Morph tab",
+     1
+    ],
+    [
+     "Search",
+     1
+    ],
+    [
+     "Existing morph sliders",
+     1
+    ]
+   ],
+   "kinds": {
+    "tab": 1,
+    "field": 1,
+    "slider": 1
+   },
+   "shown_frames": [
+    "frames/99074uIeMAY_39.png",
+    "frames/99074uIeMAY_43.png"
+   ]
+  },
+  "Blender DataLink > Import Character Morph": {
+   "count": 3,
+   "targets": [
+    [
+     "Category",
+     1
+    ],
+    [
+     "Adjust Bones",
+     1
+    ],
+    [
+     "Auto Apply",
+     1
+    ]
+   ],
+   "kinds": {
+    "dropdown": 1,
+    "checkbox": 2
+   },
+   "shown_frames": [
+    "frames/99074uIeMAY_198.png",
+    "frames/99074uIeMAY_210.png",
+    "frames/99074uIeMAY_217.png"
+   ]
+  },
+  "ZBrush": {
+   "count": 3,
+   "targets": [
+    [
+     "GoZ",
+     2
+    ],
+    [
+     "Eye geometry",
+     1
+    ]
+   ],
+   "kinds": {
+    "canvas": 1,
+    "button": 2
+   },
+   "shown_frames": []
+  },
+  "Character Creator 4 > Create": {
+   "count": 2,
+   "targets": [
+    [
+     "Accessory",
+     2
+    ]
+   ],
+   "kinds": {
+    "menu": 2
+   },
+   "shown_frames": []
+  },
+  "File > Export": {
+   "count": 2,
+   "targets": [
+    [
+     "Target Tool Preset",
+     1
+    ],
+    [
+     "FBX Options",
+     1
+    ]
+   ],
+   "kinds": {
+    "dropdown": 2
+   },
+   "shown_frames": []
+  },
+  "Character Creator 4 > Attributes": {
+   "count": 2,
+   "targets": [
+    [
+     "Conform",
+     1
+    ],
+    [
+     "Conform value",
+     1
+    ]
+   ],
+   "kinds": {
+    "other": 1,
+    "field": 1
+   },
+   "shown_frames": []
+  },
+  "Character Creator 4 > Content": {
+   "count": 2,
+   "targets": [
+    [
+     "Save",
+     1
+    ],
+    [
+     "HairElement",
+     1
+    ]
+   ],
+   "kinds": {
+    "button": 1,
+    "other": 1
+   },
+   "shown_frames": [
+    "frames/92CED6LtECo_453.png",
+    "frames/92CED6LtECo_464.png"
+   ]
+  },
+  "Character Creator > Characters pack": {
+   "count": 2,
+   "targets": [
+    [
+     "Base characters",
+     1
+    ],
+    [
+     "Toon neutral female",
+     1
+    ]
+   ],
+   "kinds": {
+    "list": 2
+   },
+   "shown_frames": []
+  },
+  "Character Creator > Plugins": {
+   "count": 2,
+   "targets": [
+    [
+     "Blender Pipeline",
+     1
+    ],
+    [
+     "Data Link folder / Blender executable",
+     1
+    ]
+   ],
+   "kinds": {
+    "menu": 1,
+    "field": 1
+   },
+   "shown_frames": []
+  },
+  "Character Creator > Scene Manager": {
+   "count": 2,
+   "targets": [
+    [
+     "Character",
+     1
+    ],
+    [
+     "character",
+     1
+    ]
+   ],
+   "kinds": {
+    "list": 2
+   },
+   "shown_frames": []
+  },
+  "DataLink > Morph": {
+   "count": 2,
+   "targets": [
+    [
+     "Send Morph",
+     2
+    ]
+   ],
+   "kinds": {
+    "button": 2
+   },
+   "shown_frames": [
+    "frames/O1IdyRmgfRk_596.png",
+    "frames/O1IdyRmgfRk_621.png"
+   ]
+  },
+  "Character Creator > Edit mesh": {
+   "count": 2,
+   "targets": [
+    [
+     "Intensity / Radius",
+     1
+    ],
+    [
+     "Mirror X",
+     1
+    ]
+   ],
+   "kinds": {
+    "slider": 1,
+    "checkbox": 1
+   },
+   "shown_frames": []
+  },
+  "Character Creator > Edit Mesh": {
+   "count": 2,
+   "targets": [
+    [
+     "Smooth",
+     1
+    ],
+    [
+     "Jacket mesh",
+     1
+    ]
+   ],
+   "kinds": {
+    "button": 1,
+    "canvas": 1
+   },
+   "shown_frames": [
+    "frames/O1IdyRmgfRk_1278.png"
+   ]
+  },
+  "Character Creator > Motion": {
+   "count": 2,
+   "targets": [
+    [
+     "Idle",
+     1
+    ],
+    [
+     "Female walk",
+     1
+    ]
+   ],
+   "kinds": {
+    "list": 2
+   },
+   "shown_frames": []
+  },
+  "Character Creator > Attributes": {
+   "count": 2,
+   "targets": [
+    [
+     "Attach to Pick Parent",
+     1
+    ],
+    [
+     "...",
+     1
+    ]
+   ],
+   "kinds": {
+    "button": 2
+   },
+   "shown_frames": [
+    "frames/O1IdyRmgfRk_2370.png"
+   ]
+  },
+  "Reallusion Hub": {
+   "count": 2,
+   "targets": [
+    [
+     "Blender Pipeline",
+     1
+    ],
+    [
+     "Blender Auto Setup",
+     1
+    ]
+   ],
+   "kinds": {
+    "list": 1,
+    "button": 1
+   },
+   "shown_frames": []
+  },
+  "Character Creator > Edit Facial": {
+   "count": 2,
+   "targets": [
+    [
+     "Happy",
+     1
+    ],
+    [
+     "expression presets",
+     1
+    ]
+   ],
+   "kinds": {
+    "list": 2
+   },
+   "shown_frames": [
+    "frames/O1IdyRmgfRk_2919.png"
+   ]
+  },
+  "Reallusion online tutorials > iClone": {
+   "count": 2,
+   "targets": [
+    [
+     "Blender",
+     1
+    ],
+    [
+     "Auto Setup / Rigify tutorial",
+     1
+    ]
+   ],
+   "kinds": {
+    "other": 1,
+    "list": 1
+   },
+   "shown_frames": []
+  },
+  "iClone > Data Link": {
+   "count": 2,
+   "targets": [
+    [
+     "Send All",
+     1
+    ],
+    [
+     "Send Avatars",
+     1
+    ]
+   ],
+   "kinds": {
+    "button": 2
+   },
+   "shown_frames": []
+  },
+  "Data Link": {
+   "count": 2,
+   "targets": [
+    [
+     "Sync Lights",
+     1
+    ],
+    [
+     "Light intensity",
+     1
+    ]
+   ],
+   "kinds": {
+    "button": 1,
+    "slider": 1
+   },
+   "shown_frames": []
+  },
+  "HDRI Haven": {
+   "count": 2,
+   "targets": [
+    [
+     "Indoor HDRI",
+     1
+    ],
+    [
+     "Download 8K tone map",
+     1
+    ]
+   ],
+   "kinds": {
+    "list": 1,
+    "button": 1
+   },
+   "shown_frames": []
+  },
+  "Reallusion Hub > Character Creator": {
+   "count": 2,
+   "targets": [
+    [
+     "Plugins",
+     1
+    ],
+    [
+     "Install",
+     1
+    ]
+   ],
+   "kinds": {
+    "tab": 1,
+    "button": 1
+   },
+   "shown_frames": []
+  },
+  "Unreal Engine": {
+   "count": 2,
+   "targets": [
+    [
+     "Import",
+     1
+    ],
+    [
+     "Animation preview",
+     1
+    ]
+   ],
+   "kinds": {
+    "button": 1,
+    "canvas": 1
+   },
+   "shown_frames": [
+    "frames/L07W7AkI7ZI_431.png"
+   ]
+  },
+  "Unreal": {
+   "count": 2,
+   "targets": [
+    [
+     "Import",
+     1
+    ],
+    [
+     "Animation sequence",
+     1
+    ]
+   ],
+   "kinds": {
+    "button": 1,
+    "other": 1
+   },
+   "shown_frames": []
+  },
+  "Unreal > Import Options": {
+   "count": 2,
+   "targets": [
+    [
+     "Import Morph Targets",
+     1
+    ],
+    [
+     "Import Animation",
+     1
+    ]
+   ],
+   "kinds": {
+    "checkbox": 2
+   },
+   "shown_frames": []
+  },
+  "File": {
+   "count": 1,
+   "targets": [
+    [
+     "Export",
+     1
+    ]
+   ],
+   "kinds": {
+    "menu": 1
+   },
+   "shown_frames": [
+    "frames/Rjpm8AJeoD0_12.png"
+   ]
+  },
+  "Character Creator 4 > File": {
+   "count": 1,
+   "targets": [
+    [
+     "FBX (Clothed Character)",
+     1
+    ]
+   ],
+   "kinds": {
+    "menu": 1
+   },
+   "shown_frames": []
+  },
+  "Character Creator 4 > Import Fbx": {
+   "count": 1,
+   "targets": [
+    [
+     "Character",
+     1
+    ]
+   ],
+   "kinds": {
+    "button": 1
+   },
+   "shown_frames": [
+    "frames/jphEXauoASw_98.png"
+   ]
+  },
+  "CC4 install folder > Bin64": {
+   "count": 1,
+   "targets": [
+    [
+     "OpenPlugin folder",
+     1
+    ]
+   ],
+   "kinds": {
+    "other": 1
+   },
+   "shown_frames": []
+  },
+  "Character Creator 4 > Blender Auto-setup Character Export (1.1.3) - Options": {
+   "count": 1,
+   "targets": [
+    [
+     "Export Character",
+     1
+    ]
+   ],
+   "kinds": {
+    "button": 1
+   },
+   "shown_frames": [
+    "frames/jphEXauoASw_214.png"
+   ]
+  },
+  "Character Creator 4 > Bone Manager": {
+   "count": 1,
+   "targets": [
+    [
+     "Used",
+     1
+    ]
+   ],
+   "kinds": {
+    "button": 1
+   },
+   "shown_frames": []
+  },
+  "Character Creator 4 > Scene": {
+   "count": 1,
+   "targets": [
+    [
+     "Name",
+     1
+    ]
+   ],
+   "kinds": {
+    "field": 1
+   },
+   "shown_frames": []
+  },
+  "Character Creator 4 > Timeline": {
+   "count": 1,
+   "targets": [
+    [
+     "Restore Bind Pose",
+     1
+    ]
+   ],
+   "kinds": {
+    "button": 1
+   },
+   "shown_frames": []
+  },
+  "Character Creator 4 > Import": {
+   "count": 1,
+   "targets": [
+    [
+     "Cancel",
+     1
+    ]
+   ],
+   "kinds": {
+    "button": 1
+   },
+   "shown_frames": []
+  },
+  "Character Creator 4 > Scene Manager": {
+   "count": 1,
+   "targets": [
+    [
+     "Accessories",
+     1
+    ]
+   ],
+   "kinds": {
+    "list": 1
+   },
+   "shown_frames": []
+  },
+  "Modify > Material List": {
+   "count": 1,
+   "targets": [
+    [
+     "Texture Settings",
+     1
+    ]
+   ],
+   "kinds": {
+    "other": 1
+   },
+   "shown_frames": [
+    "frames/jjh7AihrFuw_94.png"
+   ]
+  },
+  "Modify > Attach": {
+   "count": 1,
+   "targets": [
+    [
+     "Attach to",
+     1
+    ]
+   ],
+   "kinds": {
+    "field": 1
+   },
+   "shown_frames": [
+    "frames/jjh7AihrFuw_135.png"
+   ]
+  },
+  "Modify > Transfer Skin Weights": {
+   "count": 1,
+   "targets": [
+    [
+     "Transfer Skin Weights",
+     1
+    ]
+   ],
+   "kinds": {
+    "button": 1
+   },
+   "shown_frames": [
+    "frames/jjh7AihrFuw_193.png"
+   ]
+  },
+  "Character Creator 4 > Edit Facial": {
+   "count": 1,
+   "targets": [
+    [
+     "Edit Facial",
+     1
+    ]
+   ],
+   "kinds": {
+    "other": 1
+   },
+   "shown_frames": []
+  },
+  "Import": {
+   "count": 1,
+   "targets": [
+    [
+     "Merge",
+     1
+    ]
+   ],
+   "kinds": {
+    "other": 1
+   },
+   "shown_frames": []
+  },
+  "Modify > Skin Weights": {
+   "count": 1,
+   "targets": [
+    [
+     "Brushes",
+     1
+    ]
+   ],
+   "kinds": {
+    "other": 1
+   },
+   "shown_frames": []
+  },
+  "Modify > Shoe": {
+   "count": 1,
+   "targets": [
+    [
+     "Skin Weights",
+     1
+    ]
+   ],
+   "kinds": {
+    "button": 1
+   },
+   "shown_frames": [
+    "frames/kPtZ_ys_bcE_304.png"
+   ]
+  },
+  "Character Creator 4 > Actor Parts": {
+   "count": 1,
+   "targets": [
+    [
+     "Hair morphs",
+     1
+    ]
+   ],
+   "kinds": {
+    "slider": 1
+   },
+   "shown_frames": []
+  },
+  "Zoom": {
+   "count": 1,
+   "targets": [
+    [
+     "Share screen",
+     1
+    ]
+   ],
+   "kinds": {
+    "button": 1
+   },
+   "shown_frames": []
+  },
+  "FBX Timecode Sync with iClone": {
+   "count": 1,
+   "targets": [
+    [
+     "TIMECODE",
+     1
+    ]
+   ],
+   "kinds": {
+    "other": 1
+   },
+   "shown_frames": [
+    "frames/O1IdyRmgfRk_115.png"
+   ]
+  },
+  "CC5 Prelaunch Offer: Get Character Creator 5": {
+   "count": 1,
+   "targets": [
+    [
+     "CC5 Prelaunch Offer",
+     1
+    ]
+   ],
+   "kinds": {
+    "other": 1
+   },
+   "shown_frames": [
+    "frames/O1IdyRmgfRk_141.png"
+   ]
+  },
+  "Online Educational Discount > Learn": {
+   "count": 1,
+   "targets": [
+    [
+     "Learn",
+     1
+    ]
+   ],
+   "kinds": {
+    "other": 1
+   },
+   "shown_frames": [
+    "frames/O1IdyRmgfRk_189.png"
+   ]
+  },
+  "Import Character Morph": {
+   "count": 1,
+   "targets": [
+    [
+     "Category",
+     1
+    ]
+   ],
+   "kinds": {
+    "dropdown": 1
+   },
+   "shown_frames": [
+    "frames/O1IdyRmgfRk_954.png"
+   ]
+  },
+  "Modify > Morphs": {
+   "count": 1,
+   "targets": [
+    [
+     "Catwoman",
+     1
+    ]
+   ],
+   "kinds": {
+    "slider": 1
+   },
+   "shown_frames": [
+    "frames/O1IdyRmgfRk_1023.png"
+   ]
+  },
+  "Modify > Edit Mesh": {
+   "count": 1,
+   "targets": [
+    [
+     "Brush Type",
+     1
+    ]
+   ],
+   "kinds": {
+    "radio": 1
+   },
+   "shown_frames": [
+    "frames/O1IdyRmgfRk_1109.png"
+   ]
+  },
+  "Character Creator > Skin": {
+   "count": 1,
+   "targets": [
+    [
+     "Skin template",
+     1
+    ]
+   ],
+   "kinds": {
+    "list": 1
+   },
+   "shown_frames": []
+  },
+  "Character Creator > Create": {
+   "count": 1,
+   "targets": [
+    [
+     "Accessory",
+     1
+    ]
+   ],
+   "kinds": {
+    "menu": 1
+   },
+   "shown_frames": []
+  },
+  "Character Creator > Import": {
+   "count": 1,
+   "targets": [
+    [
+     "Prop",
+     1
+    ]
+   ],
+   "kinds": {
+    "radio": 1
+   },
+   "shown_frames": []
+  },
+  "Character Creator > Pose": {
+   "count": 1,
+   "targets": [
+    [
+     "A-pose / T-pose",
+     1
+    ]
+   ],
+   "kinds": {
+    "list": 1
+   },
+   "shown_frames": []
+  },
+  "Character Creator > Timeline": {
+   "count": 1,
+   "targets": [
+    [
+     "Play",
+     1
+    ]
+   ],
+   "kinds": {
+    "button": 1
+   },
+   "shown_frames": []
+  },
+  "Reallusion Hub > Blender Pipeline": {
+   "count": 1,
+   "targets": [
+    [
+     "Installed",
+     1
+    ]
+   ],
+   "kinds": {
+    "button": 1
+   },
+   "shown_frames": []
+  },
+  "Reallusion Hub > Blender Auto Setup": {
+   "count": 1,
+   "targets": [
+    [
+     "Product Home",
+     1
+    ]
+   ],
+   "kinds": {
+    "button": 1
+   },
+   "shown_frames": []
+  },
+  "Reallusion site > Purchase": {
+   "count": 1,
+   "targets": [
+    [
+     "ActorCore",
+     1
+    ]
+   ],
+   "kinds": {
+    "menu": 1
+   },
+   "shown_frames": []
+  },
+  "ActorCore > Actors": {
+   "count": 1,
+   "targets": [
+    [
+     "Actors",
+     1
+    ]
+   ],
+   "kinds": {
+    "tab": 1
+   },
+   "shown_frames": []
+  },
+  "Character Creator > iClone": {
+   "count": 1,
+   "targets": [
+    [
+     "Send to iClone",
+     1
+    ]
+   ],
+   "kinds": {
+    "button": 1
+   },
+   "shown_frames": []
+  },
+  "Reallusion online tutorials > Character Creator": {
+   "count": 1,
+   "targets": [
+    [
+     "Blender pipeline tutorials",
+     1
+    ]
+   ],
+   "kinds": {
+    "other": 1
+   },
+   "shown_frames": []
+  },
+  "Reallusion online tutorials > Content Developer": {
+   "count": 1,
+   "targets": [
+    [
+     "Content Developer publishing tutorials",
+     1
+    ]
+   ],
+   "kinds": {
+    "other": 1
+   },
+   "shown_frames": []
+  },
+  "Character Creator 4 > Actor": {
+   "count": 1,
+   "targets": [
+    [
+     "Base characters",
+     1
+    ]
+   ],
+   "kinds": {
+    "list": 1
+   },
+   "shown_frames": []
+  },
+  "Reallusion HUB > Products": {
+   "count": 1,
+   "targets": [
+    [
+     "Blender Auto Setup",
+     1
+    ]
+   ],
+   "kinds": {
+    "button": 1
+   },
+   "shown_frames": [
+    "frames/GWQTDKpLBcQ_27.png"
+   ]
+  },
+  "ActorCore > MOTION": {
+   "count": 1,
+   "targets": [
+    [
+     "Talking icon",
+     1
+    ]
+   ],
+   "kinds": {
+    "other": 1
+   },
+   "shown_frames": [
+    "frames/2Mu44jQc04w_224.png"
+   ]
+  },
+  "ActorCore > DOWNLOAD SETTINGS": {
+   "count": 1,
+   "targets": [
+    [
+     "Target Application",
+     1
+    ]
+   ],
+   "kinds": {
+    "dropdown": 1
+   },
+   "shown_frames": [
+    "frames/2Mu44jQc04w_258.png"
+   ]
+  },
+  "iClone > Plugins": {
+   "count": 1,
+   "targets": [
+    [
+     "Data Link",
+     1
+    ]
+   ],
+   "kinds": {
+    "menu": 1
+   },
+   "shown_frames": []
+  },
+  "Blender DataLink > Lights & Camera": {
+   "count": 1,
+   "targets": [
+    [
+     "Sync Lights",
+     1
+    ]
+   ],
+   "kinds": {
+    "button": 1
+   },
+   "shown_frames": [
+    "frames/IeZhOeOk5OU_88.png"
+   ]
+  },
+  "Character Creator 4 > Settings": {
+   "count": 1,
+   "targets": [
+    [
+     "Data Link folder",
+     1
+    ]
+   ],
+   "kinds": {
+    "field": 1
+   },
+   "shown_frames": []
+  },
+  "Character Creator 4 > Attributes tab": {
+   "count": 1,
+   "targets": [
+    [
+     "Proportion bone adjustments",
+     1
+    ]
+   ],
+   "kinds": {
+    "slider": 1
+   },
+   "shown_frames": []
+  },
+  "Create Head && Body Morph Sliders": {
+   "count": 1,
+   "targets": [
+    [
+     "Category",
+     1
+    ]
+   ],
+   "kinds": {
+    "radio": 1
+   },
+   "shown_frames": [
+    "frames/99074uIeMAY_231.png"
+   ]
+  },
+  "Desktop": {
+   "count": 1,
+   "targets": [
+    [
+     "Exported files",
+     1
+    ]
+   ],
+   "kinds": {
+    "other": 1
+   },
+   "shown_frames": []
+  },
+  "Poly Haven > HDRIs": {
+   "count": 1,
+   "targets": [
+    [
+     "Download 8K tone map",
+     1
+    ]
+   ],
+   "kinds": {
+    "button": 1
+   },
+   "shown_frames": [
+    "frames/LXzjbflCe1s_1308.png"
+   ]
+  },
+  "File explorer": {
+   "count": 1,
+   "targets": [
+    [
+     "MKV file",
+     1
+    ]
+   ],
+   "kinds": {
+    "canvas": 1
+   },
+   "shown_frames": [
+    "frames/LXzjbflCe1s_2095.png"
+   ]
+  },
+  "iClone > Face Puppet": {
+   "count": 1,
+   "targets": [
+    [
+     "Face Puppet",
+     1
+    ]
+   ],
+   "kinds": {
+    "canvas": 1
+   },
+   "shown_frames": [
+    "frames/L07W7AkI7ZI_44.png"
+   ]
+  },
+  "Live Face": {
+   "count": 1,
+   "targets": [
+    [
+     "Live Face mocap",
+     1
+    ]
+   ],
+   "kinds": {
+    "other": 1
+   },
+   "shown_frames": []
+  },
+  "AccuFace": {
+   "count": 1,
+   "targets": [
+    [
+     "AccuFace",
+     1
+    ]
+   ],
+   "kinds": {
+    "other": 1
+   },
+   "shown_frames": []
+  },
+  "Motion LIVE": {
+   "count": 1,
+   "targets": [
+    [
+     "Nonlinear",
+     1
+    ]
+   ],
+   "kinds": {
+    "checkbox": 1
+   },
+   "shown_frames": []
+  },
+  "Face Key": {
+   "count": 1,
+   "targets": [
+    [
+     "Face Key",
+     1
+    ]
+   ],
+   "kinds": {
+    "canvas": 1
+   },
+   "shown_frames": []
+  },
+  "HD Face Control > Timeline": {
+   "count": 1,
+   "targets": [
+    [
+     "Face controllers",
+     1
+    ]
+   ],
+   "kinds": {
+    "canvas": 1
+   },
+   "shown_frames": [
+    "frames/L07W7AkI7ZI_347.png"
+   ]
+  },
+  "Export FBX > Target Tool Preset": {
+   "count": 1,
+   "targets": [
+    [
+     "Target Tool Preset",
+     1
+    ]
+   ],
+   "kinds": {
+    "dropdown": 1
+   },
+   "shown_frames": []
+  },
+  "Export FBX > Export Range": {
+   "count": 1,
+   "targets": [
+    [
+     "Export Range",
+     1
+    ]
+   ],
+   "kinds": {
+    "radio": 1
+   },
+   "shown_frames": [
+    "frames/L07W7AkI7ZI_392.png"
+   ]
+  },
+  "Unreal Engine > Animation Sequence": {
+   "count": 1,
+   "targets": [
+    [
+     "Morph target curves",
+     1
+    ]
+   ],
+   "kinds": {
+    "list": 1
+   },
+   "shown_frames": []
+  },
+  "Facial Profile Editor > Custom": {
+   "count": 1,
+   "targets": [
+    [
+     "Nonlinear mouth morph sliders",
+     1
+    ]
+   ],
+   "kinds": {
+    "slider": 1
+   },
+   "shown_frames": [
+    "frames/jBQBWrmRS7s_157.png"
+   ]
+  },
+  "Custom": {
+   "count": 1,
+   "targets": [
+    [
+     "Nonlinear curve",
+     1
+    ]
+   ],
+   "kinds": {
+    "slider": 1
+   },
+   "shown_frames": []
+  },
+  "Motion Live": {
+   "count": 1,
+   "targets": [
+    [
+     "Nonlinear",
+     1
+    ]
+   ],
+   "kinds": {
+    "checkbox": 1
+   },
+   "shown_frames": []
+  },
+  "Unreal > Character Creator & iClone Auto Setup Import Options": {
+   "count": 1,
+   "targets": [
+    [
+     "HQ Shader",
+     1
+    ]
+   ],
+   "kinds": {
+    "radio": 1
+   },
+   "shown_frames": [
+    "frames/jBQBWrmRS7s_220.png"
+   ]
+  },
+  "Unreal > FBX Import Options": {
+   "count": 1,
+   "targets": [
+    [
+     "Animation Length",
+     1
+    ]
+   ],
+   "kinds": {
+    "dropdown": 1
+   },
+   "shown_frames": [
+    "frames/jBQBWrmRS7s_231.png"
+   ]
+  }
+ }
+}
