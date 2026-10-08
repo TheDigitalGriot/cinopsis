@@ -148,6 +148,7 @@ def make_video(vid, title, channel, summary, digest, harvest=None, extra=None):
         "channel": channel or "",
         "url": f"https://youtu.be/{vid}" if vid and len(vid) == 11 else "",
         "summary": summary or "",
+        "chapters": [],  # schema: [] when the video has none (a digest carries no chapter markers)
         "digest": {
             "core_takeaway": digest.get("core_takeaway", ""),
             "key_points": digest.get("key_points", []),
@@ -198,6 +199,16 @@ def theme_sections(md):
     return [(parts[i].strip(), parts[i + 1]) for i in range(1, len(parts) - 1, 2)]
 
 
+def make_topic(name, entries):
+    """Schema-exact topic (comparison-schema.md): video_coverage is the sorted unique
+    session video ids, consensus a real enum. A catch-up digest is one source's
+    read per video, so there is nothing to divide - 'agreement'. Drift: was
+    len(entries) (an int) and "" at four sites, failing validate_comparison."""
+    return {"name": name,
+            "video_coverage": sorted({e["video_id"] for e in entries}),
+            "consensus": "agreement", "entries": entries}
+
+
 # ---------------------------------------------------------------------------
 # per-day parsers
 # ---------------------------------------------------------------------------
@@ -225,10 +236,9 @@ def parse_2026_08_16(md, titles):
             if extra["id_status"] == "unresolved":
                 video["url"] = search_url(title)
             videos.append(video)
-            entries.append({"video_id": vid, "timestamp": "", "quote": tail})
+            entries.append({"video_id": vid, "timestamp": 0, "quote": tail})
         if entries:
-            topics.append({"name": name, "video_coverage": len(entries),
-                           "consensus": "", "entries": entries})
+            topics.append(make_topic(name, entries))
     return videos, topics
 
 
@@ -261,10 +271,9 @@ def parse_2026_08_20(md, titles):
                 seen.add(vid)
                 videos.append(make_video(vid, titles.get(vid, title), "", summary,
                                          {"core_takeaway": takeaway}, extra=extra))
-            entries.append({"video_id": vid, "timestamp": "", "quote": takeaway})
+            entries.append({"video_id": vid, "timestamp": 0, "quote": takeaway})
         if entries:
-            topics.append({"name": name, "video_coverage": len(entries),
-                           "consensus": "", "entries": entries})
+            topics.append(make_topic(name, entries))
     return videos, topics
 
 
@@ -321,15 +330,13 @@ def parse_2026_08_25(md, titles):
     if videos:
         deep = [v for v in videos if v.get("digest_source") != "description"]
         if deep:
-            topics.append({"name": "Deep transcript digests", "video_coverage": len(deep),
-                           "consensus": "", "entries": [
-                               {"video_id": v["id"], "timestamp": "",
-                                "quote": v["digest"]["core_takeaway"]} for v in deep]})
+            topics.append(make_topic("Deep transcript digests", [
+                               {"video_id": v["id"], "timestamp": 0,
+                                "quote": v["digest"]["core_takeaway"]} for v in deep]))
         if quick:
-            topics.append({"name": "Roundups & quick-hits (description-based)",
-                           "video_coverage": len(quick), "consensus": "", "entries": [
-                               {"video_id": v["id"], "timestamp": "",
-                                "quote": v["digest"]["core_takeaway"]} for v in quick]})
+            topics.append(make_topic("Roundups & quick-hits (description-based)", [
+                               {"video_id": v["id"], "timestamp": 0,
+                                "quote": v["digest"]["core_takeaway"]} for v in quick]))
     return videos, topics
 
 
