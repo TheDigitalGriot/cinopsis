@@ -162,10 +162,14 @@ def apply_digest_overlay(videos, overlay, cached_ids):
         if vid not in cached_ids:
             refused.append(vid)
             continue
-        kp = entry.get("key_points") or []
-        if not (isinstance(kp, list) and all(isinstance(k, str) for k in kp)):
-            raise ValueError(f"overlay {vid}: key_points must be a list of strings")
-        video["digest"] = {k: entry.get(k, [] if k == "key_points" else "") for k in OVERLAY_FIELDS}
+        missing = [k for k in OVERLAY_FIELDS if not entry.get(k)]
+        if missing:
+            # A partial entry would blank the source digest while stamping it transcript-derived.
+            raise ValueError(f"overlay {vid}: missing or empty {missing}")
+        kp = entry["key_points"]
+        if not (isinstance(kp, list) and all(isinstance(k, str) and k.strip() for k in kp)):
+            raise ValueError(f"overlay {vid}: key_points must be a list of non-empty strings")
+        video["digest"] = {k: entry[k] for k in OVERLAY_FIELDS}
         video["digest_source"] = "transcript"
         if entry.get("quality_flag"):
             video["quality_flag"] = entry["quality_flag"]

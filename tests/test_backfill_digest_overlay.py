@@ -58,3 +58,12 @@ def test_uncached_digest_declares_catchup_source():
     assert "digest_source" not in videos[0]          # transcript-backed: untouched
     assert videos[1]["digest_source"] == "catchup-markdown"
     assert videos[2]["digest_source"] == "description"  # an existing declaration wins
+
+
+def test_partial_overlay_entry_is_refused_not_blanked():
+    import pytest
+    videos = [_video("AAAAAAAAAAA")]
+    ov = {"AAAAAAAAAAA": {"key_points": ["p"], "why_it_matters": "w"}}  # no core_takeaway
+    with pytest.raises(ValueError, match="core_takeaway"):
+        bc.apply_digest_overlay(videos, ov, {"AAAAAAAAAAA"})
+    assert videos[0]["digest"]["core_takeaway"] == "src takeaway"
