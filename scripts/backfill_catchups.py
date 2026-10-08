@@ -33,6 +33,19 @@ compare_server._build_video_lookup() skips any video with a falsy id -- an empty
 id would make them invisible in the very library view they belong in. They are
 tagged id_status='unresolved' so a real id can be filled in later.
 
+DIGEST OVERLAY (offline, transcript-derived)
+--------------------------------------------
+Some catch-up formats carry only a one-line takeaway (08-16, 08-20), so their
+key_points / why_it_matters are empty. A per-day overlay at
+.prism/local/backfill/digest-overlay-<day>.json fills them from a digest written
+over the CACHED transcript (the digest-writer path, never this script):
+  {"day": "<day>", "videos": {"<id>": {"core_takeaway": str, "key_points": [str],
+   "why_it_matters": str, "digest_source": "transcript", "quality_flag": str?}}}
+An entry is applied ONLY when a cached transcript exists for that id, so the
+overlay can never present a transcript-derived digest with no transcript behind it
+(INV2). Videos with no cached transcript keep their source takeaway and empty
+fields - they are reported, never padded.
+
 Idempotent: a day whose session title is already in the canonical index is
 skipped unless --force.
 
@@ -113,6 +126,52 @@ def cached_transcript_ids():
             for path in base.glob("transcript_*.json"):
                 ids.add(path.stem[len("transcript_"):])
     return ids
+
+
+OVERLAY_FIELDS = ("core_takeaway", "key_points", "why_it_matters")
+
+
+def overlay_path(day):
+    return ARTIFACT_DIR / f"digest-overlay-{day}.json"
+
+
+def load_digest_overlay(day, path=None):
+    """{id: entry} from the day's digest overlay, or {} when there is none."""
+    path = path or overlay_path(day)
+    if not path.exists():
+        return {}
+    with open(path, encoding="utf-8") as f:
+        data = json.load(f)
+    if data.get("day") not in (None, day):
+        raise ValueError(f"{path.name} is for day {data.get('day')!r}, not {day}")
+    return data.get("videos") or {}
+
+
+def apply_digest_overlay(videos, overlay, cached_ids):
+    """Replace digest fields with transcript-derived ones, in place.
+
+    Returns (applied, refused, unmatched): refused = overlay ids with no cached
+    transcript (never applied), unmatched = overlay ids not in this day's videos.
+    """
+    by_id = {v.get("id"): v for v in videos}
+    applied, refused = [], []
+    for vid, entry in overlay.items():
+        video = by_id.get(vid)
+        if video is None:
+            continue
+        if vid not in cached_ids:
+            refused.append(vid)
+            continue
+        kp = entry.get("key_points") or []
+        if not (isinstance(kp, list) and all(isinstance(k, str) for k in kp)):
+            raise ValueError(f"overlay {vid}: key_points must be a list of strings")
+        video["digest"] = {k: entry.get(k, [] if k == "key_points" else "") for k in OVERLAY_FIELDS}
+        video["digest_source"] = "transcript"
+        if entry.get("quality_flag"):
+            video["quality_flag"] = entry["quality_flag"]
+        applied.append(vid)
+    unmatched = [vid for vid in overlay if vid not in by_id]
+    return applied, refused, unmatched
 
 
 # ---------------------------------------------------------------------------
@@ -371,6 +430,11 @@ def build_analysis(day, titles, cached_ids):
     if not videos:
         raise ValueError(f"no videos parsed out of {catchup_path(day).name}")
 
+    applied, refused, unmatched = apply_digest_overlay(videos, load_digest_overlay(day), cached_ids)
+    if refused or unmatched:
+        print(f"[backfill] {day}: overlay refused (no cached transcript) {refused} "
+              f"| unmatched ids {unmatched}")
+
     resolved = [v for v in videos if v.get("id_status") != "unresolved"]
     unresolved = len(videos) - len(resolved)
     with_transcript = sum(1 for v in resolved if v["id"] in cached_ids)
@@ -378,6 +442,9 @@ def build_analysis(day, titles, cached_ids):
     provenance = (f"Backfilled offline from {catchup_path(day).name} on cached data only "
                   f"(no re-fetch). {len(videos)} videos; {len(resolved)} with recovered "
                   f"YouTube ids, {with_transcript} with a cached transcript.")
+    if applied:
+        provenance += (f" {len(applied)} digests were written from the cached transcript "
+                       f"(digest_source='transcript').")
     if unresolved:
         provenance += (f" {unresolved} entries kept their digest but could not have their "
                        f"video id recovered offline and carry a synthetic 'unresolved-' id.")
