@@ -7,6 +7,38 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [3.2.0] - 2026-10-08
+
+Minor: **the cc5 corpus tools, catch-up digests from cached transcripts, and an audit gate that can
+tell "nothing in scope" from "examined nothing"** (stage contracts `cc5-batch1..4`, `cc5-batch2-readback`,
+`close-fixes`).
+
+### Added
+- **`scripts/validate_comparison.py`** - the full `comparison-schema.md` contract as a gate, every
+  violation named, exit 1 on any. `python scripts/validate_comparison.py --session <dir>`.
+- **`capture_frames --engine local`** - frames grabbed from a locally downloaded copy behind the
+  rate-limit gate; the stream engine stays the default. `harvest_frames` gains the same option.
+- **`scripts/readback_sheets.py`** - token-bounded contact sheets for reading captured frames back
+  (`--per-sheet`, `--tile-width`, a manifest, blank tiles for missing frames).
+- **Catch-up digest overlay** - `backfill_catchups.py` reads
+  `.prism/local/backfill/digest-overlay-<day>.json`, a digest written over the CACHED transcript, and
+  applies it only where a cached transcript exists. The 08-20 AI News catch-up now carries real
+  key points and why-it-matters for all 33 videos.
+- `comparison-schema.md` documents the digest provenance fields (`digest_source`, `id_status`,
+  `quality_flag`) that INV2 already gated.
+
+### Fixed
+- **The viewer opens with zero network calls.** A frame cache miss returns 404 `frame-not-captured`;
+  a live grab needs `live:true` and `CINOPSIS_VIEWER_LIVE_FRAMES=1`. Metadata assembly sits behind
+  its own rate-limit door.
+- **Audit gate F-A**: a release range that touches no skills/commands/agents/hooks now PASSES with
+  `structural checks: 0 in-scope files (...)` instead of failing AUDIT_STRUCTURAL_ZERO_SCAN by
+  construction. In-scope-but-unexamined still fails; no diffable range still fails closed.
+- `backfill_catchups.py` emits schema-exact topics (sorted `video_coverage`, real `consensus` enum,
+  integer timestamps, `chapters: []`), declares `digest_source=catchup-markdown` on untranscribed
+  videos so INV2 does not read them as unbacked transcript claims, and refuses a partial overlay
+  entry rather than blanking the source digest.
+
 ## [3.1.0] - 2026-10-07
 
 Minor: **Agent-Reach, lifted whole** (stage contract `cinopsis-v3.1`, Gavin rulings R8-R11). Every
