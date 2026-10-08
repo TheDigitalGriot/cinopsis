@@ -48,3 +48,13 @@ def test_load_overlay_missing_and_wrong_day(tmp_path):
         pass
     else:
         raise AssertionError("wrong-day overlay must be refused")
+
+
+def test_uncached_digest_declares_catchup_source():
+    videos = [_video("AAAAAAAAAAA"), _video("CCCCCCCCCCC"),
+              dict(_video("DDDDDDDDDDD"), digest_source="description")]
+    tagged = bc.declare_catchup_source(videos, {"AAAAAAAAAAA"})
+    assert tagged == ["CCCCCCCCCCC"]
+    assert "digest_source" not in videos[0]          # transcript-backed: untouched
+    assert videos[1]["digest_source"] == "catchup-markdown"
+    assert videos[2]["digest_source"] == "description"  # an existing declaration wins

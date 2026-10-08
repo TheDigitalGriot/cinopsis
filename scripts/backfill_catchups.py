@@ -174,6 +174,23 @@ def apply_digest_overlay(videos, overlay, cached_ids):
     return applied, refused, unmatched
 
 
+def declare_catchup_source(videos, cached_ids):
+    """Tag a digest that no transcript backs with where it DID come from.
+
+    A video with no cached transcript and no declared digest_source carries only the
+    catch-up markdown's own takeaway. Without a declared source INV2 reads that as a
+    transcript claim with nothing behind it (measured 2026-10-08: cMvi1GS9R3E on 08-16).
+    Returns the ids tagged.
+    """
+    tagged = []
+    for video in videos:
+        if video.get("digest_source") or video.get("id") in cached_ids:
+            continue
+        video["digest_source"] = "catchup-markdown"
+        tagged.append(video.get("id"))
+    return tagged
+
+
 # ---------------------------------------------------------------------------
 # shared field parsing ('Core Takeaway:' / 'Key Points:' / ... blocks)
 # ---------------------------------------------------------------------------
@@ -434,6 +451,7 @@ def build_analysis(day, titles, cached_ids):
     if refused or unmatched:
         print(f"[backfill] {day}: overlay refused (no cached transcript) {refused} "
               f"| unmatched ids {unmatched}")
+    declare_catchup_source(videos, cached_ids)
 
     resolved = [v for v in videos if v.get("id_status") != "unresolved"]
     unresolved = len(videos) - len(resolved)
