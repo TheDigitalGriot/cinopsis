@@ -5,6 +5,12 @@ All notable changes to **Cinopsis** are documented here.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [3.2.2] - 2026-10-09
+
+### Fixed
+
+- **Cinopsis no longer takes over the main thread of every session (drift 280).** The plugin-root `settings.json` set `"agent": "digest-writer"`, and plugin settings apply to every session where Cinopsis is enabled, so the main thread ran as digest-writer, whose tools exclude Agent. Every such session, headless or interactive, lost subagent dispatch (measured on Claude Code 2.1.289: 182 tools and no Task with Cinopsis enabled, Task present without it). The file is removed; `digest-writer`, `video-comparator` and `video-fetcher` stay available as subagents.
+
 ## [3.2.1] - 2026-10-09
 
 ### Fixed
