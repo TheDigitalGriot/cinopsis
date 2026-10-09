@@ -7,6 +7,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Fixed
+
+- **Structural audit fails closed on an empty change set** (`scripts/audit-structural-verdict.mjs`): an empty set cannot be told apart from a range that diffs HEAD against itself, so it is AUDIT_STRUCTURAL_ZERO_SCAN again. Found by the quality review of the Prism lift of this verdict (drift 278); case added to `tests/test_audit_structural_verdict.py`.
+
+
 ## [3.2.0] - 2026-10-08
 
 Minor: **the cc5 corpus tools, catch-up digests from cached transcripts, and an audit gate that can
