@@ -2,6 +2,8 @@
 
 Resumes cc5-codify (contract 2026-10-08-cc5-codify-CONTEXT.md, decisions there still hold). Gavin's rulings 2026-10-08 23:46: run B3 + close in a FRESH Cowork session (the prior session hit ~215k context). Interactive in Cowork (Design artifact + card publishes run from the cloud); device work via Windows-MCP PowerShell; nothing here needs claude.exe -p except where noted.
 
+> Superseded 2026-10-09 01:35 (Gavin): run B3 + close in the SAME session that built B0-B2 ("I trust this session"), not a fresh one. Every other decision stands.
+
 ## Landed (evidence, do not redo)
 - B0 prep: griot-live-artifacts/tools/build-cc5-atlas-data.py. 181 'other' steps re-tagged by ui_path[0] (CC5 461 / Blender 404 / iClone8 100 / UE5 14 / other 103), app_raw kept. 150 curated frames (109 app x phase pairs + round-robin), all 21 videos covered.
 - B0.5 frame QA: contact sheets in fresh subagents. 9 excluded (8 Reallusion web pages / desktop shots, 1 crossfade), 0 unreviewed. Exclusions live in griot-live-artifacts/.prism/local/cc5-atlas/qa-flags.json + qa-reviewed.json.
