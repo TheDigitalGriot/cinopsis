@@ -1,0 +1,95 @@
+{
+ "keys": {
+  "s01-4": {
+   "target": "Headshot 3",
+   "alignment": 5,
+   "coverage": 4,
+   "green_on_target": true,
+   "defects": [
+    "Toolbar row partly unboxed where the Plugins dropdown opens (x~280-470,y~38-52)",
+    "Viewport is empty, so most of the frame has no boxes, which is correct"
+   ]
+  },
+  "s02-2": {
+   "target": "Search",
+   "alignment": 5,
+   "coverage": 5,
+   "green_on_target": true,
+   "defects": [
+    "Viewport character box (505-835,155-545) is the whole avatar, not a control",
+    "Animation Player transport row: small buttons look under-boxed or faint (y~675)"
+   ]
+  },
+  "s03-1": {
+   "target": "Spring on",
+   "alignment": 4,
+   "coverage": 4,
+   "green_on_target": true,
+   "defects": [
+    "Green box is on the 'Active' checkbox in Edit Spring; it matches only if 'Spring on' means Active (semantically fine)",
+    "Viewport stats overlay text (Project Triangle/VRAM/CPU, 310-395,85-125) boxed as controls but it is read-only HUD text",
+    "Right panel mid-section (965-1230,370-520) boxes sit on greyed, disabled sliders/fields with unreadable labels",
+    "Stray box on the hair-mesh gizmo thumbnail in the viewport (752-800,445-510)"
+   ]
+  },
+  "s04-3": {
+   "target": "Export",
+   "alignment": 3,
+   "coverage": 4,
+   "green_on_target": true,
+   "defects": [
+    "Boxes from the occluded Modify panel and side tab stick through the Export FBX Advanced Settings dialog (right edge x~780-815,y~150-540, incl. a tall vertical box over the 'Live Link' tab)",
+    "Tall orphan box (~640-675,y~375-460) overlapping the 'Use T-Pose As Bind Pose' rows",
+    "Boxes over the on-screen keyboard overlay and burned-in subtitles area (y~530-570) are not app controls",
+    "Desktop icons and the YouTuber webcam window region are unrelated to the app; desktop icons are boxed (5-45,70-240)"
+   ]
+  },
+  "s05-1": {
+   "target": "Mesh / Default pose",
+   "alignment": 4,
+   "coverage": 4,
+   "green_on_target": "partial",
+   "defects": [
+    "Green box is on the FBX Options dropdown ('Mesh and Motion'), which covers the 'Mesh' half; the default pose radios (Calibration/Current Pose, y~348-372) are not marked",
+    "Stray box on the dragged hand thumbnail in the viewport (440-500,253-275)",
+    "Scene outliner rows box only the name column; the eye/lock/display icons per row (110-210,y~150-240) are unboxed",
+    "Disabled InstaLOD sub-panel (700-865,165-415) is one big box over greyed controls",
+    "Viewport stats HUD text boxed (310-410,82-125)"
+   ]
+  },
+  "s06-2": {
+   "target": "Bones from Cards",
+   "alignment": 5,
+   "coverage": 5,
+   "green_on_target": true,
+   "defects": [
+    "Timeline frame numbers (y~665) are boxed one by one, though they are tick labels rather than controls (minor)",
+    "Viewport header overlay 'User Perspective / (1) Bang' text boxed (48-115,80-105)"
+   ]
+  },
+  "s07-2": {
+   "target": "Bake Simulation",
+   "alignment": 4,
+   "coverage": 4,
+   "green_on_target": true,
+   "defects": [
+    "Outliner restriction toggles (checkbox/eye/camera, 1190-1238,y~70-240) covered by one tall column box instead of per-icon boxes (s06-2 does this per row)",
+    "'Rigid Body Sim' dropdown header box is offset to the right of its label (x~897-997,y~110-127), and the cursor sits partly outside it",
+    "Outliner rows for disabled objects are boxed (fine) but colliders list boxes run past the panel bottom (y~240)"
+   ]
+  },
+  "s07-4": {
+   "target": "Simulation influence",
+   "alignment": 4,
+   "coverage": 4,
+   "green_on_target": true,
+   "defects": [
+    "Green box is on the first 'Simulation-FK (RL_H 1.000)' chain slider; the second Simulation-FK row (y~481) is another valid candidate, so the target is ambiguous",
+    "Same outliner restriction-column single tall box as s07-2",
+    "'Item' N-panel tab (1006-1022,y~80-100) box is tiny and overlaps the cursor/hover circle"
+   ]
+  }
+ },
+ "mean_alignment": 4.25,
+ "mean_coverage": 4.25
+}

@@ -1,0 +1,1861 @@
+{
+ "key": "s05-6",
+ "frame_ref": "frames/jphEXauoASw_119.png",
+ "app": "Character Creator 4",
+ "app_version_seen": "Character Creator 4 (title bar)",
+ "view": "Modify > Characterization (HumanIK bone preview) while 'Updating user interface ...'",
+ "theme": {
+  "window": "#0f0f0f",
+  "panel": "#282828",
+  "header": "#85d01b",
+  "text": "#353535",
+  "textDim": "#393939",
+  "accent": "#85d01b",
+  "border": "#484848"
+ },
+ "regions": [
+  {
+   "id": "titlebar",
+   "kind": "other",
+   "bbox": [
+    0.0,
+    0.0,
+    1.0,
+    0.018
+   ],
+   "title": "Character Creator 4 - Default.ccProject",
+   "items": [
+    {
+     "label": "Character Creator 4 - Default.ccProject",
+     "kind": "text",
+     "bbox": [
+      0.011,
+      0.003,
+      0.141,
+      0.013
+     ],
+     "value": null,
+     "state": null
+    },
+    {
+     "label": "minimize",
+     "kind": "icon",
+     "bbox": [
+      0.938,
+      0.003,
+      0.008,
+      0.013
+     ],
+     "value": null,
+     "state": null
+    },
+    {
+     "label": "maximize",
+     "kind": "icon",
+     "bbox": [
+      0.961,
+      0.003,
+      0.008,
+      0.013
+     ],
+     "value": null,
+     "state": null
+    },
+    {
+     "label": "close",
+     "kind": "icon",
+     "bbox": [
+      0.983,
+      0.003,
+      0.008,
+      0.013
+     ],
+     "value": null,
+     "state": null
+    }
+   ]
+  },
+  {
+   "id": "menubar",
+   "kind": "menubar",
+   "bbox": [
+    0.0,
+    0.019,
+    1.0,
+    0.017
+   ],
+   "title": null,
+   "items": [
+    {
+     "label": "File",
+     "kind": "menu",
+     "bbox": [
+      0.002,
+      0.022,
+      0.009,
+      0.013
+     ],
+     "value": null,
+     "state": null
+    },
+    {
+     "label": "Edit",
+     "kind": "menu",
+     "bbox": [
+      0.017,
+      0.022,
+      0.009,
+      0.013
+     ],
+     "value": null,
+     "state": null
+    },
+    {
+     "label": "Create",
+     "kind": "menu",
+     "bbox": [
+      0.031,
+      0.022,
+      0.015,
+      0.013
+     ],
+     "value": null,
+     "state": null
+    },
+    {
+     "label": "Character",
+     "kind": "menu",
+     "bbox": [
+      0.052,
+      0.022,
+      0.021,
+      0.013
+     ],
+     "value": null,
+     "state": null
+    },
+    {
+     "label": "Modify",
+     "kind": "menu",
+     "bbox": [
+      0.08,
+      0.022,
+      0.013,
+      0.013
+     ],
+     "value": null,
+     "state": null
+    },
+    {
+     "label": "Mesh",
+     "kind": "menu",
+     "bbox": [
+      0.099,
+      0.022,
+      0.012,
+      0.013
+     ],
+     "value": null,
+     "state": null
+    },
+    {
+     "label": "Render",
+     "kind": "menu",
+     "bbox": [
+      0.116,
+      0.022,
+      0.013,
+      0.013
+     ],
+     "value": null,
+     "state": null
+    },
+    {
+     "label": "View",
+     "kind": "menu",
+     "bbox": [
+      0.139,
+      0.022,
+      0.011,
+      0.013
+     ],
+     "value": null,
+     "state": null
+    },
+    {
+     "label": "Window",
+     "kind": "menu",
+     "bbox": [
+      0.155,
+      0.022,
+      0.018,
+      0.013
+     ],
+     "value": null,
+     "state": null
+    },
+    {
+     "label": "Plugins",
+     "kind": "menu",
+     "bbox": [
+      0.179,
+      0.022,
+      0.016,
+      0.013
+     ],
+     "value": null,
+     "state": null
+    },
+    {
+     "label": "Script",
+     "kind": "menu",
+     "bbox": [
+      0.202,
+      0.022,
+      0.013,
+      0.013
+     ],
+     "value": null,
+     "state": null
+    },
+    {
+     "label": "Help",
+     "kind": "menu",
+     "bbox": [
+      0.22,
+      0.022,
+      0.01,
+      0.013
+     ],
+     "value": null,
+     "state": null
+    }
+   ]
+  },
+  {
+   "id": "toolbar1",
+   "kind": "toolbar",
+   "bbox": [
+    0.0,
+    0.042,
+    0.672,
+    0.028
+   ],
+   "title": null,
+   "items": [
+    {
+     "label": "new icon",
+     "kind": "icon",
+     "bbox": [
+      0.01,
+      0.047,
+      0.008,
+      0.017
+     ],
+     "value": null,
+     "state": null
+    },
+    {
+     "label": "open icon",
+     "kind": "icon",
+     "bbox": [
+      0.024,
+      0.047,
+      0.009,
+      0.017
+     ],
+     "value": null,
+     "state": null
+    },
+    {
+     "label": "save icon",
+     "kind": "icon",
+     "bbox": [
+      0.039,
+      0.047,
+      0.008,
+      0.017
+     ],
+     "value": null,
+     "state": null
+    },
+    {
+     "label": "? icon",
+     "kind": "icon",
+     "bbox": [
+      0.056,
+      0.047,
+      0.009,
+      0.017
+     ],
+     "value": null,
+     "state": null
+    },
+    {
+     "label": "? icon",
+     "kind": "icon",
+     "bbox": [
+      0.07,
+      0.047,
+      0.008,
+      0.017
+     ],
+     "value": null,
+     "state": null
+    },
+    {
+     "label": "OBJ export icon",
+     "kind": "icon",
+     "bbox": [
+      0.086,
+      0.047,
+      0.012,
+      0.017
+     ],
+     "value": null,
+     "state": null
+    },
+    {
+     "label": "FBX export icon",
+     "kind": "icon",
+     "bbox": [
+      0.105,
+      0.047,
+      0.014,
+      0.017
+     ],
+     "value": null,
+     "state": null
+    },
+    {
+     "label": "USD icon",
+     "kind": "icon",
+     "bbox": [
+      0.127,
+      0.047,
+      0.008,
+      0.017
+     ],
+     "value": null,
+     "state": null
+    },
+    {
+     "label": "export icon",
+     "kind": "icon",
+     "bbox": [
+      0.141,
+      0.047,
+      0.008,
+      0.017
+     ],
+     "value": null,
+     "state": null
+    },
+    {
+     "label": "more \u00bb",
+     "kind": "icon",
+     "bbox": [
+      0.154,
+      0.047,
+      0.005,
+      0.017
+     ],
+     "value": null,
+     "state": null
+    },
+    {
+     "label": "? icon",
+     "kind": "icon",
+     "bbox": [
+      0.173,
+      0.047,
+      0.008,
+      0.017
+     ],
+     "value": null,
+     "state": null
+    },
+    {
+     "label": "? icon",
+     "kind": "icon",
+     "bbox": [
+      0.188,
+      0.047,
+      0.009,
+      0.017
+     ],
+     "value": null,
+     "state": null
+    },
+    {
+     "label": "undo",
+     "kind": "icon",
+     "bbox": [
+      0.212,
+      0.047,
+      0.008,
+      0.017
+     ],
+     "value": null,
+     "state": null
+    },
+    {
+     "label": "redo",
+     "kind": "icon",
+     "bbox": [
+      0.226,
+      0.047,
+      0.007,
+      0.017
+     ],
+     "value": null,
+     "state": null
+    },
+    {
+     "label": "select arrow",
+     "kind": "icon",
+     "bbox": [
+      0.242,
+      0.047,
+      0.009,
+      0.017
+     ],
+     "value": null,
+     "state": "active"
+    },
+    {
+     "label": "move tool",
+     "kind": "icon",
+     "bbox": [
+      0.258,
+      0.047,
+      0.012,
+      0.017
+     ],
+     "value": null,
+     "state": null
+    },
+    {
+     "label": "rotate tool",
+     "kind": "icon",
+     "bbox": [
+      0.277,
+      0.047,
+      0.012,
+      0.017
+     ],
+     "value": null,
+     "state": null
+    },
+    {
+     "label": "? icon",
+     "kind": "icon",
+     "bbox": [
+      0.297,
+      0.047,
+      0.008,
+      0.017
+     ],
+     "value": null,
+     "state": null
+    },
+    {
+     "label": "? icon",
+     "kind": "icon",
+     "bbox": [
+      0.311,
+      0.047,
+      0.009,
+      0.017
+     ],
+     "value": null,
+     "state": null
+    },
+    {
+     "label": "home camera icon",
+     "kind": "icon",
+     "bbox": [
+      0.336,
+      0.047,
+      0.012,
+      0.017
+     ],
+     "value": null,
+     "state": null
+    },
+    {
+     "label": "? icon",
+     "kind": "icon",
+     "bbox": [
+      0.355,
+      0.047,
+      0.009,
+      0.017
+     ],
+     "value": null,
+     "state": null
+    },
+    {
+     "label": "? icon",
+     "kind": "icon",
+     "bbox": [
+      0.371,
+      0.047,
+      0.008,
+      0.017
+     ],
+     "value": null,
+     "state": null
+    },
+    {
+     "label": "? icon",
+     "kind": "icon",
+     "bbox": [
+      0.387,
+      0.047,
+      0.008,
+      0.017
+     ],
+     "value": null,
+     "state": null
+    },
+    {
+     "label": "? icon",
+     "kind": "icon",
+     "bbox": [
+      0.402,
+      0.047,
+      0.013,
+      0.017
+     ],
+     "value": null,
+     "state": null
+    },
+    {
+     "label": "High",
+     "kind": "dropdown",
+     "bbox": [
+      0.42,
+      0.047,
+      0.038,
+      0.017
+     ],
+     "value": "High",
+     "state": null
+    },
+    {
+     "label": "sun/light icon",
+     "kind": "icon",
+     "bbox": [
+      0.463,
+      0.047,
+      0.008,
+      0.017
+     ],
+     "value": null,
+     "state": null
+    },
+    {
+     "label": "? icon",
+     "kind": "icon",
+     "bbox": [
+      0.487,
+      0.047,
+      0.011,
+      0.017
+     ],
+     "value": null,
+     "state": "active"
+    },
+    {
+     "label": "? icon",
+     "kind": "icon",
+     "bbox": [
+      0.501,
+      0.047,
+      0.013,
+      0.017
+     ],
+     "value": null,
+     "state": "active"
+    },
+    {
+     "label": "? icon",
+     "kind": "icon",
+     "bbox": [
+      0.518,
+      0.047,
+      0.009,
+      0.017
+     ],
+     "value": null,
+     "state": null
+    },
+    {
+     "label": "? icon",
+     "kind": "icon",
+     "bbox": [
+      0.542,
+      0.047,
+      0.009,
+      0.017
+     ],
+     "value": null,
+     "state": null
+    },
+    {
+     "label": "flag icon",
+     "kind": "icon",
+     "bbox": [
+      0.557,
+      0.047,
+      0.008,
+      0.017
+     ],
+     "value": null,
+     "state": null
+    },
+    {
+     "label": "Animation Player",
+     "kind": "button",
+     "bbox": [
+      0.58,
+      0.046,
+      0.051,
+      0.019
+     ],
+     "value": null,
+     "state": null
+    },
+    {
+     "label": "Turntable",
+     "kind": "button",
+     "bbox": [
+      0.634,
+      0.046,
+      0.03,
+      0.019
+     ],
+     "value": null,
+     "state": null
+    }
+   ]
+  },
+  {
+   "id": "toolbar2",
+   "kind": "toolbar",
+   "bbox": [
+    0.0,
+    0.078,
+    0.5,
+    0.028
+   ],
+   "title": null,
+   "items": [
+    {
+     "label": "Create Character",
+     "kind": "button",
+     "bbox": [
+      0.008,
+      0.083,
+      0.048,
+      0.018
+     ],
+     "value": null,
+     "state": null
+    },
+    {
+     "label": "Transformer",
+     "kind": "button",
+     "bbox": [
+      0.072,
+      0.083,
+      0.043,
+      0.018
+     ],
+     "value": null,
+     "state": null
+    },
+    {
+     "label": "? (disabled)",
+     "kind": "button",
+     "bbox": [
+      0.13,
+      0.083,
+      0.028,
+      0.018
+     ],
+     "value": null,
+     "state": null
+    },
+    {
+     "label": "Modify",
+     "kind": "button",
+     "bbox": [
+      0.166,
+      0.083,
+      0.027,
+      0.018
+     ],
+     "value": null,
+     "state": "active"
+    },
+    {
+     "label": "Morph",
+     "kind": "button",
+     "bbox": [
+      0.2,
+      0.083,
+      0.023,
+      0.018
+     ],
+     "value": null,
+     "state": null
+    },
+    {
+     "label": "InstaLOD",
+     "kind": "button",
+     "bbox": [
+      0.241,
+      0.083,
+      0.037,
+      0.018
+     ],
+     "value": null,
+     "state": null
+    },
+    {
+     "label": "Substance Painter",
+     "kind": "button",
+     "bbox": [
+      0.293,
+      0.083,
+      0.037,
+      0.018
+     ],
+     "value": null,
+     "state": null
+    },
+    {
+     "label": "HEADSHOT",
+     "kind": "button",
+     "bbox": [
+      0.345,
+      0.083,
+      0.035,
+      0.018
+     ],
+     "value": null,
+     "state": null
+    },
+    {
+     "label": "? icon (disabled)",
+     "kind": "icon",
+     "bbox": [
+      0.387,
+      0.083,
+      0.006,
+      0.018
+     ],
+     "value": null,
+     "state": null
+    },
+    {
+     "label": "? icon",
+     "kind": "icon",
+     "bbox": [
+      0.401,
+      0.083,
+      0.007,
+      0.018
+     ],
+     "value": null,
+     "state": null
+    },
+    {
+     "label": "HEADSHOT2",
+     "kind": "button",
+     "bbox": [
+      0.426,
+      0.083,
+      0.037,
+      0.018
+     ],
+     "value": null,
+     "state": null
+    },
+    {
+     "label": "? icon (disabled)",
+     "kind": "icon",
+     "bbox": [
+      0.469,
+      0.083,
+      0.005,
+      0.018
+     ],
+     "value": null,
+     "state": null
+    },
+    {
+     "label": "? icon",
+     "kind": "icon",
+     "bbox": [
+      0.483,
+      0.083,
+      0.007,
+      0.018
+     ],
+     "value": null,
+     "state": null
+    }
+   ]
+  },
+  {
+   "id": "scene",
+   "kind": "outliner",
+   "bbox": [
+    0.0,
+    0.111,
+    0.228,
+    0.842
+   ],
+   "title": "Scene",
+   "items": [
+    {
+     "label": "Scene",
+     "kind": "header",
+     "bbox": [
+      0.0,
+      0.111,
+      0.227,
+      0.013
+     ],
+     "value": null,
+     "state": null
+    },
+    {
+     "label": "close",
+     "kind": "icon",
+     "bbox": [
+      0.22,
+      0.111,
+      0.006,
+      0.011
+     ],
+     "value": null,
+     "state": null
+    },
+    {
+     "label": "Search",
+     "kind": "field",
+     "bbox": [
+      0.017,
+      0.133,
+      0.207,
+      0.019
+     ],
+     "value": null,
+     "state": null
+    },
+    {
+     "label": "Name",
+     "kind": "header",
+     "bbox": [
+      0.012,
+      0.176,
+      0.074,
+      0.013
+     ],
+     "value": null,
+     "state": null
+    },
+    {
+     "label": "Condition",
+     "kind": "header",
+     "bbox": [
+      0.086,
+      0.176,
+      0.138,
+      0.013
+     ],
+     "value": null,
+     "state": null
+    },
+    {
+     "label": "Character",
+     "kind": "tree-item",
+     "bbox": [
+      0.013,
+      0.192,
+      0.073,
+      0.015
+     ],
+     "value": null,
+     "state": null
+    },
+    {
+     "label": "RootNode",
+     "kind": "tree-item",
+     "bbox": [
+      0.034,
+      0.211,
+      0.052,
+      0.015
+     ],
+     "value": null,
+     "state": "selected"
+    },
+    {
+     "label": "Prop",
+     "kind": "tree-item",
+     "bbox": [
+      0.013,
+      0.229,
+      0.073,
+      0.015
+     ],
+     "value": null,
+     "state": null
+    },
+    {
+     "label": "Light",
+     "kind": "tree-item",
+     "bbox": [
+      0.013,
+      0.247,
+      0.073,
+      0.015
+     ],
+     "value": null,
+     "state": null
+    },
+    {
+     "label": "Sky",
+     "kind": "tree-item",
+     "bbox": [
+      0.013,
+      0.265,
+      0.073,
+      0.015
+     ],
+     "value": null,
+     "state": null
+    },
+    {
+     "label": "Camera",
+     "kind": "tree-item",
+     "bbox": [
+      0.013,
+      0.283,
+      0.073,
+      0.015
+     ],
+     "value": null,
+     "state": null
+    }
+   ]
+  },
+  {
+   "id": "sidetabs",
+   "kind": "tabs",
+   "bbox": [
+    0.23,
+    0.111,
+    0.012,
+    0.417
+   ],
+   "title": null,
+   "items": [
+    {
+     "label": "Bone",
+     "kind": "tab",
+     "bbox": [
+      0.23,
+      0.132,
+      0.01,
+      0.042
+     ],
+     "value": null,
+     "state": null
+    },
+    {
+     "label": "Content",
+     "kind": "tab",
+     "bbox": [
+      0.23,
+      0.208,
+      0.01,
+      0.056
+     ],
+     "value": null,
+     "state": null
+    },
+    {
+     "label": "Scene",
+     "kind": "tab",
+     "bbox": [
+      0.23,
+      0.292,
+      0.01,
+      0.062
+     ],
+     "value": null,
+     "state": "active"
+    },
+    {
+     "label": "Visual",
+     "kind": "tab",
+     "bbox": [
+      0.23,
+      0.389,
+      0.01,
+      0.039
+     ],
+     "value": null,
+     "state": null
+    },
+    {
+     "label": "Headshot v2",
+     "kind": "tab",
+     "bbox": [
+      0.23,
+      0.463,
+      0.01,
+      0.058
+     ],
+     "value": null,
+     "state": null
+    }
+   ]
+  },
+  {
+   "id": "viewport",
+   "kind": "viewport",
+   "bbox": [
+    0.242,
+    0.111,
+    0.53,
+    0.754
+   ],
+   "title": null,
+   "items": [
+    {
+     "label": "FPS : ?",
+     "kind": "text",
+     "bbox": [
+      0.251,
+      0.114,
+      0.078,
+      0.008
+     ],
+     "value": "?",
+     "state": null
+    },
+    {
+     "label": "Project Triangle : 520",
+     "kind": "text",
+     "bbox": [
+      0.251,
+      0.122,
+      0.078,
+      0.008
+     ],
+     "value": "520",
+     "state": null
+    },
+    {
+     "label": "Selected Tris : 0/0",
+     "kind": "text",
+     "bbox": [
+      0.251,
+      0.132,
+      0.078,
+      0.008
+     ],
+     "value": "0/0",
+     "state": null
+    },
+    {
+     "label": "VRAM : 1.2/16.2GB",
+     "kind": "text",
+     "bbox": [
+      0.251,
+      0.142,
+      0.078,
+      0.008
+     ],
+     "value": "1.2/16.2GB",
+     "state": null
+    },
+    {
+     "label": "RAM : 2055MB",
+     "kind": "text",
+     "bbox": [
+      0.251,
+      0.15,
+      0.078,
+      0.008
+     ],
+     "value": "2055MB",
+     "state": null
+    },
+    {
+     "label": "CPU : 0.77%",
+     "kind": "text",
+     "bbox": [
+      0.251,
+      0.158,
+      0.078,
+      0.008
+     ],
+     "value": "0.77%",
+     "state": null
+    }
+   ]
+  },
+  {
+   "id": "progress",
+   "kind": "dialog",
+   "bbox": [
+    0.422,
+    0.432,
+    0.156,
+    0.113
+   ],
+   "title": "Character Creator 4",
+   "items": [
+    {
+     "label": "Character Creator 4",
+     "kind": "header",
+     "bbox": [
+      0.422,
+      0.432,
+      0.156,
+      0.015
+     ],
+     "value": null,
+     "state": null
+    },
+    {
+     "label": "Updating user interface ...",
+     "kind": "text",
+     "bbox": [
+      0.461,
+      0.457,
+      0.078,
+      0.013
+     ],
+     "value": null,
+     "state": null
+    },
+    {
+     "label": "progress bar",
+     "kind": "slider",
+     "bbox": [
+      0.427,
+      0.497,
+      0.147,
+      0.017
+     ],
+     "value": "?",
+     "state": null
+    }
+   ]
+  },
+  {
+   "id": "animation-player",
+   "kind": "timeline",
+   "bbox": [
+    0.243,
+    0.868,
+    0.529,
+    0.087
+   ],
+   "title": "Animation Player : RootNode : ?",
+   "items": [
+    {
+     "label": "Animation Player : RootNode : ?",
+     "kind": "header",
+     "bbox": [
+      0.243,
+      0.868,
+      0.529,
+      0.014
+     ],
+     "value": null,
+     "state": null
+    },
+    {
+     "label": "close",
+     "kind": "icon",
+     "bbox": [
+      0.761,
+      0.869,
+      0.006,
+      0.011
+     ],
+     "value": null,
+     "state": null
+    },
+    {
+     "label": "timeline slider",
+     "kind": "slider",
+     "bbox": [
+      0.252,
+      0.896,
+      0.441,
+      0.017
+     ],
+     "value": null,
+     "state": null
+    },
+    {
+     "label": "frame",
+     "kind": "field",
+     "bbox": [
+      0.699,
+      0.893,
+      0.02,
+      0.017
+     ],
+     "value": "0",
+     "state": null
+    },
+    {
+     "label": "? icon",
+     "kind": "icon",
+     "bbox": [
+      0.727,
+      0.893,
+      0.008,
+      0.017
+     ],
+     "value": null,
+     "state": null
+    },
+    {
+     "label": "? icon",
+     "kind": "icon",
+     "bbox": [
+      0.741,
+      0.893,
+      0.009,
+      0.017
+     ],
+     "value": null,
+     "state": null
+    },
+    {
+     "label": "? icon",
+     "kind": "icon",
+     "bbox": [
+      0.758,
+      0.893,
+      0.009,
+      0.017
+     ],
+     "value": null,
+     "state": null
+    },
+    {
+     "label": "go to start",
+     "kind": "icon",
+     "bbox": [
+      0.38,
+      0.928,
+      0.007,
+      0.014
+     ],
+     "value": null,
+     "state": null
+    },
+    {
+     "label": "previous",
+     "kind": "icon",
+     "bbox": [
+      0.394,
+      0.928,
+      0.007,
+      0.014
+     ],
+     "value": null,
+     "state": null
+    },
+    {
+     "label": "play",
+     "kind": "icon",
+     "bbox": [
+      0.406,
+      0.928,
+      0.007,
+      0.014
+     ],
+     "value": null,
+     "state": null
+    },
+    {
+     "label": "next",
+     "kind": "icon",
+     "bbox": [
+      0.42,
+      0.928,
+      0.007,
+      0.014
+     ],
+     "value": null,
+     "state": null
+    },
+    {
+     "label": "go to end",
+     "kind": "icon",
+     "bbox": [
+      0.432,
+      0.928,
+      0.007,
+      0.014
+     ],
+     "value": null,
+     "state": null
+    },
+    {
+     "label": "loop",
+     "kind": "icon",
+     "bbox": [
+      0.445,
+      0.928,
+      0.011,
+      0.014
+     ],
+     "value": null,
+     "state": null
+    },
+    {
+     "label": "? icon",
+     "kind": "icon",
+     "bbox": [
+      0.463,
+      0.928,
+      0.008,
+      0.014
+     ],
+     "value": null,
+     "state": null
+    },
+    {
+     "label": "Realtime",
+     "kind": "button",
+     "bbox": [
+      0.473,
+      0.926,
+      0.031,
+      0.017
+     ],
+     "value": null,
+     "state": null
+    },
+    {
+     "label": "1x",
+     "kind": "dropdown",
+     "bbox": [
+      0.513,
+      0.926,
+      0.023,
+      0.017
+     ],
+     "value": "1x",
+     "state": null
+    },
+    {
+     "label": "Motion",
+     "kind": "button",
+     "bbox": [
+      0.545,
+      0.926,
+      0.039,
+      0.017
+     ],
+     "value": null,
+     "state": null
+    },
+    {
+     "label": "Remove",
+     "kind": "button",
+     "bbox": [
+      0.591,
+      0.926,
+      0.041,
+      0.017
+     ],
+     "value": null,
+     "state": null
+    }
+   ]
+  },
+  {
+   "id": "modify",
+   "kind": "panel",
+   "bbox": [
+    0.773,
+    0.111,
+    0.227,
+    0.847
+   ],
+   "title": "Modify > Characterization",
+   "items": [
+    {
+     "label": "Modify",
+     "kind": "header",
+     "bbox": [
+      0.773,
+      0.111,
+      0.227,
+      0.013
+     ],
+     "value": null,
+     "state": null
+    },
+    {
+     "label": "close",
+     "kind": "icon",
+     "bbox": [
+      0.988,
+      0.111,
+      0.006,
+      0.011
+     ],
+     "value": null,
+     "state": null
+    },
+    {
+     "label": "sliders tab",
+     "kind": "tab",
+     "bbox": [
+      0.777,
+      0.129,
+      0.011,
+      0.018
+     ],
+     "value": null,
+     "state": "active"
+    },
+    {
+     "label": "atom tab",
+     "kind": "tab",
+     "bbox": [
+      0.793,
+      0.129,
+      0.011,
+      0.018
+     ],
+     "value": null,
+     "state": null
+    },
+    {
+     "label": "Characterization",
+     "kind": "header",
+     "bbox": [
+      0.781,
+      0.167,
+      0.211,
+      0.031
+     ],
+     "value": null,
+     "state": null
+    },
+    {
+     "label": "HumanIK :",
+     "kind": "text",
+     "bbox": [
+      0.781,
+      0.212,
+      0.023,
+      0.013
+     ],
+     "value": null,
+     "state": null
+    },
+    {
+     "label": "Active",
+     "kind": "button",
+     "bbox": [
+      0.812,
+      0.21,
+      0.087,
+      0.017
+     ],
+     "value": "disabled",
+     "state": null
+    },
+    {
+     "label": "Off",
+     "kind": "button",
+     "bbox": [
+      0.902,
+      0.21,
+      0.09,
+      0.017
+     ],
+     "value": null,
+     "state": "active"
+    },
+    {
+     "label": "The character must be in T-Pose in order to activate HumanIK.",
+     "kind": "text",
+     "bbox": [
+      0.781,
+      0.236,
+      0.152,
+      0.013
+     ],
+     "value": null,
+     "state": null
+    },
+    {
+     "label": "save icon",
+     "kind": "icon",
+     "bbox": [
+      0.783,
+      0.258,
+      0.009,
+      0.017
+     ],
+     "value": null,
+     "state": null
+    },
+    {
+     "label": "load icon",
+     "kind": "icon",
+     "bbox": [
+      0.796,
+      0.258,
+      0.009,
+      0.017
+     ],
+     "value": null,
+     "state": null
+    },
+    {
+     "label": "delete icon",
+     "kind": "icon",
+     "bbox": [
+      0.809,
+      0.258,
+      0.009,
+      0.017
+     ],
+     "value": null,
+     "state": null
+    },
+    {
+     "label": "? icon",
+     "kind": "icon",
+     "bbox": [
+      0.956,
+      0.258,
+      0.009,
+      0.017
+     ],
+     "value": null,
+     "state": null
+    },
+    {
+     "label": "? icon",
+     "kind": "icon",
+     "bbox": [
+      0.97,
+      0.258,
+      0.009,
+      0.017
+     ],
+     "value": null,
+     "state": null
+    },
+    {
+     "label": "? icon",
+     "kind": "icon",
+     "bbox": [
+      0.983,
+      0.258,
+      0.009,
+      0.017
+     ],
+     "value": null,
+     "state": null
+    },
+    {
+     "label": "Bone preview (HumanIK figure)",
+     "kind": "other",
+     "bbox": [
+      0.783,
+      0.287,
+      0.209,
+      0.242
+     ],
+     "value": null,
+     "state": null
+    },
+    {
+     "label": "record dot",
+     "kind": "icon",
+     "bbox": [
+      0.787,
+      0.294,
+      0.009,
+      0.017
+     ],
+     "value": null,
+     "state": null
+    },
+    {
+     "label": "? icon",
+     "kind": "icon",
+     "bbox": [
+      0.977,
+      0.294,
+      0.009,
+      0.017
+     ],
+     "value": null,
+     "state": null
+    },
+    {
+     "label": "HumanIK Node :",
+     "kind": "text",
+     "bbox": [
+      0.781,
+      0.542,
+      0.039,
+      0.013
+     ],
+     "value": null,
+     "state": null
+    },
+    {
+     "label": "HumanIK Node",
+     "kind": "field",
+     "bbox": [
+      0.821,
+      0.539,
+      0.171,
+      0.017
+     ],
+     "value": null,
+     "state": null
+    },
+    {
+     "label": "Assigned Bone :",
+     "kind": "text",
+     "bbox": [
+      0.781,
+      0.567,
+      0.039,
+      0.013
+     ],
+     "value": null,
+     "state": null
+    },
+    {
+     "label": "Assigned Bone",
+     "kind": "field",
+     "bbox": [
+      0.821,
+      0.564,
+      0.156,
+      0.017
+     ],
+     "value": null,
+     "state": null
+    },
+    {
+     "label": "? button",
+     "kind": "button",
+     "bbox": [
+      0.983,
+      0.564,
+      0.009,
+      0.017
+     ],
+     "value": null,
+     "state": null
+    },
+    {
+     "label": "Bone Rotate :",
+     "kind": "text",
+     "bbox": [
+      0.781,
+      0.59,
+      0.031,
+      0.013
+     ],
+     "value": null,
+     "state": null
+    },
+    {
+     "label": "Bone Rotate X",
+     "kind": "field",
+     "bbox": [
+      0.787,
+      0.611,
+      0.061,
+      0.015
+     ],
+     "value": "0.000",
+     "state": null
+    },
+    {
+     "label": "Bone Rotate Y",
+     "kind": "field",
+     "bbox": [
+      0.859,
+      0.611,
+      0.061,
+      0.015
+     ],
+     "value": "0.000",
+     "state": null
+    },
+    {
+     "label": "Bone Rotate Z",
+     "kind": "field",
+     "bbox": [
+      0.931,
+      0.611,
+      0.061,
+      0.015
+     ],
+     "value": "0.000",
+     "state": null
+    },
+    {
+     "label": "Display",
+     "kind": "header",
+     "bbox": [
+      0.781,
+      0.636,
+      0.212,
+      0.013
+     ],
+     "value": null,
+     "state": null
+    },
+    {
+     "label": "Visible :",
+     "kind": "text",
+     "bbox": [
+      0.781,
+      0.664,
+      0.022,
+      0.013
+     ],
+     "value": null,
+     "state": null
+    },
+    {
+     "label": "visible icons",
+     "kind": "icon",
+     "bbox": [
+      0.826,
+      0.661,
+      0.023,
+      0.015
+     ],
+     "value": null,
+     "state": null
+    },
+    {
+     "label": "Render State :",
+     "kind": "text",
+     "bbox": [
+      0.781,
+      0.688,
+      0.03,
+      0.013
+     ],
+     "value": null,
+     "state": null
+    },
+    {
+     "label": "render state icons",
+     "kind": "icon",
+     "bbox": [
+      0.826,
+      0.685,
+      0.062,
+      0.015
+     ],
+     "value": null,
+     "state": null
+    },
+    {
+     "label": "Shadow :",
+     "kind": "text",
+     "bbox": [
+      0.781,
+      0.711,
+      0.02,
+      0.013
+     ],
+     "value": null,
+     "state": null
+    },
+    {
+     "label": "shadow icons",
+     "kind": "icon",
+     "bbox": [
+      0.826,
+      0.708,
+      0.051,
+      0.015
+     ],
+     "value": null,
+     "state": null
+    },
+    {
+     "label": "Bone Display",
+     "kind": "text",
+     "bbox": [
+      0.781,
+      0.736,
+      0.03,
+      0.013
+     ],
+     "value": null,
+     "state": null
+    },
+    {
+     "label": "bone display icons",
+     "kind": "icon",
+     "bbox": [
+      0.826,
+      0.733,
+      0.023,
+      0.015
+     ],
+     "value": null,
+     "state": null
+    }
+   ]
+  }
+ ],
+ "hotspot": {
+  "label": "Bone preview (HumanIK figure)",
+  "bbox": [
+   0.783,
+   0.287,
+   0.209,
+   0.242
+  ],
+  "kind": "canvas",
+  "region": "modify",
+  "confidence": "high",
+  "note": "The Characterization bone preview canvas with the T-pose figure and bone slots is fully visible; the viewport character is not yet shown (UI still updating), so only the preview half of the action is visible."
+ },
+ "unreadable": [
+  "toolbar1/toolbar2: several icons greyed (disabled during import); icons without text described neutrally",
+  "viewport: FPS value unreadable",
+  "animation-player: controls greyed out",
+  "progress: percentage text faint",
+  "animation-player: title after 'RootNode :' unreadable",
+  "modify: icons on the right of the Characterization toolbar unlabeled"
+ ]
+}

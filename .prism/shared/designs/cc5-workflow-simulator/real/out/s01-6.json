@@ -1,0 +1,1121 @@
+{
+ "key": "s01-6",
+ "frame_ref": "frames/BY7vlKwzfnk_84.png",
+ "app": "Character Creator 5",
+ "app_version_seen": "Character Creator 5 [Apr 18 2026]",
+ "view": "Headshot 3 panel > IMAGE workflow (no photo loaded)",
+ "theme": {
+  "window": "#171a1f",
+  "panel": "#282828",
+  "header": "#010101",
+  "text": "#f7f7f7",
+  "textDim": "#505050",
+  "accent": "#85d115",
+  "border": "#3d3d3d"
+ },
+ "regions": [
+  {
+   "id": "titlebar",
+   "kind": "other",
+   "bbox": [
+    0.0,
+    0.0,
+    1.0,
+    0.021
+   ],
+   "title": "Character Creator 5 [Apr 18 2026] - Default.ccProject",
+   "items": [
+    {
+     "label": "Character Creator 5 [Apr 18 2026] - Default.ccProject",
+     "kind": "text",
+     "bbox": [
+      0.012,
+      0.001,
+      0.148,
+      0.017
+     ],
+     "value": null,
+     "state": null
+    },
+    {
+     "label": "minimize",
+     "kind": "icon",
+     "bbox": [
+      0.934,
+      0.001,
+      0.011,
+      0.017
+     ],
+     "value": null,
+     "state": null
+    },
+    {
+     "label": "restore",
+     "kind": "icon",
+     "bbox": [
+      0.958,
+      0.001,
+      0.011,
+      0.017
+     ],
+     "value": null,
+     "state": null
+    },
+    {
+     "label": "close",
+     "kind": "icon",
+     "bbox": [
+      0.981,
+      0.001,
+      0.011,
+      0.017
+     ],
+     "value": null,
+     "state": null
+    }
+   ]
+  },
+  {
+   "id": "menubar",
+   "kind": "menubar",
+   "bbox": [
+    0.0,
+    0.021,
+    1.0,
+    0.024
+   ],
+   "title": null,
+   "items": [
+    {
+     "label": "File",
+     "kind": "menu",
+     "bbox": [
+      0.004,
+      0.022,
+      0.011,
+      0.019
+     ],
+     "value": null,
+     "state": null
+    },
+    {
+     "label": "Edit",
+     "kind": "menu",
+     "bbox": [
+      0.023,
+      0.022,
+      0.011,
+      0.019
+     ],
+     "value": null,
+     "state": null
+    },
+    {
+     "label": "Create",
+     "kind": "menu",
+     "bbox": [
+      0.041,
+      0.022,
+      0.021,
+      0.019
+     ],
+     "value": null,
+     "state": null
+    },
+    {
+     "label": "Character",
+     "kind": "menu",
+     "bbox": [
+      0.07,
+      0.022,
+      0.029,
+      0.019
+     ],
+     "value": null,
+     "state": null
+    },
+    {
+     "label": "Modify",
+     "kind": "menu",
+     "bbox": [
+      0.105,
+      0.022,
+      0.019,
+      0.019
+     ],
+     "value": null,
+     "state": null
+    },
+    {
+     "label": "Mesh",
+     "kind": "menu",
+     "bbox": [
+      0.132,
+      0.022,
+      0.016,
+      0.019
+     ],
+     "value": null,
+     "state": null
+    },
+    {
+     "label": "Render",
+     "kind": "menu",
+     "bbox": [
+      0.155,
+      0.022,
+      0.023,
+      0.019
+     ],
+     "value": null,
+     "state": null
+    },
+    {
+     "label": "View",
+     "kind": "menu",
+     "bbox": [
+      0.185,
+      0.022,
+      0.015,
+      0.019
+     ],
+     "value": null,
+     "state": null
+    },
+    {
+     "label": "Window",
+     "kind": "menu",
+     "bbox": [
+      0.207,
+      0.022,
+      0.024,
+      0.019
+     ],
+     "value": null,
+     "state": null
+    },
+    {
+     "label": "Plugins",
+     "kind": "menu",
+     "bbox": [
+      0.238,
+      0.022,
+      0.023,
+      0.019
+     ],
+     "value": null,
+     "state": null
+    },
+    {
+     "label": "Script",
+     "kind": "menu",
+     "bbox": [
+      0.269,
+      0.022,
+      0.017,
+      0.019
+     ],
+     "value": null,
+     "state": null
+    },
+    {
+     "label": "Help",
+     "kind": "menu",
+     "bbox": [
+      0.293,
+      0.022,
+      0.015,
+      0.019
+     ],
+     "value": null,
+     "state": null
+    },
+    {
+     "label": "points icon",
+     "kind": "icon",
+     "bbox": [
+      0.887,
+      0.022,
+      0.011,
+      0.019
+     ],
+     "value": null,
+     "state": null
+    },
+    {
+     "label": "Available Points: 10,260",
+     "kind": "text",
+     "bbox": [
+      0.9,
+      0.022,
+      0.07,
+      0.019
+     ],
+     "value": "10,260",
+     "state": null
+    },
+    {
+     "label": "refresh icon",
+     "kind": "icon",
+     "bbox": [
+      0.973,
+      0.022,
+      0.009,
+      0.019
+     ],
+     "value": null,
+     "state": null
+    },
+    {
+     "label": "plus icon",
+     "kind": "button",
+     "bbox": [
+      0.986,
+      0.021,
+      0.013,
+      0.022
+     ],
+     "value": null,
+     "state": null
+    }
+   ]
+  },
+  {
+   "id": "toolbar",
+   "kind": "toolbar",
+   "bbox": [
+    0.0,
+    0.046,
+    1.0,
+    0.035
+   ],
+   "title": null,
+   "items": [
+    {
+     "label": "new project icon",
+     "kind": "icon",
+     "bbox": [
+      0.012,
+      0.053,
+      0.01,
+      0.022
+     ],
+     "value": null,
+     "state": null
+    },
+    {
+     "label": "open project icon",
+     "kind": "icon",
+     "bbox": [
+      0.03,
+      0.053,
+      0.011,
+      0.022
+     ],
+     "value": null,
+     "state": null
+    },
+    {
+     "label": "save icon",
+     "kind": "icon",
+     "bbox": [
+      0.048,
+      0.053,
+      0.01,
+      0.022
+     ],
+     "value": null,
+     "state": null
+    },
+    {
+     "label": "disabled icon",
+     "kind": "icon",
+     "bbox": [
+      0.069,
+      0.053,
+      0.01,
+      0.022
+     ],
+     "value": null,
+     "state": "disabled"
+    },
+    {
+     "label": "disabled icon",
+     "kind": "icon",
+     "bbox": [
+      0.086,
+      0.053,
+      0.01,
+      0.022
+     ],
+     "value": null,
+     "state": "disabled"
+    },
+    {
+     "label": "OBJ export icon",
+     "kind": "icon",
+     "bbox": [
+      0.105,
+      0.053,
+      0.02,
+      0.022
+     ],
+     "value": null,
+     "state": null
+    },
+    {
+     "label": "FBX export icon",
+     "kind": "icon",
+     "bbox": [
+      0.131,
+      0.053,
+      0.021,
+      0.022
+     ],
+     "value": null,
+     "state": null
+    },
+    {
+     "label": "USD export icon",
+     "kind": "icon",
+     "bbox": [
+      0.157,
+      0.053,
+      0.011,
+      0.022
+     ],
+     "value": null,
+     "state": null
+    },
+    {
+     "label": "export arrow icon",
+     "kind": "icon",
+     "bbox": [
+      0.175,
+      0.053,
+      0.011,
+      0.022
+     ],
+     "value": null,
+     "state": null
+    },
+    {
+     "label": "render preview icon",
+     "kind": "icon",
+     "bbox": [
+      0.194,
+      0.053,
+      0.011,
+      0.022
+     ],
+     "value": null,
+     "state": null
+    },
+    {
+     "label": "disabled icon",
+     "kind": "icon",
+     "bbox": [
+      0.221,
+      0.053,
+      0.01,
+      0.022
+     ],
+     "value": null,
+     "state": "disabled"
+    },
+    {
+     "label": "disabled icon",
+     "kind": "icon",
+     "bbox": [
+      0.238,
+      0.053,
+      0.01,
+      0.022
+     ],
+     "value": null,
+     "state": "disabled"
+    },
+    {
+     "label": "undo icon",
+     "kind": "icon",
+     "bbox": [
+      0.266,
+      0.053,
+      0.01,
+      0.022
+     ],
+     "value": null,
+     "state": "disabled"
+    },
+    {
+     "label": "redo icon",
+     "kind": "icon",
+     "bbox": [
+      0.283,
+      0.053,
+      0.01,
+      0.022
+     ],
+     "value": null,
+     "state": "disabled"
+    },
+    {
+     "label": "select arrow icon",
+     "kind": "button",
+     "bbox": [
+      0.301,
+      0.05,
+      0.016,
+      0.028
+     ],
+     "value": null,
+     "state": "active"
+    },
+    {
+     "label": "move icon",
+     "kind": "icon",
+     "bbox": [
+      0.323,
+      0.053,
+      0.021,
+      0.022
+     ],
+     "value": null,
+     "state": "disabled"
+    },
+    {
+     "label": "rotate icon",
+     "kind": "icon",
+     "bbox": [
+      0.348,
+      0.053,
+      0.021,
+      0.022
+     ],
+     "value": null,
+     "state": "disabled"
+    },
+    {
+     "label": "scale icon",
+     "kind": "icon",
+     "bbox": [
+      0.375,
+      0.053,
+      0.01,
+      0.022
+     ],
+     "value": null,
+     "state": "disabled"
+    },
+    {
+     "label": "disabled icon",
+     "kind": "icon",
+     "bbox": [
+      0.393,
+      0.053,
+      0.01,
+      0.022
+     ],
+     "value": null,
+     "state": "disabled"
+    },
+    {
+     "label": "Conform",
+     "kind": "button",
+     "bbox": [
+      0.416,
+      0.053,
+      0.037,
+      0.022
+     ],
+     "value": null,
+     "state": "disabled"
+    },
+    {
+     "label": "Modify",
+     "kind": "button",
+     "bbox": [
+      0.461,
+      0.053,
+      0.03,
+      0.022
+     ],
+     "value": null,
+     "state": null
+    },
+    {
+     "label": "Morph",
+     "kind": "button",
+     "bbox": [
+      0.499,
+      0.053,
+      0.045,
+      0.022
+     ],
+     "value": null,
+     "state": null
+    },
+    {
+     "label": "HEADSHOT3",
+     "kind": "button",
+     "bbox": [
+      0.555,
+      0.053,
+      0.048,
+      0.022
+     ],
+     "value": null,
+     "state": null
+    },
+    {
+     "label": "headshot icon",
+     "kind": "icon",
+     "bbox": [
+      0.61,
+      0.053,
+      0.01,
+      0.022
+     ],
+     "value": null,
+     "state": null
+    },
+    {
+     "label": "head mesh icon",
+     "kind": "icon",
+     "bbox": [
+      0.629,
+      0.053,
+      0.011,
+      0.022
+     ],
+     "value": null,
+     "state": null
+    },
+    {
+     "label": "green sparkle icon",
+     "kind": "icon",
+     "bbox": [
+      0.648,
+      0.053,
+      0.01,
+      0.022
+     ],
+     "value": null,
+     "state": null
+    }
+   ]
+  },
+  {
+   "id": "headshot3-header",
+   "kind": "other",
+   "bbox": [
+    0.0,
+    0.083,
+    0.326,
+    0.017
+   ],
+   "title": "Headshot 3",
+   "items": [
+    {
+     "label": "Headshot 3",
+     "kind": "header",
+     "bbox": [
+      0.151,
+      0.085,
+      0.035,
+      0.014
+     ],
+     "value": null,
+     "state": null
+    },
+    {
+     "label": "close icon",
+     "kind": "icon",
+     "bbox": [
+      0.31,
+      0.085,
+      0.009,
+      0.014
+     ],
+     "value": null,
+     "state": null
+    }
+   ]
+  },
+  {
+   "id": "headshot3-panel",
+   "kind": "panel",
+   "bbox": [
+    0.0,
+    0.1,
+    0.326,
+    0.889
+   ],
+   "title": "Headshot 3",
+   "items": [
+    {
+     "label": "IMAGE",
+     "kind": "tab",
+     "bbox": [
+      0.008,
+      0.115,
+      0.149,
+      0.054
+     ],
+     "value": null,
+     "state": "active"
+    },
+    {
+     "label": "MESH",
+     "kind": "tab",
+     "bbox": [
+      0.163,
+      0.117,
+      0.149,
+      0.053
+     ],
+     "value": null,
+     "state": null
+    },
+    {
+     "label": "AI Image Generator",
+     "kind": "button",
+     "bbox": [
+      0.008,
+      0.186,
+      0.305,
+      0.036
+     ],
+     "value": null,
+     "state": null
+    },
+    {
+     "label": "Drag in or Copy-Paste a photo to start",
+     "kind": "field",
+     "bbox": [
+      0.072,
+      0.24,
+      0.156,
+      0.276
+     ],
+     "value": null,
+     "state": null
+    },
+    {
+     "label": "open folder icon (load photo)",
+     "kind": "button",
+     "bbox": [
+      0.234,
+      0.242,
+      0.013,
+      0.021
+     ],
+     "value": null,
+     "state": null
+    },
+    {
+     "label": "disabled icon",
+     "kind": "icon",
+     "bbox": [
+      0.252,
+      0.242,
+      0.013,
+      0.021
+     ],
+     "value": null,
+     "state": "disabled"
+    },
+    {
+     "label": "disabled icon",
+     "kind": "icon",
+     "bbox": [
+      0.27,
+      0.242,
+      0.013,
+      0.021
+     ],
+     "value": null,
+     "state": "disabled"
+    },
+    {
+     "label": "info icon",
+     "kind": "icon",
+     "bbox": [
+      0.007,
+      0.535,
+      0.009,
+      0.015
+     ],
+     "value": null,
+     "state": null
+    },
+    {
+     "label": "Photo Preparation",
+     "kind": "text",
+     "bbox": [
+      0.02,
+      0.535,
+      0.052,
+      0.015
+     ],
+     "value": null,
+     "state": null
+    },
+    {
+     "label": "Regenerate Character",
+     "kind": "button",
+     "bbox": [
+      0.008,
+      0.562,
+      0.305,
+      0.037
+     ],
+     "value": null,
+     "state": "disabled"
+    },
+    {
+     "label": "Shape Adjustment",
+     "kind": "header",
+     "bbox": [
+      0.008,
+      0.617,
+      0.305,
+      0.017
+     ],
+     "value": null,
+     "state": null
+    },
+    {
+     "label": "Preset Morphs",
+     "kind": "button",
+     "bbox": [
+      0.008,
+      0.65,
+      0.098,
+      0.036
+     ],
+     "value": null,
+     "state": "disabled"
+    },
+    {
+     "label": "Refine Face (Front)",
+     "kind": "button",
+     "bbox": [
+      0.111,
+      0.65,
+      0.098,
+      0.036
+     ],
+     "value": null,
+     "state": "disabled"
+    },
+    {
+     "label": "Refine Face (Side)",
+     "kind": "button",
+     "bbox": [
+      0.215,
+      0.65,
+      0.098,
+      0.036
+     ],
+     "value": null,
+     "state": "disabled"
+    },
+    {
+     "label": "Activate Sculpt Morph",
+     "kind": "checkbox",
+     "bbox": [
+      0.016,
+      0.7,
+      0.074,
+      0.015
+     ],
+     "value": null,
+     "state": "disabled"
+    },
+    {
+     "label": "Front",
+     "kind": "text",
+     "bbox": [
+      0.016,
+      0.738,
+      0.016,
+      0.015
+     ],
+     "value": null,
+     "state": "disabled"
+    },
+    {
+     "label": "Front sculpt region icon",
+     "kind": "icon",
+     "bbox": [
+      0.041,
+      0.725,
+      0.022,
+      0.04
+     ],
+     "value": null,
+     "state": "disabled"
+    },
+    {
+     "label": "Front sculpt region icon",
+     "kind": "icon",
+     "bbox": [
+      0.069,
+      0.725,
+      0.022,
+      0.04
+     ],
+     "value": null,
+     "state": "disabled"
+    },
+    {
+     "label": "Front sculpt region icon",
+     "kind": "icon",
+     "bbox": [
+      0.096,
+      0.725,
+      0.022,
+      0.04
+     ],
+     "value": null,
+     "state": "disabled"
+    },
+    {
+     "label": "Front sculpt region icon",
+     "kind": "icon",
+     "bbox": [
+      0.124,
+      0.725,
+      0.022,
+      0.04
+     ],
+     "value": null,
+     "state": "disabled"
+    },
+    {
+     "label": "Front sculpt region icon",
+     "kind": "icon",
+     "bbox": [
+      0.152,
+      0.725,
+      0.022,
+      0.04
+     ],
+     "value": null,
+     "state": "disabled"
+    },
+    {
+     "label": "Front sculpt region icon",
+     "kind": "icon",
+     "bbox": [
+      0.18,
+      0.725,
+      0.022,
+      0.04
+     ],
+     "value": null,
+     "state": "disabled"
+    },
+    {
+     "label": "Side",
+     "kind": "text",
+     "bbox": [
+      0.016,
+      0.782,
+      0.014,
+      0.015
+     ],
+     "value": null,
+     "state": "disabled"
+    },
+    {
+     "label": "Side sculpt region icon",
+     "kind": "icon",
+     "bbox": [
+      0.041,
+      0.771,
+      0.022,
+      0.04
+     ],
+     "value": null,
+     "state": "disabled"
+    },
+    {
+     "label": "Side sculpt region icon",
+     "kind": "icon",
+     "bbox": [
+      0.069,
+      0.771,
+      0.022,
+      0.04
+     ],
+     "value": null,
+     "state": "disabled"
+    },
+    {
+     "label": "Side sculpt region icon",
+     "kind": "icon",
+     "bbox": [
+      0.096,
+      0.771,
+      0.022,
+      0.04
+     ],
+     "value": null,
+     "state": "disabled"
+    },
+    {
+     "label": "Side sculpt region icon",
+     "kind": "icon",
+     "bbox": [
+      0.124,
+      0.771,
+      0.022,
+      0.04
+     ],
+     "value": null,
+     "state": "disabled"
+    },
+    {
+     "label": "Side sculpt region icon",
+     "kind": "icon",
+     "bbox": [
+      0.152,
+      0.771,
+      0.022,
+      0.04
+     ],
+     "value": null,
+     "state": "disabled"
+    },
+    {
+     "label": "Side sculpt region icon",
+     "kind": "icon",
+     "bbox": [
+      0.18,
+      0.771,
+      0.022,
+      0.04
+     ],
+     "value": null,
+     "state": "disabled"
+    },
+    {
+     "label": "Symmetrical",
+     "kind": "checkbox",
+     "bbox": [
+      0.016,
+      0.818,
+      0.048,
+      0.017
+     ],
+     "value": null,
+     "state": "checked"
+    },
+    {
+     "label": "Show Compar? Area",
+     "kind": "checkbox",
+     "bbox": [
+      0.016,
+      0.846,
+      0.066,
+      0.017
+     ],
+     "value": null,
+     "state": "checked"
+    },
+    {
+     "label": "Dark Mode",
+     "kind": "checkbox",
+     "bbox": [
+      0.028,
+      0.869,
+      0.046,
+      0.017
+     ],
+     "value": null,
+     "state": "disabled"
+    },
+    {
+     "label": "Opacity",
+     "kind": "slider",
+     "bbox": [
+      0.03,
+      0.903,
+      0.24,
+      0.036
+     ],
+     "value": "?",
+     "state": "disabled"
+    },
+    {
+     "label": "?",
+     "kind": "field",
+     "bbox": [
+      0.273,
+      0.919,
+      0.031,
+      0.024
+     ],
+     "value": "?",
+     "state": "disabled"
+    },
+    {
+     "label": "Zoom to Focus Area",
+     "kind": "checkbox",
+     "bbox": [
+      0.016,
+      0.953,
+      0.07,
+      0.017
+     ],
+     "value": null,
+     "state": "checked"
+    }
+   ]
+  },
+  {
+   "id": "panel-scrollbar",
+   "kind": "other",
+   "bbox": [
+    0.32,
+    0.104,
+    0.006,
+    0.389
+   ],
+   "title": null,
+   "items": []
+  },
+  {
+   "id": "viewport",
+   "kind": "viewport",
+   "bbox": [
+    0.334,
+    0.083,
+    0.659,
+    0.9
+   ],
+   "title": null,
+   "items": []
+  }
+ ],
+ "hotspot": {
+  "label": "open folder icon (Load)",
+  "bbox": [
+   0.234,
+   0.242,
+   0.013,
+   0.021
+  ],
+  "kind": "button",
+  "region": "headshot3-panel",
+  "confidence": "medium",
+  "note": "No text 'Load' visible; the only enabled icon button beside the photo drop area is an open-folder icon, which is the load-photo control. The drop area itself (Drag in or Copy-Paste a photo to start) is the double-click/drag alternative."
+ },
+ "unreadable": [
+  "headshot3-panel: 'Show Compar? Area' label partly illegible (disabled text)",
+  "headshot3-panel: Opacity slider value field unreadable (disabled)",
+  "headshot3-panel: two disabled icons right of the folder icon have no legible meaning"
+ ]
+}

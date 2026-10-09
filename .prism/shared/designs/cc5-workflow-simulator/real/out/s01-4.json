@@ -1,0 +1,747 @@
+{
+ "key": "s01-4",
+ "frame_ref": "frames/BY7vlKwzfnk_58.png",
+ "app": "Character Creator 5",
+ "app_version_seen": "Character Creator 5 [Apr 18 2026]",
+ "view": "Plugins menu > Headshot 3 submenu open",
+ "theme": {
+  "window": "#171a1f",
+  "panel": "#282828",
+  "header": "#010101",
+  "text": "#f7f7f7",
+  "textDim": "#4e4e4e",
+  "accent": "#c8c8c8",
+  "border": "#434343"
+ },
+ "regions": [
+  {
+   "id": "titlebar",
+   "kind": "other",
+   "bbox": [
+    0.0,
+    0.0,
+    1.0,
+    0.021
+   ],
+   "title": "Character Creator 5 [Apr 18 2026] - Default.ccProject",
+   "items": [
+    {
+     "label": "Character Creator 5 [Apr 18 2026] - Default.ccProject",
+     "kind": "text",
+     "bbox": [
+      0.012,
+      0.001,
+      0.148,
+      0.017
+     ],
+     "value": null,
+     "state": null
+    },
+    {
+     "label": "minimize",
+     "kind": "icon",
+     "bbox": [
+      0.934,
+      0.001,
+      0.011,
+      0.017
+     ],
+     "value": null,
+     "state": null
+    },
+    {
+     "label": "restore",
+     "kind": "icon",
+     "bbox": [
+      0.958,
+      0.001,
+      0.011,
+      0.017
+     ],
+     "value": null,
+     "state": null
+    },
+    {
+     "label": "close",
+     "kind": "icon",
+     "bbox": [
+      0.981,
+      0.001,
+      0.011,
+      0.017
+     ],
+     "value": null,
+     "state": null
+    }
+   ]
+  },
+  {
+   "id": "menubar",
+   "kind": "menubar",
+   "bbox": [
+    0.0,
+    0.021,
+    1.0,
+    0.024
+   ],
+   "title": null,
+   "items": [
+    {
+     "label": "File",
+     "kind": "menu",
+     "bbox": [
+      0.004,
+      0.022,
+      0.011,
+      0.019
+     ],
+     "value": null,
+     "state": null
+    },
+    {
+     "label": "Edit",
+     "kind": "menu",
+     "bbox": [
+      0.023,
+      0.022,
+      0.011,
+      0.019
+     ],
+     "value": null,
+     "state": null
+    },
+    {
+     "label": "Create",
+     "kind": "menu",
+     "bbox": [
+      0.041,
+      0.022,
+      0.021,
+      0.019
+     ],
+     "value": null,
+     "state": null
+    },
+    {
+     "label": "Character",
+     "kind": "menu",
+     "bbox": [
+      0.07,
+      0.022,
+      0.029,
+      0.019
+     ],
+     "value": null,
+     "state": null
+    },
+    {
+     "label": "Modify",
+     "kind": "menu",
+     "bbox": [
+      0.105,
+      0.022,
+      0.019,
+      0.019
+     ],
+     "value": null,
+     "state": null
+    },
+    {
+     "label": "Mesh",
+     "kind": "menu",
+     "bbox": [
+      0.132,
+      0.022,
+      0.016,
+      0.019
+     ],
+     "value": null,
+     "state": null
+    },
+    {
+     "label": "Render",
+     "kind": "menu",
+     "bbox": [
+      0.155,
+      0.022,
+      0.023,
+      0.019
+     ],
+     "value": null,
+     "state": null
+    },
+    {
+     "label": "View",
+     "kind": "menu",
+     "bbox": [
+      0.185,
+      0.022,
+      0.015,
+      0.019
+     ],
+     "value": null,
+     "state": null
+    },
+    {
+     "label": "Window",
+     "kind": "menu",
+     "bbox": [
+      0.207,
+      0.022,
+      0.024,
+      0.019
+     ],
+     "value": null,
+     "state": null
+    },
+    {
+     "label": "Plugins",
+     "kind": "menu",
+     "bbox": [
+      0.238,
+      0.022,
+      0.023,
+      0.019
+     ],
+     "value": null,
+     "state": "active"
+    },
+    {
+     "label": "Script",
+     "kind": "menu",
+     "bbox": [
+      0.269,
+      0.022,
+      0.017,
+      0.019
+     ],
+     "value": null,
+     "state": null
+    },
+    {
+     "label": "Help",
+     "kind": "menu",
+     "bbox": [
+      0.293,
+      0.022,
+      0.015,
+      0.019
+     ],
+     "value": null,
+     "state": null
+    },
+    {
+     "label": "points icon",
+     "kind": "icon",
+     "bbox": [
+      0.887,
+      0.022,
+      0.011,
+      0.019
+     ],
+     "value": null,
+     "state": null
+    },
+    {
+     "label": "Available Points: 10,260",
+     "kind": "text",
+     "bbox": [
+      0.9,
+      0.022,
+      0.07,
+      0.019
+     ],
+     "value": "10,260",
+     "state": null
+    },
+    {
+     "label": "refresh icon",
+     "kind": "icon",
+     "bbox": [
+      0.973,
+      0.022,
+      0.009,
+      0.019
+     ],
+     "value": null,
+     "state": null
+    },
+    {
+     "label": "plus icon",
+     "kind": "button",
+     "bbox": [
+      0.986,
+      0.021,
+      0.013,
+      0.022
+     ],
+     "value": null,
+     "state": null
+    }
+   ]
+  },
+  {
+   "id": "toolbar",
+   "kind": "toolbar",
+   "bbox": [
+    0.0,
+    0.046,
+    1.0,
+    0.035
+   ],
+   "title": null,
+   "items": [
+    {
+     "label": "new project icon",
+     "kind": "icon",
+     "bbox": [
+      0.012,
+      0.053,
+      0.01,
+      0.022
+     ],
+     "value": null,
+     "state": null
+    },
+    {
+     "label": "open project icon",
+     "kind": "icon",
+     "bbox": [
+      0.03,
+      0.053,
+      0.011,
+      0.022
+     ],
+     "value": null,
+     "state": null
+    },
+    {
+     "label": "save icon",
+     "kind": "icon",
+     "bbox": [
+      0.048,
+      0.053,
+      0.01,
+      0.022
+     ],
+     "value": null,
+     "state": null
+    },
+    {
+     "label": "disabled icon",
+     "kind": "icon",
+     "bbox": [
+      0.069,
+      0.053,
+      0.01,
+      0.022
+     ],
+     "value": null,
+     "state": "disabled"
+    },
+    {
+     "label": "disabled icon",
+     "kind": "icon",
+     "bbox": [
+      0.086,
+      0.053,
+      0.01,
+      0.022
+     ],
+     "value": null,
+     "state": "disabled"
+    },
+    {
+     "label": "OBJ export icon",
+     "kind": "icon",
+     "bbox": [
+      0.105,
+      0.053,
+      0.02,
+      0.022
+     ],
+     "value": null,
+     "state": null
+    },
+    {
+     "label": "FBX export icon",
+     "kind": "icon",
+     "bbox": [
+      0.131,
+      0.053,
+      0.021,
+      0.022
+     ],
+     "value": null,
+     "state": null
+    },
+    {
+     "label": "USD export icon",
+     "kind": "icon",
+     "bbox": [
+      0.157,
+      0.053,
+      0.011,
+      0.022
+     ],
+     "value": null,
+     "state": null
+    },
+    {
+     "label": "export arrow icon",
+     "kind": "icon",
+     "bbox": [
+      0.175,
+      0.053,
+      0.011,
+      0.022
+     ],
+     "value": null,
+     "state": null
+    },
+    {
+     "label": "render preview icon",
+     "kind": "icon",
+     "bbox": [
+      0.194,
+      0.053,
+      0.011,
+      0.022
+     ],
+     "value": null,
+     "state": null
+    },
+    {
+     "label": "disabled icon",
+     "kind": "icon",
+     "bbox": [
+      0.221,
+      0.053,
+      0.01,
+      0.022
+     ],
+     "value": null,
+     "state": "disabled"
+    },
+    {
+     "label": "Morph",
+     "kind": "button",
+     "bbox": [
+      0.512,
+      0.053,
+      0.033,
+      0.022
+     ],
+     "value": null,
+     "state": null
+    },
+    {
+     "label": "HEADSHOT3",
+     "kind": "button",
+     "bbox": [
+      0.555,
+      0.053,
+      0.048,
+      0.022
+     ],
+     "value": null,
+     "state": null
+    },
+    {
+     "label": "headshot icon",
+     "kind": "icon",
+     "bbox": [
+      0.61,
+      0.053,
+      0.01,
+      0.022
+     ],
+     "value": null,
+     "state": null
+    },
+    {
+     "label": "head mesh icon",
+     "kind": "icon",
+     "bbox": [
+      0.629,
+      0.053,
+      0.011,
+      0.022
+     ],
+     "value": null,
+     "state": null
+    },
+    {
+     "label": "green sparkle icon",
+     "kind": "icon",
+     "bbox": [
+      0.648,
+      0.053,
+      0.01,
+      0.022
+     ],
+     "value": null,
+     "state": null
+    }
+   ]
+  },
+  {
+   "id": "plugins-menu",
+   "kind": "other",
+   "bbox": [
+    0.235,
+    0.044,
+    0.142,
+    0.194
+   ],
+   "title": "Plugins",
+   "items": [
+    {
+     "label": "Character Creator & iClone Auto Setup",
+     "kind": "menu",
+     "bbox": [
+      0.237,
+      0.049,
+      0.138,
+      0.022
+     ],
+     "value": null,
+     "state": null
+    },
+    {
+     "label": "Headshot 3",
+     "kind": "menu",
+     "bbox": [
+      0.237,
+      0.072,
+      0.138,
+      0.022
+     ],
+     "value": null,
+     "state": "selected"
+    },
+    {
+     "label": "SkinGen Premium",
+     "kind": "menu",
+     "bbox": [
+      0.237,
+      0.094,
+      0.138,
+      0.022
+     ],
+     "value": null,
+     "state": null
+    },
+    {
+     "label": "Smart Search",
+     "kind": "menu",
+     "bbox": [
+      0.237,
+      0.118,
+      0.138,
+      0.022
+     ],
+     "value": null,
+     "state": null
+    },
+    {
+     "label": "Omniverse",
+     "kind": "menu",
+     "bbox": [
+      0.237,
+      0.14,
+      0.138,
+      0.022
+     ],
+     "value": null,
+     "state": null
+    },
+    {
+     "label": "ActorMIXER PRO",
+     "kind": "menu",
+     "bbox": [
+      0.237,
+      0.164,
+      0.138,
+      0.022
+     ],
+     "value": null,
+     "state": null
+    },
+    {
+     "label": "HD Face Control",
+     "kind": "menu",
+     "bbox": [
+      0.237,
+      0.188,
+      0.138,
+      0.022
+     ],
+     "value": null,
+     "state": null
+    },
+    {
+     "label": "ZBrush Pose Link",
+     "kind": "menu",
+     "bbox": [
+      0.237,
+      0.211,
+      0.138,
+      0.022
+     ],
+     "value": null,
+     "state": null
+    }
+   ]
+  },
+  {
+   "id": "headshot3-submenu",
+   "kind": "other",
+   "bbox": [
+    0.377,
+    0.067,
+    0.134,
+    0.206
+   ],
+   "title": "Headshot 3",
+   "items": [
+    {
+     "label": "Headshot 3",
+     "kind": "menu",
+     "bbox": [
+      0.382,
+      0.074,
+      0.123,
+      0.021
+     ],
+     "value": null,
+     "state": "selected"
+    },
+    {
+     "label": "headshot icon",
+     "kind": "icon",
+     "bbox": [
+      0.384,
+      0.076,
+      0.008,
+      0.015
+     ],
+     "value": null,
+     "state": null
+    },
+    {
+     "label": "Toolbar",
+     "kind": "checkbox",
+     "bbox": [
+      0.382,
+      0.097,
+      0.123,
+      0.021
+     ],
+     "value": null,
+     "state": "checked"
+    },
+    {
+     "label": "AI Image Generator",
+     "kind": "menu",
+     "bbox": [
+      0.382,
+      0.119,
+      0.123,
+      0.021
+     ],
+     "value": null,
+     "state": null
+    },
+    {
+     "label": "Load Mesh to Head Project Folder",
+     "kind": "menu",
+     "bbox": [
+      0.382,
+      0.143,
+      0.124,
+      0.021
+     ],
+     "value": null,
+     "state": null
+    },
+    {
+     "label": "Clean Headshot Data",
+     "kind": "menu",
+     "bbox": [
+      0.382,
+      0.171,
+      0.123,
+      0.021
+     ],
+     "value": null,
+     "state": null
+    },
+    {
+     "label": "Online Manual",
+     "kind": "menu",
+     "bbox": [
+      0.382,
+      0.199,
+      0.123,
+      0.021
+     ],
+     "value": null,
+     "state": null
+    },
+    {
+     "label": "Tutorial Video",
+     "kind": "menu",
+     "bbox": [
+      0.382,
+      0.222,
+      0.123,
+      0.021
+     ],
+     "value": null,
+     "state": null
+    },
+    {
+     "label": "About Headshot",
+     "kind": "menu",
+     "bbox": [
+      0.382,
+      0.244,
+      0.123,
+      0.021
+     ],
+     "value": null,
+     "state": null
+    }
+   ]
+  },
+  {
+   "id": "viewport",
+   "kind": "viewport",
+   "bbox": [
+    0.0,
+    0.081,
+    1.0,
+    0.919
+   ],
+   "title": null,
+   "items": []
+  }
+ ],
+ "hotspot": {
+  "label": "Headshot 3",
+  "bbox": [
+   0.382,
+   0.074,
+   0.123,
+   0.021
+  ],
+  "kind": "menu",
+  "region": "headshot3-submenu",
+  "confidence": "high",
+  "note": "Highlighted first entry of the Plugins > Headshot 3 submenu, cursor on it. Menu highlight colour #c8c8c8 with black text."
+ },
+ "unreadable": [
+  "toolbar: icons between x=301 and 653 occluded by the open menus"
+ ]
+}

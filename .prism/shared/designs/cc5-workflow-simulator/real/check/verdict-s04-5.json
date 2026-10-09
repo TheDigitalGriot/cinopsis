@@ -1,0 +1,299 @@
+{
+ "s04-5": {
+  "layout": 3,
+  "labels": 2,
+  "hotspot": "correct",
+  "defects": [
+   "Menu bar: labels abbreviated to initials ('F. E. Cha.. M.. R..') instead of File/Edit/Create/Character/Modify/Render/View/Window/Plugins/Script/Help",
+   "Main toolbar: drawn as a solid green bar with blank or truncated buttons ('H... H...', 'Animation Pl...', 'Turnt...'), icons missing",
+   "Viewport: character replaced by placeholder text 'selected female cha...'; Content/Scene/Visual/Video Mocap vertical tab strip moved from x~290 to a green bar at the viewport's left edge",
+   "Content panel: template thumbnails (Catwalk, Change Pose, Dance Graceful, Open Curtains) are text tiles with truncated names ('Change P...', 'Dance ...', 'Open ...')",
+   "Content panel top icon grid: icons replaced by green squares with stray letters ('m...', 'M')",
+   "Modify > Render section: invented '(Video, disabled)' / '(Audio, disabled)' green pills and '? (disabled)' rows instead of greyed Quality/Compression and checkbox rows",
+   "Bottom bar: Apply/Save row has '? (disabled button)'; Format dropdown value WAV matches but step text says MP4 (value not reflected)"
+  ]
+ },
+ "s05-1": {
+  "layout": 3,
+  "labels": 3,
+  "hotspot": "correct",
+  "defects": [
+   "Menu bar: labels abbreviated to initials ('F. E. Cha.. M.. R..') instead of File/Edit/Create/Character/Modify/Render/View/Window/Plugins/Script/Help",
+   "Main toolbar: drawn as a solid green bar with blank or truncated buttons ('H... H...', 'Animation Pl...', 'Turnt...'), icons missing",
+   "Second toolbar row: buttons truncated ('Create Char...', '? Ids...', 'HEADS...') and icons missing",
+   "Export FBX dialog: InstaLOD column replaced by '? (InstaLOD options, disa...' text; Include Motion block shows invented 'custom list' box and '? (disabled ran...' text instead of Frame Rate / Calibration / Current Pose / Current Animation / Custom radios",
+   "Modify panel: Edit Mesh/Adjust Bones/Proportion/Edit Spring/Adjust Floor Contacts/Collision Shape buttons lack icons and use larger font; Smooth Mesh section replaced by '? (disabled smooth-mesh options)'",
+   "Viewport: character arm/hand not drawn; placeholder 'charac...' text",
+   "Animation Player: transport icons rendered as '0' glyphs"
+  ]
+ },
+ "s05-2": {
+  "layout": 3,
+  "labels": 3,
+  "hotspot": "correct",
+  "defects": [
+   "Menu bar: labels abbreviated to initials ('F. E. Cha.. M.. R..') instead of File/Edit/Create/Character/Modify/Render/View/Window/Plugins/Script/Help",
+   "Main toolbar: drawn as a solid green bar with blank or truncated buttons ('H... H...', 'Animation Pl...', 'Turnt...'), icons missing",
+   "Second toolbar row: buttons truncated ('Create Char...', '? Ids...', 'HEADS...') and icons missing",
+   "Export FBX dialog: Default Pose radios drawn as a green pill '( ) T...' and 'A-Pose (CC3+ B...' truncated; 'Delete Hidden Faces', 'Bake diffuse maps from skin color', 'Use Subdivided Mesh' truncated",
+   "Export FBX dialog: InstaLOD column replaced by '? (InstaLOD options, disa...' text; stray '? (disabled)' row in Other Settings",
+   "Modify panel buttons lack icons; Smooth Mesh section replaced by '? (disabled smooth-mesh options)'"
+  ]
+ },
+ "s05-3": {
+  "layout": 3,
+  "labels": 3,
+  "hotspot": "none",
+  "defects": [
+   "Menu bar: labels abbreviated to initials ('F. E. Cha.. M.. R..') instead of File/Edit/Create/Character/Modify/Render/View/Window/Plugins/Script/Help",
+   "Save As dialog: background is transparent, so the Scene panel's 'Search' and 'Condition' headers bleed through and overlap the navigation pane ('Home' covered by 'Search')",
+   "Save As dialog: address bar text duplicated ('Desktop > Vegeta_Hair_Rig' twice); toolbar buttons rendered as '0' glyphs",
+   "Save As dialog: 'No items match your search.' message missing from file list",
+   "Save As dialog: 'File name' / 'Save as type' labels moved inside the fields instead of to their left",
+   "Observe step: no hotspot shown (acceptable for observe mode)"
+  ]
+ },
+ "s05-4": {
+  "layout": 4,
+  "labels": 3,
+  "hotspot": "correct",
+  "defects": [
+   "Menu bar: labels abbreviated to initials ('F. E. Cha.. M.. R..') instead of File/Edit/Create/Character/Modify/Render/View/Window/Plugins/Script/Help",
+   "Main toolbar: drawn as a solid green bar with blank or truncated buttons ('H... H...', 'Animation Pl...', 'Turnt...'), icons missing",
+   "Second toolbar row: buttons truncated ('Create Char...', '? Ids...', 'HEADS...') and icons missing",
+   "Character Creator 4 progress box: 'Please wait...' text missing; progress bar has placeholder label 'progress bar'",
+   "Import Fbx chooser: Character and Prop buttons lack their figure/prop icons and use oversized text",
+   "Modify panel: Load Default Project/Load Neutral Base/Create Character/Transformer/HEADSHOT/HEADSHOT2/Create Prop lack icons",
+   "Viewport: grey gradient background replaced by grid with caption text"
+  ]
+ },
+ "s05-5": {
+  "layout": 4,
+  "labels": 3,
+  "hotspot": "none",
+  "defects": [
+   "Menu bar: labels abbreviated to initials ('F. E. Cha.. M.. R..') instead of File/Edit/Create/Character/Modify/Render/View/Window/Plugins/Script/Help",
+   "Main toolbar: drawn as a solid green bar with blank or truncated buttons ('H... H...', 'Animation Pl...', 'Turnt...'), icons missing",
+   "Second toolbar row: buttons truncated ('Create Char...', '? Ids...', 'HEADS...') and icons missing",
+   "Character Creator 4 progress box: 'Importing FBX file...' text missing; bar labelled 'progress bar' with stray '?' glyph",
+   "Modify panel buttons lack icons",
+   "Observe step: no hotspot shown"
+  ]
+ },
+ "s05-6": {
+  "layout": 3,
+  "labels": 1,
+  "hotspot": "correct",
+  "defects": [
+   "Menu bar: labels blank/unreadable",
+   "Main and second toolbar: every button rendered as an empty green/dark blob with no label (only 'Modify' readable)",
+   "Characterization panel: HumanIK T-pose bone preview figure and bone slots not drawn; only faint placeholder text 'Bone preview (HumanIK figure)'",
+   "Characterization panel: HumanIK row, warning 'The character must be in T-Pose...', HumanIK Node / Assigned Bone / Bone Rotate fields and Display rows have near-invisible text",
+   "Scene panel: 'Character' parent row missing; only 'RootNode' green pill shown",
+   "Animation Player: transport and Motion/Remove buttons have no labels",
+   "Viewport caption text unreadable (dark on dark)"
+  ]
+ },
+ "s06-1": {
+  "layout": 3,
+  "labels": 3,
+  "hotspot": "correct",
+  "defects": [
+   "Viewport: 3D character/hair mesh not drawn; only a caption string sits at the bottom of an empty grid",
+   "Top menu/workspace tabs truncated ('F.. E.. Ren.. Wind.. H..', 'Mod...', 'Scul...', 'UV Ed...', 'Compos...')",
+   "Left toolbar: tool icons replaced by empty squares",
+   "N-panel vertical tab strip: rotated tab names (Item/Tool/View/Animation/CC/iC Pipeline/CC/iC Create...) reduced to single letters (I, T, V, C, A, E, Q)",
+   "Properties editor: left icon column rendered as empty checkboxes",
+   "Viewport nav gizmo (axis widget, zoom/pan/camera icons) missing at top right of viewport",
+   "Timeline: frame ruler numbers truncated ('1.', '2.', '3.') instead of 20,40,...,560",
+   "N-panel Spring Rigging: Hair Rigging dropdown duplicated and truncated ('Hair Rig... Hair Rig...'); 'Vertical C...', 'Horizontal...', 'Square Ca...' truncated with letter glyphs (d, u, r, l) instead of arrow buttons",
+   "N-panel: 'Hair System' / 'Group Name' fields truncated ('Hai... H...', 'Grou... R...'); mini tool bar icons rendered as '0' glyphs",
+   "Viewport: green hotspot box drawn as an ellipse placeholder over empty space, no hair cards to pick"
+  ]
+ },
+ "s06-2": {
+  "layout": 3,
+  "labels": 3,
+  "hotspot": "correct",
+  "defects": [
+   "Viewport: 3D character/hair mesh not drawn; only a caption string sits at the bottom of an empty grid",
+   "Top menu/workspace tabs truncated ('F.. E.. Ren.. Wind.. H..', 'Mod...', 'Scul...', 'UV Ed...', 'Compos...')",
+   "Left toolbar: tool icons replaced by empty squares",
+   "N-panel vertical tab strip: rotated tab names (Item/Tool/View/Animation/CC/iC Pipeline/CC/iC Create...) reduced to single letters (I, T, V, C, A, E, Q)",
+   "Properties editor: left icon column rendered as empty checkboxes",
+   "Viewport nav gizmo (axis widget, zoom/pan/camera icons) missing at top right of viewport",
+   "Timeline: frame ruler numbers truncated ('1.', '2.', '3.') instead of 20,40,...,560",
+   "N-panel Spring Rigging: Hair Rigging dropdown duplicated and truncated ('Hair Rig... Hair Rig...'); arrow buttons replaced by letters",
+   "N-panel: 'Bones from Grease Pencil' truncated to 'Bones from Grease...'; button icons missing"
+  ]
+ },
+ "s06-3": {
+  "layout": 3,
+  "labels": 3,
+  "hotspot": "correct",
+  "defects": [
+   "Viewport: 3D character/hair mesh not drawn; only a caption string sits at the bottom of an empty grid",
+   "Top menu/workspace tabs truncated ('F.. E.. Ren.. Wind.. H..', 'Mod...', 'Scul...', 'UV Ed...', 'Compos...')",
+   "Left toolbar: tool icons replaced by empty squares",
+   "N-panel vertical tab strip: rotated tab names (Item/Tool/View/Animation/CC/iC Pipeline/CC/iC Create...) reduced to single letters (I, T, V, C, A, E, Q)",
+   "Properties editor: left icon column rendered as empty checkboxes",
+   "Viewport nav gizmo (axis widget, zoom/pan/camera icons) missing at top right of viewport",
+   "Timeline: frame ruler numbers truncated ('1.', '2.', '3.') instead of 20,40,...,560",
+   "Borrowed state: redraw shows the s06-4 Pose Mode panel (scrolled to Truncate Length, header 'Pos...') while the real s06-3 frame is in Edit Mode with Hair Card UV Directions at top and Bind Hair scrolled below Weight Variance",
+   "N-panel: Rigid Body Sim dropdown truncated ('Rigid B... Rigid B...'); 'Bones from Grease...' truncated",
+   "Outliner: 'FDress' truncated to 'FDr...'"
+  ]
+ },
+ "s06-4": {
+  "layout": 3,
+  "labels": 3,
+  "hotspot": "correct",
+  "defects": [
+   "Viewport: 3D character/hair mesh not drawn; only a caption string sits at the bottom of an empty grid",
+   "Top menu/workspace tabs truncated ('F.. E.. Ren.. Wind.. H..', 'Mod...', 'Scul...', 'UV Ed...', 'Compos...')",
+   "Left toolbar: tool icons replaced by empty squares",
+   "N-panel vertical tab strip: rotated tab names (Item/Tool/View/Animation/CC/iC Pipeline/CC/iC Create...) reduced to single letters (I, T, V, C, A, E, Q)",
+   "Properties editor: left icon column rendered as empty checkboxes",
+   "Viewport nav gizmo (axis widget, zoom/pan/camera icons) missing at top right of viewport",
+   "Timeline: frame ruler numbers truncated ('1.', '2.', '3.') instead of 20,40,...,560",
+   "Viewport: four spring bones and hair not drawn; hotspot box drawn over empty grid",
+   "N-panel: Rigid Body Sim dropdown truncated ('Rigid B... Rigid B...'), Hair System 'Hai... H...'; Build Simulation icon missing",
+   "Action Editor header: action name 'FDress|A|iCTM' truncated ('FDres... FDres...')"
+  ]
+ },
+ "s06-5": {
+  "layout": 3,
+  "labels": 3,
+  "hotspot": "correct",
+  "defects": [
+   "Viewport: 3D character/hair mesh not drawn; only a caption string sits at the bottom of an empty grid",
+   "Top menu/workspace tabs truncated ('F.. E.. Ren.. Wind.. H..', 'Mod...', 'Scul...', 'UV Ed...', 'Compos...')",
+   "Left toolbar: tool icons replaced by empty squares",
+   "N-panel vertical tab strip: rotated tab names (Item/Tool/View/Animation/CC/iC Pipeline/CC/iC Create...) reduced to single letters (I, T, V, C, A, E, Q)",
+   "Properties editor: left icon column rendered as empty checkboxes",
+   "Viewport nav gizmo (axis widget, zoom/pan/camera icons) missing at top right of viewport",
+   "Timeline: frame ruler numbers truncated ('1.', '2.', '3.') instead of 20,40,...,560",
+   "Bottom-left: 'Rotate' last-operator label overlaps the viewport caption ('VIEWPORRotatePose Mode...') instead of sitting in its own collapsed panel",
+   "N-panel: Rigid Body Sim dropdown truncated ('Rigid B... Rigid B...')"
+  ]
+ },
+ "s06-6": {
+  "layout": 3,
+  "labels": 3,
+  "hotspot": "correct",
+  "defects": [
+   "Viewport: 3D character/hair mesh not drawn; only a caption string sits at the bottom of an empty grid",
+   "Top menu/workspace tabs truncated ('F.. E.. Ren.. Wind.. H..', 'Mod...', 'Scul...', 'UV Ed...', 'Compos...')",
+   "Left toolbar: tool icons replaced by empty squares",
+   "N-panel vertical tab strip: rotated tab names (Item/Tool/View/Animation/CC/iC Pipeline/CC/iC Create...) reduced to single letters (I, T, V, C, A, E, Q)",
+   "Properties editor: left icon column rendered as empty checkboxes",
+   "Viewport nav gizmo (axis widget, zoom/pan/camera icons) missing at top right of viewport",
+   "Timeline: frame ruler numbers truncated ('1.', '2.', '3.') instead of 20,40,...,560",
+   "N-panel mini tool bar: eye/pencil/drop/armature-figure icons rendered as '0' glyphs and an empty square; bone icon left of Rename missing",
+   "Bottom-left: 'Rotate' last-operator label overlaps the viewport caption text",
+   "Viewport caption mentions 'posed spring bones' but nothing is drawn"
+  ]
+ },
+ "s07-1": {
+  "layout": 3,
+  "labels": 3,
+  "hotspot": "correct",
+  "defects": [
+   "Viewport: 3D character/hair mesh not drawn; only a caption string sits at the bottom of an empty grid",
+   "Top menu/workspace tabs truncated ('F.. E.. Ren.. Wind.. H..', 'Mod...', 'Scul...', 'UV Ed...', 'Compos...')",
+   "Left toolbar: tool icons replaced by empty squares",
+   "N-panel vertical tab strip: rotated tab names (Item/Tool/View/Animation/CC/iC Pipeline/CC/iC Create...) reduced to single letters (I, T, V, C, A, E, Q)",
+   "Properties editor: left icon column rendered as empty checkboxes",
+   "Viewport nav gizmo (axis widget, zoom/pan/camera icons) missing at top right of viewport",
+   "Timeline: frame ruler numbers truncated ('1.', '2.', '3.') instead of 20,40,...,560",
+   "N-panel CC/iC Pipeline: Retargeting header shown as truncated duplicated dropdown 'Retarge... Retarge...'; 'Rig Controls' expander arrow missing",
+   "N-panel: Source Armature/Source Action fields truncated ('Source Ar... FD...', 'Sourc... FDress...'); Limb Correction sliders lack blue fill",
+   "N-panel: Export dropdown at bottom truncated ('Export Export')"
+  ]
+ },
+ "s07-2": {
+  "layout": 3,
+  "labels": 3,
+  "hotspot": "correct",
+  "defects": [
+   "Viewport: 3D character/hair mesh not drawn; only a caption string sits at the bottom of an empty grid",
+   "Top menu/workspace tabs truncated ('F.. E.. Ren.. Wind.. H..', 'Mod...', 'Scul...', 'UV Ed...', 'Compos...')",
+   "Left toolbar: tool icons replaced by empty squares",
+   "N-panel vertical tab strip: rotated tab names (Item/Tool/View/Animation/CC/iC Pipeline/CC/iC Create...) reduced to single letters (I, T, V, C, A, E, Q)",
+   "Properties editor: left icon column rendered as empty checkboxes",
+   "Viewport nav gizmo (axis widget, zoom/pan/camera icons) missing at top right of viewport",
+   "Timeline: frame ruler numbers truncated ('1.', '2.', '3.') instead of 20,40,...,560",
+   "N-panel: 'Rigid Body Sim' dropdown truncated/duplicated ('Rigid B... Rigid B...'); 'Remove Simulation' truncated to 'Remove Simulati...'",
+   "N-panel: 'Rigid Body Colliders', 'Animation Range', 'Rigid Body Cache' labels truncated to near-invisible text",
+   "N-panel: Retargeting dropdown 'Retarge... Retarge...' truncated"
+  ]
+ },
+ "s07-3": {
+  "layout": 3,
+  "labels": 3,
+  "hotspot": "correct",
+  "defects": [
+   "Viewport: 3D character/hair mesh not drawn; only a caption string sits at the bottom of an empty grid",
+   "Top menu/workspace tabs truncated ('F.. E.. Ren.. Wind.. H..', 'Mod...', 'Scul...', 'UV Ed...', 'Compos...')",
+   "Left toolbar: tool icons replaced by empty squares",
+   "N-panel vertical tab strip: rotated tab names (Item/Tool/View/Animation/CC/iC Pipeline/CC/iC Create...) reduced to single letters (I, T, V, C, A, E, Q)",
+   "Properties editor: left icon column rendered as empty checkboxes",
+   "Viewport nav gizmo (axis widget, zoom/pan/camera icons) missing at top right of viewport",
+   "Timeline: frame ruler numbers truncated ('1.', '2.', '3.') instead of 20,40,...,560",
+   "Timeline: playhead frame label '266' not legible (rendered as '2.' under the box); current frame field truncated to 'curr... 2.' instead of 266",
+   "N-panel: 'Free Simulation' button drawn grey instead of red (baked-state cue lost)",
+   "N-panel: Rigid Body Sim dropdown truncated ('Rigid B... Rigid B...')"
+  ]
+ },
+ "s07-4": {
+  "layout": 3,
+  "labels": 3,
+  "hotspot": "correct",
+  "defects": [
+   "Viewport: 3D character/hair mesh not drawn; only a caption string sits at the bottom of an empty grid",
+   "Top menu/workspace tabs truncated ('F.. E.. Ren.. Wind.. H..', 'Mod...', 'Scul...', 'UV Ed...', 'Compos...')",
+   "Left toolbar: tool icons replaced by empty squares",
+   "N-panel vertical tab strip: rotated tab names (Item/Tool/View/Animation/CC/iC Pipeline/CC/iC Create...) reduced to single letters (I, T, V, C, A, E, Q)",
+   "Properties editor: left icon column rendered as empty checkboxes",
+   "Viewport nav gizmo (axis widget, zoom/pan/camera icons) missing at top right of viewport",
+   "Timeline: frame ruler numbers truncated ('1.', '2.', '3.') instead of 20,40,...,560",
+   "N-panel Spring Chain Group: '<- IK', '-> FK', 'SIM' buttons garbled to 'IK (I...', 'FK (r...', 'SIM'",
+   "N-panel Spring Chains: slider values clipped ('Simulation-FK (RL_H 1.00C', 'IK-FK (RL_Hair_Front 1.00C')",
+   "N-panel Transform: 'Location'/'Rotation'/'Scale' and 'Quaternion (WXYZ)' truncated ('Locat...', 'Rotati...', 'Quaterni... Quaterni...')"
+  ]
+ },
+ "s07-5": {
+  "layout": 3,
+  "labels": 3,
+  "hotspot": "correct",
+  "defects": [
+   "Viewport: 3D character/hair mesh not drawn; only a caption string sits at the bottom of an empty grid",
+   "Top menu/workspace tabs truncated ('F.. E.. Ren.. Wind.. H..', 'Mod...', 'Scul...', 'UV Ed...', 'Compos...')",
+   "Left toolbar: tool icons replaced by empty squares",
+   "N-panel vertical tab strip: rotated tab names (Item/Tool/View/Animation/CC/iC Pipeline/CC/iC Create...) reduced to single letters (I, T, V, C, A, E, Q)",
+   "Properties editor: left icon column rendered as empty checkboxes",
+   "Viewport nav gizmo (axis widget, zoom/pan/camera icons) missing at top right of viewport",
+   "Timeline: frame ruler numbers truncated ('1.', '2.', '3.') instead of 20,40,...,560",
+   "Viewport: hotspot is an empty ellipse placeholder; green/blue FK/IK controls on the ponytail are not drawn, and the box extends right over empty space past the hair",
+   "N-panel Spring Chain Group buttons garbled ('IK (I...', 'FK (r...'); slider values clipped ('0.00C')",
+   "N-panel Rig Layers: 'Face (Secon...', 'Arm.L (T...', 'Arm.R (T...' truncated"
+  ]
+ },
+ "s07-6": {
+  "layout": 3,
+  "labels": 3,
+  "hotspot": "correct",
+  "defects": [
+   "Viewport: 3D character/hair mesh not drawn; only a caption string sits at the bottom of an empty grid",
+   "Top menu/workspace tabs truncated ('F.. E.. Ren.. Wind.. H..', 'Mod...', 'Scul...', 'UV Ed...', 'Compos...')",
+   "Left toolbar: tool icons replaced by empty squares",
+   "N-panel vertical tab strip: rotated tab names (Item/Tool/View/Animation/CC/iC Pipeline/CC/iC Create...) reduced to single letters (I, T, V, C, A, E, Q)",
+   "Properties editor: left icon column rendered as empty checkboxes",
+   "Viewport nav gizmo (axis widget, zoom/pan/camera icons) missing at top right of viewport",
+   "Timeline: frame ruler numbers truncated ('1.', '2.', '3.') instead of 20,40,...,560",
+   "Bottom-left: 'Move' last-operator label overlaps the viewport caption ('VIEWPOMovePose Mode...')",
+   "N-panel Spring Chain Group: '<- IK', '-> FK' garbled to 'IK (I...', 'FK (r...'; slider values clipped ('0.00C')",
+   "N-panel Transform: 'Quaternion (WXYZ)' duplicated/truncated ('Quaterni... Quaterni...')"
+  ]
+ }
+}

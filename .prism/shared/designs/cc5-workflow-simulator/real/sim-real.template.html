@@ -1,0 +1,431 @@
+<title>CC5 Workflow Simulator</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&family=JetBrains+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: Griotwave shell (spine of stages on top, instruction bar, one 16:9 app screen redrawn from measured frame data, evidence under it).
+   The shell is single-theme dark by choice (Griotwave); each simulated screen takes the colours sampled from its own frame. */
+:root{
+  --bg:#050505; --ink:#ececec; --ink-2:rgba(236,236,236,.62); --ink-3:rgba(236,236,236,.38);
+  --line:rgba(255,255,255,.09); --glass:rgba(255,255,255,.035);
+  --ember:#F97316; --ok:#10B985; --miss:#FB7185; --ext:#A78BFA; --path:#FBBF24;
+  --f-display:"Inter",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --f-body:"Inter",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --f-mono:"JetBrains Mono",ui-monospace,"Cascadia Mono",Consolas,monospace;
+  --song:cubic-bezier(.16,1,.3,1); --tale:cubic-bezier(.4,0,.2,1);
+  color-scheme:dark;
+}
+html,body{background:var(--bg);color:var(--ink)}
+body{font-family:var(--f-body);font-size:14px;line-height:1.55;padding-inline:16px;padding-block:20px 40px}
+.wrap{max-width:1240px;margin:0 auto;display:grid;gap:14px}
+.mono{font-family:var(--f-mono);font-size:10.5px;letter-spacing:.09em;text-transform:uppercase;color:var(--ink-3)}
+h1{font-family:var(--f-display);font-weight:300;font-size:clamp(26px,4.4vw,40px);letter-spacing:-.02em;line-height:1.1;margin:4px 0 4px;text-wrap:balance}
+.sub{color:var(--ink-2);max-width:70ch;margin:0}
+.top{display:flex;flex-wrap:wrap;gap:14px 24px;align-items:flex-end;justify-content:space-between}
+.top>div{min-width:0}
+.ctrls{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.seg{display:inline-flex;border:1px solid var(--line);border-radius:10px;overflow:hidden}
+.seg button{background:transparent;color:var(--ink-2);border:0;padding:7px 12px;font:500 12px var(--f-body);cursor:pointer}
+.seg button[aria-pressed="true"]{background:var(--ember);color:#000}
+.chip{display:inline-flex;gap:6px;align-items:center;border:1px solid var(--line);border-radius:10px;padding:6px 10px;font-size:12px;color:var(--ink-2);background:transparent;cursor:pointer}
+.chip input{accent-color:var(--ember)}
+button:focus-visible,input:focus-visible,.stg:focus-visible{outline:2px solid var(--ember);outline-offset:2px}
+.rail{display:flex;gap:8px;overflow-x:auto;padding-bottom:4px;scrollbar-width:thin}
+.stg{flex:0 0 auto;min-width:148px;max-width:190px;text-align:left;background:var(--glass);border:1px solid var(--line);border-radius:12px;padding:9px 11px;color:var(--ink);cursor:pointer;display:grid;gap:3px;transition:border-color .3s var(--tale),transform .4s var(--song)}
+.stg .n{font:500 10.5px var(--f-mono);color:var(--ink-3)}
+.stg .t{font-size:12.5px;line-height:1.3}
+.stg .a{font:10px var(--f-mono);color:var(--ink-3)}
+.stg .bar{height:3px;border-radius:2px;background:rgba(255,255,255,.07);overflow:hidden;margin-top:4px}
+.stg .bar i{display:block;height:100%;width:0;background:var(--ok);transition:width .6s var(--song)}
+.stg[aria-current="true"]{border-color:var(--ember);transform:translateY(-2px)}
+.stg[aria-current="true"] .n{color:var(--ember)}
+.stg.ext .a{color:var(--ext)}
+.instr{display:grid;grid-template-columns:auto minmax(0,1fr) auto;gap:6px 14px;align-items:center;background:var(--glass);border:1px solid var(--line);border-radius:14px;padding:11px 14px}
+.instr .k{font:500 11px var(--f-mono);color:var(--ember);white-space:nowrap}
+.instr .do{font-size:15px;min-width:0}
+.instr .do b{font-weight:500;color:#fff}
+.instr .meta{display:flex;gap:6px;flex-wrap:wrap;justify-content:flex-end}
+.badge{font:10px var(--f-mono);letter-spacing:.06em;border:1px solid currentColor;border-radius:6px;padding:1px 6px;white-space:nowrap}
+.b-sim{color:var(--ember)}.b-ext{color:var(--ext)}.b-path{color:var(--path)}.b-bor{color:#7dd3fc}.b-lo{color:var(--miss)}.b-ok{color:var(--ok)}
+@media (max-width:640px){.instr{grid-template-columns:1fr}.instr .meta{justify-content:flex-start}}
+.stagebox{position:relative;width:100%;aspect-ratio:16/9;max-width:100%;border-radius:12px;overflow:hidden;border:1px solid var(--line);background:#111;touch-action:none;user-select:none;-webkit-user-select:none}
+.screen{position:absolute;left:0;top:0;width:1280px;height:720px;transform-origin:0 0;cursor:default}
+.screen.swap{animation:swap .55s var(--song)}
+@keyframes swap{from{opacity:.15;filter:blur(6px)}to{opacity:1;filter:none}}
+.still .screen.swap,.still *{animation:none!important;transition:none!important}
+.rg{position:absolute;overflow:hidden}
+.it{pointer-events:auto}
+.it.k-menu,.it.k-tab,.it.k-header,.it.k-text,.it.k-tree-item,.it.k-value{overflow:visible}
+.it.k-menu span,.it.k-tab span,.it.k-header span,.it.k-text span,.it.k-tree-item span,.it.k-value span{overflow:visible;text-overflow:clip}
+.it.px{padding:0;border:0!important}
+.it{position:absolute;display:flex;align-items:center;overflow:hidden;white-space:nowrap;text-overflow:ellipsis;line-height:1;box-sizing:border-box;padding:0 1px;border-radius:2px;letter-spacing:-.01em}
+.it span{overflow:hidden;text-overflow:ellipsis}
+.it.hv:hover{background:rgba(255,255,255,.07)}
+.it.dis{opacity:.42}
+.it.k-button{justify-content:center;border:1px solid rgba(255,255,255,.08);border-radius:3px}
+.it.k-tab{justify-content:center}
+.it.k-icon{justify-content:center;border-radius:3px}
+.it.k-icon i{width:52%;height:52%;max-width:11px;max-height:11px;border-radius:3px;background:currentColor;opacity:.32;display:block}
+.it.k-checkbox .bx{flex:none;width:9px;height:9px;border:1px solid currentColor;border-radius:2px;margin-right:4px;opacity:.7;display:grid;place-items:center;font-size:8px}
+.it.k-slider{padding:0}
+.it.k-slider .tr{position:absolute;inset:0;border-radius:3px}
+.it.k-slider .fl{position:absolute;left:0;top:0;bottom:0;border-radius:3px 0 0 3px;opacity:.85}
+.it.k-slider span{position:relative;padding:0 5px;flex:1;display:flex;justify-content:space-between;gap:6px}
+.it.k-dropdown::after{content:"▾";margin-left:auto;padding-left:4px;opacity:.6}
+.it.k-tree-item::before{content:"▸";opacity:.5;margin-right:3px}
+.it.k-header{font-weight:500}
+.vp-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.035) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.035) 1px,transparent 1px);background-size:40px 40px}
+.vp-tag{position:absolute;left:8px;bottom:6px;font:10px var(--f-mono);letter-spacing:.08em;opacity:.35}
+.pick{position:absolute;z-index:30;border:1.5px dashed rgba(255,255,255,.28);border-radius:40% 45% 38% 50%;background:rgba(255,255,255,.04)}
+.hot{position:absolute;z-index:40;border:2px solid var(--ok);border-radius:4px;pointer-events:none;box-shadow:0 0 0 0 rgba(16,185,133,.6);animation:hot 1.5s var(--tale) infinite}
+@keyframes hot{0%{box-shadow:0 0 0 0 rgba(16,185,133,.55)}70%{box-shadow:0 0 0 12px rgba(16,185,133,0)}100%{box-shadow:0 0 0 0 rgba(16,185,133,0)}}
+.ripple{position:absolute;z-index:40;width:10px;height:10px;margin:-5px 0 0 -5px;border-radius:50%;pointer-events:none;animation:rip .6s var(--song) forwards}
+@keyframes rip{to{transform:scale(7);opacity:0}}
+.burst{position:absolute;z-index:40;border:2px solid var(--ok);border-radius:6px;pointer-events:none;animation:burst .7s var(--song) forwards}
+@keyframes burst{from{opacity:1;transform:scale(1)}to{opacity:0;transform:scale(1.6)}}
+.shake{animation:shake .32s var(--tale)}
+@keyframes shake{25%{transform:translateX(-4px)}75%{transform:translateX(4px)}}
+.menu{position:absolute;z-index:45!important;min-width:180px;padding:3px 0;border-radius:4px;box-shadow:0 8px 24px rgba(0,0,0,.55);z-index:5;animation:fu .25s var(--song)}
+.menu .mi{display:flex;justify-content:space-between;gap:16px;padding:5px 12px;font-size:12px;cursor:pointer;white-space:nowrap}
+.menu .mi:hover{filter:brightness(1.35)}
+.menu .mh{padding:3px 12px;font:9px var(--f-mono);letter-spacing:.08em;opacity:.55}
+@keyframes fu{from{opacity:0;transform:translateY(-4px)}to{opacity:1;transform:none}}
+.dlg{position:absolute;z-index:35!important;left:330px;top:70px;width:620px;border-radius:6px;box-shadow:0 18px 50px rgba(0,0,0,.6);overflow:hidden;z-index:4}
+.dlg .hd{padding:8px 12px;font-size:12px;display:flex;justify-content:space-between}
+.dlg .bd{padding:8px 14px;display:grid;gap:4px;font-size:12px}
+.dlg .row{display:flex;justify-content:space-between;gap:10px;align-items:center}
+.dlg .sec{font-weight:500;margin-top:6px;opacity:.85}
+.dlg .ft{display:flex;justify-content:flex-end;gap:8px;padding:10px 14px}
+.dlg .btn{padding:6px 14px;border-radius:4px;font-size:12px;cursor:pointer;border:1px solid rgba(255,255,255,.12)}
+.term{position:absolute;inset:0;display:grid;grid-template-columns:230px 1fr;background:#0c0d10;color:#d6d9df;font-family:var(--f-mono);font-size:13px}
+.term .tree{border-right:1px solid #1d2026;padding:14px 10px;display:grid;align-content:start;gap:4px;background:#0f1115}
+.term .tree div{padding:3px 8px;border-radius:3px;cursor:pointer}
+.term .tree div:hover{background:#1b1f27}
+.term .pane{display:grid;grid-template-rows:1fr 250px;min-height:0}
+.term pre{margin:0;padding:16px 18px;overflow:hidden;white-space:pre;font:12.5px/1.6 var(--f-mono)}
+.term .sh{border-top:1px solid #1d2026;background:#08090b;padding:12px 16px;display:grid;align-content:start;gap:8px}
+.term .cmd{display:block;text-align:left;width:max-content;max-width:100%;background:#12151b;border:1px solid #232833;color:#d6d9df;border-radius:4px;padding:5px 10px;font:12.5px var(--f-mono);cursor:pointer}
+.term .cmd:hover{border-color:var(--ember)}
+.term .out{color:#8b93a1;white-space:pre-wrap}
+.ghost{position:absolute;left:0;top:0;width:1280px;height:720px;pointer-events:none;opacity:.4;z-index:38}
+.zoombar{position:absolute;right:8px;bottom:8px;display:flex;gap:4px;z-index:6}
+.zoombar button{background:rgba(0,0,0,.65);color:#fff;border:1px solid rgba(255,255,255,.2);border-radius:6px;padding:3px 8px;font:11px var(--f-mono);cursor:pointer}
+.zoombar button[aria-pressed="true"]{border-color:var(--ember);color:var(--ember)}
+.below{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr);gap:12px}
+@media (max-width:820px){.below{grid-template-columns:1fr}}
+.card{background:var(--glass);border:1px solid var(--line);border-radius:14px;padding:12px 14px;min-width:0}
+.card h3{margin:0 0 6px;font-weight:500;font-size:13px}
+.feed{display:grid;gap:5px;font-size:12.5px;color:var(--ink-2)}
+.feed .ok{color:var(--ok)}.feed .no{color:var(--miss)}
+.ev{font:11.5px/1.6 var(--f-mono);color:var(--ink-2);overflow-wrap:anywhere}
+.tools{display:grid;gap:6px}
+.tools div{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:2px 10px;font-size:12px}
+.tools small{grid-column:1/3;color:var(--ink-3)}
+.next{background:var(--ember);color:#000;border:0;border-radius:10px;padding:8px 16px;font:500 13px var(--f-body);cursor:pointer}
+.next[hidden]{display:none}
+.stats{display:flex;gap:16px;flex-wrap:wrap;font-variant-numeric:tabular-nums}
+.stats b{font:500 18px var(--f-display);display:block;color:#fff}
+.stats span{font:10px var(--f-mono);letter-spacing:.08em;color:var(--ink-3);text-transform:uppercase}
+.foot{color:var(--ink-3);font-size:11.5px}
+.hoverline{min-height:16px;color:var(--ink-2);text-transform:none;letter-spacing:.02em;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.hit{position:absolute;border-radius:2px;pointer-events:auto}
+.hit:hover{outline:1.5px solid rgba(249,115,22,.9);background:rgba(249,115,22,.10)}
+.realbg{position:absolute;inset:0;background-size:1280px 720px;z-index:1}
+</style>
+
+<div class="wrap" id="app">
+  <div class="top">
+    <div>
+      <div class="mono">CC5 Workflow · Real-screen simulator · SIMULATED</div>
+      <h1>Click it where it lives.</h1>
+      <p class="sub" id="sub"></p>
+    </div>
+    <div class="ctrls">
+      <div class="seg" role="group" aria-label="Mode">
+        <button id="mLearn" aria-pressed="true">Learn</button><button id="mDrill" aria-pressed="false">Drill</button>
+      </div>
+      <div class="seg" role="group" aria-label="Screen"><button id="vReal" aria-pressed="true">Real screen</button><button id="vDraw" aria-pressed="false">Redrawn</button></div>
+      <label class="chip" for="ghostOn" id="ghostLab" hidden><input type="checkbox" id="ghostOn"> Overlay frame</label>
+      <input type="range" id="ghostOp" min="10" max="90" value="40" aria-label="Overlay frame opacity" style="width:84px;accent-color:var(--ember)" hidden>
+      <label class="chip" for="mot"><input type="checkbox" id="mot" checked> Motion</label>
+    </div>
+  </div>
+
+  <nav class="rail" id="rail" aria-label="Stages"></nav>
+
+  <div class="instr" id="instr">
+    <div class="k" id="stepk"></div>
+    <div class="do" id="do"></div>
+    <div class="meta" id="meta"></div>
+  </div>
+
+  <div class="hoverline mono" id="hoverline">Hover a control to read it · click where the step lives</div>
+  <div class="stagebox" id="box">
+    <div class="screen" id="screen"></div>
+    <div class="zoombar"><button data-z="1" aria-pressed="true">Fit</button><button data-z="2" aria-pressed="false">2×</button><button data-z="3" aria-pressed="false">3×</button></div>
+  </div>
+
+  <div class="below">
+    <div class="card">
+      <div style="display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap">
+        <div class="stats"><div><b id="sMiss">0</b><span>Misses</span></div><div><b id="sDone">0</b><span>Steps landed</span></div><div><b id="sStreak">0</b><span>Clean streak</span></div><div><b id="sBest">–</b><span>Best drill</span></div></div>
+        <button class="next" id="next" hidden>Next step →</button>
+      </div>
+      <div class="feed" id="feed" style="margin-top:10px"></div>
+    </div>
+    <div class="card" id="side"></div>
+  </div>
+  <div class="foot" id="foot"></div>
+</div>
+
+<script src="cc5-sim/cc5-sim.data.js"></script>
+<script>
+(function(){
+const D=window.CC5_SIM; const W=1280,H=720;
+const $=s=>document.querySelector(s);
+const esc=s=>String(s==null?'':s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+const store={get(k,d){try{const v=localStorage.getItem(k);return v==null?d:JSON.parse(v)}catch(e){return d}},set(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}}};
+const S={view:'real',stage:0,step:0,mode:'learn',miss:0,stepMiss:0,done:0,streak:0,z:1,px:0,py:0,landed:false,drillMiss:0,progress:store.get('cc5sim.progress',{}),best:store.get('cc5sim.best',null)};
+const C=D.counts;
+$('#sub').textContent=`${C.steps} steps across ${D.stages.length} stages, on the real Character Creator, iClone 8 and Blender screens from the tutorial corpus. Every control on each screen is mapped and live: hover reads it, the right click moves you on, a wrong click tells you what you hit. Learn shows the target; Drill makes you find it. Redrawn switches to the vector rebuild.`;
+
+/* ---------- rail ---------- */
+function drawRail(){
+  $('#rail').innerHTML=D.stages.map((s,i)=>{const p=(S.progress[s.id]||0)/Math.max(1,s.steps.length);
+    return `<button class="stg${s.external?' ext':''}" data-i="${i}" aria-current="${i===S.stage}"><span class="n">${esc(s.n)}${s.external?' · EXTERNAL':''}</span><span class="t">${esc(s.title)}</span><span class="a">${esc(s.app||'')} · ${s.steps.length} steps</span><span class="bar"><i style="width:${Math.round(p*100)}%"></i></span></button>`}).join('');
+  $('#rail').querySelectorAll('.stg').forEach(b=>b.onclick=()=>go(+b.dataset.i,0));
+  const cur=$('#rail').querySelector('[aria-current="true"]'); if(cur&&cur.scrollIntoView)try{cur.scrollIntoView({block:'nearest',inline:'nearest'})}catch(e){}
+}
+
+/* ---------- colour helpers ---------- */
+const hex2=h=>{h=(h||'#333').replace('#','');if(h.length===3)h=h.split('').map(c=>c+c).join('');return[parseInt(h.slice(0,2),16),parseInt(h.slice(2,4),16),parseInt(h.slice(4,6),16)]};
+const mix=(a,b,t)=>{const A=hex2(a),B=hex2(b);return'rgb('+A.map((v,i)=>Math.round(v+(B[i]-v)*t)).join(',')+')'};
+
+/* ---------- screen renderer ---------- */
+function regionBg(k,T){const hd=sat(T.header)>0.35?mix(T.panel,T.window,.5):T.header;return({menubar:T.window,statusbar:T.window,timeline:T.window,toolbar:hd,tabs:hd,dialog:T.panel,viewport:mix(T.window,'#000000',.25),panel:T.panel,properties:T.panel,sidebar:T.panel,outliner:T.panel,tree:T.panel})[k]||T.panel}
+const KINDWORD=/\s+(button|dropdown|tab|icon|slider|field|checkbox|menu|header|text|radio|toggle|value)s?$/i;
+function clean(s){s=String(s==null?'':s).replace(/\([^)]*\)/g,'').replace(/\((?:disabled|greyed|grayed)\)/ig,'').replace(/^\?+$/,'').trim();let p;do{p=s;s=s.replace(KINDWORD,'')}while(s!==p);return s.trim()}
+function sat(h){const [r,g,b]=hex2(h).map(v=>v/255);const mx=Math.max(r,g,b),mn=Math.min(r,g,b);return mx===0?0:(mx-mn)/mx}
+const NOISE=/annotation|subtitle|webcam|watermark|mouse cursor|on-screen keyboard|video title|end card/i;
+const PIX=/thumbnail|figure|preview|portrait|avatar|swatch|image tile|bone slot/i;
+let GSRC=null;
+function crop(x,y){return `background-image:url('${GSRC}');background-size:${W}px ${H}px;background-position:${-x}px ${-y}px;`}
+function itemHTML(it,T){
+  let [label,k,x,y,w,h,val,state]=it;
+  if(NOISE.test(label||''))return '';
+  const raw=String(label||''); const pix=GSRC&&(k==='icon'||/^\s*\?/.test(raw)||PIX.test(raw));
+  if(pix){return `<div class="it k-${k} hv px" style="left:${x*W}px;top:${y*H}px;width:${Math.max(2,w*W)}px;height:${Math.max(2,h*H)}px;${crop(x*W,y*H)}" title="${esc(clean(raw)||raw)}"></div>`}
+  label=clean(label); if(val!=null)val=clean(val); if(val&&label&&val.toLowerCase()===label.toLowerCase())val=null;
+  const L=x*W,Tp=y*H,Wd=Math.max(2,w*W),Ht=Math.max(2,h*H);
+  const shown=(k==='dropdown'&&val)?val:(label||'');const extra=(k==='field'&&val)?String(val).length+1:0;
+  const loose=['menu','tab','header','text','tree-item','value'].includes(k);
+  const fs=loose?Math.max(8,Math.min(13,Ht*.66)):Math.max(6,Math.min(13,Ht*.66,(Wd-(k==='checkbox'?13:2))/Math.max(1,(shown.length+extra)*0.56)));
+  let st=`left:${L}px;top:${Tp}px;width:${Wd}px;height:${Ht}px;font-size:${fs}px;color:${T.text};`;
+  let cls='it k-'+k+(['menu','tab','button','icon','dropdown','checkbox','tree-item','slider','field'].includes(k)?' hv':'')+(state==='disabled'?' dis':'');
+  let inner=`<span>${esc(label)}</span>`;
+  if(state==='active'||state==='selected')st+=`background:${mix(T.accent,T.panel,.35)};color:#fff;`;
+  if(k==='button')st+=`background:${mix(T.panel,'#ffffff',.08)};`;
+  if(k==='tab'&&!(state==='active'||state==='selected'))st+=`background:${mix(sat(T.header)>0.35?T.panel:T.header,'#000000',.08)};`;
+  if(k==='header')st+=`color:${mix(T.text,'#ffffff',.3)};`;
+  if(k==='text'||k==='value')st+=`color:${T.textDim};`;
+  if(k==='field')st+=`background:${mix(T.window,'#000000',.2)};border:1px solid ${T.border};`;
+  if(k==='dropdown')st+=`background:${mix(T.panel,'#ffffff',.05)};border:1px solid ${T.border};`;
+  if(k==='icon'){inner=`<i></i>`;}
+  if(k==='checkbox'){const on=state==='checked';inner=`<span class="bx" style="${on?`background:${T.accent};border-color:${T.accent};color:#fff;opacity:1`:''}">${on?'✓':''}</span><span>${esc(label)}</span>`}
+  if(k==='slider'){let v=parseFloat(val);let f=isNaN(v)?0:(v>=0&&v<=1?v:(v>1&&v<=100?v/100:.5));const fc=state==='disabled'?mix(T.panel,'#ffffff',.12):mix(T.accent,T.panel,.25);
+    inner=`<div class="tr" style="background:${mix(T.window,'#000000',.15)}"></div><div class="fl" style="width:${Math.round(f*100)}%;background:${fc}"></div><span><em style="font-style:normal">${esc(label)}</em><em style="font-style:normal">${esc(val==null?'':val)}</em></span>`}
+  else if(k==='dropdown'&&val)inner=`<span>${esc(val)}</span>`;
+  else if(val!=null&&val!==''&&k!=='checkbox'&&k!=='icon')inner=`<span>${esc(label)}${k==='field'||k==='dropdown'||k==='value'?'':''}</span>${k==='field'||k==='dropdown'?`<span style="margin-left:auto;padding-left:6px">${esc(val)}</span>`:''}`;
+  return `<div class="${cls}" style="${st}" title="${esc(label)}">${inner}</div>`;
+}
+function drawScreen(step){
+  const sc=$('#screen'); sc.classList.remove('swap'); void sc.offsetWidth; sc.classList.add('swap');
+  closeMenus();
+  if(step.mode==='terminal'){sc.innerHTML=termHTML(step);bindTerm(step);addGhost(step);return}
+  const scr=step.screen,T=scr.theme;
+  sc.style.background=T.window;
+  const gs=step.ghost?'cc5-sim/'+step.ghost:null;
+  if(S.view==='real'&&gs){
+    let h=`<div class="realbg" style="background-image:url('${gs}')"></div><div style="position:absolute;inset:0;z-index:2">`;
+    const dlgs=scr.regions.filter(r=>r.k==='dialog').map(r=>r.b);
+    const under=(r,x,y,w,hh)=>r.k!=='dialog'&&dlgs.some(b=>{const cx=x+w/2,cy=y+hh/2;return cx>=b[0]&&cx<=b[0]+b[2]&&cy>=b[1]&&cy<=b[1]+b[3]});
+    for(const r of scr.regions)for(const it of r.i){const [l,k,x,y,w,hh]=it;if(NOISE.test(l||'')||under(r,x,y,w,hh))continue;h+=`<div class="hit" data-l="${esc(clean(l)||l)}" data-k="${esc(k)}" style="left:${x*W}px;top:${y*H}px;width:${Math.max(3,w*W)}px;height:${Math.max(3,hh*H)}px"></div>`}
+    h+='</div>';
+    if(step.mode==='dialog')h+=dialogHTML(step,T);
+    sc.innerHTML=h; showHot();
+    sc.querySelectorAll('.hit').forEach(n=>n.addEventListener('mouseenter',()=>{$('#hoverline').textContent=`${n.dataset.l||'(unlabelled)'} · ${n.dataset.k}`}));
+    if(step.mode==='dialog')sc.querySelectorAll('[data-dlg]').forEach(b=>b.addEventListener('click',e=>{e.stopPropagation();b.dataset.dlg==='go'?land(step):wrong(e,b.textContent)}));
+    return;
+  }
+  let h='';const ord=scr.regions.map((r,i)=>[r,i]).sort((a,b)=>(a[0].k==='dialog')-(b[0].k==='dialog')||a[1]-b[1]);
+  const gsrc=step.ghost?'cc5-sim/'+step.ghost:null;GSRC=gsrc;let z=1;
+  for(const [r] of ord){
+    const [x,y,w,hh]=r.b; const bg=regionBg(r.k,T); z++;
+    const scene=gsrc&&(r.k==='viewport'||(r.k==='other'&&(r.i.length<=2||/desktop|wallpaper|banner|preview|thumbnail/i.test(r.t||r.id))))?`background-image:url('${gsrc}');background-size:${W}px ${H}px;background-position:${-x*W}px ${-y*H}px;`:'';
+    h+=`<div class="rg" style="z-index:${z};left:${x*W}px;top:${y*H}px;width:${w*W}px;height:${hh*H}px;background-color:${bg};${scene}${r.k==='dialog'?`box-shadow:0 10px 30px rgba(0,0,0,.5);border:1px solid ${T.border};`:''}">${r.k==='viewport'&&!scene?'<div class="vp-grid"></div>':''}</div>`;
+    h+=`<div style="position:absolute;inset:0;z-index:${z};pointer-events:none">`+r.i.map(it=>itemHTML(it,T)).join('')+`</div>`;
+  }
+  if(step.hot&&step.hot.kind==='viewport-pick'){const [x,y,w,hh]=step.hot.b;h+=`<div class="pick" style="left:${x*W}px;top:${y*H}px;width:${w*W}px;height:${hh*H}px"></div>`}
+  if(step.mode==='dialog')h+=dialogHTML(step,T);
+  sc.innerHTML=h; if(S.view==='draw')addGhost(step); showHot();
+  if(step.mode==='dialog')sc.querySelectorAll('[data-dlg]').forEach(b=>b.addEventListener('click',e=>{e.stopPropagation();b.dataset.dlg==='go'?land(step):wrong(e,b.textContent)}));
+}
+function addGhost(step){
+  const sc=$('#screen'); const g=document.createElement('img'); g.className='ghost'; g.alt='';
+  const src=step.ghost?'cc5-sim/'+step.ghost:null;
+  g.hidden=!($('#ghostOn').checked&&src); if(src)g.src=src; g.style.opacity=$('#ghostOp').value/100; g.id='ghostImg'; sc.appendChild(g);
+}
+function dialogHTML(step,T){
+  const dl=step.dialog;
+  const rows=dl.fields.map(([l,k,v])=>k==='header'?`<div class="sec">${esc(l)}</div>`:k==='checkbox'?`<div class="row"><span>${esc(l)}</span><span>${v?'☑':'☐'}</span></div>`:`<div class="row"><span>${esc(l)}</span><span style="border:1px solid ${T.border};padding:1px 8px;border-radius:3px;background:${mix(T.window,'#000000',.2)}">${esc(v)} ▾</span></div>`).join('');
+  return `<div class="dlg" style="background:${T.panel};color:${T.text};border:1px solid ${T.border}"><div class="hd" style="background:${T.header}"><span>${esc(dl.title)}</span><span class="badge b-ext">EXTERNAL LABELS</span></div><div class="bd">${rows}</div><div class="ft"><span class="btn" data-dlg="no" style="background:${mix(T.panel,'#ffffff',.06)}">Cancel</span><span class="btn" data-dlg="go" id="dlgGo" style="background:${T.accent};color:#fff">${esc(dl.confirm)}</span></div></div>`;
+}
+
+/* ---------- terminal stage (09) ---------- */
+const MODEL_TSX=`/*\nAuto-generated by: https://github.com/pmndrs/gltfjsx\n*/\nimport { useGLTF } from '@react-three/drei'\n\nexport function Model(props) {\n  const { nodes, materials } = useGLTF('/model-transformed.glb')\n  return (\n    <group {...props} dispose={null}>\n      <mesh geometry={nodes.CC_Base_Body.geometry} material={materials.Std_Skin_Body} />\n      …\n    </group>\n  )\n}\n\nuseGLTF.preload('/model-transformed.glb')`;
+const APP_TSX=c=>`import { Canvas } from '@react-three/fiber'\nimport { Environment, OrbitControls } from '@react-three/drei'\nimport { Model } from './Model'\n\nexport default function App() {\n  return (\n    <Canvas camera={{ fov: 75, position: [0, 1.4, 3] }}>\n      <Environment preset="studio" />\n      ${c?'<Model />':'{/* mount the avatar here */}'}\n      <OrbitControls />\n    </Canvas>\n  )\n}`;
+function termHTML(step){
+  const k=step.key;
+  const tree=`<div data-f="model.glb">model.glb</div>${k!=='x09-1'?'<div data-f="Model.tsx">Model.tsx</div><div data-f="model-transformed.glb">model-transformed.glb</div>':''}<div data-f="App.tsx">App.tsx</div>`;
+  let code='',sh='';
+  if(k==='x09-1'){code='// model.glb exported from Blender (stage 08)\n// next: generate a JSX component from it';
+    sh=['npx gltfjsx model.glb --console','npx gltfjsx model.glb --transform --types','npx gltfjsx model.glb --keepnames'].map(c=>`<button class="cmd" data-c="${esc(c)}">$ ${esc(c)}</button>`).join('')+'<div class="out" id="tout"></div>'}
+  else if(k==='x09-2'){code='// gltfjsx wrote Model.tsx and model-transformed.glb\n// open the component';sh='<div class="out">$ npx gltfjsx model.glb --transform --types\nDone.</div>'}
+  else {code=APP_TSX(false);sh=['<Model />','<Environment preset="city" />','useGLTF.preload'].map(c=>`<button class="cmd" data-c="${esc(c)}">insert ${esc(c)}</button>`).join('')}
+  return `<div class="term"><div class="tree"><div style="opacity:.5;cursor:default">avatar-web/</div>${tree}</div><div class="pane"><pre id="tcode">${esc(code)}</pre><div class="sh">${sh}</div></div></div>`;
+}
+function bindTerm(step){
+  const sc=$('#screen');
+  sc.querySelectorAll('.cmd').forEach(b=>b.addEventListener('click',e=>{e.stopPropagation();const c=b.dataset.c;
+    if(c===step.target){if(step.key==='x09-1')$('#tout').textContent='Done. Model.tsx  model-transformed.glb';if(step.key==='x09-3')$('#tcode').textContent=APP_TSX(true);land(step,b)}
+    else{wrong(e,c);if(c.includes('--console'))note('--console logs the JSX and writes no file.');}}));
+  sc.querySelectorAll('.tree [data-f]').forEach(d=>d.addEventListener('click',e=>{e.stopPropagation();const f=d.dataset.f;
+    if(step.key==='x09-2'){if(f===step.target){$('#tcode').textContent=MODEL_TSX;land(step,d)}else wrong(e,f)}}));
+}
+
+/* ---------- hotspot / zoom ---------- */
+function curStep(){return D.stages[S.stage].steps[S.step]}
+function inflate(b,p){return[b[0]*W-p,b[1]*H-p,b[2]*W+2*p,b[3]*H+2*p]}
+function showHot(){
+  const sc=$('#screen'); sc.querySelectorAll('.hot').forEach(n=>n.remove());
+  const st=curStep(); if(!st.hot||st.mode==='observe'||S.landed)return;
+  if(S.mode==='drill'&&S.stepMiss<3)return;
+  const [x,y,w,h]=inflate(st.hot.b,3); const d=document.createElement('div'); d.className='hot';
+  d.style.cssText=`left:${x}px;top:${y}px;width:${w}px;height:${h}px`; sc.appendChild(d);
+}
+function fit(){
+  const box=$('#box'),sc=$('#screen'); const s=box.clientWidth/W*S.z;
+  const maxX=box.clientWidth-W*s,maxY=box.clientHeight-H*s;
+  S.px=Math.min(0,Math.max(maxX,S.px));S.py=Math.min(0,Math.max(maxY,S.py));
+  sc.style.transform=`translate(${S.px}px,${S.py}px) scale(${s})`; S.scale=s;
+}
+function centerOn(b){
+  if(!b){S.px=0;S.py=0;fit();return}
+  const box=$('#box'); const s=box.clientWidth/W*S.z;
+  S.px=box.clientWidth/2-(b[0]+b[2]/2)*W*s; S.py=box.clientHeight/2-(b[1]+b[3]/2)*H*s; fit();
+}
+document.querySelectorAll('.zoombar button').forEach(b=>b.onclick=e=>{e.stopPropagation();S.z=+b.dataset.z;document.querySelectorAll('.zoombar button').forEach(x=>x.setAttribute('aria-pressed',x===b));const st=curStep();centerOn(S.z>1&&st.hot&&S.mode==='learn'?st.hot.b:null)});
+addEventListener('resize',fit);
+
+/* drag to pan (a short press is a click) */
+let drag=null;
+$('#box').addEventListener('pointerdown',e=>{if(e.target.closest('.zoombar'))return;drag={x:e.clientX,y:e.clientY,px:S.px,py:S.py,moved:false}});
+addEventListener('pointermove',e=>{if(!drag)return;const dx=e.clientX-drag.x,dy=e.clientY-drag.y;if(Math.abs(dx)+Math.abs(dy)>6)drag.moved=true;if(drag.moved&&S.z>1){S.px=drag.px+dx;S.py=drag.py+dy;fit()}});
+addEventListener('pointerup',()=>{setTimeout(()=>drag=null,0)});
+
+/* ---------- clicks ---------- */
+function logical(e){const r=$('#screen').getBoundingClientRect();return[(e.clientX-r.left)/S.scale,(e.clientY-r.top)/S.scale]}
+function itemAt(x,y){const st=curStep();if(!st.screen)return null;let best=null,ba=1e9;
+  for(const r of st.screen.regions)for(const it of r.i){const L=it[2]*W,T=it[3]*H,Wd=it[4]*W,Ht=it[5]*H;if(x>=L&&x<=L+Wd&&y>=T&&y<=T+Ht&&Wd*Ht<ba){best=it;ba=Wd*Ht}}return best}
+$('#screen').addEventListener('click',e=>{
+  if(drag&&drag.moved)return;
+  const st=curStep(); if(S.landed||st.mode==='terminal'||st.mode==='dialog'||st.mode==='observe')return;
+  if(e.target.closest('.menu'))return;
+  const [x,y]=logical(e);
+  const [hx,hy,hw,hh]=inflate(st.hot.b,6);
+  if(x>=hx&&x<=hx+Math.max(hw,18)&&y>=hy&&y<=hy+Math.max(hh,18)){
+    if(st.mode==='path')openChain(st,0,[st.hot.b[0]*W,(st.hot.b[1]+st.hot.b[3])*H]);
+    else land(st);
+  } else { const it=itemAt(x,y); wrong(e,it?(clean(it[0])||it[0]):'empty space') }
+});
+function closeMenus(){document.querySelectorAll('#screen .menu').forEach(m=>m.remove())}
+function openChain(st,i,[x,y]){
+  const T=st.screen.theme; const m=document.createElement('div'); m.className='menu';
+  m.style.cssText=`left:${Math.min(x,W-220)}px;top:${Math.min(y,H-80)}px;background:${mix(T.panel,'#000000',.1)};color:${T.text};border:1px solid ${T.border}`;
+  const label=st.chain[i]; const last=i===st.chain.length-1;
+  m.innerHTML=`<div class="mh">${st.external?'EXTERNAL · BLENDER MANUAL':'PATH FROM TUTORIAL'}</div><div class="mi" data-go="1"><span>${esc(label)}</span><span>${last?'':'▸'}</span></div>`;
+  m.querySelector('.mi').addEventListener('click',e=>{e.stopPropagation();const r=e.currentTarget.getBoundingClientRect(),sr=$('#screen').getBoundingClientRect();
+    if(last){closeMenus();land(st)}else openChain(st,i+1,[(r.right-sr.left)/S.scale,(r.top-sr.top)/S.scale])});
+  $('#screen').appendChild(m);
+}
+
+/* ---------- outcomes ---------- */
+function feed(html,cls){const f=$('#feed');const d=document.createElement('div');if(cls)d.className=cls;d.innerHTML=html;f.prepend(d);while(f.children.length>6)f.lastChild.remove()}
+function note(t){feed(esc(t))}
+function wrong(e,label){
+  S.miss++;S.stepMiss++;S.streak=0;S.drillMiss++;
+  const sc=$('#screen');const [x,y]=logical(e);const r=document.createElement('div');r.className='ripple';r.style.cssText=`left:${x}px;top:${y}px;background:var(--miss)`;sc.appendChild(r);setTimeout(()=>r.remove(),650);
+  $('#box').classList.remove('shake');void $('#box').offsetWidth;$('#box').classList.add('shake');
+  feed(`<span class="no">Not there.</span> That was “${esc(label)}”.${S.mode==='drill'&&S.stepMiss>=3?' Target revealed.':''}`);
+  stats();showHot();
+}
+function land(st,el){
+  if(S.landed)return;S.landed=true;S.done++;S.streak++;
+  const sc=$('#screen');sc.querySelectorAll('.hot').forEach(n=>n.remove());
+  if(st.hot&&st.mode!=='terminal'&&st.mode!=='dialog'){const [x,y,w,h]=inflate(st.hot.b,3);const b=document.createElement('div');b.className='burst';b.style.cssText=`left:${x}px;top:${y}px;width:${w}px;height:${h}px`;sc.appendChild(b)}
+  const sid=D.stages[S.stage].id;S.progress[sid]=Math.max(S.progress[sid]||0,S.step+1);store.set('cc5sim.progress',S.progress);
+  feed(`<span class="ok">Landed.</span> ${esc(st.result||'')}`,'');
+  stats();drawRail();
+  const last=S.stage===D.stages.length-1&&S.step===D.stages[S.stage].steps.length-1;
+  if(last&&S.mode==='drill'){if(S.best==null||S.drillMiss<S.best){S.best=S.drillMiss;store.set('cc5sim.best',S.best)}stats()}
+  $('#next').hidden=false;$('#next').textContent=last?'Run it again ↺':'Next step →';
+  if($('#mot').checked&&!last)setTimeout(()=>{if(S.landed&&curStep()===st)advance()},1100);
+}
+function advance(){const s=D.stages[S.stage];if(S.step<s.steps.length-1)go(S.stage,S.step+1);else if(S.stage<D.stages.length-1)go(S.stage+1,0);else{S.drillMiss=0;go(0,0)}}
+$('#next').onclick=advance;
+function stats(){$('#sMiss').textContent=S.miss;$('#sDone').textContent=S.done;$('#sStreak').textContent=S.streak;$('#sBest').textContent=S.best==null?'–':S.best+' miss'+(S.best===1?'':'es')}
+
+/* ---------- step view ---------- */
+function go(si,pi){
+  S.stage=si;S.step=pi;S.landed=false;S.stepMiss=0;$('#next').hidden=true;
+  const stg=D.stages[si],st=stg.steps[pi];
+  drawRail();
+  $('#stepk').textContent=`${stg.n} · ${pi+1}/${stg.steps.length}`;
+  const tgt=S.mode==='learn'?` → <b>${esc(st.target)}</b>`:'';
+  $('#do').innerHTML=st.mode==='observe'?`${esc(st.action)} <span style="color:var(--ink-3)">(watch this one)</span>`:`${esc(st.action)}${tgt}`;
+  const meta=[`<span class="badge b-sim">SIMULATED</span>`];
+  if(st.external)meta.push(`<span class="badge b-ext">EXTERNAL</span>`);
+  if(st.mode==='path')meta.push(`<span class="badge b-path">PATH FROM TUTORIAL</span>`);
+  if(st.borrowedFrom)meta.push(`<span class="badge b-bor">SHOWN ON ${esc(st.borrowedFrom)}</span>`);
+  if(st.hot&&st.hot.conf==='low')meta.push(`<span class="badge b-lo">LOW CONFIDENCE</span>`);
+  if(st.hot&&st.hot.conf==='high')meta.push(`<span class="badge b-ok">HIGH CONFIDENCE</span>`);
+  $('#meta').innerHTML=meta.join('');
+  drawScreen(st); S.z=S.z||1;
+  if(S.z>1&&st.hot&&S.mode==='learn')centerOn(st.hot.b);else{S.px=0;S.py=0;fit()}
+  drawSide(stg,st);
+  if(st.mode==='observe'){feed(`Watch: ${esc(st.nullReason||'the frame shows a different screen at this moment of the tutorial')}`);$('#next').hidden=false;$('#next').textContent='Continue →';S.landed=true}
+}
+function drawSide(stg,st){
+  let h=`<h3>${esc(stg.title)}</h3><div class="ev">`;
+  if(st.screen)h+=`app ${esc(st.screen.app)}${st.screen.ver?' · '+esc(st.screen.ver):''}<br>view ${esc(st.screen.view)}<br>`;
+  if(st.frame)h+=`frame ${esc(st.frame)}${st.video?` · ${esc(st.video)} @ ${esc(st.t)}`:''}<br>`;
+  if(st.path)h+=`path ${esc(st.path)}<br>`;
+  if(st.hot&&st.hot.note)h+=`<span style="color:var(--ink-3)">${esc(st.hot.note)}</span><br>`;
+  if(st.nullReason&&st.mode!=='observe')h+=`<span style="color:var(--ink-3)">${esc(st.nullReason)}</span>`;
+  h+='</div>';
+  if(stg.tools){h+=`<h3 style="margin-top:12px">Your tools for this stage</h3><div class="tools">${stg.tools.map(t=>`<div><span>${esc(t.name)}</span><span class="mono">${esc(t.kind)}${t.installed===true?' · installed':''}</span><small>${esc(t.role||'')}</small></div>`).join('')}</div>`}
+  $('#side').innerHTML=h;
+}
+
+/* ---------- controls ---------- */
+function setMode(m){S.mode=m;$('#mLearn').setAttribute('aria-pressed',m==='learn');$('#mDrill').setAttribute('aria-pressed',m==='drill');if(m==='drill'){S.drillMiss=0;go(0,0)}else go(S.stage,S.step)}
+function setView(v){S.view=v;$('#vReal').setAttribute('aria-pressed',v==='real');$('#vDraw').setAttribute('aria-pressed',v==='draw');$('#ghostLab').hidden=v==='real';$('#ghostOp').hidden=v==='real';drawScreen(curStep());fit()}
+$('#vReal').onclick=()=>setView('real');$('#vDraw').onclick=()=>setView('draw');
+$('#mLearn').onclick=()=>setMode('learn');$('#mDrill').onclick=()=>setMode('drill');
+$('#ghostOn').onchange=()=>{const g=$('#ghostImg');if(g)g.hidden=!($('#ghostOn').checked&&curStep().ghost)};
+$('#ghostOp').oninput=()=>{const g=$('#ghostImg');if(g)g.style.opacity=$('#ghostOp').value/100};
+$('#mot').onchange=()=>$('#app').classList.toggle('still',!$('#mot').checked);
+addEventListener('keydown',e=>{if(e.target.matches('input'))return;if(e.key==='Enter'&&!$('#next').hidden)advance();if(e.key==='g'){$('#ghostOn').checked=!$('#ghostOn').checked;$('#ghostOn').onchange()}});
+$('#foot').textContent=`Generated by build-sim-real.py from ${C.steps} steps (${C.hotspot} measured hotspots, ${C.path} tutorial paths, ${C.observe} watch steps; stages 08 and 09 use EXTERNAL labels from the Blender manual and the gltfjsx README). Simulated screens, no vendor artwork. Your progress stays in this browser.`;
+stats();go(0,0);
+})();
+</script>

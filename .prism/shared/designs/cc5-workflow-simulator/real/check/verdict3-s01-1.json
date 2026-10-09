@@ -1,0 +1,260 @@
+{
+ "s01-1": {
+  "layout": 3,
+  "labels": 2,
+  "hotspot": "correct",
+  "defects": [
+   "Toolbar right of Morph: the entire Headshot 3 group (HEADSHOT3 button + 3 icons + green separator) is missing; the green hotspot box frames empty toolbar space",
+   "Title bar: real is white with readable 'Character Creator 5 [Apr 11 2026] - Default.ccProject'; sim is dark grey with near-invisible title text",
+   "Toolbar: green group separators between icon groups are missing",
+   "Menu bar right: 'Available Points: 10,860' text is faint/unreadable in sim",
+   "Toolbar: 'Modify' and 'Morph' are drawn as filled grey buttons with no icons, real shows icon + plain label; 'Conform' greyed text placement ok"
+  ]
+ },
+ "s01-2": {
+  "layout": 4,
+  "labels": 3,
+  "hotspot": "correct",
+  "defects": [
+   "Toolbar: HEADSHOT3 button label truncated to 'HEADS...' and its icon missing",
+   "Tooltip card: description 'Drop a photo or use AI Gen to create your character.' renders on one line at larger size and overflows far past the card's right edge",
+   "Tooltip card: play button on the thumbnail replaced by literal text 'play'",
+   "Title bar: real is white with readable 'Character Creator 5 [Apr 11 2026] - Default.ccProject'; sim is dark grey with near-invisible title text",
+   "Toolbar: green group separators between icon groups are missing",
+   "Menu bar right: 'Available Points: 10,860' text is faint/unreadable in sim"
+  ]
+ },
+ "s01-3": {
+  "layout": 2,
+  "labels": 3,
+  "hotspot": "correct",
+  "defects": [
+   "Whole screen: real frame shows the HEADSHOT3 hover tooltip card with no menu open; sim shows the Plugins menu cascade (borrowed from s01-4) and no tooltip",
+   "Plugins menu: first item 'Character Creator & iClone Auto Setup' rendered in a much larger font, outside the menu box and overlapping the toolbar",
+   "Plugins menu: highlighted 'Headshot 3' row text washed out/illegible under the highlight",
+   "Toolbar: Modify button hidden; 'HEADSH...' truncated",
+   "Title bar: real is white with readable 'Character Creator 5 [Apr 11 2026] - Default.ccProject'; sim is dark grey with near-invisible title text"
+  ]
+ },
+ "s01-4": {
+  "layout": 4,
+  "labels": 3,
+  "hotspot": "correct",
+  "defects": [
+   "Plugins menu: first item 'Character Creator & iClone Auto Setup' rendered in larger font, overflowing the menu and overlapping the toolbar",
+   "Plugins menu: first-level 'Headshot 3' highlight text washed out/illegible; submenu 'Toolbar' row partly covered by the highlight",
+   "Menu bar: 'Plugins' highlight is a grey pill with blurred text rather than the real boxed label",
+   "Toolbar right: 'HEADSH...' truncated; real shows 'HEADSHOT3' with icon",
+   "Title bar: real is white with readable 'Character Creator 5 [Apr 11 2026] - Default.ccProject'; sim is dark grey with near-invisible title text"
+  ]
+ },
+ "s01-5": {
+  "layout": 1,
+  "labels": 1,
+  "hotspot": "correct",
+  "defects": [
+   "Whole screen: real frame is Character Creator 4 Headshot 2 'Mesh To Head' mode (ALIGN POINTS / HEAD GEN tabs, wireframe head close-up, sculpt brush panel, 'GETTING STARTED WITH HEADSHOT 2.0' video thumbnail); sim instead shows the CC5 Headshot 3 IMAGE/MESH panel from s01-6 over an empty viewport",
+   "Menu/toolbar: real CC4 two-row toolbar (Animation Player, Turntable, Transformer, InstaLOD) absent in sim",
+   "Right panel: Move/Smooth/Clone/Project brush settings, Radius/Intensity/Falloff sliders, ATTACH TO BODY button all missing"
+  ]
+ },
+ "s01-6": {
+  "layout": 4,
+  "labels": 3,
+  "hotspot": "correct",
+  "defects": [
+   "Headshot 3 panel: photo drop area is near-black instead of the grey area with a head silhouette",
+   "IMAGE/MESH tabs: icons missing; IMAGE drawn as solid green fill and MESH as solid black, real both are dark outlined buttons with IMAGE having a green outline",
+   "Panel header 'Headshot 3' text illegible on the green bar",
+   "'AI Image Generator' button: sparkle icon missing and label much larger than real",
+   "'Shape Adjustment' collapsible header bar missing (only small plain text)",
+   "Shape Adjustment buttons labelled 'Refine Face' twice; real labels carry suffixes (Refine Face (Front)/(Side))",
+   "Option labels truncated ('Symmetri...', 'Show Compar? A...'); real 'Symmetrical', 'Show Comparison'",
+   "'Photo Preparation' link faded/unreadable",
+   "Title bar: real is white with readable 'Character Creator 5 [Apr 11 2026] - Default.ccProject'; sim is dark grey with near-invisible title text",
+   "Toolbar: green group separators between icon groups are missing"
+  ]
+ },
+ "s02-1": {
+  "layout": 3,
+  "labels": 2,
+  "hotspot": "correct",
+  "defects": [
+   "Content panel: category icon row replaced by overlapping alt-text words ('folder actor material makeup hair cloth accessory pose stage misc', 'sub-category') instead of icons",
+   "Content panel thumbnail grid: thumbnails missing, replaced by overlapping text runs ('1. Talking 2. Camila 2. Susan ...', '3. Cloth P4. Coyote5. T-Rex', '6. TurntaBase_IBL Base_RTL')",
+   "Modify panel tab bar: icon tabs replaced by overlapping text ('attribution/motion/morph/...profile') instead of icons",
+   "Vertical side tabs (Content/Scene/Bone/Facial Profile/Headshot, Modify/Visual/Project/Render) render as horizontal clipped text ('Conter','Scene','Bone','Facial Profile','Headsho','Modi','Visu','Proje','end')",
+   "Modify/Visual panel headers: real green title bars are dark in sim (only small green dot remains)",
+   "Modify morph tree: checkboxes on Actor/Body/Full Body/... rows are missing and expand triangles replaced by small chevrons",
+   "Blender DataLink panel: send icons replaced by large text buttons ('Send All','Rigify Character','Send Pose','Send Motion','Live Sequence') where real shows icon tiles with faint captions; green 'Blender DataLink' header bar missing",
+   "Content panel 'Template' tab and breadcrumb fine but 'Item/Pack' tab text larger than real",
+   "Bottom Animation Player bar: green header missing; 'timeline' literal text shown"
+  ]
+ },
+ "s02-2": {
+  "layout": 3,
+  "labels": 2,
+  "hotspot": "correct",
+  "defects": [
+   "Content panel: category icon row replaced by overlapping alt-text words ('folder actor material makeup hair cloth accessory pose stage misc', 'sub-category') instead of icons",
+   "Content panel thumbnail grid: thumbnails missing, replaced by overlapping text runs ('1. Talking 2. Camila 2. Susan ...', '3. Cloth P4. Coyote5. T-Rex', '6. TurntaBase_IBL Base_RTL')",
+   "Modify panel tab bar: icon tabs replaced by overlapping text ('attribution/motion/morph/...profile') instead of icons",
+   "Vertical side tabs (Content/Scene/Bone/Facial Profile/Headshot, Modify/Visual/Project/Render) render as horizontal clipped text ('Conter','Scene','Bone','Facial Profile','Headsho','Modi','Visu','Proje','end')",
+   "Modify/Visual panel headers: real green title bars are dark in sim (only small green dot remains)",
+   "Modify morph tree: checkboxes on Actor/Body/Full Body/... rows are missing and expand triangles replaced by small chevrons",
+   "Visual panel: icon tab row replaced by overlapping text ('light IBL imp post eff camera'); Post Effect header bar and Contrast_D list item rendered tiny/faint",
+   "Modify panel: 'Currently Used' row lacks the highlighted selection bar shown on the real frame",
+   "Visual panel: 'Please add effects from the Content Manager' footer text missing",
+   "Animation Player bar: 'timeline' literal text shown, green header missing"
+  ]
+ },
+ "s02-3": {
+  "layout": 3,
+  "labels": 2,
+  "hotspot": "correct",
+  "defects": [
+   "Content panel: category icon row replaced by overlapping alt-text words ('folder actor material makeup hair cloth accessory pose stage misc', 'sub-category') instead of icons",
+   "Content panel thumbnail grid: thumbnails missing, replaced by overlapping text runs ('1. Talking 2. Camila 2. Susan ...', '3. Cloth P4. Coyote5. T-Rex', '6. TurntaBase_IBL Base_RTL')",
+   "Modify panel tab bar: icon tabs replaced by overlapping text ('attribution/motion/morph/...profile') instead of icons",
+   "Vertical side tabs (Content/Scene/Bone/Facial Profile/Headshot, Modify/Visual/Project/Render) render as horizontal clipped text ('Conter','Scene','Bone','Facial Profile','Headsho','Modi','Visu','Proje','end')",
+   "Modify/Visual panel headers: real green title bars are dark in sim (only small green dot remains)",
+   "Modify morph tree: checkboxes on Actor/Body/Full Body/... rows are missing and expand triangles replaced by small chevrons",
+   "Visual panel: icon tab row replaced by overlapping text ('light IBL imp post eff camera'); Post Effect header bar and Contrast_D list item rendered tiny/faint",
+   "Modify panel: 'Full Body' row lacks the real dark selection highlight",
+   "Viewport: hotspot is a whole-body ellipse; real frame has no body-part highlight (target body part indeterminate)"
+  ]
+ },
+ "s02-4": {
+  "layout": 3,
+  "labels": 2,
+  "hotspot": "correct",
+  "defects": [
+   "Viewport: literal alt text 'selection bracket frame' printed across the left of the viewport",
+   "Modify panel tab bar: icon tabs replaced by overlapping text ('attribution/motion/morph/...profile') instead of icons",
+   "Content panel: category icon row replaced by overlapping alt-text words ('folder actor material makeup hair cloth accessory pose stage misc', 'sub-category') instead of icons",
+   "Content panel thumbnail grid: thumbnails missing, replaced by overlapping text runs ('1. Talking 2. Camila 2. Susan ...', '3. Cloth P4. Coyote5. T-Rex', '6. TurntaBase_IBL Base_RTL')",
+   "Vertical side tabs (Content/Scene/Bone/Facial Profile/Headshot, Modify/Visual/Project/Render) render as horizontal clipped text ('Conter','Scene','Bone','Facial Profile','Headsho','Modi','Visu','Proje','end')",
+   "Modify/Visual panel headers: real green title bars are dark in sim (only small green dot remains)",
+   "Modify morph tree: checkboxes on Actor/Body/Full Body/... rows are missing and expand triangles replaced by small chevrons",
+   "Visual panel: icon tab row replaced by overlapping text ('light IBL imp post eff camera'); Post Effect header bar and Contrast_D list item rendered tiny/faint",
+   "Modify tree: 'Arm' row highlighted bright green; real uses a dark/black selection bar",
+   "Search field 'character' lacks the clear (x) button"
+  ]
+ },
+ "s02-5": {
+  "layout": 3,
+  "labels": 3,
+  "hotspot": "correct",
+  "defects": [
+   "Proportion header: icon replaced by a glyph so title reads '\u0393roportion'",
+   "Bone Type radios (Full Body/Body/Face) and Symmetry Selection rendered tiny and faint; Body shown as green checkbox instead of radio",
+   "Move/Rotate/Scale fields relabelled 'Move X 0.000' etc. as flat text rows without spin arrows; 'Move','Rotate','Scale' group labels missing",
+   "'Reset M?' second button label garbled (real 'Reset Mesh', greyed)",
+   "Modify panel tab bar: icon tabs replaced by overlapping text ('attribution/motion/morph/...profile') instead of icons",
+   "Content panel: category icon row replaced by overlapping alt-text words ('folder actor material makeup hair cloth accessory pose stage misc', 'sub-category') instead of icons",
+   "Content panel thumbnail grid: thumbnails missing, replaced by overlapping text runs ('1. Talking 2. Camila 2. Susan ...', '3. Cloth P4. Coyote5. T-Rex', '6. TurntaBase_IBL Base_RTL')",
+   "Vertical side tabs (Content/Scene/Bone/Facial Profile/Headshot, Modify/Visual/Project/Render) render as horizontal clipped text ('Conter','Scene','Bone','Facial Profile','Headsho','Modi','Visu','Proje','end')",
+   "Visual panel: icon tab row replaced by overlapping text ('light IBL imp post eff camera'); Post Effect header bar and Contrast_D list item rendered tiny/faint"
+  ]
+ },
+ "s03-1": {
+  "layout": 3,
+  "labels": 2,
+  "hotspot": "correct",
+  "defects": [
+   "Edit Spring panel: Spring Type Translate/Rotate radios drawn as square checkboxes; Hardness/Mass/Strength/Resistance sliders drawn as large text-filled bars instead of label + slider track + spin box; 'Active Group' and 'Group Settings' labels near-invisible; Display row icons replaced by truncated text buttons ('V...','R...')",
+   "Edit Spring header: the black banner with spring icon replaced by plain large 'Edit Spring' text",
+   "'Active' checkbox label truncated to 'A...'; 'Bone Manager (F3)' shortened to 'Bone Manager'",
+   "Content panel (iClone/CC4 animation): category icon rows replaced by overlapping words ('folde actor skin make hair cloth acc animat stage props'), thumbnails replaced by text rows ('_Emote_M _Talk_M', 'Idle01_M Idle02_M Headsh', 'Idle03_M Posing_M') and a flat green/grey 'Walk_M' block",
+   "Modify tab bar: icons replaced by overlapping text ('attributionphysics atom')",
+   "Menu bar: labels crowded ('Character Modify Mesh' / 'CharacterModify') with spacing that does not match the real menu",
+   "Toolbar row 2: buttons truncated ('Mod...','Mor...','Insta...','HEADS...')"
+  ]
+ },
+ "s03-2": {
+  "layout": 3,
+  "labels": 2,
+  "hotspot": "correct",
+  "defects": [
+   "Edit Spring panel: Spring Type Translate/Rotate radios drawn as square checkboxes; Hardness/Mass/Strength/Resistance sliders drawn as large text-filled bars instead of label + slider track + spin box; 'Active Group' and 'Group Settings' labels near-invisible; Display row icons replaced by truncated text buttons ('V...','R...')",
+   "Active Group On/Off: 'On' not shown in the real light-grey hovered state",
+   "Content panel (iClone/CC4 animation): category icon rows replaced by overlapping words ('folde actor skin make hair cloth acc animat stage props'), thumbnails replaced by text rows ('_Emote_M _Talk_M', 'Idle01_M Idle02_M Headsh', 'Idle03_M Posing_M') and a flat green/grey 'Walk_M' block",
+   "Edit Spring header banner replaced by plain text",
+   "Menu bar: labels crowded ('Character Modify Mesh' / 'CharacterModify') with spacing that does not match the real menu"
+  ]
+ },
+ "s03-3": {
+  "layout": 3,
+  "labels": 2,
+  "hotspot": "correct",
+  "defects": [
+   "Edit Spring panel: Spring Type Translate/Rotate radios drawn as square checkboxes; Hardness/Mass/Strength/Resistance sliders drawn as large text-filled bars instead of label + slider track + spin box; 'Active Group' and 'Group Settings' labels near-invisible; Display row icons replaced by truncated text buttons ('V...','R...')",
+   "Spring Type: Rotate shown as a checked green checkbox while real shows greyed radios (group inactive); Translate drawn as empty checkbox under the hotspot",
+   "Content panel (iClone/CC4 animation): category icon rows replaced by overlapping words ('folde actor skin make hair cloth acc animat stage props'), thumbnails replaced by text rows ('_Emote_M _Talk_M', 'Idle01_M Idle02_M Headsh', 'Idle03_M Posing_M') and a flat green/grey 'Walk_M' block",
+   "Edit Spring header banner replaced by plain text",
+   "Menu bar: labels crowded ('Character Modify Mesh' / 'CharacterModify') with spacing that does not match the real menu"
+  ]
+ },
+ "s03-4": {
+  "layout": 3,
+  "labels": 2,
+  "hotspot": "correct",
+  "defects": [
+   "Edit Spring panel: Spring Type Translate/Rotate radios drawn as square checkboxes; Hardness/Mass/Strength/Resistance sliders drawn as large text-filled bars instead of label + slider track + spin box; 'Active Group' and 'Group Settings' labels near-invisible; Display row icons replaced by truncated text buttons ('V...','R...')",
+   "Mass/Strength rows shown as big empty text bars with no slider handles or values (real 0.00 spin boxes)",
+   "Content panel (iClone/CC4 animation): category icon rows replaced by overlapping words ('folde actor skin make hair cloth acc animat stage props'), thumbnails replaced by text rows ('_Emote_M _Talk_M', 'Idle01_M Idle02_M Headsh', 'Idle03_M Posing_M') and a flat green/grey 'Walk_M' block",
+   "Content panel greyed state not reproduced consistently (icons text partly faded)",
+   "Menu bar: labels crowded ('Character Modify Mesh' / 'CharacterModify') with spacing that does not match the real menu"
+  ]
+ },
+ "s04-1": {
+  "layout": 2,
+  "labels": 3,
+  "hotspot": "correct",
+  "defects": [
+   "Desktop region right of the iClone window (x~792-960: webcam inset, mouse icon) and above it (blue desktop with FREEDOM3D banners) is filled dark in sim; iClone window appears to extend to the right screen edge",
+   "iClone title bar ('iClone 8 - animation 01.iProject') missing/dark; window min/max/close buttons drawn as white blobs",
+   "iClone Content panel: icon row replaced by text ('folder','clothing','motion','hand'); Modify tab icons replaced by overlapping text ('slidemotioneckfaceatom MD')",
+   "Export FBX Advanced Settings panel shown although the real s04-1 frame does not show it (borrowed from s04-2)",
+   "Content tree thumbnails/list text scaled differently; 'Perform' row green highlight vs real dark highlight",
+   "Export FBX dialog: 'Export FBX Settings' label and preset row faint/illegible"
+  ]
+ },
+ "s04-2": {
+  "layout": 2,
+  "labels": 3,
+  "hotspot": "correct",
+  "defects": [
+   "Desktop region right of the iClone window (x~792-960: webcam inset, mouse icon) and above it (blue desktop with FREEDOM3D banners) is filled dark in sim; iClone window appears to extend to the right screen edge",
+   "iClone title bar ('iClone 8 - animation 01.iProject') missing/dark; window min/max/close buttons drawn as white blobs",
+   "iClone Content panel: icon row replaced by text ('folder','clothing','motion','hand'); Modify tab icons replaced by overlapping text ('slidemotioneckfaceatom MD')",
+   "Menu bar: 'File' boxed highlight shown but no File menu or Export submenu drawn for the path",
+   "Export FBX Advanced Settings: checkbox labels tiny/faint; disabled sub-options under 'Epic Skeleton' illegible"
+  ]
+ },
+ "s04-3": {
+  "layout": 2,
+  "labels": 3,
+  "hotspot": "correct",
+  "defects": [
+   "Desktop region right of the iClone window (x~792-960: webcam inset, mouse icon) and above it (blue desktop with FREEDOM3D banners) is filled dark in sim; iClone window appears to extend to the right screen edge",
+   "iClone title bar ('iClone 8 - animation 01.iProject') missing/dark; window min/max/close buttons drawn as white blobs",
+   "iClone Content panel: icon row replaced by text ('folder','clothing','motion','hand'); Modify tab icons replaced by overlapping text ('slidemotioneckfaceatom MD')",
+   "Export FBX dialog: 'Export FBX Settings' header row and Target Tool Preset label illegible",
+   "Export/Cancel buttons drawn as solid boxes at y~463, real buttons are partly hidden under subtitle text (minor)"
+  ]
+ },
+ "s04-4": {
+  "layout": 2,
+  "labels": 2,
+  "hotspot": "correct",
+  "defects": [
+   "Desktop region right of the iClone window (x~792-960: webcam inset, mouse icon) and above it (blue desktop with FREEDOM3D banners) is filled dark in sim; iClone window appears to extend to the right screen edge",
+   "iClone title bar ('iClone 8 - animation 01.iProject') missing/dark; window min/max/close buttons drawn as white blobs",
+   "iClone Content panel: icon row replaced by text ('folder','clothing','motion','hand'); Modify tab icons replaced by overlapping text ('slidemotioneckfaceatom MD')",
+   "Content thumbnails 'Catwalk' and 'Change Pose' drawn as grey text tiles instead of character thumbnails; the selected-thumbnail green frame on Change Pose missing",
+   "Content panel: stray clipped text 'Video M', 'Visu', 'Sce', 'odi' and garbled 'ine 7 king' fragment at the bottom of the thumbnail grid",
+   "Content search/breadcrumb row and 'Sort by Category: A to Z' rendered faint"
+  ]
+ }
+}

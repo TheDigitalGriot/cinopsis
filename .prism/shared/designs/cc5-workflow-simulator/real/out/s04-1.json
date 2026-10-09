@@ -1,0 +1,2438 @@
+{
+ "key": "s04-1",
+ "frame_ref": "frames/LXzjbflCe1s_697.png",
+ "app": "iClone 8",
+ "app_version_seen": "iClone 8 (title bar: 'iClone 8 - animation 01.iProject')",
+ "view": "File > Export > Export FBX dialog (Advanced Settings not yet open)",
+ "theme": {
+  "window": "#282828",
+  "panel": "#272928",
+  "header": "#85d10d",
+  "text": "#b1b1b1",
+  "textDim": "#3f3f3f",
+  "accent": "#87cf14",
+  "border": "#3b3b3b"
+ },
+ "regions": [
+  {
+   "id": "video-overlay",
+   "kind": "other",
+   "bbox": [
+    0.0,
+    0.0,
+    1.0,
+    0.965
+   ],
+   "title": "tutorial video overlays (not app UI)",
+   "items": [
+    {
+     "label": "Generate Lip Sync Talking animation, facial expression animation and body motion by using iClone, then export FBX file and audio file in WAV format for Blender",
+     "kind": "text",
+     "bbox": [
+      0.134,
+      0.806,
+      0.731,
+      0.153
+     ],
+     "value": null,
+     "state": null
+    },
+    {
+     "label": "on-screen keyboard overlay",
+     "kind": "other",
+     "bbox": [
+      0.355,
+      0.76,
+      0.254,
+      0.118
+     ],
+     "value": null,
+     "state": null
+    },
+    {
+     "label": "webcam",
+     "kind": "other",
+     "bbox": [
+      0.895,
+      0.042,
+      0.105,
+      0.139
+     ],
+     "value": null,
+     "state": null
+    },
+    {
+     "label": "Get iClone, CC5, Plugin, Tutorial & Contents from FREEDOM3D.NET",
+     "kind": "text",
+     "bbox": [
+      0.211,
+      0.0,
+      0.336,
+      0.022
+     ],
+     "value": null,
+     "state": null
+    },
+    {
+     "label": "Get 3D models & scans from FREEDOM3D.ORG",
+     "kind": "text",
+     "bbox": [
+      0.603,
+      0.0,
+      0.239,
+      0.022
+     ],
+     "value": null,
+     "state": null
+    },
+    {
+     "label": "Get Blender & Unreal Engine Tutorial from FREEDOM3D.ART",
+     "kind": "text",
+     "bbox": [
+      0.104,
+      0.94,
+      0.295,
+      0.022
+     ],
+     "value": null,
+     "state": null
+    }
+   ]
+  },
+  {
+   "id": "desktop",
+   "kind": "other",
+   "bbox": [
+    0.0,
+    0.0,
+    0.158,
+    0.965
+   ],
+   "title": "Windows desktop (outside app)",
+   "items": [
+    {
+     "label": "Recycle Bin",
+     "kind": "icon",
+     "bbox": [
+      0.004,
+      0.007,
+      0.031,
+      0.062
+     ],
+     "value": null,
+     "state": null
+    },
+    {
+     "label": "avatar01.cc...",
+     "kind": "icon",
+     "bbox": [
+      0.004,
+      0.097,
+      0.031,
+      0.069
+     ],
+     "value": null,
+     "state": null
+    },
+    {
+     "label": "avatar01A...",
+     "kind": "icon",
+     "bbox": [
+      0.004,
+      0.192,
+      0.031,
+      0.069
+     ],
+     "value": null,
+     "state": null
+    },
+    {
+     "label": "animation 01iProject",
+     "kind": "icon",
+     "bbox": [
+      0.004,
+      0.285,
+      0.031,
+      0.076
+     ],
+     "value": null,
+     "state": null
+    }
+   ]
+  },
+  {
+   "id": "titlebar",
+   "kind": "other",
+   "bbox": [
+    0.158,
+    0.089,
+    0.666,
+    0.025
+   ],
+   "title": "iClone 8 - animation 01.iProject",
+   "items": [
+    {
+     "label": "iClone 8 - animation 01.iProject",
+     "kind": "text",
+     "bbox": [
+      0.164,
+      0.094,
+      0.098,
+      0.015
+     ],
+     "value": null,
+     "state": null
+    },
+    {
+     "label": "minimize",
+     "kind": "icon",
+     "bbox": [
+      0.758,
+      0.094,
+      0.009,
+      0.014
+     ],
+     "value": null,
+     "state": null
+    },
+    {
+     "label": "maximize",
+     "kind": "icon",
+     "bbox": [
+      0.784,
+      0.094,
+      0.009,
+      0.014
+     ],
+     "value": null,
+     "state": null
+    },
+    {
+     "label": "close",
+     "kind": "icon",
+     "bbox": [
+      0.809,
+      0.094,
+      0.009,
+      0.014
+     ],
+     "value": null,
+     "state": null
+    }
+   ]
+  },
+  {
+   "id": "menubar",
+   "kind": "menubar",
+   "bbox": [
+    0.158,
+    0.117,
+    0.666,
+    0.021
+   ],
+   "title": null,
+   "items": [
+    {
+     "label": "File",
+     "kind": "menu",
+     "bbox": [
+      0.163,
+      0.118,
+      0.009,
+      0.018
+     ],
+     "value": null,
+     "state": null
+    },
+    {
+     "label": "Edit",
+     "kind": "menu",
+     "bbox": [
+      0.181,
+      0.118,
+      0.011,
+      0.018
+     ],
+     "value": null,
+     "state": null
+    },
+    {
+     "label": "Create",
+     "kind": "menu",
+     "bbox": [
+      0.2,
+      0.118,
+      0.019,
+      0.018
+     ],
+     "value": null,
+     "state": null
+    },
+    {
+     "label": "Modify",
+     "kind": "menu",
+     "bbox": [
+      0.227,
+      0.118,
+      0.019,
+      0.018
+     ],
+     "value": null,
+     "state": null
+    },
+    {
+     "label": "Animation",
+     "kind": "menu",
+     "bbox": [
+      0.253,
+      0.118,
+      0.03,
+      0.018
+     ],
+     "value": null,
+     "state": null
+    },
+    {
+     "label": "Render",
+     "kind": "menu",
+     "bbox": [
+      0.29,
+      0.118,
+      0.022,
+      0.018
+     ],
+     "value": null,
+     "state": null
+    },
+    {
+     "label": "View",
+     "kind": "menu",
+     "bbox": [
+      0.32,
+      0.118,
+      0.014,
+      0.018
+     ],
+     "value": null,
+     "state": null
+    },
+    {
+     "label": "Window",
+     "kind": "menu",
+     "bbox": [
+      0.342,
+      0.118,
+      0.022,
+      0.018
+     ],
+     "value": null,
+     "state": null
+    },
+    {
+     "label": "Plugins",
+     "kind": "menu",
+     "bbox": [
+      0.373,
+      0.118,
+      0.022,
+      0.018
+     ],
+     "value": null,
+     "state": null
+    },
+    {
+     "label": "Script",
+     "kind": "menu",
+     "bbox": [
+      0.402,
+      0.118,
+      0.017,
+      0.018
+     ],
+     "value": null,
+     "state": null
+    },
+    {
+     "label": "Help",
+     "kind": "menu",
+     "bbox": [
+      0.426,
+      0.118,
+      0.014,
+      0.018
+     ],
+     "value": null,
+     "state": null
+    },
+    {
+     "label": "Available Points: 33,301",
+     "kind": "text",
+     "bbox": [
+      0.711,
+      0.118,
+      0.082,
+      0.018
+     ],
+     "value": null,
+     "state": null
+    },
+    {
+     "label": "P points icon",
+     "kind": "icon",
+     "bbox": [
+      0.709,
+      0.118,
+      0.009,
+      0.018
+     ],
+     "value": null,
+     "state": null
+    },
+    {
+     "label": "refresh icon",
+     "kind": "icon",
+     "bbox": [
+      0.795,
+      0.118,
+      0.009,
+      0.018
+     ],
+     "value": null,
+     "state": null
+    },
+    {
+     "label": "plus button",
+     "kind": "icon",
+     "bbox": [
+      0.811,
+      0.118,
+      0.01,
+      0.018
+     ],
+     "value": null,
+     "state": null
+    }
+   ]
+  },
+  {
+   "id": "toolbar1",
+   "kind": "toolbar",
+   "bbox": [
+    0.16,
+    0.144,
+    0.664,
+    0.029
+   ],
+   "title": null,
+   "items": [
+    {
+     "label": "new project icon",
+     "kind": "icon",
+     "bbox": [
+      0.169,
+      0.149,
+      0.011,
+      0.019
+     ],
+     "value": null,
+     "state": null
+    },
+    {
+     "label": "open icon",
+     "kind": "icon",
+     "bbox": [
+      0.185,
+      0.149,
+      0.011,
+      0.019
+     ],
+     "value": null,
+     "state": null
+    },
+    {
+     "label": "save icon",
+     "kind": "icon",
+     "bbox": [
+      0.202,
+      0.149,
+      0.011,
+      0.019
+     ],
+     "value": null,
+     "state": null
+    },
+    {
+     "label": "? icon",
+     "kind": "icon",
+     "bbox": [
+      0.223,
+      0.149,
+      0.011,
+      0.019
+     ],
+     "value": null,
+     "state": null
+    },
+    {
+     "label": "export icon",
+     "kind": "icon",
+     "bbox": [
+      0.239,
+      0.149,
+      0.011,
+      0.019
+     ],
+     "value": null,
+     "state": null
+    },
+    {
+     "label": "USD icon",
+     "kind": "icon",
+     "bbox": [
+      0.255,
+      0.149,
+      0.011,
+      0.019
+     ],
+     "value": null,
+     "state": null
+    },
+    {
+     "label": "CC import icon",
+     "kind": "icon",
+     "bbox": [
+      0.281,
+      0.149,
+      0.013,
+      0.019
+     ],
+     "value": null,
+     "state": null
+    },
+    {
+     "label": "CC export icon",
+     "kind": "icon",
+     "bbox": [
+      0.299,
+      0.149,
+      0.013,
+      0.019
+     ],
+     "value": null,
+     "state": null
+    },
+    {
+     "label": "undo",
+     "kind": "icon",
+     "bbox": [
+      0.326,
+      0.149,
+      0.011,
+      0.019
+     ],
+     "value": null,
+     "state": null
+    },
+    {
+     "label": "redo",
+     "kind": "icon",
+     "bbox": [
+      0.342,
+      0.149,
+      0.011,
+      0.019
+     ],
+     "value": null,
+     "state": null
+    },
+    {
+     "label": "select arrow",
+     "kind": "icon",
+     "bbox": [
+      0.362,
+      0.149,
+      0.011,
+      0.019
+     ],
+     "value": null,
+     "state": null
+    },
+    {
+     "label": "move tool",
+     "kind": "icon",
+     "bbox": [
+      0.38,
+      0.149,
+      0.014,
+      0.019
+     ],
+     "value": null,
+     "state": null
+    },
+    {
+     "label": "rotate tool",
+     "kind": "icon",
+     "bbox": [
+      0.405,
+      0.149,
+      0.014,
+      0.019
+     ],
+     "value": null,
+     "state": null
+    },
+    {
+     "label": "scale tool (disabled)",
+     "kind": "icon",
+     "bbox": [
+      0.429,
+      0.149,
+      0.011,
+      0.019
+     ],
+     "value": null,
+     "state": null
+    },
+    {
+     "label": "? tool icon",
+     "kind": "icon",
+     "bbox": [
+      0.449,
+      0.149,
+      0.014,
+      0.019
+     ],
+     "value": null,
+     "state": null
+    },
+    {
+     "label": "? tool icon",
+     "kind": "icon",
+     "bbox": [
+      0.475,
+      0.149,
+      0.014,
+      0.019
+     ],
+     "value": null,
+     "state": null
+    },
+    {
+     "label": "? icon (disabled)",
+     "kind": "icon",
+     "bbox": [
+      0.495,
+      0.149,
+      0.011,
+      0.019
+     ],
+     "value": null,
+     "state": null
+    },
+    {
+     "label": "? icon",
+     "kind": "icon",
+     "bbox": [
+      0.514,
+      0.149,
+      0.011,
+      0.019
+     ],
+     "value": null,
+     "state": null
+    },
+    {
+     "label": "eye icon",
+     "kind": "icon",
+     "bbox": [
+      0.531,
+      0.149,
+      0.013,
+      0.019
+     ],
+     "value": null,
+     "state": "active"
+    },
+    {
+     "label": "? icon",
+     "kind": "icon",
+     "bbox": [
+      0.55,
+      0.149,
+      0.011,
+      0.019
+     ],
+     "value": null,
+     "state": null
+    },
+    {
+     "label": "? icon",
+     "kind": "icon",
+     "bbox": [
+      0.575,
+      0.149,
+      0.011,
+      0.019
+     ],
+     "value": null,
+     "state": null
+    },
+    {
+     "label": "sun/light icon",
+     "kind": "icon",
+     "bbox": [
+      0.595,
+      0.149,
+      0.011,
+      0.019
+     ],
+     "value": null,
+     "state": null
+    },
+    {
+     "label": "home camera icon",
+     "kind": "icon",
+     "bbox": [
+      0.613,
+      0.149,
+      0.014,
+      0.019
+     ],
+     "value": null,
+     "state": null
+    },
+    {
+     "label": "? icon",
+     "kind": "icon",
+     "bbox": [
+      0.637,
+      0.149,
+      0.011,
+      0.019
+     ],
+     "value": null,
+     "state": null
+    },
+    {
+     "label": "? icon",
+     "kind": "icon",
+     "bbox": [
+      0.655,
+      0.149,
+      0.011,
+      0.019
+     ],
+     "value": null,
+     "state": null
+    },
+    {
+     "label": "? icon",
+     "kind": "icon",
+     "bbox": [
+      0.672,
+      0.149,
+      0.014,
+      0.019
+     ],
+     "value": null,
+     "state": "active"
+    },
+    {
+     "label": "? icon",
+     "kind": "icon",
+     "bbox": [
+      0.695,
+      0.149,
+      0.011,
+      0.019
+     ],
+     "value": null,
+     "state": null
+    },
+    {
+     "label": "more \u00bb",
+     "kind": "icon",
+     "bbox": [
+      0.724,
+      0.149,
+      0.008,
+      0.019
+     ],
+     "value": null,
+     "state": null
+    },
+    {
+     "label": "? icon (disabled)",
+     "kind": "icon",
+     "bbox": [
+      0.743,
+      0.149,
+      0.011,
+      0.019
+     ],
+     "value": null,
+     "state": null
+    },
+    {
+     "label": "? icon",
+     "kind": "icon",
+     "bbox": [
+      0.768,
+      0.149,
+      0.011,
+      0.019
+     ],
+     "value": null,
+     "state": null
+    },
+    {
+     "label": "more \u00bb",
+     "kind": "icon",
+     "bbox": [
+      0.785,
+      0.149,
+      0.008,
+      0.019
+     ],
+     "value": null,
+     "state": null
+    },
+    {
+     "label": "? icon",
+     "kind": "icon",
+     "bbox": [
+      0.802,
+      0.149,
+      0.013,
+      0.019
+     ],
+     "value": null,
+     "state": "active"
+    },
+    {
+     "label": "more \u00bb",
+     "kind": "icon",
+     "bbox": [
+      0.816,
+      0.149,
+      0.006,
+      0.019
+     ],
+     "value": null,
+     "state": null
+    }
+   ]
+  },
+  {
+   "id": "toolbar2",
+   "kind": "toolbar",
+   "bbox": [
+    0.16,
+    0.179,
+    0.664,
+    0.033
+   ],
+   "title": null,
+   "items": [
+    {
+     "label": "MD icon",
+     "kind": "icon",
+     "bbox": [
+      0.17,
+      0.185,
+      0.023,
+      0.021
+     ],
+     "value": null,
+     "state": null
+    },
+    {
+     "label": "MOTION PLANNING",
+     "kind": "button",
+     "bbox": [
+      0.215,
+      0.185,
+      0.048,
+      0.021
+     ],
+     "value": null,
+     "state": null
+    },
+    {
+     "label": "? icon",
+     "kind": "icon",
+     "bbox": [
+      0.283,
+      0.185,
+      0.011,
+      0.021
+     ],
+     "value": null,
+     "state": null
+    },
+    {
+     "label": "? icon (disabled)",
+     "kind": "icon",
+     "bbox": [
+      0.301,
+      0.185,
+      0.011,
+      0.021
+     ],
+     "value": null,
+     "state": null
+    },
+    {
+     "label": "? icon",
+     "kind": "icon",
+     "bbox": [
+      0.324,
+      0.185,
+      0.011,
+      0.021
+     ],
+     "value": null,
+     "state": null
+    },
+    {
+     "label": "? icon",
+     "kind": "icon",
+     "bbox": [
+      0.341,
+      0.185,
+      0.011,
+      0.021
+     ],
+     "value": null,
+     "state": null
+    },
+    {
+     "label": "? icon",
+     "kind": "icon",
+     "bbox": [
+      0.361,
+      0.185,
+      0.011,
+      0.021
+     ],
+     "value": null,
+     "state": null
+    },
+    {
+     "label": "? icon",
+     "kind": "icon",
+     "bbox": [
+      0.377,
+      0.185,
+      0.011,
+      0.021
+     ],
+     "value": null,
+     "state": null
+    },
+    {
+     "label": "? icon",
+     "kind": "icon",
+     "bbox": [
+      0.395,
+      0.185,
+      0.011,
+      0.021
+     ],
+     "value": null,
+     "state": null
+    },
+    {
+     "label": "? icon",
+     "kind": "icon",
+     "bbox": [
+      0.412,
+      0.185,
+      0.011,
+      0.021
+     ],
+     "value": null,
+     "state": null
+    },
+    {
+     "label": "ACCUPOSE",
+     "kind": "button",
+     "bbox": [
+      0.438,
+      0.185,
+      0.058,
+      0.021
+     ],
+     "value": null,
+     "state": null
+    },
+    {
+     "label": "? icon",
+     "kind": "icon",
+     "bbox": [
+      0.509,
+      0.185,
+      0.016,
+      0.021
+     ],
+     "value": null,
+     "state": null
+    },
+    {
+     "label": "Begin Online ...",
+     "kind": "field",
+     "bbox": [
+      0.531,
+      0.185,
+      0.069,
+      0.021
+     ],
+     "value": null,
+     "state": null
+    },
+    {
+     "label": "? icon",
+     "kind": "icon",
+     "bbox": [
+      0.613,
+      0.185,
+      0.011,
+      0.021
+     ],
+     "value": null,
+     "state": null
+    },
+    {
+     "label": "B icon",
+     "kind": "icon",
+     "bbox": [
+      0.63,
+      0.185,
+      0.009,
+      0.021
+     ],
+     "value": null,
+     "state": null
+    },
+    {
+     "label": "? export icon",
+     "kind": "icon",
+     "bbox": [
+      0.648,
+      0.185,
+      0.011,
+      0.021
+     ],
+     "value": null,
+     "state": null
+    },
+    {
+     "label": "gear icon",
+     "kind": "icon",
+     "bbox": [
+      0.668,
+      0.185,
+      0.011,
+      0.021
+     ],
+     "value": null,
+     "state": null
+    },
+    {
+     "label": "VIDEO MOCAP",
+     "kind": "button",
+     "bbox": [
+      0.691,
+      0.185,
+      0.036,
+      0.021
+     ],
+     "value": null,
+     "state": null
+    }
+   ]
+  },
+  {
+   "id": "content",
+   "kind": "panel",
+   "bbox": [
+    0.158,
+    0.217,
+    0.311,
+    0.749
+   ],
+   "title": "Content",
+   "items": [
+    {
+     "label": "Content",
+     "kind": "header",
+     "bbox": [
+      0.158,
+      0.217,
+      0.298,
+      0.015
+     ],
+     "value": null,
+     "state": null
+    },
+    {
+     "label": "close",
+     "kind": "icon",
+     "bbox": [
+      0.441,
+      0.218,
+      0.008,
+      0.014
+     ],
+     "value": null,
+     "state": null
+    },
+    {
+     "label": "folder",
+     "kind": "tab",
+     "bbox": [
+      0.186,
+      0.25,
+      0.022,
+      0.036
+     ],
+     "value": null,
+     "state": null
+    },
+    {
+     "label": "actor/avatar",
+     "kind": "tab",
+     "bbox": [
+      0.212,
+      0.25,
+      0.022,
+      0.036
+     ],
+     "value": null,
+     "state": null
+    },
+    {
+     "label": "? icon",
+     "kind": "tab",
+     "bbox": [
+      0.237,
+      0.25,
+      0.022,
+      0.036
+     ],
+     "value": null,
+     "state": null
+    },
+    {
+     "label": "clothing",
+     "kind": "tab",
+     "bbox": [
+      0.263,
+      0.25,
+      0.022,
+      0.036
+     ],
+     "value": null,
+     "state": null
+    },
+    {
+     "label": "? icon",
+     "kind": "tab",
+     "bbox": [
+      0.289,
+      0.25,
+      0.022,
+      0.036
+     ],
+     "value": null,
+     "state": null
+    },
+    {
+     "label": "motion (active)",
+     "kind": "tab",
+     "bbox": [
+      0.314,
+      0.25,
+      0.022,
+      0.036
+     ],
+     "value": null,
+     "state": "active"
+    },
+    {
+     "label": "? icon",
+     "kind": "tab",
+     "bbox": [
+      0.341,
+      0.25,
+      0.022,
+      0.036
+     ],
+     "value": null,
+     "state": null
+    },
+    {
+     "label": "? icon",
+     "kind": "tab",
+     "bbox": [
+      0.366,
+      0.25,
+      0.022,
+      0.036
+     ],
+     "value": null,
+     "state": null
+    },
+    {
+     "label": "? icon",
+     "kind": "tab",
+     "bbox": [
+      0.391,
+      0.25,
+      0.022,
+      0.036
+     ],
+     "value": null,
+     "state": null
+    },
+    {
+     "label": "? icon",
+     "kind": "tab",
+     "bbox": [
+      0.416,
+      0.25,
+      0.022,
+      0.036
+     ],
+     "value": null,
+     "state": null
+    },
+    {
+     "label": "? icon",
+     "kind": "tab",
+     "bbox": [
+      0.17,
+      0.3,
+      0.014,
+      0.028
+     ],
+     "value": null,
+     "state": null
+    },
+    {
+     "label": "? icon",
+     "kind": "tab",
+     "bbox": [
+      0.188,
+      0.3,
+      0.014,
+      0.028
+     ],
+     "value": null,
+     "state": null
+    },
+    {
+     "label": "motion icon (active)",
+     "kind": "tab",
+     "bbox": [
+      0.207,
+      0.3,
+      0.014,
+      0.028
+     ],
+     "value": null,
+     "state": "active"
+    },
+    {
+     "label": "? icon",
+     "kind": "tab",
+     "bbox": [
+      0.227,
+      0.3,
+      0.014,
+      0.028
+     ],
+     "value": null,
+     "state": null
+    },
+    {
+     "label": "? icon",
+     "kind": "tab",
+     "bbox": [
+      0.245,
+      0.3,
+      0.014,
+      0.028
+     ],
+     "value": null,
+     "state": null
+    },
+    {
+     "label": "hand icon",
+     "kind": "tab",
+     "bbox": [
+      0.264,
+      0.3,
+      0.014,
+      0.028
+     ],
+     "value": null,
+     "state": null
+    },
+    {
+     "label": "Template",
+     "kind": "tab",
+     "bbox": [
+      0.166,
+      0.361,
+      0.145,
+      0.032
+     ],
+     "value": null,
+     "state": "active"
+    },
+    {
+     "label": "back",
+     "kind": "icon",
+     "bbox": [
+      0.171,
+      0.407,
+      0.009,
+      0.017
+     ],
+     "value": null,
+     "state": null
+    },
+    {
+     "label": "forward",
+     "kind": "icon",
+     "bbox": [
+      0.186,
+      0.407,
+      0.009,
+      0.017
+     ],
+     "value": null,
+     "state": null
+    },
+    {
+     "label": "up",
+     "kind": "icon",
+     "bbox": [
+      0.198,
+      0.407,
+      0.009,
+      0.017
+     ],
+     "value": null,
+     "state": null
+    },
+    {
+     "label": "\u00ab Motion \u25b8 2...",
+     "kind": "field",
+     "bbox": [
+      0.216,
+      0.406,
+      0.066,
+      0.019
+     ],
+     "value": null,
+     "state": null
+    },
+    {
+     "label": "Item",
+     "kind": "tab",
+     "bbox": [
+      0.171,
+      0.442,
+      0.056,
+      0.019
+     ],
+     "value": null,
+     "state": "active"
+    },
+    {
+     "label": "Pack",
+     "kind": "tab",
+     "bbox": [
+      0.228,
+      0.442,
+      0.055,
+      0.019
+     ],
+     "value": null,
+     "state": null
+    },
+    {
+     "label": "Motion-Plus",
+     "kind": "tree-item",
+     "bbox": [
+      0.199,
+      0.478,
+      0.078,
+      0.015
+     ],
+     "value": null,
+     "state": null
+    },
+    {
+     "label": "Motion",
+     "kind": "tree-item",
+     "bbox": [
+      0.199,
+      0.501,
+      0.078,
+      0.015
+     ],
+     "value": null,
+     "state": null
+    },
+    {
+     "label": "04_G5 MixMoce_Fen",
+     "kind": "tree-item",
+     "bbox": [
+      0.207,
+      0.524,
+      0.07,
+      0.015
+     ],
+     "value": null,
+     "state": null
+    },
+    {
+     "label": "1.Human Male",
+     "kind": "tree-item",
+     "bbox": [
+      0.207,
+      0.547,
+      0.07,
+      0.015
+     ],
+     "value": null,
+     "state": null
+    },
+    {
+     "label": "2.Human Female",
+     "kind": "tree-item",
+     "bbox": [
+      0.207,
+      0.571,
+      0.07,
+      0.015
+     ],
+     "value": null,
+     "state": null
+    },
+    {
+     "label": "Idle",
+     "kind": "tree-item",
+     "bbox": [
+      0.216,
+      0.594,
+      0.062,
+      0.015
+     ],
+     "value": null,
+     "state": null
+    },
+    {
+     "label": "Move",
+     "kind": "tree-item",
+     "bbox": [
+      0.216,
+      0.617,
+      0.062,
+      0.015
+     ],
+     "value": null,
+     "state": null
+    },
+    {
+     "label": "Perform",
+     "kind": "tree-item",
+     "bbox": [
+      0.216,
+      0.64,
+      0.062,
+      0.015
+     ],
+     "value": null,
+     "state": "selected"
+    },
+    {
+     "label": "BEAR",
+     "kind": "tree-item",
+     "bbox": [
+      0.207,
+      0.664,
+      0.07,
+      0.015
+     ],
+     "value": null,
+     "state": null
+    },
+    {
+     "label": "BOAR",
+     "kind": "tree-item",
+     "bbox": [
+      0.207,
+      0.686,
+      0.07,
+      0.015
+     ],
+     "value": null,
+     "state": null
+    },
+    {
+     "label": "Coyote",
+     "kind": "tree-item",
+     "bbox": [
+      0.207,
+      0.71,
+      0.07,
+      0.015
+     ],
+     "value": null,
+     "state": null
+    },
+    {
+     "label": "CROCODILE",
+     "kind": "tree-item",
+     "bbox": [
+      0.207,
+      0.733,
+      0.07,
+      0.015
+     ],
+     "value": null,
+     "state": null
+    },
+    {
+     "label": "Delema_Multi_Gown",
+     "kind": "tree-item",
+     "bbox": [
+      0.207,
+      0.756,
+      0.07,
+      0.015
+     ],
+     "value": null,
+     "state": null
+    },
+    {
+     "label": "ELEPHANT",
+     "kind": "tree-item",
+     "bbox": [
+      0.207,
+      0.779,
+      0.07,
+      0.015
+     ],
+     "value": null,
+     "state": null
+    },
+    {
+     "label": "FoodMarket",
+     "kind": "tree-item",
+     "bbox": [
+      0.207,
+      0.803,
+      0.07,
+      0.015
+     ],
+     "value": null,
+     "state": null
+    },
+    {
+     "label": "Freebie",
+     "kind": "tree-item",
+     "bbox": [
+      0.207,
+      0.849,
+      0.07,
+      0.015
+     ],
+     "value": null,
+     "state": null
+    },
+    {
+     "label": "Horse",
+     "kind": "tree-item",
+     "bbox": [
+      0.207,
+      0.896,
+      0.07,
+      0.015
+     ],
+     "value": null,
+     "state": null
+    },
+    {
+     "label": "Filter by Base Type",
+     "kind": "checkbox",
+     "bbox": [
+      0.177,
+      0.974,
+      0.07,
+      0.015
+     ],
+     "value": null,
+     "state": null
+    },
+    {
+     "label": "Total : 12",
+     "kind": "text",
+     "bbox": [
+      0.382,
+      0.983,
+      0.019,
+      0.013
+     ],
+     "value": null,
+     "state": null
+    },
+    {
+     "label": "1 / 1",
+     "kind": "text",
+     "bbox": [
+      0.412,
+      0.983,
+      0.023,
+      0.013
+     ],
+     "value": null,
+     "state": null
+    }
+   ]
+  },
+  {
+   "id": "sidetabs",
+   "kind": "tabs",
+   "bbox": [
+    0.455,
+    0.217,
+    0.154,
+    0.236
+   ],
+   "title": null,
+   "items": [
+    {
+     "label": "Content",
+     "kind": "tab",
+     "bbox": [
+      0.459,
+      0.25,
+      0.01,
+      0.031
+     ],
+     "value": null,
+     "state": null
+    },
+    {
+     "label": "Unreal Live Link",
+     "kind": "tab",
+     "bbox": [
+      0.597,
+      0.219,
+      0.011,
+      0.1
+     ],
+     "value": null,
+     "state": null
+    },
+    {
+     "label": "Modify",
+     "kind": "tab",
+     "bbox": [
+      0.597,
+      0.358,
+      0.011,
+      0.083
+     ],
+     "value": null,
+     "state": "active"
+    }
+   ]
+  },
+  {
+   "id": "viewport",
+   "kind": "viewport",
+   "bbox": [
+    0.469,
+    0.217,
+    0.141,
+    0.556
+   ],
+   "title": null,
+   "items": [
+    {
+     "label": "selected female character",
+     "kind": "other",
+     "bbox": [
+      0.517,
+      0.539,
+      0.036,
+      0.118
+     ],
+     "value": null,
+     "state": null
+    }
+   ]
+  },
+  {
+   "id": "modify",
+   "kind": "panel",
+   "bbox": [
+    0.609,
+    0.217,
+    0.215,
+    0.749
+   ],
+   "title": "Modify",
+   "items": [
+    {
+     "label": "Modify",
+     "kind": "header",
+     "bbox": [
+      0.609,
+      0.217,
+      0.209,
+      0.015
+     ],
+     "value": null,
+     "state": null
+    },
+    {
+     "label": "close",
+     "kind": "icon",
+     "bbox": [
+      0.809,
+      0.218,
+      0.008,
+      0.014
+     ],
+     "value": null,
+     "state": null
+    },
+    {
+     "label": "sliders tab",
+     "kind": "tab",
+     "bbox": [
+      0.613,
+      0.239,
+      0.014,
+      0.025
+     ],
+     "value": null,
+     "state": null
+    },
+    {
+     "label": "motion tab",
+     "kind": "tab",
+     "bbox": [
+      0.634,
+      0.239,
+      0.014,
+      0.025
+     ],
+     "value": null,
+     "state": "active"
+    },
+    {
+     "label": "checker tab",
+     "kind": "tab",
+     "bbox": [
+      0.655,
+      0.239,
+      0.014,
+      0.025
+     ],
+     "value": null,
+     "state": null
+    },
+    {
+     "label": "face tab",
+     "kind": "tab",
+     "bbox": [
+      0.673,
+      0.239,
+      0.014,
+      0.025
+     ],
+     "value": null,
+     "state": null
+    },
+    {
+     "label": "atom tab",
+     "kind": "tab",
+     "bbox": [
+      0.693,
+      0.239,
+      0.014,
+      0.025
+     ],
+     "value": null,
+     "state": null
+    },
+    {
+     "label": "MD tab",
+     "kind": "tab",
+     "bbox": [
+      0.713,
+      0.239,
+      0.016,
+      0.025
+     ],
+     "value": null,
+     "state": null
+    },
+    {
+     "label": "Motion",
+     "kind": "header",
+     "bbox": [
+      0.619,
+      0.285,
+      0.191,
+      0.018
+     ],
+     "value": null,
+     "state": null
+    },
+    {
+     "label": "Body",
+     "kind": "header",
+     "bbox": [
+      0.63,
+      0.311,
+      0.016,
+      0.013
+     ],
+     "value": null,
+     "state": null
+    },
+    {
+     "label": "Motion Puppet",
+     "kind": "button",
+     "bbox": [
+      0.627,
+      0.335,
+      0.175,
+      0.035
+     ],
+     "value": null,
+     "state": null
+    },
+    {
+     "label": "Direct Puppet",
+     "kind": "button",
+     "bbox": [
+      0.627,
+      0.381,
+      0.175,
+      0.035
+     ],
+     "value": null,
+     "state": null
+    },
+    {
+     "label": "Edit Motion Layer",
+     "kind": "button",
+     "bbox": [
+      0.627,
+      0.428,
+      0.175,
+      0.035
+     ],
+     "value": null,
+     "state": null
+    },
+    {
+     "label": "AccuPOSE",
+     "kind": "button",
+     "bbox": [
+      0.627,
+      0.474,
+      0.175,
+      0.035
+     ],
+     "value": null,
+     "state": null
+    },
+    {
+     "label": "Edit Reach Target",
+     "kind": "button",
+     "bbox": [
+      0.627,
+      0.519,
+      0.175,
+      0.035
+     ],
+     "value": null,
+     "state": null
+    },
+    {
+     "label": "Facial",
+     "kind": "header",
+     "bbox": [
+      0.63,
+      0.583,
+      0.019,
+      0.013
+     ],
+     "value": null,
+     "state": null
+    },
+    {
+     "label": "Create Script",
+     "kind": "button",
+     "bbox": [
+      0.627,
+      0.608,
+      0.175,
+      0.035
+     ],
+     "value": null,
+     "state": null
+    },
+    {
+     "label": "Face Puppet",
+     "kind": "button",
+     "bbox": [
+      0.627,
+      0.654,
+      0.175,
+      0.035
+     ],
+     "value": null,
+     "state": null
+    },
+    {
+     "label": "Face Key",
+     "kind": "button",
+     "bbox": [
+      0.627,
+      0.701,
+      0.175,
+      0.035
+     ],
+     "value": null,
+     "state": null
+    },
+    {
+     "label": "Facial Animation Settings",
+     "kind": "header",
+     "bbox": [
+      0.627,
+      0.762,
+      0.072,
+      0.014
+     ],
+     "value": null,
+     "state": null
+    },
+    {
+     "label": "Viseme Strength",
+     "kind": "slider",
+     "bbox": [
+      0.627,
+      0.786,
+      0.047,
+      0.014
+     ],
+     "value": null,
+     "state": null
+    },
+    {
+     "label": "Morph",
+     "kind": "header",
+     "bbox": [
+      0.63,
+      0.903,
+      0.016,
+      0.013
+     ],
+     "value": null,
+     "state": null
+    },
+    {
+     "label": "Morph Creator",
+     "kind": "button",
+     "bbox": [
+      0.627,
+      0.926,
+      0.175,
+      0.035
+     ],
+     "value": null,
+     "state": null
+    },
+    {
+     "label": "Morph Animator",
+     "kind": "button",
+     "bbox": [
+      0.627,
+      0.974,
+      0.175,
+      0.026
+     ],
+     "value": null,
+     "state": null
+    }
+   ]
+  },
+  {
+   "id": "taskbar",
+   "kind": "statusbar",
+   "bbox": [
+    0.0,
+    0.965,
+    1.0,
+    0.035
+   ],
+   "title": "Windows taskbar",
+   "items": [
+    {
+     "label": "Start",
+     "kind": "icon",
+     "bbox": [
+      0.006,
+      0.972,
+      0.013,
+      0.022
+     ],
+     "value": null,
+     "state": null
+    },
+    {
+     "label": "Type here to search",
+     "kind": "field",
+     "bbox": [
+      0.028,
+      0.969,
+      0.109,
+      0.025
+     ],
+     "value": null,
+     "state": null
+    },
+    {
+     "label": "cloudy",
+     "kind": "text",
+     "bbox": [
+      0.827,
+      0.974,
+      0.023,
+      0.017
+     ],
+     "value": null,
+     "state": null
+    },
+    {
+     "label": "ENG",
+     "kind": "text",
+     "bbox": [
+      0.922,
+      0.974,
+      0.014,
+      0.017
+     ],
+     "value": null,
+     "state": null
+    },
+    {
+     "label": "8:17 PM 3/8/2026",
+     "kind": "text",
+     "bbox": [
+      0.952,
+      0.965,
+      0.041,
+      0.031
+     ],
+     "value": null,
+     "state": null
+    }
+   ]
+  },
+  {
+   "id": "export-fbx",
+   "kind": "dialog",
+   "bbox": [
+    0.284,
+    0.275,
+    0.212,
+    0.544
+   ],
+   "title": "Export FBX",
+   "items": [
+    {
+     "label": "Export FBX",
+     "kind": "header",
+     "bbox": [
+      0.284,
+      0.275,
+      0.211,
+      0.018
+     ],
+     "value": null,
+     "state": null
+    },
+    {
+     "label": "close",
+     "kind": "icon",
+     "bbox": [
+      0.479,
+      0.276,
+      0.009,
+      0.015
+     ],
+     "value": null,
+     "state": null
+    },
+    {
+     "label": "Export FBX Settings :",
+     "kind": "text",
+     "bbox": [
+      0.292,
+      0.317,
+      0.058,
+      0.014
+     ],
+     "value": null,
+     "state": null
+    },
+    {
+     "label": "gear icon (advanced settings)",
+     "kind": "button",
+     "bbox": [
+      0.472,
+      0.311,
+      0.014,
+      0.024
+     ],
+     "value": null,
+     "state": null
+    },
+    {
+     "label": "Target Tool Preset :",
+     "kind": "text",
+     "bbox": [
+      0.292,
+      0.344,
+      0.056,
+      0.014
+     ],
+     "value": null,
+     "state": null
+    },
+    {
+     "label": "Target Tool Preset",
+     "kind": "dropdown",
+     "bbox": [
+      0.366,
+      0.342,
+      0.119,
+      0.019
+     ],
+     "value": "Blender",
+     "state": null
+    },
+    {
+     "label": "FPS :",
+     "kind": "text",
+     "bbox": [
+      0.292,
+      0.372,
+      0.014,
+      0.014
+     ],
+     "value": null,
+     "state": null
+    },
+    {
+     "label": "FPS",
+     "kind": "dropdown",
+     "bbox": [
+      0.366,
+      0.369,
+      0.119,
+      0.019
+     ],
+     "value": "Project(60)",
+     "state": null
+    },
+    {
+     "label": "Export Range",
+     "kind": "header",
+     "bbox": [
+      0.302,
+      0.399,
+      0.039,
+      0.013
+     ],
+     "value": null,
+     "state": null
+    },
+    {
+     "label": "T-Pose",
+     "kind": "checkbox",
+     "bbox": [
+      0.299,
+      0.421,
+      0.033,
+      0.015
+     ],
+     "value": null,
+     "state": null
+    },
+    {
+     "label": "Current Frame",
+     "kind": "checkbox",
+     "bbox": [
+      0.299,
+      0.444,
+      0.055,
+      0.015
+     ],
+     "value": null,
+     "state": null
+    },
+    {
+     "label": "All",
+     "kind": "checkbox",
+     "bbox": [
+      0.299,
+      0.469,
+      0.02,
+      0.015
+     ],
+     "value": null,
+     "state": null
+    },
+    {
+     "label": "Range",
+     "kind": "checkbox",
+     "bbox": [
+      0.299,
+      0.492,
+      0.031,
+      0.015
+     ],
+     "value": null,
+     "state": "selected"
+    },
+    {
+     "label": "From",
+     "kind": "text",
+     "bbox": [
+      0.376,
+      0.493,
+      0.016,
+      0.014
+     ],
+     "value": null,
+     "state": null
+    },
+    {
+     "label": "From",
+     "kind": "field",
+     "bbox": [
+      0.398,
+      0.49,
+      0.032,
+      0.019
+     ],
+     "value": "0",
+     "state": null
+    },
+    {
+     "label": "To",
+     "kind": "text",
+     "bbox": [
+      0.434,
+      0.493,
+      0.008,
+      0.014
+     ],
+     "value": null,
+     "state": null
+    },
+    {
+     "label": "To",
+     "kind": "field",
+     "bbox": [
+      0.448,
+      0.49,
+      0.031,
+      0.019
+     ],
+     "value": "883",
+     "state": null
+    },
+    {
+     "label": "Embed Textures",
+     "kind": "checkbox",
+     "bbox": [
+      0.292,
+      0.532,
+      0.059,
+      0.015
+     ],
+     "value": null,
+     "state": "checked"
+    },
+    {
+     "label": "Max Texture Size",
+     "kind": "checkbox",
+     "bbox": [
+      0.292,
+      0.561,
+      0.06,
+      0.015
+     ],
+     "value": null,
+     "state": null
+    },
+    {
+     "label": "Max Texture Size",
+     "kind": "dropdown",
+     "bbox": [
+      0.424,
+      0.56,
+      0.06,
+      0.019
+     ],
+     "value": "2048",
+     "state": null
+    },
+    {
+     "label": "Convert Image Format to",
+     "kind": "checkbox",
+     "bbox": [
+      0.292,
+      0.589,
+      0.084,
+      0.015
+     ],
+     "value": null,
+     "state": null
+    },
+    {
+     "label": "Convert Image Format to",
+     "kind": "dropdown",
+     "bbox": [
+      0.424,
+      0.588,
+      0.06,
+      0.019
+     ],
+     "value": "Bmp",
+     "state": null
+    },
+    {
+     "label": "Delete Hidden Face",
+     "kind": "checkbox",
+     "bbox": [
+      0.292,
+      0.618,
+      0.07,
+      0.015
+     ],
+     "value": null,
+     "state": null
+    },
+    {
+     "label": "Use Smooth Mesh",
+     "kind": "checkbox",
+     "bbox": [
+      0.292,
+      0.647,
+      0.067,
+      0.015
+     ],
+     "value": null,
+     "state": null
+    },
+    {
+     "label": "Convert Skinned Expressions to Morphs",
+     "kind": "checkbox",
+     "bbox": [
+      0.292,
+      0.676,
+      0.128,
+      0.015
+     ],
+     "value": null,
+     "state": null
+    },
+    {
+     "label": "Merge Face Hair to One Object",
+     "kind": "checkbox",
+     "bbox": [
+      0.292,
+      0.704,
+      0.102,
+      0.015
+     ],
+     "value": "disabled",
+     "state": null
+    },
+    {
+     "label": "Delete Unused Morphs",
+     "kind": "checkbox",
+     "bbox": [
+      0.292,
+      0.735,
+      0.08,
+      0.015
+     ],
+     "value": null,
+     "state": null
+    },
+    {
+     "label": "Tear Ducts UV Adjustment",
+     "kind": "checkbox",
+     "bbox": [
+      0.292,
+      0.762,
+      0.087,
+      0.015
+     ],
+     "value": null,
+     "state": null
+    },
+    {
+     "label": "Export",
+     "kind": "button",
+     "bbox": [
+      0.291,
+      0.794,
+      0.098,
+      0.022
+     ],
+     "value": null,
+     "state": null
+    },
+    {
+     "label": "Cancel",
+     "kind": "button",
+     "bbox": [
+      0.391,
+      0.794,
+      0.098,
+      0.022
+     ],
+     "value": null,
+     "state": null
+    }
+   ]
+  }
+ ],
+ "hotspot": null,
+ "unreadable": [
+  "export-fbx: greyed-out option at y~0.71 read as 'Merge Face Hair to One Object' with low certainty (very faint, disabled)",
+  "export-fbx: Export/Cancel buttons partly covered by on-screen keyboard overlay and subtitle; their outlines are estimated",
+  "toolbar1/toolbar2: most toolbar icons have no text; described neutrally as '? icon'",
+  "content: tree items below 'FoodMarket' and the Template/Custom row right half are hidden behind the Export FBX dialog and subtitle"
+ ],
+ "hotspot_null_reason": "'Merge Opacity to Diffuse Texture' is not on this frame: it lives in the Export FBX Advanced Settings panel, which opens from the gear icon next to 'Export FBX Settings :' (bbox of that gear icon: [0.472,0.311,0.014,0.024]). The next frame (s04-2) shows it checked."
+}

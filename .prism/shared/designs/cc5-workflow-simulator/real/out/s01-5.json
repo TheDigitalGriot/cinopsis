@@ -1,0 +1,1405 @@
+{
+ "key": "s01-5",
+ "frame_ref": "frames/BY7vlKwzfnk_79.png",
+ "app": "Character Creator 4",
+ "app_version_seen": "Character Creator 4 [Jun  4 2023]",
+ "view": "Headshot 2 Mesh To Head mode (step 3 sculpt tools), with tutorial video end-card overlay",
+ "theme": {
+  "window": "#0e0e0e",
+  "panel": "#282828",
+  "header": "#000000",
+  "text": "#fafafa",
+  "textDim": "#4b4b4b",
+  "accent": "#83bf0f",
+  "border": "#3d3d3d"
+ },
+ "regions": [
+  {
+   "id": "titlebar",
+   "kind": "other",
+   "bbox": [
+    0.0,
+    0.0,
+    1.0,
+    0.019
+   ],
+   "title": "Character Creator 4 [Jun  4 2023] - CC Project(11)- L4.ccProject *",
+   "items": [
+    {
+     "label": "Character Creator 4 [Jun  4 2023] - CC Project(11)- L4.ccProject *",
+     "kind": "text",
+     "bbox": [
+      0.01,
+      0.001,
+      0.178,
+      0.017
+     ],
+     "value": null,
+     "state": null
+    },
+    {
+     "label": "minimize",
+     "kind": "icon",
+     "bbox": [
+      0.934,
+      0.001,
+      0.011,
+      0.017
+     ],
+     "value": null,
+     "state": null
+    },
+    {
+     "label": "restore",
+     "kind": "icon",
+     "bbox": [
+      0.958,
+      0.001,
+      0.011,
+      0.017
+     ],
+     "value": null,
+     "state": null
+    },
+    {
+     "label": "close",
+     "kind": "icon",
+     "bbox": [
+      0.981,
+      0.001,
+      0.011,
+      0.017
+     ],
+     "value": null,
+     "state": null
+    }
+   ]
+  },
+  {
+   "id": "menubar",
+   "kind": "menubar",
+   "bbox": [
+    0.0,
+    0.021,
+    1.0,
+    0.021
+   ],
+   "title": null,
+   "items": [
+    {
+     "label": "File",
+     "kind": "menu",
+     "bbox": [
+      0.003,
+      0.022,
+      0.01,
+      0.017
+     ],
+     "value": null,
+     "state": null
+    },
+    {
+     "label": "Edit",
+     "kind": "menu",
+     "bbox": [
+      0.021,
+      0.022,
+      0.012,
+      0.017
+     ],
+     "value": null,
+     "state": null
+    },
+    {
+     "label": "Create",
+     "kind": "menu",
+     "bbox": [
+      0.04,
+      0.022,
+      0.02,
+      0.017
+     ],
+     "value": null,
+     "state": null
+    },
+    {
+     "label": "Character",
+     "kind": "menu",
+     "bbox": [
+      0.068,
+      0.022,
+      0.03,
+      0.017
+     ],
+     "value": null,
+     "state": null
+    },
+    {
+     "label": "Modify",
+     "kind": "menu",
+     "bbox": [
+      0.105,
+      0.022,
+      0.019,
+      0.017
+     ],
+     "value": null,
+     "state": null
+    },
+    {
+     "label": "Mesh",
+     "kind": "menu",
+     "bbox": [
+      0.13,
+      0.022,
+      0.016,
+      0.017
+     ],
+     "value": null,
+     "state": null
+    },
+    {
+     "label": "Render",
+     "kind": "menu",
+     "bbox": [
+      0.155,
+      0.022,
+      0.022,
+      0.017
+     ],
+     "value": null,
+     "state": null
+    },
+    {
+     "label": "View",
+     "kind": "menu",
+     "bbox": [
+      0.184,
+      0.022,
+      0.014,
+      0.017
+     ],
+     "value": null,
+     "state": null
+    },
+    {
+     "label": "Window",
+     "kind": "menu",
+     "bbox": [
+      0.206,
+      0.022,
+      0.024,
+      0.017
+     ],
+     "value": null,
+     "state": null
+    },
+    {
+     "label": "Plugins",
+     "kind": "menu",
+     "bbox": [
+      0.238,
+      0.022,
+      0.022,
+      0.017
+     ],
+     "value": null,
+     "state": null
+    },
+    {
+     "label": "Script",
+     "kind": "menu",
+     "bbox": [
+      0.268,
+      0.022,
+      0.018,
+      0.017
+     ],
+     "value": null,
+     "state": null
+    },
+    {
+     "label": "Help",
+     "kind": "menu",
+     "bbox": [
+      0.293,
+      0.022,
+      0.014,
+      0.017
+     ],
+     "value": null,
+     "state": null
+    },
+    {
+     "label": "Internal Tool",
+     "kind": "menu",
+     "bbox": [
+      0.315,
+      0.022,
+      0.035,
+      0.017
+     ],
+     "value": null,
+     "state": null
+    }
+   ]
+  },
+  {
+   "id": "toolbar",
+   "kind": "toolbar",
+   "bbox": [
+    0.0,
+    0.047,
+    1.0,
+    0.042
+   ],
+   "title": null,
+   "items": [
+    {
+     "label": "new icon",
+     "kind": "icon",
+     "bbox": [
+      0.014,
+      0.053,
+      0.008,
+      0.031
+     ],
+     "value": null,
+     "state": null
+    },
+    {
+     "label": "open icon",
+     "kind": "icon",
+     "bbox": [
+      0.033,
+      0.053,
+      0.01,
+      0.031
+     ],
+     "value": null,
+     "state": null
+    },
+    {
+     "label": "save icon",
+     "kind": "icon",
+     "bbox": [
+      0.053,
+      0.053,
+      0.011,
+      0.031
+     ],
+     "value": null,
+     "state": null
+    },
+    {
+     "label": "disabled icon",
+     "kind": "icon",
+     "bbox": [
+      0.077,
+      0.053,
+      0.011,
+      0.031
+     ],
+     "value": null,
+     "state": "disabled"
+    },
+    {
+     "label": "disabled icon",
+     "kind": "icon",
+     "bbox": [
+      0.097,
+      0.053,
+      0.011,
+      0.031
+     ],
+     "value": null,
+     "state": "disabled"
+    },
+    {
+     "label": "OBJ export icon",
+     "kind": "button",
+     "bbox": [
+      0.117,
+      0.053,
+      0.023,
+      0.031
+     ],
+     "value": null,
+     "state": null
+    },
+    {
+     "label": "FBX export icon",
+     "kind": "button",
+     "bbox": [
+      0.145,
+      0.053,
+      0.023,
+      0.031
+     ],
+     "value": null,
+     "state": null
+    },
+    {
+     "label": "USD export icon",
+     "kind": "button",
+     "bbox": [
+      0.173,
+      0.053,
+      0.013,
+      0.031
+     ],
+     "value": null,
+     "state": null
+    },
+    {
+     "label": "export arrow icon",
+     "kind": "icon",
+     "bbox": [
+      0.195,
+      0.053,
+      0.012,
+      0.031
+     ],
+     "value": null,
+     "state": null
+    },
+    {
+     "label": "render preview icon",
+     "kind": "icon",
+     "bbox": [
+      0.215,
+      0.053,
+      0.013,
+      0.031
+     ],
+     "value": null,
+     "state": null
+    },
+    {
+     "label": "disabled icon",
+     "kind": "icon",
+     "bbox": [
+      0.248,
+      0.053,
+      0.011,
+      0.031
+     ],
+     "value": null,
+     "state": "disabled"
+    },
+    {
+     "label": "disabled icon",
+     "kind": "icon",
+     "bbox": [
+      0.27,
+      0.053,
+      0.01,
+      0.031
+     ],
+     "value": null,
+     "state": "disabled"
+    },
+    {
+     "label": "undo icon",
+     "kind": "icon",
+     "bbox": [
+      0.301,
+      0.053,
+      0.012,
+      0.031
+     ],
+     "value": null,
+     "state": null
+    },
+    {
+     "label": "redo icon",
+     "kind": "icon",
+     "bbox": [
+      0.322,
+      0.053,
+      0.01,
+      0.031
+     ],
+     "value": null,
+     "state": "disabled"
+    },
+    {
+     "label": "select arrow icon",
+     "kind": "icon",
+     "bbox": [
+      0.344,
+      0.053,
+      0.016,
+      0.031
+     ],
+     "value": null,
+     "state": "active"
+    },
+    {
+     "label": "move icon",
+     "kind": "icon",
+     "bbox": [
+      0.367,
+      0.053,
+      0.021,
+      0.031
+     ],
+     "value": null,
+     "state": null
+    },
+    {
+     "label": "rotate icon",
+     "kind": "icon",
+     "bbox": [
+      0.395,
+      0.053,
+      0.02,
+      0.031
+     ],
+     "value": null,
+     "state": null
+    },
+    {
+     "label": "scale icon",
+     "kind": "icon",
+     "bbox": [
+      0.422,
+      0.053,
+      0.012,
+      0.031
+     ],
+     "value": null,
+     "state": null
+    },
+    {
+     "label": "pivot icon",
+     "kind": "icon",
+     "bbox": [
+      0.444,
+      0.053,
+      0.011,
+      0.031
+     ],
+     "value": null,
+     "state": null
+    },
+    {
+     "label": "home camera icon",
+     "kind": "icon",
+     "bbox": [
+      0.478,
+      0.053,
+      0.014,
+      0.031
+     ],
+     "value": null,
+     "state": null
+    },
+    {
+     "label": "camera icon",
+     "kind": "icon",
+     "bbox": [
+      0.504,
+      0.053,
+      0.009,
+      0.031
+     ],
+     "value": null,
+     "state": null
+    },
+    {
+     "label": "camera icon",
+     "kind": "icon",
+     "bbox": [
+      0.525,
+      0.053,
+      0.01,
+      0.031
+     ],
+     "value": null,
+     "state": null
+    },
+    {
+     "label": "camera icon",
+     "kind": "icon",
+     "bbox": [
+      0.545,
+      0.053,
+      0.012,
+      0.031
+     ],
+     "value": null,
+     "state": null
+    },
+    {
+     "label": "fit view icon",
+     "kind": "icon",
+     "bbox": [
+      0.566,
+      0.053,
+      0.02,
+      0.031
+     ],
+     "value": null,
+     "state": null
+    },
+    {
+     "label": "light icon",
+     "kind": "icon",
+     "bbox": [
+      0.647,
+      0.053,
+      0.013,
+      0.031
+     ],
+     "value": null,
+     "state": null
+    },
+    {
+     "label": "Conform",
+     "kind": "button",
+     "bbox": [
+      0.678,
+      0.053,
+      0.041,
+      0.031
+     ],
+     "value": null,
+     "state": "disabled"
+    },
+    {
+     "label": "Modify",
+     "kind": "button",
+     "bbox": [
+      0.726,
+      0.053,
+      0.037,
+      0.031
+     ],
+     "value": null,
+     "state": null
+    },
+    {
+     "label": "Morph",
+     "kind": "button",
+     "bbox": [
+      0.772,
+      0.053,
+      0.033,
+      0.031
+     ],
+     "value": null,
+     "state": null
+    },
+    {
+     "label": "Transformer",
+     "kind": "button",
+     "bbox": [
+      0.827,
+      0.053,
+      0.056,
+      0.031
+     ],
+     "value": null,
+     "state": null
+    },
+    {
+     "label": "InstaLOD",
+     "kind": "button",
+     "bbox": [
+      0.905,
+      0.053,
+      0.05,
+      0.031
+     ],
+     "value": null,
+     "state": null
+    },
+    {
+     "label": "High",
+     "kind": "dropdown",
+     "bbox": [
+      0.591,
+      0.056,
+      0.05,
+      0.024
+     ],
+     "value": "High",
+     "state": null
+    }
+   ]
+  },
+  {
+   "id": "toolbar2",
+   "kind": "toolbar",
+   "bbox": [
+    0.0,
+    0.094,
+    1.0,
+    0.044
+   ],
+   "title": null,
+   "items": [
+    {
+     "label": "mesh edit icon",
+     "kind": "icon",
+     "bbox": [
+      0.009,
+      0.101,
+      0.016,
+      0.032
+     ],
+     "value": null,
+     "state": "active"
+    },
+    {
+     "label": "mesh edit icon",
+     "kind": "icon",
+     "bbox": [
+      0.031,
+      0.101,
+      0.014,
+      0.032
+     ],
+     "value": null,
+     "state": "active"
+    },
+    {
+     "label": "cubes icon",
+     "kind": "icon",
+     "bbox": [
+      0.052,
+      0.101,
+      0.014,
+      0.032
+     ],
+     "value": null,
+     "state": null
+    },
+    {
+     "label": "pose icon",
+     "kind": "icon",
+     "bbox": [
+      0.084,
+      0.101,
+      0.014,
+      0.032
+     ],
+     "value": null,
+     "state": null
+    },
+    {
+     "label": "flag icon",
+     "kind": "icon",
+     "bbox": [
+      0.105,
+      0.101,
+      0.012,
+      0.032
+     ],
+     "value": null,
+     "state": null
+    },
+    {
+     "label": "disabled icon",
+     "kind": "icon",
+     "bbox": [
+      0.139,
+      0.101,
+      0.009,
+      0.032
+     ],
+     "value": null,
+     "state": "disabled"
+    },
+    {
+     "label": "Animation Player",
+     "kind": "button",
+     "bbox": [
+      0.169,
+      0.101,
+      0.066,
+      0.032
+     ],
+     "value": null,
+     "state": null
+    },
+    {
+     "label": "Turntable",
+     "kind": "button",
+     "bbox": [
+      0.241,
+      0.101,
+      0.04,
+      0.032
+     ],
+     "value": null,
+     "state": null
+    }
+   ]
+  },
+  {
+   "id": "mode-bar",
+   "kind": "other",
+   "bbox": [
+    0.0,
+    0.143,
+    1.0,
+    0.017
+   ],
+   "title": "Mesh To Head",
+   "items": [
+    {
+     "label": "Mesh To Head",
+     "kind": "header",
+     "bbox": [
+      0.449,
+      0.143,
+      0.045,
+      0.015
+     ],
+     "value": null,
+     "state": null
+    }
+   ]
+  },
+  {
+   "id": "mesh-toolbar",
+   "kind": "toolbar",
+   "bbox": [
+    0.0,
+    0.165,
+    0.789,
+    0.039
+   ],
+   "title": null,
+   "items": [
+    {
+     "label": "open icon",
+     "kind": "icon",
+     "bbox": [
+      0.005,
+      0.172,
+      0.01,
+      0.025
+     ],
+     "value": null,
+     "state": null
+    },
+    {
+     "label": "save icon",
+     "kind": "icon",
+     "bbox": [
+      0.023,
+      0.172,
+      0.011,
+      0.025
+     ],
+     "value": null,
+     "state": null
+    },
+    {
+     "label": "select icon",
+     "kind": "icon",
+     "bbox": [
+      0.045,
+      0.171,
+      0.013,
+      0.028
+     ],
+     "value": null,
+     "state": "active"
+    },
+    {
+     "label": "icon",
+     "kind": "icon",
+     "bbox": [
+      0.064,
+      0.172,
+      0.012,
+      0.025
+     ],
+     "value": null,
+     "state": null
+    },
+    {
+     "label": "icon",
+     "kind": "icon",
+     "bbox": [
+      0.083,
+      0.172,
+      0.012,
+      0.025
+     ],
+     "value": null,
+     "state": null
+    },
+    {
+     "label": "icon",
+     "kind": "icon",
+     "bbox": [
+      0.102,
+      0.172,
+      0.012,
+      0.025
+     ],
+     "value": null,
+     "state": null
+    },
+    {
+     "label": "view icon",
+     "kind": "icon",
+     "bbox": [
+      0.127,
+      0.172,
+      0.02,
+      0.025
+     ],
+     "value": null,
+     "state": null
+    },
+    {
+     "label": "head frame icon",
+     "kind": "icon",
+     "bbox": [
+      0.156,
+      0.172,
+      0.02,
+      0.025
+     ],
+     "value": null,
+     "state": null
+    },
+    {
+     "label": "head mask icon",
+     "kind": "icon",
+     "bbox": [
+      0.188,
+      0.172,
+      0.013,
+      0.025
+     ],
+     "value": null,
+     "state": null
+    },
+    {
+     "label": "head icon",
+     "kind": "icon",
+     "bbox": [
+      0.208,
+      0.172,
+      0.013,
+      0.025
+     ],
+     "value": null,
+     "state": null
+    },
+    {
+     "label": "CC Mesh Opacity",
+     "kind": "checkbox",
+     "bbox": [
+      0.227,
+      0.175,
+      0.062,
+      0.018
+     ],
+     "value": null,
+     "state": "checked"
+    },
+    {
+     "label": "CC Mesh Opacity slider",
+     "kind": "slider",
+     "bbox": [
+      0.295,
+      0.176,
+      0.066,
+      0.015
+     ],
+     "value": "52",
+     "state": null
+    },
+    {
+     "label": "52",
+     "kind": "field",
+     "bbox": [
+      0.369,
+      0.174,
+      0.031,
+      0.021
+     ],
+     "value": "52",
+     "state": null
+    }
+   ]
+  },
+  {
+   "id": "step-tabs",
+   "kind": "tabs",
+   "bbox": [
+    0.0,
+    0.215,
+    0.789,
+    0.044
+   ],
+   "title": null,
+   "items": [
+    {
+     "label": "1 ALIGN POINTS",
+     "kind": "tab",
+     "bbox": [
+      0.004,
+      0.218,
+      0.305,
+      0.039
+     ],
+     "value": null,
+     "state": null
+    },
+    {
+     "label": "2 HEAD GEN (AI)",
+     "kind": "tab",
+     "bbox": [
+      0.313,
+      0.218,
+      0.304,
+      0.039
+     ],
+     "value": null,
+     "state": null
+    },
+    {
+     "label": "? (step 3, label hidden under overlay)",
+     "kind": "tab",
+     "bbox": [
+      0.623,
+      0.218,
+      0.096,
+      0.039
+     ],
+     "value": null,
+     "state": "active"
+    }
+   ]
+  },
+  {
+   "id": "video-overlay",
+   "kind": "other",
+   "bbox": [
+    0.72,
+    0.087,
+    0.259,
+    0.257
+   ],
+   "title": "GETTING STARTED WITH HEADSHOT 2.0 (tutorial video card, not app UI)",
+   "items": [
+    {
+     "label": "GETTING STARTED WITH HEADSHOT 2.0",
+     "kind": "text",
+     "bbox": [
+      0.729,
+      0.15,
+      0.084,
+      0.089
+     ],
+     "value": null,
+     "state": null
+    },
+    {
+     "label": "Tutorial Video HEADSHOT 2",
+     "kind": "text",
+     "bbox": [
+      0.729,
+      0.278,
+      0.095,
+      0.017
+     ],
+     "value": null,
+     "state": null
+    },
+    {
+     "label": "Edition: Character Creator 4.3 & Headshot 2.0",
+     "kind": "text",
+     "bbox": [
+      0.729,
+      0.324,
+      0.091,
+      0.011
+     ],
+     "value": null,
+     "state": null
+    }
+   ]
+  },
+  {
+   "id": "viewport",
+   "kind": "viewport",
+   "bbox": [
+    0.008,
+    0.274,
+    0.781,
+    0.71
+   ],
+   "title": null,
+   "items": [
+    {
+     "label": "brush cursor (red circle)",
+     "kind": "icon",
+     "bbox": [
+      0.537,
+      0.34,
+      0.099,
+      0.156
+     ],
+     "value": null,
+     "state": null
+    }
+   ]
+  },
+  {
+   "id": "tool-panel",
+   "kind": "panel",
+   "bbox": [
+    0.791,
+    0.347,
+    0.138,
+    0.639
+   ],
+   "title": null,
+   "items": [
+    {
+     "label": "Move",
+     "kind": "button",
+     "bbox": [
+      0.797,
+      0.347,
+      0.028,
+      0.037
+     ],
+     "value": null,
+     "state": null
+    },
+    {
+     "label": "Smooth",
+     "kind": "button",
+     "bbox": [
+      0.828,
+      0.347,
+      0.028,
+      0.037
+     ],
+     "value": null,
+     "state": null
+    },
+    {
+     "label": "Clone",
+     "kind": "button",
+     "bbox": [
+      0.859,
+      0.347,
+      0.028,
+      0.037
+     ],
+     "value": null,
+     "state": null
+    },
+    {
+     "label": "Project",
+     "kind": "button",
+     "bbox": [
+      0.891,
+      0.347,
+      0.028,
+      0.037
+     ],
+     "value": null,
+     "state": null
+    },
+    {
+     "label": "Symmetry Edit",
+     "kind": "checkbox",
+     "bbox": [
+      0.797,
+      0.397,
+      0.055,
+      0.017
+     ],
+     "value": null,
+     "state": "checked"
+    },
+    {
+     "label": "Conform to Source Mesh",
+     "kind": "checkbox",
+     "bbox": [
+      0.797,
+      0.426,
+      0.084,
+      0.017
+     ],
+     "value": null,
+     "state": null
+    },
+    {
+     "label": "Keep Borders",
+     "kind": "checkbox",
+     "bbox": [
+      0.797,
+      0.456,
+      0.053,
+      0.017
+     ],
+     "value": null,
+     "state": "checked"
+    },
+    {
+     "label": "Clone Source",
+     "kind": "header",
+     "bbox": [
+      0.805,
+      0.489,
+      0.043,
+      0.011
+     ],
+     "value": null,
+     "state": "disabled"
+    },
+    {
+     "label": "Neutral Head Mesh",
+     "kind": "checkbox",
+     "bbox": [
+      0.803,
+      0.507,
+      0.068,
+      0.017
+     ],
+     "value": null,
+     "state": "disabled"
+    },
+    {
+     "label": "AI Generated Head Mesh",
+     "kind": "checkbox",
+     "bbox": [
+      0.803,
+      0.536,
+      0.084,
+      0.017
+     ],
+     "value": null,
+     "state": "disabled"
+    },
+    {
+     "label": "Radius ( RMB + Drag )",
+     "kind": "slider",
+     "bbox": [
+      0.797,
+      0.579,
+      0.084,
+      0.043
+     ],
+     "value": "26",
+     "state": null
+    },
+    {
+     "label": "26",
+     "kind": "field",
+     "bbox": [
+      0.887,
+      0.604,
+      0.032,
+      0.021
+     ],
+     "value": "26",
+     "state": null
+    },
+    {
+     "label": "Intensity ( Ctrl + RMB + Drag )",
+     "kind": "slider",
+     "bbox": [
+      0.797,
+      0.636,
+      0.084,
+      0.044
+     ],
+     "value": "1.00",
+     "state": null
+    },
+    {
+     "label": "1.00",
+     "kind": "field",
+     "bbox": [
+      0.887,
+      0.662,
+      0.032,
+      0.021
+     ],
+     "value": "1.00",
+     "state": null
+    },
+    {
+     "label": "Falloff ( Shift + RMB + Drag )",
+     "kind": "slider",
+     "bbox": [
+      0.797,
+      0.694,
+      0.084,
+      0.043
+     ],
+     "value": "100.00",
+     "state": null
+    },
+    {
+     "label": "100.00",
+     "kind": "field",
+     "bbox": [
+      0.887,
+      0.719,
+      0.032,
+      0.021
+     ],
+     "value": "100.00",
+     "state": null
+    },
+    {
+     "label": "Reset CC Mesh",
+     "kind": "button",
+     "bbox": [
+      0.797,
+      0.753,
+      0.122,
+      0.022
+     ],
+     "value": null,
+     "state": null
+    },
+    {
+     "label": "Output Mesh Shape",
+     "kind": "header",
+     "bbox": [
+      0.805,
+      0.789,
+      0.059,
+      0.014
+     ],
+     "value": null,
+     "state": null
+    },
+    {
+     "label": "Keep Neck Shape",
+     "kind": "checkbox",
+     "bbox": [
+      0.802,
+      0.807,
+      0.065,
+      0.018
+     ],
+     "value": null,
+     "state": "checked"
+    },
+    {
+     "label": "Keep Head Size",
+     "kind": "checkbox",
+     "bbox": [
+      0.802,
+      0.836,
+      0.059,
+      0.018
+     ],
+     "value": null,
+     "state": null
+    },
+    {
+     "label": "ATTACH TO BODY",
+     "kind": "button",
+     "bbox": [
+      0.797,
+      0.939,
+      0.122,
+      0.036
+     ],
+     "value": null,
+     "state": null
+    }
+   ]
+  },
+  {
+   "id": "side-tabs",
+   "kind": "tabs",
+   "bbox": [
+    0.932,
+    0.347,
+    0.017,
+    0.361
+   ],
+   "title": null,
+   "items": [
+    {
+     "label": "Scene",
+     "kind": "tab",
+     "bbox": [
+      0.934,
+      0.347,
+      0.013,
+      0.132
+     ],
+     "value": null,
+     "state": null
+    },
+    {
+     "label": "Modify",
+     "kind": "tab",
+     "bbox": [
+      0.934,
+      0.482,
+      0.013,
+      0.113
+     ],
+     "value": null,
+     "state": null
+    },
+    {
+     "label": "Content",
+     "kind": "tab",
+     "bbox": [
+      0.934,
+      0.597,
+      0.013,
+      0.108
+     ],
+     "value": null,
+     "state": null
+    }
+   ]
+  },
+  {
+   "id": "head-thumbnail",
+   "kind": "other",
+   "bbox": [
+    0.953,
+    0.511,
+    0.042,
+    0.106
+   ],
+   "title": null,
+   "items": [
+    {
+     "label": "head preview thumbnail",
+     "kind": "icon",
+     "bbox": [
+      0.955,
+      0.514,
+      0.039,
+      0.1
+     ],
+     "value": null,
+     "state": null
+    }
+   ]
+  }
+ ],
+ "hotspot": null,
+ "unreadable": [
+  "step-tabs: third step label hidden under video overlay",
+  "tool-panel: brush mode icons above Move/Smooth/Clone/Project hidden under video overlay",
+  "toolbar icons without text described generically"
+ ],
+ "hotspot_note": "Target 'Image' workflow tab is not on this frame. Frame shows Character Creator 4 Headshot 2 in Mesh To Head mode (steps ALIGN POINTS / HEAD GEN), not the Headshot 3 panel with Image/Mesh tabs; a video end-card covers the top right."
+}
