@@ -1,0 +1,200 @@
+{
+  "generated": "2026-10-09",
+  "sources": [
+    "C:\\Users\\digit\\GriotMeta\\griot-live-artifacts\\live\\gbfolio-glb-blender-toolkit.html",
+    "C:\\Users\\digit\\GriotMeta\\griot-live-artifacts\\live\\griot3d-pipeline-codex.html",
+    "C:\\Users\\digit\\.claude\\skills\\griot-r3f\\references\\interop-tools.md",
+    "C:\\Users\\digit\\.claude\\skills\\cc5-avatar-pipeline-v2\\references\\blender-r3f-export.md",
+    "memory:/areas/3d-portfolio.md",
+    "%APPDATA%\\Blender Foundation\\Blender\\4.2\\scripts\\addons",
+    "%APPDATA%\\Blender Foundation\\Blender\\5.0\\scripts\\addons",
+    "%APPDATA%\\Blender Foundation\\Blender\\5.1\\scripts\\addons",
+    "%APPDATA%\\Blender Foundation\\Blender\\{4.2,5.0,5.1}\\extensions\\user_default",
+    "C:\\Users\\digit\\GBFolio\\gb-portfolio-r3f\\package.json",
+    "C:\\Users\\digit\\GBFolio\\tools\\avatar-opt\\package.json",
+    "C:\\Users\\digit\\GBFolio\\packages\\avatar-engine\\package.json",
+    "C:\\Users\\digit\\GriotApps\\r3f-studio-dev\\electron-app\\r3f-studio-app\\package.json",
+    "C:\\Users\\digit\\GriotApps\\r3f-web-prep-addon\\R3F_Export_Prep_PRD.md",
+    "https://claude.ai/chat/cc60917c-9994-4621-82f9-b738c595a48e",
+    "https://claude.ai/chat/69c0d132-31ec-4e8c-8bca-aa3984fac083"
+  ],
+  "stage08": [
+    {
+      "name": "CC/iC Tools (soupday cc_blender_tools)",
+      "kind": "blender-addon",
+      "version": "2.4.3 (5.0, 5.1); 2.3.4 (4.2)",
+      "role": "CC5 import/rebuild in Blender; glTF export must enable 'Bake Materials for Export' so the custom CC shaders collapse to standard PBR; spring bones and facial drivers baked to keyframes before glTF",
+      "source": "memory:/areas/3d-portfolio.md (CCiC PIPELINE entry, 2026-09-02); C:\\Users\\digit\\GriotMeta\\griot-live-artifacts\\live\\griot3d-pipeline-codex.html:103",
+      "installed": true
+    },
+    {
+      "name": "R3F Export Prep",
+      "kind": "blender-addon",
+      "version": "2.1.0",
+      "role": "Prepare and analyze scenes for optimized GLTF/GLB export to React Three Fiber (bl_info); analyzer + pre-flight checklist, instancing, merge static, apply-for-export, UV audit, mesh cleanup",
+      "source": "%APPDATA%\\Blender Foundation\\Blender\\5.1\\scripts\\addons\\r3f_export_prep_v2_1.py:7; C:\\Users\\digit\\GriotMeta\\griot-live-artifacts\\live\\gbfolio-glb-blender-toolkit.html:172; C:\\Users\\digit\\GriotMeta\\griot-live-artifacts\\live\\griot3d-pipeline-codex.html:119",
+      "installed": true
+    },
+    {
+      "name": "Web Export Prep",
+      "kind": "blender-addon",
+      "version": "1.0.3",
+      "role": "Superseded by R3F Export Prep, keep disabled (operator/panel ids collide)",
+      "source": "C:\\Users\\digit\\GriotMeta\\griot-live-artifacts\\live\\gbfolio-glb-blender-toolkit.html:177; C:\\Users\\digit\\GriotMeta\\griot-live-artifacts\\live\\griot3d-pipeline-codex.html:120",
+      "installed": true
+    },
+    {
+      "name": "NLA Batch Export",
+      "kind": "blender-addon",
+      "version": "1.0.0",
+      "role": "Batch-exports NLA strips as individual FBX files (only custom add-on touching actions)",
+      "source": "C:\\Users\\digit\\GriotMeta\\griot-live-artifacts\\live\\gbfolio-glb-blender-toolkit.html:182; C:\\Users\\digit\\GriotMeta\\griot-live-artifacts\\live\\griot3d-pipeline-codex.html:121",
+      "installed": true
+    },
+    {
+      "name": "Particle Hair to Mesh Tubes",
+      "kind": "blender-addon",
+      "version": "1.0.1",
+      "role": "Converts particle hair systems into UV'd mesh tubes for real-time rendering",
+      "source": "C:\\Users\\digit\\GriotMeta\\griot-live-artifacts\\live\\gbfolio-glb-blender-toolkit.html:187; C:\\Users\\digit\\GriotMeta\\griot-live-artifacts\\live\\griot3d-pipeline-codex.html:122",
+      "installed": true
+    },
+    {
+      "name": "GLBOptimizer",
+      "kind": "blender-addon",
+      "version": "0.0.4",
+      "role": "Optimize your Scene for Web (manifest tagline); glTF-transform + server web-optimize step; needs KTX-Software",
+      "source": "%APPDATA%\\Blender Foundation\\Blender\\5.1\\extensions\\user_default\\GLBOptimizer\\blender_manifest.toml:7; memory:/areas/3d-portfolio.md (AVATAR TOOLCHAIN); https://claude.ai/chat/cc60917c-9994-4621-82f9-b738c595a48e",
+      "installed": true
+    },
+    {
+      "name": "R3F Studio Bridge",
+      "kind": "blender-addon",
+      "version": "0.1.0",
+      "role": "Export assets to R3F Studio via WebSocket (manifest tagline); bridge stub",
+      "source": "%APPDATA%\\Blender Foundation\\Blender\\4.2\\extensions\\user_default\\r3f_studio_bridge\\blender_manifest.toml:16; C:\\Users\\digit\\GriotMeta\\griot-live-artifacts\\live\\griot3d-pipeline-codex.html:128",
+      "installed": true
+    },
+    {
+      "name": "SimpleBake",
+      "kind": "blender-addon",
+      "version": "2.2.2 (5.0, 5.1); 2.2.8 (4.2)",
+      "role": "Listed among his GLB tools (no further role stated in source)",
+      "source": "memory:/areas/3d-portfolio.md (iClone RLPy quirks / GLB tools entry)",
+      "installed": true
+    },
+    {
+      "name": "Assetify",
+      "kind": "blender-addon",
+      "version": "3.0.0 (5.0, 5.1); 2.1.7 (4.2)",
+      "role": "Listed among his GLB tools (no further role stated in source)",
+      "source": "memory:/areas/3d-portfolio.md (GLB tools entry)",
+      "installed": true
+    },
+    {
+      "name": "UVPackmaster 3",
+      "kind": "blender-addon",
+      "version": "3.4.4",
+      "role": "UV packing engine (manifest tagline); listed among his GLB tools",
+      "source": "%APPDATA%\\Blender Foundation\\Blender\\5.1\\extensions\\user_default\\uvpackmaster3\\blender_manifest.toml; memory:/areas/3d-portfolio.md",
+      "installed": true
+    },
+    {
+      "name": "gltf-transform CLI",
+      "kind": "cli",
+      "version": "4.3.0 (global); @gltf-transform/* ^4.4.1 in GBFolio tools/avatar-opt",
+      "role": "Universal compression tool; avatar GLB (morph targets) uses meshopt, mesh-only scene GLBs use Draco; never gltfpack",
+      "source": "C:\\Users\\digit\\GriotMeta\\griot-live-artifacts\\live\\griot3d-pipeline-codex.html:86; C:\\Users\\digit\\GriotMeta\\griot-live-artifacts\\live\\griot3d-pipeline-codex.html:88; C:\\Users\\digit\\GriotMeta\\griot-live-artifacts\\live\\griot3d-pipeline-codex.html:92; memory:/areas/3d-portfolio.md (GLB COMPRESSION SPLIT)",
+      "installed": true
+    },
+    {
+      "name": "KTX-Software (ktx / toktx)",
+      "kind": "cli",
+      "role": "Texture compression for glTF export, required by the Optimize GLB Blender plugin",
+      "source": "https://claude.ai/chat/cc60917c-9994-4621-82f9-b738c595a48e",
+      "installed": true
+    },
+    {
+      "name": "Blender glTF 2.0 exporter (built-in)",
+      "kind": "blender-addon",
+      "role": "File > Export > glTF 2.0 (.glb), +Y up, shape keys + skinning + animations, 30fps sampling",
+      "source": "https://claude.ai/chat/69c0d132-31ec-4e8c-8bca-aa3984fac083",
+      "installed": "unknown"
+    }
+  ],
+  "stage09": [
+    {
+      "name": "gltfjsx",
+      "kind": "cli",
+      "role": "npx gltfjsx path/to/model.glb generates a JSX component file (-T for transform)",
+      "source": "C:\\Users\\digit\\.claude\\skills\\griot-r3f\\references\\interop-tools.md:14; C:\\Users\\digit\\.claude\\skills\\griot-r3f\\references\\interop-tools.md:17; C:\\Users\\digit\\.claude\\skills\\griot-r3f\\references\\interop-tools.md:40",
+      "installed": false
+    },
+    {
+      "name": "@react-three/drei (useGLTF)",
+      "kind": "lib",
+      "version": "^9.117.0 (gb-portfolio-r3f); ^10.7.7 (r3f-studio-app)",
+      "role": "useGLTF loads nodes/materials; useGLTF.preload",
+      "source": "C:\\Users\\digit\\.claude\\skills\\griot-r3f\\references\\interop-tools.md:26; C:\\Users\\digit\\.claude\\skills\\griot-r3f\\references\\interop-tools.md:36; C:\\Users\\digit\\.claude\\skills\\cc5-avatar-pipeline-v2\\references\\blender-r3f-export.md:156; C:\\Users\\digit\\GBFolio\\gb-portfolio-r3f\\package.json:26",
+      "installed": true
+    },
+    {
+      "name": "@react-three/fiber (Canvas)",
+      "kind": "lib",
+      "version": "^8.17.10 (gb-portfolio-r3f); ^9.5.0 (r3f-studio-app)",
+      "role": "React renderer hosting the GLB scene",
+      "source": "C:\\Users\\digit\\GBFolio\\gb-portfolio-r3f\\package.json:27; C:\\Users\\digit\\GriotApps\\r3f-studio-dev\\electron-app\\r3f-studio-app\\package.json:73",
+      "installed": true
+    },
+    {
+      "name": "three",
+      "kind": "lib",
+      "version": "^0.170.0 (gb-portfolio-r3f); ^0.182.0 (r3f-studio-app)",
+      "role": "three.js runtime under R3F",
+      "source": "C:\\Users\\digit\\GBFolio\\gb-portfolio-r3f\\package.json:45",
+      "installed": true
+    },
+    {
+      "name": "avatar-engine",
+      "kind": "lib",
+      "version": "0.1.1 (npm, unscoped)",
+      "role": "Viseme map, analyser lipsync, facial layers, gestures + R3F hooks; drives facial visemes live at runtime",
+      "source": "memory:/areas/3d-portfolio.md (VERIFIED LIVE 2026-08-22); C:\\Users\\digit\\GBFolio\\packages\\avatar-engine\\package.json",
+      "installed": true
+    }
+  ],
+  "other_installed": [
+    "Blender MCP",
+    "Dreadlock Extender v10",
+    "Dreadlock Extender v21",
+    "Loc Weight Painter v4",
+    "Outfit Material Mapper",
+    "Pose Stash",
+    "Rig Aligner",
+    "DataLink Material Swap",
+    "CC5 Spring Bone Fixer v3 (1.3.0)",
+    "CC5 Spring Bone Fixer (1.6.0)",
+    "CC Clothing Fitter",
+    "Gearh3ad Garment Prep",
+    "kei2m Pro",
+    "Elevator Light Controller",
+    "All Material List",
+    "Belt Mesh Fill",
+    "Extreme PBR",
+    "Orient to Selected",
+    "Simple Renaming Panel",
+    "TraceGenius Pro",
+    "Auto-Rig Pro",
+    "BakeMaster",
+    "BlenderKit Online Asset Library",
+    "CleanPanels",
+    "Instant Clean",
+    "Lvlexporter",
+    "RigiMap",
+    "UV Flow",
+    "Viewport Object Finder",
+    "Zen UV"
+  ],
+  "prior_mapping_found": true,
+  "notes": "Prior mapping = 'Custom Blender add-ons' section of gbfolio-glb-blender-toolkit.html (L172-193) and griot3d-pipeline-codex.html (L117-138), bl_info sweep 2026-09-22. Re-verified 2026-10-09 by bl_info/manifest parse of 4.2/5.0/5.1 islands: 40 distinct add-ons on disk. Blender MCP did not answer (get_addon_status: could not connect), so enabled-state is unverified; 'installed' means present on disk. Island placement: R3F Export Prep loads only on 5.1 (r3f-prep folder copies on 4.2 and 5.1 are non-loading lone .py); R3F Studio Bridge and Particle Hair are not on every island (Bridge 4.2 only; Particle Hair 5.0/5.1). Drift vs memory: NLA Batch Export and CC5 Spring Bone Fixer 1.6.0 ARE now in 5.1. gltfjsx is not installed globally or in any package.json (run via npx). meshoptimizer/draco3d are not explicit deps in the R3F repos. Global gltf-transform lives under %APPDATA%\\npm, not the nvm4w prefix (npm ls -g shows only claude-code, corepack, gitnexus, npm, wrangler). glb-cc5-optimizer skill (char+hair: fix-materials, resize, webp, prune, meshopt) is the avatar optimize step per C:\\Users\\digit\\GriotMeta\\griot-live-artifacts\\live\\griot3d-pipeline-codex.html:88."
+}

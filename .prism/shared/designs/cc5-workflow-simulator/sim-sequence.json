@@ -1,0 +1,1050 @@
+{
+ "generated_by": "Cinopsis/.prism/shared/designs/cc5-workflow-simulator/build-sim-sequence.py",
+ "rule": "GENERATED, NEVER HAND-EDITED. Corpus steps verbatim from cc5-steps.json; stage 08/09 tools verbatim from blender-addons-map.json.",
+ "stages": [
+  {
+   "n": "01",
+   "id": "headshot-3",
+   "title": "Headshot 3",
+   "source": "corpus",
+   "status": "evidenced",
+   "steps": [
+    {
+     "video_id": "BY7vlKwzfnk",
+     "video": "Getting Started with Headshot 3 Updates | Headshot 3 Plug-in Tutorial",
+     "t": "0:40",
+     "phase": "Installation",
+     "action": "Open Character Creator and confirm the Headshot 3 toolbar at the top of the interface",
+     "path": "",
+     "target": "Headshot 3 toolbar",
+     "kind": "other",
+     "parameters": {},
+     "result": "Headshot 3 toolbar visible",
+     "confidence": "spoken",
+     "frame_ref": "frames/BY7vlKwzfnk_40.png",
+     "frame_curated": false,
+     "distractors": [
+      "Headshot",
+      "Headshot 3",
+      "Image"
+     ]
+    },
+    {
+     "video_id": "BY7vlKwzfnk",
+     "video": "Getting Started with Headshot 3 Updates | Headshot 3 Plug-in Tutorial",
+     "t": "0:47",
+     "phase": "Installation",
+     "action": "Hover over the Headshot button to view the tooltip introduction",
+     "path": "Headshot 3 toolbar",
+     "target": "Headshot",
+     "kind": "button",
+     "parameters": {},
+     "result": "Quick tooltip introduction shown",
+     "confidence": "shown",
+     "frame_ref": "frames/BY7vlKwzfnk_47.png",
+     "frame_curated": true,
+     "distractors": [
+      "Headshot 3 toolbar",
+      "Headshot 3",
+      "Image"
+     ]
+    },
+    {
+     "video_id": "BY7vlKwzfnk",
+     "video": "Getting Started with Headshot 3 Updates | Headshot 3 Plug-in Tutorial",
+     "t": "0:51",
+     "phase": "Installation",
+     "action": "Alternatively open the Plugins menu and locate Headshot 3",
+     "path": "Plugins",
+     "target": "Headshot 3",
+     "kind": "menu",
+     "parameters": {},
+     "result": "Headshot 3 related options shown",
+     "confidence": "spoken",
+     "frame_ref": "frames/BY7vlKwzfnk_51.png",
+     "frame_curated": false,
+     "distractors": [
+      "Headshot 3 toolbar",
+      "Headshot",
+      "Image"
+     ]
+    },
+    {
+     "video_id": "BY7vlKwzfnk",
+     "video": "Getting Started with Headshot 3 Updates | Headshot 3 Plug-in Tutorial",
+     "t": "0:58",
+     "phase": "Installation",
+     "action": "Click Headshot 3 to open the UI panel",
+     "path": "Plugins > Headshot 3",
+     "target": "Headshot 3",
+     "kind": "menu",
+     "parameters": {},
+     "result": "Headshot 3 UI panel opens with Image and Mesh workflows",
+     "confidence": "shown",
+     "frame_ref": "frames/BY7vlKwzfnk_58.png",
+     "frame_curated": true,
+     "distractors": [
+      "Headshot 3 toolbar",
+      "Headshot",
+      "Image"
+     ]
+    },
+    {
+     "video_id": "BY7vlKwzfnk",
+     "video": "Getting Started with Headshot 3 Updates | Headshot 3 Plug-in Tutorial",
+     "t": "1:19",
+     "phase": "Installation",
+     "action": "Choose the Image workflow tab to generate a full character",
+     "path": "Headshot 3",
+     "target": "Image",
+     "kind": "tab",
+     "parameters": {},
+     "result": "Image workflow tab active",
+     "confidence": "spoken",
+     "frame_ref": "frames/BY7vlKwzfnk_79.png",
+     "frame_curated": false,
+     "distractors": [
+      "Headshot 3 toolbar",
+      "Headshot",
+      "Headshot 3"
+     ]
+    },
+    {
+     "video_id": "BY7vlKwzfnk",
+     "video": "Getting Started with Headshot 3 Updates | Headshot 3 Plug-in Tutorial",
+     "t": "1:24",
+     "phase": "Installation",
+     "action": "Load a photo reference via the Load button, double-clicking the image area, or drag and drop",
+     "path": "Headshot 3 > Image",
+     "target": "Load",
+     "kind": "button",
+     "parameters": {},
+     "result": "Reference image loaded into the panel",
+     "confidence": "shown",
+     "frame_ref": "frames/BY7vlKwzfnk_84.png",
+     "frame_curated": true,
+     "distractors": [
+      "Headshot 3 toolbar",
+      "Headshot",
+      "Headshot 3"
+     ]
+    }
+   ],
+   "thin": false
+  },
+  {
+   "n": "02",
+   "id": "cc5-morphs-hd-profile",
+   "title": "CC5 morphs + HD / Extended Plus profile",
+   "source": "corpus",
+   "status": "evidenced",
+   "steps": [
+    {
+     "video_id": "99074uIeMAY",
+     "video": "Creating Morphs with Blender Data Link | Character Creator 4 Tutorial",
+     "t": "0:39",
+     "phase": "Establishing Base Shape & Body Proportions in CC",
+     "action": "Open the Morph tab of the Modify panel to find all morphs",
+     "path": "Character Creator 4 > Modify panel > Morph tab",
+     "target": "Morph tab",
+     "kind": "tab",
+     "parameters": {},
+     "result": "All morph sliders listed",
+     "confidence": "shown",
+     "frame_ref": "frames/99074uIeMAY_39.png",
+     "frame_curated": true,
+     "distractors": [
+      "Search",
+      "Body part in viewport",
+      "Proportion bone adjustments"
+     ]
+    },
+    {
+     "video_id": "99074uIeMAY",
+     "video": "Creating Morphs with Blender Data Link | Character Creator 4 Tutorial",
+     "t": "0:43",
+     "phase": "Establishing Base Shape & Body Proportions in CC",
+     "action": "Use the search feature to find the wanted morphs",
+     "path": "Character Creator 4 > Modify panel > Morph tab",
+     "target": "Search",
+     "kind": "field",
+     "parameters": {},
+     "result": "Morph list filtered to the wanted sliders",
+     "confidence": "shown",
+     "frame_ref": "frames/99074uIeMAY_43.png",
+     "frame_curated": true,
+     "distractors": [
+      "Morph tab",
+      "Body part in viewport",
+      "Proportion bone adjustments"
+     ]
+    },
+    {
+     "video_id": "99074uIeMAY",
+     "video": "Creating Morphs with Blender Data Link | Character Creator 4 Tutorial",
+     "t": "0:47",
+     "phase": "Establishing Base Shape & Body Proportions in CC",
+     "action": "Mouse over a body part in the viewport, then click and drag to modify it",
+     "path": "Character Creator 4",
+     "target": "Body part in viewport",
+     "kind": "canvas",
+     "parameters": {},
+     "result": "Body part reshaped directly",
+     "confidence": "spoken",
+     "frame_ref": "frames/99074uIeMAY_47.png",
+     "frame_curated": false,
+     "distractors": [
+      "Morph tab",
+      "Search",
+      "Proportion bone adjustments"
+     ]
+    },
+    {
+     "video_id": "99074uIeMAY",
+     "video": "Creating Morphs with Blender Data Link | Character Creator 4 Tutorial",
+     "t": "0:56",
+     "phase": "Establishing Base Shape & Body Proportions in CC",
+     "action": "Use the Proportion section of the Attributes tab for bone-level adjustments to exaggerate the look",
+     "path": "Character Creator 4 > Attributes tab > Proportion",
+     "target": "Proportion bone adjustments",
+     "kind": "slider",
+     "parameters": {},
+     "result": "Exaggerated base shape with altered bone proportions (looks weird for now)",
+     "confidence": "spoken",
+     "frame_ref": "frames/99074uIeMAY_56.png",
+     "frame_curated": false,
+     "distractors": [
+      "Morph tab",
+      "Search",
+      "Body part in viewport"
+     ]
+    },
+    {
+     "video_id": "99074uIeMAY",
+     "video": "Creating Morphs with Blender Data Link | Character Creator 4 Tutorial",
+     "t": "1:14",
+     "phase": "Establishing Base Shape & Body Proportions in CC",
+     "action": "Skip materials and ensure the character model is selected",
+     "path": "Character Creator 4",
+     "target": "Character model",
+     "kind": "canvas",
+     "parameters": {},
+     "result": "Model selected for export",
+     "confidence": "spoken",
+     "frame_ref": "frames/99074uIeMAY_74.png",
+     "frame_curated": false,
+     "distractors": [
+      "Morph tab",
+      "Search",
+      "Body part in viewport"
+     ]
+    }
+   ],
+   "thin": false
+  },
+  {
+   "n": "03",
+   "id": "edit-spring",
+   "title": "Edit Spring",
+   "source": "corpus",
+   "status": "evidenced",
+   "steps": [
+    {
+     "video_id": "jphEXauoASw",
+     "video": "Dragon Ball Z Character - Adding Spring Bones to Hair | Character Creator 4 Tutorial - Part 03",
+     "t": "8:10",
+     "phase": "Spring Bones",
+     "action": "Turn the spring bones back on (applying a motion turns them off)",
+     "path": "Character Creator 4 > Edit Spring",
+     "target": "Spring on",
+     "kind": "other",
+     "parameters": {},
+     "result": "Springs active during the motion",
+     "confidence": "spoken",
+     "frame_ref": "frames/jphEXauoASw_490.png",
+     "frame_curated": false,
+     "distractors": [
+      "Active Group",
+      "Spring Type",
+      "Mass / Strength"
+     ]
+    },
+    {
+     "video_id": "jphEXauoASw",
+     "video": "Dragon Ball Z Character - Adding Spring Bones to Hair | Character Creator 4 Tutorial - Part 03",
+     "t": "8:17",
+     "phase": "Spring Bones",
+     "action": "Turn off the spring on the bone causing the odd motion",
+     "path": "Character Creator 4 > Edit Spring",
+     "target": "Active Group",
+     "kind": "button",
+     "parameters": {
+      "Spring Type": "Rotate",
+      "Hardness": "4"
+     },
+     "result": "Odd motion removed",
+     "confidence": "shown",
+     "frame_ref": "frames/jphEXauoASw_497.png",
+     "frame_curated": true,
+     "distractors": [
+      "Spring on",
+      "Spring Type",
+      "Mass / Strength"
+     ]
+    },
+    {
+     "video_id": "jphEXauoASw",
+     "video": "Dragon Ball Z Character - Adding Spring Bones to Hair | Character Creator 4 Tutorial - Part 03",
+     "t": "8:25",
+     "phase": "Spring Bones",
+     "action": "Keep Rotate on the inner bone and set the tip bone's Spring Type to Translate",
+     "path": "Character Creator 4 > Edit Spring",
+     "target": "Spring Type",
+     "kind": "dropdown",
+     "parameters": {
+      "Spring Type": "Translate"
+     },
+     "result": "Tip of the hair moves rather than only rotating",
+     "confidence": "spoken",
+     "frame_ref": "frames/jphEXauoASw_505.png",
+     "frame_curated": false,
+     "distractors": [
+      "Spring on",
+      "Active Group",
+      "Mass / Strength"
+     ]
+    },
+    {
+     "video_id": "jphEXauoASw",
+     "video": "Dragon Ball Z Character - Adding Spring Bones to Hair | Character Creator 4 Tutorial - Part 03",
+     "t": "8:43",
+     "phase": "Spring Bones",
+     "action": "Reduce Mass to about 2 and increase Strength to 11",
+     "path": "Character Creator 4 > Edit Spring",
+     "target": "Mass / Strength",
+     "kind": "slider",
+     "parameters": {
+      "Mass": "2",
+      "Strength": "11"
+     },
+     "result": "Final spring feel for the hair",
+     "confidence": "spoken",
+     "frame_ref": "frames/jphEXauoASw_523.png",
+     "frame_curated": false,
+     "distractors": [
+      "Spring on",
+      "Active Group",
+      "Spring Type"
+     ]
+    }
+   ],
+   "thin": false
+  },
+  {
+   "n": "04",
+   "id": "ic8-bake",
+   "title": "iClone 8 bake",
+   "source": "corpus",
+   "status": "evidenced",
+   "steps": [
+    {
+     "video_id": "LXzjbflCe1s",
+     "video": "Blender 5.0 Full 3D Animation Tutorial | Character Creator 5, iClone 8 to Blender Workflow",
+     "t": "11:37",
+     "phase": "Lip Sync, Facial Expression & Body Motion in iClone 8",
+     "action": "Turn on Merge Opacity to Diffuse Texture",
+     "path": "File > Export > Export FBX",
+     "target": "Merge Opacity to Diffuse Texture",
+     "kind": "checkbox",
+     "parameters": {
+      "Merge Opacity to Diffuse Texture": "on"
+     },
+     "result": "Opacity baked into diffuse so it need not be re-set up in Blender",
+     "confidence": "spoken",
+     "frame_ref": "frames/LXzjbflCe1s_697.png",
+     "frame_curated": false,
+     "distractors": [
+      "Bake Texture",
+      "Export",
+      "Export Audio"
+     ]
+    },
+    {
+     "video_id": "LXzjbflCe1s",
+     "video": "Blender 5.0 Full 3D Animation Tutorial | Character Creator 5, iClone 8 to Blender Workflow",
+     "t": "11:55",
+     "phase": "Lip Sync, Facial Expression & Body Motion in iClone 8",
+     "action": "Turn on Bake Texture",
+     "path": "File > Export > Export FBX",
+     "target": "Bake Texture",
+     "kind": "checkbox",
+     "parameters": {
+      "Bake Texture": "on"
+     },
+     "result": "Textures baked for export",
+     "confidence": "spoken",
+     "frame_ref": "frames/LXzjbflCe1s_715.png",
+     "frame_curated": false,
+     "distractors": [
+      "Merge Opacity to Diffuse Texture",
+      "Export",
+      "Export Audio"
+     ]
+    },
+    {
+     "video_id": "LXzjbflCe1s",
+     "video": "Blender 5.0 Full 3D Animation Tutorial | Character Creator 5, iClone 8 to Blender Workflow",
+     "t": "11:58",
+     "phase": "Lip Sync, Facial Expression & Body Motion in iClone 8",
+     "action": "Click Export, name the file animation 01 on the desktop and save",
+     "path": "File > Export > Export FBX",
+     "target": "Export",
+     "kind": "button",
+     "parameters": {
+      "File name": "animation 01",
+      "Location": "Desktop"
+     },
+     "result": "FBX export for Blender starts",
+     "confidence": "spoken",
+     "frame_ref": "frames/LXzjbflCe1s_718.png",
+     "frame_curated": false,
+     "distractors": [
+      "Merge Opacity to Diffuse Texture",
+      "Bake Texture",
+      "Export Audio"
+     ]
+    },
+    {
+     "video_id": "LXzjbflCe1s",
+     "video": "Blender 5.0 Full 3D Animation Tutorial | Character Creator 5, iClone 8 to Blender Workflow",
+     "t": "12:27",
+     "phase": "Lip Sync, Facial Expression & Body Motion in iClone 8",
+     "action": "Render > Export Audio to export the sound",
+     "path": "Render",
+     "target": "Export Audio",
+     "kind": "menu",
+     "parameters": {},
+     "result": "Audio export dialog opens",
+     "confidence": "spoken",
+     "frame_ref": "frames/LXzjbflCe1s_747.png",
+     "frame_curated": false,
+     "distractors": [
+      "Merge Opacity to Diffuse Texture",
+      "Bake Texture",
+      "Export"
+     ]
+    },
+    {
+     "video_id": "LXzjbflCe1s",
+     "video": "Blender 5.0 Full 3D Animation Tutorial | Character Creator 5, iClone 8 to Blender Workflow",
+     "t": "12:36",
+     "phase": "Lip Sync, Facial Expression & Body Motion in iClone 8",
+     "action": "Choose MP4 as the output format (later found to be the wrong format)",
+     "path": "Render > Export Audio",
+     "target": "Format",
+     "kind": "dropdown",
+     "parameters": {
+      "Format": "MP4"
+     },
+     "result": "MP4 selected",
+     "confidence": "spoken",
+     "frame_ref": "frames/LXzjbflCe1s_756.png",
+     "frame_curated": false,
+     "distractors": [
+      "Merge Opacity to Diffuse Texture",
+      "Bake Texture",
+      "Export"
+     ]
+    }
+   ],
+   "thin": true
+  },
+  {
+   "n": "05",
+   "id": "fbx-preset",
+   "title": "FBX preset (Blender / UE5)",
+   "source": "corpus",
+   "status": "evidenced",
+   "steps": [
+    {
+     "video_id": "jphEXauoASw",
+     "video": "Dragon Ball Z Character - Adding Spring Bones to Hair | Character Creator 4 Tutorial - Part 03",
+     "t": "1:15",
+     "phase": "Intro",
+     "action": "Export the mesh only, with the default pose set to T pose",
+     "path": "Character Creator 4 > Export FBX",
+     "target": "Mesh / Default pose",
+     "kind": "other",
+     "parameters": {
+      "Export": "Mesh",
+      "Default pose": "T pose"
+     },
+     "result": "Export options set",
+     "confidence": "spoken",
+     "frame_ref": "frames/jphEXauoASw_75.png",
+     "frame_curated": false,
+     "distractors": [
+      "Export",
+      "Import",
+      "Character"
+     ]
+    },
+    {
+     "video_id": "jphEXauoASw",
+     "video": "Dragon Ball Z Character - Adding Spring Bones to Hair | Character Creator 4 Tutorial - Part 03",
+     "t": "1:23",
+     "phase": "Intro",
+     "action": "Export the character",
+     "path": "Character Creator 4 > Export FBX",
+     "target": "Export",
+     "kind": "button",
+     "parameters": {
+      "Target Tool Preset": "Blender",
+      "FBX Options": "Mesh",
+      "Default Pose": "T-Pose"
+     },
+     "result": "FBX written",
+     "confidence": "shown",
+     "frame_ref": "frames/jphEXauoASw_83.png",
+     "frame_curated": true,
+     "distractors": [
+      "Mesh / Default pose",
+      "Import",
+      "Character"
+     ]
+    },
+    {
+     "video_id": "jphEXauoASw",
+     "video": "Dragon Ball Z Character - Adding Spring Bones to Hair | Character Creator 4 Tutorial - Part 03",
+     "t": "1:31",
+     "phase": "Intro",
+     "action": "Import the same FBX back into Character Creator",
+     "path": "Character Creator 4",
+     "target": "Import",
+     "kind": "other",
+     "parameters": {},
+     "result": "Import dialog opens",
+     "confidence": "spoken",
+     "frame_ref": "frames/jphEXauoASw_91.png",
+     "frame_curated": false,
+     "distractors": [
+      "Mesh / Default pose",
+      "Export",
+      "Character"
+     ]
+    },
+    {
+     "video_id": "jphEXauoASw",
+     "video": "Dragon Ball Z Character - Adding Spring Bones to Hair | Character Creator 4 Tutorial - Part 03",
+     "t": "1:38",
+     "phase": "Intro",
+     "action": "Choose Character, then Humanoid",
+     "path": "Character Creator 4 > Import Fbx",
+     "target": "Character",
+     "kind": "button",
+     "parameters": {
+      "Type": "Character",
+      "Profile": "Humanoid"
+     },
+     "result": "Humanoid characterization starts",
+     "confidence": "shown",
+     "frame_ref": "frames/jphEXauoASw_98.png",
+     "frame_curated": true,
+     "distractors": [
+      "Mesh / Default pose",
+      "Export",
+      "Import"
+     ]
+    },
+    {
+     "video_id": "jphEXauoASw",
+     "video": "Dragon Ball Z Character - Adding Spring Bones to Hair | Character Creator 4 Tutorial - Part 03",
+     "t": "1:45",
+     "phase": "Intro",
+     "action": "Cancel the auto-detected ActorBuild profile to characterize by hand",
+     "path": "Character Creator 4 > Characterization",
+     "target": "Cancel",
+     "kind": "button",
+     "parameters": {},
+     "result": "Manual characterization, so head bones can be added",
+     "confidence": "spoken",
+     "frame_ref": "frames/jphEXauoASw_105.png",
+     "frame_curated": false,
+     "distractors": [
+      "Mesh / Default pose",
+      "Export",
+      "Import"
+     ]
+    },
+    {
+     "video_id": "jphEXauoASw",
+     "video": "Dragon Ball Z Character - Adding Spring Bones to Hair | Character Creator 4 Tutorial - Part 03",
+     "t": "1:59",
+     "phase": "Intro",
+     "action": "Double-click a bone in the preview, then click the matching bone in the viewport",
+     "path": "Character Creator 4 > Modify > Characterization",
+     "target": "Bone preview",
+     "kind": "canvas",
+     "parameters": {},
+     "result": "Bone mapped",
+     "confidence": "shown",
+     "frame_ref": "frames/jphEXauoASw_119.png",
+     "frame_curated": true,
+     "distractors": [
+      "Mesh / Default pose",
+      "Export",
+      "Import"
+     ]
+    }
+   ],
+   "thin": false
+  },
+  {
+   "n": "06",
+   "id": "blender-cc-ic-addon",
+   "title": "Blender CC/iC add-on",
+   "source": "corpus",
+   "status": "evidenced",
+   "steps": [
+    {
+     "video_id": "Rjpm8AJeoD0",
+     "video": "CC/iC Blender Tools 1.5.8 - Spring Bone Hair Rigging & Physics",
+     "t": "0:34",
+     "phase": "Adding Spring Bones",
+     "action": "Select one face on each hair card that should guide a spring bone",
+     "path": "",
+     "target": "Hair card faces",
+     "kind": "canvas",
+     "parameters": {
+      "Mode": "Edit Mode",
+      "Select mode": "Face",
+      "Faces selected": "1/3,434"
+     },
+     "result": "Guide faces selected (one per card is enough)",
+     "confidence": "shown",
+     "frame_ref": "frames/Rjpm8AJeoD0_34.png",
+     "frame_curated": true,
+     "distractors": [
+      "Bones from Cards",
+      "Bind Hair",
+      "Spring bones"
+     ]
+    },
+    {
+     "video_id": "Rjpm8AJeoD0",
+     "video": "CC/iC Blender Tools 1.5.8 - Spring Bone Hair Rigging & Physics",
+     "t": "0:37",
+     "phase": "Adding Spring Bones",
+     "action": "Run the Bones from Hair Cards operator",
+     "path": "CC/iC Create > Spring Rigging > Hair Rigging",
+     "target": "Bones from Cards",
+     "kind": "button",
+     "parameters": {
+      "Hair Spring Rig": "Blender",
+      "Bone Length (cm)": "7.50",
+      "Skip Length (cm)": "3.75",
+      "Truncate Length (cm)": "2.50",
+      "Smoothing Steps": "5"
+     },
+     "result": "Spring bone chains generated along the selected cards",
+     "confidence": "shown",
+     "frame_ref": "frames/Rjpm8AJeoD0_37.png",
+     "frame_curated": true,
+     "distractors": [
+      "Hair card faces",
+      "Bind Hair",
+      "Spring bones"
+     ]
+    },
+    {
+     "video_id": "Rjpm8AJeoD0",
+     "video": "CC/iC Blender Tools 1.5.8 - Spring Bone Hair Rigging & Physics",
+     "t": "0:40",
+     "phase": "Adding Spring Bones",
+     "action": "Bind the hair mesh to the new bones with Bind Hair",
+     "path": "Spring Rig",
+     "target": "Bind Hair",
+     "kind": "button",
+     "parameters": {},
+     "result": "Hair mesh weight-bound to the spring bones",
+     "confidence": "spoken",
+     "frame_ref": "frames/Rjpm8AJeoD0_40.png",
+     "frame_curated": false,
+     "distractors": [
+      "Hair card faces",
+      "Bones from Cards",
+      "Spring bones"
+     ]
+    },
+    {
+     "video_id": "Rjpm8AJeoD0",
+     "video": "CC/iC Blender Tools 1.5.8 - Spring Bone Hair Rigging & Physics",
+     "t": "0:43",
+     "phase": "Adding Spring Bones",
+     "action": "Pose the spring bones to preview the binding",
+     "path": "",
+     "target": "Spring bones",
+     "kind": "canvas",
+     "parameters": {
+      "Mode": "Pose Mode"
+     },
+     "result": "Hair deforms with the posed bones",
+     "confidence": "shown",
+     "frame_ref": "frames/Rjpm8AJeoD0_43.png",
+     "frame_curated": true,
+     "distractors": [
+      "Hair card faces",
+      "Bones from Cards",
+      "Bind Hair"
+     ]
+    },
+    {
+     "video_id": "Rjpm8AJeoD0",
+     "video": "CC/iC Blender Tools 1.5.8 - Spring Bone Hair Rigging & Physics",
+     "t": "0:48",
+     "phase": "Adding Spring Bones",
+     "action": "Scale back the body mesh weights and rebind so the spring bones get more influence",
+     "path": "Spring Rig",
+     "target": "Body weight scale",
+     "kind": "other",
+     "parameters": {},
+     "result": "Spring bones drive more of the hair",
+     "confidence": "spoken",
+     "frame_ref": "frames/Rjpm8AJeoD0_48.png",
+     "frame_curated": false,
+     "distractors": [
+      "Hair card faces",
+      "Bones from Cards",
+      "Bind Hair"
+     ]
+    },
+    {
+     "video_id": "Rjpm8AJeoD0",
+     "video": "CC/iC Blender Tools 1.5.8 - Spring Bone Hair Rigging & Physics",
+     "t": "0:58",
+     "phase": "Adding Spring Bones",
+     "action": "Cycle the bone display style from the mini tool bar",
+     "path": "Mini tool bar",
+     "target": "Bone style",
+     "kind": "button",
+     "parameters": {},
+     "result": "Bone display style changes",
+     "confidence": "spoken",
+     "frame_ref": "frames/Rjpm8AJeoD0_58.png",
+     "frame_curated": false,
+     "distractors": [
+      "Hair card faces",
+      "Bones from Cards",
+      "Bind Hair"
+     ]
+    }
+   ],
+   "thin": false
+  },
+  {
+   "n": "07",
+   "id": "blender-bake",
+   "title": "Blender bake",
+   "source": "corpus",
+   "status": "evidenced",
+   "steps": [
+    {
+     "video_id": "Rjpm8AJeoD0",
+     "video": "CC/iC Blender Tools 1.5.8 - Spring Bone Hair Rigging & Physics",
+     "t": "11:00",
+     "phase": "Rigified Spring Bone Simulation",
+     "action": "Apply an animation to the Rigify rig and play it",
+     "path": "CC/iC Pipeline > Retargeting",
+     "target": "Retargeting",
+     "kind": "other",
+     "parameters": {
+      "Source Armature": "FDress",
+      "Source Action": "FDress|A|iCTM",
+      "Frame": "80"
+     },
+     "result": "The FK control rig follows the simulation",
+     "confidence": "shown",
+     "frame_ref": "frames/Rjpm8AJeoD0_660.png",
+     "frame_curated": true,
+     "distractors": [
+      "Bake Simulation",
+      "Frame",
+      "Simulation influence"
+     ]
+    },
+    {
+     "video_id": "Rjpm8AJeoD0",
+     "video": "CC/iC Blender Tools 1.5.8 - Spring Bone Hair Rigging & Physics",
+     "t": "11:27",
+     "phase": "Rigified Spring Bone Simulation",
+     "action": "Bake the simulation",
+     "path": "CC/iC Pipeline > Rigid Body Sim",
+     "target": "Bake Simulation",
+     "kind": "button",
+     "parameters": {
+      "End": "1453"
+     },
+     "result": "The spring bone simulation becomes a fixed animation",
+     "confidence": "shown",
+     "frame_ref": "frames/Rjpm8AJeoD0_687.png",
+     "frame_curated": false,
+     "distractors": [
+      "Retargeting",
+      "Frame",
+      "Simulation influence"
+     ]
+    },
+    {
+     "video_id": "Rjpm8AJeoD0",
+     "video": "CC/iC Blender Tools 1.5.8 - Spring Bone Hair Rigging & Physics",
+     "t": "11:39",
+     "phase": "Rigified Spring Bone Simulation",
+     "action": "Pick a dynamic frame to override",
+     "path": "Timeline",
+     "target": "Frame",
+     "kind": "canvas",
+     "parameters": {
+      "Frame": "266"
+     },
+     "result": "Frame chosen",
+     "confidence": "shown",
+     "frame_ref": "frames/Rjpm8AJeoD0_699.png",
+     "frame_curated": false,
+     "distractors": [
+      "Retargeting",
+      "Bake Simulation",
+      "Simulation influence"
+     ]
+    },
+    {
+     "video_id": "Rjpm8AJeoD0",
+     "video": "CC/iC Blender Tools 1.5.8 - Spring Bone Hair Rigging & Physics",
+     "t": "11:43",
+     "phase": "Rigified Spring Bone Simulation",
+     "action": "Lower the Simulation layer influence so FK and IK controls can override it",
+     "path": "Items > Spring Rig",
+     "target": "Simulation influence",
+     "kind": "slider",
+     "parameters": {},
+     "result": "FK/IK controls work again",
+     "confidence": "spoken",
+     "frame_ref": "frames/Rjpm8AJeoD0_703.png",
+     "frame_curated": false,
+     "distractors": [
+      "Retargeting",
+      "Bake Simulation",
+      "Frame"
+     ]
+    },
+    {
+     "video_id": "Rjpm8AJeoD0",
+     "video": "CC/iC Blender Tools 1.5.8 - Spring Bone Hair Rigging & Physics",
+     "t": "11:58",
+     "phase": "Rigified Spring Bone Simulation",
+     "action": "Pose with the FK and IK controls over the lowered simulation",
+     "path": "",
+     "target": "FK / IK controls",
+     "kind": "canvas",
+     "parameters": {
+      "Simulation-FK": "0.000",
+      "IK-FK": "0.000"
+     },
+     "result": "Simulated motion overridden",
+     "confidence": "shown",
+     "frame_ref": "frames/Rjpm8AJeoD0_718.png",
+     "frame_curated": false,
+     "distractors": [
+      "Retargeting",
+      "Bake Simulation",
+      "Frame"
+     ]
+    },
+    {
+     "video_id": "Rjpm8AJeoD0",
+     "video": "CC/iC Blender Tools 1.5.8 - Spring Bone Hair Rigging & Physics",
+     "t": "12:11",
+     "phase": "Rigified Spring Bone Simulation",
+     "action": "Set a group's influence to the Simulation result with the group button",
+     "path": "Items > Spring Rig",
+     "target": "Group Simulation",
+     "kind": "button",
+     "parameters": {},
+     "result": "Group returns to the simulated motion",
+     "confidence": "spoken",
+     "frame_ref": "frames/Rjpm8AJeoD0_731.png",
+     "frame_curated": false,
+     "distractors": [
+      "Retargeting",
+      "Bake Simulation",
+      "Frame"
+     ]
+    }
+   ],
+   "thin": false
+  },
+  {
+   "n": "08",
+   "id": "glb",
+   "title": "GLB (glTF Binary export)",
+   "source": "external",
+   "status": "UNPROVEN IN CORPUS (OA3 b2-b4: only FBX + Blender preset shown)",
+   "tools": [
+    {
+     "name": "CC/iC Tools (soupday cc_blender_tools)",
+     "kind": "blender-addon",
+     "version": "2.4.3 (5.0, 5.1); 2.3.4 (4.2)",
+     "role": "CC5 import/rebuild in Blender; glTF export must enable 'Bake Materials for Export' so the custom CC shaders collapse to standard PBR; spring bones and facial drivers baked to keyframes before glTF",
+     "installed": true,
+     "source": "memory:/areas/3d-portfolio.md (CCiC PIPELINE entry, 2026-09-02); C:\\Users\\digit\\GriotMeta\\griot-live-artifacts\\live\\griot3d-pipeline-codex.html:103"
+    },
+    {
+     "name": "R3F Export Prep",
+     "kind": "blender-addon",
+     "version": "2.1.0",
+     "role": "Prepare and analyze scenes for optimized GLTF/GLB export to React Three Fiber (bl_info); analyzer + pre-flight checklist, instancing, merge static, apply-for-export, UV audit, mesh cleanup",
+     "installed": true,
+     "source": "%APPDATA%\\Blender Foundation\\Blender\\5.1\\scripts\\addons\\r3f_export_prep_v2_1.py:7; C:\\Users\\digit\\GriotMeta\\griot-live-artifacts\\live\\gbfolio-glb-blender-toolkit.html:172; C:\\Users\\digit\\GriotMeta\\griot-live-artifacts\\live\\griot3d-pipeline-codex.html:119"
+    },
+    {
+     "name": "Web Export Prep",
+     "kind": "blender-addon",
+     "version": "1.0.3",
+     "role": "Superseded by R3F Export Prep, keep disabled (operator/panel ids collide)",
+     "installed": true,
+     "source": "C:\\Users\\digit\\GriotMeta\\griot-live-artifacts\\live\\gbfolio-glb-blender-toolkit.html:177; C:\\Users\\digit\\GriotMeta\\griot-live-artifacts\\live\\griot3d-pipeline-codex.html:120"
+    },
+    {
+     "name": "NLA Batch Export",
+     "kind": "blender-addon",
+     "version": "1.0.0",
+     "role": "Batch-exports NLA strips as individual FBX files (only custom add-on touching actions)",
+     "installed": true,
+     "source": "C:\\Users\\digit\\GriotMeta\\griot-live-artifacts\\live\\gbfolio-glb-blender-toolkit.html:182; C:\\Users\\digit\\GriotMeta\\griot-live-artifacts\\live\\griot3d-pipeline-codex.html:121"
+    },
+    {
+     "name": "Particle Hair to Mesh Tubes",
+     "kind": "blender-addon",
+     "version": "1.0.1",
+     "role": "Converts particle hair systems into UV'd mesh tubes for real-time rendering",
+     "installed": true,
+     "source": "C:\\Users\\digit\\GriotMeta\\griot-live-artifacts\\live\\gbfolio-glb-blender-toolkit.html:187; C:\\Users\\digit\\GriotMeta\\griot-live-artifacts\\live\\griot3d-pipeline-codex.html:122"
+    },
+    {
+     "name": "GLBOptimizer",
+     "kind": "blender-addon",
+     "version": "0.0.4",
+     "role": "Optimize your Scene for Web (manifest tagline); glTF-transform + server web-optimize step; needs KTX-Software",
+     "installed": true,
+     "source": "%APPDATA%\\Blender Foundation\\Blender\\5.1\\extensions\\user_default\\GLBOptimizer\\blender_manifest.toml:7; memory:/areas/3d-portfolio.md (AVATAR TOOLCHAIN); https://claude.ai/chat/cc60917c-9994-4621-82f9-b738c595a48e"
+    },
+    {
+     "name": "R3F Studio Bridge",
+     "kind": "blender-addon",
+     "version": "0.1.0",
+     "role": "Export assets to R3F Studio via WebSocket (manifest tagline); bridge stub",
+     "installed": true,
+     "source": "%APPDATA%\\Blender Foundation\\Blender\\4.2\\extensions\\user_default\\r3f_studio_bridge\\blender_manifest.toml:16; C:\\Users\\digit\\GriotMeta\\griot-live-artifacts\\live\\griot3d-pipeline-codex.html:128"
+    },
+    {
+     "name": "SimpleBake",
+     "kind": "blender-addon",
+     "version": "2.2.2 (5.0, 5.1); 2.2.8 (4.2)",
+     "role": "Listed among his GLB tools (no further role stated in source)",
+     "installed": true,
+     "source": "memory:/areas/3d-portfolio.md (iClone RLPy quirks / GLB tools entry)"
+    },
+    {
+     "name": "Assetify",
+     "kind": "blender-addon",
+     "version": "3.0.0 (5.0, 5.1); 2.1.7 (4.2)",
+     "role": "Listed among his GLB tools (no further role stated in source)",
+     "installed": true,
+     "source": "memory:/areas/3d-portfolio.md (GLB tools entry)"
+    },
+    {
+     "name": "UVPackmaster 3",
+     "kind": "blender-addon",
+     "version": "3.4.4",
+     "role": "UV packing engine (manifest tagline); listed among his GLB tools",
+     "installed": true,
+     "source": "%APPDATA%\\Blender Foundation\\Blender\\5.1\\extensions\\user_default\\uvpackmaster3\\blender_manifest.toml; memory:/areas/3d-portfolio.md"
+    },
+    {
+     "name": "gltf-transform CLI",
+     "kind": "cli",
+     "version": "4.3.0 (global); @gltf-transform/* ^4.4.1 in GBFolio tools/avatar-opt",
+     "role": "Universal compression tool; avatar GLB (morph targets) uses meshopt, mesh-only scene GLBs use Draco; never gltfpack",
+     "installed": true,
+     "source": "C:\\Users\\digit\\GriotMeta\\griot-live-artifacts\\live\\griot3d-pipeline-codex.html:86; C:\\Users\\digit\\GriotMeta\\griot-live-artifacts\\live\\griot3d-pipeline-codex.html:88; C:\\Users\\digit\\GriotMeta\\griot-live-artifacts\\live\\griot3d-pipeline-codex.html:92; memory:/areas/3d-portfolio.md (GLB COMPRESSION SPLIT)"
+    },
+    {
+     "name": "KTX-Software (ktx / toktx)",
+     "kind": "cli",
+     "version": null,
+     "role": "Texture compression for glTF export, required by the Optimize GLB Blender plugin",
+     "installed": true,
+     "source": "https://claude.ai/chat/cc60917c-9994-4621-82f9-b738c595a48e"
+    },
+    {
+     "name": "Blender glTF 2.0 exporter (built-in)",
+     "kind": "blender-addon",
+     "version": null,
+     "role": "File > Export > glTF 2.0 (.glb), +Y up, shape keys + skinning + animations, 30fps sampling",
+     "installed": "unknown",
+     "source": "https://claude.ai/chat/69c0d132-31ec-4e8c-8bca-aa3984fac083"
+    }
+   ],
+   "external": true
+  },
+  {
+   "n": "09",
+   "id": "r3f",
+   "title": "R3F (gltfjsx -> useGLTF -> Canvas)",
+   "source": "external",
+   "status": "UNPROVEN IN CORPUS",
+   "tools": [
+    {
+     "name": "gltfjsx",
+     "kind": "cli",
+     "version": null,
+     "role": "npx gltfjsx path/to/model.glb generates a JSX component file (-T for transform)",
+     "installed": false,
+     "source": "C:\\Users\\digit\\.claude\\skills\\griot-r3f\\references\\interop-tools.md:14; C:\\Users\\digit\\.claude\\skills\\griot-r3f\\references\\interop-tools.md:17; C:\\Users\\digit\\.claude\\skills\\griot-r3f\\references\\interop-tools.md:40"
+    },
+    {
+     "name": "@react-three/drei (useGLTF)",
+     "kind": "lib",
+     "version": "^9.117.0 (gb-portfolio-r3f); ^10.7.7 (r3f-studio-app)",
+     "role": "useGLTF loads nodes/materials; useGLTF.preload",
+     "installed": true,
+     "source": "C:\\Users\\digit\\.claude\\skills\\griot-r3f\\references\\interop-tools.md:26; C:\\Users\\digit\\.claude\\skills\\griot-r3f\\references\\interop-tools.md:36; C:\\Users\\digit\\.claude\\skills\\cc5-avatar-pipeline-v2\\references\\blender-r3f-export.md:156; C:\\Users\\digit\\GBFolio\\gb-portfolio-r3f\\package.json:26"
+    },
+    {
+     "name": "@react-three/fiber (Canvas)",
+     "kind": "lib",
+     "version": "^8.17.10 (gb-portfolio-r3f); ^9.5.0 (r3f-studio-app)",
+     "role": "React renderer hosting the GLB scene",
+     "installed": true,
+     "source": "C:\\Users\\digit\\GBFolio\\gb-portfolio-r3f\\package.json:27; C:\\Users\\digit\\GriotApps\\r3f-studio-dev\\electron-app\\r3f-studio-app\\package.json:73"
+    },
+    {
+     "name": "three",
+     "kind": "lib",
+     "version": "^0.170.0 (gb-portfolio-r3f); ^0.182.0 (r3f-studio-app)",
+     "role": "three.js runtime under R3F",
+     "installed": true,
+     "source": "C:\\Users\\digit\\GBFolio\\gb-portfolio-r3f\\package.json:45"
+    },
+    {
+     "name": "avatar-engine",
+     "kind": "lib",
+     "version": "0.1.1 (npm, unscoped)",
+     "role": "Viseme map, analyser lipsync, facial layers, gestures + R3F hooks; drives facial visemes live at runtime",
+     "installed": true,
+     "source": "memory:/areas/3d-portfolio.md (VERIFIED LIVE 2026-08-22); C:\\Users\\digit\\GBFolio\\packages\\avatar-engine\\package.json"
+    }
+   ],
+   "external": true
+  }
+ ]
+}
