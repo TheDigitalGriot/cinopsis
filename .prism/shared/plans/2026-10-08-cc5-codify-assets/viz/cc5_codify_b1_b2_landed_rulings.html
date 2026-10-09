@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>cc5_codify_b1_b2_landed_rulings</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3.7.0/dist/tabler-icons.min.css">
+<style>
+:root{
+  /* dark (default) */
+  --color-background-primary:#171a21;
+  --color-background-secondary:#1f232d;
+  --color-background-tertiary:#0f1116;
+  --color-background-info:rgba(90,168,255,.14);
+  --color-background-success:rgba(70,209,138,.14);
+  --color-background-warning:rgba(242,181,74,.16);
+  --color-background-danger:rgba(255,90,90,.14);
+  --color-text-primary:#eef1f6;
+  --color-text-secondary:#aab2c2;
+  --color-text-tertiary:#727b8c;
+  --color-text-info:#5aa8ff;
+  --color-text-success:#46d18a;
+  --color-text-warning:#f2b54a;
+  --color-text-danger:#ff6b6b;
+  --color-border-tertiary:rgba(255,255,255,.10);
+  --color-border-secondary:rgba(255,255,255,.18);
+  --color-border-primary:rgba(255,255,255,.28);
+  --color-border-info:rgba(90,168,255,.55);
+  --color-border-success:rgba(70,209,138,.55);
+  --color-border-warning:rgba(242,181,74,.55);
+  --color-border-danger:rgba(255,90,90,.55);
+  --border-radius-sm:6px;
+  --border-radius-md:8px;
+  --border-radius-lg:12px;
+  --border-radius-xl:16px;
+  /* current host token family (additive — see chat-viz-extractor-tokens-CONTEXT.md) */
+  --surface-2:#232833; --surface-1:rgba(255,255,255,.045); --surface-0:#14171e;
+  --bg-accent:rgba(224,164,88,.14); --bg-danger:rgba(229,83,75,.13);
+  --bg-success:rgba(87,185,138,.13); --bg-warning:rgba(224,164,88,.14);
+  --text-primary:#eef1f6; --text-secondary:#aab2c2; --text-muted:#78818f;
+  --text-accent:#e0a458; --text-danger:#e5534b; --text-success:#57b98a; --text-warning:#e0a458;
+  --border:rgba(255,255,255,.09); --border-strong:rgba(255,255,255,.17); --border-stronger:rgba(255,255,255,.26);
+  --border-accent:rgba(224,164,88,.45); --border-danger:rgba(229,83,75,.45);
+  --border-success:rgba(87,185,138,.45); --border-warning:rgba(224,164,88,.45);
+  --font-sans:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+  --font-mono:ui-monospace,'Cascadia Code',Consolas,monospace;
+  --font-voice:'Instrument Serif',Georgia,serif;
+  --radius:8px; --pad-sm:8px; --pad-md:12px; --pad-lg:16px; --pad-xl:22px;
+  --gap-xs:4px; --gap-sm:8px; --gap-md:12px; --gap-lg:16px; --gap-xl:22px;
+}
+@media (prefers-color-scheme: light){
+  :root{
+    --color-background-primary:#ffffff;
+    --color-background-secondary:#f5f6f8;
+    --color-background-tertiary:#eceef2;
+    --color-background-info:rgba(42,127,255,.10);
+    --color-background-success:rgba(28,160,98,.12);
+    --color-background-warning:rgba(200,140,20,.14);
+    --color-background-danger:rgba(210,50,50,.10);
+    --color-text-primary:#1a1d23;
+    --color-text-secondary:#5a6372;
+    --color-text-tertiary:#8a93a3;
+    --color-text-info:#2a7fff;
+    --color-text-success:#1ca062;
+    --color-text-warning:#b9821a;
+    --color-text-danger:#d23232;
+    --color-border-tertiary:rgba(0,0,0,.12);
+    --color-border-secondary:rgba(0,0,0,.22);
+    --color-border-primary:rgba(0,0,0,.32);
+    --color-border-info:rgba(42,127,255,.55);
+    --color-border-success:rgba(28,160,98,.55);
+    --color-border-warning:rgba(200,140,20,.55);
+    --color-border-danger:rgba(210,50,50,.55);
+  }
+}
+@media (prefers-color-scheme: light){
+  :root:not([data-theme="dark"]){
+    --surface-2:#ffffff; --surface-1:rgba(0,0,0,.032); --surface-0:#f7f6f3;
+    --bg-accent:rgba(150,104,31,.10); --bg-danger:rgba(178,49,41,.09);
+    --bg-success:rgba(47,125,85,.10); --bg-warning:rgba(150,104,31,.10);
+    --text-primary:#161513; --text-secondary:#57534c; --text-muted:#84807a;
+    --text-accent:#96681f; --text-danger:#b23129; --text-success:#2f7d55; --text-warning:#96681f;
+    --border:rgba(0,0,0,.11); --border-strong:rgba(0,0,0,.2); --border-stronger:rgba(0,0,0,.3);
+    --border-accent:rgba(150,104,31,.5); --border-danger:rgba(178,49,41,.5);
+    --border-success:rgba(47,125,85,.5); --border-warning:rgba(150,104,31,.5);
+  }
+}
+/* explicit choice, either direction — beats the OS media query above because
+   it is more specific AND declared after it (chat-viz-extractor-theme-toggle) */
+:root[data-theme="light"]{
+  --surface-2:#ffffff; --surface-1:rgba(0,0,0,.032); --surface-0:#f7f6f3;
+  --bg-accent:rgba(150,104,31,.10); --bg-danger:rgba(178,49,41,.09);
+  --bg-success:rgba(47,125,85,.10); --bg-warning:rgba(150,104,31,.10);
+  --text-primary:#161513; --text-secondary:#57534c; --text-muted:#84807a;
+  --text-accent:#96681f; --text-danger:#b23129; --text-success:#2f7d55; --text-warning:#96681f;
+  --border:rgba(0,0,0,.11); --border-strong:rgba(0,0,0,.2); --border-stronger:rgba(0,0,0,.3);
+  --border-accent:rgba(150,104,31,.5); --border-danger:rgba(178,49,41,.5);
+  --border-success:rgba(47,125,85,.5); --border-warning:rgba(150,104,31,.5);
+  color-scheme:light;
+}
+:root[data-theme="dark"]{
+  --surface-2:#232833; --surface-1:rgba(255,255,255,.045); --surface-0:#14171e;
+  --bg-accent:rgba(224,164,88,.14); --bg-danger:rgba(229,83,75,.13);
+  --bg-success:rgba(87,185,138,.13); --bg-warning:rgba(224,164,88,.14);
+  --text-primary:#eef1f6; --text-secondary:#aab2c2; --text-muted:#78818f;
+  --text-accent:#e0a458; --text-danger:#e5534b; --text-success:#57b98a; --text-warning:#e0a458;
+  --border:rgba(255,255,255,.09); --border-strong:rgba(255,255,255,.17); --border-stronger:rgba(255,255,255,.26);
+  --border-accent:rgba(224,164,88,.45); --border-danger:rgba(229,83,75,.45);
+  --border-success:rgba(87,185,138,.45); --border-warning:rgba(224,164,88,.45);
+  color-scheme:dark;
+}
+*{box-sizing:border-box;}
+html,body{margin:0;padding:0;}
+body{
+  background:var(--color-background-tertiary);
+  color:var(--color-text-primary);
+  font-family:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+  font-size:15px;line-height:1.6;-webkit-font-smoothing:antialiased;
+  padding:32px 20px 56px;
+}
+.cve-wrap{max-width:840px;margin:0 auto;padding-top:44px;}
+#cve-theme-toggle{position:fixed;top:14px;right:14px;z-index:9999;
+  padding:var(--pad-sm) var(--pad-md);border-radius:var(--radius);
+  border:1px solid var(--border-strong);background:var(--surface-1);
+  color:var(--text-primary);font-family:var(--font-sans);font-size:13px;
+  line-height:1;cursor:pointer;}
+#cve-theme-toggle:hover{background:var(--surface-2);}
+h1{font-size:22px;font-weight:600;} h2{font-size:18px;font-weight:600;}
+h3{font-size:16px;font-weight:600;}
+a{color:var(--color-text-info);text-decoration:none;}
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);border:0;}
+svg .bx{fill:var(--surface-1);stroke:var(--border-strong)}
+svg .t{fill:var(--text-primary)} svg .th{fill:var(--text-primary)}
+svg .ts{fill:var(--text-secondary)} svg .c{fill:var(--text-muted)}
+svg .a,svg .arr{stroke:var(--text-muted);fill:none}
+svg .leader{stroke:var(--text-muted);stroke-dasharray:3 3}
+svg .c-amber rect{fill:var(--bg-warning);stroke:var(--border-warning)}
+svg .c-green rect{fill:var(--bg-success);stroke:var(--border-success)}
+svg .c-red rect{fill:var(--bg-danger);stroke:var(--border-danger)}
+body{background:var(--surface-0);color:var(--text-primary);font-family:var(--font-sans);}
+</style>
+</head>
+<body>
+<button id="cve-theme-toggle" type="button" aria-label="Switch theme"></button>
+<div class="cve-wrap"><h2 class="sr-only">cc5-codify status: B0 through B2 landed with evidence, B3 and B4 owed, and five rulings with recommended options preselected, each with an add-note drawer, plus a send button.</h2>
+<style>
+.sp{display:flex;gap:6px;margin:.4rem 0 .9rem}
+.b{flex:1;min-width:0;border:.5px solid var(--border);border-radius:10px;padding:7px 9px;background:var(--surface-1)}
+.b .k{font-family:var(--font-mono);font-size:11px;color:var(--text-muted)}.b .n{font-size:13px;font-weight:500;margin:2px 0 3px}.b .d{font-size:11px;color:var(--text-secondary);line-height:1.45}
+.lg{background:var(--bg-success)}.lg .k{color:var(--text-success)}.ow{border-style:dashed}
+.fk{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:8px}
+.f{border:.5px solid var(--border);border-radius:10px;padding:9px 11px}
+.f h4{margin:0 0 3px;font-size:13px;font-weight:500;display:flex;justify-content:space-between;gap:8px}.f p{margin:0 0 6px;font-size:12px;color:var(--text-secondary);line-height:1.45}
+.o{display:flex;gap:8px;align-items:flex-start;font-size:12px;padding:6px 8px;margin-top:4px;border-radius:7px;cursor:pointer;line-height:1.4;user-select:none}
+.mk{flex:0 0 12px;height:12px;margin-top:2px;box-sizing:border-box;display:flex;align-items:center;justify-content:center;font-size:10px}
+.rec{font-size:11px;padding:0 5px;border-radius:5px;background:var(--bg-success);color:var(--text-success);margin-left:4px;white-space:nowrap}
+.mode{font-size:11px;font-weight:400;color:var(--text-muted);font-family:var(--font-mono)}
+.nb{font-size:12px;padding:3px 9px;margin-top:8px}.nd textarea{width:100%;box-sizing:border-box;min-height:56px;font-size:12px;font-family:var(--font-sans);padding:6px 8px;border-radius:7px;border:.5px solid var(--border-strong);background:var(--surface-2);color:var(--text-primary);margin-top:4px}
+.yc{font-size:12px;margin-top:7px;padding-top:6px;border-top:.5px solid var(--border)}.ev{font-family:var(--font-mono);font-size:11px;color:var(--text-muted)}
+.tray{margin-top:12px;border:.5px solid var(--border-strong);border-radius:10px;padding:9px 11px;background:var(--surface-1)}
+.tray .r{display:flex;gap:8px;font-size:12px;padding:3px 0}.tray .r b{font-weight:500;flex:0 0 52px;font-family:var(--font-mono);font-size:11px;color:var(--text-muted)}
+</style>
+<div class="sp">
+<div class="b lg"><div class="k">B0 · LANDED</div><div class="n">Prep</div><div class="d">181 re-tags · 150 picks · data.js 500 KB</div></div>
+<div class="b lg"><div class="k">B0.5 · LANDED</div><div class="n">Frame QA</div><div class="d">9 excluded · 0 unreviewed</div></div>
+<div class="b lg"><div class="k">B1 · LANDED*</div><div class="n">Atlas v6</div><div class="d">selfcheck 150/150 · b334b15 local</div></div>
+<div class="b lg"><div class="k">B2 · LANDED</div><div class="n">Mods template</div><div class="d">4983b70 pushed · parity 14/14</div></div>
+<div class="b ow"><div class="k">B3 · OWED</div><div class="n">Design boards</div><div class="d">13 pairs + flow</div></div>
+<div class="b ow"><div class="k">B4 · OWED</div><div class="n">Close</div><div class="d">wg · drift/gold · mixdown · Selectah</div></div>
+</div>
+<div class="fk" id="fk"></div>
+<div class="tray"><div style="font-size:13px;font-weight:500;margin-bottom:4px">Your rulings <span class="ev" id="cnt"></span></div><div id="tr"></div>
+<div style="margin-top:8px"><button id="go" style="font-weight:500">Send my rulings ↗</button></div></div>
+<script>
+const F=[
+["push","griot-live-artifacts push (b334b15) vs red gate","verify-artifacts exits 1: ARTIFACTS_OUT_OF_SYNC=12. Nine are pre-existing desktop-cache lag. Eleven are 'missing on desktop' cloud-only cards (selectah-*, cinopsis codex, mine). The gate is red before my commit, and a cloud publish can never have a desktop copy.",["Push now: the red is structural cloud-only lag, not this change (log it as a drift)","Hold until the desktop store syncs, then push","Fix the gate first: teach verify-artifacts that cloud-only publishes aren't missing"],0,"rule: no push over a red gate"],
+["class","Atlas class axis","classification.json is your judgment row. The registry shows the Atlas as 'unclassified'.",["codex (a grounded, data-generated reference surface)","cypher","ceremony"],0,"classification.json"],
+["mount","Mount the Atlas in the DGS plan","Needs a SURFACES row, a tab and an eager iframe through dgs-plan-update. It's optional, since published ≠ mounted.",["Mount it at close via dgs-plan-update (Cinopsis or GBFolio tab)","Leave it unmounted for now"],0,"verify-surfaces.mjs"],
+["sess","Session size before B3","About 215k tokens in. Your rule: past ~150-200k, say so and recommend a fresh session before a fan-out. B3 is a fan-out (a design type plus 27 boards).",["Write a Spectrum contract for B3 + close and run it in a fresh session","Keep going here"],0,"COORDINATION IS NOT FREE"],
+["fork","File the ruling-fork board as a mods template","The board you're using now, with add-note drawers.",["Yes: griotwave-ruling-fork-board, in the same B3 pass","Not now"],0,"offered twice"]];
+const S={};F.forEach(f=>S[f[0]]={sel:new Set([f[4]]),multi:false,note:'',noteOn:true});
+const fk=document.getElementById('fk'),C={};const esc=s=>s.replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const isRec=f=>{const s=S[f[0]];return s.sel.size===1&&s.sel.has(f[4])&&!(s.multi&&s.noteOn&&s.note.trim())};
+function paint(f){const c=C[f[0]],s=S[f[0]];c.mode.textContent=s.multi?'multi-select':'pick one';
+c.opts.forEach((o,i)=>{const on=s.sel.has(i);o.setAttribute('role',s.multi?'checkbox':'radio');o.setAttribute('aria-checked',on);o.style.background=on?'var(--bg-accent)':'transparent';o.style.border=on?'1px solid var(--border-accent)':'0.5px solid var(--border)';o.style.color=on?'var(--text-accent)':'var(--text-primary)';const m=o.querySelector('.mk');m.style.borderRadius=s.multi?'3px':'50%';m.style.background=on?(s.multi?'var(--text-accent)':'var(--surface-2)'):'transparent';m.style.border=on?(s.multi?'1px solid var(--text-accent)':'4px solid var(--text-accent)'):'1px solid var(--border-strong)';m.style.color='var(--surface-2)';m.textContent=on&&s.multi?'✓':''});
+c.nb.textContent=s.multi?'Remove note':'Add note';c.nd.style.display=s.multi?'block':'none';
+const p=[...s.sel].sort().map(i=>esc(f[3][i]));let h='Your call: <span style="color:var(--text-accent)">'+(p.join(' + ')||'<span style="color:var(--text-danger)">nothing selected</span>')+'</span>';if(s.multi&&s.noteOn&&s.note.trim())h+='<div style="color:var(--text-secondary)">Note: '+esc(s.note.trim())+'</div>';c.yc.innerHTML=h+(isRec(f)?' <span class="rec">recommended</span>':' <span class="ev">(custom)</span>');c.el.style.borderColor=isRec(f)?'var(--border)':'var(--border-warning)'}
+function tray(){document.getElementById('tr').innerHTML=F.map(f=>{const s=S[f[0]],p=[...s.sel].sort().map(i=>esc(f[3][i])).join(' + ')||'—';const n=s.multi&&s.noteOn&&s.note.trim()?'<div style="color:var(--text-secondary)">Note: '+esc(s.note.trim())+'</div>':'';return `<div class="r"><b>${f[0]}</b><div style="color:${isRec(f)?'var(--text-primary)':'var(--text-warning)'}">${p}${n}</div></div>`}).join('');const k=F.filter(f=>!isRec(f)).length;document.getElementById('cnt').textContent=k?'· '+k+' custom':'· all recommended'}
+F.forEach(f=>{const s=S[f[0]],d=document.createElement('div');d.className='f';d.innerHTML=`<h4><span>${f[1]}</span><span class="mode"></span></h4><p>${f[2]}</p><div class="ev">${f[5]}</div>`;
+const opts=f[3].map((t,i)=>{const o=document.createElement('div');o.className='o';o.tabIndex=0;o.innerHTML=`<span class="mk"></span><span>${t}${i===f[4]?'<span class="rec">rec</span>':''}</span>`;const ch=()=>{if(s.multi){s.sel.has(i)?s.sel.delete(i):s.sel.add(i)}else s.sel=new Set([i]);paint(f);tray()};o.onclick=ch;o.onkeydown=e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();ch()}};d.appendChild(o);return o});
+const nb=document.createElement('button');nb.className='nb';d.appendChild(nb);const nd=document.createElement('div');nd.className='nd';nd.innerHTML='<label style="display:flex;gap:6px;align-items:center;font-size:12px;cursor:pointer"><input type="checkbox" checked> include this note in the ruling</label><textarea placeholder="Refine the call or name a third path"></textarea>';const cb=nd.querySelector('input'),ta=nd.querySelector('textarea');cb.onchange=()=>{s.noteOn=cb.checked;paint(f);tray()};ta.oninput=()=>{s.note=ta.value;paint(f);tray()};d.appendChild(nd);
+nb.onclick=()=>{s.multi=!s.multi;if(s.multi){s.noteOn=true;cb.checked=true;setTimeout(()=>ta.focus(),0)}else{const a=[...s.sel].sort()[0];s.sel=new Set([a===undefined?f[4]:a])}paint(f);tray()};
+const yc=document.createElement('div');yc.className='yc';d.appendChild(yc);fk.appendChild(d);C[f[0]]={el:d,opts,yc,nb,nd,mode:d.querySelector('.mode')};paint(f)});tray();
+document.getElementById('go').onclick=()=>{const bad=F.filter(f=>S[f[0]].sel.size===0&&!(S[f[0]].noteOn&&S[f[0]].note.trim()));if(bad.length){document.getElementById('cnt').innerHTML='<span style="color:var(--text-danger)">· pick an option or write a note for: '+bad.map(f=>f[0]).join(', ')+'</span>';return}
+sendPrompt('cc5-codify B3 rulings: '+F.map(f=>{const s=S[f[0]];let v=[...s.sel].sort().map(i=>f[3][i]).join(' + ');if(s.multi&&s.noteOn&&s.note.trim())v+=(v?' ; ':'')+'NOTE: '+s.note.trim();return f[0]+'='+v}).join(' | '))};
+</script></div>
+
+<script>
+(function(){
+  var root = document.documentElement;
+  var btn = document.getElementById('cve-theme-toggle');
+  var KEY = 'cve-theme';
+  function readStored(){
+    try { return localStorage.getItem(KEY); } catch (e) { return null; }
+  }
+  function writeStored(v){
+    try { localStorage.setItem(KEY, v); } catch (e) { /* storage unavailable — ignore */ }
+  }
+  function effectiveTheme(){
+    var stamped = root.getAttribute('data-theme');
+    if (stamped === 'light' || stamped === 'dark') return stamped;
+    var prefersLight = window.matchMedia &&
+      window.matchMedia('(prefers-color-scheme: light)').matches;
+    return prefersLight ? 'light' : 'dark';
+  }
+  function updateButton(){
+    var next = effectiveTheme() === 'light' ? 'dark' : 'light';
+    var label = next.charAt(0).toUpperCase() + next.slice(1);
+    btn.textContent = label;
+    btn.setAttribute('aria-label', 'Switch to ' + next + ' mode');
+  }
+  var stored = readStored();
+  if (stored === 'light' || stored === 'dark') {
+    root.setAttribute('data-theme', stored);
+  }
+  // else: stamp nothing — the OS preference governs.
+  updateButton();
+  btn.addEventListener('click', function(){
+    var next = effectiveTheme() === 'light' ? 'dark' : 'light';
+    root.setAttribute('data-theme', next);
+    writeStored(next);
+    updateButton();
+  });
+})();
+</script>
+
+</body>
+</html>

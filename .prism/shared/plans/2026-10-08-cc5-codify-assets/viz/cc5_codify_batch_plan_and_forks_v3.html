@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>cc5_codify_batch_plan_and_forks_v3</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3.7.0/dist/tabler-icons.min.css">
+<style>
+:root{
+  /* dark (default) */
+  --color-background-primary:#171a21;
+  --color-background-secondary:#1f232d;
+  --color-background-tertiary:#0f1116;
+  --color-background-info:rgba(90,168,255,.14);
+  --color-background-success:rgba(70,209,138,.14);
+  --color-background-warning:rgba(242,181,74,.16);
+  --color-background-danger:rgba(255,90,90,.14);
+  --color-text-primary:#eef1f6;
+  --color-text-secondary:#aab2c2;
+  --color-text-tertiary:#727b8c;
+  --color-text-info:#5aa8ff;
+  --color-text-success:#46d18a;
+  --color-text-warning:#f2b54a;
+  --color-text-danger:#ff6b6b;
+  --color-border-tertiary:rgba(255,255,255,.10);
+  --color-border-secondary:rgba(255,255,255,.18);
+  --color-border-primary:rgba(255,255,255,.28);
+  --color-border-info:rgba(90,168,255,.55);
+  --color-border-success:rgba(70,209,138,.55);
+  --color-border-warning:rgba(242,181,74,.55);
+  --color-border-danger:rgba(255,90,90,.55);
+  --border-radius-sm:6px;
+  --border-radius-md:8px;
+  --border-radius-lg:12px;
+  --border-radius-xl:16px;
+  /* current host token family (additive — see chat-viz-extractor-tokens-CONTEXT.md) */
+  --surface-2:#232833; --surface-1:rgba(255,255,255,.045); --surface-0:#14171e;
+  --bg-accent:rgba(224,164,88,.14); --bg-danger:rgba(229,83,75,.13);
+  --bg-success:rgba(87,185,138,.13); --bg-warning:rgba(224,164,88,.14);
+  --text-primary:#eef1f6; --text-secondary:#aab2c2; --text-muted:#78818f;
+  --text-accent:#e0a458; --text-danger:#e5534b; --text-success:#57b98a; --text-warning:#e0a458;
+  --border:rgba(255,255,255,.09); --border-strong:rgba(255,255,255,.17); --border-stronger:rgba(255,255,255,.26);
+  --border-accent:rgba(224,164,88,.45); --border-danger:rgba(229,83,75,.45);
+  --border-success:rgba(87,185,138,.45); --border-warning:rgba(224,164,88,.45);
+  --font-sans:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+  --font-mono:ui-monospace,'Cascadia Code',Consolas,monospace;
+  --font-voice:'Instrument Serif',Georgia,serif;
+  --radius:8px; --pad-sm:8px; --pad-md:12px; --pad-lg:16px; --pad-xl:22px;
+  --gap-xs:4px; --gap-sm:8px; --gap-md:12px; --gap-lg:16px; --gap-xl:22px;
+}
+@media (prefers-color-scheme: light){
+  :root{
+    --color-background-primary:#ffffff;
+    --color-background-secondary:#f5f6f8;
+    --color-background-tertiary:#eceef2;
+    --color-background-info:rgba(42,127,255,.10);
+    --color-background-success:rgba(28,160,98,.12);
+    --color-background-warning:rgba(200,140,20,.14);
+    --color-background-danger:rgba(210,50,50,.10);
+    --color-text-primary:#1a1d23;
+    --color-text-secondary:#5a6372;
+    --color-text-tertiary:#8a93a3;
+    --color-text-info:#2a7fff;
+    --color-text-success:#1ca062;
+    --color-text-warning:#b9821a;
+    --color-text-danger:#d23232;
+    --color-border-tertiary:rgba(0,0,0,.12);
+    --color-border-secondary:rgba(0,0,0,.22);
+    --color-border-primary:rgba(0,0,0,.32);
+    --color-border-info:rgba(42,127,255,.55);
+    --color-border-success:rgba(28,160,98,.55);
+    --color-border-warning:rgba(200,140,20,.55);
+    --color-border-danger:rgba(210,50,50,.55);
+  }
+}
+@media (prefers-color-scheme: light){
+  :root:not([data-theme="dark"]){
+    --surface-2:#ffffff; --surface-1:rgba(0,0,0,.032); --surface-0:#f7f6f3;
+    --bg-accent:rgba(150,104,31,.10); --bg-danger:rgba(178,49,41,.09);
+    --bg-success:rgba(47,125,85,.10); --bg-warning:rgba(150,104,31,.10);
+    --text-primary:#161513; --text-secondary:#57534c; --text-muted:#84807a;
+    --text-accent:#96681f; --text-danger:#b23129; --text-success:#2f7d55; --text-warning:#96681f;
+    --border:rgba(0,0,0,.11); --border-strong:rgba(0,0,0,.2); --border-stronger:rgba(0,0,0,.3);
+    --border-accent:rgba(150,104,31,.5); --border-danger:rgba(178,49,41,.5);
+    --border-success:rgba(47,125,85,.5); --border-warning:rgba(150,104,31,.5);
+  }
+}
+/* explicit choice, either direction — beats the OS media query above because
+   it is more specific AND declared after it (chat-viz-extractor-theme-toggle) */
+:root[data-theme="light"]{
+  --surface-2:#ffffff; --surface-1:rgba(0,0,0,.032); --surface-0:#f7f6f3;
+  --bg-accent:rgba(150,104,31,.10); --bg-danger:rgba(178,49,41,.09);
+  --bg-success:rgba(47,125,85,.10); --bg-warning:rgba(150,104,31,.10);
+  --text-primary:#161513; --text-secondary:#57534c; --text-muted:#84807a;
+  --text-accent:#96681f; --text-danger:#b23129; --text-success:#2f7d55; --text-warning:#96681f;
+  --border:rgba(0,0,0,.11); --border-strong:rgba(0,0,0,.2); --border-stronger:rgba(0,0,0,.3);
+  --border-accent:rgba(150,104,31,.5); --border-danger:rgba(178,49,41,.5);
+  --border-success:rgba(47,125,85,.5); --border-warning:rgba(150,104,31,.5);
+  color-scheme:light;
+}
+:root[data-theme="dark"]{
+  --surface-2:#232833; --surface-1:rgba(255,255,255,.045); --surface-0:#14171e;
+  --bg-accent:rgba(224,164,88,.14); --bg-danger:rgba(229,83,75,.13);
+  --bg-success:rgba(87,185,138,.13); --bg-warning:rgba(224,164,88,.14);
+  --text-primary:#eef1f6; --text-secondary:#aab2c2; --text-muted:#78818f;
+  --text-accent:#e0a458; --text-danger:#e5534b; --text-success:#57b98a; --text-warning:#e0a458;
+  --border:rgba(255,255,255,.09); --border-strong:rgba(255,255,255,.17); --border-stronger:rgba(255,255,255,.26);
+  --border-accent:rgba(224,164,88,.45); --border-danger:rgba(229,83,75,.45);
+  --border-success:rgba(87,185,138,.45); --border-warning:rgba(224,164,88,.45);
+  color-scheme:dark;
+}
+*{box-sizing:border-box;}
+html,body{margin:0;padding:0;}
+body{
+  background:var(--color-background-tertiary);
+  color:var(--color-text-primary);
+  font-family:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+  font-size:15px;line-height:1.6;-webkit-font-smoothing:antialiased;
+  padding:32px 20px 56px;
+}
+.cve-wrap{max-width:840px;margin:0 auto;padding-top:44px;}
+#cve-theme-toggle{position:fixed;top:14px;right:14px;z-index:9999;
+  padding:var(--pad-sm) var(--pad-md);border-radius:var(--radius);
+  border:1px solid var(--border-strong);background:var(--surface-1);
+  color:var(--text-primary);font-family:var(--font-sans);font-size:13px;
+  line-height:1;cursor:pointer;}
+#cve-theme-toggle:hover{background:var(--surface-2);}
+h1{font-size:22px;font-weight:600;} h2{font-size:18px;font-weight:600;}
+h3{font-size:16px;font-weight:600;}
+a{color:var(--color-text-info);text-decoration:none;}
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);border:0;}
+svg .bx{fill:var(--surface-1);stroke:var(--border-strong)}
+svg .t{fill:var(--text-primary)} svg .th{fill:var(--text-primary)}
+svg .ts{fill:var(--text-secondary)} svg .c{fill:var(--text-muted)}
+svg .a,svg .arr{stroke:var(--text-muted);fill:none}
+svg .leader{stroke:var(--text-muted);stroke-dasharray:3 3}
+svg .c-amber rect{fill:var(--bg-warning);stroke:var(--border-warning)}
+svg .c-green rect{fill:var(--bg-success);stroke:var(--border-success)}
+svg .c-red rect{fill:var(--bg-danger);stroke:var(--border-danger)}
+body{background:var(--surface-0);color:var(--text-primary);font-family:var(--font-sans);}
+</style>
+</head>
+<body>
+<button id="cve-theme-toggle" type="button" aria-label="Switch theme"></button>
+<div class="cve-wrap"><h2 class="sr-only">cc5-codify plan: six batches on a spine and eight decision forks. Each fork has an Add note button that opens a text area with a preselected note checkbox and switches the options from single to multi select. A rulings tray shows every call and note, and a send button posts them.</h2>
+<style>
+.sp{display:flex;gap:6px;align-items:stretch;margin:.5rem 0 1rem;overflow:hidden}
+.b{flex:1;min-width:0;border:.5px solid var(--border);border-radius:10px;padding:8px 9px;background:var(--surface-1);position:relative;overflow:hidden}
+.b .k{font-family:var(--font-mono);font-size:11px;color:var(--text-muted)}
+.b .n{font-size:13px;font-weight:500;margin:2px 0 4px}
+.b .d{font-size:11px;color:var(--text-secondary);line-height:1.45}
+.tag{display:inline-block;font-size:11px;padding:1px 6px;border-radius:6px;margin-top:5px}
+.dv{background:var(--bg-warning);color:var(--text-warning)}.cl{background:var(--bg-accent);color:var(--text-accent)}.ix{background:var(--bg-pro);color:var(--text-pro)}
+.b::after{content:"";position:absolute;left:0;bottom:0;height:2px;width:0;background:var(--text-accent);animation:run 3.6s ease-in-out infinite}
+.mo-off .b::after,.mo-off2 .nd{animation:none!important}
+@keyframes run{0%{width:0;left:0}50%{width:100%;left:0}100%{width:0;left:100%}}
+@keyframes pop{0%{transform:scale(.97)}100%{transform:scale(1)}}
+@keyframes drop{0%{opacity:0;transform:translateY(-4px)}100%{opacity:1;transform:none}}
+.fk{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:8px}
+.f{border:.5px solid var(--border);border-radius:10px;padding:9px 11px;transition:border-color .2s}
+.f h4{margin:0 0 3px;font-size:13px;font-weight:500;display:flex;justify-content:space-between;align-items:center;gap:8px}
+.f p{margin:0 0 6px;font-size:12px;color:var(--text-secondary);line-height:1.45}
+.o{display:flex;gap:8px;align-items:flex-start;font-size:12px;padding:6px 8px;margin-top:4px;border-radius:7px;cursor:pointer;line-height:1.4;user-select:none}
+.mk{flex:0 0 12px;height:12px;margin-top:2px;box-sizing:border-box;display:flex;align-items:center;justify-content:center;font-size:10px;line-height:1}
+.rec{font-size:11px;padding:0 5px;border-radius:5px;background:var(--bg-success);color:var(--text-success);margin-left:4px;white-space:nowrap}
+.mode{font-size:11px;font-weight:400;color:var(--text-muted);font-family:var(--font-mono)}
+.nb{font-size:12px;padding:3px 9px;margin-top:8px}
+.nd{margin-top:6px;animation:drop .2s ease-out}
+.nd textarea{width:100%;box-sizing:border-box;min-height:64px;font-size:12px;font-family:var(--font-sans);padding:6px 8px;border-radius:7px;border:.5px solid var(--border-strong);background:var(--surface-2);color:var(--text-primary);resize:vertical;margin-top:4px}
+.yc{font-size:12px;margin-top:7px;padding-top:6px;border-top:.5px solid var(--border)}
+.ev{font-family:var(--font-mono);font-size:11px;color:var(--text-muted)}
+.tray{margin-top:12px;border:.5px solid var(--border-strong);border-radius:10px;padding:9px 11px;background:var(--surface-1)}
+.tray .r{display:flex;gap:8px;font-size:12px;padding:3px 0;line-height:1.45}.tray .r b{font-weight:500;min-width:44px;flex:0 0 44px;font-family:var(--font-mono);font-size:11px;color:var(--text-muted)}
+</style>
+<div style="display:flex;justify-content:space-between;align-items:center;font-size:12px;color:var(--text-secondary)">
+<span>Spine: 6 batches · <span class="tag dv">device</span> <span class="tag cl">cloud</span> <span class="tag ix">interactive with you</span></span>
+<label style="display:flex;gap:6px;align-items:center;cursor:pointer"><input type="checkbox" id="mo" checked> motion</label></div>
+<div class="sp" id="sp">
+<div class="b"><div class="k">B0 · ~6 min</div><div class="n">Prep</div><div class="d">curate 150 (109 app×phase + 41 round-robin) → 480px webp (PIL) → slim projection 432 KB</div><span class="tag dv">device -p</span></div>
+<div class="b"><div class="k">B0.5 · ~4 min</div><div class="n">Frame QA</div><div class="d">contact sheets 4×4, fresh subagents, JSON only (gold 33)</div><span class="tag cl">subagents</span></div>
+<div class="b"><div class="k">B1 · build</div><div class="n">Atlas</div><div class="d">views template lifted raw · data via files · 150 assets (6×25) · verify 1440 + 390 + surface</div><span class="tag cl">cloud</span></div>
+<div class="b"><div class="k">B2</div><div class="n">File template</div><div class="d">mods griotwave-cc5-workflow-atlas · README row · build + parity · live seat + registry</div><span class="tag dv">native git</span></div>
+<div class="b"><div class="k">B3</div><div class="n">Design boards</div><div class="d">quickstart → type · 13 pairs + flow = 28 boards (&lt;512) · labels generated from inventory</div><span class="tag ix">with you</span></div>
+<div class="b"><div class="k">B4</div><div class="n">Close</div><div class="d">workgraph · drift + gold engines · mixdown · Selectah batch-board</div><span class="tag dv">engines</span></div>
+</div>
+<div class="fk" id="fk"></div>
+<div class="tray"><div style="font-size:13px;font-weight:500;margin-bottom:4px">Your rulings <span class="ev" id="cnt"></span></div><div id="tr"></div>
+<div style="margin-top:8px"><button id="go" style="font-weight:500">Send my rulings ↗</button></div></div>
+<script>
+const F=[
+["data","Atlas data delivery","Measured sandbox CSP: connect-src 'none' blocks fetch even for a sibling file. The contract says ship via files, never inline.",["Generate cc5-atlas.data.js (window.CC5=…) from the json, ship via files, load with script src","fetch the json via files and re-measure the CSP on the surface first","Inline the projection (breaks 'never inlined')"],0,"ontology §274 · CSP 2026-09-17"],
+["cdn","R3F module source","The views template imports from esm.sh. A published artifact allows cdnjs, jsdelivr, unpkg and tailwind, and has no eval.",["jsdelivr +esm with an import map, exact pins (react 19.1.0 · three 0.169.0 · fiber 9.1.2 · pp 3.0.4)","unpkg ?module","Try esm.sh on the surface first, then fall back"],0,"r3f-stage pinning_rule"],
+["other","The 'other' lane (284 steps)","ui_path[0] says most of it is Reallusion: Character Creator 4 (77), CC (73), iClone (15), Unreal (8).",["Re-tag in the projection by ui_path[0] (CC4/CC→CC5, iClone→iClone8, Unreal→UE5 lane) and keep app_raw","Keep 4 lanes as captured","Re-tag in cc5-steps.json at the source (Cinopsis commit)"],0,"corpus probe §2"],
+["gap","No evidence: glTF/GLB export + R3F board","0 hits in either source. The OA3 records for batches 2-4 all say GLB is still unproven.",["Render as GAP boards marked SIMULATED · no corpus evidence, citing OA3","Source labels from Blender/three docs via web research, tagged external","Drop both and end the flow at FBX"],0,"inventory probe §6"],
+["thin","Thin boards: Face Key + Data Link","Spoken evidence only, 0 shown frames under iClone8.",["Keep both, cards show the frame_ref text","Pull a 'shown' frame from the re-tagged lane if one exists","Drop"],0,"7 / 10 step hits"],
+["seat","Atlas source-of-truth seat","Both halves count as done only with a repo plus a registry row. An unregistered surface doesn't exist.",["griot-live-artifacts/live/cc5-workflow-atlas.html + artifact-registry row","Cinopsis .prism/shared/designs/cc5-atlas/","Both (live mirror generated from the Cinopsis seat)"],0,"§406 · drift 128"],
+["wg","Workgraph target","The contract says gbfolio. The corpus work itself sits in cinodex B11.",["gbfolio nodes (atlas + simulator seed) + cross-edge to cinodex B11","gbfolio only","cinodex only"],0,"gold 33 · drift 251"],
+["sel","Selectah batch-board","griotwave-sequence-batch-board has no Landed/Owed band (drift 245). Render-time patching would be hand-composing.",["NOTE AND FIX: fold the BT/LD/LOOP_LANDED/LOOP_OWED slots into the template, then generate","Patch at render time (logs a drift)","Use viz-template 11 with lane scope"],0,"drift 245 · 244"]];
+const S={};F.forEach(f=>S[f[0]]={sel:new Set([f[4]]),multi:false,note:'',noteOn:true});
+const fk=document.getElementById('fk'),C={};
+const esc=s=>s.replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+function isRec(f){const s=S[f[0]];return s.sel.size===1&&s.sel.has(f[4])&&!(s.multi&&s.noteOn&&s.note.trim())}
+function paint(f,bump){const c=C[f[0]],s=S[f[0]];
+c.mode.textContent=s.multi?'multi-select':'pick one';
+c.el.setAttribute('role',s.multi?'group':'radiogroup');
+c.opts.forEach((o,i)=>{const on=s.sel.has(i);o.setAttribute('role',s.multi?'checkbox':'radio');o.setAttribute('aria-checked',on);
+o.style.background=on?'var(--bg-accent)':'transparent';o.style.border=on?'1px solid var(--border-accent)':'0.5px solid var(--border)';o.style.color=on?'var(--text-accent)':'var(--text-primary)';
+const m=o.querySelector('.mk');m.style.borderRadius=s.multi?'3px':'50%';m.style.background=on?(s.multi?'var(--text-accent)':'var(--surface-2)'):'transparent';
+m.style.border=on?(s.multi?'1px solid var(--text-accent)':'4px solid var(--text-accent)'):'1px solid var(--border-strong)';m.style.color='var(--surface-2)';m.textContent=on&&s.multi?'✓':'';
+if(on&&bump===i){o.style.animation='none';void o.offsetWidth;o.style.animation='pop .18s ease-out'}});
+c.nb.textContent=s.multi?'Remove note':'Add note';c.nd.style.display=s.multi?'block':'none';
+const picks=[...s.sel].sort().map(i=>f[3][i]);
+let h='Your call: <span style="color:var(--text-accent)">'+(picks.length?picks.map(esc).join(' + '):'<span style="color:var(--text-danger)">nothing selected</span>')+'</span>';
+if(s.multi&&s.noteOn&&s.note.trim())h+='<div style="margin-top:3px;color:var(--text-secondary)">Note: '+esc(s.note.trim())+'</div>';
+h+=isRec(f)?' <span class="rec">recommended</span>':' <span class="ev">(custom)</span>';
+c.yc.innerHTML=h;c.el.style.borderColor=isRec(f)?'var(--border)':'var(--border-warning)'}
+function tray(){document.getElementById('tr').innerHTML=F.map(f=>{const s=S[f[0]],p=[...s.sel].sort().map(i=>esc(f[3][i])).join(' + ')||'<span style="color:var(--text-danger)">nothing selected</span>';
+const n=s.multi&&s.noteOn&&s.note.trim()?'<div style="color:var(--text-secondary)">Note: '+esc(s.note.trim())+'</div>':'';
+return `<div class="r"><b>${f[0]}</b><div style="color:${isRec(f)?'var(--text-primary)':'var(--text-warning)'}">${p}${n}</div></div>`}).join('');
+const k=F.filter(f=>!isRec(f)).length;document.getElementById('cnt').textContent=k?'· '+k+' custom':'· all recommended'}
+F.forEach(f=>{const s=S[f[0]],d=document.createElement('div');d.className='f';
+d.innerHTML=`<h4><span>${f[1]}</span><span class="mode"></span></h4><p>${f[2]}</p><div class="ev">${f[5]}</div>`;
+const opts=f[3].map((t,i)=>{const o=document.createElement('div');o.className='o';o.tabIndex=0;o.innerHTML=`<span class="mk"></span><span>${t}${i===f[4]?'<span class="rec">rec</span>':''}</span>`;
+const choose=()=>{if(s.multi){s.sel.has(i)?s.sel.delete(i):s.sel.add(i)}else{s.sel=new Set([i])}paint(f,i);tray()};
+o.onclick=choose;o.onkeydown=e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();choose()}};d.appendChild(o);return o});
+const nb=document.createElement('button');nb.className='nb';d.appendChild(nb);
+const nd=document.createElement('div');nd.className='nd';
+nd.innerHTML=`<label style="display:flex;gap:6px;align-items:center;font-size:12px;cursor:pointer"><input type="checkbox" checked> include this note in the ruling</label><textarea placeholder="Refine the call, add a condition, or name a third path"></textarea>`;
+const cb=nd.querySelector('input'),ta=nd.querySelector('textarea');
+cb.onchange=()=>{s.noteOn=cb.checked;paint(f);tray()};ta.oninput=()=>{s.note=ta.value;paint(f);tray()};
+d.appendChild(nd);
+nb.onclick=()=>{s.multi=!s.multi;if(s.multi){s.noteOn=true;cb.checked=true;nd.style.animation='none';void nd.offsetWidth;nd.style.animation='';setTimeout(()=>ta.focus(),0)}else{const first=[...s.sel].sort()[0];s.sel=new Set([first===undefined?f[4]:first])}paint(f);tray()};
+const yc=document.createElement('div');yc.className='yc';d.appendChild(yc);fk.appendChild(d);C[f[0]]={el:d,opts,yc,nb,nd,mode:d.querySelector('.mode')};paint(f)});
+tray();
+document.getElementById('go').onclick=()=>{const bad=F.filter(f=>S[f[0]].sel.size===0&&!(S[f[0]].noteOn&&S[f[0]].note.trim()));
+if(bad.length){document.getElementById('cnt').innerHTML='<span style="color:var(--text-danger)">· pick an option or write a note for: '+bad.map(f=>f[0]).join(', ')+'</span>';return}
+sendPrompt('cc5-codify rulings: '+F.map(f=>{const s=S[f[0]];let v=[...s.sel].sort().map(i=>f[3][i]).join(' + ');if(s.multi&&s.noteOn&&s.note.trim())v+=(v?' ; ':'')+'NOTE: '+s.note.trim();return f[0]+'='+v}).join(' | '))};
+document.getElementById('mo').onchange=e=>{document.getElementById('sp').classList.toggle('mo-off',!e.target.checked);document.getElementById('fk').classList.toggle('mo-off2',!e.target.checked)};
+</script></div>
+
+<script>
+(function(){
+  var root = document.documentElement;
+  var btn = document.getElementById('cve-theme-toggle');
+  var KEY = 'cve-theme';
+  function readStored(){
+    try { return localStorage.getItem(KEY); } catch (e) { return null; }
+  }
+  function writeStored(v){
+    try { localStorage.setItem(KEY, v); } catch (e) { /* storage unavailable — ignore */ }
+  }
+  function effectiveTheme(){
+    var stamped = root.getAttribute('data-theme');
+    if (stamped === 'light' || stamped === 'dark') return stamped;
+    var prefersLight = window.matchMedia &&
+      window.matchMedia('(prefers-color-scheme: light)').matches;
+    return prefersLight ? 'light' : 'dark';
+  }
+  function updateButton(){
+    var next = effectiveTheme() === 'light' ? 'dark' : 'light';
+    var label = next.charAt(0).toUpperCase() + next.slice(1);
+    btn.textContent = label;
+    btn.setAttribute('aria-label', 'Switch to ' + next + ' mode');
+  }
+  var stored = readStored();
+  if (stored === 'light' || stored === 'dark') {
+    root.setAttribute('data-theme', stored);
+  }
+  // else: stamp nothing — the OS preference governs.
+  updateButton();
+  btn.addEventListener('click', function(){
+    var next = effectiveTheme() === 'light' ? 'dark' : 'light';
+    root.setAttribute('data-theme', next);
+    writeStored(next);
+    updateButton();
+  });
+})();
+</script>
+
+</body>
+</html>
