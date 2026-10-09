@@ -22,6 +22,8 @@ d = json.loads(SRC.read_text(encoding="utf-8"))
 V, S = d["videos"], d["steps"]
 fr_txt = FRAMES_JS.read_text(encoding="utf-8")
 CURATED = set(json.loads(fr_txt[fr_txt.index("{"):fr_txt.rindex("}") + 1]).keys())
+QA_FLAGS = Path(r"C:\Users\digit\GriotMeta\griot-live-artifacts\.prism\local\cc5-atlas\qa-flags.json")
+QA_EXCLUDED = {x["frame_ref"] for x in json.loads(QA_FLAGS.read_text(encoding="utf-8"))["flags"]} if QA_FLAGS.exists() else set()
 
 def retag(s):
     if s["app"] != "other":
@@ -85,10 +87,17 @@ def board(bid, product, title, apps, rx):
     panels = {}
     for c in controls: panels[c["panel"]] = panels.get(c["panel"], 0) + 1
     shown = [s for s in hits if s["confidence"] == "shown"]
-    hero = sorted(hits, key=lambda s: (CONF_RANK.get(s["confidence"], 3), not (s["frame_ref"] in CURATED), s["batch"], s["t_start"]))
+    # Relevance first (drift 268): a selector hit on the control itself (ui_target) beats a hit on the
+    # panel path alone; the action text agreeing adds weight. Only then confidence, curation, order.
+    def rel(s):
+        return (2 if R.search(s["ui_target"] or "") else (1 if R.search(" > ".join(s["ui_path"] or [])) else 0)) + (1 if R.search(s["action"] or "") else 0)
+    # tier: strong relevance (rel >= 2) first; inside a tier a frame with a curated image wins, then relevance, confidence, order.
+    # QA-excluded frames (contact-sheet subagents, qa-flags.json) never become heroes.
+    pool = [s for s in hits if s["frame_ref"] not in QA_EXCLUDED]
+    hero = sorted(pool, key=lambda s: (rel(s) < 2, not (s["frame_ref"] in CURATED), -rel(s), CONF_RANK.get(s["confidence"], 3), s["batch"], s["t_start"]))
     return {"id": bid, "product": product, "title": title, "source": "corpus", "selector": {"apps": sorted(apps) if apps else "any", "regex": rx},
             "evidence": {"steps": len(hits), "shown": len(shown), "controls": len(controls), "videos": sorted({s["video_id"] for s in hits})},
-            "hero_frames": [cite(s) for s in hero[:4]], "panels": panels, "controls": controls}
+            "hero_frames": [dict(cite(s), relevance=rel(s)) for s in hero[:4]], "panels": panels, "controls": controls}
 
 out = {"generated_by": "Cinopsis/.prism/shared/designs/cc5-workflow-simulator/build-boards-manifest.py",
        "inputs": [str(SRC), str(FRAMES_JS), RESEARCH], "rule": "GENERATED, NEVER HAND-EDITED. Corpus labels only from cc5-steps.json; external labels only from the research doc.",

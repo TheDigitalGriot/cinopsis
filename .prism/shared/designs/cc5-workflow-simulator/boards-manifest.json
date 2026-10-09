@@ -31,16 +31,6 @@
    },
    "hero_frames": [
     {
-     "video_id": "FrFJDjq7Cac",
-     "title": "Refine Mesh with Curve Tools in Headshot 3 | Headshot 3 Plug-in Tutorial",
-     "t_start": 44,
-     "frame_ref": "frames/FrFJDjq7Cac_44.png",
-     "confidence": "shown",
-     "frame_curated": true,
-     "phase": "Character Generation",
-     "action": "Regenerate the front image"
-    },
-    {
      "video_id": "BY7vlKwzfnk",
      "title": "Getting Started with Headshot 3 Updates | Headshot 3 Plug-in Tutorial",
      "t_start": 47,
@@ -48,17 +38,8 @@
      "confidence": "shown",
      "frame_curated": true,
      "phase": "Installation",
-     "action": "Hover over the Headshot button to view the tooltip introduction"
-    },
-    {
-     "video_id": "FrFJDjq7Cac",
-     "title": "Refine Mesh with Curve Tools in Headshot 3 | Headshot 3 Plug-in Tutorial",
-     "t_start": 55,
-     "frame_ref": "frames/FrFJDjq7Cac_55.png",
-     "confidence": "shown",
-     "frame_curated": true,
-     "phase": "Character Generation",
-     "action": "Click Generate to create a side view from the front reference"
+     "action": "Hover over the Headshot button to view the tooltip introduction",
+     "relevance": 3
     },
     {
      "video_id": "BY7vlKwzfnk",
@@ -68,7 +49,30 @@
      "confidence": "shown",
      "frame_curated": true,
      "phase": "Installation",
-     "action": "Click Headshot 3 to open the UI panel"
+     "action": "Click Headshot 3 to open the UI panel",
+     "relevance": 3
+    },
+    {
+     "video_id": "LXzjbflCe1s",
+     "title": "Blender 5.0 Full 3D Animation Tutorial | Character Creator 5, iClone 8 to Blender Workflow",
+     "t_start": 127,
+     "frame_ref": "frames/LXzjbflCe1s_127.png",
+     "confidence": "shown",
+     "frame_curated": true,
+     "phase": "Generate 3D Avatar with Character Creator 5 Headshot 2 Plugin",
+     "action": "In the CC5 Headshot 2 plugin, click Image and click Auto",
+     "relevance": 2
+    },
+    {
+     "video_id": "BY7vlKwzfnk",
+     "title": "Getting Started with Headshot 3 Updates | Headshot 3 Plug-in Tutorial",
+     "t_start": 40,
+     "frame_ref": "frames/BY7vlKwzfnk_40.png",
+     "confidence": "spoken",
+     "frame_curated": false,
+     "phase": "Installation",
+     "action": "Open Character Creator and confirm the Headshot 3 toolbar at the top of the interface",
+     "relevance": 3
     }
    ],
    "panels": {
@@ -3880,44 +3884,48 @@
    },
    "hero_frames": [
     {
-     "video_id": "jphEXauoASw",
-     "title": "Dragon Ball Z Character - Adding Spring Bones to Hair | Character Creator 4 Tutorial - Part 03",
-     "t_start": 119,
-     "frame_ref": "frames/jphEXauoASw_119.png",
+     "video_id": "99074uIeMAY",
+     "title": "Creating Morphs with Blender Data Link | Character Creator 4 Tutorial",
+     "t_start": 39,
+     "frame_ref": "frames/99074uIeMAY_39.png",
      "confidence": "shown",
      "frame_curated": true,
-     "phase": "Intro",
-     "action": "Double-click a bone in the preview, then click the matching bone in the viewport"
+     "phase": "Establishing Base Shape & Body Proportions in CC",
+     "action": "Open the Morph tab of the Modify panel to find all morphs",
+     "relevance": 3
     },
     {
-     "video_id": "jphEXauoASw",
-     "title": "Dragon Ball Z Character - Adding Spring Bones to Hair | Character Creator 4 Tutorial - Part 03",
-     "t_start": 156,
-     "frame_ref": "frames/jphEXauoASw_156.png",
+     "video_id": "L07W7AkI7ZI",
+     "title": "Introduce HD Facial Animation",
+     "t_start": 212,
+     "frame_ref": "frames/L07W7AkI7ZI_212.png",
      "confidence": "shown",
      "frame_curated": true,
-     "phase": "Intro",
-     "action": "Click Activate to finish characterization"
+     "phase": "HD Profile & Corrective Morph",
+     "action": "Re-adjust expression morph sliders with correctives active",
+     "relevance": 3
     },
     {
-     "video_id": "92CED6LtECo",
-     "title": "How to Create CC Smart Hair Part 2 | Character Creator 4 Tutorial",
-     "t_start": 319,
-     "frame_ref": "frames/92CED6LtECo_319.png",
+     "video_id": "BY7vlKwzfnk",
+     "title": "Getting Started with Headshot 3 Updates | Headshot 3 Plug-in Tutorial",
+     "t_start": 460,
+     "frame_ref": "frames/BY7vlKwzfnk_460.png",
      "confidence": "shown",
      "frame_curated": true,
-     "phase": "Saving Custom Hair as Smart Hair",
-     "action": "Load the six textures into their slots (flow, root and ID in Shader Settings)"
+     "phase": "Sculpt Morph",
+     "action": "Enable Active Sculpt Morph (or press Shift+S)",
+     "relevance": 3
     },
     {
-     "video_id": "92CED6LtECo",
-     "title": "How to Create CC Smart Hair Part 2 | Character Creator 4 Tutorial",
-     "t_start": 340,
-     "frame_ref": "frames/92CED6LtECo_340.png",
+     "video_id": "CQBqev6hQGw",
+     "title": "HD Eyelash Content & Editing",
+     "t_start": 104,
+     "frame_ref": "frames/CQBqev6hQGw_104.png",
      "confidence": "shown",
      "frame_curated": true,
-     "phase": "Saving Custom Hair as Smart Hair",
-     "action": "Choose root and end colors that blend with the base"
+     "phase": "Intro Eyelash Content",
+     "action": "Select Replace Morph from the morph options",
+     "relevance": 3
     }
    ],
    "panels": {
@@ -6453,7 +6461,19 @@
      "confidence": "shown",
      "frame_curated": true,
      "phase": "Extended Plus Profile & Correctives",
-     "action": "Click Edit Expression to inspect the character's current facial profile"
+     "action": "Click Edit Expression to inspect the character's current facial profile",
+     "relevance": 2
+    },
+    {
+     "video_id": "cHCWOFGuigw",
+     "title": "Create a Stylized Wolverine with Retractable Claws using CC5 & ActorMIXER | Blender HD Workflow",
+     "t_start": 567,
+     "frame_ref": "frames/cHCWOFGuigw_567.png",
+     "confidence": "spoken",
+     "frame_curated": false,
+     "phase": "Editing expressions",
+     "action": "Fix expressions in the facial profile editor with mesh edit soft selection and mirror symmetry",
+     "relevance": 2
     },
     {
      "video_id": "jBQBWrmRS7s",
@@ -6463,7 +6483,8 @@
      "confidence": "shown",
      "frame_curated": true,
      "phase": "Extended Plus Profile & Correctives",
-     "action": "Enable the Corrective option to upgrade the profile to Extended Plus"
+     "action": "Enable the Corrective option to upgrade the profile to Extended Plus",
+     "relevance": 1
     },
     {
      "video_id": "jBQBWrmRS7s",
@@ -6473,17 +6494,8 @@
      "confidence": "shown",
      "frame_curated": true,
      "phase": "Extended Plus Profile & Correctives",
-     "action": "Choose not to save the previous profile settings when upgrading"
-    },
-    {
-     "video_id": "jBQBWrmRS7s",
-     "title": "Introduce Extended Plus Facial Profile",
-     "t_start": 49,
-     "frame_ref": "frames/jBQBWrmRS7s_49.png",
-     "confidence": "shown",
-     "frame_curated": false,
-     "phase": "Extended Plus Profile & Correctives",
-     "action": "View all the corrective regions now that correctives are enabled"
+     "action": "Choose not to save the previous profile settings when upgrading",
+     "relevance": 1
     }
    ],
    "panels": {
@@ -6766,7 +6778,8 @@
      "confidence": "shown",
      "frame_curated": true,
      "phase": "HD Eyes & Digital Human Eye shader",
-     "action": "Adjust iris depth scale"
+     "action": "Adjust iris depth scale",
+     "relevance": 3
     },
     {
      "video_id": "vq2YjJk2i4A",
@@ -6776,17 +6789,8 @@
      "confidence": "shown",
      "frame_curated": true,
      "phase": "HD Eyes & Digital Human Eye shader",
-     "action": "Adjust sclera brightness and roughness"
-    },
-    {
-     "video_id": "vq2YjJk2i4A",
-     "title": "HD Eye Content and Editing",
-     "t_start": 127,
-     "frame_ref": "frames/vq2YjJk2i4A_127.png",
-     "confidence": "shown",
-     "frame_curated": true,
-     "phase": "HD Eyes & Digital Human Eye shader",
-     "action": "Adjust eyelid shadow intensity, range and tint on the eyeball"
+     "action": "Adjust sclera brightness and roughness",
+     "relevance": 3
     },
     {
      "video_id": "vq2YjJk2i4A",
@@ -6796,7 +6800,19 @@
      "confidence": "shown",
      "frame_curated": true,
      "phase": "Eye Elements",
-     "action": "Select the eye occlusion and tearline elements, both suffixed HD"
+     "action": "Select the eye occlusion and tearline elements, both suffixed HD",
+     "relevance": 3
+    },
+    {
+     "video_id": "BY7vlKwzfnk",
+     "title": "Getting Started with Headshot 3 Updates | Headshot 3 Plug-in Tutorial",
+     "t_start": 579,
+     "frame_ref": "frames/BY7vlKwzfnk_579.png",
+     "confidence": "shown",
+     "frame_curated": false,
+     "phase": "Image Matching Tools",
+     "action": "Refine the front face and match iris size with the Iris UV Radius slider",
+     "relevance": 3
     }
    ],
    "panels": {
@@ -7355,44 +7371,48 @@
    },
    "hero_frames": [
     {
-     "video_id": "Khcg23hRy8A",
-     "title": "The Incredible Blender x CC5 HD Character Workflow",
-     "t_start": 119,
-     "frame_ref": "frames/Khcg23hRy8A_119.png",
-     "confidence": "shown",
-     "frame_curated": true,
-     "phase": "Character setup in CC5",
-     "action": "In the export panel choose whether to send a static character or a character with animation"
+     "video_id": "GWQTDKpLBcQ",
+     "title": "Blender Auto Setup For CC5 HD Character | Character Creator 5 Tutorial",
+     "t_start": 79,
+     "frame_ref": "frames/GWQTDKpLBcQ_79.png",
+     "confidence": "spoken",
+     "frame_curated": false,
+     "phase": "Installation & Export Settings",
+     "action": "Go to Plugins > Export Character to Blender to open the export panel (also reachable from the toolbar)",
+     "relevance": 3
     },
     {
      "video_id": "Khcg23hRy8A",
      "title": "The Incredible Blender x CC5 HD Character Workflow",
-     "t_start": 140,
-     "frame_ref": "frames/Khcg23hRy8A_140.png",
-     "confidence": "shown",
-     "frame_curated": true,
-     "phase": "Exporting to Blender",
-     "action": "Pick a subdivision level"
+     "t_start": 111,
+     "frame_ref": "frames/Khcg23hRy8A_111.png",
+     "confidence": "spoken",
+     "frame_curated": false,
+     "phase": "Character setup in CC5",
+     "action": "Open Plugins > Blender Pipeline and choose Export Character to Blender (or use the toolbar shortcut)",
+     "relevance": 3
     },
     {
      "video_id": "GWQTDKpLBcQ",
      "title": "Blender Auto Setup For CC5 HD Character | Character Creator 5 Tutorial",
-     "t_start": 280,
-     "frame_ref": "frames/GWQTDKpLBcQ_280.png",
-     "confidence": "shown",
-     "frame_curated": true,
-     "phase": "Shader Adjustments",
-     "action": "Set the subdivision level to one (then export)"
-    },
-    {
-     "video_id": "92CED6LtECo",
-     "title": "How to Create CC Smart Hair Part 2 | Character Creator 4 Tutorial",
-     "t_start": 30,
-     "frame_ref": "frames/92CED6LtECo_30.png",
+     "t_start": 225,
+     "frame_ref": "frames/GWQTDKpLBcQ_225.png",
      "confidence": "spoken",
      "frame_curated": false,
-     "phase": "Creating Hair Cards in Blender",
-     "action": "Export through the Blender Pipeline with Selected Model (no motions)"
+     "phase": "Shader Adjustments",
+     "action": "Export the character to Blender",
+     "relevance": 2
+    },
+    {
+     "video_id": "GWQTDKpLBcQ",
+     "title": "Blender Auto Setup For CC5 HD Character | Character Creator 5 Tutorial",
+     "t_start": 516,
+     "frame_ref": "frames/GWQTDKpLBcQ_516.png",
+     "confidence": "spoken",
+     "frame_curated": false,
+     "phase": "Animation Retargeting",
+     "action": "Export the static mesh to Blender",
+     "relevance": 2
     }
    ],
    "panels": {
@@ -7921,44 +7941,48 @@
    },
    "hero_frames": [
     {
+     "video_id": "O1IdyRmgfRk",
+     "title": "[Webinar] Blender Pipeline Workflow with iClone & Character Creator",
+     "t_start": 399,
+     "frame_ref": "frames/O1IdyRmgfRk_399.png",
+     "confidence": "shown",
+     "frame_curated": true,
+     "phase": "Connecting Blender data link",
+     "action": "Launch Blender Pipeline Data Link and dock its panel",
+     "relevance": 3
+    },
+    {
+     "video_id": "99074uIeMAY",
+     "title": "Creating Morphs with Blender Data Link | Character Creator 4 Tutorial",
+     "t_start": 14,
+     "frame_ref": "frames/99074uIeMAY_14.png",
+     "confidence": "spoken",
+     "frame_curated": false,
+     "phase": "Intro",
+     "action": "Ensure a temporary Data Link folder is set in Character Creator settings",
+     "relevance": 3
+    },
+    {
      "video_id": "IeZhOeOk5OU",
      "title": "Transfer Scene and Crowd with Blender Data Link | Character Creator 4 Tutorial",
-     "t_start": 88,
-     "frame_ref": "frames/IeZhOeOk5OU_88.png",
-     "confidence": "shown",
-     "frame_curated": true,
-     "phase": "Syncing Lights",
-     "action": "Click Sync Lights to transfer directional, point and spot lights and the HDRI"
+     "t_start": 15,
+     "frame_ref": "frames/IeZhOeOk5OU_15.png",
+     "confidence": "spoken",
+     "frame_curated": false,
+     "phase": "Basic Setup & Scene Transfer",
+     "action": "Connect iClone and Blender via Data Link for the animated interior scene",
+     "relevance": 3
     },
     {
      "video_id": "99074uIeMAY",
      "title": "Creating Morphs with Blender Data Link | Character Creator 4 Tutorial",
-     "t_start": 198,
-     "frame_ref": "frames/99074uIeMAY_198.png",
-     "confidence": "shown",
-     "frame_curated": true,
-     "phase": "Update Character Creator",
-     "action": "Select Body as the target mesh because several meshes were modified (a single mesh such as eyes or head could be selected otherwise)"
-    },
-    {
-     "video_id": "99074uIeMAY",
-     "title": "Creating Morphs with Blender Data Link | Character Creator 4 Tutorial",
-     "t_start": 210,
-     "frame_ref": "frames/99074uIeMAY_210.png",
-     "confidence": "shown",
-     "frame_curated": true,
-     "phase": "Update Character Creator",
-     "action": "Make sure Adjust Bones is selected since bones were changed in the Proportion section"
-    },
-    {
-     "video_id": "Khcg23hRy8A",
-     "title": "The Incredible Blender x CC5 HD Character Workflow",
-     "t_start": 285,
-     "frame_ref": "frames/Khcg23hRy8A_285.png",
-     "confidence": "shown",
-     "frame_curated": true,
-     "phase": "Data link transfer",
-     "action": "Click Send Avatar to send the character to Blender"
+     "t_start": 17,
+     "frame_ref": "frames/99074uIeMAY_17.png",
+     "confidence": "spoken",
+     "frame_curated": false,
+     "phase": "Intro",
+     "action": "Ensure Data Link is listening in Character Creator",
+     "relevance": 3
     }
    ],
    "panels": {
@@ -9289,7 +9313,8 @@
      "confidence": "shown",
      "frame_curated": false,
      "phase": "Q&A session",
-     "action": "Select the tail and show its Transform track on the timeline"
+     "action": "Select the tail and show its Transform track on the timeline",
+     "relevance": 2
     },
     {
      "video_id": "O1IdyRmgfRk",
@@ -9299,7 +9324,8 @@
      "confidence": "spoken",
      "frame_curated": false,
      "phase": "Rigify and animation refinement",
-     "action": "Play back the edited jump in iClone"
+     "action": "Play back the edited jump in iClone",
+     "relevance": 2
     },
     {
      "video_id": "O1IdyRmgfRk",
@@ -9309,7 +9335,8 @@
      "confidence": "spoken",
      "frame_curated": false,
      "phase": "Rigify and animation refinement",
-     "action": "Return to the Data Link panel and scrub to the height of the jump"
+     "action": "Return to the Data Link panel and scrub to the height of the jump",
+     "relevance": 2
     },
     {
      "video_id": "O1IdyRmgfRk",
@@ -9319,7 +9346,8 @@
      "confidence": "spoken",
      "frame_curated": false,
      "phase": "Rigify and animation refinement",
-     "action": "Play the walk in iClone"
+     "action": "Play the walk in iClone",
+     "relevance": 2
     }
    ],
    "panels": {
@@ -9549,7 +9577,8 @@
      "confidence": "spoken",
      "frame_curated": false,
      "phase": "Mocap & Motion Editing",
-     "action": "Use Face Key to refine recorded facial expressions by strengthening or expanding specific areas"
+     "action": "Use Face Key to refine recorded facial expressions by strengthening or expanding specific areas",
+     "relevance": 3
     },
     {
      "video_id": "LXzjbflCe1s",
@@ -9559,7 +9588,8 @@
      "confidence": "spoken",
      "frame_curated": false,
      "phase": "Lip Sync, Facial Expression & Body Motion in iClone 8",
-     "action": "Open the facial expression tool and choose Face Key"
+     "action": "Open the facial expression tool and choose Face Key",
+     "relevance": 3
     },
     {
      "video_id": "LXzjbflCe1s",
@@ -9569,7 +9599,8 @@
      "confidence": "spoken",
      "frame_curated": false,
      "phase": "Lip Sync, Facial Expression & Body Motion in iClone 8",
-     "action": "At frame one choose the Neutral expression from the expression list"
+     "action": "At frame one choose the Neutral expression from the expression list",
+     "relevance": 1
     },
     {
      "video_id": "LXzjbflCe1s",
@@ -9579,7 +9610,8 @@
      "confidence": "spoken",
      "frame_curated": false,
      "phase": "Lip Sync, Facial Expression & Body Motion in iClone 8",
-     "action": "Key a Smile expression at the current frame"
+     "action": "Key a Smile expression at the current frame",
+     "relevance": 1
     }
    ],
    "panels": {
@@ -9833,6 +9865,39 @@
    },
    "hero_frames": [
     {
+     "video_id": "O1IdyRmgfRk",
+     "title": "[Webinar] Blender Pipeline Workflow with iClone & Character Creator",
+     "t_start": 2252,
+     "frame_ref": "frames/O1IdyRmgfRk_2252.png",
+     "confidence": "shown",
+     "frame_curated": true,
+     "phase": "Adding and rigging a tail",
+     "action": "Drag and drop the cattail FBX from the desktop into the Character Creator scene",
+     "relevance": 3
+    },
+    {
+     "video_id": "jphEXauoASw",
+     "title": "Dragon Ball Z Character - Adding Spring Bones to Hair | Character Creator 4 Tutorial - Part 03",
+     "t_start": 64,
+     "frame_ref": "frames/jphEXauoASw_64.png",
+     "confidence": "spoken",
+     "frame_curated": false,
+     "phase": "Intro",
+     "action": "Export the character as an FBX clothed character",
+     "relevance": 3
+    },
+    {
+     "video_id": "LXzjbflCe1s",
+     "title": "Blender 5.0 Full 3D Animation Tutorial | Character Creator 5, iClone 8 to Blender Workflow",
+     "t_start": 679,
+     "frame_ref": "frames/LXzjbflCe1s_679.png",
+     "confidence": "spoken",
+     "frame_curated": false,
+     "phase": "Lip Sync, Facial Expression & Body Motion in iClone 8",
+     "action": "File > Export > Export FBX, set Target Tool Preset to Blender",
+     "relevance": 2
+    },
+    {
      "video_id": "jphEXauoASw",
      "title": "Dragon Ball Z Character - Adding Spring Bones to Hair | Character Creator 4 Tutorial - Part 03",
      "t_start": 83,
@@ -9840,37 +9905,8 @@
      "confidence": "shown",
      "frame_curated": true,
      "phase": "Intro",
-     "action": "Export the character"
-    },
-    {
-     "video_id": "jphEXauoASw",
-     "title": "Dragon Ball Z Character - Adding Spring Bones to Hair | Character Creator 4 Tutorial - Part 03",
-     "t_start": 98,
-     "frame_ref": "frames/jphEXauoASw_98.png",
-     "confidence": "shown",
-     "frame_curated": true,
-     "phase": "Intro",
-     "action": "Choose Character, then Humanoid"
-    },
-    {
-     "video_id": "Khcg23hRy8A",
-     "title": "The Incredible Blender x CC5 HD Character Workflow",
-     "t_start": 119,
-     "frame_ref": "frames/Khcg23hRy8A_119.png",
-     "confidence": "shown",
-     "frame_curated": true,
-     "phase": "Character setup in CC5",
-     "action": "In the export panel choose whether to send a static character or a character with animation"
-    },
-    {
-     "video_id": "Khcg23hRy8A",
-     "title": "The Incredible Blender x CC5 HD Character Workflow",
-     "t_start": 140,
-     "frame_ref": "frames/Khcg23hRy8A_140.png",
-     "confidence": "shown",
-     "frame_curated": true,
-     "phase": "Exporting to Blender",
-     "action": "Pick a subdivision level"
+     "action": "Export the character",
+     "relevance": 1
     }
    ],
    "panels": {
@@ -10425,44 +10461,48 @@
    },
    "hero_frames": [
     {
-     "video_id": "Rjpm8AJeoD0",
-     "title": "CC/iC Blender Tools 1.5.8 - Spring Bone Hair Rigging & Physics",
-     "t_start": 37,
-     "frame_ref": "frames/Rjpm8AJeoD0_37.png",
-     "confidence": "shown",
-     "frame_curated": true,
-     "phase": "Adding Spring Bones",
-     "action": "Run the Bones from Hair Cards operator"
+     "video_id": "O1IdyRmgfRk",
+     "title": "[Webinar] Blender Pipeline Workflow with iClone & Character Creator",
+     "t_start": 444,
+     "frame_ref": "frames/O1IdyRmgfRk_444.png",
+     "confidence": "spoken",
+     "frame_curated": false,
+     "phase": "Connecting Blender data link",
+     "action": "Open Edit > Preferences > Add-ons and expand CC/IC Tools",
+     "relevance": 3
     },
     {
-     "video_id": "jjh7AihrFuw",
-     "title": "Transfer & Convert the Hair & Accessories via Blender Auto Setup | Character Creator 4 Tutorial",
-     "t_start": 58,
-     "frame_ref": "frames/jjh7AihrFuw_58.png",
-     "confidence": "shown",
-     "frame_curated": true,
-     "phase": "Exporting to Character Creator",
-     "action": "Click Export Accessory in the Auto Setup panel"
+     "video_id": "O1IdyRmgfRk",
+     "title": "[Webinar] Blender Pipeline Workflow with iClone & Character Creator",
+     "t_start": 573,
+     "frame_ref": "frames/O1IdyRmgfRk_573.png",
+     "confidence": "spoken",
+     "frame_curated": false,
+     "phase": "Connecting Blender data link",
+     "action": "In Blender press N to open the sidebar and open the CC/IC Link tab",
+     "relevance": 3
     },
     {
-     "video_id": "Rjpm8AJeoD0",
-     "title": "CC/iC Blender Tools 1.5.8 - Spring Bone Hair Rigging & Physics",
-     "t_start": 83,
-     "frame_ref": "frames/Rjpm8AJeoD0_83.png",
-     "confidence": "shown",
-     "frame_curated": true,
-     "phase": "Adding Spring Bones",
-     "action": "Clear the selected (newly generated) bones to retry placement"
+     "video_id": "O1IdyRmgfRk",
+     "title": "[Webinar] Blender Pipeline Workflow with iClone & Character Creator",
+     "t_start": 3482,
+     "frame_ref": "frames/O1IdyRmgfRk_3482.png",
+     "confidence": "spoken",
+     "frame_curated": false,
+     "phase": "Rigify and animation refinement",
+     "action": "Open the CC Pipeline / Data Link panel in Blender to set up the Rigify rig",
+     "relevance": 3
     },
     {
-     "video_id": "Rjpm8AJeoD0",
-     "title": "CC/iC Blender Tools 1.5.8 - Spring Bone Hair Rigging & Physics",
-     "t_start": 253,
-     "frame_ref": "frames/Rjpm8AJeoD0_253.png",
-     "confidence": "shown",
-     "frame_curated": true,
-     "phase": "Spring Bone Simulation",
-     "action": "Build the spring bone simulation"
+     "video_id": "O1IdyRmgfRk",
+     "title": "[Webinar] Blender Pipeline Workflow with iClone & Character Creator",
+     "t_start": 3523,
+     "frame_ref": "frames/O1IdyRmgfRk_3523.png",
+     "confidence": "spoken",
+     "frame_curated": false,
+     "phase": "Rigify and animation refinement",
+     "action": "Go to CC Pipeline, where the Rigify button sits, and view the motion sets",
+     "relevance": 3
     }
    ],
    "panels": {
@@ -12602,32 +12642,13 @@
     {
      "video_id": "Rjpm8AJeoD0",
      "title": "CC/iC Blender Tools 1.5.8 - Spring Bone Hair Rigging & Physics",
-     "t_start": 37,
-     "frame_ref": "frames/Rjpm8AJeoD0_37.png",
-     "confidence": "shown",
-     "frame_curated": true,
-     "phase": "Adding Spring Bones",
-     "action": "Run the Bones from Hair Cards operator"
-    },
-    {
-     "video_id": "Rjpm8AJeoD0",
-     "title": "CC/iC Blender Tools 1.5.8 - Spring Bone Hair Rigging & Physics",
      "t_start": 43,
      "frame_ref": "frames/Rjpm8AJeoD0_43.png",
      "confidence": "shown",
      "frame_curated": true,
      "phase": "Adding Spring Bones",
-     "action": "Pose the spring bones to preview the binding"
-    },
-    {
-     "video_id": "Rjpm8AJeoD0",
-     "title": "CC/iC Blender Tools 1.5.8 - Spring Bone Hair Rigging & Physics",
-     "t_start": 83,
-     "frame_ref": "frames/Rjpm8AJeoD0_83.png",
-     "confidence": "shown",
-     "frame_curated": true,
-     "phase": "Adding Spring Bones",
-     "action": "Clear the selected (newly generated) bones to retry placement"
+     "action": "Pose the spring bones to preview the binding",
+     "relevance": 3
     },
     {
      "video_id": "Rjpm8AJeoD0",
@@ -12637,7 +12658,30 @@
      "confidence": "shown",
      "frame_curated": true,
      "phase": "Rigify Spring Rig",
-     "action": "Show or hide spring controls with the layer buttons in the Spring Rig properties panel"
+     "action": "Show or hide spring controls with the layer buttons in the Spring Rig properties panel",
+     "relevance": 3
+    },
+    {
+     "video_id": "Rjpm8AJeoD0",
+     "title": "CC/iC Blender Tools 1.5.8 - Spring Bone Hair Rigging & Physics",
+     "t_start": 524,
+     "frame_ref": "frames/Rjpm8AJeoD0_524.png",
+     "confidence": "spoken",
+     "frame_curated": false,
+     "phase": "Rigify Spring Rig",
+     "action": "Switch the view between the full control rig, the base rig and the spring rig from the Rigify mini tool bar",
+     "relevance": 3
+    },
+    {
+     "video_id": "Rjpm8AJeoD0",
+     "title": "CC/iC Blender Tools 1.5.8 - Spring Bone Hair Rigging & Physics",
+     "t_start": 224,
+     "frame_ref": "frames/Rjpm8AJeoD0_224.png",
+     "confidence": "shown",
+     "frame_curated": false,
+     "phase": "Adding Spring Bones",
+     "action": "Pose the bones to check the back-hair weight binding",
+     "relevance": 2
     }
    ],
    "panels": {
@@ -13424,6 +13468,17 @@
    },
    "hero_frames": [
     {
+     "video_id": "KgrSSE_6j3Y",
+     "title": "Blender Data Link For CC5 HD Character | Character Creator 5 Tutorial",
+     "t_start": 79,
+     "frame_ref": "frames/KgrSSE_6j3Y_79.png",
+     "confidence": "shown",
+     "frame_curated": true,
+     "phase": "Texture Baking",
+     "action": "Sculpt with different brushes to refine expressions and surface shaping",
+     "relevance": 3
+    },
+    {
      "video_id": "99074uIeMAY",
      "title": "Creating Morphs with Blender Data Link | Character Creator 4 Tutorial",
      "t_start": 108,
@@ -13431,7 +13486,8 @@
      "confidence": "shown",
      "frame_curated": true,
      "phase": "Morph Export & Blender Sculpting",
-     "action": "Sculpt a more aggressive head and strong jaw to get a cartoon Viking warrior look, without changing vertex count"
+     "action": "Sculpt a more aggressive head and strong jaw to get a cartoon Viking warrior look, without changing vertex count",
+     "relevance": 2
     },
     {
      "video_id": "Khcg23hRy8A",
@@ -13441,27 +13497,19 @@
      "confidence": "shown",
      "frame_curated": true,
      "phase": "Texture baking workflow",
-     "action": "Under Sculpting, pick Details and choose which part to sculpt"
+     "action": "Under Sculpting, pick Details and choose which part to sculpt",
+     "relevance": 2
     },
     {
-     "video_id": "O1IdyRmgfRk",
-     "title": "[Webinar] Blender Pipeline Workflow with iClone & Character Creator",
-     "t_start": 744,
-     "frame_ref": "frames/O1IdyRmgfRk_744.png",
-     "confidence": "shown",
-     "frame_curated": true,
-     "phase": "Sculpting custom morphs",
-     "action": "Raise the nose slightly more, then switch to back view and stretch the ears further"
-    },
-    {
-     "video_id": "KgrSSE_6j3Y",
-     "title": "Blender Data Link For CC5 HD Character | Character Creator 5 Tutorial",
-     "t_start": 79,
-     "frame_ref": "frames/KgrSSE_6j3Y_79.png",
-     "confidence": "shown",
-     "frame_curated": true,
-     "phase": "Texture Baking",
-     "action": "Sculpt with different brushes to refine expressions and surface shaping"
+     "video_id": "cHCWOFGuigw",
+     "title": "Create a Stylized Wolverine with Retractable Claws using CC5 & ActorMIXER | Blender HD Workflow",
+     "t_start": 660,
+     "frame_ref": "frames/cHCWOFGuigw_660.png",
+     "confidence": "spoken",
+     "frame_curated": false,
+     "phase": "SubD level 2 detail pass",
+     "action": "Sculpt finer muscle definition and striations on the denser mesh",
+     "relevance": 3
     }
    ],
    "panels": {
@@ -14362,7 +14410,30 @@
      "confidence": "shown",
      "frame_curated": true,
      "phase": "Lighting Setup – HDRI, Image Based, Point Light & Sun Light",
-     "action": "Switch the new area to the Shader Editor"
+     "action": "Switch the new area to the Shader Editor",
+     "relevance": 3
+    },
+    {
+     "video_id": "LXzjbflCe1s",
+     "title": "Blender 5.0 Full 3D Animation Tutorial | Character Creator 5, iClone 8 to Blender Workflow",
+     "t_start": 1360,
+     "frame_ref": "frames/LXzjbflCe1s_1360.png",
+     "confidence": "spoken",
+     "frame_curated": false,
+     "phase": "Lighting Setup – HDRI, Image Based, Point Light & Sun Light",
+     "action": "Set the Shader Editor to World (narrator: very important)",
+     "relevance": 2
+    },
+    {
+     "video_id": "LXzjbflCe1s",
+     "title": "Blender 5.0 Full 3D Animation Tutorial | Character Creator 5, iClone 8 to Blender Workflow",
+     "t_start": 1522,
+     "frame_ref": "frames/LXzjbflCe1s_1522.png",
+     "confidence": "spoken",
+     "frame_curated": false,
+     "phase": "Lighting Setup – HDRI, Image Based, Point Light & Sun Light",
+     "action": "Re-open the Shader Editor and go to World to adjust lighting strength",
+     "relevance": 2
     },
     {
      "video_id": "LXzjbflCe1s",
@@ -14372,27 +14443,8 @@
      "confidence": "shown",
      "frame_curated": false,
      "phase": "Lighting Setup – HDRI, Image Based, Point Light & Sun Light",
-     "action": "Drag from the Background Color socket to add a node"
-    },
-    {
-     "video_id": "LXzjbflCe1s",
-     "title": "Blender 5.0 Full 3D Animation Tutorial | Character Creator 5, iClone 8 to Blender Workflow",
-     "t_start": 1375,
-     "frame_ref": "frames/LXzjbflCe1s_1375.png",
-     "confidence": "shown",
-     "frame_curated": false,
-     "phase": "Lighting Setup – HDRI, Image Based, Point Light & Sun Light",
-     "action": "Choose Environment Texture for the color input"
-    },
-    {
-     "video_id": "92CED6LtECo",
-     "title": "How to Create CC Smart Hair Part 2 | Character Creator 4 Tutorial",
-     "t_start": 103,
-     "frame_ref": "frames/92CED6LtECo_103.png",
-     "confidence": "spoken",
-     "frame_curated": false,
-     "phase": "Creating Hair Cards in Blender",
-     "action": "Add a plane and import the opacity texture"
+     "action": "Drag from the Background Color socket to add a node",
+     "relevance": 1
     }
    ],
    "panels": {
@@ -14709,37 +14761,41 @@
      "confidence": "shown",
      "frame_curated": true,
      "phase": "Rigify and animation refinement",
-     "action": "Play the transferred animation in Blender"
+     "action": "Play the transferred animation in Blender",
+     "relevance": 2
     },
     {
-     "video_id": "Rjpm8AJeoD0",
-     "title": "CC/iC Blender Tools 1.5.8 - Spring Bone Hair Rigging & Physics",
-     "t_start": 261,
-     "frame_ref": "frames/Rjpm8AJeoD0_261.png",
+     "video_id": "O1IdyRmgfRk",
+     "title": "[Webinar] Blender Pipeline Workflow with iClone & Character Creator",
+     "t_start": 3383,
+     "frame_ref": "frames/O1IdyRmgfRk_3383.png",
      "confidence": "shown",
      "frame_curated": false,
-     "phase": "Spring Bone Simulation",
-     "action": "Play the animation from the start to test the simulation"
+     "phase": "Rigify and animation refinement",
+     "action": "Play the updated motion in Blender",
+     "relevance": 2
     },
     {
-     "video_id": "Rjpm8AJeoD0",
-     "title": "CC/iC Blender Tools 1.5.8 - Spring Bone Hair Rigging & Physics",
-     "t_start": 314,
-     "frame_ref": "frames/Rjpm8AJeoD0_314.png",
+     "video_id": "LXzjbflCe1s",
+     "title": "Blender 5.0 Full 3D Animation Tutorial | Character Creator 5, iClone 8 to Blender Workflow",
+     "t_start": 1166,
+     "frame_ref": "frames/LXzjbflCe1s_1166.png",
      "confidence": "shown",
      "frame_curated": false,
-     "phase": "Spring Simulation Parameters",
-     "action": "Play the animation to watch the wind drive the spring bones"
+     "phase": "Import FBX and WAV into Blender 5.0, Fix Materials & Clean Mesh",
+     "action": "Scrub/drag through the whole timeline to find the last keyframe",
+     "relevance": 2
     },
     {
-     "video_id": "Rjpm8AJeoD0",
-     "title": "CC/iC Blender Tools 1.5.8 - Spring Bone Hair Rigging & Physics",
-     "t_start": 699,
-     "frame_ref": "frames/Rjpm8AJeoD0_699.png",
-     "confidence": "shown",
+     "video_id": "2Mu44jQc04w",
+     "title": "Importing Body & Facial Animations to Blender | iClone 8 Tutorial",
+     "t_start": 205,
+     "frame_ref": "frames/2Mu44jQc04w_205.png",
+     "confidence": "spoken",
      "frame_curated": false,
-     "phase": "Rigified Spring Bone Simulation",
-     "action": "Pick a dynamic frame to override"
+     "phase": "Animated Group Export to Blender",
+     "action": "Set the frame length in the Blender timeline",
+     "relevance": 2
     }
    ],
    "panels": {
