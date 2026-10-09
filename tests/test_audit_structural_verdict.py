@@ -59,3 +59,11 @@ def test_no_range_stays_fail_closed():
     assert v["mark"] == "FAIL"
     assert v["countsAsFailure"] is True
     assert "AUDIT_STRUCTURAL_ZERO_SCAN" in v["message"]
+
+
+def test_empty_change_set_fails_closed():
+    # quality review of the Prism lift (2026-10-09): an empty set looks like a self-diff, so it must not pass
+    v = verdict([], scanned=0)
+    assert v["mark"] == "FAIL"
+    assert v["countsAsFailure"] is True
+    assert "AUDIT_STRUCTURAL_ZERO_SCAN" in v["message"]
