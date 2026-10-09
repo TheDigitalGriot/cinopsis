@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>cc5_codify_mixdown2_selectah</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3.7.0/dist/tabler-icons.min.css">
+<style>
+:root{
+  /* dark (default) */
+  --color-background-primary:#171a21;
+  --color-background-secondary:#1f232d;
+  --color-background-tertiary:#0f1116;
+  --color-background-info:rgba(90,168,255,.14);
+  --color-background-success:rgba(70,209,138,.14);
+  --color-background-warning:rgba(242,181,74,.16);
+  --color-background-danger:rgba(255,90,90,.14);
+  --color-text-primary:#eef1f6;
+  --color-text-secondary:#aab2c2;
+  --color-text-tertiary:#727b8c;
+  --color-text-info:#5aa8ff;
+  --color-text-success:#46d18a;
+  --color-text-warning:#f2b54a;
+  --color-text-danger:#ff6b6b;
+  --color-border-tertiary:rgba(255,255,255,.10);
+  --color-border-secondary:rgba(255,255,255,.18);
+  --color-border-primary:rgba(255,255,255,.28);
+  --color-border-info:rgba(90,168,255,.55);
+  --color-border-success:rgba(70,209,138,.55);
+  --color-border-warning:rgba(242,181,74,.55);
+  --color-border-danger:rgba(255,90,90,.55);
+  --border-radius-sm:6px;
+  --border-radius-md:8px;
+  --border-radius-lg:12px;
+  --border-radius-xl:16px;
+  /* current host token family (additive — see chat-viz-extractor-tokens-CONTEXT.md) */
+  --surface-2:#232833; --surface-1:rgba(255,255,255,.045); --surface-0:#14171e;
+  --bg-accent:rgba(224,164,88,.14); --bg-danger:rgba(229,83,75,.13);
+  --bg-success:rgba(87,185,138,.13); --bg-warning:rgba(224,164,88,.14);
+  --text-primary:#eef1f6; --text-secondary:#aab2c2; --text-muted:#78818f;
+  --text-accent:#e0a458; --text-danger:#e5534b; --text-success:#57b98a; --text-warning:#e0a458;
+  --border:rgba(255,255,255,.09); --border-strong:rgba(255,255,255,.17); --border-stronger:rgba(255,255,255,.26);
+  --border-accent:rgba(224,164,88,.45); --border-danger:rgba(229,83,75,.45);
+  --border-success:rgba(87,185,138,.45); --border-warning:rgba(224,164,88,.45);
+  --font-sans:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+  --font-mono:ui-monospace,'Cascadia Code',Consolas,monospace;
+  --font-voice:'Instrument Serif',Georgia,serif;
+  --radius:8px; --pad-sm:8px; --pad-md:12px; --pad-lg:16px; --pad-xl:22px;
+  --gap-xs:4px; --gap-sm:8px; --gap-md:12px; --gap-lg:16px; --gap-xl:22px;
+}
+@media (prefers-color-scheme: light){
+  :root{
+    --color-background-primary:#ffffff;
+    --color-background-secondary:#f5f6f8;
+    --color-background-tertiary:#eceef2;
+    --color-background-info:rgba(42,127,255,.10);
+    --color-background-success:rgba(28,160,98,.12);
+    --color-background-warning:rgba(200,140,20,.14);
+    --color-background-danger:rgba(210,50,50,.10);
+    --color-text-primary:#1a1d23;
+    --color-text-secondary:#5a6372;
+    --color-text-tertiary:#8a93a3;
+    --color-text-info:#2a7fff;
+    --color-text-success:#1ca062;
+    --color-text-warning:#b9821a;
+    --color-text-danger:#d23232;
+    --color-border-tertiary:rgba(0,0,0,.12);
+    --color-border-secondary:rgba(0,0,0,.22);
+    --color-border-primary:rgba(0,0,0,.32);
+    --color-border-info:rgba(42,127,255,.55);
+    --color-border-success:rgba(28,160,98,.55);
+    --color-border-warning:rgba(200,140,20,.55);
+    --color-border-danger:rgba(210,50,50,.55);
+  }
+}
+@media (prefers-color-scheme: light){
+  :root:not([data-theme="dark"]){
+    --surface-2:#ffffff; --surface-1:rgba(0,0,0,.032); --surface-0:#f7f6f3;
+    --bg-accent:rgba(150,104,31,.10); --bg-danger:rgba(178,49,41,.09);
+    --bg-success:rgba(47,125,85,.10); --bg-warning:rgba(150,104,31,.10);
+    --text-primary:#161513; --text-secondary:#57534c; --text-muted:#84807a;
+    --text-accent:#96681f; --text-danger:#b23129; --text-success:#2f7d55; --text-warning:#96681f;
+    --border:rgba(0,0,0,.11); --border-strong:rgba(0,0,0,.2); --border-stronger:rgba(0,0,0,.3);
+    --border-accent:rgba(150,104,31,.5); --border-danger:rgba(178,49,41,.5);
+    --border-success:rgba(47,125,85,.5); --border-warning:rgba(150,104,31,.5);
+  }
+}
+/* explicit choice, either direction — beats the OS media query above because
+   it is more specific AND declared after it (chat-viz-extractor-theme-toggle) */
+:root[data-theme="light"]{
+  --surface-2:#ffffff; --surface-1:rgba(0,0,0,.032); --surface-0:#f7f6f3;
+  --bg-accent:rgba(150,104,31,.10); --bg-danger:rgba(178,49,41,.09);
+  --bg-success:rgba(47,125,85,.10); --bg-warning:rgba(150,104,31,.10);
+  --text-primary:#161513; --text-secondary:#57534c; --text-muted:#84807a;
+  --text-accent:#96681f; --text-danger:#b23129; --text-success:#2f7d55; --text-warning:#96681f;
+  --border:rgba(0,0,0,.11); --border-strong:rgba(0,0,0,.2); --border-stronger:rgba(0,0,0,.3);
+  --border-accent:rgba(150,104,31,.5); --border-danger:rgba(178,49,41,.5);
+  --border-success:rgba(47,125,85,.5); --border-warning:rgba(150,104,31,.5);
+  color-scheme:light;
+}
+:root[data-theme="dark"]{
+  --surface-2:#232833; --surface-1:rgba(255,255,255,.045); --surface-0:#14171e;
+  --bg-accent:rgba(224,164,88,.14); --bg-danger:rgba(229,83,75,.13);
+  --bg-success:rgba(87,185,138,.13); --bg-warning:rgba(224,164,88,.14);
+  --text-primary:#eef1f6; --text-secondary:#aab2c2; --text-muted:#78818f;
+  --text-accent:#e0a458; --text-danger:#e5534b; --text-success:#57b98a; --text-warning:#e0a458;
+  --border:rgba(255,255,255,.09); --border-strong:rgba(255,255,255,.17); --border-stronger:rgba(255,255,255,.26);
+  --border-accent:rgba(224,164,88,.45); --border-danger:rgba(229,83,75,.45);
+  --border-success:rgba(87,185,138,.45); --border-warning:rgba(224,164,88,.45);
+  color-scheme:dark;
+}
+*{box-sizing:border-box;}
+html,body{margin:0;padding:0;}
+body{
+  background:var(--color-background-tertiary);
+  color:var(--color-text-primary);
+  font-family:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+  font-size:15px;line-height:1.6;-webkit-font-smoothing:antialiased;
+  padding:32px 20px 56px;
+}
+.cve-wrap{max-width:840px;margin:0 auto;padding-top:44px;}
+#cve-theme-toggle{position:fixed;top:14px;right:14px;z-index:9999;
+  padding:var(--pad-sm) var(--pad-md);border-radius:var(--radius);
+  border:1px solid var(--border-strong);background:var(--surface-1);
+  color:var(--text-primary);font-family:var(--font-sans);font-size:13px;
+  line-height:1;cursor:pointer;}
+#cve-theme-toggle:hover{background:var(--surface-2);}
+h1{font-size:22px;font-weight:600;} h2{font-size:18px;font-weight:600;}
+h3{font-size:16px;font-weight:600;}
+a{color:var(--color-text-info);text-decoration:none;}
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);border:0;}
+svg .bx{fill:var(--surface-1);stroke:var(--border-strong)}
+svg .t{fill:var(--text-primary)} svg .th{fill:var(--text-primary)}
+svg .ts{fill:var(--text-secondary)} svg .c{fill:var(--text-muted)}
+svg .a,svg .arr{stroke:var(--text-muted);fill:none}
+svg .leader{stroke:var(--text-muted);stroke-dasharray:3 3}
+svg .c-amber rect{fill:var(--bg-warning);stroke:var(--border-warning)}
+svg .c-green rect{fill:var(--bg-success);stroke:var(--border-success)}
+svg .c-red rect{fill:var(--bg-danger);stroke:var(--border-danger)}
+body{background:var(--surface-0);color:var(--text-primary);font-family:var(--font-sans);}
+</style>
+</head>
+<body>
+<button id="cve-theme-toggle" type="button" aria-label="Switch theme"></button>
+<div class="cve-wrap"><link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+#gw{--e:#F97316;--song:cubic-bezier(0.16,1,0.3,1);--tale:cubic-bezier(0.4,0,0.2,1);position:relative;overflow:hidden;background:#000;border-radius:16px;padding:26px 22px 22px;font-family:Inter,var(--font-sans);color:rgba(255,255,255,.85)}
+#gw .blob{position:absolute;border-radius:50%;filter:blur(80px);opacity:.38;background:var(--e)}
+#gw .grid{position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.025) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.025) 1px,transparent 1px);background-size:32px 32px;pointer-events:none}
+#gw .glass{position:relative;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:18px;backdrop-filter:blur(40px) saturate(140%);-webkit-backdrop-filter:blur(40px) saturate(140%);box-shadow:0 1px 0 0 rgba(255,255,255,.06) inset,0 20px 60px 0 rgba(0,0,0,.35);padding:14px 16px;overflow:hidden}
+#gw .glass::before{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(255,255,255,.04) 0%,transparent 30%);pointer-events:none}
+#gw .fu{opacity:0;transform:translateY(20px)}
+#gw.go .fu{animation:fu .8s var(--song) forwards}
+@keyframes fu{to{opacity:1;transform:none}}
+@keyframes drift{0%,100%{transform:translate(0,0)}50%{transform:translate(40px,-30px)}}
+@keyframes breathe{0%,100%{box-shadow:0 0 8px var(--c,var(--e)),0 0 24px color-mix(in srgb,var(--c,var(--e)) 50%,transparent)}50%{box-shadow:0 0 12px var(--c,var(--e)),0 0 40px color-mix(in srgb,var(--c,var(--e)) 70%,transparent)}}
+@keyframes pulse{0%,100%{opacity:.55}50%{opacity:1}}
+#gw .b1{animation:drift 14s var(--tale) infinite}#gw .b2{animation:drift 18s var(--tale) infinite reverse}
+#gw.still *,#gw.still{animation-play-state:paused!important}
+#gw .mono{font-family:"JetBrains Mono",var(--font-mono);font-size:10.5px;letter-spacing:.08em;color:rgba(255,255,255,.42)}
+#gw .h{color:#fff;font-weight:500}
+#gw button{font-family:Inter,sans-serif}
+#gw .cta{background:var(--e);color:#000;border:none;border-radius:11px;padding:9px 16px;font-size:13px;font-weight:500;cursor:pointer;animation:breathe 3.2s var(--tale) infinite}
+#gw .ghost{background:transparent;color:rgba(255,255,255,.85);border:1px solid rgba(255,255,255,.14);border-radius:10px;padding:7px 12px;font-size:12px;cursor:pointer;text-align:left;line-height:1.45}
+#gw .ghost:hover{border-color:var(--e);color:#fff}
+#gw .sec{margin:22px 0 10px;display:flex;align-items:center;gap:10px}
+#gw .sec::after{content:"";flex:1;height:1px;background:linear-gradient(90deg,rgba(255,255,255,.12),transparent)}
+.gate{display:flex;gap:12px;align-items:flex-start;border-radius:11px;padding:9px 13px;margin-bottom:5px;border:1px solid rgba(255,255,255,.07);background:rgba(255,255,255,.02)}
+.gate .n{font:500 11px "JetBrains Mono",monospace;min-width:16px;padding-top:2px}
+.gate .t{font-size:13px;color:#fff}
+.gate .ev{font-size:11.5px;color:rgba(255,255,255,.5);line-height:1.5;margin-top:2px}
+.gate .tag{font:10px "JetBrains Mono",monospace;padding-top:3px;white-space:nowrap;margin-left:auto}
+.landed{border-color:rgba(16,185,133,.3);background:rgba(16,185,133,.04)}.landed .n,.landed .tag{color:#10B985}
+.live{border-color:rgba(249,115,22,.55);background:rgba(249,115,22,.07);--c:#F97316;animation:breathe 3.6s var(--tale) infinite}.live .n,.live .tag{color:#F97316}
+.held{border-color:rgba(244,63,94,.3);background:rgba(244,63,94,.03)}.held .n,.held .tag{color:rgba(251,113,133,.8)}
+.asks{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:10px}
+.ask .q{font-size:13px;color:#fff;margin:6px 0 4px;line-height:1.45}
+.ask .why{font-size:11.5px;color:rgba(255,255,255,.5);line-height:1.5;margin-bottom:9px}
+.ask .rd{display:flex;flex-direction:column;gap:6px}
+.ask .rd b{font-weight:500;color:var(--e)}
+.batches{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:10px}
+.bt{--c:#fff;cursor:default;border-color:color-mix(in srgb,var(--c) 30%,transparent)!important}
+.bt.target{animation:breathe 1.6s var(--tale) infinite;cursor:pointer}
+.bt .hd{display:flex;align-items:baseline;gap:8px}
+.bt .nm{font-size:15px;color:#fff;font-weight:500}
+.bt .cnt{font:11px "JetBrains Mono",monospace;margin-left:auto}
+.bt .th{font-size:11.5px;color:rgba(255,255,255,.5);margin:3px 0 8px;min-height:32px;line-height:1.4}
+.bar{height:3px;border-radius:2px;background:rgba(255,255,255,.06);margin-bottom:10px;overflow:hidden}
+.bar i{display:block;height:100%;background:var(--c);box-shadow:0 0 10px var(--c);transition:width .6s var(--song)}
+.chip{display:grid;grid-template-columns:1fr auto;gap:1px 8px;padding:7px 9px;border-radius:9px;border:1px solid rgba(255,255,255,.07);background:rgba(0,0,0,.25);margin-bottom:5px;cursor:pointer;transition:border-color .3s var(--tale),transform .3s var(--song)}
+.chip:hover{border-color:color-mix(in srgb,var(--c) 60%,transparent)}
+.chip.sel{border-color:var(--c);transform:translateX(3px);box-shadow:0 0 14px color-mix(in srgb,var(--c) 40%,transparent)}
+.chip .lb{font-size:12px;color:#fff;line-height:1.35}
+.chip .du{font:11px "JetBrains Mono",monospace;color:rgba(255,255,255,.55);text-align:right}
+.chip .id{font:10px "JetBrains Mono",monospace;color:color-mix(in srgb,var(--c) 80%,#fff)}
+.chip .sp{font:10px "JetBrains Mono",monospace;color:rgba(255,255,255,.35);text-align:right}
+.lead{position:relative}.lead::after{content:"LEAD";position:absolute;right:-1px;top:-7px;font:9px "JetBrains Mono",monospace;color:#000;background:var(--c);border-radius:5px;padding:1px 5px}
+.steps{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:10px}
+.st{flex:1 1 110px;border-radius:10px;border:1px solid rgba(255,255,255,.08);padding:8px 10px;cursor:pointer;background:rgba(255,255,255,.02);transition:all .4s var(--song)}
+.st .k{font:10px "JetBrains Mono",monospace;color:rgba(255,255,255,.4)}
+.st .v{font-size:12px;color:rgba(255,255,255,.75);margin-top:2px}
+.st.on{border-color:var(--e);background:rgba(249,115,22,.09);transform:translateY(-2px)}
+.st.on .v{color:#fff}.st.on .k{color:var(--e)}
+.st.done{border-color:rgba(249,115,22,.25)}
+#det{font-size:12.5px;line-height:1.65;color:rgba(255,255,255,.72);min-height:68px}
+#det code,.ev code,.why code{font-family:"JetBrains Mono",monospace;font-size:11px;color:#FDBA74}
+.drift{display:inline-block;font:10px "JetBrains Mono",monospace;color:#F472B6;border:1px solid #F472B655;border-radius:7px;padding:1px 6px;margin:2px 4px 2px 0}
+#gw .gwloop{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:10px}
+#gw .gwlane{font:500 10px "JetBrains Mono",monospace;letter-spacing:.14em;margin-bottom:8px}
+#gw .gwit{display:flex;gap:10px;align-items:flex-start;padding:7px 0;border-top:1px solid rgba(255,255,255,.06)}
+#gw .gwit:first-child{border-top:0}
+#gw .gwit .gwd{width:8px;height:8px;border-radius:50%;margin-top:5px;flex:none}
+#gw .gwit .gwbd{flex:1;font-size:12.5px;color:#fff;min-width:0}
+#gw .gwit .gwevd{display:none;margin-top:6px;font-size:11px;line-height:1.5;color:rgba(255,255,255,.6);background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.08);border-radius:8px;padding:6px 8px;overflow-wrap:anywhere}
+#gw .gwit.gwopen .gwevd{display:block}
+#gw .gwit .gwacts{display:flex;gap:6px;flex:none;flex-wrap:wrap;justify-content:flex-end}
+#gw .gwit .gwacts button{padding:4px 10px;font-size:11px}
+#gw .gwpulse{display:inline-block;width:7px;height:7px;border-radius:50%;margin-right:6px;vertical-align:middle;animation:breathe 1.6s infinite}
+#gw .chip.gwld{border-color:rgba(16,185,133,.5)!important;cursor:default}
+#gw #gwspine{overflow-x:auto;margin:0 0 14px}
+#gw svg.spine{display:block;width:100%;height:auto;overflow:visible}
+#gw svg.spine text{font-family:"JetBrains Mono",monospace}
+#gw svg.spine .run{animation:pulse 1.6s var(--tale) infinite}
+#gw .chan{display:grid;grid-template-columns:22px minmax(120px,190px) 1fr auto;gap:4px 12px;align-items:baseline;padding:7px 2px;border-top:1px solid rgba(255,255,255,.06)}
+#gw .chan:first-child{border-top:0}
+#gw .chan .cn{font:500 11px "JetBrains Mono",monospace;color:rgba(255,255,255,.4)}
+#gw .chan .cm{font-size:12.5px;color:#fff}
+#gw .chan .cp{font-size:11.5px;color:rgba(255,255,255,.55);line-height:1.5;overflow-wrap:anywhere}
+#gw .ctag{font:10px "JetBrains Mono",monospace;letter-spacing:.08em;border-radius:6px;padding:1px 7px;border:1px solid currentColor;white-space:nowrap}
+@media (max-width:560px){#gw .chan{grid-template-columns:22px 1fr auto}#gw .chan .cp{grid-column:2/4}}
+.asks.band{grid-template-columns:1fr}
+.ask .rd.row{flex-direction:row;flex-wrap:wrap}
+#gw .tile .gwrun{margin:2px 0 4px}
+#gw button[disabled]{opacity:.55;cursor:default;animation:none}
+</style>
+<h2 class="sr-only" id="gwsr">Griotwave sequence and batch board.</h2>
+<div id="gw">
+<div class="blob b1" style="width:280px;height:280px;left:-70px;top:-50px"></div>
+<div class="blob b2" style="width:220px;height:220px;right:-50px;top:420px;opacity:.22"></div>
+<div class="grid"></div>
+<div style="position:relative">
+
+<section data-s="spine" class="fu" style="animation-delay:0s"><div id="gwspine"></div></section>
+
+<section data-s="header">
+<div class="fu mono" id="gweye" style="animation-delay:.05s"></div>
+<div class="fu" id="gwtitle" style="animation-delay:.18s;font-size:30px;font-weight:300;letter-spacing:-.02em;color:#fff;line-height:1.15;margin:8px 0 6px"></div>
+<div class="fu" id="gwsub" style="animation-delay:.3s;font-size:13.5px;color:rgba(255,255,255,.58);max-width:620px;line-height:1.6"></div>
+</section>
+
+<section data-s="provenance" class="fu glass" style="animation-delay:.42s;margin-top:16px;padding:10px 14px">
+<div class="mono" style="margin-bottom:4px">PROVENANCE</div>
+<div id="gwprov" style="font-size:11.5px;color:rgba(255,255,255,.55);line-height:1.6;overflow-wrap:anywhere;white-space:pre-wrap"></div>
+</section>
+
+<section data-s="stats" id="gwstats" class="fu" style="animation-delay:.5s;display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:8px;margin-top:10px"></section>
+
+<section data-s="channels">
+<div class="sec fu" style="animation-delay:.54s"><span class="mono">CHANNEL STRIP &middot; MIXDOWN</span></div>
+<div class="fu glass" style="animation-delay:.56s;padding:8px 14px"><div id="gwchan"></div></div>
+</section>
+
+<section data-s="gates">
+<div class="sec fu" style="animation-delay:.58s"><span class="mono">THE GATE CHAIN &middot; ONE LIVE, LANDED ROWS CARRY THEIR EVIDENCE</span></div>
+<div class="fu" id="gwgates" style="animation-delay:.64s"></div>
+</section>
+
+<section data-s="batches">
+<div class="sec fu" style="animation-delay:.82s"><span class="mono" id="gwbhd">THE BATCHES &middot; CLICK A VIDEO, THEN A BATCH, TO MOVE IT</span></div>
+<div id="batches" class="batches fu" style="animation-delay:.88s"></div>
+<div id="gwassign" class="fu" style="animation-delay:.94s;display:flex;gap:10px;align-items:center;margin-top:12px;flex-wrap:wrap">
+<button class="cta" id="lock">Lock this assignment ↗</button>
+<button class="ghost" id="reset">Reset to proposal</button>
+<span id="warn" class="mono" style="color:#F472B6"></span>
+</div>
+</section>
+
+<section data-s="asks">
+<div class="sec fu" style="animation-delay:.95s"><span class="mono">ASKS &middot; EACH READING IS A RULING</span></div>
+<div class="asks band fu" id="gwasks" style="animation-delay:.96s"></div>
+</section>
+
+<section data-s="loop">
+<div class="sec fu" style="animation-delay:.97s"><span class="mono">THE LOOP &middot; LANDED / OWED</span></div>
+<div class="gwloop fu" style="animation-delay:.99s">
+<div class="glass" id="gwlaneland"><div class="gwlane" style="color:#10B985">LANDED &middot; THIS LOOP</div><div id="gwloopland"></div></div>
+<div class="glass" id="gwlaneowe"><div class="gwlane" style="color:#C6F91F">OWED &middot; TAP TO RUN</div><div id="gwloopowe"></div></div>
+</div>
+</section>
+
+<section data-s="stages">
+<div class="sec fu" style="animation-delay:1s"><span class="mono">EACH BATCH LANDS THROUGH THIS LOOP &middot; CLICK A STAGE</span></div>
+<div class="fu" style="animation-delay:1.06s">
+<div class="steps" id="steps"></div>
+<div class="glass"><div id="det"></div></div>
+</div>
+</section>
+
+<section data-s="close">
+<div class="sec fu" style="animation-delay:1.12s"><span class="mono" id="gwclosehd">THE CLOSE</span></div>
+<div class="fu glass" style="animation-delay:1.18s;font-size:12.5px;line-height:1.8;color:rgba(255,255,255,.7)">
+<div id="gwclose"></div>
+<div id="gwchips" style="margin-top:8px"></div>
+</div>
+</section>
+
+<div class="fu" style="animation-delay:1.24s;display:flex;align-items:center;gap:10px;margin-top:16px">
+<span class="mono" id="gwembers"></span><span style="flex:1"></span>
+<label class="mono" style="display:flex;align-items:center;gap:6px;cursor:pointer"><input type="checkbox" id="mot" checked> MOTION</label>
+</div>
+</div></div>
+<script>
+const V=/*{{V}}*/null/*{{/V}}*/;
+const BT=/*{{BT}}*/[{"n":"O1 · Artifacts gate","c":"#10B985","s":"landed","ev":"cloud-only + cloud-current classes · 7 registered, 3 exempt by name · VERIFY_ARTIFACTS_OK · a0c48b4 / b1e15f9"},{"n":"O2 · Cross-graph edges","c":"#10B985","s":"landed","ev":"engine 6b28a86 · index 90e4645 · A3 -> cinodex B11 1f81c6f · crossGraphEdges=1"},{"n":"O3 · Blender add-ons","c":"#A78BFA","s":"landed","ev":"recovered 2026-09-22 bl_info sweep · 13 GLB + 5 R3F entries · b0a4470"},{"n":"O4 · Interactive simulator","c":"#A78BFA","s":"landed","ev":"canvas v42 · Simulator + Simulator-mobile · sim-sequence.json generated · A5 6b228fd"},{"n":"O5 · Leftovers + heroes","c":"#3B82F6","s":"landed","ev":"0 scratch in live/ · stage only to .prism/local/stage · 10 boards' heroes relevance-first 85d3b84"},{"n":"Found in the run","c":"#F97316","s":"landed","ev":"272 accent from data e4600ba · 3 stale graphs green 1287b03 · 4c hardcode removed bfff17d (local)"},{"n":"Prism 5.0.2","c":"#EF4444","s":"queued","ev":"bump 71c63d1 · audit RED 6 · ruling in ASK 1","runPrompt":"Drift 274 ruling: tag v5.0.2, sync the prism-plugin and marketplace mirrors, re-run the ceremony audit to green, push Prism, resolve drift 274."}]/*{{/BT}}*/;
+const P0=/*{{P0}}*/null/*{{/P0}}*/;
+const LD=/*{{LD}}*/["O1","O2","O3","O4","O5","M"]/*{{/LD}}*/;
+const LOOP_LANDED=/*{{LOOP_LANDED}}*/[{"label":"Owed list closed","evidence":"drift 204 / 266 / 267 / 268 / 269 resolved with evidence · OA5 resolved-done · A5 built-and-live"},{"label":"Two defects caught in the run","evidence":"272 render-codex accent flag-only -> data first (e4600ba, 1287b03) · 273 TEMP-relative require (rule, 3230617)"},{"label":"Ledgers","evidence":"drift cards v68 -> v69 (274) · gold 41-45 card v20 (9fe2b3a)"},{"label":"Graphs + codexes","evidence":"VERIFY_BRANCH_CODEX_OK x4 · VERIFY_WORKGRAPH_OK x4 · cards gbfolio v6 · cinodex v13 · cinopsis v3 · branch-codex v3"},{"label":"Meridian + plan","evidence":"briefing v21 (7ac233d) · plan v80 (231057e) · publish-log 0166633 · VERIFY_ARTIFACTS_OK"}]/*{{/LOOP_LANDED}}*/;
+const LOOP_OWED=/*{{LOOP_OWED}}*/[{"label":"Prism 5.0.2 out of HELD (drift 274)","evidence":"Prism main ahead 2 (71c63d1, bfff17d) · audit RED 6 · mirrors on 5.0.1","runPrompt":"Drift 274 ruling: tag v5.0.2, sync the prism-plugin and marketplace mirrors, re-run the ceremony audit to green, push Prism, resolve drift 274."},{"label":"Drift 263 (pre-existing, Cinopsis)","evidence":"verify_lift uncovered-range branch untested · flagged before this session","runPrompt":"Fix drift 263: add a test for the verify_lift uncovered-range branch in Cinopsis scripts/verify_lift.py, prove it, commit, resolve the drift."}]/*{{/LOOP_OWED}}*/;
+const HEADER=/*{{HEADER}}*/{"eyebrow":"GRIOTWAVE · CC5-CODIFY · MIXDOWN 2026-10-09 #2 · FULL","title":"Nothing owed but one ruling.","sub":"The owed list from run 1 is closed with evidence: the gate is green, the graphs talk across apps, and the simulator is interactive with your add-ons in stages 08 and 09. The run caught two more defects and fixed them. One decision is yours: how the held Prism bump gets out."}/*{{/HEADER}}*/;
+const SPINE=/*{{SPINE}}*/[{"k":"O1","n":"Gate green (266)","state":"landed"},{"k":"O2","n":"Cross-graph (269)","state":"landed"},{"k":"O3","n":"Add-ons 08/09","state":"landed"},{"k":"O4","n":"Interactive sim","state":"landed"},{"k":"O5","n":"Leftovers + heroes","state":"landed"},{"k":"M","n":"Mixdown #2","state":"landed"},{"k":"R","n":"Prism 5.0.2","state":"owed"}]/*{{/SPINE}}*/;
+const CHANNELS=/*{{CHANNELS}}*/[{"n":1,"name":"Workgraph (gbfolio branch)","state":"RAN","produced":"A5 interactive simulator built-and-live · OA5 resolved-done · closure 36% -> 43% · 6b228fd"},{"n":2,"name":"Branch codex + branch graph","state":"RAN","produced":"4 graphs recomputed + re-rendered, accent from data · VERIFY_BRANCH_CODEX_OK x4 · 1287b03 · cards gbfolio v6, cinodex v13, cinopsis v3, branch-codex v3"},{"n":3,"name":"Codex-plan bridge","state":"RAN","produced":"no-op, measured: 0 story-scoped commits in 26 · no stories.json or plan file touched"},{"n":4,"name":"Drift sweep","state":"RAN","produced":"204/266/267/269 resolved (bbdd362) · 272 + 273 logged and resolved (3230617) · 274 flagged (e24938b) · cards v68 -> v69 (274)"},{"n":5,"name":"Gold sweep","state":"RAN","produced":"41-45 exemplar, 2 unnamed wins, heartbeat cc5-owed-close-progress.txt · 9fe2b3a · card v20"},{"n":6,"name":"Visualizations","state":"RAN","produced":"0 new widgets in transcript since 515b320 (extract_viz --list) · run-1 Selectah filed e9a1fa4"},{"n":7,"name":"Closing ceremonies","state":"RAN","produced":"prism 5.0.1 -> 5.0.2 (71c63d1), release HELD (7 commits, 1 non-.prism file) · audit RED 6, not pushed (drift 274) · cinopsis SKIPPED: 0 non-.prism files"},{"n":8,"name":"Meridian reflection","state":"RAN","produced":"2026-10-08 replaced in place · 86 repos · 15 blocks · 73 commits · 7ac233d · card v21"},{"n":9,"name":"DGS plan","state":"RAN","produced":"owed list recorded · items 1995 -> 1999 · 231057e · 9/9 gates (sync-all gates-only, push stage held for Prism: DGS_SYNC_INCOMPLETE) · surfaces 9 OK · plan card v80 fresh description"}]/*{{/CHANNELS}}*/;
+const PROVENANCE=/*{{PROVENANCE}}*/null/*{{/PROVENANCE}}*/;
+const STATS=/*{{STATS}}*/null/*{{/STATS}}*/;
+const GATES=/*{{GATES}}*/null/*{{/GATES}}*/;
+const ASKS=/*{{ASKS}}*/[{"tag":"ASK 1 · PRISM 5.0.2","q":"The held 5.0.2 bump cannot pass the ceremony audit (drift 274). How does it go out?","why":"Audit RED on 6: 5.0.2 untagged, both plugin mirrors on 5.0.1, and the mirrors lack the drift-269 workgraph-index change. Prism main is 2 ahead and unpushed (71c63d1, bfff17d).","readings":[{"b":"Tag + sync mirrors","p":"Drift 274 ruling: tag v5.0.2, sync the prism-plugin and marketplace mirrors, re-run the ceremony audit to green, push Prism, resolve drift 274."},{"b":"Held-bump gate class","p":"Drift 274 ruling: teach the prism-closing-ceremony audit a held-bump class (finalized-untagged allowed when the ceremony marker says HELD), sync the mirrors' content only, prove green, push the bump without a tag, resolve drift 274."}]},{"tag":"ASK 2 · PLAY-TEST","q":"Play-test the interactive simulator now?","why":"The Design type's never-verify rule kept me from clicking through Simulator.dc.html; the data is generated and verified, the interaction is not.","readings":[{"b":"Play-test it","p":"Play-test the interactive CC5 Workflow Simulator (canvas 2utL2vymWfe1hVrStKhR1Z, desktop + mobile) through all 9 stages and report every defect with the stage and step."},{"b":"I will try it","p":"Simulator play-test: I will try it myself first; hold."}]}]/*{{/ASKS}}*/;
+const STAGES=/*{{STAGES}}*/null/*{{/STAGES}}*/;
+const CLOSE=/*{{CLOSE}}*/null/*{{/CLOSE}}*/;
+const esc=s=>String(s==null?'':s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+const has=v=>v!=null&&v!==''&&(!Array.isArray(v)||v.length>0)&&(typeof v!=='object'||Array.isArray(v)||Object.keys(v).length>0);
+const cut=s=>{const el=document.querySelector(`#gw [data-s="${s}"]`);if(el)el.remove()};
+const spBtn=(cls,label,p)=>{const b=document.createElement('button');b.className=cls+' gwsp';b.innerHTML=label;b.onclick=e=>{e.stopPropagation();sendPrompt(p)};return b};
+// HEADER
+if(has(HEADER)){document.getElementById('gweye').textContent=HEADER.eyebrow||'';document.getElementById('gwtitle').innerHTML=HEADER.title||'';document.getElementById('gwsub').textContent=HEADER.sub||'';document.getElementById('gwsr').textContent=(HEADER.eyebrow||'')+' — '+(document.getElementById('gwtitle').textContent)}else cut('header');
+// SPINE (Selectah rule: the spine sits on top)
+const SPC={landed:'#10B985',running:'#FBBF24',queued:'rgba(255,255,255,.35)',owed:'#C6F91F'};
+if(has(SPINE)){const n=SPINE.length,step=120,W=Math.max(360,n*step),H=78,x=i=>n>1?step/2+i*(W-step)/(n-1):W/2;
+let g=`<svg class="spine" viewBox="0 0 ${W} ${H}" style="min-width:${n*84}px" role="img" aria-label="Stage spine"><title>Stage spine: ${esc(SPINE.map(s=>s.k+' '+s.n+' '+s.state).join(', '))}</title>`;
+for(let i=0;i<n-1;i++)g+=`<line x1="${x(i)}" y1="22" x2="${x(i+1)}" y2="22" stroke="${SPINE[i].state==='landed'&&SPINE[i+1].state==='landed'?'#10B985':'rgba(255,255,255,.18)'}" stroke-width="2"/>`;
+SPINE.forEach((s,i)=>{const c=SPC[s.state]||SPC.queued;g+=`<g><circle cx="${x(i)}" cy="22" r="13" fill="${c}" fill-opacity=".14" stroke="${c}" stroke-width="1.5"${s.state==='running'?' class="run"':''}/><circle cx="${x(i)}" cy="22" r="5" fill="${c}"${s.state==='running'?' class="run"':''}/><text x="${x(i)}" y="52" text-anchor="middle" font-size="11" fill="${c}">${esc(s.k)}</text><text x="${x(i)}" y="68" text-anchor="middle" font-size="10" fill="rgba(255,255,255,.6)">${esc(s.n)}</text></g>`});
+document.getElementById('gwspine').innerHTML=g+'</svg>'}else cut('spine');
+// PROVENANCE (escaped)
+if(has(PROVENANCE))document.getElementById('gwprov').innerHTML=esc(PROVENANCE);else cut('provenance');
+// STATS
+if(has(STATS))document.getElementById('gwstats').innerHTML=STATS.map(s=>`<div class="glass"><div class="mono">${esc(s.k)}</div>${s.color?`<div style="font-size:15px;color:${esc(s.color)};margin-top:3px">${esc(s.v)}</div>`:`<div class="h" style="font-size:20px">${esc(s.v)}</div>`}</div>`).join('');else cut('stats');
+// CHANNELS (every row shown, never hidden)
+const CHC={RAN:'#10B985',SKIPPED:'#FBBF24',FAILED:'#FB7185'};
+if(has(CHANNELS))document.getElementById('gwchan').innerHTML=CHANNELS.map(c=>`<div class="chan"><span class="cn">${esc(c.n)}</span><span class="cm">${esc(c.name)}</span><span class="cp">${esc(c.produced||'')}</span><span class="ctag" style="color:${CHC[c.state]||'#fff'}">${esc(c.state)}</span></div>`).join('');else cut('channels');
+// GATES
+const GTAG={landed:'LANDED',live:'YOUR CALL',held:'HELD'};
+if(has(GATES))document.getElementById('gwgates').innerHTML=GATES.map(r=>`<div class="gate ${GTAG[r.state]?r.state:'held'}"><div class="n">${esc(r.n)}</div><div><div class="t">${r.t}</div>${r.ev?`<div class="ev">${r.ev}</div>`:''}</div><div class="tag">${GTAG[r.state]||'HELD'}</div></div>`).join('');else cut('gates');
+// ASKS (full-width band above the loop; every reading is a sendPrompt)
+if(has(ASKS)){const box=document.getElementById('gwasks');ASKS.forEach(a=>{const d=document.createElement('div');d.className='glass ask';d.innerHTML=`<div class="mono">${esc(a.tag)}</div><div class="q">${a.q}</div>${a.why?`<div class="why">${a.why}</div>`:''}<div class="rd row"></div>`;const rd=d.querySelector('.rd');(a.readings||[]).forEach(r=>{const parts=String(r.b).split(/:(.*)/s);rd.appendChild(spBtn('ghost',parts[1]?`<b>${esc(parts[0])}</b>:${esc(parts[1])} ↗`:`<b>${esc(r.b)}</b> ↗`,r.p))});box.appendChild(d)})}else cut('asks');
+// BATCHES
+const BT_=Array.isArray(BT)?BT:[],LDs=Array.isArray(LD)?LD:[];
+BT_.forEach(b=>{b.s=b.s||'queued';b.t=b.t||'';if(b.target==null)b.target=Array.isArray(b.ids)?b.ids.length:0});
+const ASSIGN=Array.isArray(P0)&&P0.length>0&&BT_.length>0;
+const vv=id=>V&&V[id]||[id,0,0,0];
+const ST={landed:['LANDED','#10B985'],running:['RUNNING','#FBBF24'],queued:['QUEUED','rgba(255,255,255,.5)']};
+const strip=b=>{const s=ST[b.s]||ST.queued;return `<div class="gwstrip" style="border:1px solid ${b.c}55;background:${b.c}10;border-radius:10px;padding:7px 10px;margin:8px 0 6px;font:11px/1.55 'JetBrains Mono',monospace;color:rgba(255,255,255,.75)">${b.s==='running'?`<i class="gwpulse" style="background:${b.c}"></i>`:''}<b style="color:${s[1]}">${s[0]}</b>${b.ev?' · '+esc(b.ev):''}</div>`};
+let A=ASSIGN?P0.map(x=>x.slice()):[],sel=null;
+const fmt=s=>{const h=Math.floor(s/3600),m=Math.floor(s%3600/60),x=s%60;return h?`${h}h${String(m).padStart(2,'0')}m`:`${m}:${String(x).padStart(2,'0')}`};
+const box=document.getElementById('batches'),warn=document.getElementById('warn');
+const runFor=(b,ids)=>{if(b.s==='landed')return b.rerun||null;if(b.s==='running')return b.check||`Check the ${b.n} marker and heartbeat now, once.`;if(b.runPrompt)return b.runPrompt;return ids&&ids.length?`Run ${b.n} end to end now, as one headless stage with the token-bounded contract shape: ids [${ids.join(', ')}] (ids are identity). Steps: metadata by id, assemble --from-cache, analysis to comparison-schema (workflow_steps + key_moments uncapped, never merged), frames via capture_frames --engine local, contact-sheet read-back in fresh subagents (main context reads no images), validate_comparison exit 0, persist, verify_invariants, RESULT, then companion + this board.`:null};
+const runLabel=b=>b.s==='landed'?(b.rerun?'Re-run ↺':'Landed ✓'):b.s==='running'?'Running · check ↗':`Run ${esc(b.n)} ↗`;
+function runButton(b,ids){const p=runFor(b,ids),btn=p?spBtn('cta runb',runLabel(b),p):Object.assign(document.createElement('button'),{className:'cta runb',innerHTML:runLabel(b),disabled:true});btn.style.cssText=`--c:${b.c};background:${b.c};padding:6px 13px;font-size:12px;margin:-2px 0 10px`;return btn}
+function drawTiles(){box.innerHTML='';BT_.forEach(b=>{const el=document.createElement('div');el.className='glass bt tile';el.style.setProperty('--c',b.c);el.innerHTML=`<div class="hd"><span class="nm">${esc(b.n)}</span><span class="cnt" style="color:${b.c}">${(ST[b.s]||ST.queued)[0]}</span></div>${b.t?`<div class="th">${esc(b.t)}</div>`:''}${strip(b)}`;el.appendChild(runButton(b,null));box.appendChild(el)})}
+function draw(){box.innerHTML='';const mx=Math.max(1,...A.map(b=>b.reduce((s,i)=>s+vv(i)[1],0)));let bad=[];
+A.forEach((ids,bi)=>{const b=BT_[bi];if(!b)return;const tot=ids.reduce((s,i)=>s+vv(i)[1],0),rows=ids.reduce((s,i)=>s+vv(i)[2],0);if(ids.length!==b.target)bad.push(`${b.n} ${ids.length}/${b.target}`);
+const el=document.createElement('div');el.className='glass bt'+(sel?' target':'');el.style.setProperty('--c',b.c);
+el.innerHTML=`<div class="hd"><span class="nm">${esc(b.n)}</span><span class="cnt" style="color:${b.c}">${ids.length}/${b.target} · ${fmt(tot)} · ${rows} rows</span></div><div class="th">${esc(b.t)}</div><div class="bar"><i style="width:${(tot/mx*100).toFixed(1)}%"></i></div>`;
+el.appendChild(runButton(b,ids));el.querySelector('.th').insertAdjacentHTML('afterend',strip(b));
+ids.forEach((id,k)=>{const v=vv(id),c=document.createElement('div');c.className='chip'+(sel===id?' sel':'')+(LDs.includes(id)?' gwld':'')+(bi===0&&k===0?' lead':'');c.style.setProperty('--c',b.c);
+c.innerHTML=`<div class="lb">${esc(v[0])}</div><div class="du">${fmt(v[1])}</div><div class="id">${esc(id)}</div><div class="sp">${v[3]?'spring ×'+v[3]:v[2]+' rows'}</div>`;
+c.onclick=e=>{e.stopPropagation();if(b.s==='landed'||LDs.includes(id))return;sel=sel===id?null:id;draw()};el.appendChild(c)});
+el.onclick=()=>{if(!sel||b.s==='landed')return;A=A.map(x=>x.filter(i=>i!==sel));A[bi].push(sel);sel=null;draw()};box.appendChild(el)});
+warn.textContent=bad.length?'off '+BT_.map(b=>b.target).join('/')+': '+bad.join(' · '):''}
+if(!BT_.length)cut('batches');
+else if(ASSIGN){document.getElementById('lock').onclick=()=>sendPrompt('Lock the batch assignment (ids are identity, labels inferred): '+A.map((ids,i)=>`${BT_[i].n} = [${ids.join(', ')}]`).join(' | ')+'. '+BT_[0].n+' leads with '+A[0][0]+'.');document.getElementById('reset').onclick=()=>{A=P0.map(x=>x.slice());sel=null;draw()};draw()}
+else{document.getElementById('gwassign').remove();document.getElementById('gwbhd').textContent='THE STAGES · RUN OR RE-RUN EACH ONE';drawTiles()}
+// LOOP (landed / owed)
+function loopRow(x,owed){const d=document.createElement('div');d.className='gwit';const col=owed?'#C6F91F':'#10B985',act=owed?x.runPrompt:x.rerun;
+d.innerHTML=`<span class="gwd" style="background:${col};box-shadow:0 0 8px ${col}"></span><div class="gwbd">${esc(x.label)}<div class="gwevd">${esc(x.evidence||'no evidence recorded')}</div></div><div class="gwacts"><button class="ghost gwevb">evidence</button></div>`;
+d.querySelector('.gwevb').onclick=()=>d.classList.toggle('gwopen');if(act)d.querySelector('.gwacts').appendChild(spBtn(owed?'cta gwrnb':'ghost gwrnb',owed?'Run ↗':'Re-run ↺',act));return d}
+if(!has(LOOP_LANDED)&&!has(LOOP_OWED))cut('loop');
+else{const la=document.getElementById('gwloopland'),ow=document.getElementById('gwloopowe');if(has(LOOP_LANDED))LOOP_LANDED.forEach(x=>la.appendChild(loopRow(x,false)));else document.getElementById('gwlaneland').remove();if(has(LOOP_OWED))LOOP_OWED.forEach(x=>ow.appendChild(loopRow(x,true)));else document.getElementById('gwlaneowe').remove()}
+// CLOSE
+if(has(CLOSE)&&(CLOSE.html||has(CLOSE.chips))){if(CLOSE.title)document.getElementById('gwclosehd').textContent=CLOSE.title;document.getElementById('gwclose').innerHTML=CLOSE.html||'';const ch=document.getElementById('gwchips');if(has(CLOSE.chips))ch.innerHTML=CLOSE.chips.map(c=>`<span class="drift">${esc(c)}</span>`).join('');else ch.remove()}else cut('close');
+document.getElementById('gwembers').innerHTML=BT_.length?'EMBERS · '+BT_.map(b=>`<span style="color:${b.c}">${esc(b.n)}</span>`).join(' · '):'';
+// STAGES (auto-advancing stepper)
+const gw=document.getElementById('gw');let motion=true,cur=0,pin=false,tm;
+const sb=document.getElementById('steps'),det=document.getElementById('det');
+function show(i){cur=i;[...sb.children].forEach((d,k)=>{d.classList.toggle('on',k===i);d.classList.toggle('done',k<i)});det.innerHTML=`<span class="mono" style="color:var(--e)">${esc(STAGES[i][0])} · ${esc(String(STAGES[i][1]).toUpperCase())}</span><br>${STAGES[i][2]}`}
+function tick(){if(motion&&!pin)show((cur+1)%STAGES.length);tm=setTimeout(tick,3400)}
+if(has(STAGES)){STAGES.forEach((s,i)=>{const d=document.createElement('div');d.className='st';d.innerHTML=`<div class="k">${esc(s[0])}</div><div class="v">${esc(s[1])}</div>`;d.onclick=()=>{pin=true;show(i)};sb.appendChild(d)});show(0);tm=setTimeout(tick,3400)}else cut('stages');
+document.getElementById('mot').onchange=e=>{motion=e.target.checked;gw.classList.toggle('still',!motion)};
+requestAnimationFrame(()=>gw.classList.add('go'));
+</script>
+</div>
+
+<script>
+(function(){
+  var root = document.documentElement;
+  var btn = document.getElementById('cve-theme-toggle');
+  var KEY = 'cve-theme';
+  function readStored(){
+    try { return localStorage.getItem(KEY); } catch (e) { return null; }
+  }
+  function writeStored(v){
+    try { localStorage.setItem(KEY, v); } catch (e) { /* storage unavailable — ignore */ }
+  }
+  function effectiveTheme(){
+    var stamped = root.getAttribute('data-theme');
+    if (stamped === 'light' || stamped === 'dark') return stamped;
+    var prefersLight = window.matchMedia &&
+      window.matchMedia('(prefers-color-scheme: light)').matches;
+    return prefersLight ? 'light' : 'dark';
+  }
+  function updateButton(){
+    var next = effectiveTheme() === 'light' ? 'dark' : 'light';
+    var label = next.charAt(0).toUpperCase() + next.slice(1);
+    btn.textContent = label;
+    btn.setAttribute('aria-label', 'Switch to ' + next + ' mode');
+  }
+  var stored = readStored();
+  if (stored === 'light' || stored === 'dark') {
+    root.setAttribute('data-theme', stored);
+  }
+  // else: stamp nothing — the OS preference governs.
+  updateButton();
+  btn.addEventListener('click', function(){
+    var next = effectiveTheme() === 'light' ? 'dark' : 'light';
+    root.setAttribute('data-theme', next);
+    writeStored(next);
+    updateButton();
+  });
+})();
+</script>
+
+</body>
+</html>

@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>cc5_simulator_gap_and_plan</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3.7.0/dist/tabler-icons.min.css">
+<style>
+:root{
+  /* dark (default) */
+  --color-background-primary:#171a21;
+  --color-background-secondary:#1f232d;
+  --color-background-tertiary:#0f1116;
+  --color-background-info:rgba(90,168,255,.14);
+  --color-background-success:rgba(70,209,138,.14);
+  --color-background-warning:rgba(242,181,74,.16);
+  --color-background-danger:rgba(255,90,90,.14);
+  --color-text-primary:#eef1f6;
+  --color-text-secondary:#aab2c2;
+  --color-text-tertiary:#727b8c;
+  --color-text-info:#5aa8ff;
+  --color-text-success:#46d18a;
+  --color-text-warning:#f2b54a;
+  --color-text-danger:#ff6b6b;
+  --color-border-tertiary:rgba(255,255,255,.10);
+  --color-border-secondary:rgba(255,255,255,.18);
+  --color-border-primary:rgba(255,255,255,.28);
+  --color-border-info:rgba(90,168,255,.55);
+  --color-border-success:rgba(70,209,138,.55);
+  --color-border-warning:rgba(242,181,74,.55);
+  --color-border-danger:rgba(255,90,90,.55);
+  --border-radius-sm:6px;
+  --border-radius-md:8px;
+  --border-radius-lg:12px;
+  --border-radius-xl:16px;
+  /* current host token family (additive — see chat-viz-extractor-tokens-CONTEXT.md) */
+  --surface-2:#232833; --surface-1:rgba(255,255,255,.045); --surface-0:#14171e;
+  --bg-accent:rgba(224,164,88,.14); --bg-danger:rgba(229,83,75,.13);
+  --bg-success:rgba(87,185,138,.13); --bg-warning:rgba(224,164,88,.14);
+  --text-primary:#eef1f6; --text-secondary:#aab2c2; --text-muted:#78818f;
+  --text-accent:#e0a458; --text-danger:#e5534b; --text-success:#57b98a; --text-warning:#e0a458;
+  --border:rgba(255,255,255,.09); --border-strong:rgba(255,255,255,.17); --border-stronger:rgba(255,255,255,.26);
+  --border-accent:rgba(224,164,88,.45); --border-danger:rgba(229,83,75,.45);
+  --border-success:rgba(87,185,138,.45); --border-warning:rgba(224,164,88,.45);
+  --font-sans:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+  --font-mono:ui-monospace,'Cascadia Code',Consolas,monospace;
+  --font-voice:'Instrument Serif',Georgia,serif;
+  --radius:8px; --pad-sm:8px; --pad-md:12px; --pad-lg:16px; --pad-xl:22px;
+  --gap-xs:4px; --gap-sm:8px; --gap-md:12px; --gap-lg:16px; --gap-xl:22px;
+}
+@media (prefers-color-scheme: light){
+  :root{
+    --color-background-primary:#ffffff;
+    --color-background-secondary:#f5f6f8;
+    --color-background-tertiary:#eceef2;
+    --color-background-info:rgba(42,127,255,.10);
+    --color-background-success:rgba(28,160,98,.12);
+    --color-background-warning:rgba(200,140,20,.14);
+    --color-background-danger:rgba(210,50,50,.10);
+    --color-text-primary:#1a1d23;
+    --color-text-secondary:#5a6372;
+    --color-text-tertiary:#8a93a3;
+    --color-text-info:#2a7fff;
+    --color-text-success:#1ca062;
+    --color-text-warning:#b9821a;
+    --color-text-danger:#d23232;
+    --color-border-tertiary:rgba(0,0,0,.12);
+    --color-border-secondary:rgba(0,0,0,.22);
+    --color-border-primary:rgba(0,0,0,.32);
+    --color-border-info:rgba(42,127,255,.55);
+    --color-border-success:rgba(28,160,98,.55);
+    --color-border-warning:rgba(200,140,20,.55);
+    --color-border-danger:rgba(210,50,50,.55);
+  }
+}
+@media (prefers-color-scheme: light){
+  :root:not([data-theme="dark"]){
+    --surface-2:#ffffff; --surface-1:rgba(0,0,0,.032); --surface-0:#f7f6f3;
+    --bg-accent:rgba(150,104,31,.10); --bg-danger:rgba(178,49,41,.09);
+    --bg-success:rgba(47,125,85,.10); --bg-warning:rgba(150,104,31,.10);
+    --text-primary:#161513; --text-secondary:#57534c; --text-muted:#84807a;
+    --text-accent:#96681f; --text-danger:#b23129; --text-success:#2f7d55; --text-warning:#96681f;
+    --border:rgba(0,0,0,.11); --border-strong:rgba(0,0,0,.2); --border-stronger:rgba(0,0,0,.3);
+    --border-accent:rgba(150,104,31,.5); --border-danger:rgba(178,49,41,.5);
+    --border-success:rgba(47,125,85,.5); --border-warning:rgba(150,104,31,.5);
+  }
+}
+/* explicit choice, either direction — beats the OS media query above because
+   it is more specific AND declared after it (chat-viz-extractor-theme-toggle) */
+:root[data-theme="light"]{
+  --surface-2:#ffffff; --surface-1:rgba(0,0,0,.032); --surface-0:#f7f6f3;
+  --bg-accent:rgba(150,104,31,.10); --bg-danger:rgba(178,49,41,.09);
+  --bg-success:rgba(47,125,85,.10); --bg-warning:rgba(150,104,31,.10);
+  --text-primary:#161513; --text-secondary:#57534c; --text-muted:#84807a;
+  --text-accent:#96681f; --text-danger:#b23129; --text-success:#2f7d55; --text-warning:#96681f;
+  --border:rgba(0,0,0,.11); --border-strong:rgba(0,0,0,.2); --border-stronger:rgba(0,0,0,.3);
+  --border-accent:rgba(150,104,31,.5); --border-danger:rgba(178,49,41,.5);
+  --border-success:rgba(47,125,85,.5); --border-warning:rgba(150,104,31,.5);
+  color-scheme:light;
+}
+:root[data-theme="dark"]{
+  --surface-2:#232833; --surface-1:rgba(255,255,255,.045); --surface-0:#14171e;
+  --bg-accent:rgba(224,164,88,.14); --bg-danger:rgba(229,83,75,.13);
+  --bg-success:rgba(87,185,138,.13); --bg-warning:rgba(224,164,88,.14);
+  --text-primary:#eef1f6; --text-secondary:#aab2c2; --text-muted:#78818f;
+  --text-accent:#e0a458; --text-danger:#e5534b; --text-success:#57b98a; --text-warning:#e0a458;
+  --border:rgba(255,255,255,.09); --border-strong:rgba(255,255,255,.17); --border-stronger:rgba(255,255,255,.26);
+  --border-accent:rgba(224,164,88,.45); --border-danger:rgba(229,83,75,.45);
+  --border-success:rgba(87,185,138,.45); --border-warning:rgba(224,164,88,.45);
+  color-scheme:dark;
+}
+*{box-sizing:border-box;}
+html,body{margin:0;padding:0;}
+body{
+  background:var(--color-background-tertiary);
+  color:var(--color-text-primary);
+  font-family:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+  font-size:15px;line-height:1.6;-webkit-font-smoothing:antialiased;
+  padding:32px 20px 56px;
+}
+.cve-wrap{max-width:840px;margin:0 auto;padding-top:44px;}
+#cve-theme-toggle{position:fixed;top:14px;right:14px;z-index:9999;
+  padding:var(--pad-sm) var(--pad-md);border-radius:var(--radius);
+  border:1px solid var(--border-strong);background:var(--surface-1);
+  color:var(--text-primary);font-family:var(--font-sans);font-size:13px;
+  line-height:1;cursor:pointer;}
+#cve-theme-toggle:hover{background:var(--surface-2);}
+h1{font-size:22px;font-weight:600;} h2{font-size:18px;font-weight:600;}
+h3{font-size:16px;font-weight:600;}
+a{color:var(--color-text-info);text-decoration:none;}
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);border:0;}
+svg .bx{fill:var(--surface-1);stroke:var(--border-strong)}
+svg .t{fill:var(--text-primary)} svg .th{fill:var(--text-primary)}
+svg .ts{fill:var(--text-secondary)} svg .c{fill:var(--text-muted)}
+svg .a,svg .arr{stroke:var(--text-muted);fill:none}
+svg .leader{stroke:var(--text-muted);stroke-dasharray:3 3}
+svg .c-amber rect{fill:var(--bg-warning);stroke:var(--border-warning)}
+svg .c-green rect{fill:var(--bg-success);stroke:var(--border-success)}
+svg .c-red rect{fill:var(--bg-danger);stroke:var(--border-danger)}
+body{background:var(--surface-0);color:var(--text-primary);font-family:var(--font-sans);}
+</style>
+</head>
+<body>
+<button id="cve-theme-toggle" type="button" aria-label="Switch theme"></button>
+<div class="cve-wrap"><style>
+.sg{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:12px}
+.cd{background:var(--surface-1);border-radius:12px;padding:14px 16px}
+.lb{font-size:12px;color:var(--text-secondary);margin:0 0 8px}
+.chrome{background:#2b2b2b;border-radius:6px;overflow:hidden;font-family:var(--font-mono);font-size:10px;color:#cfcfcf;height:170px;display:grid;grid-template-rows:16px 18px 1fr 22px;position:relative}
+.mb{background:#1e1e1e;display:flex;gap:10px;padding:2px 8px}
+.tb{background:#333;display:flex;gap:4px;padding:3px 6px}.tb i{width:12px;height:12px;background:#4a4a4a;border-radius:2px;display:block}
+.body{display:grid;grid-template-columns:1fr 92px}
+.vp{background:#3a3a3a;display:flex;align-items:center;justify-content:center;color:#888}
+.pn{background:#262626;padding:4px;display:flex;flex-direction:column;gap:3px}.pn span{background:#333;border-radius:2px;padding:2px 4px}
+.tl{background:#1e1e1e}
+.hot{outline:2px solid #10B985;animation:hp 1.4s ease-in-out infinite;color:#fff}
+@keyframes hp{0%,100%{outline-color:#10B985}50%{outline-color:transparent}}
+.sim{position:absolute;right:6px;top:2px;font-size:9px;color:#F97316}
+.q{font-size:13px;margin:0 0 8px}.ch{display:grid;gap:5px}.ch div{border:0.5px solid var(--border);border-radius:var(--radius);padding:5px 8px;font-size:12px;color:var(--text-secondary)}
+.flow{display:grid;grid-template-columns:repeat(auto-fit,minmax(118px,1fr));gap:8px;margin-top:12px}
+.st{border:0.5px solid var(--border);border-radius:var(--radius);padding:8px 10px;font-size:12px}.st b{display:block;font-weight:500;font-size:12px;margin-bottom:2px}
+.st small{color:var(--text-secondary);font-size:11px;line-height:1.45;display:block}
+.bad{color:var(--text-danger)}.good{color:var(--text-success)}
+</style>
+<h2 class="sr-only">What the simulator is now versus a click-the-real-screen simulator built from the corpus frames, and the five-step plan.</h2>
+<div class="sg" style="padding:0.5rem 0">
+<div class="cd"><p class="lb"><span class="bad">●</span> What landed: a quiz over atlas text</p>
+<p class="q">CC5 · Modify › Morph. Which control next?</p>
+<div class="ch"><div>Morph Slider</div><div>Edit Mesh</div><div>Skin Weight</div><div>Pose</div></div>
+<p class="lb" style="margin-top:8px">No screen. Labels and distractors only, so it repeats what the atlas already shows.</p></div>
+<div class="cd"><p class="lb"><span class="good">●</span> What you asked: click the real screen</p>
+<div class="chrome"><div class="mb"><span>File</span><span>Edit</span><span>Create</span><span>Modify</span><span>Window</span></div><span class="sim">SIMULATED</span>
+<div class="tb"><i></i><i></i><i></i><i></i><i></i><i></i></div>
+<div class="body"><div class="vp">viewport</div><div class="pn"><span>Attribute</span><span class="hot">Morph ◂</span><span>Material</span><span>Motion</span></div></div><div class="tl"></div></div>
+<p class="lb" style="margin-top:8px">Layout and hotspot positions measured from the 1152×720 frames. Click the control where it really sits.</p></div>
+</div>
+<div class="flow">
+<div class="st"><b>1 · Read the frames</b><small>Subagents read the 1,388 frames on disk (404 Blender, 309 CC5, 85 iClone 8 steps). Main context reads JSON only.</small></div>
+<div class="st"><b>2 · Layout specs</b><small>One ui-layout JSON per app and view: regions as bounding boxes, every label, tabs, theme colours. Each region cites its frame.</small></div>
+<div class="st"><b>3 · Hotspots</b><small>Each step's target found on its own frame. Low confidence gets flagged, never invented.</small></div>
+<div class="st"><b>4 · Generate the sim</b><small>Chrome rendered from the data. Learn mode (target pulses) and Drill mode (no hints, mistakes counted). Real-frame ghost overlay. Motion on. Desktop + mobile.</small></div>
+<div class="st"><b>5 · Play-test</b><small>I click through every stage live in Chrome, and a subagent checks each hotspot against its frame.</small></div>
+</div>
+<div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:14px">
+<button onclick="sendPrompt('Go: build the real-screen CC5/Blender/iClone 8 simulator, steps 1-5, as one generated interactive artifact; keep the current canvas simulator as the visual landing.')">Go, steps 1–5 ↗</button>
+<button onclick="sendPrompt('Before building: show me the extracted CC5 Modify panel layout spec and 3 hotspots overlaid on their frames so I can check fidelity first.')">Show me one layout spec first ↗</button>
+</div></div>
+
+<script>
+(function(){
+  var root = document.documentElement;
+  var btn = document.getElementById('cve-theme-toggle');
+  var KEY = 'cve-theme';
+  function readStored(){
+    try { return localStorage.getItem(KEY); } catch (e) { return null; }
+  }
+  function writeStored(v){
+    try { localStorage.setItem(KEY, v); } catch (e) { /* storage unavailable — ignore */ }
+  }
+  function effectiveTheme(){
+    var stamped = root.getAttribute('data-theme');
+    if (stamped === 'light' || stamped === 'dark') return stamped;
+    var prefersLight = window.matchMedia &&
+      window.matchMedia('(prefers-color-scheme: light)').matches;
+    return prefersLight ? 'light' : 'dark';
+  }
+  function updateButton(){
+    var next = effectiveTheme() === 'light' ? 'dark' : 'light';
+    var label = next.charAt(0).toUpperCase() + next.slice(1);
+    btn.textContent = label;
+    btn.setAttribute('aria-label', 'Switch to ' + next + ' mode');
+  }
+  var stored = readStored();
+  if (stored === 'light' || stored === 'dark') {
+    root.setAttribute('data-theme', stored);
+  }
+  // else: stamp nothing — the OS preference governs.
+  updateButton();
+  btn.addEventListener('click', function(){
+    var next = effectiveTheme() === 'light' ? 'dark' : 'light';
+    root.setAttribute('data-theme', next);
+    writeStored(next);
+    updateButton();
+  });
+})();
+</script>
+
+</body>
+</html>
