@@ -1,0 +1,38 @@
+# yt-batch stage - one round-robin YT playlist batch into the vault + Potluck staging (continuous pull, 2026-10-15)
+
+One job per run: take the ONE batch named in the router (ledger .prism/local/yt-run/ledger.json, status an-running) from cached transcript to a schema-valid comparison session persisted in the VAULT (with its transcripts and descriptions), a frames-plan sidecar, and a Potluck staging file. The transcript drip already ran (tx-loop); this stage makes NO transcript fetch and NO frame capture. Gavin's IP is the asset: be gentle, stop on any gate.
+
+## Inputs
+- Working (READ IN FULL, ONCE, before any analysis - Batch A failed because it was written from the SKILL.md summary): skills/cinopsis/references/comparison-schema.md
+- Working: the batch entry in .prism/local/yt-run/ledger.json (videos: id, title label, playlist, transcript/description flags); data/transcript_<id>.json|.txt; data/description_<id>.txt (titles, channel names and repo slugs come from HERE, never from captions - captions garble names).
+- Working (tools): scripts/compare_videos.py (--urls ID --from-cache --chunk 1 --title T, then --add-to <session> --urls ID --from-cache, ONE id per call), scripts/validate_comparison.py --session, scripts/persist_session.py <dir_name> (copies the session AND its transcripts + descriptions into the vault, n2-vault), scripts/verify_invariants.py, scripts/fetch_playlist.py load_seen/save_seen (python import, no network).
+- Rulings (all locked): .prism/local/yt-ingest-rulings.json (A1-A5, N1, N2).
+- Reference (read the named parts only): .prism/shared/plans/2026-10-07-cc5-batch3-CONTEXT.md HARD TOKEN RULES; skills/cinopsis/references/analysis-contract.md if present (promoted by n1-fix); C:/Users/digit/GriotMeta/digital-griot-skills/dgs-plan-update/SKILL.md lines 344-361 (roundup landing pattern) ONLY; POT_APPS names and existing POT_T cat values from C:/Users/digit/GriotMeta/griot-live-artifacts/live/dgs-definitive-plan.html via a python regex extraction that prints only those names - never read the plan file.
+
+## Decisions (locked - do not re-litigate, do not ask)
+1. Only videos with a cached transcript go into the session. A video without one is left out, not marked seen, and listed in RESULT as retry.
+2. Assemble with compare_videos.py --from-cache, ONE id per call; between calls sleep a random 20-40 s (the metadata door touches YouTube, 2 calls per video). If any output names a rate limit, cooldown, block or 429: stop immediately, write BLOCKED-gate with the text, do not continue. The first call prints the session INDEX id (e.g. c57d36871ff2): every --add-to takes THAT id, never the dir name (batch 001 wasted 3 metadata calls on this). Any non-zero rc stops the assemble loop until the cause is read. Session title: YT batch NNN - <three or four short labels from the descriptions>.
+3. Analysis exactly to the schema: per-video digest (core_takeaway, key_points with names/numbers, why_it_matters), summary, chapters as machine-filled; topics with consensus enum and per-video entries; disagreements; key_moments UNCAPPED, each with WHY it mattered, never merged with steps; workflow_steps UNCAPPED, all fifteen fields, ordered, spans, phase from chapters or null, app enum, ui_kind enum, confidence honest (spoken or inferred tonight - there are no frames, so never shown); stats equal to array lengths. Work one video at a time; a video over ~40 min is analysed in chapter chunks to bound context.
+4. Frames are DEFERRED tonight (A4). Every workflow_step keeps frame_ref null. Write <session dir>/frames-plan.json: {video_id: {class: tutorial|news, rationale, plan: full|moments, status: deferred-frames-pass}} - tutorial = UI walkthrough/build demo (later: frame every step + moment, full read-back); news = news/opinion/roundup talk (later: key moments only, no read-back). This is a sidecar, not a schema field.
+5. Validate with validate_comparison.py --session (NOT --check-frames tonight); fix every red until clean. Persist with persist_session.py. Run verify_invariants.py; it must exit 0. Vault proof: list, for each video, that its transcript and description exist under the vault data dir.
+6. Potluck staging (A5, full depth): write .prism/local/potluck-stage/<batch name>.json = {batch, session_dir, videos:[POT_VIDEOS rows], tools:[POT_T rows], vidt:{id:title}, resolve:[{n,r,s:'v',st}], ossmeta:{lower slug:{cat,sn,su,sc:0}}, unresolved:[{name, video, reason}]}. POT_VIDEOS row = {id, t, ch, len, vw, type, tx:1, repos}: type round when the video shows 2+ repos, spot for exactly one; for zero repos use type single. POT_T row per repo the video names = {n, slug, cat (an existing cat value), src:'potluck:<id>', srcName:<video title>, srcUrl, v:<id>, b:<one-line blurb grounded in the transcript>, tg:[[<POT_APPS app NAME - the FIRST element of a POT_APPS [name, description] pair, e.g. Valence, never Agent observability>, <fit 1-3>, 'auto-mapped, retune']], decision:'undecided', role:'', stage:'later'}. Every slug comes from the description and is CONFIRMED with gh api repos/<slug> (GitHub, not YouTube) before it is written; stars into resolve.st. A name that does not resolve goes to unresolved, never a placeholder slug. Do NOT edit the DGS plan; the close lands all staging files in one dgs-plan-update run.
+7. Mark seen ONLY after persist + invariants pass: import fetch_playlist, load_seen(), append each persisted video id to manifest[list_id] if absent, save_seen(). Never mark a left-out video.
+8. Token rules: read the schema once; never read a whole transcript over ~200 rows into context at once - page it with python; never read a whole large file; batch shell work into single commands; under 150 turns. No commit, no push, no browser, no frame capture, no transcript fetch.
+
+9. YouTube SHORTS (Gavin 2026-10-15: a 6-row transcript is a Short, not a failure). A video of 180 s or less, or one YouTube serves as a Short, is analysed like any other from its full transcript, carries the schema field quality_flag "short" on its videos[] entry, its frames-plan class is news unless it demonstrates UI, and its url is written as https://www.youtube.com/shorts/<id> so the companion's short-form card can route it. Never drop or retry a Short for being short.
+10. RESUME (2026-10-16, after the 01:20 pause killed 013/014 mid-analysis): BEFORE assembling, look in data/sessions/index.json for a session whose title starts 'YT batch <NNN>' for THIS batch. If one exists, RE-ENTER it: skip step 2 (assembly), keep its videos, and continue from analysis (step 3) on whatever is unfilled. Never create a second session for the same batch. Record 'resumed <index id>' in RESULT.
+
+## Process
+1. Heartbeat START. Read the schema in full. Read the batch entry and rulings.
+2. Assemble (decision 2). Heartbeat ASSEMBLED.
+3. Analysis per video (decision 3) + frames-plan (decision 4). Heartbeat ANALYSED.
+4. Validate, persist, invariants, vault proof (decision 5). Heartbeat VAULTED.
+5. Potluck staging (decision 6). Heartbeat STAGED.
+6. Mark seen (decision 7). Heartbeat SEEN.
+7. Write .prism/shared/plans/yt-run/<batch name>-RESULT.md (under 60 lines): session dir, per-video class/steps/moments counts, validator + INV verdicts, vault proof, staged POT_VIDEOS/POT_T/unresolved counts, retry ids, YouTube calls made. Then DONE marker.
+
+## Success criteria
+Validator clean; verify_invariants exit 0; vault holds each persisted video's transcript + description; staging file parses and every POT_T slug was gh-confirmed; seen marks equal the persisted set; zero transcript/frame fetches.
+
+## Heartbeat
+.prism/<batch name>-progress.txt: START, ASSEMBLED, ANALYSED, VAULTED, STAGED, SEEN, RESULT_WRITTEN. Terminal .prism/<batch name>.DONE or .BLOCKED with the reason.
