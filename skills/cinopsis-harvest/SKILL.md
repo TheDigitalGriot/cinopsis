@@ -28,7 +28,7 @@ The authority is `skills/cinopsis/references/comparison-schema.md`.
 | Notion | Lives at | Fields this skill reads |
 |---|---|---|
 | **Workflow step** - the ordered procedure | `analysis.workflow_steps[]` | `video_id`, `index`, `t_start`, `t_end`, `phase`, `ui_kind`, `ui_target`, `ui_options`, `frame_ref`, `confidence` |
-| **Key moment** - what mattered | `analysis.key_moments[]` (3-5 per video) | `video_id`, `timestamp`, `label`, `description` |
+| **Key moment** - what mattered | `analysis.key_moments[]` (UNCAPPED, the count follows the content; each carries WHY it mattered (`description`); never merged with `workflow_steps` (`../cinopsis/references/comparison-schema.md`)) | `video_id`, `timestamp`, `label`, `description` |
 | **Phase** | `videos[].chapters[]` | `title`, `start_time`, `end_time` |
 
 - `key_moments` and `workflow_steps` are **never merged**. A moment is significance, a
@@ -87,7 +87,7 @@ Run per video, in this order. Digest first: the frame timestamps come out of it.
    `frame_ref`. If no step covers the mention, add the step if it is genuinely part of
    the procedure; if it is not (an aside, a sponsor read), leave the harvest entry's
    `frame_ref` null and say "no step covers it". Never pad `key_moments` to buy a frame:
-   it breaks the 3-5 significance cap (schema :92) and the stats drift silently.
+   a key moment records significance, not a frame anchor, so padding one breaks its meaning and the stats drift silently (`../cinopsis/references/comparison-schema.md` `key_moments`).
 5. **Frame pass.** Run it per video, never per hand-typed timestamp (next section).
 6. **Write back.** Append the harvest entries with `frame_ref` (shape below), then the
    progress line `done <id>` to `.prism/shared/digest-progress.txt`.

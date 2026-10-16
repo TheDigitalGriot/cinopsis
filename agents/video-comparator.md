@@ -48,7 +48,7 @@ Required fields (every viewer tab depends on these):
 - **`analysis.unified_summary`** — cross-video synthesis paragraph
 - **`analysis.topics`** — name, entries (video_id, timestamp, quote), video_coverage, consensus
 - **`analysis.disagreements`** — where creators differ, both perspectives stated neutrally
-- **`analysis.key_moments`** — 3-5 per video with timestamp, label, description
+- **`analysis.key_moments`** — UNCAPPED, the count follows the content; each carries WHY it mattered (`description`); never merged with `workflow_steps` (`skills/cinopsis/references/comparison-schema.md`): timestamp, label, description
 - **`stats`** — common_topics, disagreements, key_moments counts
 
 Update session_progress.json: `"status": "analysis_complete"`.

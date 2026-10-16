@@ -85,7 +85,7 @@ Both agents fill `comparison_data.json` before launching the viewer. **The viewe
 - **`analysis.unified_summary`** — synthesis paragraph (cross-video or single overview)
 - **`analysis.topics`** — name, entries (video_id, timestamp, quote), video_coverage, consensus
 - **`analysis.disagreements`** — where creators differ, both perspectives (empty array for single video)
-- **`analysis.key_moments`** — 3-5 per video: video_id, timestamp, label, description
+- **`analysis.key_moments`** — UNCAPPED, the count follows the content; each carries WHY it mattered (`description`); never merged with `workflow_steps` (`references/comparison-schema.md` `key_moments`): video_id, timestamp, label, description
 - **`stats`** — common_topics, disagreements, key_moments counts
 
 **IMPORTANT:** Agents must complete ALL fields in a single pass and launch the viewer at the end. Do not return to the user between steps.
