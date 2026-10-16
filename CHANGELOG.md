@@ -5,6 +5,36 @@ All notable changes to **Cinopsis** are documented here.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [3.3.0] - 2026-10-16
+
+Minor: **batch-safe playlists, uncapped key moments, a shipped read-back applier, a self-sufficient
+vault, and YouTube Shorts in the viewer** (stage contracts `n1-fix`, `n2-vault`, `lane-fixes`).
+
+### Added
+- **`scripts/apply_readback.py`** - the read-back applier promoted out of four diverging batch copies
+  in `.prism/local`. Denial reads the contract's structured `contradicts` boolean plus
+  `contradicts_reason` instead of a regex over the reader's note, and a shown step with no boolean is
+  refused (fail closed). `skills/cinopsis/references/readback-contract.md` and `analysis-contract.md`
+  are now shipped references.
+- **The vault holds the videos, not just the sessions.** `persist_session` copies each video's
+  transcript and description into the canonical data dir (additive, idempotent, never over a newer
+  file); `--backfill-media` applies it to every session already stored; invariant INV4 checks every
+  vault video carries its own transcript or declares a non-transcript source.
+- **YouTube Shorts in the viewer** - `/shorts/` URLs render on a portrait card with a "YT · Short"
+  badge and stay under the YouTube filter.
+
+### Fixed
+- **Playlists never over-feed a batch.** The per-run cap drops from 12 to 6
+  (`CINOPSIS_MAX_NEW_PER_RUN` still overrides), and the MCP `fetch_playlist` tool gains an optional
+  `max_new`. Omitted, it falls back to the same env-aware default as the CLI - the first cut
+  hardcoded 6 and made the env override dead through MCP (drift 347); a test now drives the override
+  through the MCP tool. `--all` stays as the un-paced escape, with a warning.
+- **`key_moments` are uncapped everywhere.** Six prompt surfaces still carried a 3-5 cap the schema
+  had retired; each now states the schema rule, and a guard test fails if any shipped prompt caps them.
+- **`readback_sheets.py` honours `CLAUDE_PLUGIN_DATA`** like the other scripts.
+- **The transcript panel rung reads the right panel** - the EXPANDED panel holding timestamp rows,
+  never chapters - and strips the accessibility duration label only when it agrees with the timestamp.
+
 ## [3.2.2] - 2026-10-09
 
 ### Fixed
