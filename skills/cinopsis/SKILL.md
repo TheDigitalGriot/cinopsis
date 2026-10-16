@@ -189,7 +189,7 @@ keyframes|scene --video-id ID` (MCP `watch_frames`) uses its frame engine.
 
 ### Batch / many videos - never all-N at once
 
-**Playlists enforce this structurally:** `fetch_playlist.py` surfaces at most `--max-new N` (default 12, env `CINOPSIS_MAX_NEW_PER_RUN`) net-new per run and drains a big backlog a bounded batch at a time - the channel path's `--playlist-end 10`, applied to playlists. Never lift the cap to clear a backlog in one shot (that is the IP-block cause); let it drain over days, or run it on a daily schedule.
+**Playlists enforce this structurally:** `fetch_playlist.py` surfaces at most `--max-new N` (default 6, env `CINOPSIS_MAX_NEW_PER_RUN`; MCP `fetch_playlist(max_new=N)`) net-new per run and drains a big backlog a bounded batch at a time - the channel path's `--playlist-end 10`, applied to playlists. Never lift the cap to clear a backlog in one shot (that is the IP-block cause); let it drain over days, or run it on a daily schedule. `--all` (MCP `include_all`) is the un-paced escape that bypasses the cap - never use it to clear a backlog.
 
 Fetch **one/-few IDs per call** with `fetch_transcripts.py --ids ... --chunk N` (each cheap,
 fits the ~60s device-bridge cap), then assemble once with `compare_videos.py --urls ... --from-cache`.
