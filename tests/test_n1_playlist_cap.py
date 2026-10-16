@@ -69,8 +69,11 @@ def _schema():
 def test_mcp_schema_exposes_max_new():
     _, schema = _schema()
     prop = schema["properties"]["max_new"]
-    assert prop.get("type") == "integer"
-    assert prop.get("default") == 6
+    types = {p.get("type") for p in prop.get("anyOf", [prop])}
+    assert "integer" in types
+    # Default is None, not 6: an omitted max_new must fall back to the env-aware
+    # DEFAULT_MAX_NEW (drift 347), so the schema may not pin a number.
+    assert prop.get("default") is None
     assert "max_new" not in schema.get("required", [])
 
 
@@ -84,10 +87,21 @@ def test_mcp_tool_passes_max_new_through(monkeypatch):
                 "backlog_new": 20, "remaining": 20, "cap": kw.get("max_new"),
                 "first_run": False, "seeded_only": False, "seeded": 0, "cookies_used": True}
     monkeypatch.setattr(mcp_server, "fetch_playlist_new", fake)
-    out = json.loads(mcp_server.fetch_playlist(url="PLtest"))
-    assert seen["max_new"] == 6 and out["cap"] == 6 and out["remaining"] == 20
+    mcp_server.fetch_playlist(url="PLtest")
+    assert seen["max_new"] is None  # omitted -> defer to DEFAULT_MAX_NEW, never a hardcoded 6
     mcp_server.fetch_playlist(url="PLtest", max_new=2)
     assert seen["max_new"] == 2
+
+
+@pytest.mark.parametrize("env_value,expected", [(None, 6), ("3", 3)])
+def test_mcp_tool_honours_env_override(env_value, expected, reloaded, tmp_path, monkeypatch):
+    """Drift 347: CINOPSIS_MAX_NEW_PER_RUN must reach the cap through MCP, not only the CLI."""
+    mcp_server, _ = _schema()
+    mod = reloaded(env_value)
+    _isolate(mod, tmp_path, monkeypatch)
+    out = json.loads(mcp_server.fetch_playlist(url="PLtest"))
+    assert out["cap"] == expected and out["new_count"] == expected
+    assert out["remaining"] == 20 - expected
 
 
 @pytest.mark.parametrize("bad", [0, -1])

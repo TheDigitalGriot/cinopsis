@@ -120,7 +120,7 @@ def fetch_videos(days: int = 3, keyword: str | None = None, include_all: bool = 
 def fetch_playlist(url: str | None = None, name: str | None = None,
                    playlist_end: int | None = None, include_all: bool = False,
                    seed_only: bool = False, cookies: str | None = None,
-                   max_new: int = 6) -> str:
+                   max_new: int | None = None) -> str:
     """Surface newly-added videos from a YouTube playlist (id-based seen-diff).
 
     Diffs the playlist's entries against a local seen manifest and returns only
@@ -138,10 +138,12 @@ def fetch_playlist(url: str | None = None, name: str | None = None,
             nothing new (onboard a playlist without a retroactive fetch).
         cookies: Optional path to a cookies.txt (Netscape format) so PRIVATE/unlisted
             playlists resolve. Falls back to $CINOPSIS_COOKIES, then data/cookies.txt.
-        max_new: Surface at most N net-new videos this run (default 6, must be >= 1). The
+        max_new: Surface at most N net-new videos this run (must be >= 1). Omitted, it falls
+            back to $CINOPSIS_MAX_NEW_PER_RUN, else 6 - the same default the CLI uses. The
             rest stay unseen and drain on later runs, so a batch is never over-fed.
     """
-    if not isinstance(max_new, int) or isinstance(max_new, bool) or max_new < 1:
+    if max_new is not None and (not isinstance(max_new, int) or isinstance(max_new, bool)
+                                or max_new < 1):
         return json.dumps({"error": f"max_new must be an integer >= 1, got {max_new!r}"},
                           ensure_ascii=False)
     with _quiet_stdout():
