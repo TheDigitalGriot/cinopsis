@@ -5,6 +5,36 @@ All notable changes to **Cinopsis** are documented here.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [3.4.0] - 2026-10-21
+
+Minor: **drift 371 fixed - one stream-URL ask per batch - and the session frames engine now defaults
+to local**, plus an explicit version gate for headless bookend runs (stage contracts
+`drift-371-resolve-once`, `drift-371-engine-default`, `drift-371-ship`).
+
+### Added
+- **`CINOPSIS_FRAMES_ENGINE` chooser.** `capture_frames.default_engine()` is the one place the
+  session frames engine is picked, for both `capture_frames.py --session` and the MCP
+  `harvest_frames` tool: an explicit `--engine` / `engine=` wins, else the
+  `CINOPSIS_FRAMES_ENGINE` environment variable (`stream` or `local`), else `local`. An
+  unrecognised value warns on stderr and falls back to `local`. Single-frame paths (`--timestamps`,
+  the viewer's `/api/screenshot`, MCP `capture_frame`) stay on the stream engine and never read it.
+- **`scripts/bookend_version.py`** - headless bookend runs take the version as `--version X.Y.Z` or
+  `CINOPSIS_BOOKEND_VERSION` and resolve it through one gate: `BOOKEND_VERSION_OK` (exit 0),
+  `BOOKEND_NEEDS_VERSION` (exit 3, halt), `BOOKEND_VERSION_REJECTED` (exit 2, not SemVer or not
+  greater than the last tag). The closing ceremony passes the version through.
+
+### Changed
+- **The session frames engine default is now `local`**: each video is downloaded once into
+  `data/media_runs`, every step frame is cut from it, and the video is deleted after. `stream` stays
+  available by flag, argument or env var. README and the `cinopsis` / `cinopsis-harvest` skills
+  document the chooser.
+
+### Fixed
+- **Drift 371 - the stream engine no longer resolves a stream URL per timestamp.** It resolves the URL
+  once per batch, lazily at the first uncached frame, and re-asks at most once when ffmpeg fails on an
+  expired URL. Session capture feeds batches of `BATCH_CHUNK` (20), so a 120-step video costs 6 yt-dlp
+  asks against the frames gate instead of 120.
+
 ## [3.3.0] - 2026-10-16
 
 Minor: **batch-safe playlists, uncapped key moments, a shipped read-back applier, a self-sufficient
