@@ -139,11 +139,13 @@ def test_session_file_engine_local_and_stream_untouched(env, monkeypatch):
     assert summary["engine"] == "local"
     written = json.loads((sdir / "comparison_data.json").read_text(encoding="utf-8"))
     assert written["analysis"]["workflow_steps"][0]["frame_ref"] == f"frames/{VID}_1.png"
-    # stream stays the default engine and is still the original function
+    # drift 371 stage B: local is the default; stream is still the original function, by choice
+    monkeypatch.delenv("CINOPSIS_FRAMES_ENGINE", raising=False)
+    assert cf.capture_session_file(str(sdir), verbose=False)["engine"] == "local"
     seen = {}
     monkeypatch.setattr(cf, "capture_session_frames",
                         lambda data, out, verbose=True: seen.setdefault("stream", True) and {"captured": 0})
-    cf.capture_session_file(str(sdir), verbose=False)
+    cf.capture_session_file(str(sdir), verbose=False, engine="stream")
     assert seen == {"stream": True}
     with pytest.raises(ValueError):
         cf.capture_session_file(str(sdir), engine="bogus")

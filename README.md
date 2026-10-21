@@ -206,7 +206,17 @@ python scripts/compare_server.py --port 5123
 
 # 6. Capture a frame screenshot at a specific timestamp
 python scripts/capture_frames.py --video-id dQw4w9WgXcQ --timestamps 60,120,300
+
+# 7. Frame every workflow step of a session (engine default: local)
+python scripts/capture_frames.py --session SESSION --json
 ```
+
+**Session frames engine.** `capture_frames.py --session` and the MCP `harvest_frames` tool default to the
+`local` engine: one download per video into `data/media_runs`, every step frame cut from it, the video deleted
+after. `stream` makes one stream-URL ask per video and seeks it over the network, no download. Choose with
+`--engine` / `engine=` or the `CINOPSIS_FRAMES_ENGINE` environment variable (`stream` or `local`); the explicit
+argument wins, and an unrecognised value warns and falls back to `local`. Single-frame grabs (`--timestamps`,
+the viewer's `/api/screenshot`, MCP `capture_frame`) stay on the stream engine and ignore the variable.
 
 ## 📁 Directory Structure
 
